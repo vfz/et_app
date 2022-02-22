@@ -1,0 +1,23 @@
+@font-face {
+    font-family: 'Uni Neue Book';
+    //src: url('~@/assets/fonts/UniNeueBook.eot');
+    src: local('Uni Neue Book'), local('UniNeueBook'), url('~@/assets/fonts/UniNeueBook.eot?#iefix') format('embedded-opentype'), url('~@/assets/fonts/UniNeueBook.woff2') format('woff2'), url('~@/assets/fonts/UniNeueBook.woff') format('woff'), url('~@/assets/fonts/UniNeueBook.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Uni Neue';
+    // src: url('~@/assets/fonts/UniNeueRegular.eot');
+    src: local('Uni Neue Regular'), local('UniNeueRegular'), url('~@/assets/fonts/UniNeueRegular.eot?#iefix') format('embedded-opentype'), url('~@/assets/fonts/UniNeueRegular.woff2') format('woff2'), url('~@/assets/fonts/UniNeueRegular.woff') format('woff'), url('~@/assets/fonts/UniNeueRegular.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Uni Neue';
+    //src: url('~@/assets/fonts/UniNeueBold.eot');
+    src: local('Uni Neue Bold'), local('UniNeueBold'), url('~@/assets/fonts/UniNeueBold.eot?#iefix') format('embedded-opentype'), url('~@/assets/fonts/UniNeueBold.woff2') format('woff2'), url('~@/assets/fonts/UniNeueBold.woff') format('woff'), url('~@/assets/fonts/UniNeueBold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}

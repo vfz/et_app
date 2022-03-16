@@ -21,9 +21,10 @@ export default {
             state.toStations = toStations.result
         },
         updateDateC(state, newDate) {
-            state.dateArival = newDate;
-            state.selectDate = false;
-
+            if (state.selectDate) {
+                state.dateArival = newDate;
+                state.selectDate = false;
+            }
             if (state.selectDateBack) {
                 state.dateBack = newDate;
                 state.selectDateBack = false

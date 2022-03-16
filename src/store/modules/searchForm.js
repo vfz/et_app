@@ -20,21 +20,54 @@ export default {
         updateToStations(state, toStations) {
             state.toStations = toStations.result
         },
-        updateDate(state, setDate, tomorow) {
-            if (state.selectDate) {
-                state.dateArival = setDate; //tomorow ? 'завтра' : 'Сегодня' + tomorow; //
-                state.selectDate = !state.selectDate
-            };
+        updateDateC(state, newDate) {
+            state.dateArival = newDate;
+            state.selectDate = false;
+
             if (state.selectDateBack) {
-                state.dateBack = setDate; //tomorow ? 'завтра' : 'Сегодня' + tomorow; //
-                state.selectDateBack = !state.selectDateBack
+                state.dateBack = newDate;
+                state.selectDateBack = false
             }
         },
+        updateDate(state, tomorow) {
+            let D = new Date();
+            if (tomorow == true) {
+                D.setDate(D.getDate() + 1)
+                let month = D.getMonth() + 1;
+                let day = (D.getDate().toString().length === 1) ? '0' + D.getDate() : D.getDate();
+                month = (month.toString().length === 1) ? '0' + month : month;
+                state.dateArival = day + '.' + month + '.' + D.getFullYear()
+            } else {
+                let month = D.getMonth() + 1;
+                let day = (D.getDate().toString().length === 1) ? '0' + D.getDate() : D.getDate();
+                month = (month.toString().length === 1) ? '0' + month : month;
+                state.dateArival = day + '.' + month + '.' + D.getFullYear()
+            }
+
+        },
+        updateDateBack(state, tomorow) {
+            let D = new Date();
+            if (tomorow == true) {
+                D.setDate(D.getDate() + 1)
+                let month = D.getMonth() + 1;
+                let day = (D.getDate().toString().length === 1) ? '0' + D.getDate() : D.getDate();
+                month = (month.toString().length === 1) ? '0' + month : month;
+                state.dateBack = day + '.' + month + '.' + D.getFullYear()
+            } else {
+                let month = D.getMonth() + 1;
+                let day = (D.getDate().toString().length === 1) ? '0' + D.getDate() : D.getDate();
+                month = (month.toString().length === 1) ? '0' + month : month;
+                state.dateBack = day + '.' + month + '.' + D.getFullYear()
+            }
+
+        },
         newselectDate(state) {
-            state.selectDate = !state.selectDate
+            state.selectDate = !state.selectDate;
+            state.selectDateBack = false
         },
         newselectDateBack(state) {
-            state.selectDateBack = !state.selectDateBack
+            state.selectDateBack = !state.selectDateBack;
+            state.selectDate = false
         },
         DateFalse(state) {
             state.selectDate = false
@@ -75,7 +108,7 @@ export default {
     },
     actions: {
         async getToStations(ctx, from = '') {
-            const res = await пше("https://evrotrans.net/APIet/?command=to&from_id=" + from);
+            const res = await fetch("https://evrotrans.net/APIet/?command=to&from_id=" + from);
             const toStations = await res.json();
             ctx.commit('updateToStations', toStations)
         },
@@ -96,8 +129,14 @@ export default {
         selectDateFalse(ctx) {
             ctx.commit('DateFalse')
         },
-        SetDate(ctx, setDate, tomorow) {
-            ctx.commit('updateDate', setDate, tomorow)
+        SetDateArival(ctx, f) {
+            ctx.commit('updateDate', f)
+        },
+        SetDateBack(ctx, f) {
+            ctx.commit('updateDateBack', f)
+        },
+        SetDate(ctx, newDate) {
+            ctx.commit('updateDateC', newDate)
         },
         setFrom(ctx, id) {
             ctx.commit('updateFrom', id)

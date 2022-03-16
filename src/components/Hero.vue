@@ -76,7 +76,7 @@
                                             v-mmodel="toPlace"
                                             placeholder="Введите название населенного пункта" style="padding-left: 7pt;">
                                             <div class="find-place" v-if="toPlace && !to || toPlaceV ">
-                                                <div class="meta" 
+                                                <div class="meta"
                                                 v-for="pointTo in toStations" :key="pointTo.id_to" 
                                                 v-show="search(pointTo.name,toPlace)"
                                                 v-on:click="setTo(pointTo.id_to);toPlaceV=false;toPlace=pointTo.name">
@@ -136,10 +136,10 @@
                                             </div>
                                             <span class="card-example d-block w-100">
                                                 <span id="today-date-toggle" class="card-example-date today-date-toggle text-decoration-underline"
-                                                v-on:click="UpdateselectDate();SetDate(new Date().toLocaleDateString());UpdateselectDate()">Сегодня</span>
+                                                v-on:click="UpdateselectDate();SetDateArival(false);UpdateselectDate()">Сегодня</span>
                                                 /
                                                 <span id="tomorrow-date-toggle" class="card-example-date tomorrow-date-toggle text-decoration-underline"
-                                                 v-on:click="UpdateselectDate();SetDate(new Date().toLocaleDateString(), 1);UpdateselectDate()">Завтра</span>
+                                                 v-on:click="UpdateselectDate();SetDateArival(true);UpdateselectDate()">Завтра</span>
                                             </span>
                                         </div>
                                     </div>
@@ -259,10 +259,10 @@
                                             </div>
                                             <span class="card-example d-block w-100">
                                                 <span id="today-date-toggle" class="card-example-date today-date-toggle text-decoration-underline"
-                                                v-on:click="SetDateArival(new Date().toLocaleDateString());UpdateselectDate()">Сегодня</span>
+                                                v-on:click="UpdateselectDate();SetDateArival(false);UpdateselectDate()">Сегодня</span>
                                                 /
                                                 <span id="tomorrow-date-toggle" class="card-example-date tomorrow-date-toggle text-decoration-underline"
-                                                 v-on:click="SetDateArival(new Date().toLocaleDateString(), 1);UpdateselectDate()">Завтра</span>
+                                                 v-on:click="UpdateselectDate();SetDateArival(true);UpdateselectDate()">Завтра</span>
                                             </span>
                                         </div>
                                     </div>
@@ -283,10 +283,10 @@
                                             </div>
                                             <span class="card-example d-block w-100">
                                                 <span id="today-date-toggle" class="card-example-date today-date-toggle text-decoration-underline"
-                                                v-on:click="SetDateBack(new Date().toLocaleDateString());UpdateselectDateBack()">Сегодня</span>
+                                                v-on:click="UpdateselectDateBack();SetDateBack(false);UpdateselectDateBack()">Сегодня</span>
                                                 /
                                                 <span id="tomorrow-date-toggle" class="card-example-date tomorrow-date-toggle text-decoration-underline"
-                                                 v-on:click="SetDateBack(new Date().toLocaleDateString(), 1);UpdateselectDateBack()">Завтра</span>
+                                                 v-on:click="UpdateselectDateBack();SetDateBack(true);UpdateselectDateBack()">Завтра</span>
                                             </span>
                                         </div>
                                     </div>
@@ -337,6 +337,8 @@ export default{
         }
 
     },
+    //Директива для того чтобы при работе в мобильной версии отрабатывался поиск остановочных пунктов, 
+    // сразу после ввода символа а не после нажатия на Enter
     directives: {
         mmodel: {
         bind: function(el, binding, vnode) {
@@ -352,6 +354,8 @@ export default{
             'UpdateselectDateBack',
             'selectDateFalse',
             'SetDate',
+            'SetDateBack',
+            'SetDateArival',
             'setFrom',
             'setTo',
             'castling',
@@ -370,6 +374,7 @@ export default{
         alertPlace(){
             alert('Едем в '+this.toPlace+' Едем из '+this.fromPlace)
         },
+        //Переключение кнопок в полях кол-ва пассажиров в Desabled Enabled
         changeClass() {
             if (this.adults >= 7) {
                 this.pba = false;
@@ -562,8 +567,10 @@ export default{
             z-index: 998;
             left:0;
             width:100%;
+            max-height: 100%;
             margin: 0;
-           
+            overflow-y: auto;
+            //overflow-y: hidden;
             background: #F3F7FF;
             cursor: pointer;
             

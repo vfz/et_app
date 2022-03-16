@@ -2,13 +2,13 @@
     <div class="container">
         <div class="row ">
             <div class="col-4 col-sm-4 text-end" v-on:click="decrease">
-                <span><</span>
+                <span>&LT;</span>
             </div>
             <div class="col-4 col-sm-4 text-center">
                 {{monthes[month]}} <br> {{year}} 
             </div>
             <div class="col-4 col-sm-4 text-start" v-on:click="increase">
-                <span>></span>
+                <span>&GT;</span>
             </div>
         </div>
         <div class="row justify-content-end">           
@@ -19,9 +19,9 @@
         <div class="row justify-content-end" v-for="week in calendar()">
             
             <div class="col datapicker day text-center" v-for="day in week"   
-            :class="{ current : day.current }">
-                <div v-on:click="SetDate(day.index+'.'+day.month+'.'+day.year)">
-                    <div class="fix"></div><div class="date">{{ day.index }}</div>
+           >
+                <div v-on:click="SetDate(day.index+'.'+day.month+'.'+day.year)"  :class="{ current : day.current,  selected:day.selected}" >
+                    <div class="fix"></div><div class="date">{{ day.indexm }}</div>
                     <div class="price" v-if="day.index">{{day.price}}</div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
 import {mapGetters,mapActions} from 'vuex'
 export default{
     name: 'DataPicker',
-    computed: mapGetters(['selectDate','selectDateBack']),
+    computed: mapGetters(['selectDate','selectDateBack','dateArival','dateBack']),
     data(){
         return{
 
@@ -46,18 +46,26 @@ export default{
     },
     methods: {
         ...mapActions(['SetDate']),
+        
         calendar: function() {
             var a={};
             var days = [];
             var week = 0;
             days[week] = [];
             var dlast = new Date(this.year, this.month + 1, 0).getDate();
+            
+            const { 0: selectDay, 1: selectMonth, 2: selectYear } = this.dateArival.split('.');
+           
+            const { 0: selectDayBack, 1: selectMonthBack, 2: selectYearBack } = this.dateBack.split('.');
+            
+
             for (let i = 1; i <= dlast; i++) {
                 if (new Date(this.year, this.month, i).getDay() != 1) {
                     let printmonth=this.month+1;
                     
                     a = {
                         index: (i.toString().length===1) ? '0'+i : i,
+                        indexm: i,
                         month: (printmonth.toString().length===1) ? '0'+printmonth : printmonth,
                         year: this.year
                     };
@@ -66,11 +74,24 @@ export default{
                     if (i == new Date().getDate() && this.year == new Date().getFullYear() && this.month == new Date().getMonth()) {
                         a.current = '1';
                         a.price = '≈ 1700';
+                        a.selected = false;
                     };
                     if (new Date(this.year, this.month, i).getDay() == 6 || new Date(this.year, this.month, i).getDay() == 0) {
                         a.weekend = '1';
                         a.price = '≈ 2500';
+                        a.selected = false;
                     };
+                    
+                    if ((i == selectDay 
+                    && this.year == selectYear 
+                    && printmonth == +selectMonth
+                    && this.selectDate) || (i == selectDayBack 
+                    && this.year == selectYearBack
+                    && printmonth == +selectMonthBack
+                    && this.selectDateBack)) {
+                        a.selected = true;
+                    };
+
 
                 } else {
                     week++;
@@ -78,6 +99,7 @@ export default{
                     days[week] = [];
                     a = {
                         index: (i.toString().length===1) ? '0'+i : i,
+                        indexm: i,
                         month: (printmonth.toString().length===1) ? '0'+printmonth : printmonth,
                         year: this.year
                     };
@@ -86,10 +108,21 @@ export default{
                     if ((i == new Date().getDate()) && (this.year == new Date().getFullYear()) && (this.month == new Date().getMonth())) {
                         a.current = '1';
                         a.price = '≈ 1700';
+                        a.selected = false;
                     };
                     if (new Date(this.year, this.month, i).getDay() == 6 || new Date(this.year, this.month, i).getDay() == 0) {
                         a.weekend = '1';
                         a.price = '≈ 2500';
+                        a.selected = false;
+                    };
+                     if ((i == selectDay 
+                    && this.year == selectYear 
+                    && printmonth == +selectMonth
+                    && this.selectDate) || (i == selectDayBack 
+                    && this.year == selectYearBack
+                    && printmonth == +selectMonthBack
+                    && this.selectDateBack)) {
+                        a.selected = true; 
                     };
                 }
 
@@ -128,6 +161,7 @@ export default{
             }
         },
     }
+    
 
 }
 
@@ -148,8 +182,10 @@ export default{
     /* Text / Базовый */
     color: $base;   
     :hover{
-        background: #1399FF;
+        background: #A3D7FF;
         box-sizing: border-box;
+        font-weight: bold;
+        color: #FFFFFF;
         border-radius: 4px;
     }  
 }    
@@ -183,8 +219,13 @@ export default{
     }
 }
 .current{
-    
    
+    background: #1399FF;
+    border-radius: 4px;
+    color: #FFFFFF;
+}
+.selected{
+     // Уголок в вехней части ячейки   
     .fix{
         position:absolute;
         left: 0;
@@ -195,7 +236,9 @@ export default{
         box-sizing: border-box;
         border-radius: 4px 0 0 0;
     }
-
+    .price{
+        color: #196EFF;
+    }
 }
 
 </style>

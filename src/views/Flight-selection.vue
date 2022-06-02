@@ -1,5 +1,5 @@
 <template>
-  <div class="body-app">
+  <div class="body-app-white">
     <Header/>
   <Footer/>
   <LoginModal/>
@@ -10,7 +10,7 @@
 <style lang="scss" scoped>
 @import "src/assets/variables.scss";
 @import "src/assets/font.scss";
-.body-app {
+.body-app-white {
   background-color: $white;
 }
 </style>

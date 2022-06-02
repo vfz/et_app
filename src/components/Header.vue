@@ -69,6 +69,18 @@
 @import "src/assets/variables.scss";
 @import "src/assets/font.scss";
 
+.body-app-white {
+  .nav-header {
+    .nav {
+      &-item {
+        .nav-link {
+          color: $black !important;
+        }
+      }
+    }
+  }
+}
+
 .header {
   padding-top: 60px;
   margin-bottom: 64px;

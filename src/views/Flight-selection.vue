@@ -1,15 +1,19 @@
 <template>
-  <div>
-  <Hero/>
-  <Populardirections/>
-  <Registrationhero/>
+  <div class="body-app">
+    <Header/>
   <Footer/>
   <LoginModal/>
   <RegistrationModal/>
   <ForgotPasswordModal/>
   </div>
 </template>
-
+<style lang="scss" scoped>
+@import "src/assets/variables.scss";
+@import "src/assets/font.scss";
+.body-app {
+  background-color: $white;
+}
+</style>
 <script>
 
 import Hero from '@/components/Hero'
@@ -19,10 +23,12 @@ import ForgotPasswordModal from '@/components/ForgotPasswordModal'
 import RegistrationModal from '@/components/RegistrationModal'
 import Populardirections from '@/components/Populardirections'
 import Registrationhero from '@/components/Registrationhero'
+import Header from "@/components/Header";
 
 export default {
   name: 'Flightselection',
   components: {
+    Header,
     Hero,Footer,Populardirections,Registrationhero,LoginModal,RegistrationModal,ForgotPasswordModal
   }
 }

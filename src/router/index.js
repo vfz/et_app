@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Flightselection from '../views/Flight-selection.vue'
+import Flightselection from '@/views/Flight-selection.vue'
 import TicketBooking from "@/views/Ticket-booking";
 
 Vue.use(VueRouter)

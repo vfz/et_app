@@ -2,6 +2,7 @@
   <div class="body-app-white">
     <Header/>
     <Timeline/>
+    <FlightForm/>
   <Footer/>
   <LoginModal/>
   <RegistrationModal/>
@@ -26,10 +27,12 @@ import Populardirections from '@/components/Populardirections'
 import Registrationhero from '@/components/Registrationhero'
 import Header from "@/components/Header";
 import Timeline from "@/components/Timeline";
+import FlightForm from "@/components/Flight-form";
 
 export default {
   name: 'Flightselection',
   components: {
+    FlightForm,
     Timeline,
     Header,
     Hero,Footer,Populardirections,Registrationhero,LoginModal,RegistrationModal,ForgotPasswordModal

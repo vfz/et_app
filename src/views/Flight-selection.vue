@@ -1,6 +1,7 @@
 <template>
   <div class="body-app-white">
     <Header/>
+    <Timeline/>
   <Footer/>
   <LoginModal/>
   <RegistrationModal/>
@@ -24,10 +25,12 @@ import RegistrationModal from '@/components/RegistrationModal'
 import Populardirections from '@/components/Populardirections'
 import Registrationhero from '@/components/Registrationhero'
 import Header from "@/components/Header";
+import Timeline from "@/components/Timeline";
 
 export default {
   name: 'Flightselection',
   components: {
+    Timeline,
     Header,
     Hero,Footer,Populardirections,Registrationhero,LoginModal,RegistrationModal,ForgotPasswordModal
   }

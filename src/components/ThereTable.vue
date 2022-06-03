@@ -2,9 +2,11 @@
   <section class="thereTable-section">
     <div class="container-fluid">
       <div class="row">
-        <h2 class="title-table">
-          Туда <span class="title-table-counter">(3)</span>
-        </h2>
+        <div class="col-12">
+          <h2 class="title-table">
+            Туда <span class="title-table-counter">(3)</span>
+          </h2>
+        </div>
       </div>
       <div class="row">
 

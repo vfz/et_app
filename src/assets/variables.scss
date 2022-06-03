@@ -14,3 +14,11 @@ $uni: 'Uni Neue';
 $regular: 500;
 $bold: bold;
 //color
+
+@mixin font($font-family-variable , $font-weight-variable , $font-size-variable , $line-height-variable, $color-variable) {
+  font-family: $font-family-variable;
+  font-weight: $font-weight-variable;
+  font-size: $font-size-variable;
+  line-height: $line-height-variable;
+  color: $color-variable;
+}

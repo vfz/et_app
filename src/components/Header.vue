@@ -2,9 +2,9 @@
     <header class="header">
     <nav class="navbar navbar-expand-md navbar-dark">
         <div class="container-fluid">
-            <a class="logo-link" href="#">
-                <img alt="logo" src="img/header/logo.png" class="logo">
-            </a>
+          <router-link to="/" class="logo-link">
+            <img alt="logo" src="img/header/logo.png" class="logo">
+          </router-link>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>

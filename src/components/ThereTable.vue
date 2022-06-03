@@ -32,10 +32,7 @@ export default {
     margin-right: 5px;
   }
   .title-table {
-    font-family: $uni;
-    font-weight: $bold;
-    font-size: 24px;
-    color: $black;
+    @include font($uni,$bold, 24px, 32.4px, $black);
     &-counter {
 
     }

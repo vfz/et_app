@@ -3,6 +3,7 @@
     <Header/>
     <Timeline/>
     <FlightForm/>
+    <ThereTable/>
   <Footer/>
   <LoginModal/>
   <RegistrationModal/>
@@ -28,10 +29,12 @@ import Registrationhero from '@/components/Registrationhero'
 import Header from "@/components/Header";
 import Timeline from "@/components/Timeline";
 import FlightForm from "@/components/Flight-form";
+import ThereTable from "@/components/ThereTable";
 
 export default {
   name: 'Flightselection',
   components: {
+    ThereTable,
     FlightForm,
     Timeline,
     Header,

@@ -19,6 +19,26 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "src/assets/variables.scss";
+@import "src/assets/font.scss";
 
+.thereTable-section {
+  margin-top: 41px;
+  margin-left: 88px;
+  margin-right: 88px;
+  @media screen and (max-width: 767px) {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  .title-table {
+    font-family: $uni;
+    font-weight: $bold;
+    font-size: 24px;
+    color: $black;
+    &-counter {
+
+    }
+  }
+}
 </style>

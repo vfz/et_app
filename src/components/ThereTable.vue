@@ -130,10 +130,7 @@ export default {
 @import "src/assets/font.scss";
 
 .thereTable-section {
-  margin-top: 41px;
-  margin-bottom: 41px;
-  margin-left: 88px;
-  margin-right: 88px;
+  margin: 41px 88px;
   @media screen and (max-width: 767px) {
     margin-left: 5px;
     margin-right: 5px;

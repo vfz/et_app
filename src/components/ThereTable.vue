@@ -11,7 +11,7 @@
       <div class="row">
         <div class="col-12">
           <div class="table-wrapper">
-            <table class="table">
+            <table class="table align-middle">
               <thead>
               <tr>
                 <th>

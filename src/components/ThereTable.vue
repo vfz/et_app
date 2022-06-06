@@ -94,12 +94,14 @@
                     Выбрать
                   </div>
                 </td>
-                <td>
-                  <div class="price d-inline-block">
-                    7000₽
-                  </div>
-                  <div class="d-inline-block">
-                    <img class="help-icon" alt="help" src="img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
+                <td class="align-middle">
+                  <div class="d-flex align-content-center">
+                    <div class="price d-inline-block">
+                      7000₽
+                    </div>
+                    <div class="d-inline-block">
+                      <img class="help-icon" alt="help" src="img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
+                    </div>
                   </div>
                 </td>
                 <td>
@@ -129,6 +131,7 @@ export default {
 
 .thereTable-section {
   margin-top: 41px;
+  margin-bottom: 41px;
   margin-left: 88px;
   margin-right: 88px;
   @media screen and (max-width: 767px) {
@@ -191,6 +194,9 @@ export default {
             }
             .dispatch-length-time-saw, .dispatch-place, .arrival-place, .place-choice {
               @include font($uni, $light, 14px, 18.9px, $blue-link);
+            }
+            .price {
+              margin-right: 24px;
             }
           }
         }

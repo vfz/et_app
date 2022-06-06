@@ -154,6 +154,9 @@ export default {
       td {
         padding: 1rem 0;
       }
+      th {
+        padding: 1rem 0;
+      }
       thead {
         tr {
           th {

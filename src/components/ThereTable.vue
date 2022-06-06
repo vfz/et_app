@@ -152,6 +152,26 @@
                     30 января
                   </div>
                 </div>
+                <div class="dispatch-timeline">
+                  <ul class="timeline">
+                    <li class="event" data-date="12:30 - 1:00pm">
+                      <h3>Registration</h3>
+                      <p>Get here on time, it's first come first serve. Be late, get turned away.</p>
+                    </li>
+                    <li class="event" data-date="2:30 - 4:00pm">
+                      <h3>Opening Ceremony</h3>
+                      <p>Get ready for an exciting event, this will kick off in amazing fashion with MOP &amp; Busta Rhymes as an opening show.</p>
+                    </li>
+                    <li class="event" data-date="5:00 - 8:00pm">
+                      <h3>Main Event</h3>
+                      <p>This is where it all goes down. You will compete head to head with your friends and rivals. Get ready!</p>
+                    </li>
+                    <li class="event" data-date="8:30 - 9:30pm">
+                      <h3>Closing Ceremony</h3>
+                      <p>See how is the victor and who are the losers. The big stage is where the winners bask in their own glory.</p>
+                    </li>
+                  </ul>
+                </div>
                 <div class="col-12 col-md-7">
                   <div style="position:relative;overflow:hidden;"><a href="https://yandex.ru/maps?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Яндекс Карты</a><a href="https://yandex.ru/maps/?ll=39.794306%2C50.707218&mode=routes&rtext=55.755819%2C37.617644~45.043317%2C41.969110&rtt=auto&ruri=ymapsbm1%3A%2F%2Fgeo%3Fll%3D37.618%252C55.756%26spn%3D0.642%252C0.466%26text%3D%25D0%25A0%25D0%25BE%25D1%2581%25D1%2581%25D0%25B8%25D1%258F%252C%2520%25D0%259C%25D0%25BE%25D1%2581%25D0%25BA%25D0%25B2%25D0%25B0~ymapsbm1%3A%2F%2Fgeo%3Fll%3D41.969%252C45.043%26spn%3D0.280%252C0.164%26text%3D%25D0%25A0%25D0%25BE%25D1%2581%25D1%2581%25D0%25B8%25D1%258F%252C%2520%25D0%25A1%25D1%2582%25D0%25B0%25D0%25B2%25D1%2580%25D0%25BE%25D0%25BF%25D0%25BE%25D0%25BB%25D1%258C&utm_medium=mapframe&utm_source=maps&z=6.2" style="color:#eee;font-size:12px;position:absolute;top:14px;">Яндекс Карты</a><iframe src="https://yandex.ru/map-widget/v1/-/CCUJ5PX4DA" width="100%" height="400" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe></div>
                 </div>
@@ -279,6 +299,122 @@ export default {
       .modal-date {
         @include font($uni, $bold, 20px, 27px, $secondary);
         margin-bottom: 16px;
+      }
+      .dispatch-timeline {
+        .timeline {
+          border-left: 3px solid #727cf5;
+          border-bottom-right-radius: 4px;
+          border-top-right-radius: 4px;
+          background: rgba(114, 124, 245, 0.09);
+          //margin: 0 auto;
+          letter-spacing: 0.2px;
+          position: relative;
+          line-height: 1.4em;
+          font-size: 1.03em;
+          padding: 50px;
+          list-style: none;
+          text-align: left;
+          max-width: 40%;
+        }
+
+        @media (max-width: 767px) {
+          .timeline {
+            max-width: 98%;
+            padding: 25px;
+          }
+        }
+
+        .timeline h1 {
+          font-weight: 300;
+          font-size: 1.4em;
+        }
+
+        .timeline h2,
+        .timeline h3 {
+          font-weight: 600;
+          font-size: 1rem;
+          margin-bottom: 10px;
+        }
+
+        .timeline .event {
+          border-bottom: 1px dashed #e8ebf1;
+          padding-bottom: 25px;
+          margin-bottom: 25px;
+          position: relative;
+        }
+
+        @media (max-width: 767px) {
+          .timeline .event {
+            padding-top: 30px;
+          }
+        }
+
+        .timeline .event:last-of-type {
+          padding-bottom: 0;
+          margin-bottom: 0;
+          border: none;
+        }
+
+        .timeline .event:before,
+        .timeline .event:after {
+          position: absolute;
+          display: block;
+          top: 0;
+        }
+
+        .timeline .event:before {
+          left: -207px;
+          content: attr(data-date);
+          text-align: right;
+          font-weight: 100;
+          font-size: 0.9em;
+          min-width: 120px;
+        }
+
+        @media (max-width: 767px) {
+          .timeline .event:before {
+            left: 0px;
+            text-align: left;
+          }
+        }
+
+        .timeline .event:after {
+          -webkit-box-shadow: 0 0 0 3px #727cf5;
+          box-shadow: 0 0 0 3px #727cf5;
+          left: -55.8px;
+          background: #fff;
+          border-radius: 50%;
+          height: 9px;
+          width: 9px;
+          content: "";
+          top: 5px;
+        }
+
+        @media (max-width: 767px) {
+          .timeline .event:after {
+            left: -31.8px;
+          }
+        }
+
+        .rtl .timeline {
+          border-left: 0;
+          text-align: right;
+          border-bottom-right-radius: 0;
+          border-top-right-radius: 0;
+          border-bottom-left-radius: 4px;
+          border-top-left-radius: 4px;
+          border-right: 3px solid #727cf5;
+        }
+
+        .rtl .timeline .event::before {
+          left: 0;
+          right: -170px;
+        }
+
+        .rtl .timeline .event::after {
+          left: 0;
+          right: -55.8px;
+        }
       }
     }
   }

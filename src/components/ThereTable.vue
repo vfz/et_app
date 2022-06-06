@@ -228,7 +228,7 @@ export default {
             .price {
               margin-right: 24px;
             }
-            .dispatch-place {
+            .table-link {
               cursor: pointer;
             }
           }

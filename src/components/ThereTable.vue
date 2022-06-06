@@ -9,7 +9,110 @@
         </div>
       </div>
       <div class="row">
-
+        <div class="col-12">
+          <div class="table-wrapper">
+            <table class="table">
+              <thead>
+              <tr>
+                <th>
+                  Время отправления
+                </th>
+                <th>
+                  Пункт отправления
+                </th>
+                <th>
+                  Время в пути / маршрут
+                </th>
+                <th>
+                  Время прибытия
+                </th>
+                <th>
+                  Пункт прибытия
+                </th>
+                <th>
+                  Осталось мест
+                </th>
+                <th>
+                  Итого
+                </th>
+                <th>
+                  Покупка
+                </th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>
+                  <div class="dispatch-time">
+                    09:30
+                  </div>
+                  <br>
+                  <div class="dispatch-date">
+                    <span class="dispatch-date-day">30</span>
+                    <span class="dispatch-date-month">Янв'</span>'
+                    <span class="dispatch-date-year">20</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="dispatch-city">
+                    Ставрополь
+                  </div>
+                  <div class="dispatch-place">
+                    ж/д вокзал
+                  </div>
+                </td>
+                <td>
+                  <div class="dispatch-length-time">
+                    20 часов
+                  </div>
+                  <div class="dispatch-length-time-saw">
+                    Посмотреть
+                  </div>
+                </td>
+                <td>
+                  <div class="arrival-time">
+                    05:30
+                  </div>
+                  <div class="arrival-date">
+                    <span class="arrival-date-day">31</span>
+                    <span class="arrival-date-month">Янв</span>'
+                    <span class="arrival-date-year">20</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="arrival-city">
+                    Ставрополь
+                  </div>
+                  <div class="arrival-place">
+                    ж/д вокзал
+                  </div>
+                </td>
+                <td>
+                  <div class="places-left">
+                    24
+                  </div>
+                  <div class="place-choice">
+                    Выбрать
+                  </div>
+                </td>
+                <td>
+                  <div class="price d-inline-block">
+                    7000₽
+                  </div>
+                  <div class="d-inline-block">
+                    <img class="help-icon" alt="help" src="img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
+                  </div>
+                </td>
+                <td>
+                  <div class="place-choice-buy">
+                    Выбрать
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -38,6 +141,52 @@ export default {
     &-counter {
       font-size: 18px;
       color: $deactivate;
+    }
+  }
+  .table-wrapper {
+    background-color: $white;
+    border-radius: 16px;
+    box-shadow: $regular-shadow;
+    padding: 12px 16px;
+    .table {
+      thead {
+        tr {
+          th {
+            @include font($uni, $regular, 14px, 18.9px, $base);
+          }
+        }
+      }
+      tbody {
+        tr {
+          td {
+            .dispatch-time, .arrival-time, .price {
+              @include font($uni, $bold, 20px, 27px, $base);
+            }
+            .dispatch-date, .arrival-date {
+              @include font($uni, $regular, 14px, 18.9px, $secondary)
+            }
+            .dispatch-date {
+              &-day {
+                font-size: 18px;
+              }
+              &-month, &-year {
+                font-size: 14px;
+              }
+            }
+            .arrival-date {
+              &-day {
+                font-size: 18px;
+              }
+            }
+            .dispatch-city, .arrival-city, .places-left, .place-choice-buy {
+              @include font($uni, $regular, 18px, 24.3px, $base);
+            }
+            .dispatch-length-time-saw, .dispatch-place, .arrival-place, .place-choice {
+              //@include font($uni)
+            }
+          }
+        }
+      }
     }
   }
 }

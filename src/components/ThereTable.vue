@@ -343,7 +343,7 @@ export default {
       }
       .dispatch-timeline {
         .timeline {
-          border-left: 1px solid $blue-link;
+          border-left: 1px dotted $blue-link;
           position: relative;
           list-style: none;
         }

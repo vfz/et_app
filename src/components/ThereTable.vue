@@ -56,7 +56,8 @@
                   <div class="dispatch-city">
                     Ставрополь
                   </div>
-                  <div class="dispatch-place" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
+<!--                  для вызова модального окна нужно добавить атрибуты data-bs-toggle со значением modal и data-bs-target со значением id модального окна-->
+                  <div class="dispatch-place table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
                     ж/д вокзал
                   </div>
                 </td>
@@ -64,7 +65,8 @@
                   <div class="dispatch-length-time">
                     20 часов
                   </div>
-                  <div class="dispatch-length-time-saw">
+                  <!--                  для вызова модального окна нужно добавить атрибуты data-bs-toggle со значением modal и data-bs-target со значением id модального окна-->
+                  <div class="dispatch-length-time-saw table-link" data-bs-toggle="modal" data-bs-target="#dispatch-length-time-modal">
                     Посмотреть
                   </div>
                 </td>
@@ -116,15 +118,29 @@
         </div>
       </div>
     </div>
+<!--    для вызова модального окна нужно создать индивидуальный id, таким образом будет открываться свое окно-->
     <div class="modal fade" id="dispatch-modal" tabindex="-1" aria-labelledby="dispatch-modal-label" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
           <div class="modal-header justify-content-end">
-            <a href="#">Проложить маршрут</a>
+            <a class="modal-link" href="#">Проложить маршрут</a>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
             <div style="position:relative;overflow:hidden;"><a href="https://yandex.ru/maps/org/tsentralny_avtovokzal/1078537708/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Центральный Автовокзал</a><a href="https://yandex.ru/maps/36/stavropol/category/bus_station/184108121/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:14px;">Автовокзал, автостанция в Ставрополе</a><a href="https://yandex.ru/maps/36/stavropol/category/bus_tickets/184108281/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:28px;">Автобусные билеты в Ставрополе</a><iframe src="https://yandex.ru/map-widget/v1/-/CCUJ5LQHwC" width="100%" height="400" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--    для вызова модального окна нужно создать индивидуальный id, таким образом будет открываться свое окно-->
+    <div class="modal fade" id="dispatch-length-time-modal" tabindex="-1" aria-labelledby="dispatch-modal-label" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header justify-content-end">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            ...
           </div>
         </div>
       </div>
@@ -233,7 +249,7 @@ export default {
       .btn-close {
         margin: unset;
       }
-      a {
+      .modal-link {
         margin-right: 64px;
         text-decoration: none;
         @include font($uni, $light, 18px, 28.3px, $blue-link);

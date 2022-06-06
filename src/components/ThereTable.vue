@@ -117,18 +117,14 @@
       </div>
     </div>
     <div class="modal fade" id="dispatch-modal" tabindex="-1" aria-labelledby="dispatch-modal-label" aria-hidden="true">
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <div class="modal-header justify-content-end">
+            <a href="#">Проложить маршрут</a>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            ...
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <div style="position:relative;overflow:hidden;"><a href="https://yandex.ru/maps/org/tsentralny_avtovokzal/1078537708/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Центральный Автовокзал</a><a href="https://yandex.ru/maps/36/stavropol/category/bus_station/184108121/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:14px;">Автовокзал, автостанция в Ставрополе</a><a href="https://yandex.ru/maps/36/stavropol/category/bus_tickets/184108281/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:28px;">Автобусные билеты в Ставрополе</a><iframe src="https://yandex.ru/map-widget/v1/-/CCUJ5LQHwC" width="100%" height="400" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe></div>
           </div>
         </div>
       </div>
@@ -216,6 +212,9 @@ export default {
             .price {
               margin-right: 24px;
             }
+            .dispatch-place {
+              cursor: pointer;
+            }
           }
         }
         .active-row {
@@ -225,6 +224,19 @@ export default {
           @include animation;
           background-color: $blue-hover;
         }
+      }
+    }
+  }
+
+  .modal {
+    .modal-header {
+      .btn-close {
+        margin: unset;
+      }
+      a {
+        margin-right: 64px;
+        text-decoration: none;
+        @include font($uni, $light, 18px, 28.3px, $blue-link);
       }
     }
   }

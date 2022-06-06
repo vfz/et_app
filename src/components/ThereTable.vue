@@ -151,6 +151,9 @@ export default {
       border-top: unset;
     }
     .table {
+      td {
+        padding: 1rem 0;
+      }
       thead {
         tr {
           th {

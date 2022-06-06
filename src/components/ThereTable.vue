@@ -148,6 +148,9 @@ export default {
     border-radius: 16px;
     box-shadow: $regular-shadow;
     padding: 12px 16px;
+    .table>:not(:first-child) {
+      border-top: unset;
+    }
     .table {
       thead {
         tr {

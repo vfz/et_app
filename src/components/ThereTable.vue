@@ -161,6 +161,9 @@ export default {
       tbody {
         tr {
           td {
+            .dispatch-time, .arrival-time, .dispatch-city, .arrival-city, .places-left {
+              margin-bottom: 4px;
+            }
             .dispatch-time, .arrival-time, .price {
               @include font($uni, $bold, 20px, 27px, $base);
             }

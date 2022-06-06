@@ -46,7 +46,6 @@
                   <div class="dispatch-time">
                     09:30
                   </div>
-                  <br>
                   <div class="dispatch-date">
                     <span class="dispatch-date-day">30</span>
                     <span class="dispatch-date-month">Янв'</span>'

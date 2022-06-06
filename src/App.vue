@@ -7,6 +7,7 @@
 
 <style lang="scss">
 @import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~mdb-ui-kit/css/mdb.min.css";
 @import "src/assets/variables.scss";
 @import "src/assets/font.scss";
 

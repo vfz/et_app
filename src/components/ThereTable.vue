@@ -118,7 +118,9 @@
         </div>
       </div>
     </div>
-<!--    для вызова модального окна нужно создать индивидуальный id, таким образом будет открываться свое окно-->
+<!--    для вызова модального окна нужно создать индивидуальный id, таким образом будет открываться свое окно. Предпологаю что
+окна будут рендериться через цикл
+-->
     <div class="modal fade" id="dispatch-modal" tabindex="-1" aria-labelledby="dispatch-modal-label" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">

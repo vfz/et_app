@@ -112,6 +112,291 @@
                   </div>
                 </td>
               </tr>
+              <tr>
+                <td>
+                  <div class="dispatch-time">
+                    09:30
+                  </div>
+                  <div class="dispatch-date">
+                    <span class="dispatch-date-day">30</span>
+                    <span class="dispatch-date-month">Янв'</span>'
+                    <span class="dispatch-date-year">20</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="dispatch-city">
+                    Ставрополь
+                  </div>
+                  <!--                  для вызова модального окна нужно добавить атрибуты data-bs-toggle со значением modal и data-bs-target со значением id модального окна-->
+                  <div class="dispatch-place table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
+                    ж/д вокзал
+                  </div>
+                </td>
+                <td>
+                  <div class="dispatch-length-time">
+                    20 часов
+                  </div>
+                  <!--                  для вызова модального окна нужно добавить атрибуты data-bs-toggle со значением modal и data-bs-target со значением id модального окна-->
+                  <div class="dispatch-length-time-saw table-link" data-bs-toggle="modal" data-bs-target="#dispatch-length-time-modal">
+                    Посмотреть
+                  </div>
+                </td>
+                <td>
+                  <div class="arrival-time">
+                    05:30
+                  </div>
+                  <div class="arrival-date">
+                    <span class="arrival-date-day">31</span>
+                    <span class="arrival-date-month">Янв</span>'
+                    <span class="arrival-date-year">20</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="arrival-city">
+                    Ставрополь
+                  </div>
+                  <div class="arrival-place">
+                    ж/д вокзал
+                  </div>
+                </td>
+                <td>
+                  <div class="places-left">
+                    24
+                  </div>
+                  <div class="place-choice">
+                    Выбрать
+                  </div>
+                </td>
+                <td class="align-middle">
+                  <div class="d-flex align-content-center">
+                    <div class="price d-inline-block">
+                      7000₽
+                    </div>
+                    <div class="d-inline-block">
+                      <img class="help-icon" alt="help" src="img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="place-choice-buy">
+                    Выбрать
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="dispatch-time">
+                    09:30
+                  </div>
+                  <div class="dispatch-date">
+                    <span class="dispatch-date-day">30</span>
+                    <span class="dispatch-date-month">Янв'</span>'
+                    <span class="dispatch-date-year">20</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="dispatch-city">
+                    Ставрополь
+                  </div>
+                  <!--                  для вызова модального окна нужно добавить атрибуты data-bs-toggle со значением modal и data-bs-target со значением id модального окна-->
+                  <div class="dispatch-place table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
+                    ж/д вокзал
+                  </div>
+                </td>
+                <td>
+                  <div class="dispatch-length-time">
+                    20 часов
+                  </div>
+                  <!--                  для вызова модального окна нужно добавить атрибуты data-bs-toggle со значением modal и data-bs-target со значением id модального окна-->
+                  <div class="dispatch-length-time-saw table-link" data-bs-toggle="modal" data-bs-target="#dispatch-length-time-modal">
+                    Посмотреть
+                  </div>
+                </td>
+                <td>
+                  <div class="arrival-time">
+                    05:30
+                  </div>
+                  <div class="arrival-date">
+                    <span class="arrival-date-day">31</span>
+                    <span class="arrival-date-month">Янв</span>'
+                    <span class="arrival-date-year">20</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="arrival-city">
+                    Ставрополь
+                  </div>
+                  <div class="arrival-place">
+                    ж/д вокзал
+                  </div>
+                </td>
+                <td>
+                  <div class="places-left">
+                    24
+                  </div>
+                  <div class="place-choice">
+                    Выбрать
+                  </div>
+                </td>
+                <td class="align-middle">
+                  <div class="d-flex align-content-center">
+                    <div class="price d-inline-block">
+                      7000₽
+                    </div>
+                    <div class="d-inline-block">
+                      <img class="help-icon" alt="help" src="img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="place-choice-buy">
+                    Выбрать
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="dispatch-time">
+                    09:30
+                  </div>
+                  <div class="dispatch-date">
+                    <span class="dispatch-date-day">30</span>
+                    <span class="dispatch-date-month">Янв'</span>'
+                    <span class="dispatch-date-year">20</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="dispatch-city">
+                    Ставрополь
+                  </div>
+                  <!--                  для вызова модального окна нужно добавить атрибуты data-bs-toggle со значением modal и data-bs-target со значением id модального окна-->
+                  <div class="dispatch-place table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
+                    ж/д вокзал
+                  </div>
+                </td>
+                <td>
+                  <div class="dispatch-length-time">
+                    20 часов
+                  </div>
+                  <!--                  для вызова модального окна нужно добавить атрибуты data-bs-toggle со значением modal и data-bs-target со значением id модального окна-->
+                  <div class="dispatch-length-time-saw table-link" data-bs-toggle="modal" data-bs-target="#dispatch-length-time-modal">
+                    Посмотреть
+                  </div>
+                </td>
+                <td>
+                  <div class="arrival-time">
+                    05:30
+                  </div>
+                  <div class="arrival-date">
+                    <span class="arrival-date-day">31</span>
+                    <span class="arrival-date-month">Янв</span>'
+                    <span class="arrival-date-year">20</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="arrival-city">
+                    Ставрополь
+                  </div>
+                  <div class="arrival-place">
+                    ж/д вокзал
+                  </div>
+                </td>
+                <td>
+                  <div class="places-left">
+                    24
+                  </div>
+                  <div class="place-choice">
+                    Выбрать
+                  </div>
+                </td>
+                <td class="align-middle">
+                  <div class="d-flex align-content-center">
+                    <div class="price d-inline-block">
+                      7000₽
+                    </div>
+                    <div class="d-inline-block">
+                      <img class="help-icon" alt="help" src="img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="place-choice-buy">
+                    Выбрать
+                  </div>
+                </td>
+              </tr>
+<!--              Добавить класс active-row и будет выделение-->
+              <tr class="active-row">
+                <td>
+                  <div class="dispatch-time">
+                    09:30
+                  </div>
+                  <div class="dispatch-date">
+                    <span class="dispatch-date-day">30</span>
+                    <span class="dispatch-date-month">Янв'</span>'
+                    <span class="dispatch-date-year">20</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="dispatch-city">
+                    Ставрополь
+                  </div>
+                  <!--                  для вызова модального окна нужно добавить атрибуты data-bs-toggle со значением modal и data-bs-target со значением id модального окна-->
+                  <div class="dispatch-place table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
+                    ж/д вокзал
+                  </div>
+                </td>
+                <td>
+                  <div class="dispatch-length-time">
+                    20 часов
+                  </div>
+                  <!--                  для вызова модального окна нужно добавить атрибуты data-bs-toggle со значением modal и data-bs-target со значением id модального окна-->
+                  <div class="dispatch-length-time-saw table-link" data-bs-toggle="modal" data-bs-target="#dispatch-length-time-modal">
+                    Посмотреть
+                  </div>
+                </td>
+                <td>
+                  <div class="arrival-time">
+                    05:30
+                  </div>
+                  <div class="arrival-date">
+                    <span class="arrival-date-day">31</span>
+                    <span class="arrival-date-month">Янв</span>'
+                    <span class="arrival-date-year">20</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="arrival-city">
+                    Ставрополь
+                  </div>
+                  <div class="arrival-place">
+                    ж/д вокзал
+                  </div>
+                </td>
+                <td>
+                  <div class="places-left">
+                    33,34,35,36
+                  </div>
+                  <div class="place-choice">
+                    Выбрать
+                  </div>
+                </td>
+                <td class="align-middle">
+                  <div class="d-flex align-content-center">
+                    <div class="price d-inline-block">
+                      7000₽
+                    </div>
+                    <div class="d-inline-block">
+                      <img class="help-icon" alt="help" src="img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="place-choice-buy">
+                    Убрать
+                  </div>
+                </td>
+              </tr>
               </tbody>
             </table>
           </div>

@@ -10,7 +10,7 @@
       </div>
       <div class="row">
         <div class="col-12">
-          <div class="table-wrapper">
+          <div class="table-wrapper table-responsive">
             <table class="table align-middle">
               <thead>
               <tr>

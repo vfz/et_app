@@ -146,16 +146,16 @@ export default {
     background-color: $white;
     border-radius: 16px;
     box-shadow: $regular-shadow;
-    padding: 12px 16px;
+    padding: 12px 0;
     .table>:not(:first-child) {
       border-top: unset;
     }
     .table {
       td {
-        padding: 1rem 0;
+        padding: 1rem 1rem;
       }
       th {
-        padding: 1rem 0;
+        padding: 1rem 1rem;
       }
       thead {
         tr {

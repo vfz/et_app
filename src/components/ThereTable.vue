@@ -139,7 +139,7 @@ export default {
     @include font($uni,$bold, 24px, 32.4px, $black);
     &-counter {
       font-size: 18px;
-      color: $deactivate;
+      color: $secondary;
     }
   }
   .table-wrapper {

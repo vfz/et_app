@@ -135,7 +135,7 @@
       </div>
     </div>
     <!--    для вызова модального окна нужно создать индивидуальный id, таким образом будет открываться свое окно-->
-    <div class="modal fade" id="dispatch-length-time-modal" tabindex="-1" aria-labelledby="dispatch-modal-label" aria-hidden="true">
+    <div class="modal fade dispatch-length-time-modal" id="dispatch-length-time-modal" tabindex="-1" aria-labelledby="dispatch-modal-label" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
           <div class="modal-header justify-content-end">
@@ -341,7 +341,50 @@ export default {
           border-radius: 16px;
         }
       }
+      /* Hide scrollbar for Chrome, Safari and Opera */
+      .dispatch-timeline::-webkit-scrollbar {
+        display: none;
+      }
+      /* Hide scrollbar for IE, Edge and Firefox */
       .dispatch-timeline {
+        max-height: 600px;
+        overflow-y: auto;
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+        padding-left: 0.5rem;
+        padding-bottom: var(--mask-height);
+        /* The CSS mask */
+
+        /* The content mask is a linear gradient from top to bottom */
+        --mask-image-content: linear-gradient(
+                to bottom,
+                transparent,
+                black var(--mask-height),
+                black calc(100% - var(--mask-height)),
+                transparent
+        );
+
+        /* Here we scale the content gradient to the width of the container
+      minus the scrollbar width. The height is the full container height */
+        --mask-size-content: calc(100% - var(--scrollbar-width)) 100%;
+
+        /* The scrollbar mask is a black pixel */
+        --mask-image-scrollbar: linear-gradient(black, black);
+
+        /* The width of our black pixel is the width of the scrollbar.
+      The height is the full container height */
+        --mask-size-scrollbar: var(--scrollbar-width) 100%;
+
+        /* Apply the mask image and mask size variables */
+        mask-image: var(--mask-image-content), var(--mask-image-scrollbar);
+        mask-size: var(--mask-size-content), var(--mask-size-scrollbar);
+
+        /* Position the content gradient in the top left, and the
+      scroll gradient in the top right */
+        mask-position: 0 0, 100% 0;
+
+        /* We don't repeat our mask images */
+        mask-repeat: no-repeat, no-repeat;
         .timeline {
           border-left: 1px dotted $blue-link;
           position: relative;

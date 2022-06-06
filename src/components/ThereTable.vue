@@ -200,6 +200,13 @@ export default {
             }
           }
         }
+        .active-row {
+          background-color: $blue-hover;
+        }
+        tr:hover{
+          @include animation;
+          background-color: $blue-hover;
+        }
       }
     }
   }

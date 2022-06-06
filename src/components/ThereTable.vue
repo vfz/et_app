@@ -182,7 +182,7 @@ export default {
               @include font($uni, $regular, 18px, 24.3px, $base);
             }
             .dispatch-length-time-saw, .dispatch-place, .arrival-place, .place-choice {
-              //@include font($uni)
+              @include font($uni, $light, 14px, 18.9px, $blue-link);
             }
           }
         }

@@ -142,7 +142,21 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            ...
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-12 col-md-5">
+                  <h5 class="modal-title">
+                    Маршрут
+                  </h5>
+                  <div class="modal-date">
+                    30 января
+                  </div>
+                </div>
+                <div class="col-12 col-md-7">
+                  <div style="position:relative;overflow:hidden;"><a href="https://yandex.ru/maps?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Яндекс Карты</a><a href="https://yandex.ru/maps/?ll=39.794306%2C50.707218&mode=routes&rtext=55.755819%2C37.617644~45.043317%2C41.969110&rtt=auto&ruri=ymapsbm1%3A%2F%2Fgeo%3Fll%3D37.618%252C55.756%26spn%3D0.642%252C0.466%26text%3D%25D0%25A0%25D0%25BE%25D1%2581%25D1%2581%25D0%25B8%25D1%258F%252C%2520%25D0%259C%25D0%25BE%25D1%2581%25D0%25BA%25D0%25B2%25D0%25B0~ymapsbm1%3A%2F%2Fgeo%3Fll%3D41.969%252C45.043%26spn%3D0.280%252C0.164%26text%3D%25D0%25A0%25D0%25BE%25D1%2581%25D1%2581%25D0%25B8%25D1%258F%252C%2520%25D0%25A1%25D1%2582%25D0%25B0%25D0%25B2%25D1%2580%25D0%25BE%25D0%25BF%25D0%25BE%25D0%25BB%25D1%258C&utm_medium=mapframe&utm_source=maps&z=6.2" style="color:#eee;font-size:12px;position:absolute;top:14px;">Яндекс Карты</a><iframe src="https://yandex.ru/map-widget/v1/-/CCUJ5PX4DA" width="100%" height="400" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -247,7 +261,7 @@ export default {
   }
 
   .modal {
-    .modal-header {
+    &-header {
       .btn-close {
         margin: unset;
       }
@@ -255,6 +269,16 @@ export default {
         margin-right: 64px;
         text-decoration: none;
         @include font($uni, $light, 18px, 28.3px, $blue-link);
+      }
+    }
+    &-body {
+      .modal-title {
+        @include font($uni, $bold, 36px, 48.6px, $base);
+        margin-bottom: 32px;
+      }
+      .modal-date {
+        @include font($uni, $bold, 20px, 27px, $secondary);
+        margin-bottom: 16px;
       }
     }
   }

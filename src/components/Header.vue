@@ -86,6 +86,9 @@
   margin-bottom: 64px;
   margin-left: 88px;
   margin-right: 88px;
+  .navbar {
+    box-shadow: none;
+  }
   @media screen and (max-width: 767px) {
         margin-left: 20px;
         margin-right: 20px;

@@ -92,7 +92,8 @@
                   <div class="places-left">
                     24
                   </div>
-                  <div class="place-choice">
+<!--                  При нажатии открывается модальное окно с-->
+                  <div class="place-choice table-link" data-bs-toggle="modal" data-bs-target="#place-left-modal">
                     Выбрать
                   </div>
                 </td>
@@ -502,13 +503,81 @@
         </div>
       </div>
     </div>
+    <!--    для вызова модального окна нужно создать индивидуальный id, таким образом будет открываться свое окно-->
+    <div class="modal fade dispatch-length-time-modal" id="place-left-modal" tabindex="-1" aria-labelledby="place-left-modal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+          <div class="modal-header justify-content-end">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-12 col-md-12">
+                  <h5 class="modal-title text-center">
+                    Выберите место на схеме автобуса
+                  </h5>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 d-inline-flex justify-content-center align-content-center">
+                  <div class="squares-place-status d-flex flex-wrap align-items-center justify-content-center">
+                    <div class="square-place-status-item d-flex">
+                      <div class="square-place-status free-places"></div>
+                      <div class="square-place-text d-flex align-items-center">
+                        Свободное место
+                      </div>
+                    </div>
+                    <div class="square-place-status-item d-flex">
+                      <div class="square-place-status busy-places"></div>
+                      <div class="square-place-text d-flex align-items-center">
+                        Занятое место
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="floor-header d-flex align-items-center">
+                    <div class="floor-item">
+                      1 этаж
+                    </div>
+                    <div class="floor-item active">
+                      2 этаж
+                    </div>
+                  </div>
+                  <div class="bus-scheme">
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
   <!-- Modal -->
 </template>
 
 <script>
 export default {
-  name: "ThereTable"
+  name: "ThereTable",
+  data() {
+    return {
+      seatStates: {
+        available: {
+          text: 'Available',
+          color: '#fff'
+        },
+        booked: {
+          text: 'Booked',
+          color: '#D8DADE'
+        }
+      }
+    }
+  }
 }
 </script>
 
@@ -613,6 +682,59 @@ export default {
       }
     }
     &-body {
+      .square-place-status-item {
+        .square-place-text {
+          @include font($uni, $regular, 14px, normal, $secondary);
+          margin-bottom: 0;
+        }
+        .square-place-status {
+          width: 32px;
+          height: 32px;
+          border-radius: 4px;
+          box-shadow: $regular-shadow;
+          margin-right: 12px;
+        }
+        .free-places {
+          background-color: $white;
+          border: 1px solid $blue-link;
+        }
+        .busy-places {
+          background-color: $deactivate;
+        }
+      }
+      .square-place-status-item:first-child {
+        margin-right: 40px;
+      }
+      .floor-header {
+        margin-top: 24px;
+        margin-bottom: 24px;
+        .floor-item {
+          @include font($uni,$bold,20px,27px,$deactivate);
+          cursor: pointer;
+        }
+        .floor-item:hover {
+          @include animation;
+          color: $blue-link;
+          border-bottom: 2px solid $blue-link;
+        }
+        .active {
+          color: $blue-active;
+          border-bottom: 2px solid $blue-active;
+        }
+        .active:hover {
+          color: $blue-active;
+          border-bottom: 2px solid $blue-active;
+        }
+        .floor-item:first-child {
+          margin-right: 32px;
+        }
+      }
+      .bus-scheme {
+        background-color: $white;
+        border: 1px solid #B5BDDB;
+        border-radius: 16px;
+        padding: 16px;
+      }
       .modal-title {
         @include font($uni, $bold, 36px, 48.6px, $base);
         margin-bottom: 32px;

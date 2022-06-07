@@ -543,17 +543,8 @@
                   </div>
                   <div class="bus-scheme">
                     <div class="bus-scheme-column">
-                      <div class="bus-scheme-column-item">
+                      <div class="bus-scheme-column-item free-place">
                         1
-                      </div>
-                      <div class="bus-scheme-column-item">
-                        2
-                      </div>
-                      <div class="bus-scheme-column-item">
-                        3
-                      </div>
-                      <div class="bus-scheme-column-item">
-                        4
                       </div>
                     </div>
                   </div>
@@ -743,7 +734,35 @@ export default {
         padding: 16px;
         &-column {
           &-item {
-
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            box-shadow: $regular-shadow;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            @include font($uni,$regular,14px,18.9px,#B5BDDB);
+            cursor: pointer;
+          }
+          .free-place {
+            color: #B5BDDB;
+            border: 1px solid $blue-link;
+          }
+          .free-place:hover {
+            @include animation;
+            background-color: $blue-link;
+            color: $white;
+            border: none;
+          }
+          .selected {
+            background-color: $blue-active;
+            color: $white;
+            border: none;
+          }
+          .busy-place {
+            background-color: $secondary;
+            color: $white;
+            border: none;
           }
         }
       }

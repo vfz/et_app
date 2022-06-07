@@ -542,7 +542,7 @@
                     </div>
                   </div>
                   <div class="bus-scheme">
-                    <div class="bus-scheme-column d-flex flex-column">
+                    <div class="bus-scheme-column">
                       <div class="bus-scheme-column-item free-place">
                         1
                       </div>
@@ -788,6 +788,11 @@ export default {
         border-radius: 16px;
         padding: 16px;
         &-column {
+          display: grid;
+          grid-template-columns: repeat(13, 1fr);
+          grid-template-rows: repeat(4, 1fr);
+          grid-column-gap: 12px;
+          grid-row-gap: 8px;
           &-item {
             width: 32px;
             height: 32px;

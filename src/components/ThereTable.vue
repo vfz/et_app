@@ -542,7 +542,19 @@
                     </div>
                   </div>
                   <div class="bus-scheme">
-                    <div class="bus-scheme-column">
+                    <div class="bus-scheme-column d-flex flex-column">
+                      <div class="bus-scheme-column-item free-place">
+                        1
+                      </div>
+                      <div class="bus-scheme-column-item free-place">
+                        1
+                      </div>
+                      <div class="bus-scheme-column-item free-place">
+                        1
+                      </div>
+                      <div class="bus-scheme-column-item free-place">
+                        1
+                      </div>
                       <div class="bus-scheme-column-item free-place">
                         1
                       </div>
@@ -582,7 +594,41 @@ export default {
           class: 'busy-place',
           text: 'Занятое место',
         }
-      }
+      },
+      seats: [
+        {
+          name: '1',
+          type: 'free-place',
+        },
+        {
+          name: '2',
+          type: 'free-place'
+        },
+        {
+          name: '3',
+          type: 'free-place'
+        },
+        {
+          name: '4',
+          type: 'busy-place'
+        },
+        {
+          name: '5',
+          type: 'free-place',
+        },
+        {
+          name: '6',
+          type: 'free-place'
+        },
+        {
+          name: '7',
+          type: 'free-place'
+        },
+        {
+          name: '8',
+          type: 'busy-place'
+        }
+      ]
     }
   }
 }

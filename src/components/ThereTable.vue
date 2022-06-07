@@ -546,6 +546,15 @@
                       <div class="bus-scheme-column-item free-place">
                         1
                       </div>
+                      <div class="bus-scheme-column-item free-place">
+                        1
+                      </div>
+                      <div class="bus-scheme-column-item free-place">
+                        1
+                      </div>
+                      <div class="bus-scheme-column-item free-place">
+                        1
+                      </div>
                     </div>
                   </div>
                 </div>

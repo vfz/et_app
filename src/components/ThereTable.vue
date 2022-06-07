@@ -522,16 +522,10 @@
               <div class="row">
                 <div class="col-12 d-inline-flex justify-content-center align-content-center">
                   <div class="squares-place-status d-flex flex-wrap align-items-center justify-content-center">
-                    <div class="square-place-status-item d-flex">
-                      <div class="square-place-status free-places"></div>
+                    <div v-for="(value, key) in seatStates" class="square-place-status-item d-flex">
+                      <div v-bind:class="value.class + ' square-place-status'"></div>
                       <div class="square-place-text d-flex align-items-center">
-                        Свободное место
-                      </div>
-                    </div>
-                    <div class="square-place-status-item d-flex">
-                      <div class="square-place-status busy-places"></div>
-                      <div class="square-place-text d-flex align-items-center">
-                        Занятое место
+                        {{value.text}}
                       </div>
                     </div>
                   </div>
@@ -548,7 +542,20 @@
                     </div>
                   </div>
                   <div class="bus-scheme">
-
+                    <div class="bus-scheme-column">
+                      <div class="bus-scheme-column-item">
+                        1
+                      </div>
+                      <div class="bus-scheme-column-item">
+                        2
+                      </div>
+                      <div class="bus-scheme-column-item">
+                        3
+                      </div>
+                      <div class="bus-scheme-column-item">
+                        4
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -568,12 +575,12 @@ export default {
     return {
       seatStates: {
         available: {
-          text: 'Available',
-          color: '#fff'
+          class: 'free-place',
+          text: 'Свободное место',
         },
         booked: {
-          text: 'Booked',
-          color: '#D8DADE'
+          class: 'busy-place',
+          text: 'Занятое место',
         }
       }
     }
@@ -694,11 +701,11 @@ export default {
           box-shadow: $regular-shadow;
           margin-right: 12px;
         }
-        .free-places {
+        .free-place {
           background-color: $white;
           border: 1px solid $blue-link;
         }
-        .busy-places {
+        .busy-place {
           background-color: $deactivate;
         }
       }
@@ -734,6 +741,11 @@ export default {
         border: 1px solid #B5BDDB;
         border-radius: 16px;
         padding: 16px;
+        &-column {
+          &-item {
+
+          }
+        }
       }
       .modal-title {
         @include font($uni, $bold, 36px, 48.6px, $base);

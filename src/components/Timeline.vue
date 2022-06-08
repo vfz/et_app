@@ -130,6 +130,9 @@ export default {
     }
   }
   .timeline-item {
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
     &-title {
       font-family: $uni;
       font-weight: $bold;
@@ -143,7 +146,7 @@ export default {
         font-size: 23px;
       }
       @media screen and (max-width: 768px) {
-
+        font-size: 20px;
       }
     }
     &-underline {

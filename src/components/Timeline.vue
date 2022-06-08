@@ -136,6 +136,12 @@ export default {
       font-size: 36px;
       color: $deactivate;
       padding-right: 40px;
+      @media screen and (max-width: 1011px) {
+        font-size: 30px;
+      }
+      @media screen and (max-width: 768px) {
+
+      }
     }
     &-underline {
       display: block;

@@ -4,6 +4,7 @@
     <Timeline/>
     <FlightForm/>
     <ThereTable/>
+    <BackTable/>
   <Footer/>
   <LoginModal/>
   <RegistrationModal/>
@@ -30,10 +31,12 @@ import Header from "@/components/Header";
 import Timeline from "@/components/Timeline";
 import FlightForm from "@/components/Flight-form";
 import ThereTable from "@/components/ThereTable";
+import BackTable from "@/components/BackTable";
 
 export default {
   name: 'Flightselection',
   components: {
+    BackTable,
     ThereTable,
     FlightForm,
     Timeline,

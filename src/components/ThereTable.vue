@@ -543,30 +543,17 @@
                   </div>
                   <div class="bus-scheme">
                     <div class="bus-scheme-column">
-                      <div class="bus-scheme-column-item free-place">
-                        1
-                      </div>
-                      <div class="bus-scheme-column-item free-place">
-                        1
-                      </div>
-                      <div class="bus-scheme-column-item free-place">
-                        1
-                      </div>
-                      <div class="bus-scheme-column-item free-place">
-                        1
-                      </div>
-                      <div class="bus-scheme-column-item free-place">
-                        1
-                      </div>
-                      <div class="bus-scheme-column-item free-place">
-                        1
-                      </div>
-                      <div class="bus-scheme-column-item free-place">
-                        1
-                      </div>
-                      <div class="bus-scheme-column-item free-place">
-                        1
-                      </div>
+<!--                      bus-scheme-column-item-->
+<!--                      TODO ошибка необходимо исправить-->
+<!--                      <div-->
+<!--                          v-for="{seat, i} in seats"-->
+<!--                          :key="seat.type"-->
+<!--                          :class=-->
+<!--                              "{'free-place' : seat.type === 'free-place',-->
+<!--                              'busy-place' : seat.type === 'busy-place'-->
+<!--                              }">-->
+<!--                        {{seat.name}}}
+                      </div>-->
                     </div>
                   </div>
                 </div>

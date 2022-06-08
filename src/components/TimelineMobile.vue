@@ -10,33 +10,18 @@
                   Выбор рейса
                 </h1>
               </div>
-              <div class="timeline-item">
-                <h1 class="timeline-item-title">
-                  Бронирование билета
-                </h1>
-              </div>
-              <div class="timeline-item">
-                <h1 class="timeline-item-title">
-                  Оплата
-                </h1>
-              </div>
             </div>
             <div v-if="currentRouteName === 'Ticket-booking'" class="timeline-wrapper d-flex">
               <div class="timeline-item ready">
                 <h1 class="timeline-item-title">
-                  Выбор рейса
-                </h1>
-              </div>
-              <div class="timeline-item active">
-                <h1 class="timeline-item-title">
                   Бронирование билета
                 </h1>
               </div>
-              <div class="timeline-item">
-                <h1 class="timeline-item-title">
-                  Оплата
-                </h1>
-              </div>
+<!--              <div class="timeline-item">-->
+<!--                <h1 class="timeline-item-title">-->
+<!--                  Оплата-->
+<!--                </h1>-->
+<!--              </div>-->
             </div>
           </div>
         </div>
@@ -94,18 +79,9 @@ export default {
     &-title {
       font-family: $uni;
       font-weight: $bold;
-      font-size: 36px;
+      font-size: 20px;
       color: $deactivate;
       padding-right: 40px;
-      @media screen and (max-width: 1011px) {
-        font-size: 30px;
-      }
-      @media screen and (max-width: 894px) {
-        font-size: 23px;
-      }
-      @media screen and (max-width: 768px) {
-        font-size: 20px;
-      }
     }
   }
   @media screen and (max-width: 767px) {

@@ -9,6 +9,9 @@
                 <h1 class="timeline-item-title">
                   Выбор рейса
                 </h1>
+                <div class="timeline-item-description">
+                  Шаг 1
+                </div>
               </div>
             </div>
             <div v-if="currentRouteName === 'Ticket-booking'" class="timeline-wrapper d-flex">
@@ -16,6 +19,9 @@
                 <h1 class="timeline-item-title">
                   Бронирование билета
                 </h1>
+                <div class="timeline-item-description">
+                  Оформляем документы
+                </div>
               </div>
 <!--              <div class="timeline-item">-->
 <!--                <h1 class="timeline-item-title">-->
@@ -45,8 +51,7 @@ export default {
 @import "src/assets/variables.scss";
 @import "src/assets/font.scss";
 .timeline-section {
-  margin-left: 88px;
-  margin-right: 88px;
+  margin-top: 40px;
   .active {
     .timeline-item-title {
       color: $black;
@@ -79,14 +84,17 @@ export default {
     &-title {
       font-family: $uni;
       font-weight: $bold;
-      font-size: 20px;
+      font-size: 30px;
       color: $deactivate;
       padding-right: 40px;
     }
-  }
-  @media screen and (max-width: 767px) {
-    margin-left: 20px;
-    margin-right: 20px;
+    &-description {
+      margin-top: 7px;
+      font-family: $uni;
+      font-weight: $light;
+      font-size: 14px;
+      color: $base;
+    }
   }
 }
 </style>

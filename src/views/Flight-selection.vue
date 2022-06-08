@@ -1,10 +1,10 @@
 <template>
   <div class="body-app-white">
     <Header/>
-    <Timeline v-if="isMobile()"/>
+    <Timeline v-if="!isMobile()"/>
     <FlightForm/>
+    <TimelineMobile v-if="isMobile()"/>
     <ThereTable/>
-    <TimelineMobile v-if="!isMobile()"/>
     <BackTable/>
     <div class="container-fluid">
       <div class="row">

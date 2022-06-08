@@ -5,7 +5,7 @@
     <FlightForm/>
     <TimelineMobile v-if="isMobile()"/>
     <ThereTable v-if="!isMobile()"/>
-    <ThereTable v-if="isMobile()"/>
+    <ThereTableMobile v-if="isMobile()"/>
     <BackTable/>
     <div class="container-fluid">
       <div class="row">
@@ -54,10 +54,12 @@ import FlightForm from "@/components/Flight-form";
 import ThereTable from "@/components/ThereTable";
 import BackTable from "@/components/BackTable";
 import TimelineMobile from "@/components/TimelineMobile";
+import ThereTableMobile from "@/components/ThereTableMobile";
 
 export default {
   name: 'Flightselection',
   components: {
+    ThereTableMobile,
     TimelineMobile,
     BackTable,
     ThereTable,

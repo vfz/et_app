@@ -139,6 +139,9 @@ export default {
       @media screen and (max-width: 1011px) {
         font-size: 30px;
       }
+      @media screen and (max-width: 894px) {
+        font-size: 23px;
+      }
       @media screen and (max-width: 768px) {
 
       }

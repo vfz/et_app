@@ -1,7 +1,7 @@
 <template>
   <div class="body-app-white">
     <Header/>
-    <Timeline/>
+    <Timeline v-if="isMobile()"/>
     <FlightForm/>
     <ThereTable/>
     <BackTable/>
@@ -61,6 +61,11 @@ export default {
     Timeline,
     Header,
     Hero,Footer,Populardirections,Registrationhero,LoginModal,RegistrationModal,ForgotPasswordModal
+  },
+  methods: {
+    isMobile() {
+      return screen.width <= 768;
+    }
   }
 }
 </script>

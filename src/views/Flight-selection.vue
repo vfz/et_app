@@ -4,7 +4,8 @@
     <Timeline v-if="!isMobile()"/>
     <FlightForm/>
     <TimelineMobile v-if="isMobile()"/>
-    <ThereTable/>
+    <ThereTable v-if="!isMobile()"/>
+    <ThereTable v-if="isMobile()"/>
     <BackTable/>
     <div class="container-fluid">
       <div class="row">

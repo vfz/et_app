@@ -100,7 +100,7 @@
               </div>
             </div>
             <div class="d-grid">
-              <button class="btn btn-primary price">
+              <button class="btn btn-primary price" data-bs-toggle="modal" data-bs-target="#place-left-modal">
                 7 000₽
               </button>
             </div>
@@ -197,7 +197,7 @@
               </div>
             </div>
             <div class="d-grid">
-              <button class="btn btn-success price">
+              <button class="btn btn-success price" data-bs-toggle="modal" data-bs-target="#place-left-modal">
                 Убрать
               </button>
             </div>
@@ -294,7 +294,7 @@
               </div>
             </div>
             <div class="d-grid">
-              <button class="btn btn-primary price">
+              <button class="btn btn-primary price" data-bs-toggle="modal" data-bs-target="#place-left-modal">
                 7 000₽
               </button>
             </div>

@@ -55,7 +55,7 @@
                     <div class="table-item-part-left-city">
                       Ставрополь
                     </div>
-                    <div class="table-item-part-left-place table-link">
+                    <div class="table-item-part-left-place table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
                       ж/д вокзал
                     </div>
                   </div>
@@ -79,7 +79,7 @@
                       Время в пути
                     </h3>
                     <div class="table-item-part-left-date">
-                      <div class="dispatch-time">
+                      <div class="dispatch-time table-link" data-bs-toggle="modal" data-bs-target="#dispatch-length-time-modal">
                         20 часов
                       </div>
                     </div>
@@ -91,7 +91,7 @@
                       Осталось мест
                     </h3>
                     <div class="table-item-part-right-date">
-                      <div class="arrival-time">
+                      <div class="arrival-time table-link" data-bs-toggle="modal" data-bs-target="#place-left-modal">
                         24
                       </div>
                     </div>
@@ -364,6 +364,10 @@ export default {
             @include font($uni,$bold,18px,24.3px,$base);
             margin-right: 8px;
           }
+          .dispatch-time:hover {
+            @include animation;
+            color: $blue-link;
+          }
           .dispatch-date {
             &-day, &-month, &-year {
               @include font($uni,$regular,12px,24.3px,$secondary)
@@ -392,6 +396,10 @@ export default {
           .arrival-time {
             @include font($uni,$bold,18px,24.3px,$base);
             margin-right: 8px;
+          }
+          .arrival-time:hover {
+            @include animation;
+            color: $blue-link;
           }
           .arrival-date {
             &-day, &-month, &-year {

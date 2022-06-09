@@ -52,17 +52,17 @@ import ForgotPasswordModal from '@/components/ForgotPasswordModal'
 import RegistrationModal from '@/components/RegistrationModal'
 import Populardirections from '@/components/Populardirections'
 import Registrationhero from '@/components/Registrationhero'
-import Header from "@/components/Header";
-import Timeline from "@/components/Timeline";
-import FlightForm from "@/components/Flight-form";
-import ThereTable from "@/components/ThereTable";
-import BackTable from "@/components/BackTable";
-import TimelineMobile from "@/components/TimelineMobile";
-import ThereTableMobile from "@/components/ThereTableMobile";
-import BackTableMobile from "@/components/BackTableMobile";
-import DispatchModal from "@/components/Dispatch-modal";
-import DispatchLengthTimeModal from "@/components/Dispatch-length-time-modal";
-import PlaceLeftModal from "@/components/Place-left-modal";
+import Header from "@/components/Header"
+import Timeline from "@/components/desktop/Timeline"
+import FlightForm from "@/components/Flight-form"
+import ThereTable from "@/components/desktop/ThereTable"
+import BackTable from "@/components/desktop/BackTable"
+import TimelineMobile from "@/components/mobile/TimelineMobile"
+import ThereTableMobile from "@/components/mobile/ThereTableMobile"
+import BackTableMobile from "@/components/mobile/BackTableMobile"
+import DispatchModal from "@/components/Dispatch-modal"
+import DispatchLengthTimeModal from "@/components/Dispatch-length-time-modal"
+import PlaceLeftModal from "@/components/Place-left-modal"
 
 export default {
   name: 'Flightselection',

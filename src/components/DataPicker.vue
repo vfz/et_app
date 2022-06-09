@@ -12,13 +12,13 @@
             </div>
         </div>
         <div class="row justify-content-end">           
-            <div class="col datapicker text-center" v-for="d in day" >
+            <div class="col datapicker text-center" v-for="d in day" :key="d.key">
                 {{d}}
             </div>
         </div>   
-        <div class="row justify-content-end" v-for="week in calendar()">
+        <div class="row justify-content-end" v-for="week in calendar()" :key="week.key">
             
-            <div class="col datapicker day text-center" v-for="day in week"   
+            <div class="col datapicker day text-center" v-for="day in week"   :key="day.key"
            >
                 <div v-on:click="SetDate(day.index+'.'+day.month+'.'+day.year)"  :class="{ current : day.current,  selected:day.selected}" >
                     <div class="fix"></div><div class="date">{{ day.indexm }}</div>

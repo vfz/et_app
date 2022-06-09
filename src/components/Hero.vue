@@ -8,13 +8,14 @@
 <script>
 import Header from '@/components/Header'
 import DataPicker from '@/components/DataPicker'
+import FlightForm from "@/components/Flight-form"
 //import axios from 'axios'
 import {mapGetters,mapActions} from 'vuex'
-import FlightForm from "@/components/Flight-form";
+
 
 export default{ 
     name: 'Hero',
-    components:{FlightForm, Header,DataPicker,},
+    components:{FlightForm, Header, DataPicker,},
     computed: mapGetters(['fromStations','toStations','from','to','childrens','adults','dateArival','dateBack','selectDate','selectDateBack']),
     data(){
         return{

@@ -197,8 +197,8 @@
               </div>
             </div>
             <div class="d-grid">
-              <button class="btn btn-primary price">
-                7 000₽
+              <button class="btn btn-success price">
+                Убрать
               </button>
             </div>
           </div>

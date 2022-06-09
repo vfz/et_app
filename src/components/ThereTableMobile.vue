@@ -65,7 +65,7 @@
                     <div class="table-item-part-right-city">
                       Москва
                     </div>
-                    <div class="table-item-part-right-place table-link">
+                    <div class="table-item-part-right-place table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
                       АВ “Орехово”
                     </div>
                   </div>
@@ -162,7 +162,7 @@
                     <div class="table-item-part-right-city">
                       Москва
                     </div>
-                    <div class="table-item-part-right-place table-link">
+                    <div class="table-item-part-right-place table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
                       АВ “Орехово”
                     </div>
                   </div>
@@ -259,7 +259,7 @@
                     <div class="table-item-part-right-city">
                       Москва
                     </div>
-                    <div class="table-item-part-right-place table-link">
+                    <div class="table-item-part-right-place table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
                       АВ “Орехово”
                     </div>
                   </div>

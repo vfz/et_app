@@ -18,6 +18,7 @@
       </div>
     </div>
   <Footer/>
+  <DispatchModal/>
   <LoginModal/>
   <RegistrationModal/>
   <ForgotPasswordModal/>
@@ -57,10 +58,12 @@ import BackTable from "@/components/BackTable";
 import TimelineMobile from "@/components/TimelineMobile";
 import ThereTableMobile from "@/components/ThereTableMobile";
 import BackTableMobile from "@/components/BackTableMobile";
+import DispatchModal from "@/components/Dispatch-modal";
 
 export default {
   name: 'Flightselection',
   components: {
+    DispatchModal,
     BackTableMobile,
     ThereTableMobile,
     TimelineMobile,

@@ -6,7 +6,8 @@
     <TimelineMobile v-if="isMobile()"/>
     <ThereTable v-if="!isMobile()"/>
     <ThereTableMobile v-if="isMobile()"/>
-    <BackTable/>
+    <BackTable v-if="!isMobile"/>
+    <BackTableMobile v-if="isMobile"/>
     <div class="container-fluid">
       <div class="row">
         <div class="col-12 d-flex justify-content-center">
@@ -55,10 +56,12 @@ import ThereTable from "@/components/ThereTable";
 import BackTable from "@/components/BackTable";
 import TimelineMobile from "@/components/TimelineMobile";
 import ThereTableMobile from "@/components/ThereTableMobile";
+import BackTableMobile from "@/components/BackTableMobile";
 
 export default {
   name: 'Flightselection',
   components: {
+    BackTableMobile,
     ThereTableMobile,
     TimelineMobile,
     BackTable,

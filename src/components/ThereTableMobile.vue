@@ -302,66 +302,6 @@
         </div>
       </div>
     </div>
-    <!--    для вызова модального окна нужно создать индивидуальный id, таким образом будет открываться свое окно-->
-    <div class="modal fade place-left-modal" id="place-left-modal" tabindex="-1" aria-labelledby="place-left-modal" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-xl">
-        <div class="modal-content">
-          <div class="modal-header justify-content-end">
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-12 col-md-12">
-                  <h5 class="modal-title text-center">
-                    Выберите место на схеме автобуса
-                  </h5>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-12 d-inline-flex justify-content-center align-content-center">
-                  <div class="squares-place-status d-flex flex-wrap align-items-center justify-content-center">
-                    <div v-for="(value, key) in seatStates" class="square-place-status-item d-flex">
-                      <div v-bind:class="value.class + ' square-place-status'"></div>
-                      <div class="square-place-text d-flex align-items-center">
-                        {{value.text}}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-12">
-                  <div class="floor-header d-flex align-items-center">
-                    <div class="floor-item">
-                      1 этаж
-                    </div>
-                    <div class="floor-item active">
-                      2 этаж
-                    </div>
-                  </div>
-                  <div class="bus-scheme">
-                    <div class="bus-scheme-column">
-                      <!--                      bus-scheme-column-item-->
-                      <!--                      TODO ошибка необходимо исправить-->
-                      <!--                      <div-->
-                      <!--                          v-for="{seat, i} in seats"-->
-                      <!--                          :key="seat.type"-->
-                      <!--                          :class=-->
-                      <!--                              "{'free-place' : seat.type === 'free-place',-->
-                      <!--                              'busy-place' : seat.type === 'busy-place'-->
-                      <!--                              }">-->
-                      <!--                        {{seat.name}}}
-                                            </div>-->
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </section>
 </template>
 

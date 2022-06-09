@@ -408,7 +408,7 @@
 <!--    для вызова модального окна нужно создать индивидуальный id, таким образом будет открываться свое окно. Предпологаю что
 окна будут рендериться через цикл
 -->
-    <div class="modal fade" id="dispatch-modal" tabindex="-1" aria-labelledby="dispatch-modal-label" aria-hidden="true">
+    <div class="modal fade dispatch-modal" id="dispatch-modal" tabindex="-1" aria-labelledby="dispatch-modal-label" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
           <div class="modal-header justify-content-end">
@@ -505,7 +505,7 @@
       </div>
     </div>
     <!--    для вызова модального окна нужно создать индивидуальный id, таким образом будет открываться свое окно-->
-    <div class="modal fade dispatch-length-time-modal" id="place-left-modal" tabindex="-1" aria-labelledby="place-left-modal" aria-hidden="true">
+    <div class="modal fade place-left-modal" id="place-left-modal" tabindex="-1" aria-labelledby="place-left-modal" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
           <div class="modal-header justify-content-end">

@@ -207,6 +207,9 @@ export default {
     .dispatch-map {
       iframe {
         border-radius: 16px;
+        @media screen and (max-width: 768px) {
+          height: 300px;
+        }
       }
     }
     /* Hide scrollbar for Chrome, Safari and Opera */
@@ -253,6 +256,9 @@ export default {
 
       /* We don't repeat our mask images */
       mask-repeat: no-repeat, no-repeat;
+      @media screen and (max-width: 768px) {
+        max-height: unset;
+      }
       .timeline {
         border-left: 1px dotted $blue-link;
         position: relative;

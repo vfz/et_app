@@ -8,7 +8,7 @@
           </h2>
         </div>
       </div>
-      <div class="row">
+      <div class="row gy-4">
         <div class="col-12 col-sm-6">
           <div class="table-item">
             <div class="table-item-content-wrapper">

@@ -1,18 +1,11 @@
 <template>
     <section class="hero">
-    <Header/>
+    <HeaderLight/>
     <div class="hero-content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <h1 class="title-page text-center">
-                        {{title}}
-                    </h1>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <h2 class="title-section text-center">
+                    <h2 class="title-section-light text-left">
                         Куда поедем?
                     </h2>
                 </div>
@@ -20,20 +13,21 @@
             <div class="row">
                 <div class="col-12">
                     <form id="hero-form" class="search-form d-flex flex-wrap justify-content-center">
-                        <div class="checkbox-form d-block w-100 text-center">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" v-on:click="oneWay=true" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
-                                <label class="form-check-label" for="inlineRadio1">В одну сторону</label>
+
+                        <div class="checkbox-form-light d-block w-100 text-left">
+                            <div class="form-check form-check-inline" v-on:click="oneWay=true">
+                                <label class="form-check-label" for="inlineRadio1" :class="{noactive:!oneWay}">В одну сторону</label><br>
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="oneWay"  :checked="oneWay">
                             </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" v-on:click="oneWay=false"  name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                <label class="form-check-label" for="inlineRadio2">Туда-обратно</label>
+                            <div class="form-check form-check-inline" v-on:click="oneWay=false" >
+                                <label class="form-check-label" for="inlineRadio2" :class="{noactive:oneWay}"> Туда-обратно</label><br>
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="twoWay" :checked="!oneWay">
                             </div>
-                        </div>
+                        </div>                      
                         <!--one-way-input-->
                         <div class="one-way-inputs w-100 form-header" v-if="oneWay">
                             <div class="row">
-                                <div class="col-12 col-sm-12 mt-4 col-md-6 col-lg-6 col-xl min-w-300">
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl min-w-300">
                                     <div class="card h-100">
                                         <div class="card-body">
                                             <label for="dataListFrom" class="form-label">Откуда</label>
@@ -66,7 +60,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-sm-12 mt-4 col-md-6 col-lg-6 col-xl min-w-300">
+                                <div class="col-12 col-sm-12 mt-4 mt-md-0 col-md-6 col-lg-6 col-xl min-w-300">
                                     <div class="card h-100">
                                         <div class="card-body">
                                             <label for="datalistTo" class="form-label">Куда</label>
@@ -92,7 +86,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-sm-12 mt-4 col-md-6 col-lg-6 col-xl min-w-300">
+                                <div class="col-12 col-sm-12 mt-4 mt-xl-0 col-md-6 col-lg-6 col-xl mw-300 min-w-300">
                                     <div class="card h-100">
                                         <div class="card-body">
                                             <div class="d-flex justify-content-between align-items-center">
@@ -120,7 +114,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-sm-12 mt-4 col-md-6 col-lg-6 col-xl min-w-300">
+                                <div class="col-12 col-sm-12 mt-4 mt-xl-0 col-md-6 col-lg-6 col-xl mw-300 min-w-300">
                                     <div class="card h-100">
                                         <div class="card-body">
                                             <label for="datepickerinputStart" class="form-label">Когда</label>
@@ -156,7 +150,7 @@
                         <!-- two-way-input-->
                         <div class="two-ways-inputs w-100 form-header" v-else>
                             <div class="row flex-wrap">
-                                <div class="col-12 col-sm-12 mt-4 col-md-6 col-lg-6 col-xl min-w-300">
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl min-w-300">
                                     <div class="card h-100">
                                         <div class="card-body">
                                             <label for="dataListFrom" class="form-label">Откуда</label>
@@ -189,7 +183,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-sm-12 mt-4 col-md-6 col-lg-6 col-xl min-w-300">
+                                <div class="col-12 col-sm-12 mt-4 mt-md-0 col-md-6 col-lg-6 col-xl min-w-300">
                                     <div class="card h-100">
                                         <div class="card-body">
                                             <label for="datalistTo" class="form-label">Куда</label>
@@ -215,7 +209,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-sm-12 mt-4 col-md-4 col-lg-4 col-xl w-300">
+                                <div class="col-12 col-sm-12 mt-4 mt-md-0 col-md-4 col-lg-4 col-xl mw-300 min-w-300">
                                     <div class="card h-100">
                                         <div class="card-body">
                                             <div class="d-flex justify-content-between align-items-center">
@@ -243,7 +237,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-sm-12 mt-4 col-md-6 col-lg-6 col-xl w-300">
+                                <div class="col-12 col-sm-12 mt-4 mt-xl-0 col-md-6 col-lg-6 col-xl mw-300 min-w-300">
                                     <div class="card h-100">
                                         <div class="card-body">
                                             <label for="datepickerinputStart" class="form-label">Когда</label>
@@ -267,7 +261,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-sm-12 mt-4 col-md-6 col-lg-6 col-xl w-300 ">
+                                <div class="col-12 col-sm-12 mt-4 mt-xl-0 col-md-6 col-lg-6 col-xl mw-300 min-w-300">
                                     <div class="card h-100">
                                         <div class="card-body">
                                             <label for="datepickerinputStart" class="form-label">Обратно</label>
@@ -311,14 +305,14 @@
 </template>
 
 <script>
-import Header from '@/components/Header'
+import HeaderLight from '@/components/HeaderLight'
 import DataPicker from '@/components/DataPicker'
 //import axios from 'axios'
 import {mapGetters,mapActions} from 'vuex'
 
 export default{ 
     name: 'Hero',
-    components:{Header,DataPicker,},
+    components:{HeaderLight,DataPicker,},
     computed: mapGetters(['fromStations','toStations','from','to','childrens','adults','dateArival','dateBack','selectDate','selectDateBack']),
     data(){
         return{
@@ -420,10 +414,15 @@ export default{
 <style lang="scss" scoped>
 @import "src/assets/variables.scss";
 @import "src/assets/font.scss";
-
+.title-section-light{
+    font-family: $uni;
+    //font-style: $normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 27px;
+    color: #283256;
+}
 .hero {
-  background: url("/img/header/bg.jpg") no-repeat center center ;
-  background-size: cover;
   padding-bottom: 99px;
   &-content {
     
@@ -436,14 +435,26 @@ export default{
       }
     }
     .search-form {
-      .checkbox-form {
+      .checkbox-form-light {
+        //display: inline-block;
         margin-bottom: 33px;
         .form-check-label {
           font-family: $uni;
-          font-weight: $bold;
-          font-size: 18px;
-          margin-left: 24px;
-          color: $white;
+          margin-left: -24px;
+          font-style: normal;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 19px;
+          color: $base;
+          //display: block;
+        }
+        .noactive{
+            color: #AFB7CD;
+        }
+        .radio{
+            //display: block;
+            width:20px;
+            height: 20px;
         }
       }
       .card:first-child {
@@ -634,7 +645,7 @@ export default{
       .mw-300{
         max-width: 300px;
         @media screen and (max-width: 1290px){
-        // max-width: 1200px;
+        max-width: 1200px;
         }
         @media screen and (max-width: 767px) {
         max-width: 767px;
@@ -643,10 +654,6 @@ export default{
        .min-w-300{
         min-width: 300px;
         
-      }
-      .w-300{
-          width:300px !important;
-       
       }
     }
     

@@ -1,8 +1,6 @@
 <template>
   <div>
-  <Hero/>
-  <Populardirections/>
-  <Registrationhero/>
+  <HeroLight/>
   <Footer/>
   <LoginModal/>
   <RegistrationModal/>
@@ -12,18 +10,20 @@
 
 <script>
 
-import Hero from '@/components/Hero'
+import HeroLight from '@/components/HeroLight'
 import Footer from '@/components/Footer'
 import LoginModal from '@/components/LoginModal'
 import ForgotPasswordModal from '@/components/ForgotPasswordModal'
 import RegistrationModal from '@/components/RegistrationModal'
 import Populardirections from '@/components/Populardirections'
-import Registrationhero from '@/components/Registrationhero'
 
 export default {
-  name: 'Flightselection',
+  name: 'Flight-selection',
   components: {
-    Hero,Footer,Populardirections,Registrationhero,LoginModal,RegistrationModal,ForgotPasswordModal
+    HeroLight,Footer,LoginModal,RegistrationModal,ForgotPasswordModal
   }
 }
 </script>
+<style scoped>
+
+</style>

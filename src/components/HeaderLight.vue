@@ -1,11 +1,11 @@
 <template>
     <header class="header">
-    <nav class="navbar navbar-expand-md navbar-dark">
+    <nav class="navbar navbar-expand-md navbar-light">
         <div class="container-fluid">
         <router-link class="logo-link" tag="a" to="/" >
             <img alt="logo" src="img/header/logo.png" class="logo">
         </router-link>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"  v-on:click="opennav=!opennav">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" v-on:click="opennav=!opennav" >
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse d-lg-flex justify-content-end" id="navbarSupportedContent" v-show="opennav">
@@ -84,8 +84,10 @@ export default {
   margin-left: 88px;
   margin-right: 88px;
   @media screen and (max-width: 767px) {
-        margin-left: 20px;
-        margin-right: 20px;
+        margin-left: 0px;
+        margin-right: 0px; 
+        padding-top: 20px;
+        margin-bottom: 20px;
       }
   .logo-link {
     .logo {
@@ -104,7 +106,8 @@ export default {
         .nav-link {
           display: inline-block;
           position: relative;
-          color: $white;
+          //color: $white;
+          color: $black;
         }
       }
     }

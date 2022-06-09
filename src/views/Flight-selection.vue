@@ -6,8 +6,8 @@
     <TimelineMobile v-if="isMobile()"/>
     <ThereTable v-if="!isMobile()"/>
     <ThereTableMobile v-if="isMobile()"/>
-    <BackTable v-if="!isMobile"/>
-    <BackTableMobile v-if="isMobile"/>
+    <BackTable v-if="!isMobile()"/>
+    <BackTableMobile v-if="isMobile()"/>
     <div class="container-fluid">
       <div class="row">
         <div class="col-12 d-flex justify-content-center">

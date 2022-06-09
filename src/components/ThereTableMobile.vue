@@ -11,91 +11,98 @@
       <div class="row">
         <div class="col-12">
           <div class="table-item">
-            <div class="row">
-              <div class="col-6">
-                <div class="table-item-part-left">
-                  <h3 class="table-item-part-left-title">
-                    Время отправления
-                  </h3>
-                  <div class="table-item-part-left-date d-flex">
-                    <div class="dispatch-time">
-                      09:30
+            <div class="table-item-content-wrapper">
+              <div class="row">
+                <div class="col-6">
+                  <div class="table-item-part-left">
+                    <h3 class="table-item-part-left-title">
+                      Время отправления
+                    </h3>
+                    <div class="table-item-part-left-date d-flex">
+                      <div class="dispatch-time">
+                        09:30
+                      </div>
+                      <div class="dispatch-date">
+                        <span class="dispatch-date-day">30</span>
+                        <span class="dispatch-date-month">Янв'</span>
+                        <span class="dispatch-date-year">20</span>
+                      </div>
                     </div>
-                    <div class="dispatch-date">
-                      <span class="dispatch-date-day">30</span>
-                      <span class="dispatch-date-month">Янв'</span>
-                      <span class="dispatch-date-year">20</span>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="table-item-part-right">
+                    <h3 class="table-item-part-right-title">
+                      Время прибытия
+                    </h3>
+                    <div class="table-item-part-right-date d-flex">
+                      <div class="arrival-time">
+                        05:30
+                      </div>
+                      <div class="arrival-date">
+                        <span class="arrival-date-day">31</span>
+                        <span class="arrival-date-month">Янв'</span>
+                        <span class="arrival-date-year">20</span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="col-6">
-                <div class="table-item-part-right">
-                  <h3 class="table-item-part-right-title">
-                    Время прибытия
-                  </h3>
-                  <div class="table-item-part-right-date d-flex">
-                    <div class="arrival-time">
-                      05:30
+              <hr>
+              <div class="row">
+                <div class="col-6">
+                  <div class="table-item-part-left">
+                    <div class="table-item-part-left-city">
+                      Ставрополь
                     </div>
-                    <div class="arrival-date">
-                      <span class="arrival-date-day">31</span>
-                      <span class="arrival-date-month">Янв'</span>
-                      <span class="arrival-date-year">20</span>
+                    <div class="table-item-part-left-place table-link">
+                      ж/д вокзал
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="table-item-part-right">
+                    <div class="table-item-part-right-city">
+                      Москва
+                    </div>
+                    <div class="table-item-part-right-place table-link">
+                      АВ “Орехово”
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-6">
+                  <div class="table-item-part-left">
+                    <h3 class="table-item-part-left-title">
+                      Время в пути
+                    </h3>
+                    <div class="table-item-part-left-date">
+                      <div class="dispatch-time">
+                        20 часов
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="table-item-part-right">
+                    <h3 class="table-item-part-right-title">
+                      Осталось мест
+                    </h3>
+                    <div class="table-item-part-right-date">
+                      <div class="arrival-time">
+                        24
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <hr>
-            <div class="row">
-              <div class="col-6">
-                <div class="table-item-part-left">
-                  <div class="table-item-part-left-city">
-                    Ставрополь
-                  </div>
-                  <div class="table-item-part-left-place table-link">
-                    ж/д вокзал
-                  </div>
-                </div>
-              </div>
-              <div class="col-6">
-                <div class="table-item-part-right">
-                  <div class="table-item-part-right-city">
-                    Москва
-                  </div>
-                  <div class="table-item-part-right-place table-link">
-                    АВ “Орехово”
-                  </div>
-                </div>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-6">
-                <div class="table-item-part-left">
-                  <h3 class="table-item-part-left-title">
-                    Время в пути
-                  </h3>
-                  <div class="table-item-part-left-date">
-                    <div class="dispatch-time">
-                      20 часов
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-6">
-                <div class="table-item-part-right">
-                  <h3 class="table-item-part-right-title">
-                    Осталось мест
-                  </h3>
-                  <div class="table-item-part-right-date">
-                    <div class="arrival-time">
-                      24
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div class="d-grid">
+              <button class="btn btn-primary price">
+                7 000₽
+              </button>
             </div>
           </div>
         </div>
@@ -336,10 +343,13 @@ export default {
   }
   .table-item {
     max-width: 280px;
-    padding-top: 16px;
-    padding-left: 16px;
-    padding-right: 16px;
     box-shadow: $regular-shadow;
+    &-content-wrapper {
+      padding-top: 16px;
+      padding-left: 16px;
+      padding-right: 16px;
+      margin-bottom: 16px;
+    }
     &-part {
       .table-link {
         cursor: pointer;
@@ -402,6 +412,11 @@ export default {
           @include font($uni, $light, 14px, 18.9px, $blue-link);
         }
       }
+    }
+    .btn {
+      @include font($uni,$bold,16px,21.6px,$white);
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
     }
   }
 

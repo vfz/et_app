@@ -17,11 +17,12 @@
         </div>
       </div>
     </div>
-  <Footer/>
-  <DispatchModal/>
-  <LoginModal/>
-  <RegistrationModal/>
-  <ForgotPasswordModal/>
+    <Footer/>
+    <DispatchModal/>
+    <DispatchLengthTimeModal/>
+    <LoginModal/>
+    <RegistrationModal/>
+    <ForgotPasswordModal/>
   </div>
 </template>
 <style lang="scss" scoped>
@@ -59,10 +60,12 @@ import TimelineMobile from "@/components/TimelineMobile";
 import ThereTableMobile from "@/components/ThereTableMobile";
 import BackTableMobile from "@/components/BackTableMobile";
 import DispatchModal from "@/components/Dispatch-modal";
+import DispatchLengthTimeModal from "@/components/Dispatch-length-time-modal";
 
 export default {
   name: 'Flightselection',
   components: {
+    DispatchLengthTimeModal,
     DispatchModal,
     BackTableMobile,
     ThereTableMobile,

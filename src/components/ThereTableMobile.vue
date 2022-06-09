@@ -17,13 +17,13 @@
                   <h3 class="table-item-part-left-title">
                     Время отправления
                   </h3>
-                  <div class="table-item-part-left-date">
+                  <div class="table-item-part-left-date d-flex">
                     <div class="dispatch-time">
                       09:30
                     </div>
                     <div class="dispatch-date">
                       <span class="dispatch-date-day">30</span>
-                      <span class="dispatch-date-month">Янв'</span>'
+                      <span class="dispatch-date-month">Янв'</span>
                       <span class="dispatch-date-year">20</span>
                     </div>
                   </div>
@@ -34,13 +34,13 @@
                   <h3 class="table-item-part-right-title">
                     Время прибытия
                   </h3>
-                  <div class="table-item-part-right-date">
+                  <div class="table-item-part-right-date d-flex">
                     <div class="arrival-time">
                       05:30
                     </div>
                     <div class="arrival-date">
                       <span class="arrival-date-day">31</span>
-                      <span class="arrival-date-month">Янв'</span>'
+                      <span class="arrival-date-month">Янв'</span>
                       <span class="arrival-date-year">20</span>
                     </div>
                   </div>
@@ -80,11 +80,6 @@
                   <div class="table-item-part-left-date">
                     <div class="dispatch-time">
                       20 часов
-                    </div>
-                    <div class="dispatch-date">
-                      <span class="dispatch-date-day">30</span>
-                      <span class="dispatch-date-month">Янв'</span>'
-                      <span class="dispatch-date-year">20</span>
                     </div>
                   </div>
                 </div>
@@ -346,16 +341,65 @@ export default {
     padding-right: 16px;
     box-shadow: $regular-shadow;
     &-part {
+      .table-link {
+        cursor: pointer;
+      }
       &-left {
         &-title {
           @include font($uni,$regular,11px,14.85px,$base);
           margin-bottom: 10px;
+        }
+        &-date {
+          .dispatch-time {
+            @include font($uni,$bold,18px,24.3px,$base);
+            margin-right: 8px;
+          }
+          .dispatch-date {
+            &-day, &-month, &-year {
+              @include font($uni,$regular,12px,24.3px,$secondary)
+            }
+            &-day {
+              margin-right: 4px;
+            }
+            &-month, &-year {
+              font-size: 10px;
+            }
+          }
+        }
+        &-city {
+          @include font($uni,$bold,14px,18.9px,$base);
+        }
+        &-place {
+          @include font($uni, $light, 14px, 18.9px, $blue-link);
         }
       }
       &-right {
         &-title {
           @include font($uni,$regular,11px,14.85px,$base);
           margin-bottom: 10px;
+        }
+        &-date {
+          .arrival-time {
+            @include font($uni,$bold,18px,24.3px,$base);
+            margin-right: 8px;
+          }
+          .arrival-date {
+            &-day, &-month, &-year {
+              @include font($uni,$regular,12px,24.3px,$secondary)
+            }
+            &-day {
+              margin-right: 4px;
+            }
+            &-month, &-year {
+              font-size: 10px;
+            }
+          }
+        }
+        &-city {
+          @include font($uni,$bold,14px,18.9px,$base);
+        }
+        &-place {
+          @include font($uni, $light, 14px, 18.9px, $blue-link);
         }
       }
     }

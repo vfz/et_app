@@ -20,6 +20,7 @@
     <Footer/>
     <DispatchModal/>
     <DispatchLengthTimeModal/>
+    <PlaceLeftModal/>
     <LoginModal/>
     <RegistrationModal/>
     <ForgotPasswordModal/>
@@ -61,10 +62,12 @@ import ThereTableMobile from "@/components/ThereTableMobile";
 import BackTableMobile from "@/components/BackTableMobile";
 import DispatchModal from "@/components/Dispatch-modal";
 import DispatchLengthTimeModal from "@/components/Dispatch-length-time-modal";
+import PlaceLeftModal from "@/components/Place-left-modal";
 
 export default {
   name: 'Flightselection',
   components: {
+    PlaceLeftModal,
     DispatchLengthTimeModal,
     DispatchModal,
     BackTableMobile,

@@ -5,6 +5,20 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-12">
+              <h1 class="title-page text-center">
+                {{title}}
+              </h1>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <h2 class="title-section text-center">
+                Куда поедем?
+              </h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
               <form id="hero-form" class="search-form d-flex flex-wrap justify-content-center">
                 <div class="checkbox-form d-block w-100">
                   <div class="form-check form-check-inline">
@@ -423,12 +437,28 @@ export default{
     .search-form {
       .checkbox-form {
         margin-bottom: 33px;
+        @media screen and (max-width: 768px) {
+          display: flex !important;
+          flex-direction: column;
+          align-items: center;
+          width: unset !important;
+        }
+        .form-check-inline {
+          @media screen and (max-width: 768px) {
+            display: block;
+            margin-right: 0;
+          }
+        }
         .form-check-label {
           font-family: $uni;
           font-weight: $bold;
           font-size: 18px;
           margin-left: 24px;
           color: $white;
+          @media screen and (max-width: 768px) {
+            display: block;
+            margin-left: 0;
+          }
         }
       }
       .card:first-child {

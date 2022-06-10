@@ -22,6 +22,9 @@
   font-weight: $bold;
   font-size: 48px;
   color: $white;
+  @media screen and (max-width: 768px) {
+    font-size: 24px;
+  }
 }
 
 .title-section {
@@ -30,6 +33,9 @@
   font-size: 36px;
   color: $white;
   margin-bottom: 24px;
+  @media screen and (max-width: 768px) {
+    font-size: 20px;
+  }
 }
 
 .dark-title {

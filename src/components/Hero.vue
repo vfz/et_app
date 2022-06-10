@@ -1,7 +1,7 @@
 <template>
     <section class="hero">
     <Header/>
-      <FlightForm/>
+      <FlightForm v-if="!isMobile()"/>
 </section>
 </template>
 
@@ -95,8 +95,10 @@ export default{
             } else {
                 this.mbc = false;
             }
+        },
+        isMobile() {
+          return screen.width <= 768;
         }
-       
 
     },
     mounted(){

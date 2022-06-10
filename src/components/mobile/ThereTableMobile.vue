@@ -308,54 +308,54 @@
 <script>
 export default {
   name: "ThereTableMobile",
-  data() {
-    return {
-      seatStates: {
-        available: {
-          class: 'free-place',
-          text: 'Свободное место',
-        },
-        booked: {
-          class: 'busy-place',
-          text: 'Занятое место',
-        }
-      },
-      seats: [
-        {
-          name: '1',
-          type: 'free-place',
-        },
-        {
-          name: '2',
-          type: 'free-place'
-        },
-        {
-          name: '3',
-          type: 'free-place'
-        },
-        {
-          name: '4',
-          type: 'busy-place'
-        },
-        {
-          name: '5',
-          type: 'free-place',
-        },
-        {
-          name: '6',
-          type: 'free-place'
-        },
-        {
-          name: '7',
-          type: 'free-place'
-        },
-        {
-          name: '8',
-          type: 'busy-place'
-        }
-      ]
-    }
-  }
+  // data() {
+  //   return {
+  //     seatStates: {
+  //       available: {
+  //         class: 'free-place',
+  //         text: 'Свободное место',
+  //       },
+  //       booked: {
+  //         class: 'busy-place',
+  //         text: 'Занятое место',
+  //       }
+  //     },
+  //     seats: [
+  //       {
+  //         name: '1',
+  //         type: 'free-place',
+  //       },
+  //       {
+  //         name: '2',
+  //         type: 'free-place'
+  //       },
+  //       {
+  //         name: '3',
+  //         type: 'free-place'
+  //       },
+  //       {
+  //         name: '4',
+  //         type: 'busy-place'
+  //       },
+  //       {
+  //         name: '5',
+  //         type: 'free-place',
+  //       },
+  //       {
+  //         name: '6',
+  //         type: 'free-place'
+  //       },
+  //       {
+  //         name: '7',
+  //         type: 'free-place'
+  //       },
+  //       {
+  //         name: '8',
+  //         type: 'busy-place'
+  //       }
+  //     ]
+  //   }
+  // }
 }
 </script>
 

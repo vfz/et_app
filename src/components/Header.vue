@@ -87,8 +87,11 @@ export default {
 @import "src/assets/font.scss";
 
 .body-app-white {
-  .toggle-icon-close {
-    @include animation;
+  .toggler-icon-close {
+    color: $base !important;
+  }
+  .toggler-icon-open {
+    color: $base !important;
   }
   .nav-header {
     .nav {

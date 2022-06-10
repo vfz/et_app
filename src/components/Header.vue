@@ -6,7 +6,9 @@
             <img alt="logo" src="img/header/logo.png" class="logo">
           </router-link>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
-                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon">
+                  <fa icon="bars" />
+                </span>
             </button>
             <div class="collapse navbar-collapse d-lg-flex justify-content-end" id="navbarSupportedContent">
                 <nav class="nav-header log-out">
@@ -70,6 +72,11 @@
 @import "src/assets/font.scss";
 
 .body-app-white {
+  .navbar-toggler {
+    .navbar-toggler-icon {
+      background-image: unset !important;
+    }
+  }
   .nav-header {
     .nav {
       &-item {

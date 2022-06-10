@@ -5,9 +5,10 @@
           <router-link to="/" class="logo-link">
             <img alt="logo" src="img/header/logo.png" class="logo">
           </router-link>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+            <button @click="toggleElement" ref="button" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
                 <span class="navbar-toggler-icon">
-                  <fa icon="bars" />
+                  <fa class="toggler-icon-open" v-if="isVisibleElement" icon="bars" />
+                  <fa class="toggler-icon-close" v-else icon="xmark"/>
                 </span>
             </button>
             <div class="collapse navbar-collapse d-lg-flex justify-content-end" id="navbarSupportedContent">
@@ -66,16 +67,28 @@
     </nav>
 </header>
 </template>
+<script>
+export default {
+  data: () => {
+    return {
+      isVisibleElement: true
+    }
+  },
+  methods: {
+    toggleElement(){
+      this.isVisibleElement = !this.isVisibleElement;
+    }
+  }
+}
+</script>
 <style lang="scss" scoped>
 
 @import "src/assets/variables.scss";
 @import "src/assets/font.scss";
 
 .body-app-white {
-  .navbar-toggler {
-    .navbar-toggler-icon {
-      background-image: unset !important;
-    }
+  .toggle-icon-close {
+    @include animation;
   }
   .nav-header {
     .nav {

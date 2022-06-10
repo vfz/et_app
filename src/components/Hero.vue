@@ -32,8 +32,8 @@
                 </div>
                 <!--one-way-input-->
                 <div class="one-way-inputs w-100 form-header" v-if="oneWay">
-                  <div class="row">
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl min-w-300">
+                  <div class="row gy-4 gy-xxl-0 d-xxl-flex justify-content-xxl-center">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-3 min-w-300">
                       <div class="card h-100">
                         <div class="card-body">
                           <label for="dataListFrom" class="form-label">Откуда</label>
@@ -66,7 +66,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-12 col-sm-12 mt-4 mt-md-0 col-md-6 col-lg-6 col-xl min-w-300">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-3 min-w-300">
                       <div class="card h-100">
                         <div class="card-body">
                           <label for="datalistTo" class="form-label">Куда</label>
@@ -92,7 +92,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-12 col-sm-12 mt-4 mt-xl-0 col-md-6 col-lg-6 col-xl mw-300 min-w-300">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-3 mw-300 min-w-300">
                       <div class="card h-100">
                         <div class="card-body">
                           <div class="d-flex justify-content-between align-items-center">
@@ -120,7 +120,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-12 col-sm-12 mt-4 mt-xl-0 col-md-6 col-lg-6 col-xl mw-300 min-w-300">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-3 mw-300 min-w-300">
                       <div class="card h-100">
                         <div class="card-body">
                           <label for="datepickerinputStart" class="form-label">Когда</label>
@@ -648,7 +648,7 @@ export default{
       }
       .mw-300{
         max-width: 300px;
-        @media screen and (max-width: 1290px){
+        @media screen and (max-width: 1400px){
         max-width: 1200px;
         }
         @media screen and (max-width: 767px) {

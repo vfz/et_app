@@ -657,7 +657,9 @@ export default{
       }
        .min-w-300{
         min-width: 300px;
-        
+         @media screen and (max-width: 779px) {
+           min-width: 280px;
+         }
       }
     }
     

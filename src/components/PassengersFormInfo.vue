@@ -159,6 +159,41 @@ export default {
       border: none;
       @include font($uni,$light,18px,24.3px,$blue-link);
     }
+    .form-label {
+      @include font($uni,$light,14px,18.9px,$secondary);
+    }
+    .form-control, .form-select {
+      @include font($uni,$regular,18px,24.3px,$base);
+    }
+    .form-control {
+      border: none;
+      border-bottom: 1px solid #8F8C8C;
+      border-radius: 0;
+      padding-left: 0;
+    }
+    .form-control:focus {
+      @include animation;
+      outline: none;
+      border: none;
+      border-bottom: 1px solid $blue-active;
+      box-shadow: none;
+    }
+    .form-control::-moz-placeholder {
+      color: #B5BDDB; /* Цвет подсказывающего текста */
+    }
+    .form-control::-webkit-input-placeholder { color: #B5BDDB; }
+    .form-control:-ms-input-placeholder { color: #B5BDDB; }
+    .form-control::-ms-input-placeholder { color: #B5BDDB; }
+    .form-control::placeholder { color: #B5BDDB; }
+    .form-select {
+      border: none;
+      border-bottom: 1px solid #8F8C8C;
+      border-radius: 0;
+      padding-left: 0;
+    }
+    .form-select::selection {
+      color: #B5BDDB;
+    }
   }
   .form-wrapper {
     background-color: $white;

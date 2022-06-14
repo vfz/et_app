@@ -5,6 +5,7 @@
     <FlightForm/>
     <ThereBackTabs/>
     <CurrentPoints/>
+    <PassengersFormInfo/>
     <Footer/>
     <LoginModal/>
     <RegistrationModal/>
@@ -22,9 +23,11 @@ import RegistrationModal from "@/components/RegistrationModal";
 import ForgotPasswordModal from "@/components/ForgotPasswordModal";
 import ThereBackTabs from "@/components/ThereBackTabs";
 import CurrentPoints from "@/components/CurrentPoints";
+import PassengersFormInfo from "@/components/PassengersFormInfo";
 export default {
   name: "Ticket-booking",
   components: {
+    PassengersFormInfo,
     CurrentPoints,
     ThereBackTabs, Footer, FlightForm, Timeline, Header, LoginModal, RegistrationModal, ForgotPasswordModal}
 }

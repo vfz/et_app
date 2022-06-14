@@ -9,15 +9,20 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-12">
-        <div class="current-value-points">
-          На данный момент у Вас
+      <div class="col-12 d-flex ">
+        <div class="current-value-points d-flex">
+          На данный момент у Вас &nbsp;
           <div class="current-value-points-data">
-            3 650
+            3 650 &nbsp;
           </div>
           <div class="current-value-points-europoints">
             евробаллов
           </div>
+        </div>
+        <div class="use-points-button">
+          <button type="button" class="btn btn-primary">
+            Использовать
+          </button>
         </div>
       </div>
     </div>
@@ -36,11 +41,15 @@ export default {
 @import "src/assets/font.scss";
 
 .current-points-section {
+  margin-top: 40px;
+  margin-left: 88px;
+  margin-right: 88px;
   .title-section {
     @include font($uni,$bold,24px,32.4px,$base);
   }
   .current-value-points {
     @include font($uni,$regular,18px,24.3px,$base);
+    margin-right: 40px;
     &-data, &-europoints {
       color: $blue-active;
     }

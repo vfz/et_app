@@ -184,7 +184,7 @@
             </h5>
             <div class="path-info-cities">
               <span class="path-info-city-from">Ставрополь</span>
-              <ArrowPathIcon/>
+              <ArrowPathIcon class="arrow-path-icon"/>
               <span class="path-info-city-to">Москва</span>
             </div>
             <h5 class="path-info-ticket-title-paragraph">
@@ -347,6 +347,44 @@ export default {
     box-shadow: $regular-shadow;
     border-radius: 16px;
     padding: 24px 16px;
+    .title-card {
+      @include font($uni,$bold,24px,32.4px,$base);
+      margin-bottom: 24px;
+    }
+    .path-info-ticket-title {
+      @include font($uni,$bold,20px,27px,$base);
+      margin-bottom: 16px;
+    }
+    .path-info-ticket-title-paragraph {
+      @include font($uni,$regular,18px,24.3px,$secondary);
+      margin-bottom: 8px;
+    }
+    .path-info-cities {
+      @include font($uni,$regular,18px,24.3px,$base);
+      margin-bottom: 12px;
+    }
+    .arrow-path-icon {
+      margin-right: 8px;
+      margin-left: 8px;
+    }
+    .path-info-from {
+      &-datetime {
+        &-date {
+
+        }
+        &-time {
+
+        }
+      }
+      &-place {
+        &-name {
+
+        }
+        &-address {
+
+        }
+      }
+    }
   }
 }
 </style>

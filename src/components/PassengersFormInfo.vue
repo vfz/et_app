@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-10">
+      <div class="col-9">
         <form>
           <div class="row">
             <div class="col-12">
@@ -170,7 +170,7 @@
           </div>
         </form>
       </div>
-      <div class="col-2">
+      <div class="col-3">
         <div class="info-ticket-wrapper">
           <h3 class="title-card">
             Информация о билете

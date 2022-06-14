@@ -170,6 +170,82 @@
           </div>
         </form>
       </div>
+      <div class="col-2">
+        <div class="info-ticket-wrapper">
+          <h3 class="title-card">
+            Информация о билете
+          </h3>
+          <div class="path-info-ticket">
+            <h4 class="path-info-ticket-title">
+              Туда
+            </h4>
+            <h5 class="path-info-ticket-title-paragraph">
+              Маршрут:
+            </h5>
+            <div class="path-info-cities">
+              <span class="path-info-city-from">Ставрополь</span>
+              <ArrowPathIcon/>
+              <span class="path-info-city-to">Москва</span>
+            </div>
+            <h5 class="path-info-ticket-title-paragraph">
+              Отправление:
+            </h5>
+            <div class="path-info-from">
+              <div class="path-info-from-datetime">
+                <span class="path-info-from-datetime-date">
+                  30.01.2020
+                </span>
+                в
+                <span class="path-info-from-datetime-time">
+                  15:30
+                </span>
+              </div>
+              <div class="path-info-from-place">
+                <span class="path-info-from-place-name">
+                  Железнодорожный вокзал
+                </span>
+                <span class="path-info-from-datetime-address">
+                  ул. Вокзальная, 15
+                </span>
+              </div>
+            </div>
+            <h5 class="path-info-ticket-title-paragraph">
+              Прибытие
+            </h5>
+            <div class="path-info-to">
+              <div class="path-info-to-datetime">
+                <span class="path-info-to-datetime-date">
+                  30.01.2020
+                </span>
+                в
+                <span class="path-info-to-datetime-time">
+                  15:30
+                </span>
+              </div>
+              <div class="path-info-to-place">
+                <span class="path-info-from-place-name">
+                  Железнодорожный вокзал
+                </span>
+                <span class="path-info-from-datetime-address">
+                  ул. Вокзальная, 15
+                </span>
+              </div>
+            </div>
+            <h5 class="path-info-ticket-title-paragraph">
+              Места
+            </h5>
+            <div class="path-info-places">
+              <span class="path-info-place-number">
+                33,
+              </span>
+            </div>
+            <div class="path-info-sum">
+              Сумма заказа <span class="path-info-sum-number">7 000</span>₽
+            </div>
+            <hr>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -177,9 +253,10 @@
 
 <script>
 import CancelIcon from "@/components/icons/CancelIcon";
+import ArrowPathIcon from "@/components/icons/ArrowPathIcon";
 export default {
   name: "PassengersFormInfo",
-  components: {CancelIcon}
+  components: {ArrowPathIcon, CancelIcon}
 }
 </script>
 
@@ -264,6 +341,12 @@ export default {
     border-radius: 0 16px 16px 16px;
     box-shadow: $regular-shadow;
     padding: 35px 29px;
+  }
+  .info-ticket-wrapper {
+    background-color: $white;
+    box-shadow: $regular-shadow;
+    border-radius: 16px;
+    padding: 24px 16px;
   }
 }
 </style>

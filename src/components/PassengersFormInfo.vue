@@ -158,9 +158,6 @@ export default {
       background: none;
       border: none;
       @include font($uni,$light,18px,24.3px,$blue-link);
-      &-icon {
-
-      }
     }
   }
   .form-wrapper {

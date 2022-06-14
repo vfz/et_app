@@ -36,8 +36,8 @@ export default {
   margin-right: 88px;
   margin-top: 40px;
   .there-back-tabs-wrapper {
+    border-radius: 16px;
     .nav-tabs {
-      border-radius: 16px;
       .nav-link {
         @include font($uni,$bold,24px,32.4px,$base);
       }

@@ -30,7 +30,7 @@
 @import "src/assets/variables.scss";
 @import "src/assets/font.scss";
 .body-app-white {
-  background-color: $white;
+  background-color: $bg-app-light;
   .btn {
     @include font($uni,$regular,16px,21.6px,$white);
     padding: 11px 47px;

@@ -3,6 +3,7 @@
     <Header/>
     <Timeline/>
     <FlightForm/>
+    <ThereBackTabs/>
     <Footer/>
     <LoginModal/>
     <RegistrationModal/>
@@ -18,9 +19,10 @@ import Footer from "@/components/Footer";
 import LoginModal from "@/components/LoginModal";
 import RegistrationModal from "@/components/RegistrationModal";
 import ForgotPasswordModal from "@/components/ForgotPasswordModal";
+import ThereBackTabs from "@/components/ThereBackTabs";
 export default {
   name: "Ticket-booking",
-  components: {Footer, FlightForm, Timeline, Header, LoginModal, RegistrationModal, ForgotPasswordModal}
+  components: {ThereBackTabs, Footer, FlightForm, Timeline, Header, LoginModal, RegistrationModal, ForgotPasswordModal}
 }
 </script>
 

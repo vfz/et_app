@@ -32,6 +32,7 @@ export default {
 .there-back-tabs-section {
   margin-left: 88px;
   margin-right: 88px;
+  margin-top: 40px;
   .nav-tabs {
     .nav-link {
       @include font($uni,$bold,24px,32.4px,$base);

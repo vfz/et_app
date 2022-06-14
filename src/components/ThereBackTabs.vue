@@ -34,9 +34,11 @@ export default {
   margin-right: 88px;
   margin-top: 40px;
   .nav-tabs {
-    border-radius: 16px;
     .nav-link {
       @include font($uni,$bold,24px,32.4px,$base);
+      text-transform: unset;
+      border-radius: 16px;
+      border-bottom: none;
     }
     .active {
       border-color: unset;

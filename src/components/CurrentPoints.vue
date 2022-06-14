@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-12 d-flex ">
+      <div class="col-12 d-flex align-items-center">
         <div class="current-value-points d-flex">
           На данный момент у Вас &nbsp;
           <div class="current-value-points-data">
@@ -53,6 +53,15 @@ export default {
     &-data, &-europoints {
       color: $blue-active;
     }
+  }
+  .btn {
+    @include font($uni,$regular,16px,21.6px,$white);
+    padding: 11px 47px;
+    border-radius: 8px;
+    border: none;
+    color: $white;
+    background-color: $blue-active;
+    text-transform: none;
   }
 }
 </style>

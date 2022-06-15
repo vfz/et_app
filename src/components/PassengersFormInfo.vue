@@ -167,10 +167,12 @@
           </div>
           <!--    информация о покупателе-->
           <div class="row info-buyer">
-            <div class="col-6">
+            <div class="col-12">
               <h2 class="title-section">
                 Информация о покупателе
               </h2>
+            </div>
+            <div class="col-6">
               <p class="title-section-description">
                 Указывайте корректные e-mail и номер телефона, т.к. они необходимы для получения и возврата билета, а так же для обратной связи.
               </p>

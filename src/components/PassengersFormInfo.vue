@@ -242,7 +242,84 @@
             <div class="path-info-sum">
               Сумма заказа <span class="path-info-sum-number">7 000</span>₽
             </div>
-            <div class="cross-line"></div>
+          </div>
+          <div class="cross-line"></div>
+          <div class="path-info-ticket">
+            <h4 class="path-info-ticket-title">
+              Обратно
+            </h4>
+            <h5 class="path-info-ticket-title-paragraph">
+              Маршрут:
+            </h5>
+            <div class="path-info-cities">
+              <span class="path-info-city-from">Москва</span>
+              <ArrowPathIcon class="arrow-path-icon"/>
+              <span class="path-info-city-to">Ставрополь</span>
+            </div>
+            <h5 class="path-info-ticket-title-paragraph">
+              Отправление:
+            </h5>
+            <div class="path-info-from">
+              <div class="path-info-from-datetime">
+                <span class="path-info-from-datetime-date">
+                  10.02.2020
+                </span>
+                в
+                <span class="path-info-from-datetime-time">
+                  20:45
+                </span>
+              </div>
+              <div class="path-info-from-place d-flex flex-column">
+                <span class="path-info-from-place-name">
+                  Автостанция “Орехово”
+                </span>
+                <span class="path-info-from-datetime-address">
+                  ул. Шипиловский проезд, 12
+                </span>
+              </div>
+            </div>
+            <h5 class="path-info-ticket-title-paragraph">
+              Прибытие:
+            </h5>
+            <div class="path-info-to">
+              <div class="path-info-to-datetime">
+                <span class="path-info-to-datetime-date">
+                  11.02.2020
+                </span>
+                в
+                <span class="path-info-to-datetime-time">
+                  15:30
+                </span>
+              </div>
+              <div class="path-info-to-place d-flex flex-column">
+                <span class="path-info-from-place-name">
+                  Железнодорожный вокзал
+                </span>
+                <span class="path-info-from-datetime-address">
+                  ул. Вокзальная, 15
+                </span>
+              </div>
+            </div>
+            <h5 class="path-info-ticket-title-paragraph">
+              Места
+            </h5>
+            <div class="path-info-places">
+              <span class="path-info-place-number">
+                16,
+              </span>
+              <span class="path-info-place-number">
+                17,
+              </span>
+              <span class="path-info-place-number">
+                18,
+              </span>
+              <span class="path-info-place-number">
+                19,
+              </span>
+            </div>
+            <div class="path-info-sum">
+              Сумма заказа <span class="path-info-sum-number">7 000</span>₽
+            </div>
           </div>
         </div>
       </div>

@@ -39,5 +39,8 @@ export default {
 .body-app-white {
   background-color: $bg-app-light;
 }
+.footer {
+  margin-top: 72px;
+}
 
 </style>

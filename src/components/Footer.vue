@@ -122,7 +122,6 @@
 
 .footer {
   background-color: #06309B;
-  margin-top: 72px;
   padding-top: 60px;
   padding-bottom: 30px;
   .logo-footer {

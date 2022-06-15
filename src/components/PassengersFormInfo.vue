@@ -200,7 +200,7 @@
                   15:30
                 </span>
               </div>
-              <div class="path-info-from-place">
+              <div class="path-info-from-place d-flex flex-column">
                 <span class="path-info-from-place-name">
                   Железнодорожный вокзал
                 </span>
@@ -210,7 +210,7 @@
               </div>
             </div>
             <h5 class="path-info-ticket-title-paragraph">
-              Прибытие
+              Прибытие:
             </h5>
             <div class="path-info-to">
               <div class="path-info-to-datetime">
@@ -222,7 +222,7 @@
                   15:30
                 </span>
               </div>
-              <div class="path-info-to-place">
+              <div class="path-info-to-place d-flex flex-column">
                 <span class="path-info-from-place-name">
                   Железнодорожный вокзал
                 </span>
@@ -242,7 +242,7 @@
             <div class="path-info-sum">
               Сумма заказа <span class="path-info-sum-number">7 000</span>₽
             </div>
-            <hr>
+            <div class="cross-line"></div>
           </div>
         </div>
       </div>
@@ -369,21 +369,37 @@ export default {
     }
     .path-info-from {
       &-datetime {
-        &-date {
-
-        }
-        &-time {
-
-        }
+        @include font($uni,$regular,18px,24.3px,$base);
+        margin-bottom: 4px;
       }
       &-place {
-        &-name {
-
-        }
-        &-address {
-
-        }
+        margin-bottom: 12px;
+        @include font($uni,$light,18px,24.3px,$base);
       }
+    }
+    .path-info-to {
+      &-datetime {
+        @include font($uni,$regular,18px,24.3px,$base);
+        margin-bottom: 4px;
+      }
+      &-place {
+        margin-bottom: 12px;
+        @include font($uni,$light,18px,24.3px,$base);
+      }
+    }
+    .path-info-places {
+      @include font($uni,$regular,18px,24.3px,$base);
+      margin-bottom: 12px;
+    }
+    .path-info-sum {
+      @include font($uni,$bold,20px,27px,$secondary);
+    }
+    .cross-line {
+      width: 100%;
+      height: 1px;
+      border-bottom: 1px dashed $blue-link;
+      margin-bottom: 24px;
+      margin-top: 24px;
     }
   }
 }

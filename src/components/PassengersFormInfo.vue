@@ -330,6 +330,9 @@
               Сумма заказа <span class="path-info-sum-number">7 000</span>₽
             </div>
           </div>
+          <div class="paths-final-amount">
+            Итого <span>14 000 ₽</span>
+          </div>
         </div>
       </div>
     </div>
@@ -486,6 +489,11 @@ export default {
       border-bottom: 1px dashed $blue-link;
       margin-bottom: 24px;
       margin-top: 24px;
+    }
+    .paths-final-amount {
+      margin-top: 24px;
+      @include font($uni,$bold,20px,27px,$blue-active);
+      text-transform: uppercase;
     }
   }
 }

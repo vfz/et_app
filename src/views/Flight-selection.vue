@@ -45,42 +45,47 @@
 }
 </style>
 <script>
-
-import HeroLight from '@/components/HeroLight'
-import Footer from '@/components/Footer'
-import LoginModal from '@/components/LoginModal'
-import ForgotPasswordModal from '@/components/ForgotPasswordModal'
-import RegistrationModal from '@/components/RegistrationModal'
-import Populardirections from '@/components/Populardirections'
-import Registrationhero from '@/components/Registrationhero'
 import Header from "@/components/Header"
 import Timeline from "@/components/desktop/Timeline"
 import FlightForm from "@/components/Flight-form"
-import ThereTable from "@/components/desktop/ThereTable"
-import BackTable from "@/components/desktop/BackTable"
 import TimelineMobile from "@/components/mobile/TimelineMobile"
+import ThereTable from "@/components/desktop/ThereTable"
 import ThereTableMobile from "@/components/mobile/ThereTableMobile"
+import BackTable from "@/components/desktop/BackTable"
 import BackTableMobile from "@/components/mobile/BackTableMobile"
+import Footer from '@/components/Footer'
 import DispatchModal from "@/components/Dispatch-modal"
 import DispatchLengthTimeModal from "@/components/Dispatch-length-time-modal"
 import PlaceLeftModal from "@/components/Place-left-modal"
+import LoginModal from '@/components/LoginModal'
+import RegistrationModal from '@/components/RegistrationModal'
+import ForgotPasswordModal from '@/components/ForgotPasswordModal'
 
+// import Populardirections from '@/components/Populardirections'
+// import Registrationhero from '@/components/Registrationhero'
 
 export default {
   name: 'Flight-selection',
   components: {
-    PlaceLeftModal,
-    DispatchLengthTimeModal,
-    DispatchModal,
-    BackTableMobile,
-    ThereTableMobile,
-    TimelineMobile,
-    BackTable,
-    ThereTable,
-    FlightForm,
-    Timeline,
     Header,
-    Hero,Footer,Populardirections,Registrationhero,LoginModal,RegistrationModal,ForgotPasswordModal
+    Timeline,
+    FlightForm,
+    TimelineMobile,
+    ThereTable,
+    ThereTableMobile,
+    BackTable,
+    BackTableMobile,
+    Footer,
+    DispatchModal,
+    DispatchLengthTimeModal,
+    PlaceLeftModal,
+    LoginModal,
+    RegistrationModal,
+    ForgotPasswordModal,
+
+    // Populardirections,
+    // Registrationhero,
+
   },
   methods: {
     isMobile() {

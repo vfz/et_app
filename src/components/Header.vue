@@ -10,9 +10,8 @@
                   <fa class="toggler-icon-open" v-if="isVisibleElement" icon="bars" />
                   <fa class="toggler-icon-close" v-else icon="xmark"/>
                 </span>
-
             </button>
-            <div class="collapse navbar-collapse d-lg-flex justify-content-end" id="navbarSupportedContent" v-show="opennav">
+            <div class="collapse navbar-collapse d-lg-flex justify-content-end" id="navbarSupportedContent">
                 <nav class="nav-header log-out">
                     <ul class="nav">
                         <li class="nav-item dropdown">
@@ -31,7 +30,7 @@
                     </ul>
                 </nav>
                 <!--                log in user-->
-                <!-- <nav class="nav-header log-in d-none">
+                <nav class="nav-header log-in d-none">
                     <ul class="nav justify-content-end align-items-center">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLogIn" role="button" data-bs-toggle="dropdown" aria-expanded="false">Служба поддержки</a>
@@ -62,7 +61,7 @@
                             </ul>
                         </li>
                     </ul>
-                </nav> -->
+                </nav>
             </div>
         </div>
     </nav>
@@ -80,7 +79,6 @@ export default {
       this.isVisibleElement = !this.isVisibleElement;
     }
   }
-
 }
 </script>
 <style lang="scss" scoped>

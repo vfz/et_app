@@ -24,6 +24,7 @@
     <LoginModal/>
     <RegistrationModal/>
     <ForgotPasswordModal/>
+
   </div>
 </template>
 <style lang="scss" scoped>
@@ -45,7 +46,7 @@
 </style>
 <script>
 
-import Hero from '@/components/Hero'
+import HeroLight from '@/components/HeroLight'
 import Footer from '@/components/Footer'
 import LoginModal from '@/components/LoginModal'
 import ForgotPasswordModal from '@/components/ForgotPasswordModal'
@@ -64,8 +65,9 @@ import DispatchModal from "@/components/Dispatch-modal"
 import DispatchLengthTimeModal from "@/components/Dispatch-length-time-modal"
 import PlaceLeftModal from "@/components/Place-left-modal"
 
+
 export default {
-  name: 'Flightselection',
+  name: 'Flight-selection',
   components: {
     PlaceLeftModal,
     DispatchLengthTimeModal,
@@ -84,6 +86,10 @@ export default {
     isMobile() {
       return screen.width <= 768;
     }
+
   }
 }
 </script>
+<style scoped>
+
+</style>

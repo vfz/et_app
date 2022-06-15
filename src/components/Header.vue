@@ -2,11 +2,15 @@
     <header class="header">
     <nav class="navbar navbar-expand-md navbar-dark">
         <div class="container-fluid">
-        <router-link class="logo-link" tag="a" to="/" >
+          <router-link to="/" class="logo-link">
             <img alt="logo" src="img/header/logo.png" class="logo">
-        </router-link>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"  v-on:click="opennav=!opennav">
-                <span class="navbar-toggler-icon"></span>
+          </router-link>
+            <button @click="toggleElement" ref="button" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon">
+                  <fa class="toggler-icon-open" v-if="isVisibleElement" icon="bars" />
+                  <fa class="toggler-icon-close" v-else icon="xmark"/>
+                </span>
+
             </button>
             <div class="collapse navbar-collapse d-lg-flex justify-content-end" id="navbarSupportedContent" v-show="opennav">
                 <nav class="nav-header log-out">
@@ -66,11 +70,17 @@
 </template>
 <script>
 export default {
-    data(){
-        return {
-            opennav:false
-            }
+  data: () => {
+    return {
+      isVisibleElement: true
     }
+  },
+  methods: {
+    toggleElement(){
+      this.isVisibleElement = !this.isVisibleElement;
+    }
+  }
+
 }
 </script>
 <style lang="scss" scoped>
@@ -78,11 +88,32 @@ export default {
 @import "src/assets/variables.scss";
 @import "src/assets/font.scss";
 
+.body-app-white {
+  .toggler-icon-close {
+    color: $base !important;
+  }
+  .toggler-icon-open {
+    color: $base !important;
+  }
+  .nav-header {
+    .nav {
+      &-item {
+        .nav-link {
+          color: $black !important;
+        }
+      }
+    }
+  }
+}
+
 .header {
   padding-top: 60px;
   margin-bottom: 64px;
   margin-left: 88px;
   margin-right: 88px;
+  .navbar {
+    box-shadow: none;
+  }
   @media screen and (max-width: 767px) {
         margin-left: 20px;
         margin-right: 20px;

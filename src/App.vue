@@ -6,6 +6,7 @@
 
 <style lang="scss">
 @import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~mdb-ui-kit/css/mdb.min.css";
 @import "src/assets/variables.scss";
 @import "src/assets/font.scss";
 
@@ -20,6 +21,9 @@
   font-weight: $bold;
   font-size: 48px;
   color: $white;
+  @media screen and (max-width: 768px) {
+    font-size: 24px;
+  }
 }
 
 .title-section {
@@ -28,6 +32,9 @@
   font-size: 36px;
   color: $white;
   margin-bottom: 24px;
+  @media screen and (max-width: 768px) {
+    font-size: 20px;
+  }
 }
 
 .dark-title {

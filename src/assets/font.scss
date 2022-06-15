@@ -8,6 +8,14 @@
 
 @font-face {
     font-family: 'Uni Neue';
+    // src: url('~@/assets/fonts/UniNeueLight.eot');
+    src: local('Uni Neue Light'), local('Uni-Neue-Light'), url('~@/assets/fonts/UniNeueLight.eot?#iefix') format('embedded-opentype'), url('~@/assets/fonts/UniNeueLight.woff2') format('woff2'), url('~@/assets/fonts/UniNeueLight.woff') format('woff'), url('~@/assets/fonts/UniNeueRegular.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Uni Neue';
     // src: url('~@/assets/fonts/UniNeueRegular.eot');
     src: local('Uni Neue Regular'), local('UniNeueRegular'), url('~@/assets/fonts/UniNeueRegular.eot?#iefix') format('embedded-opentype'), url('~@/assets/fonts/UniNeueRegular.woff2') format('woff2'), url('~@/assets/fonts/UniNeueRegular.woff') format('woff'), url('~@/assets/fonts/UniNeueRegular.ttf') format('truetype');
     font-weight: 500;

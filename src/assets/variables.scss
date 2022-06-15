@@ -1,15 +1,42 @@
 // Variables Bootstrap 5
-$red : #cc2eaa;
-$green : #2ecc71;
+//color
+$red: #cc2eaa;
+$green: #2ecc71;
 $white: #fff;
 $black: #283256;
 $blue-color: #1399FF;
 $blue-active: #196EFF;
+$blue-link: #77bcfc;
+$blue-hover: #F3F7FF;
 $base: #283256;
+$deactivate: #D8DADE;
+$secondary: #676767;
 //font
 $uniBook: 'Uni Neue Book';
 $uni: 'Uni Neue';
 //font-weight
 $regular: 500;
 $bold: bold;
-//color
+$light: 300;
+//shadows
+$regular-shadow: 0px 8px 12px 0px rgba(161, 159, 255, 0.2);
+@mixin font($font-family-variable, $font-weight-variable, $font-size-variable, $line-height-variable, $color-variable) {
+    font-family: $font-family-variable;
+    font-weight: $font-weight-variable;
+    font-size: $font-size-variable;
+    line-height: $line-height-variable;
+    color: $color-variable;
+}
+
+@mixin animation {
+    transition: 0.2s ease-in;
+}
+
+//bootstrap 5 remade
+.btn-success {
+    background-color: $green;
+}
+
+.btn {
+    text-transform: none;
+}

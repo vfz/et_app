@@ -238,6 +238,15 @@
               <span class="path-info-place-number">
                 33,
               </span>
+              <span class="path-info-place-number">
+                34,
+              </span>
+              <span class="path-info-place-number">
+                35,
+              </span>
+              <span class="path-info-place-number">
+                36,
+              </span>
             </div>
             <div class="path-info-sum">
               Сумма заказа <span class="path-info-sum-number">7 000</span>₽

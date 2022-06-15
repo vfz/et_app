@@ -209,7 +209,7 @@
           </div>
 <!--          правила перевозки багажа-->
           <div class="row rules-baggage">
-            <div class="col-6">
+            <div class="col-5 col-xl-7 col-xxl-5">
               <h2 class="title-section">
                 Правила перевозки багажа
               </h2>
@@ -260,7 +260,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="row">
+                <div class="row g-2">
                   <div class="col-6">
                     <button class="btn btn-lg btn-primary">
                       Перейти к оплате
@@ -279,7 +279,9 @@
                 </div>
               </div>
             </div>
-            <div class="col-6"></div>
+            <div class="col-7 col-xl-5 col-xxl-7 d-flex justify-content-xl-center">
+              <img class="payment-img" alt="оплата" src="img/ticket-booking/payment.svg">
+            </div>
           </div>
         </form>
       </div>
@@ -625,6 +627,11 @@ export default {
       @include font($uni,$light,18px,24.3px,$secondary);
       span {
         @include font($uni,$regular,18px,24.3px,$base);
+      }
+    }
+    .payment-img {
+      @media screen and (max-width: 1920px) {
+        width: 100%;
       }
     }
   }

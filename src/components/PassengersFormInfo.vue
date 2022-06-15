@@ -14,7 +14,8 @@
     <div class="row">
       <div class="col-9">
         <form>
-          <div class="row">
+          <!--    информация о пассажирах-->
+          <div class="row info-passengers">
             <div class="col-12">
               <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -164,10 +165,24 @@
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-6"></div>
-            <div class="col-6"></div>
+          <!--    информация о покупателе-->
+          <div class="row info-buyer">
+            <div class="col-6">
+              <h2 class="title-section">
+                Информация о покупателе
+              </h2>
+              <p class="title-section-description">
+                Указывайте корректные e-mail и номер телефона, т.к. они необходимы для получения и возврата билета, а так же для обратной связи.
+              </p>
+            </div>
+            <div class="col-6">
+              <p class="title-section-description active-description">
+                Указывайте корректные e-mail и номер телефона, т.к. они необходимы для получения и возврата билета, а так же для обратной связи.
+              </p>
+            </div>
           </div>
+<!--          правила перевозки багажа-->
+          <div class="row"></div>
         </form>
       </div>
       <div class="col-3">
@@ -364,6 +379,9 @@ export default {
   .title-section-description {
     @include font($uni,$light,18px,24.3px,$base);
     margin-bottom: 40px;
+  }
+  .active-description {
+    color: $blue-active;
   }
   .nav-tabs {
     position: relative;

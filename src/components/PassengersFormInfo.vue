@@ -514,5 +514,8 @@ export default {
       text-transform: uppercase;
     }
   }
+  .info-buyer {
+    margin-top: 40px;
+  }
 }
 </style>

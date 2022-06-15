@@ -182,6 +182,75 @@
                 Указывайте корректные e-mail и номер телефона, т.к. они необходимы для получения и возврата билета, а так же для обратной связи.
               </p>
             </div>
+            <div class="col-12">
+              <div class="form-wrapper">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="checkbox-form d-block w-100">
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" v-on:click="oneWay=true" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
+                        <label class="form-check-label" for="inlineRadio1">В одну сторону</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" v-on:click="oneWay=false"  name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                        <label class="form-check-label" for="inlineRadio2">Туда-обратно</label>
+                      </div>
+                      <div class="d-inline-block">
+                        <button type="button" class="cancel-button">
+                          Убрать
+                          <CancelIcon/>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-3">
+                      <label for="secondName1" class="form-label">Фамилия</label>
+                      <input type="text" class="form-control" id="secondName1" placeholder="Иванов">
+                    </div>
+                    <div class="col-3">
+                      <label for="firstName1" class="form-label">Имя</label>
+                      <input type="text" class="form-control" id="firstName1" placeholder="Иван">
+                    </div>
+                    <div class="col-3">
+                      <label for="MiddleName1" class="form-label">Отчество</label>
+                      <input type="text" class="form-control" id="MiddleName1" placeholder="Иванович">
+                    </div>
+                    <div class="col-3">
+                      <label for="birthday1" class="form-label">Дата рождения</label>
+                      <input type="text" class="form-control" id="birthday1" placeholder="дд.мм.гггг">
+                    </div>
+                  </div>
+                  <div class="row gy-2">
+                    <div class="col-3">
+                      <label for="gender1" class="form-label">Пол</label>
+                      <select id="gender1" class="form-select">
+                        <option selected>Мужской</option>
+                        <option>Женский</option>
+                      </select>
+                    </div>
+                    <div class="col-3">
+                      <label for="citizenship1" class="form-label">Гражданство</label>
+                      <select id="citizenship1" class="form-select">
+                        <option selected>Российская Федерация</option>
+                        <option>...</option>
+                      </select>
+                    </div>
+                    <div class="col-3">
+                      <label for="document1" class="form-label">Документ</label>
+                      <select id="document1" class="form-select">
+                        <option selected>Паспорт РФ</option>
+                        <option>...</option>
+                      </select>
+                    </div>
+                    <div class="col-3">
+                      <label for="documentInfo1" class="form-label">Серия и номер документа</label>
+                      <input type="text" class="form-control" id="documentInfo1" placeholder="01 23 456789">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 <!--          правила перевозки багажа-->
           <div class="row"></div>
@@ -404,6 +473,12 @@ export default {
   .tab-content {
     position: relative;
     z-index: 2;
+  }
+  .form-wrapper {
+    background-color: $white;
+    border-radius: 0 16px 16px 16px;
+    box-shadow: $regular-shadow;
+    padding: 35px 29px;
     .cancel-button {
       background: none;
       border: none;
@@ -444,12 +519,6 @@ export default {
     .form-select::selection {
       color: #B5BDDB;
     }
-  }
-  .form-wrapper {
-    background-color: $white;
-    border-radius: 0 16px 16px 16px;
-    box-shadow: $regular-shadow;
-    padding: 35px 29px;
   }
   .info-ticket-wrapper {
     background-color: $white;

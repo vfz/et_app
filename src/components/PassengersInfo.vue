@@ -14,7 +14,7 @@
             <div class="row">
               <div class="col-12">
                 <div class="checkbox-form d-flex align-items-center justify-content-between w-100">
-                  <MyDataButton/>
+                  <MyDataButton class="d-none"/>
                   <div class="form-checks">
                     <div class="form-check form-check-inline">
                       <input class="form-check-input" type="radio" v-on:click="oneWay=true" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
@@ -87,7 +87,7 @@
             <div class="row">
               <div class="col-12">
                 <div class="checkbox-form d-flex align-items-center justify-content-between w-100">
-                  <MyDataButton/>
+                  <MyDataButton class="d-none"/>
                   <div class="form-checks">
                     <div class="form-check form-check-inline">
                       <input class="form-check-input" type="radio" v-on:click="oneWay=true" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>

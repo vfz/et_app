@@ -3,7 +3,7 @@
     <Header/>
     <Timeline v-if="!isMobile()"/>
     <TimelineMobile v-if="isMobile()"/>
-    <FlightForm/>
+    <FlightForm v-if="!isMobile()"/>
     <ThereBackTabs/>
     <CurrentPoints/>
     <PassengersFormInfo/>

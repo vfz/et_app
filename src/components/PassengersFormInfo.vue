@@ -15,48 +15,7 @@
       <div class="col-9">
         <form>
           <PassengersInfo/>
-          <!--    информация о покупателе-->
-          <div class="row info-buyer">
-            <div class="col-12">
-              <h2 class="title-section">
-                Информация о покупателе
-              </h2>
-            </div>
-            <div class="col-6">
-              <p class="title-section-description">
-                Указывайте корректные e-mail и номер телефона, т.к. они необходимы для получения и возврата билета, а так же для обратной связи.
-              </p>
-            </div>
-            <div class="col-6">
-              <p class="title-section-description active-description">
-                Указывайте корректные e-mail и номер телефона, т.к. они необходимы для получения и возврата билета, а так же для обратной связи.
-              </p>
-            </div>
-            <div class="col-12">
-              <div class="form-wrapper">
-                <div class="row">
-                  <div class="row">
-                    <div class="col-3">
-                      <label for="secondNameBuyer" class="form-label">Фамилия</label>
-                      <input type="text" class="form-control" id="secondNameBuyer" placeholder="Иванов">
-                    </div>
-                    <div class="col-3">
-                      <label for="firstNameBuyer" class="form-label">Имя</label>
-                      <input type="text" class="form-control" id="firstNameBuyer" placeholder="Иван">
-                    </div>
-                    <div class="col-3">
-                      <label for="mailBuyer" class="form-label">Электронная почта</label>
-                      <input type="text" class="form-control" id="mailBuyer" placeholder="name@mail.ru">
-                    </div>
-                    <div class="col-3">
-                      <label for="numberBuyer" class="form-label">Телефон</label>
-                      <input type="text" class="form-control" id="numberBuyer" placeholder="+7 (___)-___-__-__">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <BuyerInfo/>
 <!--          правила перевозки багажа-->
           <div class="row rules-baggage">
             <div class="col-5 col-xl-7 col-xxl-5">
@@ -315,9 +274,10 @@ import CancelIcon from "@/components/icons/CancelIcon";
 import ArrowPathIcon from "@/components/icons/ArrowPathIcon";
 import CheckIcon from "@/components/icons/CheckIcon";
 import PassengersInfo from "@/components/PassengersInfo";
+import BuyerInfo from "@/components/BuyerInfo";
 export default {
   name: "PassengersFormInfo",
-  components: {PassengersInfo, CheckIcon, ArrowPathIcon, CancelIcon}
+  components: {BuyerInfo, PassengersInfo, CheckIcon, ArrowPathIcon, CancelIcon}
 }
 </script>
 
@@ -470,9 +430,6 @@ export default {
       @include font($uni,$bold,20px,27px,$blue-active);
       text-transform: uppercase;
     }
-  }
-  .info-buyer {
-    margin-top: 40px;
   }
   .rules-baggage {
     margin-top: 40px;

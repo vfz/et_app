@@ -13,7 +13,8 @@
     </div>
     <div class="col-6">
       <p class="title-section-description active-description">
-        Указывайте корректные e-mail и номер телефона, т.к. они необходимы для получения и возврата билета, а так же для обратной связи.
+        Для посадки, необходимо иметь при себе <span class="fw-normal">оригинал указанного
+        документа</span> и <span class="fw-normal">билет</span> (будет отправлен на указанную вами эл.почту).
       </p>
     </div>
     <div class="col-12">
@@ -60,6 +61,9 @@ export default {
   .title-section-description {
     @include font($uni,$light,18px,24.3px,$base);
     margin-bottom: 40px;
+  }
+  .active-description {
+    color: $blue-active;
   }
   margin-top: 40px;
   .form-wrapper {

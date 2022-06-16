@@ -57,9 +57,6 @@ export default {
     @include font($uni,$light,18px,24.3px,$base);
     margin-bottom: 40px;
   }
-  .active-description {
-    color: $blue-active;
-  }
   .nav-tabs {
     position: relative;
     z-index: 1;

@@ -163,7 +163,7 @@
       - 3000₽ (Евробаллы)
     </div>
     <div class="paths-final-amount d-inline-block position-relative">
-      <div class="old-amount position-absolute">14 000₽</div>
+      <div class="old-amount position-absolute d-none">14 000₽</div>
       Итого <span>14 000 ₽</span>
     </div>
   </div>

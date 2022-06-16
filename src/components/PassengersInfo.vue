@@ -6,6 +6,8 @@
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
           <button class="nav-link active" id="passenger-1-tab" data-bs-toggle="tab" data-bs-target="#passenger-1" type="button" role="tab" aria-controls="passenger-1" aria-selected="true">Пассажир №1</button>
           <button class="nav-link" id="passenger-2-tab" data-bs-toggle="tab" data-bs-target="#passenger-2" type="button" role="tab" aria-controls="passenger-2" aria-selected="false">Пассажир №2</button>
+          <button class="nav-link" id="passenger-3-tab" data-bs-toggle="tab" data-bs-target="#passenger-3" type="button" role="tab" aria-controls="passenger-3" aria-selected="false">Пассажир №3</button>
+          <button class="nav-link" id="passenger-3-tab" data-bs-toggle="tab" data-bs-target="#passenger-4" type="button" role="tab" aria-controls="passenger-4" aria-selected="false">Пассажир №3</button>
         </div>
       </nav>
       <div class="tab-content position-relative" id="nav-tabContent">
@@ -83,6 +85,152 @@
           </div>
         </div>
         <div class="tab-pane fade" id="passenger-2" role="tabpanel" aria-labelledby="passenger-2-tab">
+          <div class="form-wrapper">
+            <div class="row">
+              <div class="col-12">
+                <div class="checkbox-form d-flex align-items-center justify-content-between w-100">
+                  <MyDataButton class="d-none"/>
+                  <div class="form-checks">
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" v-on:click="oneWay=true" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
+                      <label class="form-check-label" for="inlineRadio1">В одну сторону</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" v-on:click="oneWay=false"  name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                      <label class="form-check-label" for="inlineRadio2">Туда-обратно</label>
+                    </div>
+                  </div>
+                  <div class="d-inline-block">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="remove-button" data-bs-toggle="modal" data-bs-target="#removeModal">
+                      Убрать
+                      <CancelIcon/>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-3">
+                  <label for="secondName1" class="form-label">Фамилия</label>
+                  <input type="text" class="form-control" id="secondName1" placeholder="Иванов">
+                </div>
+                <div class="col-3">
+                  <label for="firstName1" class="form-label">Имя</label>
+                  <input type="text" class="form-control" id="firstName1" placeholder="Иван">
+                </div>
+                <div class="col-3">
+                  <label for="MiddleName1" class="form-label">Отчество</label>
+                  <input type="text" class="form-control" id="MiddleName1" placeholder="Иванович">
+                </div>
+                <div class="col-3">
+                  <label for="birthday1" class="form-label">Дата рождения</label>
+                  <input type="text" class="form-control" id="birthday1" placeholder="дд.мм.гггг">
+                </div>
+              </div>
+              <div class="row gy-2">
+                <div class="col-3">
+                  <label for="gender2" class="form-label">Пол</label>
+                  <select id="gender2" class="form-select">
+                    <option selected>Мужской</option>
+                    <option>Женский</option>
+                  </select>
+                </div>
+                <div class="col-3">
+                  <label for="citizenship2" class="form-label">Гражданство</label>
+                  <select id="citizenship2" class="form-select">
+                    <option selected>Российская Федерация</option>
+                    <option>...</option>
+                  </select>
+                </div>
+                <div class="col-3">
+                  <label for="document2" class="form-label">Документ</label>
+                  <select id="document2" class="form-select">
+                    <option selected>Паспорт РФ</option>
+                    <option>...</option>
+                  </select>
+                </div>
+                <div class="col-3">
+                  <label for="documentInfo2" class="form-label">Серия и номер документа</label>
+                  <input type="text" class="form-control" id="documentInfo2" placeholder="01 23 456789">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="passenger-3" role="tabpanel" aria-labelledby="passenger-3-tab">
+          <div class="form-wrapper">
+            <div class="row">
+              <div class="col-12">
+                <div class="checkbox-form d-flex align-items-center justify-content-between w-100">
+                  <MyDataButton class="d-none"/>
+                  <div class="form-checks">
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" v-on:click="oneWay=true" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
+                      <label class="form-check-label" for="inlineRadio1">В одну сторону</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" v-on:click="oneWay=false"  name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                      <label class="form-check-label" for="inlineRadio2">Туда-обратно</label>
+                    </div>
+                  </div>
+                  <div class="d-inline-block">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="remove-button" data-bs-toggle="modal" data-bs-target="#removeModal">
+                      Убрать
+                      <CancelIcon/>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-3">
+                  <label for="secondName1" class="form-label">Фамилия</label>
+                  <input type="text" class="form-control" id="secondName1" placeholder="Иванов">
+                </div>
+                <div class="col-3">
+                  <label for="firstName1" class="form-label">Имя</label>
+                  <input type="text" class="form-control" id="firstName1" placeholder="Иван">
+                </div>
+                <div class="col-3">
+                  <label for="MiddleName1" class="form-label">Отчество</label>
+                  <input type="text" class="form-control" id="MiddleName1" placeholder="Иванович">
+                </div>
+                <div class="col-3">
+                  <label for="birthday1" class="form-label">Дата рождения</label>
+                  <input type="text" class="form-control" id="birthday1" placeholder="дд.мм.гггг">
+                </div>
+              </div>
+              <div class="row gy-2">
+                <div class="col-3">
+                  <label for="gender2" class="form-label">Пол</label>
+                  <select id="gender2" class="form-select">
+                    <option selected>Мужской</option>
+                    <option>Женский</option>
+                  </select>
+                </div>
+                <div class="col-3">
+                  <label for="citizenship2" class="form-label">Гражданство</label>
+                  <select id="citizenship2" class="form-select">
+                    <option selected>Российская Федерация</option>
+                    <option>...</option>
+                  </select>
+                </div>
+                <div class="col-3">
+                  <label for="document2" class="form-label">Документ</label>
+                  <select id="document2" class="form-select">
+                    <option selected>Паспорт РФ</option>
+                    <option>...</option>
+                  </select>
+                </div>
+                <div class="col-3">
+                  <label for="documentInfo2" class="form-label">Серия и номер документа</label>
+                  <input type="text" class="form-control" id="documentInfo2" placeholder="01 23 456789">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="passenger-4" role="tabpanel" aria-labelledby="passenger-4-tab">
           <div class="form-wrapper">
             <div class="row">
               <div class="col-12">

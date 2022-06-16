@@ -13,15 +13,17 @@
           <div class="form-wrapper">
             <div class="row">
               <div class="col-12">
-                <div class="checkbox-form d-block w-100">
+                <div class="checkbox-form d-flex align-items-center justify-content-between w-100">
                   <MyDataButton/>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" v-on:click="oneWay=true" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
-                    <label class="form-check-label" for="inlineRadio1">В одну сторону</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" v-on:click="oneWay=false"  name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                    <label class="form-check-label" for="inlineRadio2">Туда-обратно</label>
+                  <div class="form-checks">
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" v-on:click="oneWay=true" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
+                      <label class="form-check-label" for="inlineRadio1">В одну сторону</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" v-on:click="oneWay=false"  name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                      <label class="form-check-label" for="inlineRadio2">Туда-обратно</label>
+                    </div>
                   </div>
                   <div class="d-inline-block">
                     <!-- Button trigger modal -->
@@ -84,17 +86,21 @@
           <div class="form-wrapper">
             <div class="row">
               <div class="col-12">
-                <div class="checkbox-form d-block w-100">
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" v-on:click="oneWay=true" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
-                    <label class="form-check-label" for="inlineRadio1">В одну сторону</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" v-on:click="oneWay=false"  name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                    <label class="form-check-label" for="inlineRadio2">Туда-обратно</label>
+                <div class="checkbox-form d-flex align-items-center justify-content-between w-100">
+                  <MyDataButton/>
+                  <div class="form-checks">
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" v-on:click="oneWay=true" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
+                      <label class="form-check-label" for="inlineRadio1">В одну сторону</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" v-on:click="oneWay=false"  name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                      <label class="form-check-label" for="inlineRadio2">Туда-обратно</label>
+                    </div>
                   </div>
                   <div class="d-inline-block">
-                    <button type="button" class="cancel-button">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="remove-button" data-bs-toggle="modal" data-bs-target="#removeModal">
                       Убрать
                       <CancelIcon/>
                     </button>
@@ -193,6 +199,9 @@ export default {
     border-radius: 0 16px 16px 16px;
     box-shadow: $regular-shadow;
     padding: 35px 29px;
+    .checkbox-form {
+      margin-bottom: 24px;
+    }
     .remove-button {
       background: none;
       border: none;

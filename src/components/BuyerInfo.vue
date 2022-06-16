@@ -23,19 +23,19 @@
           <MyDataButton class="d-none"/>
         </div>
         <div class="row">
-          <div class="col-3">
+          <div class="col-3 col-lg-6 col-xl-3">
             <label for="secondNameBuyer" class="form-label">Фамилия</label>
             <input type="text" class="form-control" id="secondNameBuyer" placeholder="Иванов">
           </div>
-          <div class="col-3">
+          <div class="col-3 col-lg-6 col-xl-3">
             <label for="firstNameBuyer" class="form-label">Имя</label>
             <input type="text" class="form-control" id="firstNameBuyer" placeholder="Иван">
           </div>
-          <div class="col-3">
+          <div class="col-3 col-lg-6 col-xl-3">
             <label for="mailBuyer" class="form-label">Электронная почта</label>
             <input type="text" class="form-control" id="mailBuyer" placeholder="name@mail.ru">
           </div>
-          <div class="col-3">
+          <div class="col-3 col-lg-6 col-xl-3">
             <label for="numberBuyer" class="form-label">Телефон</label>
             <input type="text" class="form-control" id="numberBuyer" placeholder="+7 (___)-___-__-__">
           </div>

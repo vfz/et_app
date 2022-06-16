@@ -59,7 +59,7 @@ export default {
   }
   .btn-yes:hover, .btn-close:hover {
     @include animation;
-    color: $secondary;
+    color: $blue-active;
   }
 }
 </style>

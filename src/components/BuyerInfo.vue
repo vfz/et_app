@@ -19,6 +19,9 @@
     </div>
     <div class="col-12">
       <div class="form-wrapper">
+        <div class="row my-data-button-row d-none">
+          <MyDataButton/>
+        </div>
         <div class="row">
           <div class="col-3">
             <label for="secondNameBuyer" class="form-label">Фамилия</label>
@@ -43,8 +46,10 @@
 </template>
 
 <script>
+import MyDataButton from "@/components/MyDataButton";
 export default {
-  name: "BuyerInfo"
+  name: "BuyerInfo",
+  components: {MyDataButton}
 }
 </script>
 

@@ -7,9 +7,15 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <p class="modal-body-text text-center">
+<!--          сообщение с пассажиром-->
+          <p class="modal-body-text text-center passenger-message">
             Вы уверены, что хотите убрать
             билет <span>пассажира № 1?</span>
+          </p>
+<!--          сообщение с маршрутом-->
+          <p class="modal-body-text text-center there-message d-none">
+            Вы уверены, что хотите убрать
+            билеты маршрута <span>"Туда"</span>
           </p>
         </div>
         <div class="modal-footer justify-content-center">

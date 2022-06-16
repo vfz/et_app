@@ -7,7 +7,7 @@
           <button class="nav-link active" id="passenger-1-tab" data-bs-toggle="tab" data-bs-target="#passenger-1" type="button" role="tab" aria-controls="passenger-1" aria-selected="true">Пассажир №1</button>
           <button class="nav-link" id="passenger-2-tab" data-bs-toggle="tab" data-bs-target="#passenger-2" type="button" role="tab" aria-controls="passenger-2" aria-selected="false">Пассажир №2</button>
           <button class="nav-link" id="passenger-3-tab" data-bs-toggle="tab" data-bs-target="#passenger-3" type="button" role="tab" aria-controls="passenger-3" aria-selected="false">Пассажир №3</button>
-          <button class="nav-link" id="passenger-3-tab" data-bs-toggle="tab" data-bs-target="#passenger-4" type="button" role="tab" aria-controls="passenger-4" aria-selected="false">Пассажир №3</button>
+          <button class="nav-link" id="passenger-3-tab" data-bs-toggle="tab" data-bs-target="#passenger-4" type="button" role="tab" aria-controls="passenger-4" aria-selected="false">Пассажир №4</button>
         </div>
       </nav>
       <div class="tab-content position-relative" id="nav-tabContent">

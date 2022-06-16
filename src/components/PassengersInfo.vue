@@ -24,7 +24,7 @@
                   </div>
                   <div class="d-inline-block">
                     <!-- Button trigger modal -->
-                    <button type="button" class="cancel-button" data-bs-toggle="modal" data-bs-target="#removeModal">
+                    <button type="button" class="remove-button" data-bs-toggle="modal" data-bs-target="#removeModal">
                       Убрать
                       <CancelIcon/>
                     </button>
@@ -190,7 +190,7 @@ export default {
     border-radius: 0 16px 16px 16px;
     box-shadow: $regular-shadow;
     padding: 35px 29px;
-    .cancel-button {
+    .remove-button {
       background: none;
       border: none;
       @include font($uni,$light,18px,24.3px,$blue-link);

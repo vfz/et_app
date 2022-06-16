@@ -1,7 +1,8 @@
 <template>
   <div class="body-app-white">
     <Header/>
-    <Timeline/>
+    <Timeline v-if="!isMobile()"/>
+    <TimelineMobile v-if="isMobile()"/>
     <FlightForm/>
     <ThereBackTabs/>
     <CurrentPoints/>
@@ -26,13 +27,20 @@ import ThereBackTabs from "@/components/ThereBackTabs";
 import CurrentPoints from "@/components/CurrentPoints";
 import PassengersFormInfo from "@/components/PassengersFormInfo";
 import RemoveModal from "@/components/RemoveModal";
+import TimelineMobile from "@/components/mobile/TimelineMobile";
 export default {
   name: "Ticket-booking",
   components: {
+    TimelineMobile,
     RemoveModal,
     PassengersFormInfo,
     CurrentPoints,
-    ThereBackTabs, Footer, FlightForm, Timeline, Header, LoginModal, RegistrationModal, ForgotPasswordModal}
+    ThereBackTabs, Footer, FlightForm, Timeline, Header, LoginModal, RegistrationModal, ForgotPasswordModal},
+  methods: {
+    isMobile() {
+      return screen.width <= 992;
+    }
+  }
 }
 </script>
 

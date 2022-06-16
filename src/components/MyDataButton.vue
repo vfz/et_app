@@ -1,5 +1,5 @@
 <template>
-  <div class="my-data-button d-flex justify-content-between">
+  <div class="my-data-button d-inline-flex justify-content-between align-items-center">
     <div class="my-data-button-title">Мои данные</div>
     <ArrowDownIcon/>
   </div>
@@ -14,6 +14,14 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+@import "src/assets/variables.scss";
+@import "src/assets/font.scss";
+.my-data-button {
+  cursor: pointer;
+  &-title {
+    @include font($uni,$bold,18px,24.3px,$base);
+    margin-right: 15px;
+  }
+}
 </style>

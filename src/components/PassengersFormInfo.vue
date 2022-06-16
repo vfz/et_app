@@ -251,7 +251,12 @@
                 <div class="mb-3">
                   <div class="row">
                     <div class="col">
-                      <input type="text" class="form-control" placeholder="Введите промокод">
+                      <div class="input-group position-relative">
+                        <input type="text" class="form-control" placeholder="Введите промокод">
+                        <div class="icon-bg position-absolute d-flex align-items-center">
+                          <CheckIcon/>
+                        </div>
+                      </div>
                     </div>
                     <div class="col">
                       <button type="button" class="btn btn-primary">
@@ -458,9 +463,10 @@
 <script>
 import CancelIcon from "@/components/icons/CancelIcon";
 import ArrowPathIcon from "@/components/icons/ArrowPathIcon";
+import CheckIcon from "@/components/icons/CheckIcon";
 export default {
   name: "PassengersFormInfo",
-  components: {ArrowPathIcon, CancelIcon}
+  components: {CheckIcon, ArrowPathIcon, CancelIcon}
 }
 </script>
 
@@ -640,13 +646,24 @@ export default {
     .title-section-description {
       margin-bottom: 24px;
     }
+    .input-group {
+      .icon-bg {
+        background-color: $blue-active;
+        height: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+        right: 0;
+        border-radius: 8px;
+      }
+    }
     .form-control {
+      height: 100%;
       padding-top: 12px;
       padding-bottom: 12px;
       padding-left: 16px;
       padding-right: 16px;
       @include font($uni,$regular,18px,24.3px,$base);
-      border-radius: 8px;
+      border-radius: 8px !important;
     }
     .form-control::-moz-placeholder {
       color: #B5BDDB; /* Цвет подсказывающего текста */

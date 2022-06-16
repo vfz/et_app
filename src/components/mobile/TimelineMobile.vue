@@ -20,7 +20,7 @@
                   Бронирование билета
                 </h1>
                 <div class="timeline-item-description">
-                  Оформляем документы
+                  шаг 2
                 </div>
               </div>
 <!--              <div class="timeline-item">-->

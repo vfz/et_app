@@ -10,6 +10,7 @@
     <LoginModal/>
     <RegistrationModal/>
     <ForgotPasswordModal/>
+    <RemoveModal/>
   </div>
 </template>
 
@@ -24,9 +25,11 @@ import ForgotPasswordModal from "@/components/ForgotPasswordModal";
 import ThereBackTabs from "@/components/ThereBackTabs";
 import CurrentPoints from "@/components/CurrentPoints";
 import PassengersFormInfo from "@/components/PassengersFormInfo";
+import RemoveModal from "@/components/RemoveModal";
 export default {
   name: "Ticket-booking",
   components: {
+    RemoveModal,
     PassengersFormInfo,
     CurrentPoints,
     ThereBackTabs, Footer, FlightForm, Timeline, Header, LoginModal, RegistrationModal, ForgotPasswordModal}

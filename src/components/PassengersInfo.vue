@@ -23,7 +23,8 @@
                     <label class="form-check-label" for="inlineRadio2">Туда-обратно</label>
                   </div>
                   <div class="d-inline-block">
-                    <button type="button" class="cancel-button">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="cancel-button" data-bs-toggle="modal" data-bs-target="#removeModal">
                       Убрать
                       <CancelIcon/>
                     </button>

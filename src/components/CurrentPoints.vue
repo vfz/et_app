@@ -19,9 +19,16 @@
             евробаллов
           </div>
         </div>
+<!--        Использовать баллы кнопка-->
         <div class="use-points-button">
           <button type="button" class="btn btn-primary">
             Использовать
+          </button>
+        </div>
+<!--        Вернуть баллы кнопка-->
+        <div class="turn-back-points-button d-none">
+          <button type="button" class="btn btn-primary">
+            Вернуть
           </button>
         </div>
       </div>

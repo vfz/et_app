@@ -159,7 +159,11 @@
         Сумма заказа <span class="path-info-sum-number">7 000</span>₽
       </div>
     </div>
-    <div class="paths-final-amount">
+    <div class="point-minus d-none">
+      - 3000₽ (Евробаллы)
+    </div>
+    <div class="paths-final-amount d-inline-block position-relative">
+      <div class="old-amount position-absolute">14 000₽</div>
       Итого <span>14 000 ₽</span>
     </div>
   </div>
@@ -237,6 +241,16 @@ export default {
     margin-top: 24px;
     @include font($uni,$bold,20px,27px,$blue-active);
     text-transform: uppercase;
+    .old-amount {
+      @include font($uni,$bold,14px,18.9px,$secondary);
+      text-decoration: line-through;
+      top: -15px;
+      right: 0;
+    }
+  }
+  .point-minus {
+    margin-top: 12px;
+    @include font($uni,$regular,18px,24.3px,$blue-active);
   }
 }
 </style>

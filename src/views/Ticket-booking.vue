@@ -6,6 +6,7 @@
     <FlightForm v-if="!isMobile()"/>
     <ThereBackTabs v-if="!isMobile()"/>
     <ThereTabMobile v-if="isMobile()"/>
+    <BackTabMobile v-if="isMobile()"/>
     <CurrentPoints/>
     <PassengersFormInfo/>
     <Footer/>
@@ -30,9 +31,11 @@ import PassengersFormInfo from "@/components/PassengersFormInfo";
 import RemoveModal from "@/components/RemoveModal";
 import TimelineMobile from "@/components/mobile/TimelineMobile";
 import ThereTabMobile from "@/components/mobile/ThereTabMobile";
+import BackTabMobile from "@/components/mobile/BackTabMobile";
 export default {
   name: "Ticket-booking",
   components: {
+    BackTabMobile,
     ThereTabMobile,
     TimelineMobile,
     RemoveModal,

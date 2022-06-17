@@ -3,6 +3,13 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-12">
+          <h2 class="title-section">
+            Куда поедем?
+          </h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
           <form id="hero-form" class="search-form d-flex flex-wrap justify-content-center">
             <div class="checkbox-form d-block w-100">
               <div class="form-check form-check-inline">
@@ -613,6 +620,10 @@ export default {
         min-width: 300px;
 
       }
+    }
+    .title-section {
+      @include font($uni,$bold,20px,27px,$base);
+      margin-bottom: 16px;
     }
 
   }

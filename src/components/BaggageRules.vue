@@ -1,7 +1,7 @@
 <template>
   <!--          правила перевозки багажа-->
   <div class="row rules-baggage">
-    <div class="col-5 col-lg-12 col-xl-7 col-xxl-7">
+    <div class="col-12 col-lg-12 col-xl-7 col-xxl-7">
       <h2 class="title-section">
         Правила перевозки багажа
       </h2>
@@ -42,7 +42,7 @@
         </p>
         <div class="mb-3">
           <div class="row">
-            <div class="col">
+            <div class="col-12 col-md-6">
               <div class="input-group position-relative">
                 <input type="text" class="form-control" placeholder="Введите промокод">
                 <div class="icon-bg position-absolute d-flex align-items-center">
@@ -50,7 +50,7 @@
                 </div>
               </div>
             </div>
-            <div class="col">
+            <div class="col-12 col-md-6">
               <button type="button" class="btn btn-primary">
                 Применить
               </button>
@@ -76,7 +76,7 @@
         </div>
       </div>
     </div>
-    <div class="col-7 col-xl-5 col-xxl-5 d-flex d-lg-none d-xl-flex justify-content-xl-center">
+    <div class="col-7 col-xl-5 col-xxl-5 d-none d-lg-none d-xl-flex justify-content-xl-center">
       <img class="payment-img" alt="оплата" src="img/ticket-booking/payment.svg">
     </div>
   </div>

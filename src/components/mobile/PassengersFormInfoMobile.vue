@@ -16,8 +16,8 @@
           <form>
             <PassengersInfoMobile/>
             <BuyerInfo/>
-            <BaggageRules/>
             <TicketInfo/>
+            <BaggageRules/>
           </form>
         </div>
       </div>

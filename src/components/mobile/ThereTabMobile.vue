@@ -9,7 +9,7 @@
         </div>
       </div>
       <div class="row gy-4">
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-lg-6">
           <div class="table-item active">
             <div class="table-item-content-wrapper">
               <div class="row">

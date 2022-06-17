@@ -57,13 +57,13 @@
             </div>
           </div>
         </div>
-        <div class="row g-2">
-          <div class="col-6">
+        <div class="row flex-column-reverse flex-md-row g-2">
+          <div class="col-12 col-md-6">
             <button class="btn btn-lg btn-primary">
               Перейти к оплате
             </button>
           </div>
-          <div class="col-6">
+          <div class="col-12 col-md-6">
             <div class="form-check d-flex align-items-center">
               <input class="form-check-custom-input form-check-input" type="checkbox" value="" id="privacyCheck">
               <label class="form-check-label" for="privacyCheck">
@@ -161,7 +161,9 @@ export default {
       }
     }
     .btn-promo-code {
-      margin-top: 16px;
+      @media screen and (max-width: 768px) {
+        margin-top: 16px;
+      }
     }
     .btn-lg {
       @include font($uni,$regular,18px,24.3px,$white);

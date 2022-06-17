@@ -183,6 +183,9 @@ export default {
   box-shadow: $regular-shadow;
   border-radius: 16px;
   padding: 24px 16px;
+  @media screen and (max-width: 992px) {
+    margin-top: 24px;
+  }
   .title-card {
     @include font($uni,$bold,24px,32.4px,$base);
     margin-bottom: 24px;

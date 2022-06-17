@@ -3,6 +3,7 @@
     <Header/>
     <Timeline v-if="!isMobile()"/>
     <FlightForm/>
+    <FlightFormMobile/>
     <TimelineMobile v-if="isMobile()"/>
     <ThereTable v-if="!isMobile()"/>
     <ThereTableMobile v-if="isMobile()"/>
@@ -63,10 +64,12 @@ import BackTableMobile from "@/components/mobile/BackTableMobile"
 import DispatchModal from "@/components/Dispatch-modal"
 import DispatchLengthTimeModal from "@/components/Dispatch-length-time-modal"
 import PlaceLeftModal from "@/components/Place-left-modal"
+import FlightFormMobile from "@/components/mobile/FlightFormMobile";
 
 export default {
   name: 'Flightselection',
   components: {
+    FlightFormMobile,
     PlaceLeftModal,
     DispatchLengthTimeModal,
     DispatchModal,

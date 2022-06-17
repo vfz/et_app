@@ -170,8 +170,10 @@
 </template>
 
 <script>
+import ArrowPathIcon from "@/components/icons/ArrowPathIcon";
 export default {
-  name: "TicketInfo"
+  name: "TicketInfo",
+  components: {ArrowPathIcon}
 }
 </script>
 

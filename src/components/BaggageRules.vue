@@ -51,7 +51,7 @@
               </div>
             </div>
             <div class="col-12 col-md-6">
-              <button type="button" class="btn btn-primary">
+              <button type="button" class="btn btn-primary btn-promo-code">
                 Применить
               </button>
             </div>
@@ -156,6 +156,12 @@ export default {
       padding-right: 68px;
       @include font($uni,$regular,18px,24.3px,$white);
       text-transform: none;
+      @media screen and (max-width: 768px) {
+        width: 100%;
+      }
+    }
+    .btn-promo-code {
+      margin-top: 16px;
     }
     .btn-lg {
       @include font($uni,$regular,18px,24.3px,$white);

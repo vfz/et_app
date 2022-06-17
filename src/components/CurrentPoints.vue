@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-12 d-flex align-items-center">
+      <div class="col-12 col-md-12 d-flex flex-wrap align-items-center">
         <div class="current-value-points d-flex">
           На данный момент у Вас &nbsp;
           <div class="current-value-points-data">
@@ -61,18 +61,31 @@ export default {
   .current-value-points {
     @include font($uni,$regular,18px,24.3px,$base);
     margin-right: 40px;
+    @media screen and (max-width: 767px) {
+      width: 100%;
+      margin-bottom: 16px;
+      margin-right: 0;
+    }
     &-data, &-europoints {
       color: $blue-active;
     }
   }
-  .btn {
-    @include font($uni,$regular,16px,21.6px,$white);
-    padding: 11px 47px;
-    border-radius: 8px;
-    border: none;
-    color: $white;
-    background-color: $blue-active;
-    text-transform: none;
+  .use-points-button {
+    @media screen and (max-width: 767px) {
+      width: 100%;
+    }
+    .btn {
+      @include font($uni,$regular,16px,21.6px,$white);
+      padding: 11px 47px;
+      border-radius: 8px;
+      border: none;
+      color: $white;
+      background-color: $blue-active;
+      text-transform: none;
+      @media screen and (max-width: 767px) {
+        width: 100%;
+      }
+    }
   }
 }
 </style>

@@ -6,12 +6,12 @@
         Информация о покупателе
       </h2>
     </div>
-    <div class="col-6">
+    <div class="col-6 col-md-12 col-lg-6">
       <p class="title-section-description">
         Указывайте корректные e-mail и номер телефона, т.к. они необходимы для получения и возврата билета, а так же для обратной связи.
       </p>
     </div>
-    <div class="col-6">
+    <div class="col-6 col-md-12 col-lg-6">
       <p class="title-section-description active-description">
         Для посадки, необходимо иметь при себе <span class="fw-normal">оригинал указанного
         документа</span> и <span class="fw-normal">билет</span> (будет отправлен на указанную вами эл.почту).
@@ -23,19 +23,19 @@
           <MyDataButton class="d-none"/>
         </div>
         <div class="row">
-          <div class="col-3 col-lg-6 col-xl-3">
+          <div class="col-12 col-lg-6 col-xl-3">
             <label for="secondNameBuyer" class="form-label">Фамилия</label>
             <input type="text" class="form-control" id="secondNameBuyer" placeholder="Иванов">
           </div>
-          <div class="col-3 col-lg-6 col-xl-3">
+          <div class="col-12 col-lg-6 col-xl-3">
             <label for="firstNameBuyer" class="form-label">Имя</label>
             <input type="text" class="form-control" id="firstNameBuyer" placeholder="Иван">
           </div>
-          <div class="col-3 col-lg-6 col-xl-3">
+          <div class="col-12 col-lg-6 col-xl-3">
             <label for="mailBuyer" class="form-label">Электронная почта</label>
             <input type="text" class="form-control" id="mailBuyer" placeholder="name@mail.ru">
           </div>
-          <div class="col-3 col-lg-6 col-xl-3">
+          <div class="col-12 col-lg-6 col-xl-3">
             <label for="numberBuyer" class="form-label">Телефон</label>
             <input type="text" class="form-control" id="numberBuyer" placeholder="+7 (___)-___-__-__">
           </div>

@@ -14,7 +14,7 @@
       <div class="row">
         <div class="col-12 col-lg-8 col-xl-9">
           <form>
-            <PassengersInfo/>
+            <PassengersInfoMobile/>
             <BuyerInfo/>
             <BaggageRules/>
             <TicketInfo/>
@@ -26,8 +26,17 @@
 </template>
 
 <script>
+import TicketInfo from "@/components/TicketInfo";
+import BaggageRules from "@/components/BaggageRules";
+import BuyerInfo from "@/components/BuyerInfo";
+import CheckIcon from "@/components/icons/CheckIcon";
+import ArrowPathIcon from "@/components/icons/ArrowPathIcon";
+import CancelIcon from "@/components/icons/CancelIcon";
+import PassengersInfoMobile from "@/components/mobile/PassengersInfoMobile";
+
 export default {
-  name: "PassengersFormInfoMobile"
+  name: "PassengersFormInfoMobile",
+  components: {TicketInfo, BaggageRules, BuyerInfo, PassengersInfoMobile, CheckIcon, ArrowPathIcon, CancelIcon}
 }
 </script>
 

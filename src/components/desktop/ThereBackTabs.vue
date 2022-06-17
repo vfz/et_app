@@ -240,8 +240,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "src/assets/variables.scss";
-@import "src/assets/font.scss";
+@import "@/assets/variables.scss";
+@import "@/assets/font.scss";
 
 .there-back-tabs-section {
   margin-left: 88px;

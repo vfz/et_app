@@ -52,6 +52,10 @@ export default {
 @import "src/assets/font.scss";
 .timeline-section {
   margin-top: 40px;
+  @media screen and (max-width: 767px) {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
   .active {
     .timeline-item-title {
       color: $black;

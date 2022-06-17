@@ -9,7 +9,7 @@
         </div>
       </div>
       <div class="row gy-4">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 col-md-6">
           <div class="table-item active">
             <div class="table-item-content-wrapper">
               <div class="row">
@@ -88,11 +88,11 @@
                 <div class="col-6">
                   <div class="table-item-part-right">
                     <h3 class="table-item-part-right-title">
-                      Осталось мест
+                      Места
                     </h3>
                     <div class="table-item-part-right-date">
                       <div class="arrival-time table-link" data-bs-toggle="modal" data-bs-target="#place-left-modal">
-                        24
+                        33,34,35,36
                       </div>
                     </div>
                   </div>
@@ -113,7 +113,7 @@
 
 <script>
 export default {
-  name: "ThereBackTabsMobile"
+  name: "ThereTabMobile"
 }
 </script>
 

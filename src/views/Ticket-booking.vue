@@ -8,7 +8,8 @@
     <ThereTabMobile v-if="isMobile()"/>
     <BackTabMobile v-if="isMobile()"/>
     <CurrentPoints/>
-    <PassengersFormInfo/>
+    <PassengersFormInfo v-if="!isMobile()"/>
+    <PassengersFormInfoMobile v-if="isMobile()"/>
     <Footer/>
     <LoginModal/>
     <RegistrationModal/>
@@ -32,9 +33,11 @@ import RemoveModal from "@/components/RemoveModal";
 import TimelineMobile from "@/components/mobile/TimelineMobile";
 import ThereTabMobile from "@/components/mobile/ThereTabMobile";
 import BackTabMobile from "@/components/mobile/BackTabMobile";
+import PassengersFormInfoMobile from "@/components/mobile/PassengersFormInfoMobile";
 export default {
   name: "Ticket-booking",
   components: {
+    PassengersFormInfoMobile,
     BackTabMobile,
     ThereTabMobile,
     TimelineMobile,

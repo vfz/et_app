@@ -66,6 +66,10 @@ export default {
       margin-bottom: 16px;
       margin-right: 0;
     }
+    @media screen and (max-width: 576px) {
+      flex-wrap: wrap;
+      font-size: 14px;
+    }
     &-data, &-europoints {
       color: $blue-active;
     }

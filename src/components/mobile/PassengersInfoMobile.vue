@@ -12,7 +12,7 @@
           <div class="form-wrapper">
             <div class="row">
               <div class="col-12">
-                <div class="checkbox-form d-flex align-items-center justify-content-between w-100">
+                <div class="checkbox-form d-flex flex-wrap align-items-center justify-content-between w-100">
                   <MyDataButton class="d-none"/>
                   <div class="form-checks">
                     <div class="form-check form-check-inline">
@@ -94,7 +94,7 @@
           <div class="form-wrapper">
             <div class="row">
               <div class="col-12">
-                <div class="checkbox-form d-flex align-items-center justify-content-between w-100">
+                <div class="checkbox-form d-flex flex-wrap align-items-center justify-content-between w-100">
                   <MyDataButton class="d-none"/>
                   <div class="form-checks">
                     <div class="form-check form-check-inline">
@@ -176,7 +176,7 @@
           <div class="form-wrapper">
             <div class="row">
               <div class="col-12">
-                <div class="checkbox-form d-flex align-items-center justify-content-between w-100">
+                <div class="checkbox-form d-flex flex-wrap align-items-center justify-content-between w-100">
                   <MyDataButton class="d-none"/>
                   <div class="form-checks">
                     <div class="form-check form-check-inline">
@@ -258,7 +258,7 @@
           <div class="form-wrapper">
             <div class="row">
               <div class="col-12">
-                <div class="checkbox-form d-flex align-items-center justify-content-between w-100">
+                <div class="checkbox-form d-flex flex-wrap align-items-center justify-content-between w-100">
                   <MyDataButton class="d-none"/>
                   <div class="form-checks">
                     <div class="form-check form-check-inline">

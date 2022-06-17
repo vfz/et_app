@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-12">
           <h2 class="title-table">
-            Туда <span class="title-table-counter">(3)</span>
+            Туда
           </h2>
         </div>
       </div>

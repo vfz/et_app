@@ -51,6 +51,10 @@ export default {
   margin-top: 40px;
   margin-left: 88px;
   margin-right: 88px;
+  @media screen and (max-width: 767px) {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
   .title-section {
     @include font($uni,$bold,24px,32.4px,$base);
   }

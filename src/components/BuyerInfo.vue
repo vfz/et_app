@@ -6,12 +6,12 @@
         Информация о покупателе
       </h2>
     </div>
-    <div class="col-6 col-md-12 col-lg-6">
+    <div class="col-12 col-lg-6">
       <p class="title-section-description">
         Указывайте корректные e-mail и номер телефона, т.к. они необходимы для получения и возврата билета, а так же для обратной связи.
       </p>
     </div>
-    <div class="col-6 col-md-12 col-lg-6">
+    <div class="col-12 col-lg-6">
       <p class="title-section-description active-description">
         Для посадки, необходимо иметь при себе <span class="fw-normal">оригинал указанного
         документа</span> и <span class="fw-normal">билет</span> (будет отправлен на указанную вами эл.почту).

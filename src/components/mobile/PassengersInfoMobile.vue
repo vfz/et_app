@@ -372,6 +372,9 @@ export default {
     border-radius: 0 16px 16px 16px;
     box-shadow: $regular-shadow;
     padding: 35px 29px;
+    @media screen and (max-width: 768px) {
+      margin-bottom: 40px;
+    }
     .checkbox-form {
       margin-bottom: 24px;
     }

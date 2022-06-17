@@ -2,8 +2,8 @@
   <div class="body-app-white">
     <Header/>
     <Timeline v-if="!isMobile()"/>
-    <FlightForm/>
-    <FlightFormMobile/>
+    <FlightForm v-if="!isMobile()"/>
+    <FlightFormMobile v-if="isMobile()"/>
     <TimelineMobile v-if="isMobile()"/>
     <ThereTable v-if="!isMobile()"/>
     <ThereTableMobile v-if="isMobile()"/>

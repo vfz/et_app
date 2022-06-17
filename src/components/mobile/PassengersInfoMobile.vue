@@ -5,9 +5,6 @@
       <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
           <button class="nav-link active" id="passenger-1-tab" data-bs-toggle="tab" data-bs-target="#passenger-1" type="button" role="tab" aria-controls="passenger-1" aria-selected="true">Пассажир №1</button>
-          <button class="nav-link" id="passenger-2-tab" data-bs-toggle="tab" data-bs-target="#passenger-2" type="button" role="tab" aria-controls="passenger-2" aria-selected="false">Пассажир №2</button>
-          <button class="nav-link" id="passenger-3-tab" data-bs-toggle="tab" data-bs-target="#passenger-3" type="button" role="tab" aria-controls="passenger-3" aria-selected="false">Пассажир №3</button>
-          <button class="nav-link" id="passenger-3-tab" data-bs-toggle="tab" data-bs-target="#passenger-4" type="button" role="tab" aria-controls="passenger-4" aria-selected="false">Пассажир №4</button>
         </div>
       </nav>
       <div class="tab-content position-relative" id="nav-tabContent">
@@ -84,7 +81,16 @@
             </div>
           </div>
         </div>
-        <div class="tab-pane fade" id="passenger-2" role="tabpanel" aria-labelledby="passenger-2-tab">
+      </div>
+    </div>
+    <div class="col-12">
+      <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <button class="nav-link active" id="passenger-2-tab" data-bs-toggle="tab" data-bs-target="#passenger-2" type="button" role="tab" aria-controls="passenger-2" aria-selected="false">Пассажир №2</button>
+        </div>
+      </nav>
+      <div class="tab-content position-relative" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="passenger-2" role="tabpanel" aria-labelledby="passenger-2-tab">
           <div class="form-wrapper">
             <div class="row">
               <div class="col-12">
@@ -157,7 +163,16 @@
             </div>
           </div>
         </div>
-        <div class="tab-pane fade" id="passenger-3" role="tabpanel" aria-labelledby="passenger-3-tab">
+      </div>
+    </div>
+    <div class="col-12">
+      <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <button class="nav-link active" id="passenger-3-tab" data-bs-toggle="tab" data-bs-target="#passenger-3" type="button" role="tab" aria-controls="passenger-3" aria-selected="false">Пассажир №3</button>
+        </div>
+      </nav>
+      <div class="tab-content position-relative" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="passenger-3" role="tabpanel" aria-labelledby="passenger-3-tab">
           <div class="form-wrapper">
             <div class="row">
               <div class="col-12">
@@ -230,7 +245,16 @@
             </div>
           </div>
         </div>
-        <div class="tab-pane fade" id="passenger-4" role="tabpanel" aria-labelledby="passenger-4-tab">
+      </div>
+    </div>
+    <div class="col-12">
+      <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <button class="nav-link active" id="passenger-4-tab" data-bs-toggle="tab" data-bs-target="#passenger-4" type="button" role="tab" aria-controls="passenger-4" aria-selected="false">Пассажир №4</button>
+        </div>
+      </nav>
+      <div class="tab-content position-relative" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="passenger-4" role="tabpanel" aria-labelledby="passenger-4-tab">
           <div class="form-wrapper">
             <div class="row">
               <div class="col-12">

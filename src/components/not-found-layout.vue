@@ -26,7 +26,7 @@
 
 <script>
 export default {
-  name: "404-layout"
+  name: "not-foud-layout"
 }
 </script>
 

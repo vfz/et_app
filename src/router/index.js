@@ -5,6 +5,7 @@ import Flightselection from '@/views/Flight-selection.vue'
 import TicketBooking from "@/views/Ticket-booking";
 import PaymentSuccess from "@/views/Payment-success";
 import PaymentError from "@/views/Payment-error";
+import NotFound from "@/views/NotFound";
 
 Vue.use(VueRouter)
 
@@ -32,6 +33,15 @@ const routes = [{
         path: '/payment-error',
         name: 'Payment-error',
         component: PaymentError
+    },
+    {
+        path: '/404',
+        name: '404',
+        component: NotFound
+    },
+    {
+        path: '*',
+        redirect: '/404'
     }
 
 ]

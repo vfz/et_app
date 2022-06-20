@@ -107,7 +107,7 @@
                           <span>Ставрополь</span>
                         </div>
                         <div id="swiper-inputs" class="swiper-inputs" v-on:click="castling();temp = fromPlace;fromPlace = toPlace;toPlace = temp;">
-                          <div class="swiper-inputs-icon"></div>
+                          <img alt="swiper-inputs-icon" class="swiper-inputs-icon" src="img/hero/arrows-mobile.svg">
                         </div>
                         <div class="cross-line first-line"></div>
                       </div>

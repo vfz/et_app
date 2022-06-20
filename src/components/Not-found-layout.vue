@@ -4,20 +4,20 @@
       <div class="row">
         <div class="col-12">
           <h1 class="title-section text-center">
-            Ошибка!
+            Упс . . .
           </h1>
         </div>
       </div>
       <div class="row">
         <div class="col-12">
           <p class="description-section text-center">
-            К сожалению, по неизвестным причинам, оплата не произошла. Пожалуйста, попробуйте ещё раз.
+            Простите, но у нас возникли проблемы с поиском страницы, которую Вы запрашиваете.
           </p>
         </div>
       </div>
       <div class="row">
         <div class="col-12 d-flex justify-content-center">
-          <img class="image-section" alt="успешная оплата" src="img/payment-error/payment-error.svg">
+          <img class="image-section" alt="успешная оплата" src="img/not-found/not-found.svg">
         </div>
       </div>
     </div>

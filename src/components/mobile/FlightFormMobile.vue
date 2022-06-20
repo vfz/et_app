@@ -55,8 +55,8 @@
                         <div class="cross-line"></div>
                       </div>
                       <div class="card-body-section">
-                        <div class="row path-date">
-                          <div class="col-12">
+                        <div class="path-date d-flex">
+                          <div>
                             <label class="form-label dispatch-title">
                               Дата поездки <span>(Туда)</span>
                             </label>
@@ -119,8 +119,8 @@
                         <div class="cross-line"></div>
                       </div>
                       <div class="card-body-section">
-                        <div class="row path-date">
-                          <div class="col-6">
+                        <div class="path-date d-flex justify-content-between">
+                          <div>
                             <label class="form-label dispatch-title">
                               Дата поездки <span>(Туда)</span>
                             </label>
@@ -135,7 +135,7 @@
                               </div>
                             </div>
                           </div>
-                          <div class="col-6">
+                          <div>
                             <label class="form-label arrival-title">
                               Дата поездки <span>(обратно)</span>
                             </label>

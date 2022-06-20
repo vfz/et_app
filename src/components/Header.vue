@@ -108,6 +108,9 @@ export default {
   .header {
     padding-top: 55px;
     margin-bottom: 26px;
+    .navbar {
+      padding: 0;
+    }
   }
 }
 

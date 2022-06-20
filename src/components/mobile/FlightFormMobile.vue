@@ -524,13 +524,14 @@ export default {
         }
       }
       .btn {
+        width: 100%;
         font-family: $uni;
         font-weight: $regular;
-        font-size: 24px;
-        padding: 23px 65px;
+        font-size: 16px;
+        padding: 10px 65px;
         border-radius: 15px;
         border: none;
-        margin-top: 40px;
+        margin-top: 20px;
         color: $white;
         background-color: $blue-active;
       }

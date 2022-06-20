@@ -104,6 +104,13 @@ export default {
   }
 }
 
+.body-app-white {
+  .header {
+    padding-top: 55px;
+    margin-bottom: 26px;
+  }
+}
+
 .header {
   padding-top: 60px;
   margin-bottom: 64px;

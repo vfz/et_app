@@ -37,10 +37,21 @@ export default {
   .title-section {
     @include font($uni,$bold,20px,27px,$base);
     margin-bottom: 16px;
+    @media (min-width: 992px) {
+      font-size: 36px;
+    }
   }
   .description-section {
     @include font($uni,$light,14px,18.9px,$base);
     margin-bottom: 40px;
+    @media (min-width: 992px) {
+      font-size: 18px;
+    }
+  }
+  .image-section {
+    @media (min-width: 992px) {
+      width: 285px;
+    }
   }
 }
 </style>

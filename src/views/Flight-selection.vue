@@ -85,7 +85,7 @@ export default {
   },
   methods: {
     isMobile() {
-      return screen.width <= 768;
+      return screen.width <= 767;
     }
   }
 }

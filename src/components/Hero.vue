@@ -311,7 +311,7 @@
 <script>
 import Header from '@/components/Header'
 import DataPicker from '@/components/DataPicker'
-import FlightForm from "@/components/Flight-form"
+import FlightForm from "@/components/desktop/Flight-form"
 //import axios from 'axios'
 import {mapGetters,mapActions} from 'vuex'
 

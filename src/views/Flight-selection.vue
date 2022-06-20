@@ -55,7 +55,7 @@ import Populardirections from '@/components/Populardirections'
 import Registrationhero from '@/components/Registrationhero'
 import Header from "@/components/Header"
 import Timeline from "@/components/desktop/Timeline"
-import FlightForm from "@/components/Flight-form"
+import FlightForm from "@/components/desktop/Flight-form"
 import ThereTable from "@/components/desktop/ThereTable"
 import BackTable from "@/components/desktop/BackTable"
 import TimelineMobile from "@/components/mobile/TimelineMobile"

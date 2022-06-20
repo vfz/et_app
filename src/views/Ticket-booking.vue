@@ -21,7 +21,7 @@
 <script>
 import Header from "@/components/Header";
 import Timeline from "@/components/desktop/Timeline";
-import FlightForm from "@/components/Flight-form";
+import FlightForm from "@/components/desktop/Flight-form";
 import Footer from "@/components/Footer";
 import LoginModal from "@/components/LoginModal";
 import RegistrationModal from "@/components/RegistrationModal";

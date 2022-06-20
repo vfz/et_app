@@ -1,6 +1,7 @@
 <template>
   <div class="body-app-white">
     <Header/>
+    <PaymentSuccessLayout/>
     <LoginModal/>
     <RegistrationModal/>
     <ForgotPasswordModal/>
@@ -14,9 +15,10 @@ import LoginModal from "@/components/LoginModal";
 import Footer from "@/components/Footer";
 import RegistrationModal from "@/components/RegistrationModal";
 import ForgotPasswordModal from "@/components/ForgotPasswordModal";
+import PaymentSuccessLayout from "@/components/Payment-success-layout";
 export default {
   name: "Payment-success",
-  components: {ForgotPasswordModal, RegistrationModal, Footer, Header, LoginModal}
+  components: {PaymentSuccessLayout, ForgotPasswordModal, RegistrationModal, Footer, Header, LoginModal}
 }
 </script>
 

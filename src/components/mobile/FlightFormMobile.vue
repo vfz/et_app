@@ -43,7 +43,7 @@
                           <span>Ставрополь</span>
                         </div>
                         <div id="swiper-inputs" class="swiper-inputs" v-on:click="castling();temp = fromPlace;fromPlace = toPlace;toPlace = temp;">
-                          <div class="swiper-inputs-icon"></div>
+                          <img alt="swiper-inputs-icon" class="swiper-inputs-icon" src="img/hero/arrows-mobile.svg">
                         </div>
                         <div class="cross-line first-line"></div>
                       </div>
@@ -327,6 +327,7 @@ export default {
       .card {
         border-radius: .85rem;
         &-body {
+          padding: 8px 12px;
           &-section {
             .form-label {
               font-family: $uni;
@@ -375,8 +376,8 @@ export default {
             }
             .swiper-inputs {
               background-color: $blue-active;
-              width: 64px;
-              height: 64px;
+              width: 40px;
+              height: 40px;
               border-radius: 100%;
               display: flex;
               align-items: center;
@@ -388,15 +389,9 @@ export default {
               cursor: pointer;
               @media screen and (max-width: 767px) {
                 right: 0;
-                bottom: -30px;
-                transform: rotate(90deg);
+                bottom: -20px;
+                transform: rotate(180deg);
                 box-shadow: 0 25px 0 0 rgb(255,255,255);
-              }
-              &-icon {
-                background: url("/img/hero/arrows.svg") no-repeat;
-                width: 33px;
-                height: 24px;
-
               }
             }
           }

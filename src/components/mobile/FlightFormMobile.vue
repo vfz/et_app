@@ -296,12 +296,11 @@ export default {
     }
     .search-form {
       .checkbox-form {
-        margin-bottom: 33px;
+        margin-bottom: 16px;
         .form-check-label {
           font-family: $uni;
           font-weight: $bold;
-          font-size: 18px;
-          margin-left: 24px;
+          font-size: 14px;
           color: $base;
         }
       }

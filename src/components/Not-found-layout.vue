@@ -26,7 +26,7 @@
 
 <script>
 export default {
-  name: "not-foud-layout"
+  name: "not-found-layout"
 }
 </script>
 

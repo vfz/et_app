@@ -1,6 +1,7 @@
 <template>
   <div class="body-app-white">
     <Header/>
+    <NotFoudLayout/>
     <LoginModal/>
     <RegistrationModal/>
     <ForgotPasswordModal/>
@@ -14,9 +15,10 @@ import Footer from "@/components/Footer";
 import RegistrationModal from "@/components/RegistrationModal";
 import ForgotPasswordModal from "@/components/ForgotPasswordModal";
 import LoginModal from "@/components/LoginModal";
+import NotFoudLayout from "@/components/Not-found-layout";
 export default {
   name: "404",
-  components: {ForgotPasswordModal, RegistrationModal, Footer, Header, LoginModal}
+  components: {NotFoudLayout, ForgotPasswordModal, RegistrationModal, Footer, Header, LoginModal}
 }
 </script>
 

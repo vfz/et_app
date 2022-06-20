@@ -13,12 +13,22 @@
           <form id="hero-form" class="search-form d-flex flex-wrap justify-content-center">
             <div class="checkbox-form d-block w-100">
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" v-on:click="oneWay=true" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
+                <input class="form-check-input" type="radio" v-on:click="oneWay=true" name="inlineRadioOptions" id="inlineRadio1" value="option1">
                 <label class="form-check-label" for="inlineRadio1">В одну сторону</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" v-on:click="oneWay=false"  name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                <input class="form-check-input" type="radio" v-on:click="oneWay=false"  name="inlineRadioOptions" id="inlineRadio2" value="option2" checked>
                 <label class="form-check-label" for="inlineRadio2">Туда-обратно</label>
+              </div>
+            </div>
+            <div class="path-direction w-100">
+              <h3 class="path-title">
+                Билеты на автобус
+              </h3>
+              <div class="path-content">
+                <span class="path-content-start">Ставрополь</span>
+                –
+                <span class="path-content-end">Москва</span>
               </div>
             </div>
             <!--one-way-input-->
@@ -27,111 +37,52 @@
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl min-w-300">
                   <div class="card h-100">
                     <div class="card-body">
-                      <label for="dataListFrom" class="form-label">Откуда</label>
-                      <input class="form-control one-way-inputs-input shadow-none"
-                             @focus="fromPlaceV=true"
-                             v-mmodel="fromPlace"
-                             v-model="fromPlace"
-                             placeholder="Введите название населенного пункта"
-                             style="padding-left: 7pt;">
-                      <div class="find-place" v-if="fromPlace  && !from || fromPlaceV">
-                        <div class="meta"
-                             v-for="pointFrom in fromStations" :key="pointFrom.id_from"
-                             v-show="search(pointFrom.name,fromPlace)"
-                             v-on:click="setFrom(pointFrom.id_from);fromPlaceV=false;fromPlace=pointFrom.name"
-                        >
-                          <div class="title">{{pointFrom.name}}</div>
-                          <div class="description" style="color:#ec0000;font-size:12px;font:bold">{{pointFrom.address}}</div>
+                      <div class="card-body-section position-relative">
+                        <label for="dataListFrom" class="form-label">Откуда</label>
+                        <div class="city-name city-name-from">
+                          <span>Ставрополь</span>
                         </div>
-                      </div>
-                      <span class="card-example">
-                                                Например:
-                                                <span id="city-example-from" class="card-example-date city-example-from text-decoration-underline"
-                                                      v-on:click="setFrom('1');fromPlaceV=false;fromPlace='Ставрополь'"
-                                                >Ставрополь</span>
-                                            </span>
-
-                      <div id="swiper-inputs" class="swiper-inputs" v-on:click="castling();temp = fromPlace;fromPlace = toPlace;toPlace = temp;">
-                        <div class="swiper-inputs-icon"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-12 col-sm-12 mt-4 mt-md-0 col-md-6 col-lg-6 col-xl min-w-300">
-                  <div class="card h-100">
-                    <div class="card-body">
-                      <label for="datalistTo" class="form-label">Куда</label>
-                      <input class="form-control one-way-inputs-input shadow-none"
-                             @focus="toPlaceV=true"
-                             v-model="toPlace"
-                             v-mmodel="toPlace"
-                             placeholder="Введите название населенного пункта" style="padding-left: 7pt;">
-                      <div class="find-place" v-if="toPlace && !to || toPlaceV ">
-                        <div class="meta"
-                             v-for="pointTo in toStations" :key="pointTo.id_to"
-                             v-show="search(pointTo.name,toPlace)"
-                             v-on:click="setTo(pointTo.id_to);toPlaceV=false;toPlace=pointTo.name">
-                          <div class="title">{{pointTo.name}}</div>
-                          <div class="description" style="color:#ec0000;font-size:12px;font:bold">{{pointTo.address}}</div>
+                        <div id="swiper-inputs" class="swiper-inputs" v-on:click="castling();temp = fromPlace;fromPlace = toPlace;toPlace = temp;">
+                          <div class="swiper-inputs-icon"></div>
                         </div>
+                        <div class="cross-line first-line"></div>
                       </div>
-                      <span class="card-example">
-                                                Например:
-                                                <span id="city-example-to" class="card-example-date city-example-to text-decoration-underline"
-                                                      v-on:click="setTo('190');toPlaceV=false;toPlace='Москва'">Москва</span>
-                                            </span>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-12 col-sm-12 mt-4 mt-xl-0 col-md-6 col-lg-6 col-xl mw-300 min-w-300">
-                  <div class="card h-100">
-                    <div class="card-body">
-                      <div class="d-flex justify-content-between align-items-center">
-                        <label class="form-label">Пассажиры</label>
+                      <div class="card-body-section">
+                        <label for="datalistTo" class="form-label">Куда</label>
+                        <div class="city-name city-name-to">
+                          <span>Москва</span>
+                        </div>
+                        <div class="cross-line"></div>
+                      </div>
+                      <div class="card-body-section">
+                        <div class="row path-date">
+                          <div class="col-12">
+                            <label class="form-label dispatch-title">
+                              Дата поездки <span>(Туда)</span>
+                            </label>
+                            <div class="dispatch-date d-flex justify-content-between align-items-center">
+                              <div>
+                                <span class="dispatch-date-day">30</span>
+                                <span class="dispatch-date-month">Янв'</span>
+                                <span class="dispatch-date-year">20</span>
+                              </div>
+                              <div>
+                                <span class="input-group-text calendar-span" v-on:click="UpdateselectDate()" ><img class="calendar-icon" alt="calendar" src="img/hero/calendar.svg"></span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="cross-line"></div>
+                      </div>
+                      <div class="card-body-section d-flex align-items-center justify-content-between">
+                        <div>
+                          <label for="dataListFrom" class="form-label">Пассажиры</label>
+                          <div class="passengers-count">
+                            <span>4 человека</span>
+                          </div>
+                        </div>
                         <img class="help-icon" alt="help" src="img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
                       </div>
-                      <div class="row">
-                        <div class="col">
-                          <div class="count-passenger d-flex align-items-center justify-content-between flex-wrap">
-                            <div id="minus-button-adult" class="minus-button count-button" :class=" { disabled : !mba } " v-on:click="MinusAdult();changeClass()">-</div>
-                            <input value="1" min="1" max="7" name="adults" v-model="adults" type="number" class="form-control one-way-inputs-input shadow-none"  placeholder="0">
-                            <div id="plus-button-adult" class="plus-button count-button" :class=" { disabled : !pba } " v-on:click="PlusAdult();changeClass()">+</div>
-                            <span class="card-desc d-block w-100">Взрослых</span>
-                          </div>
-                        </div>
-                        <div class="col">
-                          <div class="count-passenger d-flex align-items-center justify-content-between flex-wrap">
-                            <div id="minus-button-childeren" class="minus-button count-button" :class=" { disabled : !mbc } " v-on:click="MinusChild();changeClass()">-</div>
-                            <input value="0" min="0" max="5" name="childrens" v-model="childrens" type="number" class="form-control one-way-inputs-input shadow-none" placeholder="0">
-                            <div id="plus-button-childeren" class="plus-button count-button" :class=" { disabled : !pbc } " v-on:click="PlusChild();changeClass()">+</div>
-                            <span class="card-desc d-block w-100">Детских</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-12 col-sm-12 mt-4 mt-xl-0 col-md-6 col-lg-6 col-xl mw-300 min-w-300">
-                  <div class="card h-100">
-                    <div class="card-body">
-                      <label for="datepickerinputStart" class="form-label">Когда</label>
-                      <div class="input-group">
-                        <input type="text" class="form-control shadow-none dateStart one-way-inputs-input" placeholder="Выберите дату"
-                               v-model="dateArival"
-                               @focus="UpdateselectDate()"
-                        >
-                        <span class="input-group-text calendar-span" v-on:click="UpdateselectDate()" ><img class="calendar-icon" alt="calendar" src="img/hero/calendar.svg"></span>
-                      </div>
-                      <div class="select-date" v-if="selectDate">
-                        <DataPicker/>
-                      </div>
-                      <span class="card-example d-block w-100">
-                                                <span id="today-date-toggle" class="card-example-date today-date-toggle text-decoration-underline"
-                                                      v-on:click="UpdateselectDate();SetDateArival(false);UpdateselectDate()">Сегодня</span>
-                                                /
-                                                <span id="tomorrow-date-toggle" class="card-example-date tomorrow-date-toggle text-decoration-underline"
-                                                      v-on:click="UpdateselectDate();SetDateArival(true);UpdateselectDate()">Завтра</span>
-                                            </span>
                     </div>
                   </div>
                 </div>
@@ -150,135 +101,67 @@
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl min-w-300">
                   <div class="card h-100">
                     <div class="card-body">
-                      <label for="dataListFrom" class="form-label">Откуда</label>
-                      <input class="form-control one-way-inputs-input shadow-none"
-                             @focus="fromPlaceV=true"
-                             v-mmodel="fromPlace"
-                             v-model="fromPlace"
-                             placeholder="Введите название населенного пункта"
-                             style="padding-left: 7pt;">
-                      <div class="find-place" v-if="fromPlace  && !from || fromPlaceV">
-                        <div class="meta"
-                             v-for="pointFrom in fromStations" :key="pointFrom.id_from"
-                             v-show="search(pointFrom.name,fromPlace)"
-                             v-on:click="setFrom(pointFrom.id_from);fromPlaceV=false;fromPlace=pointFrom.name"
-                        >
-                          <div class="title">{{pointFrom.name}}</div>
-                          <div class="description" style="color:#ec0000;font-size:12px;font:bold">{{pointFrom.address}}</div>
+                      <div class="card-body-section position-relative">
+                        <label for="dataListFrom" class="form-label">Откуда</label>
+                        <div class="city-name city-name-from">
+                          <span>Ставрополь</span>
                         </div>
-                      </div>
-                      <span class="card-example">
-                                                Например:
-                                                <span id="city-example-from" class="card-example-date city-example-from text-decoration-underline"
-                                                      v-on:click="setFrom('1');fromPlaceV=false;fromPlace='Ставрополь'"
-                                                >Ставрополь</span>
-                                            </span>
-
-                      <div id="swiper-inputs" class="swiper-inputs" v-on:click="castling();temp = fromPlace;fromPlace = toPlace;toPlace = temp;">
-                        <div class="swiper-inputs-icon"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-12 col-sm-12 mt-4 mt-md-0 col-md-6 col-lg-6 col-xl min-w-300">
-                  <div class="card h-100">
-                    <div class="card-body">
-                      <label for="datalistTo" class="form-label">Куда</label>
-                      <input class="form-control one-way-inputs-input shadow-none"
-                             @focus="toPlaceV=true"
-                             v-model="toPlace"
-                             v-mmodel="toPlace"
-                             placeholder="Введите название населенного пункта" style="padding-left: 7pt;">
-                      <div class="find-place" v-if="toPlace && !to || toPlaceV ">
-                        <div class="meta"
-                             v-for="pointTo in toStations" :key="pointTo.id_to"
-                             v-show="search(pointTo.name,toPlace)"
-                             v-on:click="setTo(pointTo.id_to);toPlaceV=false;toPlace=pointTo.name">
-                          <div class="title">{{pointTo.name}}</div>
-                          <div class="description" style="color:#ec0000;font-size:12px;font:bold">{{pointTo.address}}</div>
+                        <div id="swiper-inputs" class="swiper-inputs" v-on:click="castling();temp = fromPlace;fromPlace = toPlace;toPlace = temp;">
+                          <div class="swiper-inputs-icon"></div>
                         </div>
+                        <div class="cross-line first-line"></div>
                       </div>
-                      <span class="card-example">
-                                                Например:
-                                                <span id="city-example-to" class="card-example-date city-example-to text-decoration-underline"
-                                                      v-on:click="setTo('190');toPlaceV=false;toPlace='Москва'">Москва</span>
-                                            </span>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-12 col-sm-12 mt-4 mt-md-0 col-md-4 col-lg-4 col-xl mw-300 min-w-300">
-                  <div class="card h-100">
-                    <div class="card-body">
-                      <div class="d-flex justify-content-between align-items-center">
-                        <label class="form-label">Пассажиры</label>
+                      <div class="card-body-section">
+                        <label for="datalistTo" class="form-label">Куда</label>
+                        <div class="city-name city-name-to">
+                          <span>Москва</span>
+                        </div>
+                        <div class="cross-line"></div>
+                      </div>
+                      <div class="card-body-section">
+                        <div class="row path-date">
+                          <div class="col-6">
+                            <label class="form-label dispatch-title">
+                              Дата поездки <span>(Туда)</span>
+                            </label>
+                            <div class="dispatch-date d-flex justify-content-between align-items-center">
+                              <div>
+                                <span class="dispatch-date-day">30</span>
+                                <span class="dispatch-date-month">Янв'</span>
+                                <span class="dispatch-date-year">20</span>
+                              </div>
+                              <div>
+                                <span class="input-group-text calendar-span" v-on:click="UpdateselectDate()" ><img class="calendar-icon" alt="calendar" src="img/hero/calendar.svg"></span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-6">
+                            <label class="form-label arrival-title">
+                              Дата поездки <span>(обратно)</span>
+                            </label>
+                            <div class="arrival-date d-flex justify-content-between align-items-center">
+                              <div>
+                                <span class="arrival-date-day">10</span>
+                                <span class="arrival-date-month">Фев'</span>
+                                <span class="arrival-date-year">20</span>
+                              </div>
+                              <div>
+                                <span class="input-group-text calendar-span" v-on:click="UpdateselectDate()" ><img class="calendar-icon" alt="calendar" src="img/hero/calendar.svg"></span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="cross-line"></div>
+                      </div>
+                      <div class="card-body-section d-flex align-items-center justify-content-between">
+                        <div>
+                          <label for="dataListFrom" class="form-label">Пассажиры</label>
+                          <div class="passengers-count">
+                            <span>4 человека</span>
+                          </div>
+                        </div>
                         <img class="help-icon" alt="help" src="img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
                       </div>
-                      <div class="row">
-                        <div class="col">
-                          <div class="count-passenger d-flex align-items-center justify-content-between flex-wrap">
-                            <div id="minus-button-adult" class="minus-button count-button" :class=" { disabled : !mba } " v-on:click="MinusAdult();changeClass()">-</div>
-                            <input value="1" min="1" max="7" name="adults" v-model="adults" type="number" class="form-control one-way-inputs-input shadow-none"  placeholder="0">
-                            <div id="plus-button-adult" class="plus-button count-button" :class=" { disabled : !pba } " v-on:click="PlusAdult();changeClass()">+</div>
-                            <span class="card-desc d-block w-100">Взрослых</span>
-                          </div>
-                        </div>
-                        <div class="col">
-                          <div class="count-passenger d-flex align-items-center justify-content-between flex-wrap">
-                            <div id="minus-button-childeren" class="minus-button count-button" :class=" { disabled : !mbc } " v-on:click="MinusChild();changeClass()">-</div>
-                            <input value="0" min="0" max="5" name="childrens" v-model="childrens" type="number" class="form-control one-way-inputs-input shadow-none" placeholder="0">
-                            <div id="plus-button-childeren" class="plus-button count-button" :class=" { disabled : !pbc } " v-on:click="PlusChild();changeClass()">+</div>
-                            <span class="card-desc d-block w-100">Детских</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-12 col-sm-12 mt-4 mt-xl-0 col-md-6 col-lg-6 col-xl mw-300 min-w-300">
-                  <div class="card h-100">
-                    <div class="card-body">
-                      <label for="datepickerinputStart" class="form-label">Когда</label>
-                      <div class="input-group">
-                        <input type="text" class="form-control shadow-none dateStart one-way-inputs-input" placeholder="Выберите дату"
-                               v-model="dateArival"
-                               @focus="UpdateselectDate()"
-                        >
-                        <span class="input-group-text calendar-span" v-on:click="UpdateselectDate()" ><img class="calendar-icon" alt="calendar" src="img/hero/calendar.svg"></span>
-                      </div>
-                      <div class="select-date" v-if="selectDate">
-                        <DataPicker/>
-                      </div>
-                      <span class="card-example d-block w-100">
-                                                <span id="today-date-toggle" class="card-example-date today-date-toggle text-decoration-underline"
-                                                      v-on:click="UpdateselectDate();SetDateArival(false);UpdateselectDate()">Сегодня</span>
-                                                /
-                                                <span id="tomorrow-date-toggle" class="card-example-date tomorrow-date-toggle text-decoration-underline"
-                                                      v-on:click="UpdateselectDate();SetDateArival(true);UpdateselectDate()">Завтра</span>
-                                            </span>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-12 col-sm-12 mt-4 mt-xl-0 col-md-6 col-lg-6 col-xl mw-300 min-w-300">
-                  <div class="card h-100">
-                    <div class="card-body">
-                      <label for="datepickerinputStart" class="form-label">Обратно</label>
-                      <div class="input-group">
-                        <input type="text" class="form-control shadow-none dateStart one-way-inputs-input" placeholder="Выберите дату"
-                               v-model="dateBack"
-                               @focus="UpdateselectDateBack()"
-                        >
-                        <span class="input-group-text calendar-span" v-on:click="UpdateselectDateBack()" ><img class="calendar-icon" alt="calendar" src="img/hero/calendar.svg"></span>
-                      </div>
-                      <div class="select-date" v-if="selectDateBack">
-                        <DataPicker/>
-                      </div>
-                      <span class="card-example d-block w-100">
-                                                <span id="today-date-toggle" class="card-example-date today-date-toggle text-decoration-underline"
-                                                      v-on:click="UpdateselectDateBack();SetDateBack(false);UpdateselectDateBack()">Сегодня</span>
-                                                /
-                                                <span id="tomorrow-date-toggle" class="card-example-date tomorrow-date-toggle text-decoration-underline"
-                                                      v-on:click="UpdateselectDateBack();SetDateBack(true);UpdateselectDateBack()">Завтра</span>
-                                            </span>
                     </div>
                   </div>
                 </div>
@@ -422,6 +305,15 @@ export default {
           color: $base;
         }
       }
+      .path-direction {
+        margin-bottom: 8px;
+        .path-title {
+          @include font($uni,$regular,14px,18.9px,$base);
+        }
+        .path-content {
+          @include font($uni,$bold,14px,18.9px,$base);
+        }
+      }
       .card:first-child {
         &-body {
           position: relative;
@@ -436,12 +328,80 @@ export default {
       .card {
         border-radius: .85rem;
         &-body {
-          .form-label {
-            font-family: $uni;
-            font-weight: $regular;
-            font-size: 18px;
-            color: $black;
+          &-section {
+            .form-label {
+              font-family: $uni;
+              font-weight: $regular;
+              font-size: 12px;
+              color: $black;
+            }
+            .city-name {
+              @include font($uni,$bold,16px,21.6px,$blue-color);
+              margin-bottom: 12px;
+              span {
+                border-bottom: 1px dashed $blue-color;
+              }
+            }
+            .path-date {
+              margin-bottom: 12px;
+              .dispatch-date, .arrival-date {
+                &-day, &-month, &-year {
+                  @include font($uni,$bold,16px,24.3px,$base)
+                }
+                &-day {
+                  margin-right: 4px;
+                }
+                &-month, &-year {
+                  font-size: 12px;
+                }
+              }
+              .dispatch-title, .arrival-title {
+                @include font($uni,$regular,12px,16.2px,$base);
+                span {
+                  font-weight: $light;
+                }
+              }
+            }
+            .passengers-count {
+              @include font($uni,$bold,16px,21.6px,$blue-color);
+              span {
+                border-bottom: 1px dashed $blue-color;
+              }
+            }
+            .cross-line {
+              width: 100%;
+              height: 1px;
+              background-color: #E1EEF6;
+              margin-bottom: 8px;
+            }
+            .swiper-inputs {
+              background-color: $blue-active;
+              width: 64px;
+              height: 64px;
+              border-radius: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              position: absolute;
+              bottom: 30px;
+              right: -46px;
+              z-index: 999;
+              cursor: pointer;
+              @media screen and (max-width: 767px) {
+                right: 0;
+                bottom: -30px;
+                transform: rotate(90deg);
+                box-shadow: 0 25px 0 0 rgb(255,255,255);
+              }
+              &-icon {
+                background: url("/img/hero/arrows.svg") no-repeat;
+                width: 33px;
+                height: 24px;
+
+              }
+            }
           }
+          //TODO deleted form control
           .form-control {
             padding-left: 0;
             padding-right: 0;
@@ -513,31 +473,6 @@ export default {
             cursor: pointer;
           }
         }
-        .swiper-inputs {
-          background-color: $blue-active;
-          width: 64px;
-          height: 64px;
-          border-radius: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          position: absolute;
-          bottom: 30px;
-          right: -46px;
-          z-index: 999;
-          cursor: pointer;
-          @media screen and (max-width: 767px) {
-            right: 0;
-            bottom: -40px;
-            transform: rotate(90deg);
-          }
-          &-icon {
-            background: url("/img/hero/arrows.svg") no-repeat;
-            width: 33px;
-            height: 24px;
-
-          }
-        }
         .find-place{
           position: absolute;
           display: block;
@@ -573,6 +508,7 @@ export default {
         .calendar-span{
           background: #FFF;
           border: 0px;
+          padding: 0;
         }
         .select-date{
           position: absolute;

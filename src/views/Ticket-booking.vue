@@ -8,7 +8,7 @@
     <ThereTabMobile v-if="isMobile()"/>
     <BackTabMobile v-if="isMobile()"/>
     <EuroPointsOffer/>
-    <CurrentPoints/>
+    <CurrentPoints class="d-none"/>
     <PassengersFormInfo v-if="!isMobile()"/>
     <PassengersFormInfoMobile v-if="isMobile()"/>
     <Footer/>

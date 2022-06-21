@@ -2,6 +2,7 @@
   <div class="body-app-white">
     <Header/>
     <SectionTitle title="Билеты"/>
+    <EmptyHistory descriptionText="На данный момент, Вы не приобрели билет, но это можно сделать." linkText="здесь"/>
     <Footer/>
     <LoginModal/>
     <RegistrationModal/>
@@ -18,9 +19,11 @@ import RegistrationModal from "@/components/RegistrationModal";
 import ForgotPasswordModal from "@/components/ForgotPasswordModal";
 import RemoveModal from "@/components/RemoveModal";
 import SectionTitle from "@/components/SectionTitle";
+import EmptyHistory from "@/components/EmptyHistory";
 export default {
   name: "Tickets",
   components: {
+    EmptyHistory,
     SectionTitle,
     RemoveModal, ForgotPasswordModal, RegistrationModal, LoginModal, Footer, Header}
 }

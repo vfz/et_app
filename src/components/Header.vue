@@ -12,7 +12,7 @@
                 </span>
             </button>
             <div class="collapse navbar-collapse d-lg-flex justify-content-end" id="navbarSupportedContent">
-                <nav class="nav-header log-out">
+                <nav class="nav-header log-out d-none">
                     <ul class="nav">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Служба поддержки</a>
@@ -30,7 +30,7 @@
                     </ul>
                 </nav>
                 <!--                log in user-->
-                <nav class="nav-header log-in d-none">
+                <nav class="nav-header log-in">
                     <ul class="nav justify-content-end align-items-center">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLogIn" role="button" data-bs-toggle="dropdown" aria-expanded="false">Служба поддержки</a>
@@ -157,6 +157,9 @@ export default {
         .nav-link:hover:after {
           transform: scaleX(1);
           transform-origin: bottom left;
+        }
+        .dropdown-menu[aria-labelledby="navbarDropdownLogInAvatar"] {
+          left: unset;
         }
       }
     }

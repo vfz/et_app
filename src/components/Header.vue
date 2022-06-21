@@ -12,7 +12,7 @@
                 </span>
             </button>
             <div class="collapse navbar-collapse d-lg-flex justify-content-end" id="navbarSupportedContent">
-                <nav class="nav-header log-out d-none">
+                <nav class="nav-header log-out">
                     <ul class="nav">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Служба поддержки</a>
@@ -30,7 +30,7 @@
                     </ul>
                 </nav>
                 <!--                log in user-->
-                <nav class="nav-header log-in">
+                <nav class="nav-header log-in d-none">
                     <ul class="nav justify-content-end align-items-center">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLogIn" role="button" data-bs-toggle="dropdown" aria-expanded="false">Служба поддержки</a>
@@ -53,7 +53,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#" id="navbarDropdownLogInAvatar" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img alt="avatar" class="avatar-user" src="img/header/avatar.png">
+                                <img alt="avatar" class="avatar-user" src="https://images.unsplash.com/photo-1554080353-a576cf803bda?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cGhvdG98ZW58MHx8MHx8&w=1000&q=80">
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownLogInAvatar">
                                 <li><a class="dropdown-item" href="#">Настройки</a></li>
@@ -134,6 +134,14 @@ export default {
           display: inline-block;
           position: relative;
           color: $white;
+          .avatar-user {
+            border-radius: 50%;
+            width: 64px;
+            height: 64px;
+            overflow: hidden;
+            object-fit: cover;
+            position: relative;
+          }
         }
         .dropdown-toggle:after {
           border-top: 0 ;
@@ -160,6 +168,11 @@ export default {
         }
         .dropdown-menu[aria-labelledby="navbarDropdownLogInAvatar"] {
           left: unset;
+        }
+        #navbarDropdownLogInAvatar:after {
+          position: unset;
+          width: unset;
+          transform: unset;
         }
       }
     }

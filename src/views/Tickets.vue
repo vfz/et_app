@@ -1,6 +1,7 @@
 <template>
   <div class="body-app-white">
     <Header/>
+    <SectionTitle/>
     <Footer/>
     <LoginModal/>
     <RegistrationModal/>
@@ -16,9 +17,12 @@ import LoginModal from "@/components/LoginModal";
 import RegistrationModal from "@/components/RegistrationModal";
 import ForgotPasswordModal from "@/components/ForgotPasswordModal";
 import RemoveModal from "@/components/RemoveModal";
+import SectionTitle from "@/components/SectionTitle";
 export default {
   name: "Tickets",
-  components: {RemoveModal, ForgotPasswordModal, RegistrationModal, LoginModal, Footer, Header}
+  components: {
+    SectionTitle,
+    RemoveModal, ForgotPasswordModal, RegistrationModal, LoginModal, Footer, Header}
 }
 </script>
 

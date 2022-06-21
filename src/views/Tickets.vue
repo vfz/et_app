@@ -1,7 +1,7 @@
 <template>
   <div class="body-app-white">
     <Header/>
-    <SectionTitle/>
+    <SectionTitle title="Билеты"/>
     <Footer/>
     <LoginModal/>
     <RegistrationModal/>

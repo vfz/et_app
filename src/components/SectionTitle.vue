@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-12">
         <h1 class="title-section">
-
+          {{title}}
         </h1>
       </div>
     </div>
@@ -14,7 +14,8 @@
 
 <script>
 export default {
-  name: "SectionTitle"
+  name: "SectionTitle",
+  props: ['title'],
 }
 </script>
 
@@ -28,6 +29,10 @@ export default {
   @media screen and (max-width: 767px) {
     margin-left: 20px;
     margin-right: 20px;
+  }
+  .title-section {
+    @include font($uni,$bold,36px,48.6px,$base);
+    margin-bottom: 40px;
   }
 }
 </style>

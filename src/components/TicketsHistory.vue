@@ -148,7 +148,31 @@
                                 <div class="row">
                                   <div class="col-6">
                                     <ul class="list-group">
-                                      <li class="list-ground-item">
+                                      <li class="list-group-item">
+                                        <h4 class="list-group-item-title">
+                                          Фамилия:
+                                        </h4>
+                                        <div class="list-group-item-description">
+                                          Ермолаева
+                                        </div>
+                                      </li>
+                                      <li class="list-group-item">
+                                        <h4 class="list-group-item-title">
+                                          Фамилия:
+                                        </h4>
+                                        <div class="list-group-item-description">
+                                          Ермолаева
+                                        </div>
+                                      </li>
+                                      <li class="list-group-item">
+                                        <h4 class="list-group-item-title">
+                                          Фамилия:
+                                        </h4>
+                                        <div class="list-group-item-description">
+                                          Ермолаева
+                                        </div>
+                                      </li>
+                                      <li class="list-group-item">
                                         <h4 class="list-group-item-title">
                                           Фамилия:
                                         </h4>
@@ -438,8 +462,11 @@ export default {
                 padding-top: 12px;
                 padding-bottom: 12px;
                 .list-group {
-                  list-style-type: none;
                   &-item {
+                    background: none;
+                    border: none;
+                    padding-left: 0;
+                    padding-right: 0;
                     &-title {
                       @include font($uni,$regular,18px,24.3px,$secondary);
                       margin-bottom: 8px;

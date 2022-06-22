@@ -736,7 +736,7 @@ export default {
           }
         }
       }
-      .collapse {
+      .collapse, .collapsing {
         .collapse-wrapper {
           background-color: #F3F7FF;;
           .collapse-title {

@@ -2,8 +2,8 @@
 <section class="image-section">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-12">
-        <img src="#" alt="#">
+      <div class="col-12 text-center">
+        <img v-bind:src="src" v-bind:alt="alt">
       </div>
     </div>
   </div>
@@ -12,7 +12,8 @@
 
 <script>
 export default {
-  name: "SectionImage"
+  name: "SectionImage",
+  props: ['src', 'alt']
 }
 </script>
 
@@ -23,6 +24,11 @@ export default {
 .image-section {
   margin-left: 88px;
   margin-right: 88px;
+  img {
+    @media (min-width: 992px) {
+      width: 698px;
+    }
+  }
   @media screen and (max-width: 767px) {
     margin-left: 20px;
     margin-right: 20px;

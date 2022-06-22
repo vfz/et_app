@@ -320,6 +320,7 @@ export default {
         border-top: unset;
       }
       .table {
+        margin-bottom: 0;
         td {
           padding: 1rem 1rem;
         }
@@ -382,7 +383,7 @@ export default {
         }
       }
       .collapse {
-        padding: 1rem 1rem;
+
       }
       .footer-table {
         padding: 1rem 1rem;

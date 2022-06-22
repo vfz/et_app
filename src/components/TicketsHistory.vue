@@ -228,7 +228,13 @@
                                       </button>
                                     </div>
                                   </div>
-                                  <div class="col-6"></div>
+                                  <div class="col-6">
+                                    <p class="cancel-ticket-description">
+                                      Для посадки, необходимо иметь при себе
+                                      <span>оригинал указанного документа </span> и <span>билет</span>
+                                      (будет отправлен на указанную вами эл.почту).
+                                    </p>
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -518,6 +524,12 @@ export default {
                       svg {
                         margin-left: 8px;
                       }
+                    }
+                  }
+                  .cancel-ticket-description {
+                    @include font($uni,$light,18px,24.3px,$blue-active);
+                    span {
+                      font-weight: $regular;
                     }
                   }
                 }

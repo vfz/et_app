@@ -497,9 +497,9 @@ export default {
               }
               .active {
                 background: none;
-                color: $blue-color;
+                color: $blue-active;
                 box-shadow: none;
-                border-bottom: 1px solid $blue-color;
+                border-bottom: 1px solid $blue-active;
                 padding-bottom: 4px;
               }
             }

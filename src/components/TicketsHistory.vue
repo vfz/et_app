@@ -126,14 +126,15 @@
                       <div class="row">
                         <div class="col-12">
                           <ul class="nav nav-tabs" id="myTab" role="tablist">
+<!--                            Для каждой кнопки таба необходимо расставить свой id data-bs-target aria-controls для корректной работы-->
                             <li class="nav-item" role="presentation">
-                              <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Билет №1</button>
+                              <button class="nav-link active" id="ticket1-tab" data-bs-toggle="tab" data-bs-target="#ticket1" type="button" role="tab" aria-controls="ticket1" aria-selected="true">Билет №1</button>
                             </li>
                             <li class="nav-item" role="presentation">
-                              <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Билет №2</button>
+                              <button class="nav-link" id="ticket2-tab" data-bs-toggle="tab" data-bs-target="#ticket2" type="button" role="tab" aria-controls="ticket2" aria-selected="false">Билет №2</button>
                             </li>
                             <li class="nav-item" role="presentation">
-                              <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Билет №3</button>
+                              <button class="nav-link" id="ticket3-tab" data-bs-toggle="tab" data-bs-target="#ticket3" type="button" role="tab" aria-controls="ticket3" aria-selected="false">Билет №3</button>
                             </li>
                           </ul>
                         </div>

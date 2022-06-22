@@ -94,9 +94,6 @@
                       <div class="places-left">
                         33,34,35,36
                       </div>
-                      <div class="place-choice">
-                        Выбрать
-                      </div>
                     </td>
                     <td class="align-middle">
                       <div class="d-flex align-content-center">
@@ -109,13 +106,62 @@
                       </div>
                     </td>
                     <td>
-                      <div class="place-choice-buy">
-                        Убрать
+                      <div class="place-choice-cancel">
+                        Сдать
                       </div>
                     </td>
                   </tr>
                   </tbody>
                 </table>
+                <div class="collapse show" id="collapseTicketsDetails">
+                  <div class="collapse-wrapper">
+                    <div class="container-fluid">
+                      <div class="row">
+                        <div class="col-12">
+                          <h3 class="collapse-title">
+                            Детали билетов
+                          </h3>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-12">
+                          <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                              <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                              <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                              <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Contact</button>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-6">
+                          <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">...</div>
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+                            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+                          </div>
+                        </div>
+                        <div class="col-6"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="footer-table d-flex align-items-center justify-content-between">
+                  <div class="details d-flex align-items-center">
+                    <button type="button" data-bs-toggle="collapse" data-bs-target="#collapseTicketsDetails" aria-expanded="false" aria-controls="collapseTicketsDetails">
+                      Подробнее
+                      <ArrowDownIcon color="#77BCFC"/>
+                    </button>
+                  </div>
+                  <div class="used-europoints justify-content-end d-flex">
+                    Использованы &nbsp;<span>евробаллы (3000 ₽)</span>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
@@ -202,9 +248,6 @@
                       <div class="places-left">
                         33,34,35,36
                       </div>
-                      <div class="place-choice">
-                        Выбрать
-                      </div>
                     </td>
                     <td class="align-middle">
                       <div class="d-flex align-content-center">
@@ -217,8 +260,8 @@
                       </div>
                     </td>
                     <td>
-                      <div class="place-choice-buy">
-                        Убрать
+                      <div class="place-choice-cancel">
+                        Сдать
                       </div>
                     </td>
                   </tr>
@@ -234,8 +277,10 @@
 </template>
 
 <script>
+import ArrowDownIcon from "@/components/icons/ArrowDownIcon";
 export default {
-  name: "TicketsHistory"
+  name: "TicketsHistory",
+  components: {ArrowDownIcon}
 }
 </script>
 
@@ -313,7 +358,7 @@ export default {
                   font-size: 18px;
                 }
               }
-              .dispatch-city, .arrival-city, .places-left, .place-choice-buy {
+              .dispatch-city, .arrival-city, .places-left, .place-choice-cancel {
                 @include font($uni, $regular, 18px, 24.3px, $base);
               }
               .dispatch-length-time-saw, .dispatch-place, .arrival-place, .place-choice {
@@ -333,6 +378,29 @@ export default {
           tr:hover{
             @include animation;
             background-color: $blue-hover;
+          }
+        }
+      }
+      .collapse {
+        padding: 1rem 1rem;
+      }
+      .footer-table {
+        padding: 1rem 1rem;
+        .details {
+          button {
+            background: none;
+            outline: none;
+            border: none;
+            @include font($uni,$light,18px,24.3px,$blue-color);
+            svg {
+              margin-left: 8px;
+            }
+          }
+        }
+        .used-europoints {
+          @include font($uni,$light,18px,24.3px,$base);
+          span {
+            color: $blue-color;
           }
         }
       }

@@ -124,9 +124,9 @@
                         </div>
                       </div>
                       <div class="row">
-                        <div class="col-12">
+                        <div class="col-6">
                           <ul class="nav nav-tabs" id="myTab" role="tablist">
-<!--                            Для каждой кнопки таба необходимо расставить свой id data-bs-target aria-controls для корректной работы-->
+                            <!--                            Для каждой кнопки таба необходимо расставить свой id data-bs-target aria-controls для корректной работы-->
                             <li class="nav-item" role="presentation">
                               <button class="nav-link active" id="ticket1-tab" data-bs-toggle="tab" data-bs-target="#ticket1" type="button" role="tab" aria-controls="ticket1" aria-selected="true">Билет №1</button>
                             </li>
@@ -137,10 +137,6 @@
                               <button class="nav-link" id="ticket3-tab" data-bs-toggle="tab" data-bs-target="#ticket3" type="button" role="tab" aria-controls="ticket3" aria-selected="false">Билет №3</button>
                             </li>
                           </ul>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-6">
                           <div class="tab-content" id="myTabContent">
 <!--                            Для tab-pane необходимо расставить свой id, aria-labelledby-->
                             <div class="tab-pane fade show active" id="ticket1" role="tabpanel" aria-labelledby="ticket1-tab">

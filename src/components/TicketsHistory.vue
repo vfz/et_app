@@ -224,7 +224,7 @@
                                     <div class="cancel-ticket">
                                       <button type="button">
                                         Сдать билет
-                                        <CancelIcon/>
+                                        <CancelIcon color="#1399FF"/>
                                       </button>
                                     </div>
                                   </div>

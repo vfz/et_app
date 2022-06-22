@@ -515,6 +515,9 @@ export default {
                       outline: none;
                       padding: 0;
                       @include font($uni,$light,18px,24.3px,$blue-color);
+                      svg {
+                        margin-left: 8px;
+                      }
                     }
                   }
                 }

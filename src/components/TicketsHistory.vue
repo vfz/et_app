@@ -118,9 +118,9 @@
                     <div class="container-fluid">
                       <div class="row">
                         <div class="col-12">
-                          <h3 class="collapse-title">
+                          <h2 class="collapse-title">
                             Детали билетов
-                          </h3>
+                          </h2>
                         </div>
                       </div>
                       <div class="row">

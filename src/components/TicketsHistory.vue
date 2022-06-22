@@ -143,12 +143,32 @@
                         <div class="col-6">
                           <div class="tab-content" id="myTabContent">
 <!--                            Для tab-pane необходимо расставить свой id, aria-labelledby-->
-                            <div class="tab-pane fade show active" id="ticket1" role="tabpanel" aria-labelledby="ticket1-tab">...</div>
+                            <div class="tab-pane fade show active" id="ticket1" role="tabpanel" aria-labelledby="ticket1-tab">
+                              <div class="ticket-info-wrapper">
+                                <div class="row">
+                                  <div class="col-6">
+                                    <ul class="list-group">
+                                      <li class="list-ground-item">
+                                        <h4 class="list-group-item-title">
+                                          Фамилия:
+                                        </h4>
+                                        <div class="list-group-item-description">
+                                          Ермолаева
+                                        </div>
+                                      </li>
+                                    </ul>
+                                  </div>
+                                  <div class="col-6">
+
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                             <div class="tab-pane fade" id="ticket2" role="tabpanel" aria-labelledby="ticket2-tab">...</div>
                             <div class="tab-pane fade" id="ticket3" role="tabpanel" aria-labelledby="ticket3-tab">...</div>
                           </div>
                         </div>
-                        <div class="col-6"></div>
+                        <div class="col-6"> </div>
                       </div>
                     </div>
                   </div>
@@ -410,6 +430,26 @@ export default {
             }
             .nav-item:last-child {
               margin-right: 0;
+            }
+          }
+          .tab-content {
+            .tab-pane {
+              .ticket-info-wrapper {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                .list-group {
+                  list-style-type: none;
+                  &-item {
+                    &-title {
+                      @include font($uni,$regular,18px,24.3px,$secondary);
+                      margin-bottom: 8px;
+                    }
+                    &-description {
+                      @include font($uni,$regular,18px,24.3px,$base);
+                    }
+                  }
+                }
+              }
             }
           }
         }

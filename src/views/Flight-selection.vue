@@ -51,23 +51,14 @@ import Timeline from "@/components/desktop/Timeline"
 import FlightForm from "@/components/desktop/Flight-form"
 import ThereTable from "@/components/desktop/ThereTable"
 import BackTable from "@/components/desktop/BackTable"
-
 import TimelineMobile from "@/components/mobile/TimelineMobile"
-import ThereTable from "@/components/desktop/ThereTable"
 import ThereTableMobile from "@/components/mobile/ThereTableMobile"
-import BackTable from "@/components/desktop/BackTable"
 import BackTableMobile from "@/components/mobile/BackTableMobile"
 import Footer from '@/components/Footer'
 import DispatchModal from "@/components/Dispatch-modal"
 import DispatchLengthTimeModal from "@/components/Dispatch-length-time-modal"
 import PlaceLeftModal from "@/components/Place-left-modal"
 import FlightFormMobile from "@/components/mobile/FlightFormMobile"
-
-import LoginModal from '@/components/LoginModal'
-import RegistrationModal from '@/components/RegistrationModal'
-import ForgotPasswordModal from '@/components/ForgotPasswordModal'
-
-
 import LoginModal from '@/components/LoginModal'
 import RegistrationModal from '@/components/RegistrationModal'
 import ForgotPasswordModal from '@/components/ForgotPasswordModal'

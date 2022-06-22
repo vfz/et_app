@@ -238,8 +238,196 @@
                                 </div>
                               </div>
                             </div>
-                            <div class="tab-pane fade" id="ticket2" role="tabpanel" aria-labelledby="ticket2-tab">...</div>
-                            <div class="tab-pane fade" id="ticket3" role="tabpanel" aria-labelledby="ticket3-tab">...</div>
+                            <div class="tab-pane fade" id="ticket2" role="tabpanel" aria-labelledby="ticket2-tab">
+                              <div class="ticket-info-wrapper">
+                                <div class="row">
+                                  <div class="col-6">
+                                    <ul class="list-group">
+                                      <li class="list-group-item">
+                                        <h4 class="list-group-item-title">
+                                          Фамилия:
+                                        </h4>
+                                        <div class="list-group-item-description">
+                                          Ермолаева
+                                        </div>
+                                      </li>
+                                      <li class="list-group-item">
+                                        <h4 class="list-group-item-title">
+                                          Имя:
+                                        </h4>
+                                        <div class="list-group-item-description">
+                                          Кристина
+                                        </div>
+                                      </li>
+                                      <li class="list-group-item">
+                                        <h4 class="list-group-item-title">
+                                          Отчество:
+                                        </h4>
+                                        <div class="list-group-item-description">
+                                          Дмитриевна
+                                        </div>
+                                      </li>
+                                      <li class="list-group-item">
+                                        <h4 class="list-group-item-title">
+                                          Дата рождения:
+                                        </h4>
+                                        <div class="list-group-item-description">
+                                          24.10.1991
+                                        </div>
+                                      </li>
+                                    </ul>
+                                  </div>
+                                  <div class="col-6">
+                                    <ul class="list-group">
+                                      <li class="list-group-item">
+                                        <h4  class="list-group-item-title">
+                                          Пол:
+                                        </h4>
+                                        <div class="list-group-item-description">
+                                          Женский
+                                        </div>
+                                      </li>
+                                      <li class="list-group-item">
+                                        <h4 class="list-group-item-title">
+                                          Гражданство:
+                                        </h4>
+                                        <div class="list-group-item-description">
+                                          Российская Федерация
+                                        </div>
+                                      </li>
+                                      <li class="list-group-item">
+                                        <h4 class="list-group-item-title">
+                                          Документ:
+                                        </h4>
+                                        <div class="list-group-item-description">
+                                          Паспорт РФ
+                                        </div>
+                                      </li>
+                                      <li class="list-group-item">
+                                        <h4 class="list-group-item-title">
+                                          Серия и номер документа:
+                                        </h4>
+                                        <div class="list-group-item-description">
+                                          01 23 456789
+                                        </div>
+                                      </li>
+                                    </ul>
+                                  </div>
+                                </div>
+                                <div class="row ticket-info-wrapper-footer">
+                                  <div class="col-6">
+                                    <div class="cancel-ticket">
+                                      <button type="button">
+                                        Сдать билет
+                                        <CancelIcon color="#1399FF"/>
+                                      </button>
+                                    </div>
+                                  </div>
+                                  <div class="col-6">
+                                    <p class="cancel-ticket-description">
+                                      Для посадки, необходимо иметь при себе
+                                      <span>оригинал указанного документа </span> и <span>билет</span>
+                                      (будет отправлен на указанную вами эл.почту).
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="tab-pane fade" id="ticket3" role="tabpanel" aria-labelledby="ticket3-tab">
+                              <div class="ticket-info-wrapper">
+                                <div class="row">
+                                  <div class="col-6">
+                                    <ul class="list-group">
+                                      <li class="list-group-item">
+                                        <h4 class="list-group-item-title">
+                                          Фамилия:
+                                        </h4>
+                                        <div class="list-group-item-description">
+                                          Ермолаева
+                                        </div>
+                                      </li>
+                                      <li class="list-group-item">
+                                        <h4 class="list-group-item-title">
+                                          Имя:
+                                        </h4>
+                                        <div class="list-group-item-description">
+                                          Кристина
+                                        </div>
+                                      </li>
+                                      <li class="list-group-item">
+                                        <h4 class="list-group-item-title">
+                                          Отчество:
+                                        </h4>
+                                        <div class="list-group-item-description">
+                                          Дмитриевна
+                                        </div>
+                                      </li>
+                                      <li class="list-group-item">
+                                        <h4 class="list-group-item-title">
+                                          Дата рождения:
+                                        </h4>
+                                        <div class="list-group-item-description">
+                                          24.10.1991
+                                        </div>
+                                      </li>
+                                    </ul>
+                                  </div>
+                                  <div class="col-6">
+                                    <ul class="list-group">
+                                      <li class="list-group-item">
+                                        <h4  class="list-group-item-title">
+                                          Пол:
+                                        </h4>
+                                        <div class="list-group-item-description">
+                                          Женский
+                                        </div>
+                                      </li>
+                                      <li class="list-group-item">
+                                        <h4 class="list-group-item-title">
+                                          Гражданство:
+                                        </h4>
+                                        <div class="list-group-item-description">
+                                          Российская Федерация
+                                        </div>
+                                      </li>
+                                      <li class="list-group-item">
+                                        <h4 class="list-group-item-title">
+                                          Документ:
+                                        </h4>
+                                        <div class="list-group-item-description">
+                                          Паспорт РФ
+                                        </div>
+                                      </li>
+                                      <li class="list-group-item">
+                                        <h4 class="list-group-item-title">
+                                          Серия и номер документа:
+                                        </h4>
+                                        <div class="list-group-item-description">
+                                          01 23 456789
+                                        </div>
+                                      </li>
+                                    </ul>
+                                  </div>
+                                </div>
+                                <div class="row ticket-info-wrapper-footer">
+                                  <div class="col-6">
+                                    <div class="cancel-ticket">
+                                      <button type="button">
+                                        Сдать билет
+                                        <CancelIcon color="#1399FF"/>
+                                      </button>
+                                    </div>
+                                  </div>
+                                  <div class="col-6">
+                                    <p class="cancel-ticket-description">
+                                      Для посадки, необходимо иметь при себе
+                                      <span>оригинал указанного документа </span> и <span>билет</span>
+                                      (будет отправлен на указанную вами эл.почту).
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </div>
                         <div class="col-6"> </div>

@@ -430,7 +430,52 @@
                             </div>
                           </div>
                         </div>
-                        <div class="col-6"> </div>
+                        <div class="col-6">
+                          <div class="row">
+                            <div class="col-6">
+                              <div class="buyer-info">
+                                <h3 class="buyer-info-title">
+                                  Информация о покупателе
+                                </h3>
+                                <ul class="list-group">
+                                  <li class="list-group-item">
+                                    <h4 class="list-group-item-title">
+                                      Фамилия:
+                                    </h4>
+                                    <div class="list-group-item-description">
+                                      Ермолаева
+                                    </div>
+                                  </li>
+                                  <li class="list-group-item">
+                                    <h4 class="list-group-item-title">
+                                      Имя:
+                                    </h4>
+                                    <div class="list-group-item-description">
+                                      Кристина
+                                    </div>
+                                  </li>
+                                  <li class="list-group-item">
+                                    <h4 class="list-group-item-title">
+                                      Эл. почта:
+                                    </h4>
+                                    <div class="list-group-item-description">
+                                      ErmoKris@yandex.ru
+                                    </div>
+                                  </li>
+                                  <li class="list-group-item">
+                                    <h4 class="list-group-item-title">
+                                      Телефон:
+                                    </h4>
+                                    <div class="list-group-item-description">
+                                      +7 (123)-456-78-90
+                                    </div>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                            <div class="col-6"></div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -735,6 +780,26 @@ export default {
                       @include font($uni,$regular,18px,24.3px,$base);
                     }
                   }
+                }
+              }
+            }
+          }
+          .buyer-info {
+            &-title {
+              @include font($uni,$bold,20px,27px,$base);
+            }
+            .list-group {
+              &-item {
+                background: none;
+                border: none;
+                padding-left: 0;
+                padding-right: 0;
+                &-title {
+                  @include font($uni,$regular,18px,24.3px,$secondary);
+                  margin-bottom: 8px;
+                }
+                &-description {
+                  @include font($uni,$regular,18px,24.3px,$base);
                 }
               }
             }

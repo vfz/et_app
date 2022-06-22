@@ -3,6 +3,7 @@
     <Header/>
     <SectionTitle title="Билеты"/>
     <EmptyHistory descriptionText="На данный момент, Вы не приобрели билет, но это можно сделать." linkText="здесь"/>
+    <TicketsHistory/>
     <SectionImage src="img/tickets/tickets.svg" alt="билеты"/>
     <Footer/>
     <LoginModal/>
@@ -22,9 +23,11 @@ import RemoveModal from "@/components/RemoveModal";
 import SectionTitle from "@/components/SectionTitle";
 import EmptyHistory from "@/components/EmptyHistory";
 import SectionImage from "@/components/SectionImage";
+import TicketsHistory from "@/components/TicketsHistory";
 export default {
   name: "Tickets",
   components: {
+    TicketsHistory,
     SectionImage,
     EmptyHistory,
     SectionTitle,

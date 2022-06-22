@@ -469,7 +469,35 @@
                                 </ul>
                               </div>
                             </div>
-                            <div class="col-6"></div>
+                            <div class="col-6">
+                              <div class="baggage-rules buyer-info">
+                                <h3 class="buyer-info-title">
+                                  Правила перевозки багажа
+                                </h3>
+                                <p class="buyer-info-description">
+                                  Вы можете бесплатно перевезти одно место ручной клади.
+                                </p>
+                                <h5 class="buyer-info-description-title">
+                                  Ограничения для ручной клади:
+                                </h5>
+                                <p class="buyer-info-description">
+                                  — Сумма измерений не превышает 120 см (Высота + Ширина + Длина)
+                                  <br>
+                                  — Вес до 7 килограмм
+                                </p>
+                                <p class="buyer-info-description">
+                                  Цена платного багажа составляет &nbsp;<span>250 ₽.</span>
+                                </p>
+                                <h5 class="buyer-info-description-title">
+                                  Ограничения для ручной клади:
+                                </h5>
+                                <p class="buyer-info-description">
+                                  — Сумма измерений не превышает 120 см (Высота + Ширина + Длина)
+                                  <br>
+                                  — Вес до 7 килограмм
+                                </p>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -784,6 +812,18 @@ export default {
             &-title {
               @include font($uni,$bold,20px,27px,$base);
               margin-bottom: 16px;
+            }
+            &-description-title {
+              @include font($uni,$regular,18px,24.3px,$secondary);
+              margin-bottom: 0;
+            }
+            &-description {
+              @include font($uni,$light,18px,24.3px,$secondary);
+              margin-bottom: 8px;
+              span {
+                color: $base;
+                font-weight: $regular;
+              }
             }
             .list-group {
               &-item {

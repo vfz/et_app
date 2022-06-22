@@ -127,13 +127,13 @@
                         <div class="col-12">
                           <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
-                              <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
+                              <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Билет №1</button>
                             </li>
                             <li class="nav-item" role="presentation">
-                              <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
+                              <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Билет №2</button>
                             </li>
                             <li class="nav-item" role="presentation">
-                              <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Contact</button>
+                              <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Билет №3</button>
                             </li>
                           </ul>
                         </div>
@@ -383,7 +383,34 @@ export default {
         }
       }
       .collapse {
-
+        .collapse-wrapper {
+          background-color: #F3F7FF;;
+          .collapse-title {
+            margin-top: 13px;
+            margin-bottom: 24px;
+            @include font($uni,$bold,24px,32.4px,$base);
+          }
+          .nav-tabs {
+            .nav-item {
+              box-shadow: none;
+              margin-right: 40px;
+              .nav-link {
+                padding: 0;
+                @include font($uni,$bold,20px,27px,$deactivate);
+              }
+              .active {
+                background: none;
+                color: $blue-color;
+                box-shadow: none;
+                border-bottom: 1px solid $blue-color;
+                padding-bottom: 4px;
+              }
+            }
+            .nav-item:last-child {
+              margin-right: 0;
+            }
+          }
+        }
       }
       .footer-table {
         padding: 1rem 1rem;

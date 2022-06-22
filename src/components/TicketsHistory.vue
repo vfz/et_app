@@ -158,26 +158,26 @@
                                       </li>
                                       <li class="list-group-item">
                                         <h4 class="list-group-item-title">
-                                          Фамилия:
+                                          Имя:
                                         </h4>
                                         <div class="list-group-item-description">
-                                          Ермолаева
+                                          Кристина
                                         </div>
                                       </li>
                                       <li class="list-group-item">
                                         <h4 class="list-group-item-title">
-                                          Фамилия:
+                                          Отчество:
                                         </h4>
                                         <div class="list-group-item-description">
-                                          Ермолаева
+                                          Дмитриевна
                                         </div>
                                       </li>
                                       <li class="list-group-item">
                                         <h4 class="list-group-item-title">
-                                          Фамилия:
+                                          Дата рождения:
                                         </h4>
                                         <div class="list-group-item-description">
-                                          Ермолаева
+                                          24.10.1991
                                         </div>
                                       </li>
                                     </ul>

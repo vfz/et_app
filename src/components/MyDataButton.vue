@@ -1,7 +1,7 @@
 <template>
   <div class="my-data-button d-inline-flex align-items-center">
     <div class="my-data-button-title">Мои данные</div>
-    <ArrowDownIcon/>
+    <ArrowDownIcon color="#283256"/>
   </div>
 </template>
 

@@ -783,6 +783,7 @@ export default {
           .buyer-info {
             &-title {
               @include font($uni,$bold,20px,27px,$base);
+              margin-bottom: 16px;
             }
             .list-group {
               &-item {

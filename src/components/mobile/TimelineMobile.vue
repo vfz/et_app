@@ -20,7 +20,7 @@
                   Бронирование билета
                 </h1>
                 <div class="timeline-item-description">
-                  Оформляем документы
+                  шаг 2
                 </div>
               </div>
 <!--              <div class="timeline-item">-->
@@ -52,6 +52,12 @@ export default {
 @import "src/assets/font.scss";
 .timeline-section {
   margin-top: 40px;
+  margin-left: 88px;
+  margin-right: 88px;
+  @media screen and (max-width: 767px) {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
   .active {
     .timeline-item-title {
       color: $black;

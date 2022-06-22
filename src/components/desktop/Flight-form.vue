@@ -393,8 +393,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "src/assets/variables.scss";
-@import "src/assets/font.scss";
+@import "../../assets/variables";
+@import "../../assets/font";
 
 .hero {
   &-content {
@@ -404,6 +404,10 @@ export default {
     @media screen and (max-width: 767px) {
       margin-left: 5px;
       margin-right: 5px;
+    }
+    @media screen and (max-width: 991px) {
+      margin-left: 80px;
+      margin-right: 80px;
     }
     .search-form {
       .checkbox-form {

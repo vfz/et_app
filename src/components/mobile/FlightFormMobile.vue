@@ -1,0 +1,605 @@
+<template>
+  <div class="hero-content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="title-section">
+            Куда поедем?
+          </h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <form id="hero-form" class="search-form d-flex flex-wrap justify-content-center">
+            <div class="checkbox-form d-block w-100">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" v-on:click="oneWay=true" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                <label class="form-check-label" for="inlineRadio1">В одну сторону</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" v-on:click="oneWay=false"  name="inlineRadioOptions" id="inlineRadio2" value="option2" checked>
+                <label class="form-check-label" for="inlineRadio2">Туда-обратно</label>
+              </div>
+            </div>
+            <div class="path-direction w-100">
+              <h3 class="path-title">
+                Билеты на автобус
+              </h3>
+              <div class="path-content">
+                <span class="path-content-start">Ставрополь</span>
+                –
+                <span class="path-content-end">Москва</span>
+              </div>
+            </div>
+            <!--one-way-input-->
+            <div class="one-way-inputs w-100 form-header" v-if="oneWay">
+              <div class="row">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl min-w-300">
+                  <div class="card h-100">
+                    <div class="card-body">
+                      <div class="card-body-section position-relative">
+                        <label for="dataListFrom" class="form-label">Откуда</label>
+                        <div class="city-name city-name-from">
+                          <span>Ставрополь</span>
+                        </div>
+                        <div id="swiper-inputs" class="swiper-inputs" v-on:click="castling();temp = fromPlace;fromPlace = toPlace;toPlace = temp;">
+                          <img alt="swiper-inputs-icon" class="swiper-inputs-icon" src="img/hero/arrows-mobile.svg">
+                        </div>
+                        <div class="cross-line first-line"></div>
+                      </div>
+                      <div class="card-body-section">
+                        <label for="datalistTo" class="form-label">Куда</label>
+                        <div class="city-name city-name-to">
+                          <span>Москва</span>
+                        </div>
+                        <div class="cross-line"></div>
+                      </div>
+                      <div class="card-body-section">
+                        <div class="path-date d-flex">
+                          <div>
+                            <label class="form-label dispatch-title">
+                              Дата поездки <span>(Туда)</span>
+                            </label>
+                            <div class="dispatch-date d-flex justify-content-between align-items-center">
+                              <div>
+                                <span class="dispatch-date-day">30</span>
+                                <span class="dispatch-date-month">Янв'</span>
+                                <span class="dispatch-date-year">20</span>
+                              </div>
+                              <div>
+                                <span class="input-group-text calendar-span" v-on:click="UpdateselectDate()" ><img class="calendar-icon" alt="calendar" src="img/hero/calendar.svg"></span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="cross-line"></div>
+                      </div>
+                      <div class="card-body-section">
+                        <div>
+                          <label for="dataListFrom" class="form-label">Пассажиры</label>
+                          <div class="passengers-count" v-bind:class="{'d-none': isHidden}" v-on:click="isHidden = true; isShow = true">
+                            <span>4 человека</span>
+                          </div>
+                          <div v-bind:class="{'d-flex': isShow, 'd-none': !isShow}" class="passengers-count-detail justify-content-between w-100">
+                            <div class="count-passenger d-flex align-items-center flex-wrap">
+                              <div id="minus-button-adult" class="minus-button count-button" :class=" { disabled : !mba } " v-on:click="MinusAdult();changeClass()">-</div>
+                              <input value="1" min="1" max="7" name="adults" v-model="adults" type="number" class="form-control one-way-inputs-input shadow-none text-center"  placeholder="0">
+                              <div id="plus-button-adult" class="plus-button count-button" :class=" { disabled : !pba } " v-on:click="PlusAdult();changeClass()">+</div>
+                              <span class="card-desc d-block w-100">Взрослых</span>
+                            </div>
+                            <div class="count-passenger d-flex">
+                              <div class="d-flex align-items-center flex-wrap">
+                                <div id="minus-button-childeren" class="minus-button count-button" :class=" { disabled : !mbc } " v-on:click="MinusChild();changeClass()">-</div>
+                                <input value="0" min="0" max="5" name="childrens" v-model="childrens" type="number" class="form-control one-way-inputs-input shadow-none text-center" placeholder="0">
+                                <div id="plus-button-childeren" class="plus-button count-button" :class=" { disabled : !pbc } " v-on:click="PlusChild();changeClass()">+</div>
+                                <span class="card-desc d-block w-100">Детских</span>
+                              </div>
+                              <div>
+                                <img class="help-icon" alt="help" src="img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col d-flex justify-content-center align-items-center">
+                  <button id="submit-button" type="button" class="btn" v-on:click="alertPlace()">
+                    Найти билеты
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- two-way-input-->
+            <div class="two-ways-inputs w-100 form-header" v-else>
+              <div class="row flex-wrap">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl min-w-300">
+                  <div class="card h-100">
+                    <div class="card-body">
+                      <div class="card-body-section position-relative">
+                        <label for="dataListFrom" class="form-label">Откуда</label>
+                        <div class="city-name city-name-from">
+                          <span>Ставрополь</span>
+                        </div>
+                        <div id="swiper-inputs" class="swiper-inputs" v-on:click="castling();temp = fromPlace;fromPlace = toPlace;toPlace = temp;">
+                          <img alt="swiper-inputs-icon" class="swiper-inputs-icon" src="img/hero/arrows-mobile.svg">
+                        </div>
+                        <div class="cross-line first-line"></div>
+                      </div>
+                      <div class="card-body-section">
+                        <label for="datalistTo" class="form-label">Куда</label>
+                        <div class="city-name city-name-to">
+                          <span>Москва</span>
+                        </div>
+                        <div class="cross-line"></div>
+                      </div>
+                      <div class="card-body-section">
+                        <div class="path-date d-flex justify-content-between">
+                          <div>
+                            <label class="form-label dispatch-title">
+                              Дата поездки <span>(Туда)</span>
+                            </label>
+                            <div class="dispatch-date d-flex justify-content-between align-items-center">
+                              <div>
+                                <span class="dispatch-date-day">30</span>
+                                <span class="dispatch-date-month">Янв'</span>
+                                <span class="dispatch-date-year">20</span>
+                              </div>
+                              <div>
+                                <span class="input-group-text calendar-span" v-on:click="UpdateselectDate()" ><img class="calendar-icon" alt="calendar" src="img/hero/calendar.svg"></span>
+                              </div>
+                            </div>
+                          </div>
+                          <div>
+                            <label class="form-label arrival-title">
+                              Дата поездки <span>(обратно)</span>
+                            </label>
+                            <div class="arrival-date d-flex justify-content-between align-items-center">
+                              <div>
+                                <span class="arrival-date-day">10</span>
+                                <span class="arrival-date-month">Фев'</span>
+                                <span class="arrival-date-year">20</span>
+                              </div>
+                              <div>
+                                <span class="input-group-text calendar-span" v-on:click="UpdateselectDate()" ><img class="calendar-icon" alt="calendar" src="img/hero/calendar.svg"></span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="cross-line"></div>
+                      </div>
+                      <div class="card-body-section">
+                        <div>
+                          <label for="dataListFrom" class="form-label">Пассажиры</label>
+                          <div class="passengers-count" v-bind:class="{'d-none': isHidden}" v-on:click="isHidden = true; isShow = true">
+                            <span>4 человека</span>
+                          </div>
+                          <div v-bind:class="{'d-flex': isShow, 'd-none': !isShow}" class="passengers-count-detail justify-content-between w-100">
+                            <div class="count-passenger d-flex align-items-center flex-wrap">
+                              <div id="minus-button-adult" class="minus-button count-button" :class=" { disabled : !mba } " v-on:click="MinusAdult();changeClass()">-</div>
+                              <input value="1" min="1" max="7" name="adults" v-model="adults" type="number" class="form-control one-way-inputs-input shadow-none text-center"  placeholder="0">
+                              <div id="plus-button-adult" class="plus-button count-button" :class=" { disabled : !pba } " v-on:click="PlusAdult();changeClass()">+</div>
+                              <span class="card-desc d-block w-100">Взрослых</span>
+                            </div>
+                            <div class="count-passenger d-flex">
+                              <div class="d-flex align-items-center flex-wrap">
+                                <div id="minus-button-childeren" class="minus-button count-button" :class=" { disabled : !mbc } " v-on:click="MinusChild();changeClass()">-</div>
+                                <input value="0" min="0" max="5" name="childrens" v-model="childrens" type="number" class="form-control one-way-inputs-input shadow-none text-center" placeholder="0">
+                                <div id="plus-button-childeren" class="plus-button count-button" :class=" { disabled : !pbc } " v-on:click="PlusChild();changeClass()">+</div>
+                                <span class="card-desc d-block w-100">Детских</span>
+                              </div>
+                              <div>
+                                <img class="help-icon" alt="help" src="img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col d-flex justify-content-center align-items-center">
+                  <button id="submit-button-twoWays" type="button" class="btn" v-on:click="alertPlace()">
+                    Найти билеты
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import DataPicker from "@/components/DataPicker";
+import {mapActions, mapGetters} from "vuex";
+
+export default {
+  name: "FlightFormMobile",
+  components:{DataPicker,},
+  computed: mapGetters(['fromStations','toStations','from','to','childrens','adults','dateArival','dateBack','selectDate','selectDateBack']),
+  data(){
+    return{
+      title: 'Доступные билеты на автобус от перевозчика',
+      oneWay: true,
+      pba: true,
+      pbc: true,
+      mba: false,
+      mbc: false,
+      toPlace:'',
+      fromPlace:'',
+      fromPlaceV:false,
+      toPlaceV:false,
+      temp:'',
+      tomorrow: new Date(new Date()),
+      isHidden: false,
+      isShow: false,
+    }
+
+  },
+  //Директива для того чтобы при работе в мобильной версии отрабатывался поиск остановочных пунктов,
+  // сразу после ввода символа а не после нажатия на Enter
+  directives: {
+    mmodel: {
+      bind: function(el, binding, vnode) {
+        el.oninput = () => (vnode.context[binding.expression] = el.value)
+      }
+    }
+  },
+  methods: {
+    ...mapActions([
+      'getFromStations',
+      'getToStations',
+      'UpdateselectDate',
+      'UpdateselectDateBack',
+      'selectDateFalse',
+      'SetDate',
+      'SetDateBack',
+      'SetDateArival',
+      'setFrom',
+      'setTo',
+      'castling',
+      'PlusAdult',
+      'MinusAdult',
+      'PlusChild',
+      'MinusChild',
+    ]),
+
+    search(str,target){
+      //Вариант поиска ЗАВИСИМЫЙ от регистра
+      //return str.indexOf(target)+1
+      //Вариант поиска НЕзависимый от регистра
+      return str.toLowerCase().indexOf(target.toLowerCase())+1
+    },
+    alertPlace(){
+      alert('Едем в '+this.toPlace+' Едем из '+this.fromPlace)
+    },
+    //Переключение кнопок в полях кол-ва пассажиров в Desabled Enabled
+    changeClass() {
+      if (this.adults >= 7) {
+        this.pba = false;
+      } else {
+        this.pba = true;
+      }
+      if (this.childrens >= 5) {
+        this.pbc = false;
+      } else {
+        this.pbc = true;
+      }
+
+      if (this.adults > 1) {
+        this.mba = true;
+      } else {
+        this.mba = false;
+      }
+      if (this.childrens > 0) {
+        this.mbc = true;
+      } else {
+        this.mbc = false;
+      }
+    }
+
+
+  },
+  mounted(){
+    this.getFromStations();
+    this.getToStations();
+
+  },
+  // created(){
+  //     document.addEventListener('click', this.selectDateFalse.bind(this));
+  // }
+}
+</script>
+
+<style lang="scss" scoped>
+@import "src/assets/variables.scss";
+@import "src/assets/font.scss";
+.hero {
+  &-content {
+    margin-top: 41px;
+    margin-left: 88px;
+    margin-right: 88px;
+    @media screen and (max-width: 767px) {
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+    .search-form {
+      .checkbox-form {
+        margin-bottom: 16px;
+        .form-check-label {
+          font-family: $uni;
+          font-weight: $bold;
+          font-size: 14px;
+          color: $base;
+        }
+      }
+      .path-direction {
+        margin-bottom: 8px;
+        .path-title {
+          @include font($uni,$regular,14px,18.9px,$base);
+        }
+        .path-content {
+          @include font($uni,$bold,14px,18.9px,$base);
+        }
+      }
+      .card:first-child {
+        &-body {
+          position: relative;
+        }
+      }
+      .card:nth-child(2) {
+        &-body {
+          position: relative;
+          z-index: 9998;
+        }
+      }
+      .card {
+        border-radius: .85rem;
+        &-body {
+          padding: 8px 12px;
+          &-section {
+            .form-label {
+              font-family: $uni;
+              font-weight: $regular;
+              font-size: 12px;
+              color: $black;
+            }
+            .city-name {
+              @include font($uni,$bold,16px,21.6px,$blue-color);
+              margin-bottom: 12px;
+              span {
+                border-bottom: 1px dashed $blue-color;
+              }
+            }
+            .path-date {
+              margin-bottom: 12px;
+              .dispatch-date, .arrival-date {
+                &-day, &-month, &-year {
+                  @include font($uni,$bold,16px,24.3px,$base)
+                }
+                &-day {
+                  margin-right: 4px;
+                }
+                &-month, &-year {
+                  font-size: 12px;
+                }
+              }
+              .dispatch-title, .arrival-title {
+                @include font($uni,$regular,12px,16.2px,$base);
+                span {
+                  font-weight: $light;
+                }
+              }
+            }
+            .passengers-count {
+              @include font($uni,$bold,16px,21.6px,$blue-color);
+              span {
+                border-bottom: 1px dashed $blue-color;
+              }
+            }
+            .cross-line {
+              width: 100%;
+              height: 1px;
+              background-color: #E1EEF6;
+              margin-bottom: 8px;
+            }
+            .swiper-inputs {
+              background-color: $blue-active;
+              width: 40px;
+              height: 40px;
+              border-radius: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              position: absolute;
+              bottom: 30px;
+              right: -46px;
+              z-index: 999;
+              cursor: pointer;
+              @media screen and (max-width: 767px) {
+                right: 0;
+                bottom: -20px;
+                transform: rotate(180deg);
+                box-shadow: 0 25px 0 0 rgb(255,255,255);
+              }
+            }
+          }
+          //TODO deleted form control
+          .form-control {
+            padding-left: 0;
+            padding-right: 0;
+            font-family: $uni;
+            font-weight: $bold;
+            font-size: 18px;
+            color: $base;
+            border: none;
+            outline: none !important;
+
+          }
+          input:-ms-input-placeholder{
+            font-weight: normal;
+            font-style: normal;
+            font-family: $uniBook;
+          }
+          input::-webkit-input-placeholder{
+            font-weight: normal;
+            font-style: normal;
+            font-family: $uniBook;
+          }
+          input::-moz-placeholder{
+            font-weight: normal;
+            font-style: normal;
+            font-family: $uniBook;
+          }
+          input:-moz-placeholder{
+            font-weight: normal;
+            font-style: normal;
+            font-family: $uniBook;
+          }
+          .count-passenger {
+            /* Chrome, Safari, Edge, Opera */
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
+            }
+
+            /* Firefox */
+            input[type=number] {
+              -moz-appearance: textfield;
+            }
+
+            .form-control {
+              width: 20px;
+            }
+            .count-button {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 32px;
+              height: 32px;
+              border-radius: 5px;
+              background-color: $blue-active;
+              color: $white;
+              border: 1px solid $blue-active;
+              cursor: pointer;
+            }
+            .minus-button {
+              margin-right: 8px;
+            }
+            .plus-button {
+              margin-left: 8px;
+            }
+            .disabled {
+              background-color: #F8FAFC;
+              border: 1px solid #F8FAFC;
+              color: #c0c0c0;
+              cursor: auto;
+            }
+
+          }
+          .card-example-date {
+            cursor: pointer;
+          }
+        }
+        .find-place{
+          position: absolute;
+          display: block;
+          z-index: 998;
+          left:0;
+          width:100%;
+          max-height: 100%;
+          margin: 0;
+          overflow-y: auto;
+          //overflow-y: hidden;
+          background: #F3F7FF;
+          cursor: pointer;
+
+          /* Shadow / Hover */
+          :hover{
+            background: #1399FF;
+          }
+          box-shadow: 0px 2px 4px rgba(161, 159, 255, 0.1);
+          border-radius: 0px 0px 16px 16px;
+          .meta{
+            padding: 0 .7rem .4rem .7rem ;
+          }
+          .meta-end{
+            padding: 0 .7rem .4rem .7rem ;
+            border-radius: 0px 0px 16px 16px;
+          }
+          @media screen and (max-width: 767px) {
+            z-index: 9999;
+          }
+
+        }
+
+        .calendar-span{
+          background: #FFF;
+          border: 0px;
+          padding: 0;
+        }
+        .select-date{
+          position: absolute;
+          display: block;
+          z-index: 1051;
+          right:0;
+          width: 507px;
+          //max-height: 364px;
+          padding: .7rem;
+          background: #FAFCFF;
+          /* Shadow / Normal */
+          box-shadow: 0px 8px 12px rgba(161, 159, 255, 0.2);
+          border-radius: 16px;
+          @media screen and (max-width: 767px) {
+            width: 100%;
+
+          }
+
+        }
+      }
+      .btn {
+        width: 100%;
+        font-family: $uni;
+        font-weight: $regular;
+        font-size: 16px;
+        padding: 10px 65px;
+        border-radius: 15px;
+        border: none;
+        margin-top: 20px;
+        color: $white;
+        background-color: $blue-active;
+      }
+      .btn-disabled {
+        background-color: #A3D7FF;
+      }
+      .mw-300{
+        max-width: 300px;
+        @media screen and (max-width: 1290px){
+          max-width: 1200px;
+        }
+        @media screen and (max-width: 767px) {
+          max-width: 767px;
+        }
+      }
+      .min-w-300{
+        min-width: 300px;
+
+      }
+    }
+    .title-section {
+      @include font($uni,$bold,20px,27px,$base);
+      margin-bottom: 16px;
+    }
+
+  }
+}
+</style>

@@ -1,6 +1,6 @@
 <template>
     <header class="header">
-    <nav class="navbar navbar-expand-md navbar-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
           <router-link to="/" class="logo-link">
             <img alt="logo" src="img/header/logo.png" class="logo">
@@ -100,6 +100,16 @@ export default {
           color: $black !important;
         }
       }
+    }
+  }
+}
+
+.body-app-white {
+  .header {
+    padding-top: 55px;
+    margin-bottom: 26px;
+    .navbar {
+      padding: 0;
     }
   }
 }

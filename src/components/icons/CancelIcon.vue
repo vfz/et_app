@@ -9,7 +9,8 @@
 
 <script>
 export default {
-  name: "CancelIcon"
+  name: "CancelIcon",
+  props: ['color'],
 }
 </script>
 

@@ -183,7 +183,40 @@
                                     </ul>
                                   </div>
                                   <div class="col-6">
-
+                                    <ul class="list-group">
+                                      <li class="list-group-item">
+                                        <h4  class="list-group-item-title">
+                                          Пол:
+                                        </h4>
+                                        <div class="list-group-item-description">
+                                          Женский
+                                        </div>
+                                      </li>
+                                      <li class="list-group-item">
+                                        <h4 class="list-group-item-title">
+                                          Гражданство:
+                                        </h4>
+                                        <div class="list-group-item-description">
+                                          Российская Федерация
+                                        </div>
+                                      </li>
+                                      <li class="list-group-item">
+                                        <h4 class="list-group-item-title">
+                                          Документ:
+                                        </h4>
+                                        <div class="list-group-item-description">
+                                          Паспорт РФ
+                                        </div>
+                                      </li>
+                                      <li class="list-group-item">
+                                        <h4 class="list-group-item-title">
+                                          Серия и номер документа:
+                                        </h4>
+                                        <div class="list-group-item-description">
+                                          01 23 456789
+                                        </div>
+                                      </li>
+                                    </ul>
                                   </div>
                                 </div>
                               </div>

@@ -43,7 +43,7 @@
                           <span>Ставрополь</span>
                         </div>
                         <div id="swiper-inputs" class="swiper-inputs" v-on:click="castling();temp = fromPlace;fromPlace = toPlace;toPlace = temp;">
-                          <div class="swiper-inputs-icon"></div>
+                          <img alt="swiper-inputs-icon" class="swiper-inputs-icon" src="img/hero/arrows-mobile.svg">
                         </div>
                         <div class="cross-line first-line"></div>
                       </div>
@@ -55,8 +55,8 @@
                         <div class="cross-line"></div>
                       </div>
                       <div class="card-body-section">
-                        <div class="row path-date">
-                          <div class="col-12">
+                        <div class="path-date d-flex">
+                          <div>
                             <label class="form-label dispatch-title">
                               Дата поездки <span>(Туда)</span>
                             </label>
@@ -74,14 +74,32 @@
                         </div>
                         <div class="cross-line"></div>
                       </div>
-                      <div class="card-body-section d-flex align-items-center justify-content-between">
+                      <div class="card-body-section">
                         <div>
                           <label for="dataListFrom" class="form-label">Пассажиры</label>
-                          <div class="passengers-count">
+                          <div class="passengers-count" v-bind:class="{'d-none': isHidden}" v-on:click="isHidden = true; isShow = true">
                             <span>4 человека</span>
                           </div>
+                          <div v-bind:class="{'d-flex': isShow, 'd-none': !isShow}" class="passengers-count-detail justify-content-between w-100">
+                            <div class="count-passenger d-flex align-items-center flex-wrap">
+                              <div id="minus-button-adult" class="minus-button count-button" :class=" { disabled : !mba } " v-on:click="MinusAdult();changeClass()">-</div>
+                              <input value="1" min="1" max="7" name="adults" v-model="adults" type="number" class="form-control one-way-inputs-input shadow-none text-center"  placeholder="0">
+                              <div id="plus-button-adult" class="plus-button count-button" :class=" { disabled : !pba } " v-on:click="PlusAdult();changeClass()">+</div>
+                              <span class="card-desc d-block w-100">Взрослых</span>
+                            </div>
+                            <div class="count-passenger d-flex">
+                              <div class="d-flex align-items-center flex-wrap">
+                                <div id="minus-button-childeren" class="minus-button count-button" :class=" { disabled : !mbc } " v-on:click="MinusChild();changeClass()">-</div>
+                                <input value="0" min="0" max="5" name="childrens" v-model="childrens" type="number" class="form-control one-way-inputs-input shadow-none text-center" placeholder="0">
+                                <div id="plus-button-childeren" class="plus-button count-button" :class=" { disabled : !pbc } " v-on:click="PlusChild();changeClass()">+</div>
+                                <span class="card-desc d-block w-100">Детских</span>
+                              </div>
+                              <div>
+                                <img class="help-icon" alt="help" src="img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                        <img class="help-icon" alt="help" src="img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
                       </div>
                     </div>
                   </div>
@@ -107,7 +125,7 @@
                           <span>Ставрополь</span>
                         </div>
                         <div id="swiper-inputs" class="swiper-inputs" v-on:click="castling();temp = fromPlace;fromPlace = toPlace;toPlace = temp;">
-                          <div class="swiper-inputs-icon"></div>
+                          <img alt="swiper-inputs-icon" class="swiper-inputs-icon" src="img/hero/arrows-mobile.svg">
                         </div>
                         <div class="cross-line first-line"></div>
                       </div>
@@ -119,8 +137,8 @@
                         <div class="cross-line"></div>
                       </div>
                       <div class="card-body-section">
-                        <div class="row path-date">
-                          <div class="col-6">
+                        <div class="path-date d-flex justify-content-between">
+                          <div>
                             <label class="form-label dispatch-title">
                               Дата поездки <span>(Туда)</span>
                             </label>
@@ -135,7 +153,7 @@
                               </div>
                             </div>
                           </div>
-                          <div class="col-6">
+                          <div>
                             <label class="form-label arrival-title">
                               Дата поездки <span>(обратно)</span>
                             </label>
@@ -153,14 +171,32 @@
                         </div>
                         <div class="cross-line"></div>
                       </div>
-                      <div class="card-body-section d-flex align-items-center justify-content-between">
+                      <div class="card-body-section">
                         <div>
                           <label for="dataListFrom" class="form-label">Пассажиры</label>
-                          <div class="passengers-count">
+                          <div class="passengers-count" v-bind:class="{'d-none': isHidden}" v-on:click="isHidden = true; isShow = true">
                             <span>4 человека</span>
                           </div>
+                          <div v-bind:class="{'d-flex': isShow, 'd-none': !isShow}" class="passengers-count-detail justify-content-between w-100">
+                            <div class="count-passenger d-flex align-items-center flex-wrap">
+                              <div id="minus-button-adult" class="minus-button count-button" :class=" { disabled : !mba } " v-on:click="MinusAdult();changeClass()">-</div>
+                              <input value="1" min="1" max="7" name="adults" v-model="adults" type="number" class="form-control one-way-inputs-input shadow-none text-center"  placeholder="0">
+                              <div id="plus-button-adult" class="plus-button count-button" :class=" { disabled : !pba } " v-on:click="PlusAdult();changeClass()">+</div>
+                              <span class="card-desc d-block w-100">Взрослых</span>
+                            </div>
+                            <div class="count-passenger d-flex">
+                              <div class="d-flex align-items-center flex-wrap">
+                                <div id="minus-button-childeren" class="minus-button count-button" :class=" { disabled : !mbc } " v-on:click="MinusChild();changeClass()">-</div>
+                                <input value="0" min="0" max="5" name="childrens" v-model="childrens" type="number" class="form-control one-way-inputs-input shadow-none text-center" placeholder="0">
+                                <div id="plus-button-childeren" class="plus-button count-button" :class=" { disabled : !pbc } " v-on:click="PlusChild();changeClass()">+</div>
+                                <span class="card-desc d-block w-100">Детских</span>
+                              </div>
+                              <div>
+                                <img class="help-icon" alt="help" src="img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                        <img class="help-icon" alt="help" src="img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
                       </div>
                     </div>
                   </div>
@@ -202,8 +238,9 @@ export default {
       fromPlaceV:false,
       toPlaceV:false,
       temp:'',
-      tomorrow: new Date(new Date())
-
+      tomorrow: new Date(new Date()),
+      isHidden: false,
+      isShow: false,
     }
 
   },
@@ -232,7 +269,7 @@ export default {
       'PlusAdult',
       'MinusAdult',
       'PlusChild',
-      'MinusChild'
+      'MinusChild',
     ]),
 
     search(str,target){
@@ -296,12 +333,11 @@ export default {
     }
     .search-form {
       .checkbox-form {
-        margin-bottom: 33px;
+        margin-bottom: 16px;
         .form-check-label {
           font-family: $uni;
           font-weight: $bold;
-          font-size: 18px;
-          margin-left: 24px;
+          font-size: 14px;
           color: $base;
         }
       }
@@ -328,6 +364,7 @@ export default {
       .card {
         border-radius: .85rem;
         &-body {
+          padding: 8px 12px;
           &-section {
             .form-label {
               font-family: $uni;
@@ -376,8 +413,8 @@ export default {
             }
             .swiper-inputs {
               background-color: $blue-active;
-              width: 64px;
-              height: 64px;
+              width: 40px;
+              height: 40px;
               border-radius: 100%;
               display: flex;
               align-items: center;
@@ -389,15 +426,9 @@ export default {
               cursor: pointer;
               @media screen and (max-width: 767px) {
                 right: 0;
-                bottom: -30px;
-                transform: rotate(90deg);
+                bottom: -20px;
+                transform: rotate(180deg);
                 box-shadow: 0 25px 0 0 rgb(255,255,255);
-              }
-              &-icon {
-                background: url("/img/hero/arrows.svg") no-repeat;
-                width: 33px;
-                height: 24px;
-
               }
             }
           }
@@ -460,6 +491,12 @@ export default {
               color: $white;
               border: 1px solid $blue-active;
               cursor: pointer;
+            }
+            .minus-button {
+              margin-right: 8px;
+            }
+            .plus-button {
+              margin-left: 8px;
             }
             .disabled {
               background-color: #F8FAFC;
@@ -530,13 +567,14 @@ export default {
         }
       }
       .btn {
+        width: 100%;
         font-family: $uni;
         font-weight: $regular;
-        font-size: 24px;
-        padding: 23px 65px;
+        font-size: 16px;
+        padding: 10px 65px;
         border-radius: 15px;
         border: none;
-        margin-top: 40px;
+        margin-top: 20px;
         color: $white;
         background-color: $blue-active;
       }

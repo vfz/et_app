@@ -17,14 +17,16 @@
             </div>
             <div class="row">
               <div class="col-12 d-inline-flex justify-content-center align-content-center">
-                <div class="squares-place-status d-flex flex-wrap align-items-center justify-content-center">
-                  <!-- <div v-for="(value, key) in seatStates" class="square-place-status-item d-flex">
-                    <div v-bind:class="value.class + ' square-place-status'"></div>
-                    <div class="square-place-text d-flex align-items-center">
-                      {{value.text}}
-                    </div>
-                  </div> -->
-                </div>
+
+<!--                <div class="squares-place-status d-flex flex-wrap align-items-center justify-content-center">-->
+<!--                  <div v-for="(value, key) in seatStates" class="square-place-status-item d-flex">-->
+<!--                    <div v-bind:class="value.class + ' square-place-status'"></div>-->
+<!--                    <div class="square-place-text d-flex align-items-center">-->
+<!--                      {{value.text}}-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+
               </div>
             </div>
             <div class="row">

@@ -61,7 +61,12 @@ import Footer from '@/components/Footer'
 import DispatchModal from "@/components/Dispatch-modal"
 import DispatchLengthTimeModal from "@/components/Dispatch-length-time-modal"
 import PlaceLeftModal from "@/components/Place-left-modal"
-import FlightFormMobile from "@/components/mobile/FlightFormMobile";
+import FlightFormMobile from "@/components/mobile/FlightFormMobile"
+
+import LoginModal from '@/components/LoginModal'
+import RegistrationModal from '@/components/RegistrationModal'
+import ForgotPasswordModal from '@/components/ForgotPasswordModal'
+
 
 import LoginModal from '@/components/LoginModal'
 import RegistrationModal from '@/components/RegistrationModal'
@@ -78,6 +83,9 @@ export default {
     DispatchModal,
     BackTableMobile,
     ThereTableMobile,
+    Header,
+    Timeline,
+    FlightForm,
     TimelineMobile,
     ThereTable,
     ThereTableMobile,
@@ -97,7 +105,7 @@ export default {
   },
   methods: {
     isMobile() {
-      return screen.width <= 768;
+      return screen.width <= 767;
     }
 
   }

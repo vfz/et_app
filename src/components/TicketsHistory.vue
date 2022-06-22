@@ -219,7 +219,7 @@
                                     </ul>
                                   </div>
                                 </div>
-                                <div class="row">
+                                <div class="row ticket-info-wrapper-footer">
                                   <div class="col-6">
                                     <div class="cancel-ticket">
                                       <button type="button">
@@ -506,6 +506,18 @@ export default {
               .ticket-info-wrapper {
                 padding-top: 12px;
                 padding-bottom: 12px;
+                &-footer {
+                  margin-top: 24px;
+                  .cancel-ticket {
+                    button {
+                      background: none;
+                      border: none;
+                      outline: none;
+                      padding: 0;
+                      @include font($uni,$light,18px,24.3px,$blue-color);
+                    }
+                  }
+                }
                 .list-group {
                   &-item {
                     background: none;
@@ -519,15 +531,6 @@ export default {
                     &-description {
                       @include font($uni,$regular,18px,24.3px,$base);
                     }
-                  }
-                }
-                .cancel-ticket {
-                  button {
-                    background: none;
-                    border: none;
-                    outline: none;
-                    padding: 0;
-                    @include font($uni,$light,18px,24.3px,$blue-color);
                   }
                 }
               }

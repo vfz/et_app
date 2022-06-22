@@ -142,9 +142,10 @@
                       <div class="row">
                         <div class="col-6">
                           <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">...</div>
-                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
-                            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+<!--                            Для tab-pane необходимо расставить свой id, aria-labelledby-->
+                            <div class="tab-pane fade show active" id="ticket1" role="tabpanel" aria-labelledby="ticket1-tab">...</div>
+                            <div class="tab-pane fade" id="ticket2" role="tabpanel" aria-labelledby="ticket2-tab">...</div>
+                            <div class="tab-pane fade" id="ticket3" role="tabpanel" aria-labelledby="ticket3-tab">...</div>
                           </div>
                         </div>
                         <div class="col-6"></div>

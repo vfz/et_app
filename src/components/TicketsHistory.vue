@@ -219,6 +219,17 @@
                                     </ul>
                                   </div>
                                 </div>
+                                <div class="row">
+                                  <div class="col-6">
+                                    <div class="cancel-ticket">
+                                      <button type="button">
+                                        Сдать билет
+                                        <CancelIcon/>
+                                      </button>
+                                    </div>
+                                  </div>
+                                  <div class="col-6"></div>
+                                </div>
                               </div>
                             </div>
                             <div class="tab-pane fade" id="ticket2" role="tabpanel" aria-labelledby="ticket2-tab">...</div>
@@ -357,9 +368,10 @@
 
 <script>
 import ArrowDownIcon from "@/components/icons/ArrowDownIcon";
+import CancelIcon from "@/components/icons/CancelIcon";
 export default {
   name: "TicketsHistory",
-  components: {ArrowDownIcon}
+  components: {CancelIcon, ArrowDownIcon}
 }
 </script>
 
@@ -507,6 +519,15 @@ export default {
                     &-description {
                       @include font($uni,$regular,18px,24.3px,$base);
                     }
+                  }
+                }
+                .cancel-ticket {
+                  button {
+                    background: none;
+                    border: none;
+                    outline: none;
+                    padding: 0;
+                    @include font($uni,$light,18px,24.3px,$blue-color);
                   }
                 }
               }

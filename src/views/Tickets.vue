@@ -2,7 +2,7 @@
   <div class="body-app-white">
     <Header/>
     <SectionTitle title="Билеты"/>
-    <EmptyHistory descriptionText="На данный момент, Вы не приобрели билет, но это можно сделать." linkText="здесь"/>
+    <EmptyHistory class="d-none" descriptionText="На данный момент, Вы не приобрели билет, но это можно сделать." linkText="здесь"/>
     <TicketsHistory/>
     <SectionImage src="img/tickets/tickets.svg" alt="билеты"/>
     <Footer/>

@@ -1066,7 +1066,6 @@ export default {
   },
   methods: {
     showCollapse: function () {
-      console.log('hello');
       this.isHideDetails = !this.isHideDetails;
       this.isShowDetails = !this.isShowDetails;
     }

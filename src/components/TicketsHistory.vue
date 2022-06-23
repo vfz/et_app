@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import TicketOrder from "@/components/TicketOrder";
+import TicketOrder from "@/components/desktop/TicketOrder";
 export default {
   name: "TicketsHistory",
   components: {TicketOrder},

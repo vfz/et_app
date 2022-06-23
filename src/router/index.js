@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Flightselection from '@/views/Flight-selection.vue'
 import TicketBooking from "@/views/Ticket-booking";
+import PaymentSuccess from "@/views/Payment-success";
 
 Vue.use(VueRouter)
 
@@ -20,6 +21,11 @@ const routes = [{
         path: '/ticket-booking',
         name: 'Ticket-booking',
         component: TicketBooking
+    },
+    {
+        path: '/payment-success',
+        name: 'Payment-success',
+        component: PaymentSuccess
     }
 
 ]

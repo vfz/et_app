@@ -114,7 +114,7 @@
                   </tbody>
                 </table>
 <!--                убрать класс show для закрытия collapse-->
-                <div class="collapse show" id="collapseTicketsDetails">
+                <div class="collapse" id="collapseTicketsDetails">
                   <div class="collapse-wrapper">
                     <div class="container-fluid">
                       <div class="row">
@@ -506,9 +506,15 @@
                   </div>
                 </div>
                 <div class="footer-table d-flex align-items-center justify-content-between">
-                  <div class="details d-flex align-items-center">
-                    <button type="button" data-bs-toggle="collapse" data-bs-target="#collapseTicketsDetails" aria-expanded="false" aria-controls="collapseTicketsDetails">
+                  <div class="details d-flex align-items-center" v-bind:class="{'d-none': isShowDetails}">
+                    <button v-on:click="showCollapse()" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTicketsDetails" aria-expanded="false" aria-controls="collapseTicketsDetails">
                       Подробнее
+                      <ArrowDownIcon color="#77BCFC"/>
+                    </button>
+                  </div>
+                  <div class="details details-hide d-flex align-items-center" v-bind:class="{'d-none': isHideDetails}">
+                    <button v-on:click="showCollapse()" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTicketsDetails" aria-expanded="false" aria-controls="collapseTicketsDetails">
+                      Свернуть
                       <ArrowDownIcon color="#77BCFC"/>
                     </button>
                   </div>
@@ -641,7 +647,20 @@ import ArrowDownIcon from "@/components/icons/ArrowDownIcon";
 import CancelIcon from "@/components/icons/CancelIcon";
 export default {
   name: "TicketsHistory",
-  components: {CancelIcon, ArrowDownIcon}
+  components: {CancelIcon, ArrowDownIcon},
+  data() {
+    return {
+      isShowDetails: false,
+      isHideDetails: true,
+    }
+  },
+  methods: {
+    showCollapse: function () {
+      console.log('hello');
+      this.isHideDetails = !this.isHideDetails;
+      this.isShowDetails = !this.isShowDetails;
+    }
+  }
 }
 </script>
 
@@ -860,6 +879,13 @@ export default {
             @include font($uni,$light,18px,24.3px,$blue-color);
             svg {
               margin-left: 8px;
+            }
+          }
+        }
+        .details-hide {
+          button {
+            svg {
+              transform: rotate(180deg);
             }
           }
         }

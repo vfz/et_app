@@ -97,6 +97,33 @@
                 </div>
               </div>
             </div>
+            <hr>
+            <div class="row">
+              <div class="col-5">
+                <div class="table-item-part-left">
+                  <h3 class="table-item-part-left-title">
+                    Итого
+                  </h3>
+                  <div class="table-item-part-left-date">
+                    <div class="amount">
+                      7000 ₽
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-7">
+                <div class="table-item-part-right">
+                  <h3 class="table-item-part-right-title">
+                    Использованы
+                  </h3>
+                  <div class="table-item-part-right-date">
+                    <div class="europoints">
+                      евробаллы (3000 ₽)
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="d-grid">
             <button class="btn btn-primary price" data-bs-toggle="modal" data-bs-target="#place-left-modal">
@@ -150,6 +177,10 @@ export default {
             @include font($uni,$bold,18px,24.3px,$base);
             margin-right: 8px;
           }
+          .amount {
+            @include font($uni,$regular,18px,24.3px,$base);
+            margin-right: 8px;
+          }
           .dispatch-time:hover {
             @include animation;
             color: $blue-link;
@@ -182,6 +213,9 @@ export default {
           .arrival-time {
             @include font($uni,$bold,18px,24.3px,$base);
             margin-right: 8px;
+          }
+          .europoints {
+            @include font($uni,$light,13px,24.3px,$blue-color);
           }
           .arrival-time:hover {
             @include animation;

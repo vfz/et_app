@@ -3,7 +3,8 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-12">
-          <TicketOrder/>
+          <TicketOrder v-if="!isMobile()"/>
+          <TicketOrderMobile v-if="isMobile()"/>
         </div>
       </div>
     </div>
@@ -12,9 +13,15 @@
 
 <script>
 import TicketOrder from "@/components/desktop/TicketOrder";
+import TicketOrderMobile from "@/components/mobile/TicketOrderMobile";
 export default {
   name: "TicketsHistory",
-  components: {TicketOrder},
+  components: {TicketOrderMobile, TicketOrder},
+  methods: {
+    isMobile() {
+      return screen.width <= 992;
+    }
+  }
 }
 </script>
 

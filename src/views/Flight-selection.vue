@@ -59,7 +59,6 @@ import DispatchModal from "@/components/Dispatch-modal"
 import DispatchLengthTimeModal from "@/components/Dispatch-length-time-modal"
 import PlaceLeftModal from "@/components/Place-left-modal"
 import FlightFormMobile from "@/components/mobile/FlightFormMobile"
-
 import LoginModal from '@/components/LoginModal'
 import RegistrationModal from '@/components/RegistrationModal'
 import ForgotPasswordModal from '@/components/ForgotPasswordModal'
@@ -68,6 +67,7 @@ import ForgotPasswordModal from '@/components/ForgotPasswordModal'
 export default {
   name: 'Flight-selection',
   components: {
+
     FlightFormMobile,
     PlaceLeftModal,
     DispatchLengthTimeModal,

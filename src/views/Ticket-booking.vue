@@ -7,7 +7,8 @@
     <ThereBackTabs v-if="!isMobile()"/>
     <ThereTabMobile v-if="isMobile()"/>
     <BackTabMobile v-if="isMobile()"/>
-    <CurrentPoints/>
+    <EuroPointsOffer/>
+    <CurrentPoints class="d-none"/>
     <PassengersFormInfo v-if="!isMobile()"/>
     <PassengersFormInfoMobile v-if="isMobile()"/>
     <Footer/>
@@ -34,9 +35,11 @@ import TimelineMobile from "@/components/mobile/TimelineMobile";
 import ThereTabMobile from "@/components/mobile/ThereTabMobile";
 import BackTabMobile from "@/components/mobile/BackTabMobile";
 import PassengersFormInfoMobile from "@/components/mobile/PassengersFormInfoMobile";
+import EuroPointsOffer from "@/components/EuroPointsOffer";
 export default {
   name: "Ticket-booking",
   components: {
+    EuroPointsOffer,
     PassengersFormInfoMobile,
     BackTabMobile,
     ThereTabMobile,

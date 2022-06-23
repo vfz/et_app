@@ -53,7 +53,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#" id="navbarDropdownLogInAvatar" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img alt="avatar" class="avatar-user" src="img/header/avatar.png">
+                                <img alt="avatar" class="avatar-user" src="https://images.unsplash.com/photo-1554080353-a576cf803bda?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cGhvdG98ZW58MHx8MHx8&w=1000&q=80">
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownLogInAvatar">
                                 <li><a class="dropdown-item" href="#">Настройки</a></li>
@@ -144,6 +144,45 @@ export default {
           display: inline-block;
           position: relative;
           color: $white;
+          .avatar-user {
+            border-radius: 50%;
+            width: 64px;
+            height: 64px;
+            overflow: hidden;
+            object-fit: cover;
+            position: relative;
+          }
+        }
+        .dropdown-toggle:after {
+          border-top: 0 ;
+        }
+        .nav-link:after {
+          content: '';
+          position: absolute;
+          width: 100%;
+          transform: scaleX(0);
+          height: 2px;
+          bottom: 0;
+          left: 0;
+          background-color: $blue-color;
+          transform-origin: bottom right;
+          transition: transform 0.25s ease-out;
+        }
+        .nav-link:hover {
+          @include animation;
+          color: $blue-color;
+        }
+        .nav-link:hover:after {
+          transform: scaleX(1);
+          transform-origin: bottom left;
+        }
+        .dropdown-menu[aria-labelledby="navbarDropdownLogInAvatar"] {
+          left: unset;
+        }
+        #navbarDropdownLogInAvatar:after {
+          position: unset;
+          width: unset;
+          transform: unset;
         }
       }
     }

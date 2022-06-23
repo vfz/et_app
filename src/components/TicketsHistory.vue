@@ -32,5 +32,9 @@ export default {
 .tickets-history-section {
   margin-left: 88px;
   margin-right: 88px;
+  @media screen and (max-width: 767px) {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
 }
 </style>

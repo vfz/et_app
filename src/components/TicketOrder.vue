@@ -2,12 +2,12 @@
   <div class="ticket-order">
     <nav>
       <div class="nav nav-tabs" id="nav-tab" role="tablist">
-        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Туда</button>
-        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Обратно</button>
+        <button class="nav-link active" id="nav-home-there" data-bs-toggle="tab" data-bs-target="#nav-there" type="button" role="tab" aria-controls="nav-there" aria-selected="true">Туда</button>
+        <button class="nav-link" id="nav-back-tab" data-bs-toggle="tab" data-bs-target="#nav-back" type="button" role="tab" aria-controls="nav-back" aria-selected="false">Обратно</button>
       </div>
     </nav>
     <div class="tab-content position-relative" id="nav-tabContent">
-      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+      <div class="tab-pane fade show active" id="nav-there" role="tabpanel" aria-labelledby="nav-there-tab">
         <div class="table-wrapper table-responsive">
           <table class="table align-middle">
             <thead>
@@ -527,7 +527,7 @@
           </div>
         </div>
       </div>
-      <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+      <div class="tab-pane fade" id="nav-back" role="tabpanel" aria-labelledby="nav-back-tab">
         <div class="table-wrapper table-responsive">
           <table class="table align-middle">
             <thead>

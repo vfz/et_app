@@ -517,6 +517,12 @@
                   </div>
                 </div>
               </div>
+              <div class="table-amount d-flex justify-content-end">
+                <div class="paths-final-amount d-inline-block position-relative">
+                  <div class="old-amount position-absolute">14 000₽</div>
+                  Итого <span>11 000 ₽</span>
+                </div>
+              </div>
             </div>
             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
               <div class="table-wrapper table-responsive">
@@ -862,6 +868,20 @@ export default {
           span {
             color: $blue-color;
           }
+        }
+      }
+    }
+    .table-amount {
+      margin-top: 8px;
+      .paths-final-amount {
+        margin-top: 24px;
+        @include font($uni,$bold,20px,27px,$blue-active);
+        text-transform: uppercase;
+        .old-amount {
+          @include font($uni,$bold,14px,18.9px,$secondary);
+          text-decoration: line-through;
+          top: -15px;
+          right: 0;
         }
       }
     }

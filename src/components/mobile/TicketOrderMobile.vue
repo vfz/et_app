@@ -173,7 +173,7 @@
                           <div class="tab-pane fade show active" id="ticket1-back" role="tabpanel" aria-labelledby="ticket1-tab-back">
                             <div class="ticket-info-wrapper">
                               <div class="row">
-                                <div class="col-6">
+                                <div class="col-12">
                                   <ul class="list-group">
                                     <li class="list-group-item">
                                       <h4 class="list-group-item-title">
@@ -209,7 +209,7 @@
                                     </li>
                                   </ul>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-12">
                                   <ul class="list-group">
                                     <li class="list-group-item">
                                       <h4  class="list-group-item-title">
@@ -246,8 +246,8 @@
                                   </ul>
                                 </div>
                               </div>
-                              <div class="row ticket-info-wrapper-footer">
-                                <div class="col-6">
+                              <div class="row flex-column-reverse ticket-info-wrapper-footer">
+                                <div class="col-12">
                                   <div class="cancel-ticket">
                                     <button type="button">
                                       Сдать билет
@@ -255,7 +255,7 @@
                                     </button>
                                   </div>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-12">
                                   <p class="cancel-ticket-description">
                                     Для посадки, необходимо иметь при себе
                                     <span>оригинал указанного документа </span> и <span>билет</span>
@@ -268,7 +268,7 @@
                           <div class="tab-pane fade" id="ticket2-back" role="tabpanel" aria-labelledby="ticket2-tab-back">
                             <div class="ticket-info-wrapper">
                               <div class="row">
-                                <div class="col-6">
+                                <div class="col-12">
                                   <ul class="list-group">
                                     <li class="list-group-item">
                                       <h4 class="list-group-item-title">
@@ -304,7 +304,7 @@
                                     </li>
                                   </ul>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-12">
                                   <ul class="list-group">
                                     <li class="list-group-item">
                                       <h4  class="list-group-item-title">
@@ -341,8 +341,8 @@
                                   </ul>
                                 </div>
                               </div>
-                              <div class="row ticket-info-wrapper-footer">
-                                <div class="col-6">
+                              <div class="row flex-column-reverse ticket-info-wrapper-footer">
+                                <div class="col-12">
                                   <div class="cancel-ticket">
                                     <button type="button">
                                       Сдать билет
@@ -350,7 +350,7 @@
                                     </button>
                                   </div>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-12">
                                   <p class="cancel-ticket-description">
                                     Для посадки, необходимо иметь при себе
                                     <span>оригинал указанного документа </span> и <span>билет</span>
@@ -363,7 +363,7 @@
                           <div class="tab-pane fade" id="ticket3-back" role="tabpanel" aria-labelledby="ticket3-tab-back">
                             <div class="ticket-info-wrapper">
                               <div class="row">
-                                <div class="col-6">
+                                <div class="col-12">
                                   <ul class="list-group">
                                     <li class="list-group-item">
                                       <h4 class="list-group-item-title">
@@ -399,7 +399,7 @@
                                     </li>
                                   </ul>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-12">
                                   <ul class="list-group">
                                     <li class="list-group-item">
                                       <h4  class="list-group-item-title">
@@ -436,8 +436,8 @@
                                   </ul>
                                 </div>
                               </div>
-                              <div class="row ticket-info-wrapper-footer">
-                                <div class="col-6">
+                              <div class="row flex-column-reverse ticket-info-wrapper-footer">
+                                <div class="col-12">
                                   <div class="cancel-ticket">
                                     <button type="button">
                                       Сдать билет
@@ -445,7 +445,7 @@
                                     </button>
                                   </div>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-12">
                                   <p class="cancel-ticket-description">
                                     Для посадки, необходимо иметь при себе
                                     <span>оригинал указанного документа </span> и <span>билет</span>
@@ -457,9 +457,9 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-6">
+                      <div class="col-12">
                         <div class="row">
-                          <div class="col-6">
+                          <div class="col-12">
                             <div class="buyer-info">
                               <h3 class="buyer-info-title">
                                 Информация о покупателе
@@ -500,7 +500,7 @@
                               </ul>
                             </div>
                           </div>
-                          <div class="col-6">
+                          <div class="col-12">
                             <div class="baggage-rules buyer-info">
                               <h3 class="buyer-info-title">
                                 Правила перевозки багажа
@@ -550,6 +550,7 @@
 
 <script>
 import ArrowDownIcon from "@/components/icons/ArrowDownIcon";
+import CancelIcon from "@/components/icons/CancelIcon";
 export default {
   name: "TicketOrderMobile",
   data() {
@@ -565,7 +566,7 @@ export default {
     }
   },
   components: {
-    ArrowDownIcon
+    ArrowDownIcon, CancelIcon
   }
 }
 </script>
@@ -700,7 +701,7 @@ export default {
         .nav-tabs {
           .nav-item {
             box-shadow: none;
-            margin-right: 40px;
+            margin-right: 12px;
             .nav-link {
               padding: 0;
               @include font($uni,$bold,14px,27px,$deactivate);
@@ -750,11 +751,11 @@ export default {
                   padding-left: 0;
                   padding-right: 0;
                   &-title {
-                    @include font($uni,$regular,18px,24.3px,$secondary);
+                    @include font($uni,$regular,13px,24.3px,$secondary);
                     margin-bottom: 8px;
                   }
                   &-description {
-                    @include font($uni,$regular,18px,24.3px,$base);
+                    @include font($uni,$regular,13px,24.3px,$base);
                   }
                 }
               }
@@ -763,15 +764,15 @@ export default {
         }
         .buyer-info {
           &-title {
-            @include font($uni,$bold,20px,27px,$base);
+            @include font($uni,$bold,13px,27px,$base);
             margin-bottom: 16px;
           }
           &-description-title {
-            @include font($uni,$regular,18px,24.3px,$secondary);
+            @include font($uni,$regular,13px,24.3px,$secondary);
             margin-bottom: 0;
           }
           &-description {
-            @include font($uni,$light,18px,24.3px,$secondary);
+            @include font($uni,$light,13px,24.3px,$secondary);
             margin-bottom: 8px;
             span {
               color: $base;
@@ -785,11 +786,11 @@ export default {
               padding-left: 0;
               padding-right: 0;
               &-title {
-                @include font($uni,$regular,18px,24.3px,$secondary);
+                @include font($uni,$regular,13px,24.3px,$secondary);
                 margin-bottom: 8px;
               }
               &-description {
-                @include font($uni,$regular,18px,24.3px,$base);
+                @include font($uni,$regular,13px,24.3px,$base);
               }
             }
           }

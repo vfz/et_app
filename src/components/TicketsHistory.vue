@@ -11,25 +11,10 @@
 </template>
 
 <script>
-import ArrowDownIcon from "@/components/icons/ArrowDownIcon";
-import CancelIcon from "@/components/icons/CancelIcon";
 import TicketOrder from "@/components/TicketOrder";
 export default {
   name: "TicketsHistory",
-  components: {TicketOrder, CancelIcon, ArrowDownIcon},
-  data() {
-    return {
-      isShowDetails: false,
-      isHideDetails: true,
-    }
-  },
-  methods: {
-    showCollapse: function () {
-      console.log('hello');
-      this.isHideDetails = !this.isHideDetails;
-      this.isShowDetails = !this.isShowDetails;
-    }
-  }
+  components: {TicketOrder},
 }
 </script>
 

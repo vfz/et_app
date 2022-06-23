@@ -637,8 +637,25 @@
 </template>
 
 <script>
+import CancelIcon from "@/components/icons/CancelIcon";
+import ArrowDownIcon from "@/components/icons/ArrowDownIcon";
+
 export default {
-  name: "TicketOrder"
+  name: "TicketOrder",
+  components: {CancelIcon, ArrowDownIcon},
+  data() {
+    return {
+      isShowDetails: false,
+      isHideDetails: true,
+    }
+  },
+  methods: {
+    showCollapse: function () {
+      console.log('hello');
+      this.isHideDetails = !this.isHideDetails;
+      this.isShowDetails = !this.isShowDetails;
+    }
+  }
 }
 </script>
 

@@ -682,6 +682,7 @@ export default {
           }
         }
         .details-hide {
+          margin-bottom: 12px;
           button {
             svg {
               transform: rotate(180deg);

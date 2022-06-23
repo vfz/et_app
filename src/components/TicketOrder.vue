@@ -646,18 +646,18 @@
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                       <!--                            Для каждой кнопки таба необходимо расставить свой id data-bs-target aria-controls для корректной работы-->
                       <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="ticket1-tab" data-bs-toggle="tab" data-bs-target="#ticket1" type="button" role="tab" aria-controls="ticket1" aria-selected="true">Билет №1</button>
+                        <button class="nav-link active" id="ticket1-tab-back" data-bs-toggle="tab" data-bs-target="#ticket1-back" type="button" role="tab" aria-controls="ticket1-back" aria-selected="true">Билет №1</button>
                       </li>
                       <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="ticket2-tab" data-bs-toggle="tab" data-bs-target="#ticket2" type="button" role="tab" aria-controls="ticket2" aria-selected="false">Билет №2</button>
+                        <button class="nav-link" id="ticket2-tab-back" data-bs-toggle="tab" data-bs-target="#ticket2-back" type="button" role="tab" aria-controls="ticket2-back" aria-selected="false">Билет №2</button>
                       </li>
                       <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="ticket3-tab" data-bs-toggle="tab" data-bs-target="#ticket3" type="button" role="tab" aria-controls="ticket3" aria-selected="false">Билет №3</button>
+                        <button class="nav-link" id="ticket3-tab-back" data-bs-toggle="tab" data-bs-target="#ticket3-back" type="button" role="tab" aria-controls="ticket3-back" aria-selected="false">Билет №3</button>
                       </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
                       <!--                            Для tab-pane необходимо расставить свой id, aria-labelledby-->
-                      <div class="tab-pane fade show active" id="ticket1" role="tabpanel" aria-labelledby="ticket1-tab">
+                      <div class="tab-pane fade show active" id="ticket1-back" role="tabpanel" aria-labelledby="ticket1-tab-back">
                         <div class="ticket-info-wrapper">
                           <div class="row">
                             <div class="col-6">
@@ -752,7 +752,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="tab-pane fade" id="ticket2" role="tabpanel" aria-labelledby="ticket2-tab">
+                      <div class="tab-pane fade" id="ticket2-back" role="tabpanel" aria-labelledby="ticket2-tab-back">
                         <div class="ticket-info-wrapper">
                           <div class="row">
                             <div class="col-6">
@@ -847,7 +847,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="tab-pane fade" id="ticket3" role="tabpanel" aria-labelledby="ticket3-tab">
+                      <div class="tab-pane fade" id="ticket3-back" role="tabpanel" aria-labelledby="ticket3-tab-back">
                         <div class="ticket-info-wrapper">
                           <div class="row">
                             <div class="col-6">

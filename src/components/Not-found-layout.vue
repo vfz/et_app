@@ -17,7 +17,9 @@
       </div>
       <div class="row">
         <div class="col-12 d-flex justify-content-center">
+
           <img class="image-section" alt="Запрашиваемая страница не найдена" src="img/not-found/not-found.svg">
+
         </div>
       </div>
     </div>

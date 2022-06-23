@@ -113,6 +113,7 @@
                   </tr>
                   </tbody>
                 </table>
+<!--                убрать класс show для закрытия collapse-->
                 <div class="collapse show" id="collapseTicketsDetails">
                   <div class="collapse-wrapper">
                     <div class="container-fluid">

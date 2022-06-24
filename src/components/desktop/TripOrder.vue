@@ -28,7 +28,7 @@
             <tr>
               <td>
                 <div class="date-trip">
-                  09:30
+                  25.11.2019
                 </div>
               </td>
               <td>

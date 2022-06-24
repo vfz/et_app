@@ -54,12 +54,13 @@
                             </div>
                           </div>
                           <span class="card-example">
+
                                                 Например:
                                                 <span id="city-example-from" class="card-example-date city-example-from text-decoration-underline"
                                                       v-on:click="setFrom('1');fromPlaceV=false;fromPlace='Ставрополь'"
                                                 >Ставрополь</span>
                                             </span>
-
+                                            
                           <div id="swiper-inputs" class="swiper-inputs" v-on:click="castling();temp = fromPlace;fromPlace = toPlace;toPlace = temp;">
                             <div class="swiper-inputs-icon"></div>
                           </div>
@@ -135,6 +136,7 @@
                             <DataPicker/>
                           </div>
                           <span class="card-example d-block w-100">
+
                                                 <span id="today-date-toggle" class="card-example-date today-date-toggle text-decoration-underline"
                                                       v-on:click="UpdateselectDate();SetDateArival(false);UpdateselectDate()">Сегодня</span>
                                                 /
@@ -177,6 +179,7 @@
                             </div>
                           </div>
                           <span class="card-example">
+
                                                 Например:
                                                 <span id="city-example-from" class="card-example-date city-example-from text-decoration-underline"
                                                       v-on:click="setFrom('1');fromPlaceV=false;fromPlace='Ставрополь'"
@@ -208,6 +211,7 @@
                             </div>
                           </div>
                           <span class="card-example">
+
                                                 Например:
                                                 <span id="city-example-to" class="card-example-date city-example-to text-decoration-underline"
                                                       v-on:click="setTo('190');toPlaceV=false;toPlace='Москва'">Москва</span>
@@ -258,6 +262,7 @@
                             <DataPicker/>
                           </div>
                           <span class="card-example d-block w-100">
+
                                                 <span id="today-date-toggle" class="card-example-date today-date-toggle text-decoration-underline"
                                                       v-on:click="UpdateselectDate();SetDateArival(false);UpdateselectDate()">Сегодня</span>
                                                 /
@@ -282,6 +287,7 @@
                             <DataPicker/>
                           </div>
                           <span class="card-example d-block w-100">
+
                                                 <span id="today-date-toggle" class="card-example-date today-date-toggle text-decoration-underline"
                                                       v-on:click="UpdateselectDateBack();SetDateBack(false);UpdateselectDateBack()">Сегодня</span>
                                                 /
@@ -650,6 +656,7 @@ export default{
         max-width: 300px;
         @media screen and (max-width: 1400px){
         max-width: 1200px;
+
         }
         @media screen and (max-width: 767px) {
         max-width: 767px;
@@ -660,6 +667,10 @@ export default{
          @media screen and (max-width: 779px) {
            min-width: 280px;
          }
+      }
+      .w-300{
+          width:300px !important;
+       
       }
     }
     

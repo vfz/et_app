@@ -25,6 +25,7 @@
     <LoginModal/>
     <RegistrationModal/>
     <ForgotPasswordModal/>
+
   </div>
 </template>
 <style lang="scss" scoped>
@@ -45,14 +46,6 @@
 }
 </style>
 <script>
-
-import Hero from '@/components/Hero'
-import Footer from '@/components/Footer'
-import LoginModal from '@/components/LoginModal'
-import ForgotPasswordModal from '@/components/ForgotPasswordModal'
-import RegistrationModal from '@/components/RegistrationModal'
-import Populardirections from '@/components/Populardirections'
-import Registrationhero from '@/components/Registrationhero'
 import Header from "@/components/Header"
 import Timeline from "@/components/desktop/Timeline"
 import FlightForm from "@/components/desktop/Flight-form"
@@ -61,32 +54,54 @@ import BackTable from "@/components/desktop/BackTable"
 import TimelineMobile from "@/components/mobile/TimelineMobile"
 import ThereTableMobile from "@/components/mobile/ThereTableMobile"
 import BackTableMobile from "@/components/mobile/BackTableMobile"
+import Footer from '@/components/Footer'
 import DispatchModal from "@/components/Dispatch-modal"
 import DispatchLengthTimeModal from "@/components/Dispatch-length-time-modal"
 import PlaceLeftModal from "@/components/Place-left-modal"
-import FlightFormMobile from "@/components/mobile/FlightFormMobile";
+import FlightFormMobile from "@/components/mobile/FlightFormMobile"
+import LoginModal from '@/components/LoginModal'
+import RegistrationModal from '@/components/RegistrationModal'
+import ForgotPasswordModal from '@/components/ForgotPasswordModal'
+
 
 export default {
-  name: 'Flightselection',
+  name: 'Flight-selection',
   components: {
+
     FlightFormMobile,
     PlaceLeftModal,
     DispatchLengthTimeModal,
     DispatchModal,
     BackTableMobile,
     ThereTableMobile,
-    TimelineMobile,
-    BackTable,
-    ThereTable,
-    FlightForm,
-    Timeline,
     Header,
-    Hero,Footer,Populardirections,Registrationhero,LoginModal,RegistrationModal,ForgotPasswordModal
+    Timeline,
+    FlightForm,
+    TimelineMobile,
+    ThereTable,
+    ThereTableMobile,
+    BackTable,
+    BackTableMobile,
+    Footer,
+    DispatchModal,
+    DispatchLengthTimeModal,
+    PlaceLeftModal,
+    LoginModal,
+    RegistrationModal,
+    ForgotPasswordModal,
+
+    // Populardirections,
+    // Registrationhero,
+
   },
   methods: {
     isMobile() {
-      return screen.width <= 768;
+      return screen.width <= 767;
     }
+
   }
 }
 </script>
+<style scoped>
+
+</style>

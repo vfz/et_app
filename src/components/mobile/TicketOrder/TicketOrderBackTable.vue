@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-12">
         <h2 class="title-table">
-          Туда
+          Обратно
         </h2>
       </div>
     </div>
@@ -129,13 +129,13 @@
               <div class="col-12 text-center">
                 <div class="table-item-part-center">
                   <div class="details d-flex justify-content-center align-items-center" v-bind:class="{'d-none': isShowDetails}">
-                    <button v-on:click="showCollapse()" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTicketsDetails" aria-expanded="false" aria-controls="collapseTicketsDetails">
+                    <button v-on:click="showCollapse()" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTicketsDetailsBack" aria-expanded="false" aria-controls="collapseTicketsDetailsBack">
                       Подробнее
                       <ArrowDownIcon color="#77BCFC"/>
                     </button>
                   </div>
                   <div class="details details-hide d-flex justify-content-center align-items-center" v-bind:class="{'d-none': isHideDetails}">
-                    <button v-on:click="showCollapse()" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTicketsDetails" aria-expanded="false" aria-controls="collapseTicketsDetails">
+                    <button v-on:click="showCollapse()" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTicketsDetailsBack" aria-expanded="false" aria-controls="collapseTicketsDetailsBack">
                       Свернуть
                       <ArrowDownIcon color="#77BCFC"/>
                     </button>
@@ -144,7 +144,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="collapse" id="collapseTicketsDetails">
+              <div class="collapse" id="collapseTicketsDetailsBack">
                 <div class="collapse-wrapper">
                   <div class="container-fluid">
                     <div class="row">
@@ -576,6 +576,7 @@ export default {
 @import "/src/assets/font.scss";
 .title-table {
   @include font($uni,$bold, 24px, 32.4px, $black);
+  margin-top: 24px;
   &-counter {
     font-size: 18px;
     color: $secondary;

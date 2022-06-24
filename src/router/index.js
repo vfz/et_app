@@ -7,6 +7,7 @@ import PaymentSuccess from "@/views/Payment-success";
 import PaymentError from "@/views/Payment-error";
 import NotFound from "@/views/NotFound";
 import Tickets from "@/views/Tickets";
+import MyTrips from "@/views/My-trips";
 
 Vue.use(VueRouter)
 
@@ -39,6 +40,11 @@ const routes = [{
         path: '/tickets',
         name: 'Tickets',
         component: Tickets
+    },
+    {
+        path: '/my-trips',
+        name: 'My-trips',
+        component: MyTrips
     },
     {
         path: '/404',

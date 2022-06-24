@@ -43,12 +43,8 @@
                 </div>
               </td>
               <td>
-                <div class="dispatch-length-time">
-                  20 часов
-                </div>
-                <!--                  для вызова модального окна нужно добавить атрибуты data-bs-toggle со значением modal и data-bs-target со значением id модального окна-->
-                <div class="dispatch-length-time-saw table-link" data-bs-toggle="modal" data-bs-target="#dispatch-length-time-modal">
-                  Посмотреть
+                <div class="tickets-count-trip">
+                  3
                 </div>
               </td>
               <td>
@@ -594,33 +590,11 @@ export default {
                 margin-left: 8px;
               }
             }
-            .date-trip {
+            .date-trip, .tickets-count-trip {
               @include font($uni,$regular,18px,24.3px,$base);
             }
             .date-trip, .arrival-time, .dispatch-city, .arrival-city, .places-left {
               margin-bottom: 4px;
-            }
-            .dispatch-date {
-              &-day {
-                font-size: 18px;
-              }
-              &-month, &-year {
-                font-size: 14px;
-              }
-            }
-            .arrival-date {
-              &-day {
-                font-size: 18px;
-              }
-            }
-            .dispatch-city, .arrival-city, .places-left, .place-choice-cancel {
-              @include font($uni, $regular, 18px, 24.3px, $base);
-            }
-            .dispatch-length-time-saw, .dispatch-place, .arrival-place, .place-choice {
-              @include font($uni, $light, 14px, 18.9px, $blue-link);
-            }
-            .price {
-              margin-right: 24px;
             }
             .table-link {
               cursor: pointer;

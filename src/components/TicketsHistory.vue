@@ -13,7 +13,7 @@
 
 <script>
 import TicketOrder from "@/components/desktop/TicketOrder";
-import TicketOrderMobile from "@/components/mobile/TicketOrderMobile";
+import TicketOrderMobile from "@/components/mobile/TicketOrder/TicketOrderMobile";
 export default {
   name: "TicketsHistory",
   components: {TicketOrderMobile, TicketOrder},

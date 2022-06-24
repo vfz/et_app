@@ -43,5 +43,8 @@ export default {
     margin-bottom: 72px;
     text-transform: none;
   }
+  .footer {
+    margin-top: 72px;
+  }
 }
 </style>

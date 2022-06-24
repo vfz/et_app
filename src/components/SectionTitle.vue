@@ -33,6 +33,9 @@ export default {
   .title-section {
     @include font($uni,$bold,36px,48.6px,$base);
     margin-bottom: 40px;
+    @media screen and (max-width: 991px) {
+      font-size: 20px;
+    }
   }
 }
 </style>

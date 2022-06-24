@@ -572,5 +572,234 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+@import "/src/assets/variables.scss";
+@import "/src/assets/font.scss";
+.title-table {
+  @include font($uni,$bold, 24px, 32.4px, $black);
+  &-counter {
+    font-size: 18px;
+    color: $secondary;
+  }
+}
+.table-item {
+  max-width: unset;
+  box-shadow: $regular-shadow;
+  &-content-wrapper {
+    padding-top: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-bottom: 16px;
+  }
+  &-part {
+    .table-link {
+      cursor: pointer;
+    }
+    &-left {
+      &-title {
+        @include font($uni,$regular,11px,14.85px,$base);
+        margin-bottom: 10px;
+      }
+      &-date {
+        .dispatch-time {
+          @include font($uni,$bold,18px,24.3px,$base);
+          margin-right: 8px;
+        }
+        .amount {
+          @include font($uni,$regular,18px,24.3px,$base);
+          margin-right: 8px;
+        }
+        .dispatch-time:hover {
+          @include animation;
+          color: $blue-link;
+        }
+        .dispatch-date {
+          &-day, &-month, &-year {
+            @include font($uni,$regular,12px,24.3px,$secondary)
+          }
+          &-day {
+            margin-right: 4px;
+          }
+          &-month, &-year {
+            font-size: 10px;
+          }
+        }
+      }
+      &-city {
+        @include font($uni,$bold,14px,18.9px,$base);
+      }
+      &-place {
+        @include font($uni, $light, 14px, 18.9px, $blue-link);
+      }
+    }
+    &-right {
+      &-title {
+        @include font($uni,$regular,11px,14.85px,$base);
+        margin-bottom: 10px;
+      }
+      &-date {
+        .arrival-time {
+          @include font($uni,$bold,18px,24.3px,$base);
+          margin-right: 8px;
+        }
+        .europoints {
+          @include font($uni,$light,13px,24.3px,$blue-color);
+        }
+        .arrival-time:hover {
+          @include animation;
+          color: $blue-link;
+        }
+        .arrival-date {
+          &-day, &-month, &-year {
+            @include font($uni,$regular,12px,24.3px,$secondary)
+          }
+          &-day {
+            margin-right: 4px;
+          }
+          &-month, &-year {
+            font-size: 10px;
+          }
+        }
+      }
+      &-city {
+        @include font($uni,$bold,14px,18.9px,$base);
+      }
+      &-place {
+        @include font($uni, $light, 14px, 18.9px, $blue-link);
+      }
+    }
+    &-center {
+      .details {
+        button {
+          background: none;
+          outline: none;
+          border: none;
+          @include font($uni,$light,18px,24.3px,$blue-color);
+          svg {
+            margin-left: 8px;
+          }
+        }
+      }
+      .details-hide {
+        margin-bottom: 12px;
+        button {
+          svg {
+            transform: rotate(180deg);
+          }
+        }
+      }
+    }
+  }
+  .collapse, .collapsing {
+    .collapse-wrapper {
+      background-color: #F3F7FF;;
+      .collapse-title {
+        margin-top: 13px;
+        margin-bottom: 24px;
+        @include font($uni,$bold,18px,32.4px,$base);
+      }
+      .nav-tabs {
+        .nav-item {
+          box-shadow: none;
+          margin-right: 12px;
+          .nav-link {
+            padding: 0;
+            @include font($uni,$bold,14px,27px,$deactivate);
+          }
+          .active {
+            background: none;
+            color: $blue-active;
+            box-shadow: none;
+            border-bottom: 1px solid $blue-active;
+            padding-bottom: 4px;
+          }
+        }
+        .nav-item:last-child {
+          margin-right: 0;
+        }
+      }
+      .tab-content {
+        .tab-pane {
+          .ticket-info-wrapper {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            &-footer {
+              margin-top: 24px;
+              .cancel-ticket {
+                button {
+                  background: none;
+                  border: none;
+                  outline: none;
+                  padding: 0;
+                  @include font($uni,$light,13px,24.3px,$blue-color);
+                  svg {
+                    margin-left: 8px;
+                  }
+                }
+              }
+              .cancel-ticket-description {
+                @include font($uni,$light,13px,24.3px,$blue-active);
+                span {
+                  font-weight: $regular;
+                }
+              }
+            }
+            .list-group {
+              &-item {
+                background: none;
+                border: none;
+                padding-left: 0;
+                padding-right: 0;
+                &-title {
+                  @include font($uni,$regular,13px,24.3px,$secondary);
+                  margin-bottom: 8px;
+                }
+                &-description {
+                  @include font($uni,$regular,13px,24.3px,$base);
+                }
+              }
+            }
+          }
+        }
+      }
+      .buyer-info {
+        &-title {
+          @include font($uni,$bold,13px,27px,$base);
+          margin-bottom: 16px;
+        }
+        &-description-title {
+          @include font($uni,$regular,13px,24.3px,$secondary);
+          margin-bottom: 0;
+        }
+        &-description {
+          @include font($uni,$light,13px,24.3px,$secondary);
+          margin-bottom: 8px;
+          span {
+            color: $base;
+            font-weight: $regular;
+          }
+        }
+        .list-group {
+          &-item {
+            background: none;
+            border: none;
+            padding-left: 0;
+            padding-right: 0;
+            &-title {
+              @include font($uni,$regular,13px,24.3px,$secondary);
+              margin-bottom: 8px;
+            }
+            &-description {
+              @include font($uni,$regular,13px,24.3px,$base);
+            }
+          }
+        }
+      }
+    }
+  }
+  .btn {
+    @include font($uni,$bold,16px,21.6px,$white);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+}
 </style>

@@ -452,7 +452,7 @@
               </div>
             </div>
           </div>
-          <div class="footer-table d-flex align-items-center justify-content-between">
+          <div class="footer-table d-flex align-items-center">
             <div class="details d-flex align-items-center" v-bind:class="{'d-none': isShowDetails}">
               <button v-on:click="showCollapse()" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTicketsDetails" aria-expanded="false" aria-controls="collapseTicketsDetails">
                 Подробнее

@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import PathsFinalAmount from "@/components/mobile/TicketOrder/Paths-final-amount";
+import PathsFinalAmount from "@/components/mobile/TicketOrder/TicketOrder-paths-final-amount";
 import TicketOrderThereTable from "@/components/mobile/TicketOrder/TicketOrderThereTable";
 export default {
   name: "TicketOrderMobile",

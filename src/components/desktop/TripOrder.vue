@@ -53,11 +53,8 @@
                 </div>
               </td>
               <td>
-                <div class="arrival-city">
-                  Ставрополь
-                </div>
-                <div class="arrival-place">
-                  ж/д вокзал
+                <div class="added-europoints-trip">
+                  +450
                 </div>
               </td>
               <td>
@@ -590,6 +587,9 @@ export default {
             }
             .date-trip, .arrival-time, .dispatch-city, .arrival-city, .places-left {
               margin-bottom: 4px;
+            }
+            .added-europoints-trip {
+              @include font($uni,$regular,18px,24.3px,$blue-active);
             }
             .table-link {
               cursor: pointer;

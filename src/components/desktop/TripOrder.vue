@@ -32,12 +32,12 @@
                 </div>
               </td>
               <td>
-                <div class="trip-path d-flex align-items-center">
-                  <div class="trip-path-start">
+                <div class="path-trip d-flex align-items-center">
+                  <div class="path-trip-start">
                     Белгород
                   </div>
                   <ArrowPathIcon/>
-                  <div class="trip-path-end">
+                  <div class="path-trip-end">
                     Ставрополь
                   </div>
                 </div>
@@ -583,7 +583,7 @@ export default {
       tbody {
         tr {
           td {
-            .trip-path {
+            .path-trip {
               &-start, &-end {
                 @include font($uni,$bold,20px,27px,$base);
               }

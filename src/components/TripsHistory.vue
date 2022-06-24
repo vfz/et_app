@@ -3,6 +3,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-12">
+          <TripOrder/>
         </div>
       </div>
     </div>
@@ -10,8 +11,10 @@
 </template>
 
 <script>
+import TripOrder from "@/components/desktop/TripOrder";
 export default {
-  name: "TripsHistory"
+  name: "TripsHistory",
+  components: {TripOrder}
 }
 </script>
 

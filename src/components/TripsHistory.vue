@@ -14,7 +14,12 @@
 import TripOrder from "@/components/desktop/TripOrder";
 export default {
   name: "TripsHistory",
-  components: {TripOrder}
+  components: {TripOrder},
+  methods: {
+    isMobile() {
+      return screen.width <= 992;
+    }
+  }
 }
 </script>
 

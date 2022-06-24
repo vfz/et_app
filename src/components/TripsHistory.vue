@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-12">
-          <TripOrder/>
+          <TripOrder v-if="!isMobile()"/>
         </div>
       </div>
     </div>

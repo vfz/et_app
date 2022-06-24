@@ -4,6 +4,7 @@
   <SectionTitle title="История поездок"/>
   <EmptyHistory class="d-none" description-text="К нашему сожалению, у Вас не было поездок, но Вы можете их" link-text="совершить."/>
   <SectionImage src="img/my-trips/my-trips.svg" alt="История поездок"/>
+  <TripsHistory/>
   <Footer/>
   <LoginModal/>
   <RegistrationModal/>
@@ -20,9 +21,11 @@ import ForgotPasswordModal from "@/components/ForgotPasswordModal";
 import SectionTitle from "@/components/SectionTitle";
 import EmptyHistory from "@/components/EmptyHistory";
 import SectionImage from "@/components/SectionImage";
+import TripsHistory from "@/components/TripsHistory";
 export default {
   name: "My-trips",
   components: {
+    TripsHistory,
     SectionImage,
     EmptyHistory, SectionTitle, ForgotPasswordModal, RegistrationModal, LoginModal, Footer, Header}
 }

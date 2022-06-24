@@ -48,13 +48,8 @@
                 </div>
               </td>
               <td>
-                <div class="arrival-time">
-                  05:30
-                </div>
-                <div class="arrival-date">
-                  <span class="arrival-date-day">31</span>
-                  <span class="arrival-date-month">Янв</span>'
-                  <span class="arrival-date-year">20</span>
+                <div class="amount-sum-trip">
+                  4 500₽
                 </div>
               </td>
               <td>
@@ -590,7 +585,7 @@ export default {
                 margin-left: 8px;
               }
             }
-            .date-trip, .tickets-count-trip {
+            .date-trip, .tickets-count-trip, .amount-sum-trip {
               @include font($uni,$regular,18px,24.3px,$base);
             }
             .date-trip, .arrival-time, .dispatch-city, .arrival-city, .places-left {

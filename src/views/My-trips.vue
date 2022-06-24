@@ -2,6 +2,7 @@
 <div class="body-app-white">
   <Header/>
   <SectionTitle title="История поездок"/>
+  <EmptyHistory class="d-none" description-text="К нашему сожалению, у Вас не было поездок, но Вы можете их" link-text="совершить."/>
   <Footer/>
   <LoginModal/>
   <RegistrationModal/>
@@ -16,9 +17,10 @@ import LoginModal from "@/components/LoginModal";
 import RegistrationModal from "@/components/RegistrationModal";
 import ForgotPasswordModal from "@/components/ForgotPasswordModal";
 import SectionTitle from "@/components/SectionTitle";
+import EmptyHistory from "@/components/EmptyHistory";
 export default {
   name: "My-trips",
-  components: {SectionTitle, ForgotPasswordModal, RegistrationModal, LoginModal, Footer, Header}
+  components: {EmptyHistory, SectionTitle, ForgotPasswordModal, RegistrationModal, LoginModal, Footer, Header}
 }
 </script>
 

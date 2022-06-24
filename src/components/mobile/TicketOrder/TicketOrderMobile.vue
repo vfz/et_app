@@ -23,8 +23,5 @@ export default {
 <style lang="scss" scoped>
 .there-back-tabs-mobile-section {
   margin-bottom: 40px;
-  .active {
-    background: #F3F7FF;
-  }
 }
 </style>

@@ -7,28 +7,19 @@
             <thead>
             <tr>
               <th>
-                Время отправления
+                Дата поездки
               </th>
               <th>
-                Пункт отправления
+                Маршрут
               </th>
               <th>
-                Время в пути / маршрут
-              </th>
-              <th>
-                Время прибытия
-              </th>
-              <th>
-                Пункт прибытия
-              </th>
-              <th>
-                Осталось мест
+                Количество билетов
               </th>
               <th>
                 Итого
               </th>
               <th>
-                Покупка
+                Евробаллы
               </th>
             </tr>
             </thead>
@@ -36,13 +27,8 @@
             <!--              Добавить класс active-row и будет выделение-->
             <tr>
               <td>
-                <div class="dispatch-time">
+                <div class="date-trip">
                   09:30
-                </div>
-                <div class="dispatch-date">
-                  <span class="dispatch-date-day">30</span>
-                  <span class="dispatch-date-month">Янв'</span>'
-                  <span class="dispatch-date-year">20</span>
                 </div>
               </td>
               <td>
@@ -594,14 +580,11 @@ export default {
       tbody {
         tr {
           td {
-            .dispatch-time, .arrival-time, .dispatch-city, .arrival-city, .places-left {
+            .date-trip {
+              @include font($uni,$regular,18px,24.3px,$base);
+            }
+            .date-trip, .arrival-time, .dispatch-city, .arrival-city, .places-left {
               margin-bottom: 4px;
-            }
-            .dispatch-time, .arrival-time, .price {
-              @include font($uni, $bold, 20px, 27px, $base);
-            }
-            .dispatch-date, .arrival-date {
-              @include font($uni, $regular, 14px, 18.9px, $secondary)
             }
             .dispatch-date {
               &-day {

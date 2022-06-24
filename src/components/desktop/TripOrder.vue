@@ -57,26 +57,6 @@
                   +450
                 </div>
               </td>
-              <td>
-                <div class="places-left">
-                  33,34,35,36
-                </div>
-              </td>
-              <td class="align-middle">
-                <div class="d-flex align-content-center">
-                  <div class="price d-inline-block">
-                    7000₽
-                  </div>
-                  <div class="d-inline-block">
-                    <img class="help-icon" alt="help" src="img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="place-choice-cancel">
-                  Сдать
-                </div>
-              </td>
             </tr>
             </tbody>
           </table>
@@ -484,9 +464,6 @@
                 Свернуть
                 <ArrowDownIcon color="#77BCFC"/>
               </button>
-            </div>
-            <div class="used-europoints justify-content-end d-flex">
-              Использованы &nbsp;<span>евробаллы (3000 ₽)</span>
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 <template>
 <div class="body-app-white">
   <Header/>
+  <SectionTitle title="История поездок"/>
   <Footer/>
   <LoginModal/>
   <RegistrationModal/>
@@ -14,9 +15,10 @@ import Footer from "@/components/Footer";
 import LoginModal from "@/components/LoginModal";
 import RegistrationModal from "@/components/RegistrationModal";
 import ForgotPasswordModal from "@/components/ForgotPasswordModal";
+import SectionTitle from "@/components/SectionTitle";
 export default {
   name: "My-trips",
-  components: {ForgotPasswordModal, RegistrationModal, LoginModal, Footer, Header}
+  components: {SectionTitle, ForgotPasswordModal, RegistrationModal, LoginModal, Footer, Header}
 }
 </script>
 

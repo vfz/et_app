@@ -32,12 +32,14 @@
                 </div>
               </td>
               <td>
-                <div class="dispatch-city">
-                  Ставрополь
-                </div>
-                <!--                  для вызова модального окна нужно добавить атрибуты data-bs-toggle со значением modal и data-bs-target со значением id модального окна-->
-                <div class="dispatch-place table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
-                  ж/д вокзал
+                <div class="trip-path d-flex align-items-center">
+                  <div class="trip-path-start">
+                    Белгород
+                  </div>
+                  <ArrowPathIcon/>
+                  <div class="trip-path-end">
+                    Ставрополь
+                  </div>
                 </div>
               </td>
               <td>
@@ -514,9 +516,10 @@
 <script>
 import CancelIcon from "@/components/icons/CancelIcon";
 import ArrowDownIcon from "@/components/icons/ArrowDownIcon";
+import ArrowPathIcon from "@/components/icons/ArrowPathIcon";
 export default {
   name: "TripOrder",
-  components: {CancelIcon, ArrowDownIcon},
+  components: {ArrowPathIcon, CancelIcon, ArrowDownIcon},
   data() {
     return {
       isShowDetails: false,
@@ -580,6 +583,17 @@ export default {
       tbody {
         tr {
           td {
+            .trip-path {
+              &-start, &-end {
+                @include font($uni,$bold,20px,27px,$base);
+              }
+              &-start {
+                margin-right: 8px;
+              }
+              &-end {
+                margin-left: 8px;
+              }
+            }
             .date-trip {
               @include font($uni,$regular,18px,24.3px,$base);
             }

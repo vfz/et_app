@@ -3,7 +3,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
           <router-link to="/" class="logo-link">
-            <img alt="logo" src="img/header/logo.png" class="logo">
+            <img alt="logo" src="/img/header/logo.png" class="logo">
           </router-link>
             <button @click="toggleElement" ref="button" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
                 <span class="navbar-toggler-icon">
@@ -78,6 +78,8 @@ export default {
     toggleElement(){
       this.isVisibleElement = !this.isVisibleElement;
     }
+  },
+  mounted(){
   }
 }
 </script>

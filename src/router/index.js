@@ -15,7 +15,7 @@ const routes = [{
         component: Home
     },
     {
-        path: '/flight-selection',
+        path: '/flight-selection/:from/:to',
         name: 'Flight-selection',
         component: Flightselection
     },
@@ -40,9 +40,13 @@ const routes = [{
         component: NotFound
     },
     {
-        path: '*',
-        redirect: '/404'
-    }
+        path: '/flight-selection',
+        redirect: '/flight-selection/1/190'
+    },
+    // {
+    //     path: '*',
+    //     redirect: '/404'
+    // }
 
 ]
 

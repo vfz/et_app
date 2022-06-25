@@ -62,7 +62,7 @@ import FlightFormMobile from "@/components/mobile/FlightFormMobile"
 import LoginModal from '@/components/LoginModal'
 import RegistrationModal from '@/components/RegistrationModal'
 import ForgotPasswordModal from '@/components/ForgotPasswordModal'
-
+import {mapGetters,mapActions} from 'vuex'
 
 export default {
   name: 'Flight-selection',
@@ -95,10 +95,16 @@ export default {
 
   },
   methods: {
-    isMobile() {
-      return screen.width <= 767;
-    }
+    ...mapActions([
+      'setFrom',
+      'setTo',
+    ]),
 
+    isMobile() {
+      return screen.width <= 992;
+    }
+  },
+  mounted(){
   }
 }
 </script>

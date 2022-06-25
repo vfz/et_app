@@ -407,18 +407,16 @@ export default{
         },
 
     },
-    mounted(){
-        this.getFromStations();
-        this.getToStations();
+    async mounted(){
+        await this.getFromStations();
+        await this.getToStations();
         
     },
     
 
-    // created(){
-    //     document.addEventListener('click', this.selectDateFalse.bind(this));
-    // }
+
 }
-//console.log(this.fromStations);
+
 </script>
 
 

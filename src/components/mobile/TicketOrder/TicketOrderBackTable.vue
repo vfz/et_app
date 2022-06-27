@@ -733,6 +733,7 @@ export default {
           .nav-link {
             padding: 0;
             @include font($uni,$bold,14px,27px,$deactivate);
+            text-transform: unset;
           }
           .active {
             background: none;

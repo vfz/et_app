@@ -741,5 +741,6 @@ export default {
 }
 .btn {
   font-size: 24px;
+  border-radius: 16px;
 }
 </style>

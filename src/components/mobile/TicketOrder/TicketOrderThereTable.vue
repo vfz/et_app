@@ -616,8 +616,7 @@ export default {
           @include font($uni, $light, 11px, 14.85px, $blue-color);
         }
         .amount {
-          @include font($uni,$regular,18px,24.3px,$base);
-          margin-right: 8px;
+          @include font($uni,$regular,13px,17.55px,$base);
         }
         .dispatch-time:hover {
           @include animation;

@@ -636,7 +636,7 @@ export default {
         margin-bottom: 8px;
       }
       &-place {
-        @include font($uni, $light, 14px, 18.9px, $blue-link);
+        @include font($uni, $light, 11px, 18.9px, $blue-active);
       }
     }
     &-right {
@@ -674,7 +674,7 @@ export default {
         margin-bottom: 8px;
       }
       &-place {
-        @include font($uni, $light, 14px, 18.9px, $blue-link);
+        @include font($uni, $light, 11px, 18.9px, $blue-active);
       }
     }
     &-center {

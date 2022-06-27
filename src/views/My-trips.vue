@@ -9,6 +9,7 @@
   <LoginModal/>
   <RegistrationModal/>
   <ForgotPasswordModal/>
+  <DispatchLengthTimeModal/>
 </div>
 </template>
 
@@ -22,9 +23,11 @@ import SectionTitle from "@/components/SectionTitle";
 import EmptyHistory from "@/components/EmptyHistory";
 import SectionImage from "@/components/SectionImage";
 import TripsHistory from "@/components/TripsHistory";
+import DispatchLengthTimeModal from "@/components/Dispatch-length-time-modal";
 export default {
   name: "My-trips",
   components: {
+    DispatchLengthTimeModal,
     TripsHistory,
     SectionImage,
     EmptyHistory, SectionTitle, ForgotPasswordModal, RegistrationModal, LoginModal, Footer, Header}

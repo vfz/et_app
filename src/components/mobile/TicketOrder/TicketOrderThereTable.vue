@@ -99,10 +99,8 @@
                   <h3 class="table-item-part-right-title">
                     Места
                   </h3>
-                  <div class="table-item-part-right-date">
-                    <div class="arrival-time table-link" data-bs-toggle="modal" data-bs-target="#place-left-modal">
-                      33,34,35,36
-                    </div>
+                  <div class="table-item-part-right-reserved-places table-link">
+                    33,34,35,36
                   </div>
                 </div>
               </div>
@@ -682,6 +680,9 @@ export default {
       }
       &-place {
         @include font($uni, $light, 11px, 18.9px, $blue-active);
+      }
+      &-reserved-places {
+        @include font($uni,$regular,13px,17.55px,$base);
       }
     }
     &-center {

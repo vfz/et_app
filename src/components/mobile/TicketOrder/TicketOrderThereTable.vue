@@ -614,6 +614,7 @@ export default {
             @include font($uni,$regular,12px,24.3px,$secondary)
           }
           &-day {
+            font-size: 14px;
             margin-right: 4px;
           }
           &-month, &-year {
@@ -651,6 +652,7 @@ export default {
           }
           &-day {
             margin-right: 4px;
+            font-size: 14px;
           }
           &-month, &-year {
             font-size: 10px;

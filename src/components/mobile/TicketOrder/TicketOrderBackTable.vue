@@ -615,6 +615,7 @@ export default {
           }
           &-day {
             margin-right: 4px;
+            font-size: 14px;
           }
           &-month, &-year {
             font-size: 10px;
@@ -651,6 +652,7 @@ export default {
           }
           &-day {
             margin-right: 4px;
+            font-size: 14px;
           }
           &-month, &-year {
             font-size: 10px;

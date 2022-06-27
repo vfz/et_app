@@ -18,7 +18,7 @@
                     Время отправления
                   </h3>
                   <div class="table-item-part-left-date d-flex flex-wrap">
-                    <div class="dispatch-time">
+                    <div class="dispatch-time w-100">
                       09:30
                     </div>
                     <div class="dispatch-date">
@@ -35,7 +35,7 @@
                     Время прибытия
                   </h3>
                   <div class="table-item-part-right-date d-flex flex-wrap">
-                    <div class="arrival-time">
+                    <div class="arrival-time w-100">
                       05:30
                     </div>
                     <div class="arrival-date">
@@ -598,7 +598,7 @@ export default {
       }
       &-date {
         .dispatch-time {
-          @include font($uni,$bold,18px,24.3px,$base);
+          @include font($uni,$bold,14px,18.9px,$base);
           margin-right: 8px;
         }
         .amount {
@@ -635,7 +635,7 @@ export default {
       }
       &-date {
         .arrival-time {
-          @include font($uni,$bold,18px,24.3px,$base);
+          @include font($uni,$bold,14px,18.9px,$base);
           margin-right: 8px;
         }
         .europoints {

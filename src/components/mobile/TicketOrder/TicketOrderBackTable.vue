@@ -688,8 +688,10 @@ export default {
           background: none;
           outline: none;
           border: none;
-          @include font($uni,$light,18px,24.3px,$blue-color);
+          @include font($uni,$light,13px,17.55px,$blue-active);
           svg {
+            width: 9px;
+            transform: rotate(180deg);
             margin-left: 8px;
           }
         }
@@ -698,7 +700,7 @@ export default {
         margin-bottom: 12px;
         button {
           svg {
-            transform: rotate(180deg);
+            transform: rotate(0deg);
           }
         }
       }

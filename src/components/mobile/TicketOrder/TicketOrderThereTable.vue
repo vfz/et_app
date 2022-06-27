@@ -632,7 +632,8 @@ export default {
         }
       }
       &-city {
-        @include font($uni,$bold,14px,18.9px,$base);
+        @include font($uni,$regular,13px,17.55px,$base);
+        margin-bottom: 8px;
       }
       &-place {
         @include font($uni, $light, 14px, 18.9px, $blue-link);
@@ -669,7 +670,8 @@ export default {
         }
       }
       &-city {
-        @include font($uni,$bold,14px,18.9px,$base);
+        @include font($uni,$regular,13px,17.55px,$base);
+        margin-bottom: 8px;
       }
       &-place {
         @include font($uni, $light, 14px, 18.9px, $blue-link);

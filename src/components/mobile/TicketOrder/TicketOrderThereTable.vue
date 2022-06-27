@@ -575,11 +575,8 @@ export default {
 @import "/src/assets/variables.scss";
 @import "/src/assets/font.scss";
 .title-table {
-  @include font($uni,$bold, 24px, 32.4px, $black);
-  &-counter {
-    font-size: 18px;
-    color: $secondary;
-  }
+  @include font($uni,$bold, 18px, 24.3px, $black);
+  margin-bottom: 16px;
 }
 .table-item {
   max-width: unset;

@@ -613,7 +613,7 @@ export default {
           margin-bottom: 8px;
         }
         .dispatch-length-time-saw {
-          @include font($uni, $light, 11px, 14.85px, $blue-color);
+          @include font($uni, $light, 11px, 14.85px, $blue-active);
         }
         .amount {
           @include font($uni,$regular,13px,17.55px,$base);

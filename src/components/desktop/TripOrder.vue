@@ -469,12 +469,6 @@
                 </div>
               </div>
             </div>
-            <div class="table-amount d-flex justify-content-end">
-              <div class="paths-final-amount d-inline-block position-relative">
-                <div class="old-amount position-absolute">14 000₽</div>
-                Итого <span>11 000 ₽</span>
-              </div>
-            </div>
           </div>
         </div>
       </div>

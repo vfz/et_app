@@ -138,22 +138,6 @@ export default {
 @import "@/assets/variables.scss";
 @import "@/assets/font.scss";
 .trip-order {
-  .nav-tabs {
-    position: relative;
-    z-index: 1;
-    .nav-link {
-      @include font($uni,$bold,24px,32.4px,$base);
-      text-transform: unset;
-      border-top-left-radius: 16px;
-      border-top-right-radius: 16px;
-      border-bottom: none;
-    }
-    .active {
-      border-color: unset;
-      border-bottom: none;
-      box-shadow: $regular-shadow;
-    }
-  }
   .tab-content {
     position: relative;
     z-index: 2;
@@ -225,103 +209,6 @@ export default {
             margin-bottom: 24px;
             @include font($uni,$bold,24px,32.4px,$base);
           }
-          .nav-tabs {
-            .nav-item {
-              box-shadow: none;
-              margin-right: 40px;
-              .nav-link {
-                padding: 0;
-                @include font($uni,$bold,20px,27px,$deactivate);
-              }
-              .active {
-                background: none;
-                color: $blue-active;
-                box-shadow: none;
-                border-bottom: 1px solid $blue-active;
-                padding-bottom: 4px;
-              }
-            }
-            .nav-item:last-child {
-              margin-right: 0;
-            }
-          }
-          .tab-content {
-            .tab-pane {
-              .ticket-info-wrapper {
-                padding-top: 12px;
-                padding-bottom: 12px;
-                &-footer {
-                  margin-top: 24px;
-                  .cancel-ticket {
-                    button {
-                      background: none;
-                      border: none;
-                      outline: none;
-                      padding: 0;
-                      @include font($uni,$light,18px,24.3px,$blue-color);
-                      svg {
-                        margin-left: 8px;
-                      }
-                    }
-                  }
-                  .cancel-ticket-description {
-                    @include font($uni,$light,18px,24.3px,$blue-active);
-                    span {
-                      font-weight: $regular;
-                    }
-                  }
-                }
-                .list-group {
-                  &-item {
-                    background: none;
-                    border: none;
-                    padding-left: 0;
-                    padding-right: 0;
-                    &-title {
-                      @include font($uni,$regular,18px,24.3px,$secondary);
-                      margin-bottom: 8px;
-                    }
-                    &-description {
-                      @include font($uni,$regular,18px,24.3px,$base);
-                    }
-                  }
-                }
-              }
-            }
-          }
-          .buyer-info {
-            &-title {
-              @include font($uni,$bold,20px,27px,$base);
-              margin-bottom: 16px;
-            }
-            &-description-title {
-              @include font($uni,$regular,18px,24.3px,$secondary);
-              margin-bottom: 0;
-            }
-            &-description {
-              @include font($uni,$light,18px,24.3px,$secondary);
-              margin-bottom: 8px;
-              span {
-                color: $base;
-                font-weight: $regular;
-              }
-            }
-            .list-group {
-              &-item {
-                background: none;
-                border: none;
-                padding-left: 0;
-                padding-right: 0;
-                &-title {
-                  @include font($uni,$regular,18px,24.3px,$secondary);
-                  margin-bottom: 8px;
-                }
-                &-description {
-                  @include font($uni,$regular,18px,24.3px,$base);
-                }
-              }
-            }
-          }
         }
       }
       .footer-table {
@@ -349,20 +236,6 @@ export default {
           span {
             color: $blue-color;
           }
-        }
-      }
-    }
-    .table-amount {
-      margin-top: 8px;
-      .paths-final-amount {
-        margin-top: 24px;
-        @include font($uni,$bold,20px,27px,$blue-active);
-        text-transform: uppercase;
-        .old-amount {
-          @include font($uni,$bold,14px,18.9px,$secondary);
-          text-decoration: line-through;
-          top: -15px;
-          right: 0;
         }
       }
     }

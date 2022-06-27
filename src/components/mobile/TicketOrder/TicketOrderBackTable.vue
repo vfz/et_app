@@ -607,7 +607,7 @@ export default {
       }
       &-date {
         .dispatch-time {
-          @include font($uni,$bold,14px,18.9px,$base);
+          @include font($uni,$regular,13px,17.55px,$base);
           margin-right: 8px;
         }
         .amount {
@@ -646,7 +646,7 @@ export default {
       }
       &-date {
         .arrival-time {
-          @include font($uni,$bold,14px,18.9px,$base);
+          @include font($uni,$regular,13px,17.55px,$base);
           margin-right: 8px;
         }
         .europoints {

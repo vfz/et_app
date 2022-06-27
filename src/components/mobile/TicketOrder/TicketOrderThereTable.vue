@@ -589,6 +589,7 @@ export default {
 .table-item {
   max-width: unset;
   box-shadow: $regular-shadow;
+  margin-bottom: 16px;
   &-content-wrapper {
     padding-top: 16px;
     padding-left: 16px;

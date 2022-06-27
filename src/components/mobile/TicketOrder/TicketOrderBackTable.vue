@@ -11,7 +11,7 @@
       <div class="col-12">
         <div class="table-item">
           <div class="table-item-content-wrapper">
-            <div class="table-item-content-wrapper-body">
+            <div v-bind:class="{'d-none': isShowDetails}" class="table-item-content-wrapper-body animate__animated">
               <div class="row">
                 <div class="col-6">
                   <div class="table-item-part-left">
@@ -598,6 +598,14 @@ export default {
     padding-left: 16px;
     padding-right: 16px;
     margin-bottom: 16px;
+    &-header {
+      height: 100%;
+      transition: height 1s ease-in;
+    }
+    .hide-wrapper {
+      height: 0;
+      transition: height 1s ease-out;
+    }
   }
   hr {
     margin: 12px 0;

@@ -84,8 +84,12 @@
                     Время в пути
                   </h3>
                   <div class="table-item-part-left-date">
-                    <div class="dispatch-time table-link" data-bs-toggle="modal" data-bs-target="#dispatch-length-time-modal">
+                    <div class="dispatch-time table-link">
                       20 часов
+                    </div>
+                    <!--                  для вызова модального окна нужно добавить атрибуты data-bs-toggle со значением modal и data-bs-target со значением id модального окна-->
+                    <div class="dispatch-length-time-saw table-link" data-bs-toggle="modal" data-bs-target="#dispatch-length-time-modal">
+                      Посмотреть
                     </div>
                   </div>
                 </div>
@@ -608,7 +612,10 @@ export default {
       &-date {
         .dispatch-time {
           @include font($uni,$regular,13px,17.55px,$base);
-          margin-right: 8px;
+          margin-bottom: 8px;
+        }
+        .dispatch-length-time-saw {
+          @include font($uni, $light, 11px, 14.85px, $blue-color);
         }
         .amount {
           @include font($uni,$regular,18px,24.3px,$base);

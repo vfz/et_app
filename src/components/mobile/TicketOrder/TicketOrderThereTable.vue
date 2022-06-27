@@ -51,6 +51,9 @@
             <div class="row">
               <div class="col-6">
                 <div class="table-item-part-left">
+                  <h3 class="table-item-part-left-title">
+                    Пункт отправления
+                  </h3>
                   <div class="table-item-part-left-city">
                     Ставрополь
                   </div>
@@ -61,6 +64,9 @@
               </div>
               <div class="col-6">
                 <div class="table-item-part-right">
+                  <h3 class="table-item-part-right-title">
+                    Пункт прибытия
+                  </h3>
                   <div class="table-item-part-right-city">
                     Москва
                   </div>

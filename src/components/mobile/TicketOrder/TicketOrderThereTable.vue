@@ -11,7 +11,7 @@
       <div class="col-12">
         <div class="table-item">
           <div class="table-item-content-wrapper">
-            <div class="table-item-content-wrapper-body">
+            <div v-bind:class="{'': isShowDetails}" class="table-item-content-wrapper-body">
               <div class="row">
                 <div class="col-6">
                   <div class="table-item-part-left">

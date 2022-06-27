@@ -587,6 +587,9 @@ export default {
     padding-right: 16px;
     margin-bottom: 16px;
   }
+  hr {
+    margin: 12px 0;
+  }
   &-part {
     .table-link {
       cursor: pointer;

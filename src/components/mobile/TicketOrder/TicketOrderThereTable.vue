@@ -610,7 +610,6 @@ export default {
       &-date {
         .dispatch-time {
           @include font($uni,$regular,13px,17.55px,$base);
-          margin-bottom: 8px;
         }
         .dispatch-length-time-saw {
           @include font($uni, $light, 11px, 14.85px, $blue-active);
@@ -651,7 +650,6 @@ export default {
       &-date {
         .arrival-time {
           @include font($uni,$regular,13px,17.55px,$base);
-          margin-right: 8px;
         }
         .europoints {
           @include font($uni,$light,13px,24.3px,$blue-active);

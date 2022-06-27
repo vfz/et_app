@@ -30,6 +30,7 @@ export default {
 .trips-history-section {
   margin-left: 88px;
   margin-right: 88px;
+  margin-bottom: 42px;
   @media screen and (max-width: 767px) {
     margin-left: 20px;
     margin-right: 20px;

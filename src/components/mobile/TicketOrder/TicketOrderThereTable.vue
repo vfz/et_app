@@ -121,7 +121,7 @@
               </div>
               <div class="col-7">
                 <div class="table-item-part-right">
-                  <h3 class="table-item-part-right-title">
+                  <h3 class="table-item-part-right-title mb-0">
                     Использованы
                   </h3>
                   <div class="table-item-part-right-date">
@@ -654,7 +654,7 @@ export default {
           margin-right: 8px;
         }
         .europoints {
-          @include font($uni,$light,13px,24.3px,$blue-color);
+          @include font($uni,$light,13px,24.3px,$blue-active);
         }
         .arrival-time:hover {
           @include animation;

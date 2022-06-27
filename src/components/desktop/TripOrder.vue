@@ -74,8 +74,10 @@
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-6">
-
+                      <div class="col-12">
+                        <h3 class="collapse-section-title">
+                          Информация о билете
+                        </h3>
                       </div>
                     </div>
                   </div>

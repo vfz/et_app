@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-10">
+    <div class="col-9">
       <div class="trip-order">
         <div class="tab-content position-relative" id="nav-tabContent">
           <div class="tab-pane fade show active" id="nav-there" role="tabpanel" aria-labelledby="nav-there-tab">
@@ -479,9 +479,11 @@
         </div>
       </div>
     </div>
-    <div class="col-3">
+    <div class="col-3 d-flex align-items-center">
       <div class="btn-repeat-trip">
-
+        <button class="btn btn-primary btn-lg">
+          Повторить поездку
+        </button>
       </div>
     </div>
   </div>
@@ -512,233 +514,238 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/variables.scss";
 @import "@/assets/font.scss";
-.nav-tabs {
-  position: relative;
-  z-index: 1;
-  .nav-link {
-    @include font($uni,$bold,24px,32.4px,$base);
-    text-transform: unset;
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
-    border-bottom: none;
-  }
-  .active {
-    border-color: unset;
-    border-bottom: none;
-    box-shadow: $regular-shadow;
-  }
-}
-.tab-content {
-  position: relative;
-  z-index: 2;
-  .table-wrapper {
-    background-color: $white;
-    border-radius: 0 16px 16px 16px;
-    box-shadow: $regular-shadow;
-    padding: 12px 0;
-    .table>:not(:first-child) {
-      border-top: unset;
+.trip-order {
+  .nav-tabs {
+    position: relative;
+    z-index: 1;
+    .nav-link {
+      @include font($uni,$bold,24px,32.4px,$base);
+      text-transform: unset;
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
+      border-bottom: none;
     }
-    .table {
-      margin-bottom: 0;
-      td {
-        padding: 1rem 1rem;
+    .active {
+      border-color: unset;
+      border-bottom: none;
+      box-shadow: $regular-shadow;
+    }
+  }
+  .tab-content {
+    position: relative;
+    z-index: 2;
+    .table-wrapper {
+      background-color: $white;
+      border-radius: 0 16px 16px 16px;
+      box-shadow: $regular-shadow;
+      padding: 12px 0;
+      .table>:not(:first-child) {
+        border-top: unset;
       }
-      th {
-        padding: 1rem 1rem;
-      }
-      thead {
-        tr {
-          th {
-            @include font($uni, $regular, 14px, 18.9px, $base);
-          }
+      .table {
+        margin-bottom: 0;
+        td {
+          padding: 1rem 1rem;
         }
-      }
-      tbody {
-        tr {
-          td {
-            .path-trip {
-              &-start, &-end {
-                @include font($uni,$bold,20px,27px,$base);
-              }
-              &-start {
-                margin-right: 8px;
-              }
-              &-end {
-                margin-left: 8px;
-              }
-            }
-            .date-trip, .tickets-count-trip, .amount-sum-trip {
-              @include font($uni,$regular,18px,24.3px,$base);
-            }
-            .date-trip, .arrival-time, .dispatch-city, .arrival-city, .places-left {
-              margin-bottom: 4px;
-            }
-            .added-europoints-trip {
-              @include font($uni,$regular,18px,24.3px,$blue-active);
-            }
-            .table-link {
-              cursor: pointer;
+        th {
+          padding: 1rem 1rem;
+        }
+        thead {
+          tr {
+            th {
+              @include font($uni, $regular, 14px, 18.9px, $base);
             }
           }
         }
-        .active-row {
-          background-color: $blue-hover;
-        }
-        tr:hover{
-          @include animation;
-          background-color: $blue-hover;
+        tbody {
+          tr {
+            td {
+              .path-trip {
+                &-start, &-end {
+                  @include font($uni,$bold,20px,27px,$base);
+                }
+                &-start {
+                  margin-right: 8px;
+                }
+                &-end {
+                  margin-left: 8px;
+                }
+              }
+              .date-trip, .tickets-count-trip, .amount-sum-trip {
+                @include font($uni,$regular,18px,24.3px,$base);
+              }
+              .date-trip, .arrival-time, .dispatch-city, .arrival-city, .places-left {
+                margin-bottom: 4px;
+              }
+              .added-europoints-trip {
+                @include font($uni,$regular,18px,24.3px,$blue-active);
+              }
+              .table-link {
+                cursor: pointer;
+              }
+            }
+          }
+          .active-row {
+            background-color: $blue-hover;
+          }
+          tr:hover{
+            @include animation;
+            background-color: $blue-hover;
+          }
         }
       }
-    }
-    .collapse, .collapsing {
-      .collapse-wrapper {
-        background-color: #F3F7FF;;
-        .collapse-title {
-          margin-top: 13px;
-          margin-bottom: 24px;
-          @include font($uni,$bold,24px,32.4px,$base);
-        }
-        .nav-tabs {
-          .nav-item {
-            box-shadow: none;
-            margin-right: 40px;
-            .nav-link {
-              padding: 0;
-              @include font($uni,$bold,20px,27px,$deactivate);
-            }
-            .active {
-              background: none;
-              color: $blue-active;
+      .collapse, .collapsing {
+        .collapse-wrapper {
+          background-color: #F3F7FF;;
+          .collapse-title {
+            margin-top: 13px;
+            margin-bottom: 24px;
+            @include font($uni,$bold,24px,32.4px,$base);
+          }
+          .nav-tabs {
+            .nav-item {
               box-shadow: none;
-              border-bottom: 1px solid $blue-active;
-              padding-bottom: 4px;
+              margin-right: 40px;
+              .nav-link {
+                padding: 0;
+                @include font($uni,$bold,20px,27px,$deactivate);
+              }
+              .active {
+                background: none;
+                color: $blue-active;
+                box-shadow: none;
+                border-bottom: 1px solid $blue-active;
+                padding-bottom: 4px;
+              }
+            }
+            .nav-item:last-child {
+              margin-right: 0;
             }
           }
-          .nav-item:last-child {
-            margin-right: 0;
-          }
-        }
-        .tab-content {
-          .tab-pane {
-            .ticket-info-wrapper {
-              padding-top: 12px;
-              padding-bottom: 12px;
-              &-footer {
-                margin-top: 24px;
-                .cancel-ticket {
-                  button {
-                    background: none;
-                    border: none;
-                    outline: none;
-                    padding: 0;
-                    @include font($uni,$light,18px,24.3px,$blue-color);
-                    svg {
-                      margin-left: 8px;
+          .tab-content {
+            .tab-pane {
+              .ticket-info-wrapper {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                &-footer {
+                  margin-top: 24px;
+                  .cancel-ticket {
+                    button {
+                      background: none;
+                      border: none;
+                      outline: none;
+                      padding: 0;
+                      @include font($uni,$light,18px,24.3px,$blue-color);
+                      svg {
+                        margin-left: 8px;
+                      }
+                    }
+                  }
+                  .cancel-ticket-description {
+                    @include font($uni,$light,18px,24.3px,$blue-active);
+                    span {
+                      font-weight: $regular;
                     }
                   }
                 }
-                .cancel-ticket-description {
-                  @include font($uni,$light,18px,24.3px,$blue-active);
-                  span {
-                    font-weight: $regular;
-                  }
-                }
-              }
-              .list-group {
-                &-item {
-                  background: none;
-                  border: none;
-                  padding-left: 0;
-                  padding-right: 0;
-                  &-title {
-                    @include font($uni,$regular,18px,24.3px,$secondary);
-                    margin-bottom: 8px;
-                  }
-                  &-description {
-                    @include font($uni,$regular,18px,24.3px,$base);
+                .list-group {
+                  &-item {
+                    background: none;
+                    border: none;
+                    padding-left: 0;
+                    padding-right: 0;
+                    &-title {
+                      @include font($uni,$regular,18px,24.3px,$secondary);
+                      margin-bottom: 8px;
+                    }
+                    &-description {
+                      @include font($uni,$regular,18px,24.3px,$base);
+                    }
                   }
                 }
               }
             }
           }
+          .buyer-info {
+            &-title {
+              @include font($uni,$bold,20px,27px,$base);
+              margin-bottom: 16px;
+            }
+            &-description-title {
+              @include font($uni,$regular,18px,24.3px,$secondary);
+              margin-bottom: 0;
+            }
+            &-description {
+              @include font($uni,$light,18px,24.3px,$secondary);
+              margin-bottom: 8px;
+              span {
+                color: $base;
+                font-weight: $regular;
+              }
+            }
+            .list-group {
+              &-item {
+                background: none;
+                border: none;
+                padding-left: 0;
+                padding-right: 0;
+                &-title {
+                  @include font($uni,$regular,18px,24.3px,$secondary);
+                  margin-bottom: 8px;
+                }
+                &-description {
+                  @include font($uni,$regular,18px,24.3px,$base);
+                }
+              }
+            }
+          }
         }
-        .buyer-info {
-          &-title {
-            @include font($uni,$bold,20px,27px,$base);
-            margin-bottom: 16px;
-          }
-          &-description-title {
-            @include font($uni,$regular,18px,24.3px,$secondary);
-            margin-bottom: 0;
-          }
-          &-description {
-            @include font($uni,$light,18px,24.3px,$secondary);
-            margin-bottom: 8px;
-            span {
-              color: $base;
-              font-weight: $regular;
+      }
+      .footer-table {
+        padding: 1rem 1rem;
+        .details {
+          button {
+            background: none;
+            outline: none;
+            border: none;
+            @include font($uni,$light,18px,24.3px,$blue-color);
+            svg {
+              margin-left: 8px;
             }
           }
-          .list-group {
-            &-item {
-              background: none;
-              border: none;
-              padding-left: 0;
-              padding-right: 0;
-              &-title {
-                @include font($uni,$regular,18px,24.3px,$secondary);
-                margin-bottom: 8px;
-              }
-              &-description {
-                @include font($uni,$regular,18px,24.3px,$base);
-              }
+        }
+        .details-hide {
+          button {
+            svg {
+              transform: rotate(180deg);
             }
+          }
+        }
+        .used-europoints {
+          @include font($uni,$light,18px,24.3px,$base);
+          span {
+            color: $blue-color;
           }
         }
       }
     }
-    .footer-table {
-      padding: 1rem 1rem;
-      .details {
-        button {
-          background: none;
-          outline: none;
-          border: none;
-          @include font($uni,$light,18px,24.3px,$blue-color);
-          svg {
-            margin-left: 8px;
-          }
-        }
-      }
-      .details-hide {
-        button {
-          svg {
-            transform: rotate(180deg);
-          }
-        }
-      }
-      .used-europoints {
-        @include font($uni,$light,18px,24.3px,$base);
-        span {
-          color: $blue-color;
+    .table-amount {
+      margin-top: 8px;
+      .paths-final-amount {
+        margin-top: 24px;
+        @include font($uni,$bold,20px,27px,$blue-active);
+        text-transform: uppercase;
+        .old-amount {
+          @include font($uni,$bold,14px,18.9px,$secondary);
+          text-decoration: line-through;
+          top: -15px;
+          right: 0;
         }
       }
     }
   }
-  .table-amount {
-    margin-top: 8px;
-    .paths-final-amount {
-      margin-top: 24px;
-      @include font($uni,$bold,20px,27px,$blue-active);
-      text-transform: uppercase;
-      .old-amount {
-        @include font($uni,$bold,14px,18.9px,$secondary);
-        text-decoration: line-through;
-        top: -15px;
-        right: 0;
-      }
-    }
-  }
+}
+.btn {
+  font-size: 24px;
 }
 </style>

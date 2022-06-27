@@ -17,7 +17,7 @@
                   <h3 class="table-item-part-left-title">
                     Время отправления
                   </h3>
-                  <div class="table-item-part-left-date d-flex">
+                  <div class="table-item-part-left-date d-flex flex-wrap">
                     <div class="dispatch-time">
                       09:30
                     </div>
@@ -34,7 +34,7 @@
                   <h3 class="table-item-part-right-title">
                     Время прибытия
                   </h3>
-                  <div class="table-item-part-right-date d-flex">
+                  <div class="table-item-part-right-date d-flex flex-wrap">
                     <div class="arrival-time">
                       05:30
                     </div>

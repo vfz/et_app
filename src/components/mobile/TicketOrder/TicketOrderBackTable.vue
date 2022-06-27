@@ -594,7 +594,7 @@ export default {
     &-left {
       &-title {
         @include font($uni,$regular,11px,14.85px,$base);
-        margin-bottom: 10px;
+        margin-bottom: 8px;
       }
       &-date {
         .dispatch-time {
@@ -631,7 +631,7 @@ export default {
     &-right {
       &-title {
         @include font($uni,$regular,11px,14.85px,$base);
-        margin-bottom: 10px;
+        margin-bottom: 8px;
       }
       &-date {
         .arrival-time {

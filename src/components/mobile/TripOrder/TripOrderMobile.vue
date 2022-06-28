@@ -11,9 +11,7 @@
                     Дата поездки
                   </h3>
                   <div class="table-item-part-left-date d-flex">
-                    <div class="trip-info-description">
-                      25.11.2019
-                    </div>
+                    25.11.2019
                   </div>
                 </div>
               </div>

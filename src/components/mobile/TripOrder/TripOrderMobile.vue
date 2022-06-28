@@ -4,91 +4,95 @@
       <div class="col-12">
         <div class="table-item">
           <div class="table-item-content-wrapper">
-            <div class="row">
-              <div class="col-12">
-                <div class="table-item-part-left">
-                  <h3 class="table-item-part-left-title">
-                    Дата поездки
-                  </h3>
-                  <div class="table-item-part-left-date-trip d-flex">
-                    25.11.2019
-                  </div>
-                </div>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-12">
-                <div class="table-item-part-left">
-                  <h3 class="table-item-part-left-title">
-                    Маршрут
-                  </h3>
-                  <div class="table-item-part-left-trip-info-description trip-info-description d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#dispatch-length-time-modal">
-                    <div class="trip-info-description-start">
-                      Белгород
-                    </div>
-                    <ArrowPathIcon/>
-                    <div class="trip-info-description-end">
-                      Ставрополь
+            <div v-bind:class="{'d-none': isShowDetails}" class="table-item-content-wrapper-body">
+              <div class="row">
+                <div class="col-12">
+                  <div class="table-item-part-left">
+                    <h3 class="table-item-part-left-title">
+                      Дата поездки
+                    </h3>
+                    <div class="table-item-part-left-date-trip d-flex">
+                      25.11.2019
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-12">
-                <div class="table-item-part-left">
-                  <h3 class="table-item-part-left-title">
-                    Количество билетов
-                  </h3>
-                  <div class="table-item-part-left-tickets-count-trip">
-                    3
+              <hr>
+              <div class="row">
+                <div class="col-12">
+                  <div class="table-item-part-left">
+                    <h3 class="table-item-part-left-title">
+                      Маршрут
+                    </h3>
+                    <div class="table-item-part-left-trip-info-description trip-info-description d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#dispatch-length-time-modal">
+                      <div class="trip-info-description-start">
+                        Белгород
+                      </div>
+                      <ArrowPathIcon/>
+                      <div class="trip-info-description-end">
+                        Ставрополь
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-12">
-                <div class="table-item-part-left">
-                  <h3 class="table-item-part-left-title">
-                    Итого
-                  </h3>
-                  <div class="table-item-part-left-amount">
-                    4 500 ₽
+              <hr>
+              <div class="row">
+                <div class="col-12">
+                  <div class="table-item-part-left">
+                    <h3 class="table-item-part-left-title">
+                      Количество билетов
+                    </h3>
+                    <div class="table-item-part-left-tickets-count-trip">
+                      3
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-7">
-                <div class="table-item-part-left">
-                  <h3 class="table-item-part-left-title">
-                    Евробаллы
-                  </h3>
-                  <div class="table-item-part-left-europoints">
-                    + 450
+              <hr>
+              <div class="row">
+                <div class="col-12">
+                  <div class="table-item-part-left">
+                    <h3 class="table-item-part-left-title">
+                      Итого
+                    </h3>
+                    <div class="table-item-part-left-amount">
+                      4 500 ₽
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-12 text-center">
-                <div class="table-item-part-center">
-                  <div class="details d-flex justify-content-center align-items-center" v-bind:class="{'d-none': isShowDetails}">
-                    <button v-on:click="showCollapse()" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTicketsDetails" aria-expanded="false" aria-controls="collapseTicketsDetails">
-                      Подробнее
-                      <ArrowDownIcon color="#77BCFC"/>
-                    </button>
+              <hr>
+              <div class="row">
+                <div class="col-7">
+                  <div class="table-item-part-left">
+                    <h3 class="table-item-part-left-title">
+                      Евробаллы
+                    </h3>
+                    <div class="table-item-part-left-europoints">
+                      + 450
+                    </div>
                   </div>
-                  <div class="details details-hide d-flex justify-content-center align-items-center" v-bind:class="{'d-none': isHideDetails}">
-                    <button v-on:click="showCollapse()" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTicketsDetails" aria-expanded="false" aria-controls="collapseTicketsDetails">
-                      Свернуть
-                      <ArrowDownIcon color="#77BCFC"/>
-                    </button>
+                </div>
+              </div>
+              <hr>
+            </div>
+            <div class="table-item-content-wrapper-footer">
+              <div class="row">
+                <div class="col-12 text-center">
+                  <div class="table-item-part-center">
+                    <div class="details d-flex justify-content-center align-items-center" v-bind:class="{'d-none': isShowDetails}">
+                      <button v-on:click="showCollapse()" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTicketsDetails" aria-expanded="false" aria-controls="collapseTicketsDetails">
+                        Подробнее
+                        <ArrowDownIcon color="#77BCFC"/>
+                      </button>
+                    </div>
+                    <div class="details details-hide d-flex justify-content-center align-items-center" v-bind:class="{'d-none': isHideDetails}">
+                      <button v-on:click="showCollapse()" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTicketsDetails" aria-expanded="false" aria-controls="collapseTicketsDetails">
+                        Свернуть
+                        <ArrowDownIcon color="#77BCFC"/>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>

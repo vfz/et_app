@@ -42,10 +42,8 @@
                   <h3 class="table-item-part-left-title">
                     Количество билетов
                   </h3>
-                  <div class="table-item-part-left-date d-flex">
-                    <div class="trip-info-count">
-                      3
-                    </div>
+                  <div class="table-item-part-left-tickets-count-trip">
+                    3
                   </div>
                 </div>
               </div>
@@ -309,6 +307,9 @@ export default {
         .trip-info-description-end {
           margin-left: 8px;
         }
+      }
+      &-tickets-count-trip {
+        @include font($uni,$regular,13px,17.55px,$base);
       }
     }
     &-center {

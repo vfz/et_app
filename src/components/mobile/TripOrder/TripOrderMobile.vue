@@ -349,11 +349,8 @@ export default {
       }
     }
     .collapse-section-title {
-      @include font($uni,$bold,20px,27px,$base);
-      margin-bottom: 16px;
-      @media screen and (max-width: 1199px) {
-        font-size: 14px;
-      }
+      @include font($uni,$bold,14px,18.9px,$base);
+      margin-bottom: 12px;
     }
     .trip-info {
       &-title {

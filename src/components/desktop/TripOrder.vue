@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-xxl-10">
+    <div class="col-xl-9 col-xxl-10">
       <div class="trip-order">
         <div class="tab-content position-relative" id="nav-tabContent">
           <div class="tab-pane fade show active" id="nav-there" role="tabpanel" aria-labelledby="nav-there-tab">
@@ -197,7 +197,7 @@
         </div>
       </div>
     </div>
-    <div class="col-xxl-2 justify-content-end d-flex align-items-center">
+    <div class="col-xl-3 col-xxl-2 justify-content-end d-flex align-items-center">
       <div class="btn-repeat-trip">
         <button class="btn btn-primary">
           Повторить поездку
@@ -392,8 +392,12 @@ export default {
   }
   @media screen and (max-width: 1399px) {
     font-size: 23px;
-    padding-left: unset;
-    padding-right: unset;
+  }
+  @media screen and (max-width: 1303px) {
+    font-size: 20px;
+  }
+  @media screen and (max-width: 1199px) {
+    font-size: 23px;
   }
 }
 .table-link {

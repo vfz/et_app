@@ -8,30 +8,12 @@
               <div class="col-12">
                 <div class="table-item-part-left">
                   <h3 class="table-item-part-left-title">
-                    Время отправления
+                    Дата поездки
                   </h3>
                   <div class="table-item-part-left-date d-flex">
-                    <div class="dispatch-time">
-                      09:30
+                    <div class="trip-info-description">
+                      25.11.2019
                     </div>
-                    <div class="dispatch-date">
-                      <span class="dispatch-date-day">30</span>
-                      <span class="dispatch-date-month">Янв'</span>
-                      <span class="dispatch-date-year">20</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-12">
-                <div class="table-item-part-left">
-                  <div class="table-item-part-left-city">
-                    Ставрополь
-                  </div>
-                  <div class="table-item-part-left-place table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
-                    ж/д вокзал
                   </div>
                 </div>
               </div>
@@ -41,16 +23,30 @@
               <div class="col-12">
                 <div class="table-item-part-left">
                   <h3 class="table-item-part-left-title">
-                    Время отправления
+                    Маршрут
+                  </h3>
+                  <div class="trip-info-description d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#dispatch-length-time-modal">
+                    <div class="trip-info-description-start">
+                      Белгород
+                    </div>
+                    <ArrowPathIcon/>
+                    <div class="trip-info-description-end">
+                      Ставрополь
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-12">
+                <div class="table-item-part-left">
+                  <h3 class="table-item-part-left-title">
+                    Количество билетов
                   </h3>
                   <div class="table-item-part-left-date d-flex">
-                    <div class="dispatch-time">
-                      09:30
-                    </div>
-                    <div class="dispatch-date">
-                      <span class="dispatch-date-day">30</span>
-                      <span class="dispatch-date-month">Янв'</span>
-                      <span class="dispatch-date-year">20</span>
+                    <div class="trip-info-count">
+                      3
                     </div>
                   </div>
                 </div>
@@ -65,7 +61,7 @@
                   </h3>
                   <div class="table-item-part-left-date">
                     <div class="amount">
-                      7000 ₽
+                      4 500 ₽
                     </div>
                   </div>
                 </div>
@@ -76,11 +72,11 @@
               <div class="col-7">
                 <div class="table-item-part-right">
                   <h3 class="table-item-part-right-title">
-                    Использованы
+                    Евробаллы
                   </h3>
                   <div class="table-item-part-right-date">
                     <div class="europoints">
-                      евробаллы (3000 ₽)
+                      + 450
                     </div>
                   </div>
                 </div>

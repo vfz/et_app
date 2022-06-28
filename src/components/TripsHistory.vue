@@ -4,6 +4,7 @@
       <div class="row">
         <div class="col-12">
           <TripOrder v-if="!isMobile()"/>
+          <TripOrderMobile v-if="isMobile()"/>
         </div>
       </div>
     </div>
@@ -12,9 +13,10 @@
 
 <script>
 import TripOrder from "@/components/desktop/TripOrder/TripOrder";
+import TripOrderMobile from "@/components/mobile/TripOrder/TripOrderMobile";
 export default {
   name: "TripsHistory",
-  components: {TripOrder},
+  components: {TripOrderMobile, TripOrder},
   methods: {
     isMobile() {
       return screen.width <= 991;

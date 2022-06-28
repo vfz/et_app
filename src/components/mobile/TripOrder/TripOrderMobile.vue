@@ -353,6 +353,7 @@ export default {
       margin-bottom: 12px;
     }
     .trip-info {
+      margin-bottom: 12px;
       &-title {
         @include font($uni,$regular,13px,17.55px,$secondary);
         margin-bottom: 8px;

@@ -397,7 +397,8 @@ export default {
     font-size: 20px;
   }
   @media screen and (max-width: 1199px) {
-    font-size: 23px;
+    font-size: 15px;
+    padding: 14px 18px;
   }
 }
 .table-link {

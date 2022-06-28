@@ -269,6 +269,10 @@ export default {
               .path-trip {
                 &-start, &-end {
                   @include font($uni,$bold,20px,27px,$base);
+                  @media screen and (max-width: 1199px) {
+                    font-size: 14px;
+                    line-height: 18.9px;
+                  }
                 }
                 &-start {
                   margin-right: 8px;
@@ -279,12 +283,20 @@ export default {
               }
               .date-trip, .tickets-count-trip, .amount-sum-trip {
                 @include font($uni,$regular,18px,24.3px,$base);
+                @media screen and (max-width: 1199px) {
+                  font-size: 13px;
+                  line-height: 17.55px;
+                }
               }
               .date-trip, .arrival-time, .dispatch-city, .arrival-city, .places-left {
                 margin-bottom: 4px;
               }
               .added-europoints-trip {
                 @include font($uni,$regular,18px,24.3px,$blue-active);
+                @media screen and (max-width: 1199px) {
+                  font-size: 13px;
+                  line-height: 17.55px;
+                }
               }
               .table-link {
                 cursor: pointer;
@@ -341,8 +353,15 @@ export default {
             outline: none;
             border: none;
             @include font($uni,$light,18px,24.3px,$blue-color);
+            @media screen and (max-width: 1199px) {
+              font-size: 13px;
+              line-height: 17.55px;
+            }
             svg {
               margin-left: 8px;
+              @media screen and (max-width: 1199px) {
+                width: 9px;
+              }
             }
           }
         }

@@ -199,7 +199,7 @@
     </div>
     <div class="col-xxl-2 justify-content-end d-flex align-items-center">
       <div class="btn-repeat-trip">
-        <button class="btn btn-primary btn-lg">
+        <button class="btn btn-primary">
           Повторить поездку
         </button>
       </div>
@@ -363,8 +363,38 @@ export default {
   }
 }
 .btn {
-  font-size: 24px;
+  font-size: 23px;
   border-radius: 16px;
+  padding-top: 23px;
+  padding-bottom: 23px;
+  @media screen and (max-width: 1866px) {
+    font-size: 22px;
+  }
+  @media screen and (max-width: 1813px) {
+    font-size: 21px;
+  }
+  @media screen and (max-width: 1758px) {
+    font-size: 20px;
+  }
+  @media screen and (max-width: 1702px) {
+    font-size: 19px;
+  }
+  @media screen and (max-width: 1647px) {
+    font-size: 18px;
+  }
+  @media screen and (max-width: 1593px) {
+    font-size: 17px;
+  }
+  @media (min-width: 1400px) and (max-width: 1538px) {
+    font-size: 16px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  @media screen and (max-width: 1399px) {
+    font-size: 23px;
+    padding-left: unset;
+    padding-right: unset;
+  }
 }
 .table-link {
   cursor: pointer;

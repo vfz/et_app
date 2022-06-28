@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import TicketOrder from "@/components/desktop/TicketOrder";
+import TicketOrder from "@/components/desktop/TicketOrder/TicketOrder";
 import TicketOrderMobile from "@/components/mobile/TicketOrder/TicketOrderMobile";
 export default {
   name: "TicketsHistory",

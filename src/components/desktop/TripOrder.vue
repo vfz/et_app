@@ -371,7 +371,7 @@ export default {
             }
           }
           &-link {
-            @include font($uni,$light,18px,24.3px,$blue-link);
+            @include font($uni,$regular,18px,24.3px,$blue-active);
             @media screen and (max-width: 1199px) {
               font-size: 13px;
             }

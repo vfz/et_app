@@ -17,7 +17,7 @@ export default {
   components: {TripOrder},
   methods: {
     isMobile() {
-      return screen.width <= 992;
+      return screen.width <= 991;
     }
   }
 }

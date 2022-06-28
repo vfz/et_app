@@ -10,7 +10,7 @@
                   <h3 class="table-item-part-left-title">
                     Дата поездки
                   </h3>
-                  <div class="table-item-part-left-date d-flex">
+                  <div class="table-item-part-left-date-trip d-flex">
                     25.11.2019
                   </div>
                 </div>
@@ -294,6 +294,9 @@ export default {
       &-title {
         @include font($uni,$regular,11px,14.85px,$base);
         margin-bottom: 10px;
+      }
+      &-date-trip {
+        @include font($uni,$regular,13px,17.55px,$base);
       }
     }
     &-center {

@@ -55,10 +55,8 @@
                   <h3 class="table-item-part-left-title">
                     Итого
                   </h3>
-                  <div class="table-item-part-left-date">
-                    <div class="amount">
-                      4 500 ₽
-                    </div>
+                  <div class="table-item-part-left-amount">
+                    4 500 ₽
                   </div>
                 </div>
               </div>
@@ -294,6 +292,9 @@ export default {
         margin-bottom: 10px;
       }
       &-date-trip {
+        @include font($uni,$regular,13px,17.55px,$base);
+      }
+      &-amount {
         @include font($uni,$regular,13px,17.55px,$base);
       }
       &-trip-info-description {

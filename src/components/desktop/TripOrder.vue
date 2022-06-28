@@ -80,6 +80,91 @@
                         </h3>
                       </div>
                     </div>
+                    <div class="row">
+                      <div class="col">
+                        <div class="trip-info">
+                          <h4 class="trip-info-title">
+                            Маршрут:
+                          </h4>
+                          <div class="trip-info-description d-flex align-items-center">
+                            <div class="trip-info-description-start">
+                              Белгород
+                            </div>
+                            <ArrowPathIcon/>
+                            <div class="trip-info-description-end">
+                              Ставрополь
+                            </div>
+                          </div>
+                          <div class="trip-info-link table-link" data-bs-toggle="modal" data-bs-target="#dispatch-length-time-modal">
+                            Показать карту
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="trip-info">
+                          <h4 class="trip-info-title">
+                            Отправление:
+                          </h4>
+                          <div class="trip-info-description d-flex align-items-center">
+                            <div>25.11.2019</div>
+                            &nbsp;
+                            в
+                            &nbsp;
+                            <div> 15:30</div>
+                          </div>
+                          <div class="trip-info-link table-link" data-bs-toggle="modal" data-bs-target="#dispatch-length-time-modal">
+                            <div>
+                              Автостанция “Белый город”
+                            </div>
+                            <div>
+                              ул. Ленина, 324
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="trip-info">
+                          <h4 class="trip-info-title">
+                            Время в пути:
+                          </h4>
+                          <div class="trip-info-description d-flex align-items-center">
+                            16 часов
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="trip-info">
+                          <h4 class="trip-info-title">
+                            Прибытие:
+                          </h4>
+                          <div class="trip-info-description d-flex align-items-center">
+                            <div>26.11.2019</div>
+                            &nbsp;
+                            в
+                            &nbsp;
+                            <div> 07:30</div>
+                          </div>
+                          <div class="trip-info-link table-link" data-bs-toggle="modal" data-bs-target="#dispatch-length-time-modal">
+                            <div>
+                              Железнодорожный вокзал
+                            </div>
+                            <div>
+                              ул. Вокзальная, 15
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="trip-info">
+                          <h4 class="trip-info-title">
+                            Места:
+                          </h4>
+                          <div class="trip-info-description d-flex align-items-center">
+                            25,26,27
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -210,6 +295,29 @@ export default {
             @include font($uni,$bold,24px,32.4px,$base);
           }
         }
+        .collapse-section-title {
+          @include font($uni,$bold,20px,27px,$base);
+          margin-bottom: 16px;
+        }
+        .trip-info {
+          &-title {
+            @include font($uni,$regular,18px,24.3px,$secondary);
+            margin-bottom: 8px;
+          }
+          &-description {
+            @include font($uni,$regular,18px,24.3px,$base);
+            margin-bottom: 8px;
+            &-start {
+              margin-right: 8px;
+            }
+            &-end {
+              margin-left: 8px;
+            }
+          }
+          &-link {
+            @include font($uni,$light,18px,24.3px,$blue-link);
+          }
+        }
       }
       .footer-table {
         padding: 1rem 1rem;
@@ -244,5 +352,8 @@ export default {
 .btn {
   font-size: 24px;
   border-radius: 16px;
+}
+.table-link {
+  cursor: pointer;
 }
 </style>

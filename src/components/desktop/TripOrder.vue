@@ -256,6 +256,10 @@ export default {
           tr {
             th {
               @include font($uni, $regular, 14px, 18.9px, $base);
+              @media screen and (max-width: 1199px) {
+                font-size: 11px;
+                line-height: 14.85px;
+              }
             }
           }
         }

@@ -64,14 +64,12 @@
             <hr>
             <div class="row">
               <div class="col-7">
-                <div class="table-item-part-right">
-                  <h3 class="table-item-part-right-title">
+                <div class="table-item-part-left">
+                  <h3 class="table-item-part-left-title">
                     Евробаллы
                   </h3>
-                  <div class="table-item-part-right-date">
-                    <div class="europoints">
-                      + 450
-                    </div>
+                  <div class="table-item-part-left-europoints">
+                    + 450
                   </div>
                 </div>
               </div>
@@ -311,6 +309,9 @@ export default {
       }
       &-tickets-count-trip {
         @include font($uni,$regular,13px,17.55px,$base);
+      }
+      &-europoints {
+        @include font($uni,$regular,13px,17.55px,$blue-active);
       }
     }
     &-center {

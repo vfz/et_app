@@ -319,20 +319,33 @@ export default {
           .collapse-title {
             margin-bottom: 24px;
             @include font($uni,$bold,24px,32.4px,$base);
+            @media screen and (max-width: 1199px) {
+              font-size: 18px;
+              margin-bottom: 20px;
+            }
           }
         }
         .collapse-section-title {
           @include font($uni,$bold,20px,27px,$base);
           margin-bottom: 16px;
+          @media screen and (max-width: 1199px) {
+            font-size: 14px;
+          }
         }
         .trip-info {
           &-title {
             @include font($uni,$regular,18px,24.3px,$secondary);
             margin-bottom: 8px;
+            @media screen and (max-width: 1199px) {
+              font-size: 13px;
+            }
           }
           &-description {
             @include font($uni,$regular,18px,24.3px,$base);
             margin-bottom: 8px;
+            @media screen and (max-width: 1199px) {
+              font-size: 13px;
+            }
             &-start {
               margin-right: 8px;
             }
@@ -342,6 +355,9 @@ export default {
           }
           &-link {
             @include font($uni,$light,18px,24.3px,$blue-link);
+            @media screen and (max-width: 1199px) {
+              font-size: 13px;
+            }
           }
         }
       }

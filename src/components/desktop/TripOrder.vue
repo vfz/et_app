@@ -80,7 +80,7 @@
                         </h3>
                       </div>
                     </div>
-                    <div class="row">
+                    <div class="row ticket-info">
                       <div class="col">
                         <div class="trip-info">
                           <h4 class="trip-info-title">
@@ -164,6 +164,16 @@
                           </div>
                         </div>
                       </div>
+                    </div>
+                    <div class="row">
+                      <h3 class="collapse-section-title ">
+                        Информация о пассажирах
+                      </h3>
+                    </div>
+                    <div class="row">
+                      <div class="col"></div>
+                      <div class="col"></div>
+                      <div class="col"></div>
                     </div>
                   </div>
                 </div>
@@ -288,9 +298,9 @@ export default {
       }
       .collapse, .collapsing {
         .collapse-wrapper {
-          background-color: #F3F7FF;;
+          background-color: #F3F7FF;
+          padding: 13px 16px;
           .collapse-title {
-            margin-top: 13px;
             margin-bottom: 24px;
             @include font($uni,$bold,24px,32.4px,$base);
           }
@@ -347,6 +357,9 @@ export default {
         }
       }
     }
+  }
+  .ticket-info {
+    margin-bottom: 24px;
   }
 }
 .btn {

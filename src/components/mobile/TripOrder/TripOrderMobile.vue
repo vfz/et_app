@@ -1,18 +1,11 @@
 <template>
   <div>
-    <div class="row">
-      <div class="col-12">
-        <h2 class="title-table">
-          Туда
-        </h2>
-      </div>
-    </div>
     <div class="row gy-4">
       <div class="col-12">
         <div class="table-item">
           <div class="table-item-content-wrapper">
             <div class="row">
-              <div class="col-6">
+              <div class="col-12">
                 <div class="table-item-part-left">
                   <h3 class="table-item-part-left-title">
                     Время отправления
@@ -29,27 +22,10 @@
                   </div>
                 </div>
               </div>
-              <div class="col-6">
-                <div class="table-item-part-right">
-                  <h3 class="table-item-part-right-title">
-                    Время прибытия
-                  </h3>
-                  <div class="table-item-part-right-date d-flex">
-                    <div class="arrival-time">
-                      05:30
-                    </div>
-                    <div class="arrival-date">
-                      <span class="arrival-date-day">31</span>
-                      <span class="arrival-date-month">Янв'</span>
-                      <span class="arrival-date-year">20</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
             <hr>
             <div class="row">
-              <div class="col-6">
+              <div class="col-12">
                 <div class="table-item-part-left">
                   <div class="table-item-part-left-city">
                     Ставрополь
@@ -59,39 +35,22 @@
                   </div>
                 </div>
               </div>
-              <div class="col-6">
-                <div class="table-item-part-right">
-                  <div class="table-item-part-right-city">
-                    Москва
-                  </div>
-                  <div class="table-item-part-right-place table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
-                    АВ “Орехово”
-                  </div>
-                </div>
-              </div>
             </div>
             <hr>
             <div class="row">
-              <div class="col-6">
+              <div class="col-12">
                 <div class="table-item-part-left">
                   <h3 class="table-item-part-left-title">
-                    Время в пути
+                    Время отправления
                   </h3>
-                  <div class="table-item-part-left-date">
-                    <div class="dispatch-time table-link" data-bs-toggle="modal" data-bs-target="#dispatch-length-time-modal">
-                      20 часов
+                  <div class="table-item-part-left-date d-flex">
+                    <div class="dispatch-time">
+                      09:30
                     </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-6">
-                <div class="table-item-part-right">
-                  <h3 class="table-item-part-right-title">
-                    Места
-                  </h3>
-                  <div class="table-item-part-right-date">
-                    <div class="arrival-time table-link" data-bs-toggle="modal" data-bs-target="#place-left-modal">
-                      33,34,35,36
+                    <div class="dispatch-date">
+                      <span class="dispatch-date-day">30</span>
+                      <span class="dispatch-date-month">Янв'</span>
+                      <span class="dispatch-date-year">20</span>
                     </div>
                   </div>
                 </div>
@@ -99,7 +58,7 @@
             </div>
             <hr>
             <div class="row">
-              <div class="col-5">
+              <div class="col-12">
                 <div class="table-item-part-left">
                   <h3 class="table-item-part-left-title">
                     Итого
@@ -111,6 +70,9 @@
                   </div>
                 </div>
               </div>
+            </div>
+            <hr>
+            <div class="row">
               <div class="col-7">
                 <div class="table-item-part-right">
                   <h3 class="table-item-part-right-title">

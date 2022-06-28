@@ -354,18 +354,12 @@ export default {
     }
     .trip-info {
       &-title {
-        @include font($uni,$regular,18px,24.3px,$secondary);
+        @include font($uni,$regular,13px,17.55px,$secondary);
         margin-bottom: 8px;
-        @media screen and (max-width: 1199px) {
-          font-size: 13px;
-        }
       }
       &-description {
-        @include font($uni,$regular,18px,24.3px,$base);
+        @include font($uni,$regular,13px,17.55px,$base);
         margin-bottom: 8px;
-        @media screen and (max-width: 1199px) {
-          font-size: 13px;
-        }
         &-start {
           margin-right: 8px;
         }
@@ -374,10 +368,7 @@ export default {
         }
       }
       &-link {
-        @include font($uni,$regular,18px,24.3px,$blue-active);
-        @media screen and (max-width: 1199px) {
-          font-size: 13px;
-        }
+        @include font($uni,$regular,13px,17.55px,$blue-active);
       }
     }
   }

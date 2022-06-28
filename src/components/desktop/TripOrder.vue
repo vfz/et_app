@@ -155,9 +155,36 @@
                       </h3>
                     </div>
                     <div class="row">
-                      <div class="col"></div>
-                      <div class="col"></div>
-                      <div class="col"></div>
+                      <div class="col">
+                        <div class="trip-info">
+                          <h4 class="trip-info-title">
+                            ФИО:
+                          </h4>
+                          <div class="trip-info-link table-link">
+                            Ермолаева К.Д.
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="trip-info">
+                          <h4 class="trip-info-title">
+                            ФИО:
+                          </h4>
+                          <div class="trip-info-link table-link">
+                            Ермолаева К.Д.
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="trip-info">
+                          <h4 class="trip-info-title">
+                            ФИО:
+                          </h4>
+                          <div class="trip-info-link table-link">
+                            Ермолаева К.Д.
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

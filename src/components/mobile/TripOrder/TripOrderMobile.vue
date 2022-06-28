@@ -101,124 +101,122 @@
               <!--                убрать класс show для закрытия collapse-->
               <div class="collapse" id="collapseTicketsDetails">
                 <div class="collapse-wrapper">
-                  <div class="container-fluid">
-                    <div class="row">
-                      <div class="col-12">
-                        <h2 class="collapse-title">
-                          Детали поездки
-                        </h2>
-                      </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <h2 class="collapse-title">
+                        Детали поездки
+                      </h2>
                     </div>
-                    <div class="row">
-                      <div class="col-12">
-                        <h3 class="collapse-section-title">
-                          Информация о билете
-                        </h3>
-                      </div>
-                    </div>
-                    <div class="row ticket-info">
-                      <div class="col-lg col-xl">
-                        <div class="trip-info">
-                          <h4 class="trip-info-title">
-                            Маршрут:
-                          </h4>
-                          <div class="trip-info-description d-flex align-items-center">
-                            <div class="trip-info-description-start">
-                              Белгород
-                            </div>
-                            <ArrowPathIcon/>
-                            <div class="trip-info-description-end">
-                              Ставрополь
-                            </div>
-                          </div>
-                          <div class="trip-info-link table-link" data-bs-toggle="modal" data-bs-target="#dispatch-length-time-modal">
-                            Показать карту
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-lg col-xl">
-                        <div class="trip-info">
-                          <h4 class="trip-info-title">
-                            Отправление:
-                          </h4>
-                          <div class="trip-info-description d-flex align-items-center">
-                            25.11.2019 в 15:30
-                          </div>
-                          <div class="trip-info-link table-link" data-bs-toggle="modal" data-bs-target="#dispatch-length-time-modal">
-                            Автостанция “Белый город”
-                            <br>
-                            ул. Ленина, 324
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-lg col-xl">
-                        <div class="trip-info">
-                          <h4 class="trip-info-title">
-                            Время в пути:
-                          </h4>
-                          <div class="trip-info-description d-flex align-items-center">
-                            16 часов
-                          </div>
-                        </div>
-                        <div class="trip-info">
-                          <h4 class="trip-info-title">
-                            Места:
-                          </h4>
-                          <div class="trip-info-description d-flex align-items-center">
-                            25,26,27
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-lg col-xl">
-                        <div class="trip-info">
-                          <h4 class="trip-info-title">
-                            Прибытие:
-                          </h4>
-                          <div class="trip-info-description d-flex align-items-center">
-                            26.11.2019 в 07:30
-                          </div>
-                          <div class="trip-info-link table-link" data-bs-toggle="modal" data-bs-target="#dispatch-length-time-modal">
-                            Железнодорожный вокзал
-                            <br>
-                            ул. Вокзальная, 15
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <h3 class="collapse-section-title ">
-                        Информация о пассажирах
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <h3 class="collapse-section-title">
+                        Информация о билете
                       </h3>
                     </div>
-                    <div class="row">
-                      <div class="col">
-                        <div class="trip-info">
-                          <h4 class="trip-info-title">
-                            ФИО:
-                          </h4>
-                          <div class="trip-info-link table-link">
-                            Ермолаева К.Д.
+                  </div>
+                  <div class="row ticket-info">
+                    <div class="col-lg col-xl">
+                      <div class="trip-info">
+                        <h4 class="trip-info-title">
+                          Маршрут:
+                        </h4>
+                        <div class="trip-info-description d-flex align-items-center">
+                          <div class="trip-info-description-start">
+                            Белгород
+                          </div>
+                          <ArrowPathIcon/>
+                          <div class="trip-info-description-end">
+                            Ставрополь
                           </div>
                         </div>
-                      </div>
-                      <div class="col">
-                        <div class="trip-info">
-                          <h4 class="trip-info-title">
-                            ФИО:
-                          </h4>
-                          <div class="trip-info-link table-link">
-                            Ермолаева К.Д.
-                          </div>
+                        <div class="trip-info-link table-link" data-bs-toggle="modal" data-bs-target="#dispatch-length-time-modal">
+                          Показать карту
                         </div>
                       </div>
-                      <div class="col">
-                        <div class="trip-info">
-                          <h4 class="trip-info-title">
-                            ФИО:
-                          </h4>
-                          <div class="trip-info-link table-link">
-                            Ермолаева К.Д.
-                          </div>
+                    </div>
+                    <div class="col-lg col-xl">
+                      <div class="trip-info">
+                        <h4 class="trip-info-title">
+                          Отправление:
+                        </h4>
+                        <div class="trip-info-description d-flex align-items-center">
+                          25.11.2019 в 15:30
+                        </div>
+                        <div class="trip-info-link table-link" data-bs-toggle="modal" data-bs-target="#dispatch-length-time-modal">
+                          Автостанция “Белый город”
+                          <br>
+                          ул. Ленина, 324
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg col-xl">
+                      <div class="trip-info">
+                        <h4 class="trip-info-title">
+                          Время в пути:
+                        </h4>
+                        <div class="trip-info-description d-flex align-items-center">
+                          16 часов
+                        </div>
+                      </div>
+                      <div class="trip-info">
+                        <h4 class="trip-info-title">
+                          Места:
+                        </h4>
+                        <div class="trip-info-description d-flex align-items-center">
+                          25,26,27
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg col-xl">
+                      <div class="trip-info">
+                        <h4 class="trip-info-title">
+                          Прибытие:
+                        </h4>
+                        <div class="trip-info-description d-flex align-items-center">
+                          26.11.2019 в 07:30
+                        </div>
+                        <div class="trip-info-link table-link" data-bs-toggle="modal" data-bs-target="#dispatch-length-time-modal">
+                          Железнодорожный вокзал
+                          <br>
+                          ул. Вокзальная, 15
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <h3 class="collapse-section-title ">
+                      Информация о пассажирах
+                    </h3>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <div class="trip-info">
+                        <h4 class="trip-info-title">
+                          ФИО:
+                        </h4>
+                        <div class="trip-info-link table-link">
+                          Ермолаева К.Д.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="trip-info">
+                        <h4 class="trip-info-title">
+                          ФИО:
+                        </h4>
+                        <div class="trip-info-link table-link">
+                          Ермолаева К.Д.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="trip-info">
+                        <h4 class="trip-info-title">
+                          ФИО:
+                        </h4>
+                        <div class="trip-info-link table-link">
+                          Ермолаева К.Д.
                         </div>
                       </div>
                     </div>

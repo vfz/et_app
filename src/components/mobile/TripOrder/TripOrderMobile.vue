@@ -346,12 +346,8 @@ export default {
       background-color: #F3F7FF;
       padding: 13px 16px;
       .collapse-title {
-        margin-bottom: 24px;
-        @include font($uni,$bold,24px,32.4px,$base);
-        @media screen and (max-width: 1199px) {
-          font-size: 18px;
-          margin-bottom: 20px;
-        }
+        margin-bottom: 16px;
+        @include font($uni,$bold,18px,24.3px,$base);
       }
     }
     .collapse-section-title {

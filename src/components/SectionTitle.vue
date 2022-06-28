@@ -36,6 +36,7 @@ export default {
     @media screen and (max-width: 991px) {
       font-size: 20px;
       margin-bottom: 24px;
+      line-height: 27px;
     }
   }
 }

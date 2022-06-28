@@ -226,8 +226,8 @@
             </div>
           </div>
           <div class="d-grid">
-            <button class="btn btn-primary price" data-bs-toggle="modal" data-bs-target="#place-left-modal">
-              Сдать
+            <button class="btn btn-primary">
+              Повторить поездку
             </button>
           </div>
         </div>

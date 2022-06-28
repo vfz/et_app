@@ -81,7 +81,7 @@
                       </div>
                     </div>
                     <div class="row ticket-info">
-                      <div class="col">
+                      <div class="col-lg col-xl">
                         <div class="trip-info">
                           <h4 class="trip-info-title">
                             Маршрут:
@@ -100,29 +100,22 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col">
+                      <div class="col-lg col-xl">
                         <div class="trip-info">
                           <h4 class="trip-info-title">
                             Отправление:
                           </h4>
                           <div class="trip-info-description d-flex align-items-center">
-                            <div>25.11.2019</div>
-                            &nbsp;
-                            в
-                            &nbsp;
-                            <div> 15:30</div>
+                            25.11.2019 в 15:30
                           </div>
                           <div class="trip-info-link table-link" data-bs-toggle="modal" data-bs-target="#dispatch-length-time-modal">
-                            <div>
-                              Автостанция “Белый город”
-                            </div>
-                            <div>
-                              ул. Ленина, 324
-                            </div>
+                            Автостанция “Белый город”
+                            <br>
+                            ул. Ленина, 324
                           </div>
                         </div>
                       </div>
-                      <div class="col">
+                      <div class="col-lg col-xl">
                         <div class="trip-info">
                           <h4 class="trip-info-title">
                             Время в пути:
@@ -131,36 +124,27 @@
                             16 часов
                           </div>
                         </div>
-                      </div>
-                      <div class="col">
-                        <div class="trip-info">
-                          <h4 class="trip-info-title">
-                            Прибытие:
-                          </h4>
-                          <div class="trip-info-description d-flex align-items-center">
-                            <div>26.11.2019</div>
-                            &nbsp;
-                            в
-                            &nbsp;
-                            <div> 07:30</div>
-                          </div>
-                          <div class="trip-info-link table-link" data-bs-toggle="modal" data-bs-target="#dispatch-length-time-modal">
-                            <div>
-                              Железнодорожный вокзал
-                            </div>
-                            <div>
-                              ул. Вокзальная, 15
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col">
                         <div class="trip-info">
                           <h4 class="trip-info-title">
                             Места:
                           </h4>
                           <div class="trip-info-description d-flex align-items-center">
                             25,26,27
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg col-xl">
+                        <div class="trip-info">
+                          <h4 class="trip-info-title">
+                            Прибытие:
+                          </h4>
+                          <div class="trip-info-description d-flex align-items-center">
+                            26.11.2019 в 07:30
+                          </div>
+                          <div class="trip-info-link table-link" data-bs-toggle="modal" data-bs-target="#dispatch-length-time-modal">
+                            Железнодорожный вокзал
+                            <br>
+                            ул. Вокзальная, 15
                           </div>
                         </div>
                       </div>

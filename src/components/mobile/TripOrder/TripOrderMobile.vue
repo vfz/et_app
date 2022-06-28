@@ -509,6 +509,7 @@
 <script>
 import ArrowDownIcon from "@/components/icons/ArrowDownIcon";
 import CancelIcon from "@/components/icons/CancelIcon";
+import ArrowPathIcon from "@/components/icons/ArrowPathIcon";
 
 export default {
   name: "TripOrderMobile",
@@ -525,6 +526,7 @@ export default {
     }
   },
   components: {
+    ArrowPathIcon,
     ArrowDownIcon, CancelIcon
   }
 }

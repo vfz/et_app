@@ -116,7 +116,7 @@
                     </div>
                   </div>
                   <div class="row ticket-info">
-                    <div class="col-12">
+                    <div class="col-12 col-sm-6 col-md-12">
                       <div class="trip-info">
                         <h4 class="trip-info-title">
                           Маршрут:
@@ -135,7 +135,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 col-sm-6 col-md-12">
                       <div class="trip-info">
                         <h4 class="trip-info-title">
                           Отправление:
@@ -150,7 +150,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 col-sm-6 col-md-12">
                       <div class="trip-info">
                         <h4 class="trip-info-title">
                           Время в пути:
@@ -168,7 +168,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 col-sm-6 col-md-12">
                       <div class="trip-info">
                         <h4 class="trip-info-title">
                           Прибытие:
@@ -190,7 +190,7 @@
                     </h3>
                   </div>
                   <div class="row">
-                    <div class="col-12">
+                    <div class="col-12 col-sm-6 col-md-12">
                       <div class="trip-info">
                         <h4 class="trip-info-title">
                           ФИО:
@@ -200,7 +200,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 col-sm-6 col-md-12">
                       <div class="trip-info">
                         <h4 class="trip-info-title">
                           ФИО:
@@ -210,7 +210,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 col-sm-6 col-md-12">
                       <div class="trip-info">
                         <h4 class="trip-info-title">
                           ФИО:

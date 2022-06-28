@@ -320,9 +320,10 @@ export default {
           background: none;
           outline: none;
           border: none;
-          @include font($uni,$light,18px,24.3px,$blue-color);
+          @include font($uni,$light,13px,17.55px,$blue-active);
           svg {
             margin-left: 8px;
+            width: 9px;
           }
         }
       }

@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import TripOrder from "@/components/desktop/TripOrder";
+import TripOrder from "@/components/desktop/TripOrder/TripOrder";
 export default {
   name: "TripsHistory",
   components: {TripOrder},

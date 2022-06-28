@@ -23,7 +23,7 @@
                   <h3 class="table-item-part-left-title">
                     Маршрут
                   </h3>
-                  <div class="trip-info-description d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#dispatch-length-time-modal">
+                  <div class="table-item-part-left-trip-info-description trip-info-description d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#dispatch-length-time-modal">
                     <div class="trip-info-description-start">
                       Белгород
                     </div>
@@ -297,6 +297,18 @@ export default {
       }
       &-date-trip {
         @include font($uni,$regular,13px,17.55px,$base);
+      }
+      &-trip-info-description {
+        @include font($uni,$bold,14px,18.9px,$base);
+        .trip-info-description-start {
+          margin-right: 8px;
+        }
+        svg {
+          width: 5px;
+        }
+        .trip-info-description-end {
+          margin-left: 8px;
+        }
       }
     }
     &-center {

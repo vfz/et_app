@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-xl-9 col-xxl-10">
+    <div class="col-lg-9 col-xl-9 col-xxl-10">
       <div class="trip-order">
         <div class="tab-content position-relative" id="nav-tabContent">
           <div class="tab-pane fade show active" id="nav-there" role="tabpanel" aria-labelledby="nav-there-tab">
@@ -197,7 +197,7 @@
         </div>
       </div>
     </div>
-    <div class="col-xl-3 col-xxl-2 justify-content-end d-flex align-items-center">
+    <div class="col-lg-3 col-xl-3 col-xxl-2 justify-content-end d-flex align-items-center">
       <div class="btn-repeat-trip">
         <button class="btn btn-primary">
           Повторить поездку

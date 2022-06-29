@@ -2,6 +2,7 @@
 <div class="body-app-white">
   <Header/>
   <ContactMap v-if="!isMobile()"/>
+  <ContactMapMobile/>
   <LoginModal/>
   <RegistrationModal/>
   <ForgotPasswordModal/>
@@ -16,9 +17,10 @@ import LoginModal from "@/components/LoginModal";
 import RegistrationModal from "@/components/RegistrationModal";
 import ForgotPasswordModal from "@/components/ForgotPasswordModal";
 import ContactMap from "@/components/desktop/Contacts/ContactMap";
+import ContactMapMobile from "@/components/mobile/Contacts/ContactMapMobile";
 export default {
   name: "Contacts",
-  components: {ContactMap, LoginModal,ForgotPasswordModal, RegistrationModal, Footer, Header},
+  components: {ContactMapMobile, ContactMap, LoginModal,ForgotPasswordModal, RegistrationModal, Footer, Header},
   methods: {
     isMobile() {
       return screen.width <= 991;

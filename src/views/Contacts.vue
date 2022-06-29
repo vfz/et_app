@@ -1,6 +1,7 @@
 <template>
 <div class="body-app-white">
   <Header/>
+  <ContactMap/>
   <LoginModal/>
   <RegistrationModal/>
   <ForgotPasswordModal/>
@@ -14,9 +15,10 @@ import Footer from "@/components/Footer";
 import LoginModal from "@/components/LoginModal";
 import RegistrationModal from "@/components/RegistrationModal";
 import ForgotPasswordModal from "@/components/ForgotPasswordModal";
+import ContactMap from "@/components/ContactMap";
 export default {
   name: "Contacts",
-  components: { LoginModal,ForgotPasswordModal, RegistrationModal, Footer, Header}
+  components: {ContactMap, LoginModal,ForgotPasswordModal, RegistrationModal, Footer, Header}
 }
 </script>
 

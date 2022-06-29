@@ -14,6 +14,7 @@
           <p class="modal-description deactivate text-center">
             Если у вас есть пожелания, рекомендации или претензии относительно оказанных услуг, пожалуйста, направьте их лично мне.
           </p>
+<!--          TODO добавить стили для валидации формы-->
           <form class="modal-form">
             <div class="mb-3">
               <label for="exampleFormControlInput1" class="form-label">Имя</label>

@@ -38,7 +38,7 @@
                             <h4 class="title-list-footer">Поддержка</h4>
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Написать вам</a>
+                                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#WriteUsModal">Написать вам</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">Возврат билета</a>
@@ -114,6 +114,7 @@
                 </div>
             </div>
         </div>
+      <WriteUsModal/>
     </footer>
 </template>
 <style lang="scss" scoped>
@@ -217,3 +218,9 @@
   }
 }
 </style>
+<script>
+import WriteUsModal from "@/components/WriteUsModal";
+export default {
+  components: {WriteUsModal}
+}
+</script>

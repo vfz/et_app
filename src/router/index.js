@@ -6,6 +6,7 @@ import TicketBooking from "@/views/Ticket-booking";
 import PaymentSuccess from "@/views/Payment-success";
 import PaymentError from "@/views/Payment-error";
 import NotFound from "@/views/NotFound";
+import Tickets from "@/views/Tickets";
 import Contacts from "@/views/Contacts";
 import Profile from "@/views/Profile";
 import TicketRefund from "@/views/Ticket-refund";
@@ -24,7 +25,7 @@ const routes = [{
         component: Home
     },
     {
-        path: '/flight-selection',
+        path: '/flight-selection/:from/:to',
         name: 'Flight-selection',
         component: Flightselection
     },
@@ -42,6 +43,11 @@ const routes = [{
         path: '/payment-error',
         name: 'Payment-error',
         component: PaymentError
+    },
+    {
+        path: '/tickets',
+        name: 'Tickets',
+        component: Tickets
     },
     {
         path: '/contacts',
@@ -92,6 +98,10 @@ const routes = [{
         path: '/404',
         name: '404',
         component: NotFound
+    },
+    {
+        path: '/flight-selection',
+        redirect: '/flight-selection/1/190'
     },
     {
         path: '*',

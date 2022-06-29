@@ -103,7 +103,7 @@ export default {
     }
   }
   &-footer {
-
+    border-top: 0;
   }
 }
 </style>

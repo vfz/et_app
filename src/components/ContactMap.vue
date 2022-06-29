@@ -80,7 +80,12 @@ export default {
     box-shadow: $regular-shadow;
     border-top-right-radius: 88px;
     border-bottom-right-radius: 88px;
+    height: 100%;
     padding: 50px 88px;
+    z-index: 2;
+    .title-section {
+
+    }
     &-block {
       .title-info {
 
@@ -94,7 +99,7 @@ export default {
     }
   }
   .map {
-
+    z-index: 1;
   }
 }
 </style>

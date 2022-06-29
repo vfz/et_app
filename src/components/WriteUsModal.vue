@@ -62,6 +62,7 @@ export default {
   &-body {
     padding-left: 80px;
     padding-right: 80px;
+    padding-bottom: 40px;
     .modal-title {
       @include font($uni,$bold,36px,48.6px,$base);
       margin-bottom: 40px;

@@ -7,11 +7,11 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <h5 class="modal-title" id="WriteUsModalLabel">Помогите стать нам лучше</h5>
-          <p class="modal-description">
+          <h5 class="modal-title text-center" id="WriteUsModalLabel">Помогите стать нам лучше</h5>
+          <p class="modal-description text-center">
             Ваше обращение поступит непосредственно исполнительному директору компании ЕвроТранс.
           </p>
-          <p class="modal-description deactivate">
+          <p class="modal-description deactivate text-center">
             Если у вас есть пожелания, рекомендации или претензии относительно оказанных услуг, пожалуйста, направьте их лично мне.
           </p>
           <form class="modal-form">

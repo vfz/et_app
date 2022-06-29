@@ -294,7 +294,6 @@
 <script>
 import DataPicker from '@/components/DataPicker'
 import {mapGetters,mapActions} from 'vuex'
-import Header from "@/components/Header";
 export default {
   name: "Flight-form",
   components:{DataPicker,},

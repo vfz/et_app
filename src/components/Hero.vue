@@ -98,7 +98,7 @@
                         <div class="card-body">
                           <div class="d-flex justify-content-between align-items-center">
                             <label class="form-label">Пассажиры</label>
-                            <img class="help-icon" alt="help" src="img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
+                            <img class="help-icon" alt="help" src="/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
                           </div>
                           <div class="row">
                             <div class="col">
@@ -130,7 +130,7 @@
                                    v-model="dateArival"
                                    @focus="UpdateselectDate()"
                             >
-                            <span class="input-group-text calendar-span" v-on:click="UpdateselectDate()" ><img class="calendar-icon" alt="calendar" src="img/hero/calendar.svg"></span>
+                            <span class="input-group-text calendar-span" v-on:click="UpdateselectDate()" ><img class="calendar-icon" alt="calendar" src="/img/hero/calendar.svg"></span>
                           </div>
                           <div class="select-date" v-if="selectDate">
                             <DataPicker/>
@@ -224,7 +224,7 @@
                         <div class="card-body">
                           <div class="d-flex justify-content-between align-items-center">
                             <label class="form-label">Пассажиры</label>
-                            <img class="help-icon" alt="help" src="img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
+                            <img class="help-icon" alt="help" src="/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
                           </div>
                           <div class="row">
                             <div class="col">
@@ -256,7 +256,7 @@
                                    v-model="dateArival"
                                    @focus="UpdateselectDate()"
                             >
-                            <span class="input-group-text calendar-span" v-on:click="UpdateselectDate()" ><img class="calendar-icon" alt="calendar" src="img/hero/calendar.svg"></span>
+                            <span class="input-group-text calendar-span" v-on:click="UpdateselectDate()" ><img class="calendar-icon" alt="calendar" src="/img/hero/calendar.svg"></span>
                           </div>
                           <div class="select-date" v-if="selectDate">
                             <DataPicker/>
@@ -281,7 +281,7 @@
                                    v-model="dateBack"
                                    @focus="UpdateselectDateBack()"
                             >
-                            <span class="input-group-text calendar-span" v-on:click="UpdateselectDateBack()" ><img class="calendar-icon" alt="calendar" src="img/hero/calendar.svg"></span>
+                            <span class="input-group-text calendar-span" v-on:click="UpdateselectDateBack()" ><img class="calendar-icon" alt="calendar" src="/img/hero/calendar.svg"></span>
                           </div>
                           <div class="select-date" v-if="selectDateBack">
                             <DataPicker/>
@@ -355,21 +355,23 @@ export default{
     },
     methods: {
         ...mapActions([
-            'getFromStations',
-            'getToStations',
-            'UpdateselectDate',
-            'UpdateselectDateBack',
-            'selectDateFalse',
-            'SetDate',
-            'SetDateBack',
-            'SetDateArival',
-            'setFrom',
-            'setTo',
-            'castling',
-            'PlusAdult',
-            'MinusAdult',
-            'PlusChild',
-            'MinusChild'
+          'from',
+          'to',
+          'getFromStations',
+          'getToStations',
+          'UpdateselectDate',
+          'UpdateselectDateBack',
+          'selectDateFalse',
+          'SetDate',
+          'SetDateBack',
+          'SetDateArival',
+          'setFrom',
+          'setTo',
+          'castling',
+          'PlusAdult',
+          'MinusAdult',
+          'PlusChild',
+          'MinusChild'
             ]),
             
         search(str,target){
@@ -379,7 +381,8 @@ export default{
             return str.toLowerCase().indexOf(target.toLowerCase())+1
         },
         alertPlace(){
-            alert('Едем в '+this.toPlace+' Едем из '+this.fromPlace)
+            // alert('Едем в '+this.toPlace+' Едем из '+this.fromPlace)
+            this.$router.push('/flight-selection/'+this.from+'/'+this.to)
         },
         //Переключение кнопок в полях кол-ва пассажиров в Desabled Enabled
         changeClass() {

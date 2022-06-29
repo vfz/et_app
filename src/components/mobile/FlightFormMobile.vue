@@ -43,7 +43,7 @@
                           <span>Ставрополь</span>
                         </div>
                         <div id="swiper-inputs" class="swiper-inputs" v-on:click="castling();temp = fromPlace;fromPlace = toPlace;toPlace = temp;">
-                          <img alt="swiper-inputs-icon" class="swiper-inputs-icon" src="img/hero/arrows-mobile.svg">
+                          <img alt="swiper-inputs-icon" class="swiper-inputs-icon" src="/img/hero/arrows-mobile.svg">
                         </div>
                         <div class="cross-line first-line"></div>
                       </div>
@@ -67,7 +67,7 @@
                                 <span class="dispatch-date-year">20</span>
                               </div>
                               <div>
-                                <span class="input-group-text calendar-span" v-on:click="UpdateselectDate()" ><img class="calendar-icon" alt="calendar" src="img/hero/calendar.svg"></span>
+                                <span class="input-group-text calendar-span" v-on:click="UpdateselectDate()" ><img class="calendar-icon" alt="calendar" src="/img/hero/calendar.svg"></span>
                               </div>
                             </div>
                           </div>
@@ -95,7 +95,7 @@
                                 <span class="card-desc d-block w-100">Детских</span>
                               </div>
                               <div>
-                                <img class="help-icon" alt="help" src="img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
+                                <img class="help-icon" alt="help" src="/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
                               </div>
                             </div>
                           </div>
@@ -125,7 +125,7 @@
                           <span>Ставрополь</span>
                         </div>
                         <div id="swiper-inputs" class="swiper-inputs" v-on:click="castling();temp = fromPlace;fromPlace = toPlace;toPlace = temp;">
-                          <img alt="swiper-inputs-icon" class="swiper-inputs-icon" src="img/hero/arrows-mobile.svg">
+                          <img alt="swiper-inputs-icon" class="swiper-inputs-icon" src="/img/hero/arrows-mobile.svg">
                         </div>
                         <div class="cross-line first-line"></div>
                       </div>
@@ -149,7 +149,7 @@
                                 <span class="dispatch-date-year">20</span>
                               </div>
                               <div>
-                                <span class="input-group-text calendar-span" v-on:click="UpdateselectDate()" ><img class="calendar-icon" alt="calendar" src="img/hero/calendar.svg"></span>
+                                <span class="input-group-text calendar-span" v-on:click="UpdateselectDate()" ><img class="calendar-icon" alt="calendar" src="/img/hero/calendar.svg"></span>
                               </div>
                             </div>
                           </div>
@@ -164,7 +164,7 @@
                                 <span class="arrival-date-year">20</span>
                               </div>
                               <div>
-                                <span class="input-group-text calendar-span" v-on:click="UpdateselectDate()" ><img class="calendar-icon" alt="calendar" src="img/hero/calendar.svg"></span>
+                                <span class="input-group-text calendar-span" v-on:click="UpdateselectDate()" ><img class="calendar-icon" alt="calendar" src="/img/hero/calendar.svg"></span>
                               </div>
                             </div>
                           </div>
@@ -192,7 +192,7 @@
                                 <span class="card-desc d-block w-100">Детских</span>
                               </div>
                               <div>
-                                <img class="help-icon" alt="help" src="img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
+                                <img class="help-icon" alt="help" src="/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
                               </div>
                             </div>
                           </div>

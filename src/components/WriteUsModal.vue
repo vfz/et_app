@@ -32,7 +32,9 @@
               <label for="exampleFormControlTextarea1" class="form-label">Сообщение</label>
               <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Отправить</button>
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary">Отправить</button>
+            </div>
           </form>
         </div>
       </div>
@@ -96,6 +98,11 @@ export default {
       }
       .mb-3:last-child {
         margin-bottom: 1rem !important;
+      }
+      .btn {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        @include font($uni,$regular,18px,24.3px,$white);
       }
     }
   }

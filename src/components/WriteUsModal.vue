@@ -116,6 +116,7 @@ export default {
           padding-top: 12px;
           padding-bottom: 12px;
           box-shadow: $regular-shadow;
+          height: 48px;
           @media screen and (max-width: 991px) {
             font-size: 14px;
             line-height: 18.9px;
@@ -135,6 +136,9 @@ export default {
           padding-right: 20px;
           right: 0;
           border-radius: 8px;
+        }
+        textarea {
+          height: auto !important;
         }
       }
       .mb-3:last-child {

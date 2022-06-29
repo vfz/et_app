@@ -15,7 +15,7 @@ import Footer from "@/components/Footer";
 import LoginModal from "@/components/LoginModal";
 import RegistrationModal from "@/components/RegistrationModal";
 import ForgotPasswordModal from "@/components/ForgotPasswordModal";
-import ContactMap from "@/components/ContactMap";
+import ContactMap from "@/components/desktop/Contacts/ContactMap";
 export default {
   name: "Contacts",
   components: {ContactMap, LoginModal,ForgotPasswordModal, RegistrationModal, Footer, Header},

@@ -75,8 +75,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "src/assets/variables.scss";
-@import "src/assets/font.scss";
+@import "../../../assets/variables";
+@import "../../../assets/font";
 
 .contact-map-wrapper {
   .contact-map-info {

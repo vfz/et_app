@@ -24,9 +24,14 @@
               <label for="exampleFormControlInput1" class="form-label">Телефон</label>
               <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Введите ваш номер телефона">
             </div>
-            <div class="mb-3">
+            <div class="mb-3 input-group position-relative">
               <label for="exampleFormControlInput1" class="form-label">Эл. почта</label>
-              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Введите ваш email">
+              <div class="input-group position-relative">
+                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Введите ваш email">
+                <div class="icon-bg position-absolute d-flex align-items-center">
+                  <MailIcon/>
+                </div>
+              </div>
             </div>
             <div class="mb-3">
               <label for="exampleFormControlTextarea1" class="form-label">Сообщение</label>
@@ -43,8 +48,10 @@
 </template>
 
 <script>
+import MailIcon from "@/components/icons/MailIcon";
 export default {
-  name: "WriteUsModal"
+  name: "WriteUsModal",
+  components: {MailIcon}
 }
 </script>
 

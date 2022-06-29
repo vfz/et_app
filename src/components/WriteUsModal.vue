@@ -128,6 +128,14 @@ export default {
         .form-control:-ms-input-placeholder { color: #B5BDDB; }
         .form-control::-ms-input-placeholder { color: #B5BDDB; }
         .form-control::placeholder { color: #B5BDDB; }
+        .icon-bg {
+          background-color: $blue-active;
+          height: 100%;
+          padding-left: 20px;
+          padding-right: 20px;
+          right: 0;
+          border-radius: 8px;
+        }
       }
       .mb-3:last-child {
         margin-bottom: 1rem !important;

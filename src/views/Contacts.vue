@@ -18,7 +18,12 @@ import ForgotPasswordModal from "@/components/ForgotPasswordModal";
 import ContactMap from "@/components/ContactMap";
 export default {
   name: "Contacts",
-  components: {ContactMap, LoginModal,ForgotPasswordModal, RegistrationModal, Footer, Header}
+  components: {ContactMap, LoginModal,ForgotPasswordModal, RegistrationModal, Footer, Header},
+  methods: {
+    isMobile() {
+      return screen.width <= 991;
+    }
+  }
 }
 </script>
 

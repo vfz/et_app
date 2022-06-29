@@ -49,5 +49,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "src/assets/variables.scss";
+@import "src/assets/font.scss";
 
+.modal {
+  &-body {
+    padding-left: 80px;
+    padding-right: 80px;
+    .modal-title {
+      @include font($uni,$bold,36px,48.6px,$base);
+      margin-bottom: 40px;
+    }
+    .modal-description {
+      @include font($uni,$regular,18px,24.3px,$base);
+      margin-bottom: 24px;
+    }
+    .deactivate {
+      color: #B5BDDB;
+      margin-bottom: 32px;
+    }
+  }
+}
 </style>

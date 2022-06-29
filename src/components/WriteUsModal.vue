@@ -32,11 +32,8 @@
               <label for="exampleFormControlTextarea1" class="form-label">Сообщение</label>
               <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
+            <button type="submit" class="btn btn-primary">Отправить</button>
           </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
         </div>
       </div>
     </div>
@@ -101,9 +98,6 @@ export default {
         margin-bottom: 1rem !important;
       }
     }
-  }
-  &-footer {
-    border-top: 0;
   }
 }
 </style>

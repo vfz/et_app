@@ -1,7 +1,7 @@
 <template>
 <div class="body-app-white">
   <Header/>
-  <ContactMap/>
+  <ContactMap v-if="!isMobile()"/>
   <LoginModal/>
   <RegistrationModal/>
   <ForgotPasswordModal/>

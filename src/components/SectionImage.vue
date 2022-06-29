@@ -25,6 +25,9 @@ export default {
   margin-left: 88px;
   margin-right: 88px;
   img {
+    @media screen and (max-width: 991px) {
+      width: 100%;
+    }
     @media (min-width: 992px) {
       width: 698px;
     }

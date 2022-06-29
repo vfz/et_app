@@ -31,7 +31,7 @@
                     <!-- Button trigger modal -->
                     <button type="button" class="remove-button" data-bs-toggle="modal" data-bs-target="#removeModal">
                       Убрать
-                      <CancelIcon/>
+                      <CancelIcon color="#1399FF"/>
                     </button>
                   </div>
                 </div>
@@ -104,7 +104,7 @@
                     <!-- Button trigger modal -->
                     <button type="button" class="remove-button" data-bs-toggle="modal" data-bs-target="#removeModal">
                       Убрать
-                      <CancelIcon/>
+                      <CancelIcon color="#1399FF"/>
                     </button>
                   </div>
                 </div>
@@ -177,7 +177,7 @@
                     <!-- Button trigger modal -->
                     <button type="button" class="remove-button" data-bs-toggle="modal" data-bs-target="#removeModal">
                       Убрать
-                      <CancelIcon/>
+                      <CancelIcon color="#1399FF"/>
                     </button>
                   </div>
                 </div>
@@ -250,7 +250,7 @@
                     <!-- Button trigger modal -->
                     <button type="button" class="remove-button" data-bs-toggle="modal" data-bs-target="#removeModal">
                       Убрать
-                      <CancelIcon/>
+                      <CancelIcon color="#1399FF"/>
                     </button>
                   </div>
                 </div>

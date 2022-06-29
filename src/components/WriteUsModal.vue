@@ -79,21 +79,27 @@ export default {
       .form-label {
         @include font($uni,$regular,18px,24.3px,$secondary);
       }
-      .form-control {
-        @include font($uni,$regular,18px,24.3px,$base);
-        border: none;
-        padding-left: 16px;
-        padding-top: 12px;
-        padding-bottom: 12px;
-        box-shadow: $regular-shadow;
+      .mb-3 {
+        margin-bottom: 32px !important;
+        .form-control {
+          @include font($uni,$regular,18px,24.3px,$base);
+          border: none;
+          padding-left: 16px;
+          padding-top: 12px;
+          padding-bottom: 12px;
+          box-shadow: $regular-shadow;
+        }
+        .form-control::-moz-placeholder {
+          color: #B5BDDB; /* Цвет подсказывающего текста */
+        }
+        .form-control::-webkit-input-placeholder { color: #B5BDDB; }
+        .form-control:-ms-input-placeholder { color: #B5BDDB; }
+        .form-control::-ms-input-placeholder { color: #B5BDDB; }
+        .form-control::placeholder { color: #B5BDDB; }
       }
-      .form-control::-moz-placeholder {
-        color: #B5BDDB; /* Цвет подсказывающего текста */
+      .mb-3:last-child {
+        margin-bottom: 1rem !important;
       }
-      .form-control::-webkit-input-placeholder { color: #B5BDDB; }
-      .form-control:-ms-input-placeholder { color: #B5BDDB; }
-      .form-control::-ms-input-placeholder { color: #B5BDDB; }
-      .form-control::placeholder { color: #B5BDDB; }
     }
   }
   &-footer {

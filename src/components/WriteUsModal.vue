@@ -63,21 +63,42 @@ export default {
     padding-left: 80px;
     padding-right: 80px;
     padding-bottom: 40px;
+    @media screen and (max-width: 991px) {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
     .modal-title {
       @include font($uni,$bold,36px,48.6px,$base);
       margin-bottom: 40px;
+      @media screen and (max-width: 991px) {
+        font-size: 18px;
+        line-height: 24.3px;
+        margin-bottom: 24px;
+      }
     }
     .modal-description {
       @include font($uni,$regular,18px,24.3px,$base);
       margin-bottom: 24px;
+      @media screen and (max-width: 991px) {
+        font-size: 14px;
+        line-height: 18.9px;
+        margin-bottom: 16px;
+      }
     }
     .deactivate {
       color: #B5BDDB;
       margin-bottom: 32px;
+      @media screen and (max-width: 991px) {
+        margin-bottom: 16px;
+      }
     }
     .modal-form {
       .form-label {
         @include font($uni,$regular,18px,24.3px,$secondary);
+        @media screen and (max-width: 991px) {
+          font-size: 14px;
+          line-height: 18.9px;
+        }
       }
       .mb-3 {
         margin-bottom: 32px !important;
@@ -88,6 +109,10 @@ export default {
           padding-top: 12px;
           padding-bottom: 12px;
           box-shadow: $regular-shadow;
+          @media screen and (max-width: 991px) {
+            font-size: 14px;
+            line-height: 18.9px;
+          }
         }
         .form-control::-moz-placeholder {
           color: #B5BDDB; /* Цвет подсказывающего текста */
@@ -104,6 +129,10 @@ export default {
         padding-top: 12px;
         padding-bottom: 12px;
         @include font($uni,$regular,18px,24.3px,$white);
+        @media screen and (max-width: 991px) {
+          font-size: 16px;
+          line-height: 21.6px;
+        }
       }
     }
   }

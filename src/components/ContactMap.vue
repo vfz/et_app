@@ -1,5 +1,41 @@
 <template>
+  <section class="contact-map-section">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="contact-map-wrapper position-relative">
+            <div class="contact-map-info position-absolute">
+              <h1 class="title-section">
+                Контакты
+              </h1>
+              <div class="contact-map-info-block">
+                <h2 class="title-info">
+                  Адрес:
+                </h2>
+                <h3 class="title-address">
+                  Главный офис:
+                </h3>
+                <p class="description-address">
+                  355035, г. Ставрополь, ул. Старомарьевское шоссе, 32ж
+                </p>
+                <h3 class="title-address">
+                  Касса:
+                </h3>
+                <p class="description-address">
+                  355008, г. Ставрополь, ул. проспект Карла Маркса, 1а
+                </p>
+              </div>
+            </div>
+            <div class="map">
+              <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A925af31f9c09ee53d2bab03772075b968e64b2a235f466ab454485f53832734e&amp;source=constructor" width="100%" height="673" frameborder="0">
 
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -8,6 +44,31 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "src/assets/variables.scss";
+@import "src/assets/font.scss";
 
+.contact-map-wrapper {
+  .contact-map-info {
+    background-color: $white;
+    box-shadow: $regular-shadow;
+    border-top-right-radius: 88px;
+    border-bottom-right-radius: 88px;
+    padding: 50px 88px;
+    &-block {
+      .title-info {
+
+      }
+      .title-address {
+
+      }
+      .description-address {
+
+      }
+    }
+  }
+  .map {
+
+  }
+}
 </style>

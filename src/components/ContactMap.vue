@@ -12,18 +12,22 @@
                 <h2 class="title-info">
                   Адрес:
                 </h2>
-                <h3 class="title-address">
-                  Главный офис:
-                </h3>
-                <p class="description-address">
-                  355035, г. Ставрополь, ул. Старомарьевское шоссе, 32ж
-                </p>
-                <h3 class="title-address">
-                  Касса:
-                </h3>
-                <p class="description-address">
-                  355008, г. Ставрополь, ул. проспект Карла Маркса, 1а
-                </p>
+                <div class="address-info">
+                  <h3 class="title-address">
+                    Главный офис:
+                  </h3>
+                  <p class="description-address">
+                    355035, г. Ставрополь, ул. Старомарьевское шоссе, 32ж
+                  </p>
+                </div>
+                <div class="address-info">
+                  <h3 class="title-address">
+                    Касса:
+                  </h3>
+                  <p class="description-address">
+                    355008, г. Ставрополь, ул. проспект Карла Маркса, 1а
+                  </p>
+                </div>
               </div>
               <div class="contact-map-info-block">
                 <h2 class="title-info">
@@ -53,7 +57,7 @@
               </div>
             </div>
             <div class="map">
-              <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A925af31f9c09ee53d2bab03772075b968e64b2a235f466ab454485f53832734e&amp;source=constructor" width="100%" height="673" frameborder="0">
+              <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A925af31f9c09ee53d2bab03772075b968e64b2a235f466ab454485f53832734e&amp;source=constructor" width="100%" height="780" frameborder="0">
 
               </iframe>
             </div>
@@ -84,17 +88,28 @@ export default {
     padding: 50px 88px;
     z-index: 2;
     .title-section {
-
+      @include font($uni,$bold,36px,48.6px,$base);
+      margin-bottom: 40px;
     }
     &-block {
+      margin-bottom: 32px;
       .title-info {
-
+        @include font($uni,$bold,24px,48.6px,$base);
+        margin-bottom: 16px;
+      }
+      .address-info {
+        margin-bottom: 12px;
+      }
+      .address-info:last-child {
+        margin-bottom: 0;
       }
       .title-address {
-
+        @include font($uni,$regular,18px,24.3px,$secondary);
+        margin-bottom: 8px;
       }
       .description-address, .description {
-
+        @include font($uni,$light,18px,24.3px,$base);
+        margin-bottom: 0;
       }
     }
   }

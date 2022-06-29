@@ -54,6 +54,12 @@ export default {
 @import "src/assets/font.scss";
 
 .modal {
+  &-header {
+    border-bottom: 0;
+    padding-right: 40px;
+    padding-left: 40px;
+    padding-top: 40px;
+  }
   &-body {
     padding-left: 80px;
     padding-right: 80px;
@@ -89,6 +95,9 @@ export default {
       .form-control::-ms-input-placeholder { color: #B5BDDB; }
       .form-control::placeholder { color: #B5BDDB; }
     }
+  }
+  &-footer {
+
   }
 }
 </style>

@@ -16,8 +16,8 @@
           </p>
           <form class="modal-form">
             <div class="mb-3">
-              <label for="exampleFormControlInput1" class="form-label">Email address</label>
-              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+              <label for="exampleFormControlInput1" class="form-label">Имя</label>
+              <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Введите ваше имя">
             </div>
             <div class="mb-3">
               <label for="exampleFormControlInput1" class="form-label">Email address</label>
@@ -67,6 +67,11 @@ export default {
     .deactivate {
       color: #B5BDDB;
       margin-bottom: 32px;
+    }
+    .modal-form {
+      .form-label {
+        @include font($uni,$regular,18px,24.3px,$secondary);
+      }
     }
   }
 }

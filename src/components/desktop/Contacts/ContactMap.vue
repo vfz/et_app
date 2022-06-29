@@ -115,6 +115,7 @@ export default {
       }
     }
     .map {
+      height: 780px;
       z-index: 1;
     }
   }

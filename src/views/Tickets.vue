@@ -6,6 +6,9 @@
     <TicketsHistory/>
     <SectionImage src="img/tickets/tickets.svg" alt="билеты"/>
     <Footer/>
+    <DispatchModal/>
+    <dispatch-length-time-modal/>
+    <PlaceLeftModal/>
     <LoginModal/>
     <RegistrationModal/>
     <ForgotPasswordModal/>
@@ -24,9 +27,15 @@ import SectionTitle from "@/components/SectionTitle";
 import EmptyHistory from "@/components/EmptyHistory";
 import SectionImage from "@/components/SectionImage";
 import TicketsHistory from "@/components/TicketsHistory";
+import DispatchModal from "@/components/Dispatch-modal";
+import DispatchLengthTimeModal from "@/components/Dispatch-length-time-modal";
+import PlaceLeftModal from "@/components/Place-left-modal";
 export default {
   name: "Tickets",
   components: {
+    PlaceLeftModal,
+    DispatchLengthTimeModal,
+    DispatchModal,
     TicketsHistory,
     SectionImage,
     EmptyHistory,

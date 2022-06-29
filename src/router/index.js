@@ -7,7 +7,15 @@ import PaymentSuccess from "@/views/Payment-success";
 import PaymentError from "@/views/Payment-error";
 import NotFound from "@/views/NotFound";
 import Tickets from "@/views/Tickets";
-import MyTrips from "@/views/My-trips";
+import Contacts from "@/views/Contacts";
+import Profile from "@/views/Profile";
+import TicketRefund from "@/views/Ticket-refund";
+import LostAndFound from "@/views/Lost-and-found";
+import Jobs from "@/views/Jobs";
+import FAQ from "@/views/FAQ";
+import Europoints from "@/views/Europoints";
+import Agents from "@/views/Agents";
+import About from "@/views/About";
 
 Vue.use(VueRouter)
 
@@ -17,7 +25,7 @@ const routes = [{
         component: Home
     },
     {
-        path: '/flight-selection',
+        path: '/flight-selection/:from/:to',
         name: 'Flight-selection',
         component: Flightselection
     },
@@ -42,14 +50,58 @@ const routes = [{
         component: Tickets
     },
     {
-        path: '/my-trips',
-        name: 'My-trips',
-        component: MyTrips
+        path: '/contacts',
+        name: 'Contacts',
+        component: Contacts
+    },
+    {
+        path: '/profile',
+        name: 'Profile',
+        component: Profile
+    },
+    {
+        path: '/ticket-refund',
+        name: 'Ticket-refund',
+        component: TicketRefund
+    },
+    {
+        path: '/lost-and-found',
+        name: 'Lost-and-found',
+        component: LostAndFound
+    },
+    {
+        path: '/jobs',
+        name: 'Jobs',
+        component: Jobs
+    },
+    {
+        path: '/faq',
+        name: 'FAQ',
+        component: FAQ,
+    },
+    {
+        path: '/europoints',
+        name: 'Europoints',
+        component: Europoints
+    },
+    {
+        path: '/agents',
+        name: 'Agents',
+        component: Agents
+    },
+    {
+        path: '/about',
+        name: 'about',
+        component: About
     },
     {
         path: '/404',
         name: '404',
         component: NotFound
+    },
+    {
+        path: '/flight-selection',
+        redirect: '/flight-selection/1/190'
     },
     {
         path: '*',

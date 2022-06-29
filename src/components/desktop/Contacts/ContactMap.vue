@@ -77,44 +77,46 @@ export default {
 <style lang="scss" scoped>
 @import "../../../assets/variables";
 @import "../../../assets/font";
-
-.contact-map-wrapper {
-  .contact-map-info {
-    background-color: $white;
-    box-shadow: $regular-shadow;
-    border-top-right-radius: 88px;
-    border-bottom-right-radius: 88px;
-    height: 100%;
-    padding: 50px 88px;
-    z-index: 2;
-    .title-section {
-      @include font($uni,$bold,36px,48.6px,$base);
-      margin-bottom: 40px;
+.contact-map-section {
+  margin-bottom: 72px;
+  .contact-map-wrapper {
+    .contact-map-info {
+      background-color: $white;
+      box-shadow: $regular-shadow;
+      border-top-right-radius: 88px;
+      border-bottom-right-radius: 88px;
+      height: 100%;
+      padding: 50px 88px;
+      z-index: 2;
+      .title-section {
+        @include font($uni,$bold,36px,48.6px,$base);
+        margin-bottom: 40px;
+      }
+      &-block {
+        margin-bottom: 32px;
+        .title-info {
+          @include font($uni,$bold,24px,48.6px,$base);
+          margin-bottom: 16px;
+        }
+        .address-info {
+          margin-bottom: 12px;
+        }
+        .address-info:last-child {
+          margin-bottom: 0;
+        }
+        .title-address {
+          @include font($uni,$regular,18px,24.3px,$secondary);
+          margin-bottom: 8px;
+        }
+        .description-address, .description {
+          @include font($uni,$light,18px,24.3px,$base);
+          margin-bottom: 0;
+        }
+      }
     }
-    &-block {
-      margin-bottom: 32px;
-      .title-info {
-        @include font($uni,$bold,24px,48.6px,$base);
-        margin-bottom: 16px;
-      }
-      .address-info {
-        margin-bottom: 12px;
-      }
-      .address-info:last-child {
-        margin-bottom: 0;
-      }
-      .title-address {
-        @include font($uni,$regular,18px,24.3px,$secondary);
-        margin-bottom: 8px;
-      }
-      .description-address, .description {
-        @include font($uni,$light,18px,24.3px,$base);
-        margin-bottom: 0;
-      }
+    .map {
+      z-index: 1;
     }
-  }
-  .map {
-    z-index: 1;
   }
 }
 </style>

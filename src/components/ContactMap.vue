@@ -25,6 +25,32 @@
                   355008, г. Ставрополь, ул. проспект Карла Маркса, 1а
                 </p>
               </div>
+              <div class="contact-map-info-block">
+                <h2 class="title-info">
+                  Почта:
+                </h2>
+                <p class="description">
+                  info@evrotrans.net
+                </p>
+              </div>
+              <div class="contact-map-info-block">
+                <h2 class="title-info">
+                  Телефон:
+                </h2>
+                <a href="tel:88007002099">
+                  <p class="description">
+                    8 (800) 700 – 20 – 99
+                  </p>
+                </a>
+              </div>
+              <div class="contact-map-info-block">
+                <h2 class="title-info">
+                  Время работы:
+                </h2>
+                <p class="description">
+                  Ежедневно, с 8:00 до 19:00
+                </p>
+              </div>
             </div>
             <div class="map">
               <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A925af31f9c09ee53d2bab03772075b968e64b2a235f466ab454485f53832734e&amp;source=constructor" width="100%" height="673" frameborder="0">
@@ -62,7 +88,7 @@ export default {
       .title-address {
 
       }
-      .description-address {
+      .description-address, .description {
 
       }
     }

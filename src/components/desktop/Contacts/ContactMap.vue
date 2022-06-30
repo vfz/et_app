@@ -81,13 +81,13 @@ export default {
             zoom: 14
           });
           // 45.05449907459323,42.037649573402355
-          const placemark = new maps.Placemark([45.05449907459323,42.037649573402355], {}, {
+          const placemark1 = new maps.Placemark([45.05449907459323,42.03901749999995], {}, {
             iconLayout: 'default#image',
-            iconImageHref: '',
+            iconImageHref: '/img/icons/pin.svg',
             iconImageSize: [64,64],
-            iconImageOffcet: [0,0]
-          })
-          map.geoObjects.add(placemark);
+            iconImageOffcet: [-30,0]
+          });
+          map.geoObjects.add(placemark1);
         })
         .catch(error => console.log('Failed to load Yandex Maps', error));
   },

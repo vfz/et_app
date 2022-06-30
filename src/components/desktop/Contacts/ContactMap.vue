@@ -73,8 +73,8 @@ export default {
         .load()
         .then(maps => {
           const map = new maps.Map('map', {
-            center: [45.058066849969286,42.01703872014318],
-            zoom: 14
+            center: this.getMapData().center,
+            zoom: this.getMapData().zoom
           });
           const placemark1 = new maps.Placemark([45.05449907459323,42.03901749999995], {
             balloonContentHeader: 'Главный офис',
@@ -101,6 +101,24 @@ export default {
         })
         .catch(error => console.log('Failed to load Yandex Maps', error));
   },
+  methods: {
+    getMapData() {
+      let mapData = {}
+      if (screen.width <= 1199) {
+        return mapData = {
+          center: [45.05379241526634,41.98180429551291],
+          zoom: 13
+        }
+      }
+      else {
+        console.log('hello2')
+        return mapData ={
+          center: [45.054339958172136,42.00236074540304],
+          zoom: 14
+        }
+      }
+    }
+  }
 }
 </script>
 
@@ -118,6 +136,9 @@ export default {
       height: 100%;
       padding: 50px 88px;
       z-index: 2;
+      @media screen and (max-width: 1199px) {
+        padding: 50px 30px;
+      }
       .title-section {
         @include font($uni,$bold,36px,48.6px,$base);
         margin-bottom: 40px;

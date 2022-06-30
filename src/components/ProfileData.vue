@@ -17,7 +17,10 @@
           </div>
           <div class="col-3 col-lg-6 col-xl-3">
             <label for="password" class="form-label">Пароль</label>
-            <input type="password" class="form-control" id="password">
+            <div class="password-block position-relative">
+              <input type="password" class="form-control" id="password">
+              <EyeCloseIcon class="position-absolute top-50 end-0 translate-middle-y"/>
+            </div>
           </div>
           <div class="col-3 col-lg-6 col-xl-3">
             <label for="passwordNew" class="form-label">Новый пароль</label>
@@ -37,8 +40,10 @@
 </template>
 
 <script>
+import EyeCloseIcon from "@/components/icons/EyeCloseIcon";
 export default {
-  name: "ProfileData"
+  name: "ProfileData",
+  components: {EyeCloseIcon}
 }
 </script>
 

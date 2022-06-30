@@ -5,6 +5,7 @@
       <div class="row">
         <div class="col-10">
           <ProfileData/>
+          <ProfileAutocomplete/>
         </div>
         <div class="col-2">
           <ProfileAvatar/>
@@ -18,9 +19,10 @@
 import SectionTitle from "@/components/SectionTitle";
 import ProfileData from "@/components/ProfileData";
 import ProfileAvatar from "@/components/ProfileAvatar";
+import ProfileAutocomplete from "@/components/ProfileAutocomplete";
 export default {
   name: "ProfileContent",
-  components: {ProfileAvatar, ProfileData, SectionTitle}
+  components: {ProfileAutocomplete, ProfileAvatar, ProfileData, SectionTitle}
 }
 </script>
 

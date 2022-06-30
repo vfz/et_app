@@ -7,7 +7,7 @@
           <DataProfile/>
         </div>
         <div class="col-2">
-
+          <ProfileAvatar/>
         </div>
       </div>
     </div>
@@ -17,9 +17,10 @@
 <script>
 import SectionTitle from "@/components/SectionTitle";
 import DataProfile from "@/components/DataProfile";
+import ProfileAvatar from "@/components/ProfileAvatar";
 export default {
   name: "ProfileContent",
-  components: {DataProfile, SectionTitle}
+  components: {ProfileAvatar, DataProfile, SectionTitle}
 }
 </script>
 

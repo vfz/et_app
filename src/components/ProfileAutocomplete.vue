@@ -1,39 +1,54 @@
 <template>
   <div>
     <h2 class="title-section">
-      Данные аккаунта
+      Данные для автозаполнения
     </h2>
     <form>
       <div class="form-wrapper">
         <div class="row">
           <div class="row">
             <div class="col-3 col-lg-6 col-xl-3">
-              <label for="email" class="form-label">Эл.почта</label>
-              <input type="email" class="form-control" id="email" value="ErmoKris@yandex.ru" placeholder="ErmoKris@yandex.ru">
+              <label for="secondName1" class="form-label">Фамилия</label>
+              <input type="text" class="form-control" id="secondName1" placeholder="Иванов">
             </div>
             <div class="col-3 col-lg-6 col-xl-3">
-              <label for="firstName1" class="form-label">Телефон</label>
-              <input type="text" class="form-control" id="number" value="+7 (123)-456-78-90" placeholder="+7 (123)-456-78-90">
+              <label for="firstName1" class="form-label">Имя</label>
+              <input type="text" class="form-control" id="firstName1" placeholder="Иван">
             </div>
             <div class="col-3 col-lg-6 col-xl-3">
-              <label for="password" class="form-label">Пароль</label>
-              <div class="password-block position-relative">
-                <input :type="passwordFieldType" v-model="password" type="password" class="form-control" id="password">
-                <button v-on:click="switchVisibility()" class="eye-button position-absolute top-50 end-0 translate-middle-y" type="button">
-                  <EyeCloseIcon v-bind:class="{'d-none': isShow}"/>
-                  <EyeOpenIcon v-bind:class="{'d-none' : isHide}"/>
-                </button>
-              </div>
+              <label for="MiddleName1" class="form-label">Отчество</label>
+              <input type="text" class="form-control" id="MiddleName1" placeholder="Иванович">
             </div>
             <div class="col-3 col-lg-6 col-xl-3">
-              <label for="passwordNew" class="form-label">Новый пароль</label>
-              <input type="password" class="form-control" id="passwordNew" placeholder="Введите новый пароль">
+              <label for="birthday1" class="form-label">Дата рождения</label>
+              <input type="text" class="form-control" id="birthday1" placeholder="дд.мм.гггг">
             </div>
           </div>
           <div class="row gy-2">
             <div class="col-3 col-lg-6 col-xl-3">
-              <label for="passwordNewRepeat" class="form-label">Подтверждение</label>
-              <input type="password" class="form-control" id="passwordNewRepeat" placeholder="Повторите новый пароль">
+              <label for="gender1" class="form-label">Пол</label>
+              <select id="gender1" class="form-select">
+                <option selected>Мужской</option>
+                <option>Женский</option>
+              </select>
+            </div>
+            <div class="col-3 col-lg-6 col-xl-3">
+              <label for="citizenship1" class="form-label">Гражданство</label>
+              <select id="citizenship1" class="form-select">
+                <option selected>Российская Федерация</option>
+                <option>...</option>
+              </select>
+            </div>
+            <div class="col-3 col-lg-6 col-xl-3">
+              <label for="document1" class="form-label">Документ</label>
+              <select id="document1" class="form-select">
+                <option selected>Паспорт РФ</option>
+                <option>...</option>
+              </select>
+            </div>
+            <div class="col-3 col-lg-6 col-xl-3">
+              <label for="documentInfo1" class="form-label">Серия и номер документа</label>
+              <input type="text" class="form-control" id="documentInfo1" placeholder="01 23 456789">
             </div>
           </div>
         </div>
@@ -48,6 +63,63 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "src/assets/variables.scss";
+@import "src/assets/font.scss";
 
+.title-section {
+  margin-top: 40px;
+  @include font($uni,$bold,24px,32.4px,$base);
+}
+.form-wrapper {
+  background-color: $white;
+  border-radius: 0 16px 16px 16px;
+  box-shadow: $regular-shadow;
+  padding: 35px 29px;
+  .remove-button {
+    background: none;
+    border: none;
+    @include font($uni,$light,18px,24.3px,$blue-link);
+  }
+  .form-label {
+    @include font($uni,$light,14px,18.9px,$secondary);
+  }
+  .form-control, .form-select {
+    @include font($uni,$regular,18px,24.3px,$base);
+  }
+  .eye-button {
+    background: none;
+    border: none;
+    outline: none;
+  }
+  .form-control {
+    border: none;
+    border-bottom: 1px solid #8F8C8C;
+    border-radius: 0;
+    padding-left: 0;
+  }
+  .form-control:focus {
+    @include animation;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid $blue-active;
+    box-shadow: none;
+  }
+  .form-control::-moz-placeholder {
+    color: #B5BDDB; /* Цвет подсказывающего текста */
+  }
+  .form-control::-webkit-input-placeholder { color: #B5BDDB; }
+  .form-control:-ms-input-placeholder { color: #B5BDDB; }
+  .form-control::-ms-input-placeholder { color: #B5BDDB; }
+  .form-control::placeholder { color: #B5BDDB; }
+  .form-select {
+    border: none;
+    border-bottom: 1px solid #8F8C8C;
+    border-radius: 0;
+    padding-left: 0;
+  }
+  .form-select::selection {
+    color: #B5BDDB;
+  }
+}
 </style>

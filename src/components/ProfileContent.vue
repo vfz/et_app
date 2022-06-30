@@ -1,19 +1,21 @@
 <template>
   <div>
     <SectionTitle title="Личный кабинет" description="Добро пожаловать в личный кабинет. Здесь, вы можете редактировать информацию о себе и пассажирах, на которых Вы оформляли билет, а также изменить свой пароль."/>
-    <section class="profile-section">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-10">
-            <ProfileData/>
-            <ProfileAutocomplete/>
-          </div>
-          <div class="col-2">
-            <ProfileAvatar/>
+    <form>
+      <section class="profile-section">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-10">
+              <ProfileData/>
+              <ProfileAutocomplete/>
+            </div>
+            <div class="col-2">
+              <ProfileAvatar/>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </form>
   </div>
 </template>
 

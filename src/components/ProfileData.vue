@@ -18,9 +18,11 @@
           <div class="col-3 col-lg-6 col-xl-3">
             <label for="password" class="form-label">Пароль</label>
             <div class="password-block position-relative">
-              <input type="password" class="form-control" id="password">
-              <EyeCloseIcon class="position-absolute top-50 end-0 translate-middle-y"/>
-              <EyeOpenIcon/>
+              <input :type="passwordFieldType" v-model="password" type="password" class="form-control" id="password">
+              <button v-on:click="switchVisibility()" class="eye-button position-absolute top-50 end-0 translate-middle-y" type="button">
+                <EyeCloseIcon v-bind:class="{'d-none': isShow}"/>
+                <EyeOpenIcon v-bind:class="{'d-none' : isHide}"/>
+              </button>
             </div>
           </div>
           <div class="col-3 col-lg-6 col-xl-3">
@@ -45,7 +47,24 @@ import EyeCloseIcon from "@/components/icons/EyeCloseIcon";
 import EyeOpenIcon from "@/components/icons/EyeOpenIcon";
 export default {
   name: "ProfileData",
-  components: {EyeOpenIcon, EyeCloseIcon}
+  components: {EyeOpenIcon, EyeCloseIcon},
+  data(){
+    return {
+      password: '',
+      passwordFieldType: 'password',
+      isShow: false,
+      isHide: true,
+    };
+  },
+  methods: {
+    switchVisibility(){
+      this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password';
+      this.isHide = !this.isHide;
+      this.isShow = !this.isShow;
+    },
+    switchIcon() {
+    }
+  }
 }
 </script>
 
@@ -71,6 +90,11 @@ export default {
   }
   .form-control, .form-select {
     @include font($uni,$regular,18px,24.3px,$base);
+  }
+  .eye-button {
+    background: none;
+    border: none;
+    outline: none;
   }
   .form-control {
     border: none;

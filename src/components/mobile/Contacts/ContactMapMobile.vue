@@ -73,8 +73,8 @@ export default {
         .load()
         .then(maps => {
           const map = new maps.Map('mapMobile', {
-            center: [45.05461442599661,42.007275479328975],
-            zoom: 15
+            center: [45.053047838422984,42.02102984715734],
+            zoom: 13
           });
           const placemark1 = new maps.Placemark([45.05449907459323,42.03901749999995], {
             balloonContentHeader: 'Главный офис',

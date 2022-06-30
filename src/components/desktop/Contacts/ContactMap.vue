@@ -77,8 +77,8 @@ export default {
         .load()
         .then(maps => {
           const map = new maps.Map('map', {
-            center: [45.05463867394516,42.01942219305777],
-            zoom: 14
+            center: [45.05461442599661,42.007275479328975],
+            zoom: 15
           });
           const placemark1 = new maps.Placemark([45.05449907459323,42.03901749999995], {}, {
             iconLayout: 'default#image',

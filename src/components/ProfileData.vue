@@ -6,28 +6,6 @@
   <form>
     <div class="form-wrapper">
       <div class="row">
-        <div class="col-12">
-          <div class="checkbox-form d-flex align-items-center justify-content-between w-100">
-            <MyDataButton class="d-none"/>
-            <div class="form-checks">
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" v-on:click="oneWay=true" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
-                <label class="form-check-label" for="inlineRadio1">В одну сторону</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" v-on:click="oneWay=false"  name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                <label class="form-check-label" for="inlineRadio2">Туда-обратно</label>
-              </div>
-            </div>
-            <div class="d-inline-block">
-              <!-- Button trigger modal -->
-              <button type="button" class="remove-button" data-bs-toggle="modal" data-bs-target="#removeModal">
-                Убрать
-                <CancelIcon color="#1399FF"/>
-              </button>
-            </div>
-          </div>
-        </div>
         <div class="row">
           <div class="col-3 col-lg-6 col-xl-3">
             <label for="secondName1" class="form-label">Фамилия</label>
@@ -90,7 +68,7 @@ export default {
 @import "src/assets/font.scss";
 
 .title-section {
-
+  @include font($uni,$bold,24px,32.4px,$base);
 }
 .form-wrapper {
   background-color: $white;

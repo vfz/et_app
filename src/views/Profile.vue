@@ -1,7 +1,7 @@
 <template>
 <div class="body-app-white">
   <Header/>
-
+  <Profile/>
   <Footer/>
 </div>
 </template>
@@ -9,9 +9,10 @@
 <script>
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ProfileContent from "@/components/ProfileContent";
 export default {
   name: "Profile",
-  components: {Footer, Header}
+  components: {Footer, Header, ProfileContent}
 }
 </script>
 

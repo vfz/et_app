@@ -54,9 +54,6 @@ export default {
   border-radius: 0 16px 16px 16px;
   box-shadow: $regular-shadow;
   padding: 35px 29px;
-  .checkbox-form {
-    margin-bottom: 24px;
-  }
   .remove-button {
     background: none;
     border: none;

@@ -70,7 +70,7 @@ export default {
   name: "ContactMapMobile",
   mounted() {
     ymaps
-        .load()
+        .load('https://api-maps.yandex.ru/2.1/?lang=ru_RU')
         .then(maps => {
           const map = new maps.Map('mapMobile', {
             center: [45.053047838422984,42.02102984715734],

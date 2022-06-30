@@ -69,15 +69,19 @@
 </template>
 
 <script>
+import ymaps$1 from 'ymaps';
 export default {
   name: "ContactMap",
   mounted() {
-    // let yandexApiScript = document.createElement('script');
-    // yandexApiScript.setAttribute('src', 'https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=<ваш API-ключ>');
-    // document.head.appendChild(yandexApiScript);
-  },
-  created() {
-    // let map =new ymaps.Map()
+    ymaps$1
+        .load()
+        .then(maps => {
+          const map = new maps.Map('map', {
+            center: [-8.369326, 115.166023],
+            zoom: 7
+          });
+        })
+        .catch(error => console.log('Failed to load Yandex Maps', error));
   },
   methods: {
     yandexMapInit() {

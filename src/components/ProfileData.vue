@@ -20,6 +20,7 @@
             <div class="password-block position-relative">
               <input type="password" class="form-control" id="password">
               <EyeCloseIcon class="position-absolute top-50 end-0 translate-middle-y"/>
+              <EyeOpenIcon/>
             </div>
           </div>
           <div class="col-3 col-lg-6 col-xl-3">
@@ -41,9 +42,10 @@
 
 <script>
 import EyeCloseIcon from "@/components/icons/EyeCloseIcon";
+import EyeOpenIcon from "@/components/icons/EyeOpenIcon";
 export default {
   name: "ProfileData",
-  components: {EyeCloseIcon}
+  components: {EyeOpenIcon, EyeCloseIcon}
 }
 </script>
 

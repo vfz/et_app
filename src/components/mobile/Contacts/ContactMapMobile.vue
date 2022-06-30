@@ -60,13 +60,47 @@
       </div>
     </div>
   </div>
-  <div id="map" class="map"></div>
+  <div id="mapMobile" class="mapMobile"></div>
 </section>
 </template>
 
 <script>
+import ymaps from 'ymaps';
 export default {
-  name: "ContactMapMobile"
+  name: "ContactMapMobile",
+  mounted() {
+    ymaps
+        .load()
+        .then(maps => {
+          const map = new maps.Map('mapMobile', {
+            center: [45.05461442599661,42.007275479328975],
+            zoom: 15
+          });
+          const placemark1 = new maps.Placemark([45.05449907459323,42.03901749999995], {
+            balloonContentHeader: 'Главный офис',
+            balloonContentBody: '355035, г. Ставрополь, ул. Старомарьевское шоссе, 32ж',
+            balloonContentFooter: ''
+          }, {
+            iconLayout: 'default#image',
+            iconImageHref: '/img/icons/pin.svg',
+            iconImageSize: [64,64],
+            iconImageOffcet: [-30,0]
+          });
+          const placemark2 = new maps.Placemark([45.05553107459586,41.998844499999954], {
+            balloonContentHeader: 'Касса',
+            balloonContentBody: '355008, г. Ставрополь, ул. проспект Карла Маркса, 1а',
+            balloonContentFooter: ''
+          }, {
+            iconLayout: 'default#image',
+            iconImageHref: '/img/icons/pin.svg',
+            iconImageSize: [64,64],
+            iconImageOffcet: [-30,0]
+          });
+          map.geoObjects.add(placemark1);
+          map.geoObjects.add(placemark2);
+        })
+        .catch(error => console.log('Failed to load Yandex Maps', error));
+  },
 }
 </script>
 
@@ -110,7 +144,9 @@ export default {
       }
     }
   }
-  .map {
+  .mapMobile {
+    width: 100%;
+    height: 319px;
     margin-bottom: 40px;
   }
 }

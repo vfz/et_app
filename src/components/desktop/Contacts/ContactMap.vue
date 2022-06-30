@@ -80,7 +80,6 @@ export default {
             center: [45.05463867394516,42.01942219305777],
             zoom: 14
           });
-          // 45.05449907459323,42.037649573402355
           const placemark1 = new maps.Placemark([45.05449907459323,42.03901749999995], {}, {
             iconLayout: 'default#image',
             iconImageHref: '/img/icons/pin.svg',

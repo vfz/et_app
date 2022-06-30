@@ -1,5 +1,7 @@
 <template>
+<div class="avatar-section">
 
+</div>
 </template>
 
 <script>
@@ -8,6 +10,11 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "src/assets/variables.scss";
+@import "src/assets/font.scss";
 
+.avatar-section {
+
+}
 </style>

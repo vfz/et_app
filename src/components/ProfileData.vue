@@ -27,13 +27,13 @@
           </div>
           <div class="col-3 col-lg-6 col-xl-3">
             <label for="passwordNew" class="form-label">Новый пароль</label>
-            <input type="password" class="form-control" id="passwordNew">
+            <input type="password" class="form-control" id="passwordNew" placeholder="Введите новый пароль">
           </div>
         </div>
         <div class="row gy-2">
           <div class="col-3 col-lg-6 col-xl-3">
             <label for="passwordNewRepeat" class="form-label">Подтверждение</label>
-            <input type="password" class="form-control" id="passwordNewRepeat">
+            <input type="password" class="form-control" id="passwordNewRepeat" placeholder="Повторите новый пароль">
           </div>
         </div>
       </div>

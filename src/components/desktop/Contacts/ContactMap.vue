@@ -105,11 +105,6 @@ export default {
         })
         .catch(error => console.log('Failed to load Yandex Maps', error));
   },
-  methods: {
-    yandexMapInit() {
-      console.log('hello');
-    }
-  }
 }
 </script>
 

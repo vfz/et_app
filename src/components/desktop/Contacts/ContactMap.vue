@@ -69,17 +69,25 @@
 </template>
 
 <script>
-import ymaps$1 from 'ymaps';
+import ymaps from 'ymaps';
 export default {
   name: "ContactMap",
   mounted() {
-    ymaps$1
+    ymaps
         .load()
         .then(maps => {
           const map = new maps.Map('map', {
-            center: [-8.369326, 115.166023],
-            zoom: 7
+            center: [45.05463867394516,42.01942219305777],
+            zoom: 14
           });
+          // 45.05449907459323,42.037649573402355
+          const placemark = new maps.Placemark([45.05449907459323,42.037649573402355], {}, {
+            iconLayout: 'default#image',
+            iconImageHref: '',
+            iconImageSize: [64,64],
+            iconImageOffcet: [0,0]
+          })
+          map.geoObjects.add(placemark);
         })
         .catch(error => console.log('Failed to load Yandex Maps', error));
   },

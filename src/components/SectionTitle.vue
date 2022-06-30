@@ -6,6 +6,9 @@
         <h1 class="title-section">
           {{title}}
         </h1>
+        <p v-if="description" class="description-section">
+          {{description}}
+        </p>
       </div>
     </div>
   </div>
@@ -15,7 +18,10 @@
 <script>
 export default {
   name: "SectionTitle",
-  props: ['title'],
+  props: {
+    title: String,
+    description: String
+  },
 }
 </script>
 

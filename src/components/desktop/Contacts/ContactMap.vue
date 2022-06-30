@@ -86,7 +86,14 @@ export default {
             iconImageSize: [64,64],
             iconImageOffcet: [-30,0]
           });
+          const placemark2 = new maps.Placemark([45.05553107459586,41.998844499999954], {}, {
+            iconLayout: 'default#image',
+            iconImageHref: '/img/icons/pin.svg',
+            iconImageSize: [64,64],
+            iconImageOffcet: [-30,0]
+          });
           map.geoObjects.add(placemark1);
+          map.geoObjects.add(placemark2);
         })
         .catch(error => console.log('Failed to load Yandex Maps', error));
   },

@@ -4,7 +4,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-10">
-          <DataProfile/>
+          <ProfileData/>
         </div>
         <div class="col-2">
           <ProfileAvatar/>
@@ -16,11 +16,11 @@
 
 <script>
 import SectionTitle from "@/components/SectionTitle";
-import DataProfile from "@/components/DataProfile";
+import ProfileData from "@/components/ProfileData";
 import ProfileAvatar from "@/components/ProfileAvatar";
 export default {
   name: "ProfileContent",
-  components: {ProfileAvatar, DataProfile, SectionTitle}
+  components: {ProfileAvatar, ProfileData, SectionTitle}
 }
 </script>
 

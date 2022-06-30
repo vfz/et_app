@@ -8,6 +8,9 @@
             <div class="col-10">
               <ProfileData/>
               <ProfileAutocomplete/>
+              <button class="btn btn-primary" type="button">
+                Сохранить
+              </button>
             </div>
             <div class="col-2">
               <ProfileAvatar/>
@@ -31,6 +34,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "src/assets/variables.scss";
+@import "src/assets/font.scss";
+
 .profile-section {
   margin-left: 88px;
   margin-right: 88px;
@@ -39,5 +45,11 @@ export default {
     margin-left: 20px;
     margin-right: 20px;
   }
+}
+.btn {
+  @include font($uni,$regular,24px,32.4px,$white);
+  padding: 23px 84px;
+  border-radius: 16px;
+  margin-top: 40px;
 }
 </style>

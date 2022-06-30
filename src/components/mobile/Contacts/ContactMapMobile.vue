@@ -60,11 +60,7 @@
       </div>
     </div>
   </div>
-  <div class="map">
-    <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A925af31f9c09ee53d2bab03772075b968e64b2a235f466ab454485f53832734e&amp;source=constructor" width="100%" height="319" frameborder="0">
-
-    </iframe>
-  </div>
+  <div id="map" class="map"></div>
 </section>
 </template>
 

@@ -5,14 +5,14 @@
       <section class="profile-section">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-10">
+            <div class="col-9">
               <ProfileData/>
               <ProfileAutocomplete/>
               <button class="btn btn-primary" type="button">
                 Сохранить
               </button>
             </div>
-            <div class="col-2">
+            <div class="col-3">
               <ProfileAvatar/>
             </div>
           </div>

@@ -72,9 +72,17 @@
 export default {
   name: "ContactMap",
   mounted() {
-    let yandexApiScript = document.createElement('script');
-    yandexApiScript.setAttribute('src', 'https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=<ваш API-ключ>');
-    document.head.appendChild(yandexApiScript);
+    // let yandexApiScript = document.createElement('script');
+    // yandexApiScript.setAttribute('src', 'https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=<ваш API-ключ>');
+    // document.head.appendChild(yandexApiScript);
+  },
+  created() {
+    // let map =new ymaps.Map()
+  },
+  methods: {
+    yandexMapInit() {
+      console.log('hello');
+    }
   }
 }
 </script>

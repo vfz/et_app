@@ -12,7 +12,7 @@
                 Сохранить
               </button>
             </div>
-            <div class="col-3">
+            <div class="col-3 d-flex align-items-center">
               <ProfileAvatar/>
             </div>
           </div>

@@ -1,7 +1,7 @@
 <template>
 <div class="body-app-white">
   <Header/>
-  <Profile/>
+  <ProfileContent/>
   <Footer/>
 </div>
 </template>

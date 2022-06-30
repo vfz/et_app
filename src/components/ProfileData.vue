@@ -61,8 +61,6 @@ export default {
       this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password';
       this.isHide = !this.isHide;
       this.isShow = !this.isShow;
-    },
-    switchIcon() {
     }
   }
 }

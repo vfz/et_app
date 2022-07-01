@@ -30,7 +30,7 @@
         </div>
       </div>
       <div class="row gy-2">
-        <div class="col-3 col-lg-6 col-xl-3">
+        <div class="col-12 col-lg-6 col-xl-3">
           <label for="passwordNewRepeat" class="form-label">Подтверждение</label>
           <input type="password" class="form-control" id="passwordNewRepeat" placeholder="Повторите новый пароль">
         </div>
@@ -70,6 +70,10 @@ export default {
 
 .title-section {
   @include font($uni,$bold,24px,32.4px,$base);
+  @media screen and (max-width: 991px) {
+    font-size: 18px;
+    line-height: 24.3px;
+  }
 }
 .form-wrapper {
   background-color: $white;
@@ -83,9 +87,17 @@ export default {
   }
   .form-label {
     @include font($uni,$light,14px,18.9px,$secondary);
+    @media screen and (max-width: 991px) {
+      font-size: 11px;
+      line-height: 14.85px;
+    }
   }
   .form-control, .form-select {
     @include font($uni,$regular,18px,24.3px,$base);
+    @media screen and (max-width: 991px) {
+      font-size: 14px;
+      line-height: 18.9px;
+    }
   }
   .eye-button {
     background: none;

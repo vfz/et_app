@@ -7,6 +7,7 @@
       <div class="row">
         <div class="col-10">
           <TicketRefundInfo/>
+          <PersonalInfo/>
         </div>
       </div>
     </div>
@@ -26,9 +27,12 @@ import RegistrationModal from "@/components/RegistrationModal";
 import ForgotPasswordModal from "@/components/ForgotPasswordModal";
 import SectionTitle from "@/components/SectionTitle";
 import TicketRefundInfo from "@/components/TicketRefundInfo";
+import PersonalInfo from "@/components/PersonalInfo";
 export default {
   name: "Ticket-refund",
-  components: {TicketRefundInfo, SectionTitle, ForgotPasswordModal, RegistrationModal, LoginModal, Footer, Header}
+  components: {
+    PersonalInfo,
+    TicketRefundInfo, SectionTitle, ForgotPasswordModal, RegistrationModal, LoginModal, Footer, Header}
 }
 </script>
 

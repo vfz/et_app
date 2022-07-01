@@ -6,15 +6,15 @@
   <div class="form-wrapper">
     <div class="row">
       <div class="row">
-        <div class="col-3 col-lg-6 col-xl-3">
+        <div class="col-12 col-lg-6 col-xl-3">
           <label for="email" class="form-label">Эл.почта</label>
           <input type="email" class="form-control" id="email" value="ErmoKris@yandex.ru" placeholder="ErmoKris@yandex.ru">
         </div>
-        <div class="col-3 col-lg-6 col-xl-3">
+        <div class="col-12 col-lg-6 col-xl-3">
           <label for="firstName1" class="form-label">Телефон</label>
           <input type="text" class="form-control" id="number" value="+7 (123)-456-78-90" placeholder="+7 (123)-456-78-90">
         </div>
-        <div class="col-3 col-lg-6 col-xl-3">
+        <div class="col-12 col-lg-6 col-xl-3">
           <label for="password" class="form-label">Пароль</label>
           <div class="password-block position-relative">
             <input :type="passwordFieldType" v-model="password" type="password" class="form-control" id="password">
@@ -24,7 +24,7 @@
             </button>
           </div>
         </div>
-        <div class="col-3 col-lg-6 col-xl-3">
+        <div class="col-12 col-lg-6 col-xl-3">
           <label for="passwordNew" class="form-label">Новый пароль</label>
           <input type="password" class="form-control" id="passwordNew" placeholder="Введите новый пароль">
         </div>

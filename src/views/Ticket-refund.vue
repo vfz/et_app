@@ -5,7 +5,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-10">
-
+        <TicketRefundInfo/>
       </div>
     </div>
   </div>
@@ -23,9 +23,10 @@ import LoginModal from "@/components/LoginModal";
 import RegistrationModal from "@/components/RegistrationModal";
 import ForgotPasswordModal from "@/components/ForgotPasswordModal";
 import SectionTitle from "@/components/SectionTitle";
+import TicketRefundInfo from "@/components/TicketRefundInfo";
 export default {
   name: "Ticket-refund",
-  components: {SectionTitle, ForgotPasswordModal, RegistrationModal, LoginModal, Footer, Header}
+  components: {TicketRefundInfo, SectionTitle, ForgotPasswordModal, RegistrationModal, LoginModal, Footer, Header}
 }
 </script>
 

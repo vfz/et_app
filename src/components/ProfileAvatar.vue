@@ -5,7 +5,7 @@
       Ермолаева Кристина
     </h4>
   </div>
-  <div>
+  <div class="d-flex justify-content-center d-lg-block">
     <img v-bind:src="url" class="avatar" alt="аватар">
   </div>
   <div class="buttons w-100 d-flex justify-content-center">
@@ -44,10 +44,17 @@ export default {
 @import "src/assets/font.scss";
 
 .avatar-section {
+  @media screen and (max-width: 991px) {
+    margin-bottom: 55px;
+  }
   .username {
     margin-bottom: 24px;
     h4 {
       @include font($uni,$bold,24px,32.4px,$secondary);
+      @media screen and (max-width: 991px) {
+        font-size: 14px;
+        line-height: 18.9px;
+      }
     }
   }
   div {
@@ -79,6 +86,10 @@ export default {
       border: none;
       outline: none;
       @include font($uni,$light,18px,24.3px,$blue-link);
+      @media screen and (max-width: 991px) {
+        font-size: 14px;
+        line-height: 18.9px;
+      }
     }
   }
 }

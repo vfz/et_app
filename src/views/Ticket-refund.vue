@@ -7,7 +7,9 @@
       <div class="row">
         <div class="col-10">
           <TicketRefundInfo/>
-          <PersonalInfo/>
+          <form>
+            <PersonalInfo/>
+          </form>
         </div>
       </div>
     </div>

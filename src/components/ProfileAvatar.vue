@@ -1,8 +1,12 @@
 <template>
 <div class="avatar-section">
-  <img v-bind:src="url" class="avatar" alt="аватар">
-  <button v-on:click="getNewAvatar" type="button" >Открой</button>
-  <input class="d-none" id="avatarUploader" @change="getNewAvatar" accept="image/*" type="file" >
+  <div>
+    <img v-bind:src="url" class="avatar" alt="аватар">
+  </div>
+  <div class="buttons w-100 d-flex justify-content-center">
+    <button v-on:click="getNewAvatar" type="button" >Изменить</button>
+    <input class="d-none" id="avatarUploader" @change="getNewAvatar" accept="image/*" type="file" >
+  </div>
 </div>
 </template>
 
@@ -11,7 +15,7 @@ export default {
   name: "ProfileAvatar",
   data(){
     return {
-      url : '/img/profile/placeholder.png',
+      url : '/img/profile/placeholder.svg',
     }
   },
   methods: {
@@ -35,13 +39,24 @@ export default {
 @import "src/assets/font.scss";
 
 .avatar-section {
-  .avatar {
-    width: 340px;
-    height: 340px;
-    border-radius: 50%;
-    object-fit: cover;
-    object-position: center;
-    box-shadow: $regular-shadow;
+  div {
+    .avatar {
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center;
+      box-shadow: $regular-shadow;
+    }
+  }
+  .buttons {
+    margin-top: 24px;
+    button {
+      background: none;
+      border: none;
+      outline: none;
+      @include font($uni,$light,18px,24.3px,$blue-link);
+    }
   }
 }
 </style>

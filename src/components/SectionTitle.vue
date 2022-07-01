@@ -32,7 +32,7 @@ export default {
 .section-title-section {
   margin-left: 88px;
   margin-right: 88px;
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 991px) {
     margin-left: 20px;
     margin-right: 20px;
   }

@@ -2,13 +2,15 @@
 <div class="body-app-white">
   <Header/>
   <SectionTitle title="Возврат билета"/>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-10">
-        <TicketRefundInfo/>
+  <section class="refund-info">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-10">
+          <TicketRefundInfo/>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
   <Footer/>
   <LoginModal/>
   <RegistrationModal/>

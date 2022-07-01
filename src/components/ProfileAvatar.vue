@@ -1,7 +1,8 @@
 <template>
 <div class="avatar-section">
   <img v-bind:src="url" class="avatar" alt="аватар">
-  <input @change="getNewAvatar" accept="image/*" type="file" >
+  <button v-on:click="getNewAvatar" type="button" >Открой</button>
+  <input class="d-none" id="avatarUploader" @change="getNewAvatar" accept="image/*" type="file" >
 </div>
 </template>
 
@@ -15,9 +16,15 @@ export default {
   },
   methods: {
     getNewAvatar(event) {
-      const file = event.target.files[0]
-      this.url = URL.createObjectURL(file);
-      return this.url
+      event.preventDefault()
+      const input = document.getElementById('avatarUploader');
+      input.onchange = _ => {
+        // you can use this method to get file and perform respective operations
+        const file = event.target.files[0]
+        this.url = URL.createObjectURL(file);
+        return this.url
+      };
+      input.click();
     }
   }
 }
@@ -28,6 +35,13 @@ export default {
 @import "src/assets/font.scss";
 
 .avatar-section {
-
+  .avatar {
+    width: 340px;
+    height: 340px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    box-shadow: $regular-shadow;
+  }
 }
 </style>

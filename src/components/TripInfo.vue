@@ -2,33 +2,43 @@
   <div class="row trip-info">
     <div class="col-12">
       <h2 class="title-section">
-        Персональная информация
+        Информация о рейсе
       </h2>
     </div>
     <div class="col-12">
       <div class="form-wrapper">
         <div class="row">
           <div class="col-12 col-lg-6 col-xl-4">
-            <label for="firstName" class="form-label">Имя</label>
-            <input type="text" class="form-control" id="firstName" placeholder="Иван">
+            <label for="ticketNumber" class="form-label">Номер билета</label>
+            <input type="text" class="form-control" id="ticketNumber" placeholder="000–000">
           </div>
           <div class="col-12 col-lg-6 col-xl-4">
-            <label for="secondName" class="form-label">Фамилия</label>
-            <input type="text" class="form-control" id="secondName" placeholder="Иванов">
+            <label for="pathStart" class="form-label">Точка отправления</label>
+            <select class="form-select" aria-label="pathStart">
+              <option selected>Ставрополь</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
           </div>
           <div class="col-12 col-lg-6 col-xl-4">
-            <label for="secondName" class="form-label">Отчество</label>
-            <input type="text" class="form-control" id="secondName" placeholder="Иванов">
+            <label for="pathEnd" class="form-label">Точка отправления</label>
+            <select class="form-select" aria-label="pathEnd">
+              <option selected>Москва</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
           </div>
         </div>
         <div class="row mt-lg-3">
           <div class="col-12 col-lg-6 col-xl-4">
-            <label for="number" class="form-label">Телефон</label>
-            <input type="text" class="form-control" id="number" placeholder="+7 (___)-___-__-__">
+            <label for="timeStart" class="form-label">Время отправления</label>
+            <input type="text" class="form-control" id="timeStart" placeholder="чч:мм">
           </div>
           <div class="col-12 col-lg-6 col-xl-4">
-            <label for="mail" class="form-label">Электронная почта</label>
-            <input type="text" class="form-control" id="mail" placeholder="name@mail.ru">
+            <label for="dateStart" class="form-label">Дата отправления</label>
+            <input type="text" class="form-control" id="dateStart" placeholder="дд.мм.гггг">
           </div>
         </div>
       </div>
@@ -74,6 +84,13 @@ export default {
     }
     .form-control, .form-select {
       @include font($uni,$regular,18px,24.3px,$base);
+    }
+    .form-select {
+      padding-bottom: 3.28px;
+      outline: none;
+    }
+    .form-select:focus {
+      box-shadow: none;
     }
     .form-control {
       border: none;

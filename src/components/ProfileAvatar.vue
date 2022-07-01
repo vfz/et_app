@@ -58,6 +58,10 @@ export default {
       object-fit: cover;
       object-position: center;
       box-shadow: $regular-shadow;
+      @media screen and (max-width: 991px) {
+        width: 102px;
+        height: 102px;
+      }
       @media (min-width: 992px) and (max-width: 1199px) {
         width: 100%;
         height: auto;

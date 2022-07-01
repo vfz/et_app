@@ -3,6 +3,9 @@
     <h2 class="title-section">
       Данные для автозаполнения
     </h2>
+    <div class="my-data-button-row d-inline-block">
+      <MyDataButton/>
+    </div>
     <div class="form-wrapper">
       <div class="row">
         <div class="row">
@@ -56,8 +59,10 @@
 </template>
 
 <script>
+import MyDataButton from "@/components/MyDataButton";
 export default {
-  name: "ProfileAutocomplete"
+  name: "ProfileAutocomplete",
+  components: {MyDataButton}
 }
 </script>
 
@@ -69,11 +74,24 @@ export default {
   margin-top: 40px;
   @include font($uni,$bold,24px,32.4px,$base);
 }
+.my-data-button-row {
+  padding-top: 12px;
+  padding-left: 12px;
+  padding-right: 12px;
+  background: $white;
+  border-top-right-radius: 16px;
+  border-top-left-radius: 16px;
+  box-shadow: $regular-shadow;
+  position: relative;
+  z-index: 1;
+}
 .form-wrapper {
   background-color: $white;
   border-radius: 0 16px 16px 16px;
   box-shadow: $regular-shadow;
   padding: 35px 29px;
+  position: relative;
+  z-index: 2;
   .remove-button {
     background: none;
     border: none;

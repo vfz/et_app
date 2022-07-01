@@ -58,6 +58,14 @@ export default {
       object-fit: cover;
       object-position: center;
       box-shadow: $regular-shadow;
+      @media (min-width: 992px) and (max-width: 1199px) {
+        width: 100%;
+        height: auto;
+      }
+      @media (min-width: 1200px) and (max-width: 1399px) {
+        width: 220px;
+        height: 220px;
+      }
     }
   }
   .buttons {

@@ -9,6 +9,7 @@
           <TicketRefundInfo/>
           <form>
             <PersonalInfo/>
+            <TripInfo/>
           </form>
         </div>
       </div>
@@ -30,9 +31,11 @@ import ForgotPasswordModal from "@/components/ForgotPasswordModal";
 import SectionTitle from "@/components/SectionTitle";
 import TicketRefundInfo from "@/components/TicketRefundInfo";
 import PersonalInfo from "@/components/PersonalInfo";
+import TripInfo from "@/components/TripInfo";
 export default {
   name: "Ticket-refund",
   components: {
+    TripInfo,
     PersonalInfo,
     TicketRefundInfo, SectionTitle, ForgotPasswordModal, RegistrationModal, LoginModal, Footer, Header}
 }

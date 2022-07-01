@@ -4,15 +4,15 @@
     <form>
       <section class="profile-section">
         <div class="container-fluid">
-          <div class="row">
-            <div class="col-9">
+          <div class="row flex-column-reverse flex-lg-row">
+            <div class="col-12 col-lg-9">
               <ProfileData/>
               <ProfileAutocomplete/>
               <button class="btn btn-primary" type="button">
                 Сохранить
               </button>
             </div>
-            <div class="col-3 d-flex align-items-center">
+            <div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-start align-items-center">
               <ProfileAvatar/>
             </div>
           </div>

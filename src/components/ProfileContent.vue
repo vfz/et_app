@@ -51,5 +51,12 @@ export default {
   padding: 23px 84px;
   border-radius: 16px;
   margin-top: 40px;
+  @media screen and (max-width: 767px) {
+    padding: 10px 0;
+    width: 100%;
+    font-size: 16px;
+    line-height: 21.6px;
+    border-radius: 8px;
+  }
 }
 </style>

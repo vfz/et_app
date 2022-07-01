@@ -1,5 +1,10 @@
 <template>
 <div class="avatar-section">
+  <div class="username">
+    <h4 class="text-center">
+      Ермолаева Кристина
+    </h4>
+  </div>
   <div>
     <img v-bind:src="url" class="avatar" alt="аватар">
   </div>
@@ -39,6 +44,12 @@ export default {
 @import "src/assets/font.scss";
 
 .avatar-section {
+  .username {
+    margin-bottom: 24px;
+    h4 {
+      @include font($uni,$bold,24px,32.4px,$secondary);
+    }
+  }
   div {
     .avatar {
       width: 340px;

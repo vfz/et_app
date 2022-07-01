@@ -1,42 +1,34 @@
 <template>
-  <div class="row info-buyer">
+  <div class="row personal-info">
     <div class="col-12">
       <h2 class="title-section">
-        Информация о покупателе
+        Персональная информация
       </h2>
-    </div>
-    <div class="col-12 col-lg-6">
-      <p class="title-section-description">
-        Указывайте корректные e-mail и номер телефона, т.к. они необходимы для получения и возврата билета, а так же для обратной связи.
-      </p>
-    </div>
-    <div class="col-12 col-lg-6">
-      <p class="title-section-description active-description">
-        Для посадки, необходимо иметь при себе <span class="fw-normal">оригинал указанного
-        документа</span> и <span class="fw-normal">билет</span> (будет отправлен на указанную вами эл.почту).
-      </p>
     </div>
     <div class="col-12">
       <div class="form-wrapper">
-        <div class="row my-data-button-row">
-          <MyDataButton class="d-none"/>
-        </div>
         <div class="row">
-          <div class="col-12 col-lg-6 col-xl-3">
-            <label for="secondNameBuyer" class="form-label">Фамилия</label>
-            <input type="text" class="form-control" id="secondNameBuyer" placeholder="Иванов">
+          <div class="col-12 col-lg-6 col-xl-4">
+            <label for="firstName" class="form-label">Имя</label>
+            <input type="text" class="form-control" id="firstName" placeholder="Иван">
           </div>
-          <div class="col-12 col-lg-6 col-xl-3">
-            <label for="firstNameBuyer" class="form-label">Имя</label>
-            <input type="text" class="form-control" id="firstNameBuyer" placeholder="Иван">
+          <div class="col-12 col-lg-6 col-xl-4">
+            <label for="secondName" class="form-label">Фамилия</label>
+            <input type="text" class="form-control" id="secondName" placeholder="Иванов">
           </div>
-          <div class="col-12 col-lg-6 col-xl-3">
-            <label for="mailBuyer" class="form-label">Электронная почта</label>
-            <input type="text" class="form-control" id="mailBuyer" placeholder="name@mail.ru">
+          <div class="col-12 col-lg-6 col-xl-4">
+            <label for="secondName" class="form-label">Отчество</label>
+            <input type="text" class="form-control" id="secondName" placeholder="Иванов">
           </div>
-          <div class="col-12 col-lg-6 col-xl-3">
-            <label for="numberBuyer" class="form-label">Телефон</label>
-            <input type="text" class="form-control" id="numberBuyer" placeholder="+7 (___)-___-__-__">
+        </div>
+        <div class="row mt-lg-3">
+          <div class="col-12 col-lg-6 col-xl-4">
+            <label for="number" class="form-label">Телефон</label>
+            <input type="text" class="form-control" id="number" placeholder="+7 (___)-___-__-__">
+          </div>
+          <div class="col-12 col-lg-6 col-xl-4">
+            <label for="mail" class="form-label">Электронная почта</label>
+            <input type="text" class="form-control" id="mail" placeholder="name@mail.ru">
           </div>
         </div>
       </div>
@@ -45,10 +37,8 @@
 </template>
 
 <script>
-import MyDataButton from "@/components/MyDataButton";
 export default {
   name: "PersonalInfo",
-  components: {MyDataButton}
 }
 </script>
 
@@ -56,10 +46,10 @@ export default {
 @import "src/assets/variables.scss";
 @import "src/assets/font.scss";
 
-.info-buyer {
+.personal-info {
   .title-section {
     @include font($uni,$bold,24px,32.4px,$base);
-    margin-bottom: 16px;
+    margin-bottom: 32px;
   }
   .title-section-description {
     @include font($uni,$light,18px,24.3px,$base);

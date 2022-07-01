@@ -53,12 +53,6 @@ export default {
 @import "src/assets/variables.scss";
 @import "src/assets/font.scss";
 .refund-info-section {
-  margin-left: 88px;
-  margin-right: 88px;
-  @media screen and (max-width: 767px) {
-    margin-left: 20px;
-    margin-right: 20px;
-  }
   .refund-info {
     margin-bottom: 40px;
     &-description {

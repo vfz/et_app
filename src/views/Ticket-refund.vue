@@ -41,6 +41,14 @@ export default {
 @import "src/assets/font.scss";
 .body-app-white {
   background-color: $bg-app-light;
+  .refund-info {
+    margin-left: 88px;
+    margin-right: 88px;
+    @media screen and (max-width: 767px) {
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+  }
 }
 .footer {
   margin-top: 72px;

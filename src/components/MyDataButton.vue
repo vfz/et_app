@@ -1,7 +1,9 @@
 <template>
   <div class="my-data-button d-inline-flex align-items-center">
-    <div class="my-data-button-title">Мои данные</div>
-    <ArrowDownIcon color="#283256"/>
+    <select id="inputState" class="form-select my-data-button-title">
+      <option>Мои данные</option>
+      <option>...</option>
+    </select>
   </div>
 </template>
 
@@ -21,7 +23,7 @@ export default {
   cursor: pointer;
   &-title {
     @include font($uni,$bold,18px,24.3px,$base);
-    margin-right: 15px;
+    border: none;
   }
 }
 </style>

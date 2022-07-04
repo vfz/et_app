@@ -36,7 +36,7 @@ import LoginModal from "@/components/LoginModal";
 import RegistrationModal from "@/components/RegistrationModal";
 import ForgotPasswordModal from "@/components/ForgotPasswordModal";
 import SectionTitle from "@/components/SectionTitle";
-import TicketRefundInfo from "@/components/TicketRefundInfo";
+import TicketRefundInfo from "@/components/desktop/Ticket-refund/TicketRefundInfo";
 import PersonalInfo from "@/components/PersonalInfo";
 import TripInfo from "@/components/TripInfo";
 import TicketReasonRefund from "@/components/TicketReasonRefund";

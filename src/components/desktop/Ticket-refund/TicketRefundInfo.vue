@@ -50,8 +50,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "src/assets/variables.scss";
-@import "src/assets/font.scss";
+@import "@/assets/variables.scss";
+@import "@/assets/font.scss";
 .refund-info-section {
   .refund-info {
     margin-bottom: 40px;

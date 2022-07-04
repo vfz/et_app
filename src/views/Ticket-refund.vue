@@ -11,7 +11,7 @@
           <form>
             <PersonalInfo/>
             <TripInfo/>
-            <MessageInfo/>
+            <MessageInfo title="Причина возврата билета" placeholder="Напишите пожалуйста, почему вы решили сдать билет."/>
             <button class="btn btn-primary">
               Отправить
             </button>

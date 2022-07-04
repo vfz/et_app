@@ -2,14 +2,14 @@
 <div class="row ticket-reason-refund-section">
   <div class="col-12">
     <h2 class="title-section">
-      Причина возврата билета
+      {{title}}
     </h2>
   </div>
   <div class="col-12">
     <div class="form-wrapper">
       <div class="row">
         <div class="col-12 col-lg-12 col-xl-4">
-          <textarea class="form-control" id="ticket-refund-reason" rows="3" placeholder="Напишите пожалуйста, почему вы решили сдать билет."></textarea>
+          <textarea class="form-control" id="ticket-refund-reason" rows="3" v-bind:placeholder="placeholder"></textarea>
         </div>
       </div>
     </div>
@@ -19,7 +19,11 @@
 
 <script>
 export default {
-  name: "MessageInfo"
+  name: "MessageInfo",
+  props: {
+    title: String,
+    placeholder: String
+  }
 }
 </script>
 

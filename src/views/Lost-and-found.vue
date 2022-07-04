@@ -10,7 +10,7 @@
             <form>
               <PersonalInfo/>
               <TripInfo/>
-              <MessageInfo/>
+              <MessageInfo title="Информация о потерянной вещи" placeholder="Опишите как можно подробнее вашу потерянную вещь."/>
             </form>
           </div>
           <div v-if="!isMobile()" class="col-lg-5 col-xl-5 d-none d-lg-flex align-items-center justify-content-center">

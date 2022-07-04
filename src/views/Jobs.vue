@@ -36,18 +36,6 @@ export default {
 
 .body-app-white {
   background-color: $bg-app-light;
-  .refund-info {
-    margin-left: 88px;
-    margin-right: 88px;
-    @media screen and (max-width: 991px) {
-      margin-left: 20px;
-      margin-right: 20px;
-    }
-  }
-  .image-section {
-    width: 100%;
-    max-width: 572px;
-  }
   .btn {
     @include font($uni,$regular,24px,32.4px,$white);
     padding: 23px 83px;

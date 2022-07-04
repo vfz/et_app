@@ -5,13 +5,16 @@
   <section class="refund-info">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-10">
+        <div class="col-lg-7 col-xl-7">
           <TicketRefundInfo/>
           <form>
             <PersonalInfo/>
             <TripInfo/>
             <TicketReasonRefund/>
           </form>
+        </div>
+        <div class="col-lg-5 col-xl-5 d-flex align-items-center justify-content-center">
+          <img class="image-section" alt="Возврат билетов" src="/img/tickets-refund/tickets-refund.svg">
         </div>
       </div>
     </div>
@@ -56,6 +59,10 @@ export default {
       margin-left: 20px;
       margin-right: 20px;
     }
+  }
+  .image-section {
+    width: 100%;
+    max-width: 572px;
   }
 }
 .footer {

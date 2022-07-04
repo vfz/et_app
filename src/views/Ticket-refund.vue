@@ -7,6 +7,7 @@
       <div class="row">
         <div class="col-lg-7 col-xl-7">
           <TicketRefundInfo/>
+          <TicketRefundInfoMobile/>
           <form>
             <PersonalInfo/>
             <TripInfo/>
@@ -40,9 +41,11 @@ import TicketRefundInfo from "@/components/desktop/Ticket-refund/TicketRefundInf
 import PersonalInfo from "@/components/PersonalInfo";
 import TripInfo from "@/components/TripInfo";
 import TicketReasonRefund from "@/components/TicketReasonRefund";
+import TicketRefundInfoMobile from "@/components/mobile/Ticket-refund/TicketRefundInfoMobile";
 export default {
   name: "Ticket-refund",
   components: {
+    TicketRefundInfoMobile,
     TicketReasonRefund,
     TripInfo,
     PersonalInfo,

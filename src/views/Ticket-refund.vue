@@ -40,7 +40,7 @@ import SectionTitle from "@/components/SectionTitle";
 import TicketRefundInfo from "@/components/desktop/Ticket-refund/TicketRefundInfo";
 import PersonalInfo from "@/components/PersonalInfo";
 import TripInfo from "@/components/TripInfo";
-import TicketReasonRefund from "@/components/TicketReasonRefund";
+import TicketReasonRefund from "@/components/MessageInfo";
 import TicketRefundInfoMobile from "@/components/mobile/Ticket-refund/TicketRefundInfoMobile";
 export default {
   name: "Ticket-refund",

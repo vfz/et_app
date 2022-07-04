@@ -2,6 +2,13 @@
 <div class="body-app-white">
   <Header/>
   <SectionTitle title="Вакансии"/>
+  <section class="jobs-list-section">
+    <div class="container-fluid">
+      <div class="row">
+        <Job/>
+      </div>
+    </div>
+  </section>
   <Footer/>
   <LoginModal/>
   <RegistrationModal/>
@@ -16,9 +23,10 @@ import LoginModal from "@/components/LoginModal";
 import RegistrationModal from "@/components/RegistrationModal";
 import ForgotPasswordModal from "@/components/ForgotPasswordModal";
 import SectionTitle from "@/components/SectionTitle";
+import Job from "@/components/Job";
 export default {
   name: "Jobs",
-  components: {SectionTitle, ForgotPasswordModal, RegistrationModal, LoginModal, Footer, Header}
+  components: {Job, SectionTitle, ForgotPasswordModal, RegistrationModal, LoginModal, Footer, Header}
 }
 </script>
 

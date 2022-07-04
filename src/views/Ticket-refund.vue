@@ -16,7 +16,7 @@
             </button>
           </form>
         </div>
-        <div class="col-lg-5 col-xl-5 d-none d-lg-flex align-items-center justify-content-center">
+        <div v-if="!isMobile()" class="col-lg-5 col-xl-5 d-none d-lg-flex align-items-center justify-content-center">
           <img class="image-section" alt="Возврат билетов" src="/img/tickets-refund/tickets-refund.svg">
         </div>
       </div>
@@ -46,7 +46,12 @@ export default {
     TicketReasonRefund,
     TripInfo,
     PersonalInfo,
-    TicketRefundInfo, SectionTitle, ForgotPasswordModal, RegistrationModal, LoginModal, Footer, Header}
+    TicketRefundInfo, SectionTitle, ForgotPasswordModal, RegistrationModal, LoginModal, Footer, Header},
+  methods: {
+    isMobile() {
+      return screen.width <= 991;
+    }
+  }
 }
 </script>
 

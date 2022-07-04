@@ -7,12 +7,12 @@
         <div class="row">
           <div class="col-lg-7">
             <LostAndFoundInfo/>
-          </div>
-          <div class="col-lg-5">
             <form>
               <PersonalInfo/>
               <TripInfo/>
             </form>
+          </div>
+          <div class="col-lg-5">
           </div>
         </div>
       </div>

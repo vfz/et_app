@@ -7,11 +7,7 @@
   </div>
   <div class="col-12">
     <div class="form-wrapper">
-      <div class="row">
-        <div class="col-12 col-lg-12 col-xl-4">
-          <textarea class="form-control" id="ticket-refund-reason" rows="3" v-bind:placeholder="placeholder"></textarea>
-        </div>
-      </div>
+      <textarea class="form-control" id="ticket-refund-reason" rows="3" v-bind:placeholder="placeholder"></textarea>
     </div>
   </div>
 </div>

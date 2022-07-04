@@ -10,7 +10,8 @@
           </div>
           <div class="col-lg-5">
             <form>
-              
+              <PersonalInfo/>
+              <TripInfo/>
             </form>
           </div>
         </div>
@@ -31,9 +32,14 @@ import LoginModal from "@/components/LoginModal";
 import RegistrationModal from "@/components/RegistrationModal";
 import ForgotPasswordModal from "@/components/ForgotPasswordModal";
 import LostAndFoundInfo from "@/components/LostAndFoundInfo";
+import PersonalInfo from "@/components/PersonalInfo";
+import TripInfo from "@/components/TripInfo";
 export default {
   name: "Lost-and-found",
-  components: {LostAndFoundInfo, ForgotPasswordModal, RegistrationModal, LoginModal, Footer, SectionTitle, Header}
+  components: {
+    TripInfo,
+    PersonalInfo,
+    LostAndFoundInfo, ForgotPasswordModal, RegistrationModal, LoginModal, Footer, SectionTitle, Header}
 }
 </script>
 

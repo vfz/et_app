@@ -10,6 +10,7 @@
             <form>
               <PersonalInfo/>
               <TripInfo/>
+              <MessageInfo/>
             </form>
           </div>
           <div v-if="!isMobile()" class="col-lg-5 col-xl-5 d-none d-lg-flex align-items-center justify-content-center">
@@ -35,9 +36,11 @@ import ForgotPasswordModal from "@/components/ForgotPasswordModal";
 import LostAndFoundInfo from "@/components/LostAndFoundInfo";
 import PersonalInfo from "@/components/PersonalInfo";
 import TripInfo from "@/components/TripInfo";
+import MessageInfo from "@/components/MessageInfo";
 export default {
   name: "Lost-and-found",
   components: {
+    MessageInfo,
     TripInfo,
     PersonalInfo,
     LostAndFoundInfo, ForgotPasswordModal, RegistrationModal, LoginModal, Footer, SectionTitle, Header},

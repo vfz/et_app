@@ -5,7 +5,7 @@
   <section class="jobs-list-section">
     <div class="container-fluid">
       <div class="row">
-        <Job title="Бухгалтер" payment="30 000" city="Ставрополь" place="Главный офис"/>
+        <Job id="1" title="Бухгалтер" payment="30 000" city="Ставрополь" place="Главный офис"/>
       </div>
     </div>
   </section>

@@ -6,7 +6,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-lg-7">
-
+            <LostAndFoundInfo/>
           </div>
           <div class="col-lg-5">
 
@@ -28,9 +28,10 @@ import Footer from "@/components/Footer";
 import LoginModal from "@/components/LoginModal";
 import RegistrationModal from "@/components/RegistrationModal";
 import ForgotPasswordModal from "@/components/ForgotPasswordModal";
+import LostAndFoundInfo from "@/components/LostAndFoundInfo";
 export default {
   name: "Lost-and-found",
-  components: {ForgotPasswordModal, RegistrationModal, LoginModal, Footer, SectionTitle, Header}
+  components: {LostAndFoundInfo, ForgotPasswordModal, RegistrationModal, LoginModal, Footer, SectionTitle, Header}
 }
 </script>
 

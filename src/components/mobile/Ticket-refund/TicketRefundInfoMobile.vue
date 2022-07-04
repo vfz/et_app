@@ -14,13 +14,13 @@
     <div class="details d-flex align-items-center" v-bind:class="{'d-none': isShowDetails}">
       <button v-on:click="showCollapse()" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTicketsDetails" aria-expanded="false" aria-controls="collapseTicketsDetails">
         Подробнее
-        <ArrowDownIcon color="#77BCFC"/>
+        <ArrowDownIcon color="#676767"/>
       </button>
     </div>
     <div class="details details-hide d-flex align-items-center" v-bind:class="{'d-none': isHideDetails}">
       <button v-on:click="showCollapse()" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTicketsDetails" aria-expanded="false" aria-controls="collapseTicketsDetails">
         Свернуть
-        <ArrowDownIcon color="#77BCFC"/>
+        <ArrowDownIcon color="#676767"/>
       </button>
     </div>
     <div class="refund-keeping">

@@ -56,7 +56,9 @@
                 </p>
               </div>
             </div>
-            <div id="map" class="map"></div>
+            <div id="map" class="map">
+              <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A925af31f9c09ee53d2bab03772075b968e64b2a235f466ab454485f53832734e&amp;source=constructor" width="100%" height="720" frameborder="0"></iframe>
+            </div>
           </div>
         </div>
       </div>
@@ -68,57 +70,57 @@
 import ymaps from 'ymaps';
 export default {
   name: "ContactMap",
-  mounted() {
-    ymaps
-        .load('https://api-maps.yandex.ru/2.1/?lang=ru_RU')
-        .then(maps => {
-          const map = new maps.Map('map', {
-            center: this.getMapData().center,
-            zoom: this.getMapData().zoom
-          });
-          const placemark1 = new maps.Placemark([45.05449907459323,42.03901749999995], {
-            balloonContentHeader: 'Главный офис',
-            balloonContentBody: '355035, г. Ставрополь, ул. Старомарьевское шоссе, 32ж',
-            balloonContentFooter: ''
-          }, {
-            iconLayout: 'default#image',
-            iconImageHref: '/img/icons/pin.svg',
-            iconImageSize: [64,64],
-            iconImageOffcet: [-30,0]
-          });
-          const placemark2 = new maps.Placemark([45.05553107459586,41.998844499999954], {
-            balloonContentHeader: 'Касса',
-            balloonContentBody: '355008, г. Ставрополь, ул. проспект Карла Маркса, 1а',
-            balloonContentFooter: ''
-          }, {
-            iconLayout: 'default#image',
-            iconImageHref: '/img/icons/pin.svg',
-            iconImageSize: [64,64],
-            iconImageOffcet: [-30,0]
-          });
-          map.geoObjects.add(placemark1);
-          map.geoObjects.add(placemark2);
-        })
-        .catch(error => console.log('Failed to load Yandex Maps', error));
-  },
-  methods: {
-    getMapData() {
-      let mapData = {}
-      if (screen.width <= 1199) {
-        return mapData = {
-          center: [45.05379241526634,41.98180429551291],
-          zoom: 13
-        }
-      }
-      else {
-        console.log('hello2')
-        return mapData ={
-          center: [45.054339958172136,42.00236074540304],
-          zoom: 14
-        }
-      }
-    }
-  }
+  // mounted() {
+  //   ymaps
+  //       .load('https://api-maps.yandex.ru/2.1/?lang=ru_RU')
+  //       .then(maps => {
+  //         const map = new maps.Map('map', {
+  //           center: this.getMapData().center,
+  //           zoom: this.getMapData().zoom
+  //         });
+  //         const placemark1 = new maps.Placemark([45.05449907459323,42.03901749999995], {
+  //           balloonContentHeader: 'Главный офис',
+  //           balloonContentBody: '355035, г. Ставрополь, ул. Старомарьевское шоссе, 32ж',
+  //           balloonContentFooter: ''
+  //         }, {
+  //           iconLayout: 'default#image',
+  //           iconImageHref: '/img/icons/pin.svg',
+  //           iconImageSize: [64,64],
+  //           iconImageOffcet: [-30,0]
+  //         });
+  //         const placemark2 = new maps.Placemark([45.05553107459586,41.998844499999954], {
+  //           balloonContentHeader: 'Касса',
+  //           balloonContentBody: '355008, г. Ставрополь, ул. проспект Карла Маркса, 1а',
+  //           balloonContentFooter: ''
+  //         }, {
+  //           iconLayout: 'default#image',
+  //           iconImageHref: '/img/icons/pin.svg',
+  //           iconImageSize: [64,64],
+  //           iconImageOffcet: [-30,0]
+  //         });
+  //         map.geoObjects.add(placemark1);
+  //         map.geoObjects.add(placemark2);
+  //       })
+  //       .catch(error => console.log('Failed to load Yandex Maps', error));
+  // },
+  // methods: {
+  //   getMapData() {
+  //     let mapData = {}
+  //     if (screen.width <= 1199) {
+  //       return mapData = {
+  //         center: [45.05379241526634,41.98180429551291],
+  //         zoom: 13
+  //       }
+  //     }
+  //     else {
+  //       console.log('hello2')
+  //       return mapData ={
+  //         center: [45.054339958172136,42.00236074540304],
+  //         zoom: 14
+  //       }
+  //     }
+  //   }
+  // }
 }
 </script>
 
@@ -136,6 +138,7 @@ export default {
       height: 100%;
       padding: 50px 88px;
       z-index: 2;
+      top: -7px;
       @media screen and (max-width: 1199px) {
         padding: 50px 30px;
       }
@@ -166,7 +169,8 @@ export default {
       }
     }
     .map {
-      height: 780px;
+      //height: 780px;
+      height: auto;
       z-index: 1;
     }
   }

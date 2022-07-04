@@ -60,7 +60,9 @@
       </div>
     </div>
   </div>
-  <div id="mapMobile" class="mapMobile"></div>
+  <div id="mapMobile" class="mapMobile">
+    <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A925af31f9c09ee53d2bab03772075b968e64b2a235f466ab454485f53832734e&amp;source=constructor" width="100%" height="319" frameborder="0"></iframe>
+  </div>
 </section>
 </template>
 
@@ -68,39 +70,39 @@
 import ymaps from 'ymaps';
 export default {
   name: "ContactMapMobile",
-  mounted() {
-    ymaps
-        .load('https://api-maps.yandex.ru/2.1/?lang=ru_RU')
-        .then(maps => {
-          const map = new maps.Map('mapMobile', {
-            center: [45.053047838422984,42.02102984715734],
-            zoom: 13
-          });
-          const placemark1 = new maps.Placemark([45.05449907459323,42.03901749999995], {
-            balloonContentHeader: 'Главный офис',
-            balloonContentBody: '355035, г. Ставрополь, ул. Старомарьевское шоссе, 32ж',
-            balloonContentFooter: ''
-          }, {
-            iconLayout: 'default#image',
-            iconImageHref: '/img/icons/pin.svg',
-            iconImageSize: [64,64],
-            iconImageOffcet: [-30,0]
-          });
-          const placemark2 = new maps.Placemark([45.05553107459586,41.998844499999954], {
-            balloonContentHeader: 'Касса',
-            balloonContentBody: '355008, г. Ставрополь, ул. проспект Карла Маркса, 1а',
-            balloonContentFooter: ''
-          }, {
-            iconLayout: 'default#image',
-            iconImageHref: '/img/icons/pin.svg',
-            iconImageSize: [64,64],
-            iconImageOffcet: [-30,0]
-          });
-          map.geoObjects.add(placemark1);
-          map.geoObjects.add(placemark2);
-        })
-        .catch(error => console.log('Failed to load Yandex Maps', error));
-  },
+  // mounted() {
+  //   ymaps
+  //       .load('https://api-maps.yandex.ru/2.1/?lang=ru_RU')
+  //       .then(maps => {
+  //         const map = new maps.Map('mapMobile', {
+  //           center: [45.053047838422984,42.02102984715734],
+  //           zoom: 13
+  //         });
+  //         const placemark1 = new maps.Placemark([45.05449907459323,42.03901749999995], {
+  //           balloonContentHeader: 'Главный офис',
+  //           balloonContentBody: '355035, г. Ставрополь, ул. Старомарьевское шоссе, 32ж',
+  //           balloonContentFooter: ''
+  //         }, {
+  //           iconLayout: 'default#image',
+  //           iconImageHref: '/img/icons/pin.svg',
+  //           iconImageSize: [64,64],
+  //           iconImageOffcet: [-30,0]
+  //         });
+  //         const placemark2 = new maps.Placemark([45.05553107459586,41.998844499999954], {
+  //           balloonContentHeader: 'Касса',
+  //           balloonContentBody: '355008, г. Ставрополь, ул. проспект Карла Маркса, 1а',
+  //           balloonContentFooter: ''
+  //         }, {
+  //           iconLayout: 'default#image',
+  //           iconImageHref: '/img/icons/pin.svg',
+  //           iconImageSize: [64,64],
+  //           iconImageOffcet: [-30,0]
+  //         });
+  //         map.geoObjects.add(placemark1);
+  //         map.geoObjects.add(placemark2);
+  //       })
+  //       .catch(error => console.log('Failed to load Yandex Maps', error));
+  // },
 }
 </script>
 
@@ -146,7 +148,7 @@ export default {
   }
   .mapMobile {
     width: 100%;
-    height: 319px;
+    //height: 319px;
     margin-bottom: 40px;
   }
 }

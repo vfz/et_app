@@ -1,5 +1,16 @@
 <template>
   <div class="refund-info-section">
+    <div class="refund-info">
+      <p class="refund-info-description">
+        Возврат билета возможен только в том случае, если билет был куплен онлайн у нас на сайте или на кассе по ул. Карла Маркса 1А.
+      </p>
+      <p class="refund-info-description active">
+        <span> * Если билет был куплен на кассе, </span> то вам необходимо прийти и заполнить заявление на возврат и вы получите деньги сразу.
+      </p>
+      <p class="refund-info-description active">
+        <span> * Если билет вы покупали онлайн, </span> то ниже заполните данные на возврат и деньги вам поступят на карту, с которой вы оплачивали билет, в течении 5 рабочих дней.
+      </p>
+    </div>
     <div class="details d-flex align-items-center" v-bind:class="{'d-none': isShowDetails}">
       <button v-on:click="showCollapse()" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTicketsDetails" aria-expanded="false" aria-controls="collapseTicketsDetails">
         Подробнее
@@ -11,17 +22,6 @@
         Свернуть
         <ArrowDownIcon color="#77BCFC"/>
       </button>
-    </div>
-    <div class="refund-info">
-      <p class="refund-info-description">
-        Возврат билета возможен только в том случае, если билет был куплен онлайн у нас на сайте или на кассе по ул. Карла Маркса 1А.
-      </p>
-      <p class="refund-info-description active">
-        <span> * Если билет был куплен на кассе, </span> то вам необходимо прийти и заполнить заявление на возврат и вы получите деньги сразу.
-      </p>
-      <p class="refund-info-description active">
-        <span> * Если билет вы покупали онлайн, </span> то ниже заполните данные на возврат и деньги вам поступят на карту, с которой вы оплачивали билет, в течении 5 рабочих дней.
-      </p>
     </div>
     <div class="refund-keeping">
       <h3 class="refund-keeping-title">

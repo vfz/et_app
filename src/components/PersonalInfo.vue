@@ -8,25 +8,25 @@
     <div class="col-12">
       <div class="form-wrapper">
         <div class="row">
-          <div class="col-12 col-lg-12 col-xl-4">
+          <div class="col-12 col-md-4 col-lg-12 col-xl-4">
             <label for="firstName" class="form-label">Имя</label>
             <input type="text" class="form-control" id="firstName" placeholder="Иван">
           </div>
-          <div class="col-12 col-lg-12 col-xl-4">
+          <div class="col-12 col-md-4 col-lg-12 col-xl-4">
             <label for="secondName" class="form-label">Фамилия</label>
             <input type="text" class="form-control" id="secondName" placeholder="Иванов">
           </div>
-          <div class="col-12 col-lg-12 col-xl-4">
+          <div class="col-12 col-md-4 col-lg-12 col-xl-4">
             <label for="secondName" class="form-label">Отчество</label>
             <input type="text" class="form-control" id="secondName" placeholder="Иванов">
           </div>
         </div>
-        <div class="row mt-lg-3">
-          <div class="col-12 col-lg-12 col-xl-4">
+        <div class="row mt-md-3">
+          <div class="col-12 col-md-4 col-lg-12 col-xl-4">
             <label for="number" class="form-label">Телефон</label>
             <input type="text" class="form-control" id="number" placeholder="+7 (___)-___-__-__">
           </div>
-          <div class="col-12 col-lg-12 col-xl-4">
+          <div class="col-12 col-md-4 col-lg-12 col-xl-4">
             <label for="mail" class="form-label">Электронная почта</label>
             <input type="text" class="form-control" id="mail" placeholder="name@mail.ru">
           </div>
@@ -50,6 +50,9 @@ export default {
   .title-section {
     @include font($uni,$bold,24px,32.4px,$base);
     margin-bottom: 32px;
+    @media screen and (max-width: 991px) {
+      font-size: 18px;
+    }
   }
   .title-section-description {
     @include font($uni,$light,18px,24.3px,$base);

@@ -3,14 +3,14 @@
   <div class="job-wrapper flex-wrap flex-lg-nowrap d-flex justify-content-center justify-content-lg-between align-items-center">
     <div class="job-main-info text-center text-lg-start d-flex flex-column">
       <h3 class="job-title">
-        Бухгалтер
+        {{title}}
       </h3>
       <div class="job-short">
         <span class="job-payment">
-          зп от 30 000₽
+          зп от {{payment}}₽
         </span>
-        <span class="job-city">Ставрополь,</span>
-        <span class="job-place">Главный офис</span>
+        <span class="job-city">{{city}},</span>
+        <span class="job-place">{{place}}</span>
       </div>
     </div>
     <div class="job-details">
@@ -24,7 +24,13 @@
 
 <script>
 export default {
-  name: "Job"
+  name: "Job",
+  props: {
+    title: String,
+    payment: String,
+    city: String,
+    place: String,
+  }
 }
 </script>
 

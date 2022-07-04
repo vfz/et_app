@@ -16,7 +16,7 @@
             </button>
           </form>
         </div>
-        <div class="col-lg-5 col-xl-5 d-flex align-items-center justify-content-center">
+        <div class="col-lg-5 col-xl-5 d-none d-lg-flex align-items-center justify-content-center">
           <img class="image-section" alt="Возврат билетов" src="/img/tickets-refund/tickets-refund.svg">
         </div>
       </div>

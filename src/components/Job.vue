@@ -27,6 +27,23 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.job-wrapper {
+  .job-main-info {
+    .job-title {
 
+    }
+    .job-short {
+      .job-payment {
+
+      }
+      .job-city {
+
+      }
+      .job-place {
+
+      }
+    }
+  }
+}
 </style>

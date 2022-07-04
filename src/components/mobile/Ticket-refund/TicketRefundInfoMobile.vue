@@ -1,5 +1,17 @@
 <template>
   <div class="refund-info-section">
+    <div class="details d-flex align-items-center" v-bind:class="{'d-none': isShowDetails}">
+      <button v-on:click="showCollapse()" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTicketsDetails" aria-expanded="false" aria-controls="collapseTicketsDetails">
+        Подробнее
+        <ArrowDownIcon color="#77BCFC"/>
+      </button>
+    </div>
+    <div class="details details-hide d-flex align-items-center" v-bind:class="{'d-none': isHideDetails}">
+      <button v-on:click="showCollapse()" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTicketsDetails" aria-expanded="false" aria-controls="collapseTicketsDetails">
+        Свернуть
+        <ArrowDownIcon color="#77BCFC"/>
+      </button>
+    </div>
     <div class="refund-info">
       <p class="refund-info-description">
         Возврат билета возможен только в том случае, если билет был куплен онлайн у нас на сайте или на кассе по ул. Карла Маркса 1А.
@@ -44,8 +56,24 @@
 </template>
 
 <script>
+import CancelIcon from "@/components/icons/CancelIcon";
+import ArrowDownIcon from "@/components/icons/ArrowDownIcon";
+
 export default {
-  name: "TicketRefundInfoMobile"
+  name: "TicketRefundInfoMobile",
+  components: {CancelIcon, ArrowDownIcon},
+  data() {
+    return {
+      isShowDetails: false,
+      isHideDetails: true,
+    }
+  },
+  methods: {
+    showCollapse: function () {
+      this.isHideDetails = !this.isHideDetails;
+      this.isShowDetails = !this.isShowDetails;
+    }
+  }
 }
 </script>
 

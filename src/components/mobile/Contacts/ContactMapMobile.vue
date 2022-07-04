@@ -67,7 +67,7 @@
 </template>
 
 <script>
-import ymaps from 'ymaps';
+// import ymaps from 'ymaps';
 export default {
   name: "ContactMapMobile",
   // mounted() {

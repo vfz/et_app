@@ -1,7 +1,7 @@
 <template>
 <div class="col-12">
-  <div class="job-wrapper d-flex justify-content-between align-items-center">
-    <div class="job-main-info d-flex flex-column">
+  <div class="job-wrapper flex-wrap flex-lg-nowrap d-flex justify-content-center justify-content-lg-between align-items-center">
+    <div class="job-main-info text-center text-lg-start d-flex flex-column">
       <h3 class="job-title">
         Бухгалтер
       </h3>
@@ -9,9 +9,7 @@
         <span class="job-payment">
           зп от 30 000₽
         </span>
-        /
         <span class="job-city">Ставрополь,</span>
-        &nbsp;
         <span class="job-place">Главный офис</span>
       </div>
     </div>
@@ -37,15 +35,33 @@ export default {
 .job-wrapper {
   padding: 12px 16px;
   box-shadow: $regular-shadow;
+  @media screen and (max-width: 991px) {
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
   .job-main-info {
+    @media screen and (max-width: 991px) {
+      width: 100%;
+    }
     .job-title {
       @include font($uni,$bold,24px,32.4px,$base);
       margin-bottom: 16px;
+      @media screen and (max-width: 991px) {
+        font-size: 18px;
+      }
     }
     .job-short {
       @include font($uni,$regular,18px,24.3px,$secondary);
+      @media screen and (max-width: 991px) {
+        font-size: 14px;
+        margin-bottom: 12px;
+      }
       .job-payment {
         color: $blue-active;
+        @media screen and (max-width: 991px) {
+          display: block;
+        }
       }
       .job-city {
 
@@ -56,10 +72,16 @@ export default {
     }
   }
   .job-details {
+    @media screen and (max-width: 991px) {
+      width: 100%;
+    }
     .btn {
       padding: 12px 68px;
       border-radius: 8px;
       @include font($uni,$regular,18px,24.3px,$white);
+      @media screen and (max-width: 991px) {
+        width: 100%;
+      }
     }
   }
 }

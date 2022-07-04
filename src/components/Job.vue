@@ -14,9 +14,9 @@
       </div>
     </div>
     <div class="job-details">
-      <button type="button" class="btn-primary btn">
+      <router-link class="btn btn-primary" :to="'/jobs/' + id">
         Подробнее
-      </button>
+      </router-link>
     </div>
   </div>
 </div>
@@ -26,10 +26,11 @@
 export default {
   name: "Job",
   props: {
+    id: Number,
     title: String,
     payment: String,
     city: String,
-    place: String,
+    place: String
   }
 }
 </script>

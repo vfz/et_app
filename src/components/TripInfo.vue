@@ -8,11 +8,11 @@
     <div class="col-12">
       <div class="form-wrapper">
         <div class="row">
-          <div class="col-12 col-lg-6 col-xl-4">
+          <div class="col-12 col-lg-12 col-xl-4">
             <label for="ticketNumber" class="form-label">Номер билета</label>
             <input type="text" class="form-control" id="ticketNumber" placeholder="000–000">
           </div>
-          <div class="col-12 col-lg-6 col-xl-4">
+          <div class="col-12 col-lg-12 col-xl-4">
             <label for="pathStart" class="form-label">Точка отправления</label>
             <select class="form-select" aria-label="pathStart">
               <option selected>Ставрополь</option>
@@ -21,7 +21,7 @@
               <option value="3">Three</option>
             </select>
           </div>
-          <div class="col-12 col-lg-6 col-xl-4">
+          <div class="col-12 col-lg-12 col-xl-4">
             <label for="pathEnd" class="form-label">Точка отправления</label>
             <select class="form-select" aria-label="pathEnd">
               <option selected>Москва</option>
@@ -32,11 +32,11 @@
           </div>
         </div>
         <div class="row mt-lg-3">
-          <div class="col-12 col-lg-6 col-xl-4">
+          <div class="col-12 col-lg-12 col-xl-4">
             <label for="timeStart" class="form-label">Время отправления</label>
             <input type="text" class="form-control" id="timeStart" placeholder="чч:мм">
           </div>
-          <div class="col-12 col-lg-6 col-xl-4">
+          <div class="col-12 col-lg-12 col-xl-4">
             <label for="dateStart" class="form-label">Дата отправления</label>
             <input type="text" class="form-control" id="dateStart" placeholder="дд.мм.гггг">
           </div>

@@ -12,7 +12,8 @@
               <TripInfo/>
             </form>
           </div>
-          <div class="col-lg-5">
+          <div v-if="!isMobile()" class="col-lg-5 col-xl-5 d-none d-lg-flex align-items-center justify-content-center">
+            <img class="image-section" alt="Возврат билетов" src="/img/lost-and-found/lost-and-found.svg">
           </div>
         </div>
       </div>
@@ -39,7 +40,12 @@ export default {
   components: {
     TripInfo,
     PersonalInfo,
-    LostAndFoundInfo, ForgotPasswordModal, RegistrationModal, LoginModal, Footer, SectionTitle, Header}
+    LostAndFoundInfo, ForgotPasswordModal, RegistrationModal, LoginModal, Footer, SectionTitle, Header},
+  methods: {
+    isMobile() {
+      return screen.width <= 991;
+    }
+  }
 }
 </script>
 

@@ -6,8 +6,8 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-7 col-xl-7">
-          <TicketRefundInfo/>
-          <TicketRefundInfoMobile/>
+          <TicketRefundInfo v-if="!isMobile()"/>
+          <TicketRefundInfoMobile v-if="isMobile()"/>
           <form>
             <PersonalInfo/>
             <TripInfo/>

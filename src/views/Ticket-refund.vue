@@ -71,6 +71,7 @@ export default {
     @include font($uni,$regular,24px,32.4px,$white);
     padding: 23px 83px;
     margin-top: 40px;
+    border-radius: 16px;
   }
 }
 .footer {

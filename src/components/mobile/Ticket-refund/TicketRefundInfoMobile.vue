@@ -11,23 +11,23 @@
         <span> * Если билет вы покупали онлайн, </span> то ниже заполните данные на возврат и деньги вам поступят на карту, с которой вы оплачивали билет, в течении 5 рабочих дней.
       </p>
     </div>
-    <div class="details d-flex align-items-center" v-bind:class="{'d-none': isShowDetails}">
-      <button v-on:click="showCollapse()" type="button" data-bs-toggle="collapse" data-bs-target="#refund-keeping-collapse" aria-expanded="false" aria-controls="refund-keeping-collapse">
+    <h3 class="refund-keeping-title">
+      Удержания при возврате
+    </h3>
+    <div class="details d-flex" v-bind:class="{'d-none': isShowDetails}">
+      <button class="d-flex justify-content-between align-items-center w-100" v-on:click="showCollapse()" type="button" data-bs-toggle="collapse" data-bs-target="#refund-keeping-collapse" aria-expanded="false" aria-controls="refund-keeping-collapse">
         Подробнее
         <ArrowDownIcon color="#676767"/>
       </button>
     </div>
-    <div class="details details-hide d-flex align-items-center" v-bind:class="{'d-none': isHideDetails}">
-      <button v-on:click="showCollapse()" type="button" data-bs-toggle="collapse" data-bs-target="#refund-keeping-collapse" aria-expanded="false" aria-controls="refund-keeping-collapse">
+    <div class="details details-hide d-flex" v-bind:class="{'d-none': isHideDetails}">
+      <button class="d-flex justify-content-between align-items-center w-100" v-on:click="showCollapse()" type="button" data-bs-toggle="collapse" data-bs-target="#refund-keeping-collapse" aria-expanded="false" aria-controls="refund-keeping-collapse">
         Свернуть
         <ArrowDownIcon color="#676767"/>
       </button>
     </div>
     <div class="collapse" id="refund-keeping-collapse">
       <div class="refund-keeping">
-        <h3 class="refund-keeping-title">
-          Удержания при возврате
-        </h3>
         <p class="refund-keeping-description">
           При отмене рейса с нашей стороны, возвращается 100% от стоимости билета.
         </p>
@@ -102,14 +102,36 @@ export default {
       }
     }
   }
-  .refund-keeping {
-    &-title {
-      @include font($uni,$bold,24px,32.4px,$base);
-      margin-bottom: 32px;
-      @media screen and (max-width: 991px) {
-        font-size: 18px;
+  .details {
+    button {
+      padding-left: 0;
+      background: none;
+      outline: none;
+      border: none;
+      @include font($uni,$light,14px,18.9px,$secondary);
+      svg {
+        //margin-left: 8px;
+        width: 9px;
       }
     }
+  }
+  .details-hide {
+    margin-bottom: 16px;
+    button {
+      padding-left: 0;
+      svg {
+        transform: rotate(180deg);
+      }
+    }
+  }
+  .refund-keeping-title {
+    @include font($uni,$bold,24px,32.4px,$base);
+    margin-bottom: 32px;
+    @media screen and (max-width: 991px) {
+      font-size: 18px;
+    }
+  }
+  .refund-keeping {
     &-description {
       @include font($uni,$light,18px,24.3px,$base);
       margin-bottom: 16px;

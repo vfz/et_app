@@ -11,6 +11,9 @@
             <PersonalInfo/>
             <TripInfo/>
             <TicketReasonRefund/>
+            <button class="btn btn-primary">
+              Отправить
+            </button>
           </form>
         </div>
         <div class="col-lg-5 col-xl-5 d-flex align-items-center justify-content-center">
@@ -63,6 +66,11 @@ export default {
   .image-section {
     width: 100%;
     max-width: 572px;
+  }
+  .btn {
+    @include font($uni,$regular,24px,32.4px,$white);
+    padding: 23px 83px;
+    margin-top: 40px;
   }
 }
 .footer {

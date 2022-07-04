@@ -12,45 +12,47 @@
       </p>
     </div>
     <div class="details d-flex align-items-center" v-bind:class="{'d-none': isShowDetails}">
-      <button v-on:click="showCollapse()" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTicketsDetails" aria-expanded="false" aria-controls="collapseTicketsDetails">
+      <button v-on:click="showCollapse()" type="button" data-bs-toggle="collapse" data-bs-target="#refund-keeping-collapse" aria-expanded="false" aria-controls="refund-keeping-collapse">
         Подробнее
         <ArrowDownIcon color="#676767"/>
       </button>
     </div>
     <div class="details details-hide d-flex align-items-center" v-bind:class="{'d-none': isHideDetails}">
-      <button v-on:click="showCollapse()" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTicketsDetails" aria-expanded="false" aria-controls="collapseTicketsDetails">
+      <button v-on:click="showCollapse()" type="button" data-bs-toggle="collapse" data-bs-target="#refund-keeping-collapse" aria-expanded="false" aria-controls="refund-keeping-collapse">
         Свернуть
         <ArrowDownIcon color="#676767"/>
       </button>
     </div>
-    <div class="refund-keeping">
-      <h3 class="refund-keeping-title">
-        Удержания при возврате
-      </h3>
-      <p class="refund-keeping-description">
-        При отмене рейса с нашей стороны, возвращается 100% от стоимости билета.
-      </p>
-      <p class="refund-keeping-description active">
-        * Сумма оплаты включает комиссионные сборы (агентский, информационный и т.д.).
-      </p>
-      <p class="refund-keeping-description active">
-        * В случае возврата маршрутной квитанции комиссионные сборы возврату не подлежат.
-      </p>
-      <p class="refund-keeping-description">
-        При возврате маршрутной квитанции по причине отказа от поездки, производятся следующие удержания:
-        <br>
-        <span> В течении 12 часов после оплаты, если до рейса больше 24 часов </span> — 0%
-        <br>
-        <span> Более чем за 2 ч., до отправления рейса </span> — 5% тарифа
-        <br>
-        <span> Менее чем за 2 ч., до отправления рейса </span> — 15% тарифа
-        <br>
-        <span> В течении 3 ч., после отправления рейса </span> — 25% тарифа;
-        <br>
-        <span> По объективным причинам (болезнь, несчастный случай), при наличии подтверждающих документов, менее чем за
+    <div class="collapse" id="refund-keeping-collapse">
+      <div class="refund-keeping">
+        <h3 class="refund-keeping-title">
+          Удержания при возврате
+        </h3>
+        <p class="refund-keeping-description">
+          При отмене рейса с нашей стороны, возвращается 100% от стоимости билета.
+        </p>
+        <p class="refund-keeping-description active">
+          * Сумма оплаты включает комиссионные сборы (агентский, информационный и т.д.).
+        </p>
+        <p class="refund-keeping-description active">
+          * В случае возврата маршрутной квитанции комиссионные сборы возврату не подлежат.
+        </p>
+        <p class="refund-keeping-description">
+          При возврате маршрутной квитанции по причине отказа от поездки, производятся следующие удержания:
+          <br>
+          <span> В течении 12 часов после оплаты, если до рейса больше 24 часов </span> — 0%
+          <br>
+          <span> Более чем за 2 ч., до отправления рейса </span> — 5% тарифа
+          <br>
+          <span> Менее чем за 2 ч., до отправления рейса </span> — 15% тарифа
+          <br>
+          <span> В течении 3 ч., после отправления рейса </span> — 25% тарифа;
+          <br>
+          <span> По объективным причинам (болезнь, несчастный случай), при наличии подтверждающих документов, менее чем за
         3 дня, после отправления рейса </span> — 25% тарифа;
 
-      </p>
+        </p>
+      </div>
     </div>
   </div>
 </template>

@@ -8,15 +8,15 @@
     <div class="col-12">
       <div class="form-wrapper">
         <div class="row">
-          <div class="col-12 col-lg-6 col-xl-4">
+          <div class="col-12 col-lg-4 col-xl-4">
             <label for="firstName" class="form-label">Имя</label>
             <input type="text" class="form-control" id="firstName" placeholder="Иван">
           </div>
-          <div class="col-12 col-lg-6 col-xl-4">
+          <div class="col-12 col-lg-4 col-xl-4">
             <label for="secondName" class="form-label">Фамилия</label>
             <input type="text" class="form-control" id="secondName" placeholder="Иванов">
           </div>
-          <div class="col-12 col-lg-6 col-xl-4">
+          <div class="col-12 col-lg-4 col-xl-4">
             <label for="secondName" class="form-label">Отчество</label>
             <input type="text" class="form-control" id="secondName" placeholder="Иванов">
           </div>

@@ -16,7 +16,7 @@ import FAQ from "@/views/FAQ";
 import Europoints from "@/views/Europoints";
 import Agents from "@/views/Agents";
 import About from "@/views/About";
-import JobDescription from "@/components/JobDescription";
+import JobDescription from "@/views/JobDescription";
 
 Vue.use(VueRouter)
 

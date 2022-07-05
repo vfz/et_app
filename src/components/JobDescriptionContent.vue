@@ -122,8 +122,10 @@
           </div>
         </div>
         <div class="col-6">
-          <PersonalInfo class="personal-info"/>
-          <MessageInfo title="Сопроводительное письмо" placeholder="Введите ваше сообщение . . ."/>
+          <form>
+            <PersonalInfo class="personal-info"/>
+            <MessageInfo title="Сопроводительное письмо" placeholder="Введите ваше сообщение . . ."/>
+          </form>
         </div>
       </div>
     </div>

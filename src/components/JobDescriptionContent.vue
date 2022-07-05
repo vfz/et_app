@@ -121,15 +121,19 @@
             </div>
           </div>
         </div>
-        <div class="col-6"></div>
+        <div class="col-6">
+          <PersonalInfo class="personal-info"/>
+        </div>
       </div>
     </div>
   </section>
 </template>
 
 <script>
+import PersonalInfo from "@/components/PersonalInfo";
 export default {
   name: "JobDescriptionContent",
+  components: {PersonalInfo},
 }
 </script>
 
@@ -213,6 +217,9 @@ export default {
         }
       }
     }
+  }
+  .personal-info {
+    margin-top: 0;
   }
 }
 </style>

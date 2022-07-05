@@ -125,6 +125,9 @@
           <form>
             <PersonalInfo class="personal-info"/>
             <MessageInfo title="Сопроводительное письмо" placeholder="Введите ваше сообщение . . ."/>
+            <button class="btn btn-primary">
+              Отправить
+            </button>
           </form>
         </div>
       </div>
@@ -224,6 +227,18 @@ export default {
   }
   .personal-info {
     margin-top: 0;
+  }
+  .btn {
+    @include font($uni,$regular,24px,32.4px,$white);
+    padding: 23px 83px;
+    margin-top: 40px;
+    border-radius: 16px;
+    @media screen and (max-width: 768px) {
+      width: 100%;
+      font-size: 16px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
   }
 }
 </style>

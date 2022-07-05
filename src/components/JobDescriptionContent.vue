@@ -124,8 +124,8 @@
         <div class="col-6">
           <form>
             <PersonalInfo class="personal-info"/>
-            <MessageInfo title="Сопроводительное письмо" placeholder="Введите ваше сообщение . . ."/>
             <FileUploader/>
+            <MessageInfo title="Сопроводительное письмо" placeholder="Введите ваше сообщение . . ."/>
             <button class="btn btn-primary">
               Отправить
             </button>

@@ -11,6 +11,9 @@
               <PersonalInfo/>
               <TripInfo/>
               <MessageInfo title="Информация о потерянной вещи" placeholder="Опишите как можно подробнее вашу потерянную вещь."/>
+              <button class="btn btn-primary">
+                Отправить
+              </button>
             </form>
           </div>
           <div v-if="!isMobile()" class="col-lg-5 col-xl-5 d-none d-lg-flex align-items-center justify-content-center">
@@ -75,6 +78,12 @@ export default {
     padding: 23px 83px;
     margin-top: 40px;
     border-radius: 16px;
+    @media screen and (max-width: 768px) {
+      width: 100%;
+      font-size: 16px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
   }
 }
 .footer {

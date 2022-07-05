@@ -42,6 +42,7 @@ export default {
 .job-wrapper {
   padding: 12px 16px;
   box-shadow: $regular-shadow;
+  margin-bottom: 40px;
   @media screen and (max-width: 991px) {
     padding-bottom: 0;
     padding-left: 0;

@@ -60,40 +60,44 @@
             <h3 class="title-description">
               Описание
             </h3>
-            <h4 class="title-list">
-              Вам предстоит:
-            </h4>
-            <ul class="list-group">
-              <li class="list-group-item">
-                — Lorem ipsum dolor sit amet, consectetur adipiscing elit
-              </li>
-              <li class="list-group-item">
-                — Lorem ipsum dolor sit amet, consectetur adipiscing elit
-              </li>
-              <li class="list-group-item">
-                — Lorem ipsum dolor sit amet, consectetur adipiscing elit
-              </li>
-              <li class="list-group-item">
-                — Lorem ipsum dolor sit amet, consectetur adipiscing elit
-              </li>
-            </ul>
-            <h4 class="title-list">
-              Вам предстоит:
-            </h4>
-            <ul class="list-group">
-              <li class="list-group-item">
-                — Lorem ipsum dolor sit amet, consectetur adipiscing elit
-              </li>
-              <li class="list-group-item">
-                — Lorem ipsum dolor sit amet, consectetur adipiscing elit
-              </li>
-              <li class="list-group-item">
-                — Lorem ipsum dolor sit amet, consectetur adipiscing elit
-              </li>
-              <li class="list-group-item">
-                — Lorem ipsum dolor sit amet, consectetur adipiscing elit
-              </li>
-            </ul>
+            <div class="list-group-block">
+              <h4 class="title-list">
+                Вам предстоит:
+              </h4>
+              <ul class="list-group">
+                <li class="list-group-item">
+                  — Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                </li>
+                <li class="list-group-item">
+                  — Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                </li>
+                <li class="list-group-item">
+                  — Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                </li>
+                <li class="list-group-item">
+                  — Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                </li>
+              </ul>
+            </div>
+            <div class="list-group-block">
+              <h4 class="title-list">
+                Вам предстоит:
+              </h4>
+              <ul class="list-group">
+                <li class="list-group-item">
+                  — Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                </li>
+                <li class="list-group-item">
+                  — Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                </li>
+                <li class="list-group-item">
+                  — Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                </li>
+                <li class="list-group-item">
+                  — Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                </li>
+              </ul>
+            </div>
           </div>
           <div class="description-item">
             <h3 class="title-description">
@@ -149,6 +153,7 @@ export default {
     }
   }
   .job-main-info {
+    margin-bottom: 32px;
     @media screen and (max-width: 991px) {
       width: 100%;
     }
@@ -176,6 +181,30 @@ export default {
       }
       .job-place {
 
+      }
+    }
+  }
+  .description-item {
+    margin-bottom: 32px;
+    .title-description {
+      @include font($uni,$bold,20px,27px,$blue-active);
+      margin-bottom: 16px;
+    }
+    .description {
+      @include font($uni,$light,18px,24.3px,$base);
+    }
+    .title-list {
+      @include font($uni,$regular,18px,24.3px,$secondary);
+      margin-bottom: 12px;
+    }
+    .list-group-block {
+      margin-bottom: 16px;
+    }
+    .list-group {
+      &-item {
+        @include font($uni,$light,18px,24.3px,$base);
+        border: none;
+        padding-left: 0;
       }
     }
   }

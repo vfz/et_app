@@ -149,7 +149,7 @@
                   </div>
                   <div class="row">
                     <div class="col d-flex justify-content-center align-items-center">
-                      <button id="submit-button" type="button" class="btn" v-on:click="alertPlace()">
+                      <button id="submit-button" type="button" class="btn " :class="{ disabled : !+from || !+to || !dateArival } " v-on:click="alertPlace()">
                         Найти билеты
                       </button>
                     </div>
@@ -300,7 +300,7 @@
                   </div>
                   <div class="row">
                     <div class="col d-flex justify-content-center align-items-center">
-                      <button id="submit-button-twoWays" type="button" class="btn" v-on:click="alertPlace()">
+                      <button id="submit-button-twoWays" type="button" class="btn"  :class="{ disabled : !+from || !+to || !dateArival }" v-on:click="alertPlace()">
                         Найти билеты
                       </button>
                     </div>
@@ -339,7 +339,6 @@ export default{
             fromPlaceV:false,
             toPlaceV:false,
             temp:'',
-            tomorrow: new Date(new Date())
            
         }
 
@@ -355,8 +354,6 @@ export default{
     },
     methods: {
         ...mapActions([
-          'from',
-          'to',
           'getFromStations',
           'getToStations',
           'UpdateselectDate',
@@ -382,7 +379,7 @@ export default{
         },
         alertPlace(){
             // alert('Едем в '+this.toPlace+' Едем из '+this.fromPlace)
-            this.$router.push('/flight-selection/'+this.from+'/'+this.to)
+            this.$router.push('/flight-selection/search/'+this.from+'/'+this.to)
         },
         //Переключение кнопок в полях кол-ва пассажиров в Desabled Enabled
         changeClass() {

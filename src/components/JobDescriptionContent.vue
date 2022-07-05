@@ -31,36 +31,14 @@
       </div>
       <div class="row">
         <div class="col-6">
-          <div class="description-item">
-            <h3 class="title-description">
-              Описание
-            </h3>
-            <p class="description">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.
-            </p>
-            <h4 class="title-list">
-              Вам предстоит:
-            </h4>
-            <ul class="list-group">
-              <li class="list-group-item">
-                — Lorem ipsum dolor sit amet, consectetur adipiscing elit
-              </li>
-              <li class="list-group-item">
-                — Lorem ipsum dolor sit amet, consectetur adipiscing elit
-              </li>
-              <li class="list-group-item">
-                — Lorem ipsum dolor sit amet, consectetur adipiscing elit
-              </li>
-              <li class="list-group-item">
-                — Lorem ipsum dolor sit amet, consectetur adipiscing elit
-              </li>
-            </ul>
-          </div>
-          <div class="description-item">
-            <h3 class="title-description">
-              Описание
-            </h3>
-            <div class="list-group-block">
+          <div class="description-list">
+            <div class="description-item">
+              <h3 class="title-description">
+                Описание
+              </h3>
+              <p class="description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.
+              </p>
               <h4 class="title-list">
                 Вам предстоит:
               </h4>
@@ -79,10 +57,53 @@
                 </li>
               </ul>
             </div>
-            <div class="list-group-block">
-              <h4 class="title-list">
-                Вам предстоит:
-              </h4>
+            <div class="description-item">
+              <h3 class="title-description">
+                Описание
+              </h3>
+              <div class="list-group-block">
+                <h4 class="title-list">
+                  Вам предстоит:
+                </h4>
+                <ul class="list-group">
+                  <li class="list-group-item">
+                    — Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                  </li>
+                  <li class="list-group-item">
+                    — Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                  </li>
+                  <li class="list-group-item">
+                    — Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                  </li>
+                  <li class="list-group-item">
+                    — Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                  </li>
+                </ul>
+              </div>
+              <div class="list-group-block">
+                <h4 class="title-list">
+                  Вам предстоит:
+                </h4>
+                <ul class="list-group">
+                  <li class="list-group-item">
+                    — Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                  </li>
+                  <li class="list-group-item">
+                    — Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                  </li>
+                  <li class="list-group-item">
+                    — Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                  </li>
+                  <li class="list-group-item">
+                    — Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="description-item">
+              <h3 class="title-description">
+                Описание
+              </h3>
               <ul class="list-group">
                 <li class="list-group-item">
                   — Lorem ipsum dolor sit amet, consectetur adipiscing elit
@@ -98,25 +119,6 @@
                 </li>
               </ul>
             </div>
-          </div>
-          <div class="description-item">
-            <h3 class="title-description">
-              Описание
-            </h3>
-            <ul class="list-group">
-              <li class="list-group-item">
-                — Lorem ipsum dolor sit amet, consectetur adipiscing elit
-              </li>
-              <li class="list-group-item">
-                — Lorem ipsum dolor sit amet, consectetur adipiscing elit
-              </li>
-              <li class="list-group-item">
-                — Lorem ipsum dolor sit amet, consectetur adipiscing elit
-              </li>
-              <li class="list-group-item">
-                — Lorem ipsum dolor sit amet, consectetur adipiscing elit
-              </li>
-            </ul>
           </div>
         </div>
         <div class="col-6"></div>

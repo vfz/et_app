@@ -5,7 +5,7 @@
         <div class="modal-content">
             <div class="modal-header d-flex flex-wrap">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                <img class="login-img" alt="login-img" src="img/modal/login-img.png">
+                <img class="login-img" alt="login-img" src="/img/modal/login-img.png">
             </div>
             <div class="modal-body">
                 <h5 class="modal-title text-center" id="exampleModalLabel">Вход</h5>

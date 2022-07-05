@@ -3,7 +3,7 @@
     <nav class="navbar navbar-expand-md navbar-light">
         <div class="container-fluid">
         <router-link class="logo-link" tag="a" to="/" >
-            <img alt="logo" src="img/header/logo.png" class="logo">
+            <img alt="logo" src="/img/header/logo.png" class="logo">
         </router-link>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" v-on:click="opennav=!opennav" >
                 <span class="navbar-toggler-icon"></span>

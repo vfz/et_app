@@ -5,7 +5,7 @@
                 <div class="col-12 col-xl-4">
                     <div class="logo-footer d-flex flex-wrap w-100">
                         <a href="#" class="logo-link d-block">
-                            <img class="logo" alt="logo-footer" src="img/header/logo.png">
+                            <img class="logo" alt="logo-footer" src="/img/header/logo.png">
                         </a>
                         <span class="call-free d-block w-100">
                             Звонок по России бесплатный
@@ -80,7 +80,7 @@
                         </div>
                         <div class="callback-form-next-step">
                             <a href="#" class="next-step-link text-center">
-                                <img class="d-block" src="img/footer/next-step.svg" alt="next-step">
+                                <img class="d-block" src="/img/footer/next-step.svg" alt="next-step">
                                 <span class="next-desc d-block">Далее</span>
                             </a>
                         </div>
@@ -102,12 +102,12 @@
                     <ul class="socials d-flex flex-row">
                         <li class="socials-item">
                             <a href="#" class="socials-item-link">
-                                <img alt="vk" src="img/footer/vk.svg">
+                                <img alt="vk" src="/img/footer/vk.svg">
                             </a>
                         </li>
                         <li class="socials-item">
                             <a href="#" class="socials-item-link">
-                                <img alt="instagram" src="img/footer/instagram.svg">
+                                <img alt="instagram" src="/img/footer/instagram.svg">
                             </a>
                         </li>
                     </ul>

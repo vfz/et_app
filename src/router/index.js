@@ -26,7 +26,12 @@ const routes = [{
         component: Home
     },
     {
-        path: '/flight-selection/:from/:to',
+        path: '/flight-selection',
+        name: 'Flight-selection',
+        component: Flightselection
+    },
+    {
+        path: '/flight-selection/search/:from/:to',
         name: 'Flight-selection',
         component: Flightselection
     },

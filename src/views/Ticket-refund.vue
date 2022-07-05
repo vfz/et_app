@@ -11,7 +11,7 @@
           <form>
             <PersonalInfo/>
             <TripInfo/>
-            <TicketReasonRefund/>
+            <MessageInfo title="Причина возврата билета" placeholder="Напишите пожалуйста, почему вы решили сдать билет."/>
             <button class="btn btn-primary">
               Отправить
             </button>
@@ -40,13 +40,13 @@ import SectionTitle from "@/components/SectionTitle";
 import TicketRefundInfo from "@/components/desktop/Ticket-refund/TicketRefundInfo";
 import PersonalInfo from "@/components/PersonalInfo";
 import TripInfo from "@/components/TripInfo";
-import TicketReasonRefund from "@/components/TicketReasonRefund";
 import TicketRefundInfoMobile from "@/components/mobile/Ticket-refund/TicketRefundInfoMobile";
+import MessageInfo from "@/components/MessageInfo";
 export default {
   name: "Ticket-refund",
   components: {
+    MessageInfo,
     TicketRefundInfoMobile,
-    TicketReasonRefund,
     TripInfo,
     PersonalInfo,
     TicketRefundInfo, SectionTitle, ForgotPasswordModal, RegistrationModal, LoginModal, Footer, Header},

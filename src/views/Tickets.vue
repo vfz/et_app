@@ -4,7 +4,7 @@
     <SectionTitle title="Билеты"/>
     <EmptyHistory class="d-none" descriptionText="На данный момент, Вы не приобрели билет, но это можно сделать." linkText="здесь"/>
     <TicketsHistory/>
-    <SectionImage src="img/tickets/tickets.svg" alt="билеты"/>
+    <SectionImage src="/img/tickets/tickets.svg" alt="билеты"/>
     <Footer/>
     <DispatchModal/>
     <dispatch-length-time-modal/>

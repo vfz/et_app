@@ -123,6 +123,7 @@
         </div>
         <div class="col-6">
           <PersonalInfo class="personal-info"/>
+          <MessageInfo title="Сопроводительное письмо" placeholder="Введите ваше сообщение . . ."/>
         </div>
       </div>
     </div>
@@ -131,9 +132,10 @@
 
 <script>
 import PersonalInfo from "@/components/PersonalInfo";
+import MessageInfo from "@/components/MessageInfo";
 export default {
   name: "JobDescriptionContent",
-  components: {PersonalInfo},
+  components: {MessageInfo, PersonalInfo},
 }
 </script>
 

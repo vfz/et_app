@@ -125,6 +125,7 @@
           <form>
             <PersonalInfo class="personal-info"/>
             <MessageInfo title="Сопроводительное письмо" placeholder="Введите ваше сообщение . . ."/>
+            <FileUploader/>
             <button class="btn btn-primary">
               Отправить
             </button>
@@ -138,9 +139,10 @@
 <script>
 import PersonalInfo from "@/components/PersonalInfo";
 import MessageInfo from "@/components/MessageInfo";
+import FileUploader from "@/components/FileUploader";
 export default {
   name: "JobDescriptionContent",
-  components: {MessageInfo, PersonalInfo},
+  components: {FileUploader, MessageInfo, PersonalInfo},
 }
 </script>
 

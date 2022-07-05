@@ -186,27 +186,31 @@ export default {
       }
     }
   }
-  .description-item {
-    margin-bottom: 32px;
-    .title-description {
-      @include font($uni,$bold,20px,27px,$blue-active);
-      margin-bottom: 16px;
-    }
-    .description {
-      @include font($uni,$light,18px,24.3px,$base);
-    }
-    .title-list {
-      @include font($uni,$regular,18px,24.3px,$secondary);
-      margin-bottom: 12px;
-    }
-    .list-group-block {
-      margin-bottom: 16px;
-    }
-    .list-group {
-      &-item {
+  .description-list {
+    border-right: 1px solid #E1EEF6;
+    padding-right: 40px;
+    .description-item {
+      margin-bottom: 32px;
+      .title-description {
+        @include font($uni,$bold,20px,27px,$blue-active);
+        margin-bottom: 16px;
+      }
+      .description {
         @include font($uni,$light,18px,24.3px,$base);
-        border: none;
-        padding-left: 0;
+      }
+      .title-list {
+        @include font($uni,$regular,18px,24.3px,$secondary);
+        margin-bottom: 12px;
+      }
+      .list-group-block {
+        margin-bottom: 16px;
+      }
+      .list-group {
+        &-item {
+          @include font($uni,$light,18px,24.3px,$base);
+          border: none;
+          padding-left: 0;
+        }
       }
     }
   }

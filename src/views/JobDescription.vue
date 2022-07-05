@@ -1,6 +1,7 @@
 <template>
 <div class="body-app-white">
   <Header/>
+  <SectionTitle title="Вакансии"/>
   <JobDescriptionContent/>
   <Footer/>
   <LoginModal/>
@@ -16,9 +17,10 @@ import LoginModal from "@/components/LoginModal";
 import RegistrationModal from "@/components/RegistrationModal";
 import ForgotPasswordModal from "@/components/ForgotPasswordModal";
 import JobDescriptionContent from "@/components/JobDescriptionContent";
+import SectionTitle from "@/components/SectionTitle";
 export default {
   name: "JobDescription",
-  components: {JobDescriptionContent, ForgotPasswordModal, RegistrationModal, LoginModal, Footer, Header}
+  components: {SectionTitle, JobDescriptionContent, ForgotPasswordModal, RegistrationModal, LoginModal, Footer, Header}
 }
 </script>
 

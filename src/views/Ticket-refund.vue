@@ -80,6 +80,12 @@ export default {
     padding: 23px 83px;
     margin-top: 40px;
     border-radius: 16px;
+    @media screen and (max-width: 768px) {
+      width: 100%;
+      font-size: 16px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
   }
 }
 .footer {

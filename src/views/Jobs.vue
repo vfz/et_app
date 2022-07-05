@@ -6,6 +6,8 @@
     <div class="container-fluid">
       <div class="row">
         <Job id="1" title="Бухгалтер" payment="30 000" city="Ставрополь" place="Главный офис"/>
+        <Job id="2" title="Помощник руководителя" payment="35 000" city="Ставрополь" place="Главный офис"/>
+        <Job id="3" title="Кассир" payment="25 000" city="Ставрополь" place="Касса"/>
       </div>
     </div>
   </section>

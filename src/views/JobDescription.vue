@@ -1,6 +1,7 @@
 <template>
 <div class="body-app-white">
   <Header/>
+  <JobDescriptionContent/>
   <Footer/>
   <LoginModal/>
   <RegistrationModal/>
@@ -14,9 +15,10 @@ import Footer from "@/components/Footer";
 import LoginModal from "@/components/LoginModal";
 import RegistrationModal from "@/components/RegistrationModal";
 import ForgotPasswordModal from "@/components/ForgotPasswordModal";
+import JobDescriptionContent from "@/components/JobDescriptionContent";
 export default {
   name: "JobDescription",
-  components: {ForgotPasswordModal, RegistrationModal, LoginModal, Footer, Header}
+  components: {JobDescriptionContent, ForgotPasswordModal, RegistrationModal, LoginModal, Footer, Header}
 }
 </script>
 

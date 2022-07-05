@@ -103,7 +103,7 @@
                       7000₽
                     </div>
                     <div class="d-inline-block">
-                      <img class="help-icon" alt="help" src="img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
+                      <img class="help-icon" alt="help" src="/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
                     </div>
                   </div>
                 </td>
@@ -174,7 +174,7 @@
                       7000₽
                     </div>
                     <div class="d-inline-block">
-                      <img class="help-icon" alt="help" src="img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
+                      <img class="help-icon" alt="help" src="/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
                     </div>
                   </div>
                 </td>
@@ -245,7 +245,7 @@
                       7000₽
                     </div>
                     <div class="d-inline-block">
-                      <img class="help-icon" alt="help" src="img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
+                      <img class="help-icon" alt="help" src="/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
                     </div>
                   </div>
                 </td>
@@ -316,7 +316,7 @@
                       7000₽
                     </div>
                     <div class="d-inline-block">
-                      <img class="help-icon" alt="help" src="img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
+                      <img class="help-icon" alt="help" src="/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
                     </div>
                   </div>
                 </td>

@@ -91,7 +91,7 @@
                                         <div class="card-body">
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <label class="form-label">Пассажиры</label>
-                                                <img class="help-icon" alt="help" src="img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
+                                                <img class="help-icon" alt="help" src="/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
                                             </div>
                                             <div class="row">
                                                     <div class="col">
@@ -123,7 +123,7 @@
                                                 v-model="dateArival"
                                                 v-on:click="UpdateselectDate()" 
                                                 >
-                                                <span class="input-group-text calendar-span" v-on:click="UpdateselectDate()" ><img class="calendar-icon" alt="calendar" src="img/hero/calendar.svg"></span>
+                                                <span class="input-group-text calendar-span" v-on:click="UpdateselectDate()" ><img class="calendar-icon" alt="calendar" src="/img/hero/calendar.svg"></span>
                                             </div>
                                             <div class="select-date" v-if="selectDate">
                                                 <DataPicker/>

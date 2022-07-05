@@ -4,7 +4,7 @@
   <SectionTitle title="История поездок"/>
   <EmptyHistory class="d-none" description-text="К нашему сожалению, у Вас не было поездок, но Вы можете их" link-text="совершить."/>
   <TripsHistory/>
-  <SectionImage src="img/my-trips/my-trips.svg" alt="История поездок"/>
+  <SectionImage src="/img/my-trips/my-trips.svg" alt="История поездок"/>
   <Footer/>
   <LoginModal/>
   <RegistrationModal/>

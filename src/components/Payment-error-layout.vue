@@ -18,7 +18,7 @@
       <div class="row">
         <div class="col-12 d-flex justify-content-center">
 
-          <img class="image-section" alt="В порцессе оплаты произошла ошибка" src="img/payment-error/payment-error.svg">
+          <img class="image-section" alt="В порцессе оплаты произошла ошибка" src="/img/payment-error/payment-error.svg">
 
         </div>
       </div>

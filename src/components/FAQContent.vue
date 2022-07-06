@@ -19,13 +19,24 @@
         </ul>
         <div class="tab-content" id="myTabContent">
           <div class="tab-pane fade show active" id="europoints" role="tabpanel" aria-labelledby="europoints-tab">
-            <ul class="list-group">
+            <ul v-bind:class="{'d-none': isShowDetails}" class="list-group">
               <li class="list-group-item">
-                <button type="button">
+                <button v-on:click="showCollapse()" type="button">
                   Вопрос
                 </button>
               </li>
             </ul>
+            <div v-bind:class="{'d-none': isHideDetails}" class="faq-details">
+              <div class="faq-details-header">
+                <h3 class="faq-title">Вопрос</h3>
+                <button v-on:click="showCollapse()" class="faq-back">Вернуться</button>
+              </div>
+              <div class="faq-details-body">
+                <p class="faq-description">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -39,7 +50,19 @@
 
 <script>
 export default {
-  name: "FAQContent"
+  name: "FAQContent",
+  data() {
+    return {
+      isShowDetails: false,
+      isHideDetails: true,
+    }
+  },
+  methods: {
+    showCollapse: function () {
+      this.isHideDetails = !this.isHideDetails;
+      this.isShowDetails = !this.isShowDetails;
+    }
+  }
 }
 </script>
 

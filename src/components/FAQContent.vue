@@ -2,7 +2,7 @@
 <div class="faq-content-section">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-9">
+      <div class="col-9 col-xl-9 col-xxl-7">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
           <li class="nav-item" role="presentation">
             <button class="nav-link active" id="europoints-tab" data-bs-toggle="tab" data-bs-target="#europoints" type="button" role="tab" aria-controls="europoints" aria-selected="true">Евробаллы</button>
@@ -29,7 +29,7 @@
           </div>
         </div>
       </div>
-      <div class="col-6">
+      <div class="col-3 col-xl-3 col-xxl-5">
 
       </div>
     </div>
@@ -60,6 +60,7 @@ export default {
         @include font($uni,$bold,24px,32.4px,$deactivate);
         padding-left: 10px;
         padding-right: 10px;
+        text-transform: unset;
       }
       .active {
         color: $blue-active;

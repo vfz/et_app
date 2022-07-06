@@ -28,7 +28,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-6 col-lg-6">
+        <div class="col-12 col-lg-6">
           <div class="description-list">
             <div class="description-item">
               <h3 class="title-description">
@@ -119,7 +119,7 @@
             </div>
           </div>
         </div>
-        <div class="col-6 col-lg-6">
+        <div class="col-12 col-lg-6">
           <form>
             <PersonalInfo class="personal-info"/>
             <FileUploader/>
@@ -166,10 +166,18 @@ export default {
     &-item {
       a {
         @include font($uni,$light,18px,24.3px,$secondary);
+        @media screen and (max-width: 991px) {
+          font-size: 14px;
+          line-height: 18.9px;
+        }
       }
     }
     .active {
       @include font($uni,$light,18px,24.3px,$base);
+      @media screen and (max-width: 991px) {
+        font-size: 14px;
+        line-height: 26px;
+      }
     }
   }
   .job-main-info {
@@ -192,33 +200,43 @@ export default {
       }
       .job-payment {
         color: $blue-active;
-        @media screen and (max-width: 991px) {
-          display: block;
-        }
-      }
-      .job-city {
-
-      }
-      .job-place {
-
       }
     }
   }
   .description-list {
     border-right: 1px solid #E1EEF6;
     padding-right: 40px;
+    @media screen and (max-width: 991px) {
+      border-right: 0;
+      padding-right: 0;
+    }
     .description-item {
       margin-bottom: 32px;
+      @media screen and (max-width: 991px) {
+        margin-bottom: 16px;
+      }
       .title-description {
         @include font($uni,$bold,20px,27px,$blue-active);
         margin-bottom: 16px;
+        @media screen and (max-width: 991px) {
+          font-size: 14px;
+          line-height: 18.9px;
+        }
       }
       .description {
         @include font($uni,$light,18px,24.3px,$base);
+        @media screen and (max-width: 991px) {
+          font-size: 14px;
+          line-height: 18.9px;
+        }
       }
       .title-list {
         @include font($uni,$regular,18px,24.3px,$secondary);
         margin-bottom: 12px;
+        @media screen and (max-width: 991px) {
+          font-size: 14px;
+          line-height: 18.9px;
+        }
       }
       .list-group-block {
         margin-bottom: 16px;
@@ -228,6 +246,10 @@ export default {
           @include font($uni,$light,18px,24.3px,$base);
           border: none;
           padding-left: 0;
+          @media screen and (max-width: 991px) {
+            font-size: 14px;
+            line-height: 18.9px;
+          }
         }
       }
     }

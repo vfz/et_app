@@ -6,7 +6,7 @@
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><router-link to="/jobs">Открытые вакансии</router-link></li>
-              <li class="breadcrumb-item active" aria-current="page">{{this.$route.params.title}}</li>
+              <li class="breadcrumb-item active" aria-current="page">Менеджер</li>
             </ol>
           </nav>
         </div>
@@ -15,14 +15,14 @@
         <div class="col-12 col-lg-12">
           <div class="job-main-info text-lg-start d-flex flex-column">
             <h2 class="job-title">
-              {{this.$route.params.title}}
+              Менеджер
             </h2>
             <div class="job-short">
         <span class="job-payment">
-          зп от {{this.$route.params.payment}}₽
+          зп от 20 000₽
         </span>
-              <span class="job-city">{{this.$route.params.city}},</span>
-              <span class="job-place">{{this.$route.params.place}}</span>
+              <span class="job-city">Ставрополь,</span>
+              <span class="job-place">Главный офис</span>
             </div>
           </div>
         </div>

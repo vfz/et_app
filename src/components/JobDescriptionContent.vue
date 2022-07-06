@@ -3,19 +3,17 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-12">
-          <div>
-            <nav aria-label="breadcrumb">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item"><router-link to="/jobs">Открытые вакансии</router-link></li>
-                <li class="breadcrumb-item active" aria-current="page">{{this.$route.params.title}}</li>
-              </ol>
-            </nav>
-          </div>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><router-link to="/jobs">Открытые вакансии</router-link></li>
+              <li class="breadcrumb-item active" aria-current="page">{{this.$route.params.title}}</li>
+            </ol>
+          </nav>
         </div>
       </div>
       <div class="row">
-        <div class="col-12">
-          <div class="job-main-info text-center text-lg-start d-flex flex-column">
+        <div class="col-12 col-lg-12">
+          <div class="job-main-info text-lg-start d-flex flex-column">
             <h2 class="job-title">
               {{this.$route.params.title}}
             </h2>
@@ -30,7 +28,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-6">
+        <div class="col-6 col-lg-6">
           <div class="description-list">
             <div class="description-item">
               <h3 class="title-description">
@@ -121,7 +119,7 @@
             </div>
           </div>
         </div>
-        <div class="col-6">
+        <div class="col-6 col-lg-6">
           <form>
             <PersonalInfo class="personal-info"/>
             <FileUploader/>

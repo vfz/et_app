@@ -2,6 +2,7 @@
 <div class="body-app-white">
   <Header/>
   <SectionTitle title="Вопросы и ответы"/>
+  <FAQContent/>
   <LoginModal/>
   <RegistrationModal/>
   <ForgotPasswordModal/>
@@ -18,9 +19,10 @@ import LoginModal from "@/components/LoginModal";
 import RegistrationModal from "@/components/RegistrationModal";
 import ForgotPasswordModal from "@/components/ForgotPasswordModal";
 import RemoveModal from "@/components/RemoveModal";
+import FAQContent from "@/components/FAQContent";
 export default {
   name: "FAQ",
-  components: {RemoveModal, ForgotPasswordModal, RegistrationModal, LoginModal, SectionTitle, Footer, Header}
+  components: {FAQContent, RemoveModal, ForgotPasswordModal, RegistrationModal, LoginModal, SectionTitle, Footer, Header}
 }
 </script>
 

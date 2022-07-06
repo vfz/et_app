@@ -17,14 +17,14 @@
         <div class="col-12">
           <div class="job-main-info text-center text-lg-start d-flex flex-column">
             <h2 class="job-title">
-              Менеджер
+              {{this.$route.params.title}}
             </h2>
             <div class="job-short">
         <span class="job-payment">
-          зп от 25 000₽
+          зп от {{this.$route.params.payment}}₽
         </span>
-              <span class="job-city">Ставрополь,</span>
-              <span class="job-place">Главный офис</span>
+              <span class="job-city">{{this.$route.params.city}},</span>
+              <span class="job-place">{{this.$route.params.place}}</span>
             </div>
           </div>
         </div>

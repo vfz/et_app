@@ -40,8 +40,8 @@
           </div>
         </div>
       </div>
-      <div class="col-3 col-xl-3 col-xxl-5">
-
+      <div class="col-3 col-xl-3 col-xxl-5 d-flex justify-content-center">
+        <img class="img-section" src="/img/faq/faq.svg" alt="faq">
       </div>
     </div>
   </div>
@@ -116,6 +116,9 @@ export default {
         }
       }
     }
+  }
+  .img-section {
+    max-width: 390px;
   }
 }
 

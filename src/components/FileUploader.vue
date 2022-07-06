@@ -15,6 +15,17 @@
           Мы принимаем: PDF, DOC, DOCX, JPG и PNG файлы.
         </div>
       </div>
+      <div v-if="url !== null" class="uploaded-files">
+        <div class="file d-flex flex-column justify-content-center">
+          <div class="w-100 d-flex justify-content-end">
+            <button v-on:click="deleteFile" class="btn-close" aria-label="close"></button>
+          </div>
+          <div class="w-100 d-flex justify-content-center">
+            <img src="/img/job/file.svg" alt="файл">
+          </div>
+          <a v-bind:href="url">{{name}}</a>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -24,7 +35,8 @@ export default {
   name: "FileUploader",
   data(){
     return {
-      url : '',
+      url : null,
+      name : null,
     }
   },
   methods: {
@@ -34,12 +46,16 @@ export default {
       input.onchange = _ => {
         // you can use this method to get file and perform respective operations
         const file = event.target.files[0]
-        console.log(file);
+        this.name = file.name;
         // this.url = возвращает ссылку на файл
         this.url = URL.createObjectURL(file);
         return this.url
       };
       input.click();
+    },
+    deleteFile(event) {
+      this.url = null
+      this.name = null
     }
   }
 }
@@ -91,6 +107,25 @@ export default {
         width: 100%;
         padding-left: 0;
         padding-right: 0;
+      }
+    }
+  }
+  .uploaded-files {
+    margin-top: 16px;
+    .file {
+      max-width: 120px;
+      .btn-close {
+        margin-bottom: 16px;
+      }
+      img {
+        width: 31px;
+        text-align: center;
+      }
+      a {
+        text-align: center;
+        margin-top: 8px;
+        @include font($uni,$light,18px,24.3px,$blue-link);
+        display: inline-block;
       }
     }
   }

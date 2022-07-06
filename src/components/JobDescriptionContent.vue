@@ -17,14 +17,14 @@
         <div class="col-12">
           <div class="job-main-info text-center text-lg-start d-flex flex-column">
             <h2 class="job-title">
-              {{title}}
+              Менеджер
             </h2>
             <div class="job-short">
         <span class="job-payment">
-          зп от {{payment}}₽
+          зп от 25 000₽
         </span>
-              <span class="job-city">{{city}},</span>
-              <span class="job-place">{{place}}</span>
+              <span class="job-city">Ставрополь,</span>
+              <span class="job-place">Главный офис</span>
             </div>
           </div>
         </div>
@@ -143,6 +143,13 @@ import FileUploader from "@/components/FileUploader";
 export default {
   name: "JobDescriptionContent",
   components: {FileUploader, MessageInfo, PersonalInfo},
+  // props: {
+  //   id: Number,
+  //   title: String,
+  //   payment: String,
+  //   city: String,
+  //   place: String
+  // }
 }
 </script>
 

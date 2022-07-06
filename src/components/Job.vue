@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="job-details">
-      <router-link class="btn btn-primary" :to="{path: '/jobs/' + id, name: 'job', params: {title: title}}">
+      <router-link class="btn btn-primary" :to="{path: '/jobs/' + id, params: {title: title}}">
         Подробнее
       </router-link>
     </div>

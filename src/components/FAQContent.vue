@@ -37,6 +37,17 @@
                 </div>
               </li>
             </ul>
+            <div class="pagination">
+              <nav aria-label="...">
+                <ul class="pagination">
+                  <li class="page-item active" aria-current="page">
+                    <span class="page-link">1</span>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                </ul>
+              </nav>
+            </div>
           </div>
         </div>
       </div>
@@ -107,6 +118,7 @@ export default {
           background: none;
           border: none;
           padding-left: 0;
+          padding-top: 16px;
           padding-bottom: 16px;
           border-radius: 0;
           border-bottom: 1px solid #E1EEF6;
@@ -135,6 +147,22 @@ export default {
             .faq-description {
               @include font($uni,$light,18px,24.3px,$base);
             }
+          }
+        }
+      }
+      .pagination {
+        margin-top: 31px;
+        .page-item {
+          @include font($uni,$light,18px,24.3px,$deactivate);
+          .page-link:focus {
+            color: $secondary;
+          }
+        }
+        .active {
+          .page-link {
+            background: none;
+            box-shadow: none;
+            @include font($uni,$regular,18px,24.3px,$secondary);
           }
         }
       }

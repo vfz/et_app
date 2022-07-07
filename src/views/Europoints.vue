@@ -2,7 +2,16 @@
 <div class="body-app-white">
   <Header/>
   <SectionTitle title="Евробаллы"/>
-  <EuropointsStats/>
+  <section class="europoints-section">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-6">
+          <EuropointsStats/>
+        </div>
+        <div class="col-6"></div>
+      </div>
+    </div>
+  </section>
   <LoginModal/>
   <RegistrationModal/>
   <ForgotPasswordModal/>
@@ -27,6 +36,14 @@ export default {
 @import "src/assets/font.scss";
 .body-app-white {
   background-color: $bg-app-light;
+  .europoints-section {
+    margin-left: 88px;
+    margin-right: 88px;
+    @media screen and (max-width: 991px) {
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+  }
 }
 .footer {
   margin-top: 72px;

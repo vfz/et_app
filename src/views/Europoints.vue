@@ -7,6 +7,7 @@
       <div class="row">
         <div class="col-7">
           <EuropointsStats/>
+          <EuropointsAbout/>
         </div>
         <div class="col-5">
           <img class="img-section" src="/img/europoints/europoints.svg" alt="евробаллы">
@@ -27,9 +28,12 @@ import LoginModal from "@/components/LoginModal";
 import RegistrationModal from "@/components/RegistrationModal";
 import ForgotPasswordModal from "@/components/ForgotPasswordModal";
 import EuropointsStats from "@/components/EuropointsStats";
+import EuropointsAbout from "@/components/EuropointsAbout";
 export default {
   name: "Europoints",
-  components: {EuropointsStats, ForgotPasswordModal, RegistrationModal, LoginModal, SectionTitle, Header}
+  components: {
+    EuropointsAbout,
+    EuropointsStats, ForgotPasswordModal, RegistrationModal, LoginModal, SectionTitle, Header}
 }
 </script>
 

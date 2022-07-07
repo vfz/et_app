@@ -5,10 +5,10 @@
   <section class="europoints-section">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-6">
+        <div class="col-8">
           <EuropointsStats/>
         </div>
-        <div class="col-6"></div>
+        <div class="col-4"></div>
       </div>
     </div>
   </section>

@@ -3,8 +3,8 @@
   <Header/>
   <SectionTitle title="Евробаллы"/>
   <section class="europoints-section">
-    <div class="container-fluid">
-      <div class="row">
+    <div class="container-fluid px-4">
+      <div class="row gx-5">
         <div class="col-7">
           <EuropointsStats/>
           <EuropointsAbout/>

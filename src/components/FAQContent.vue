@@ -19,24 +19,24 @@
         </ul>
         <div class="tab-content" id="myTabContent">
           <div class="tab-pane fade show active" id="europoints" role="tabpanel" aria-labelledby="europoints-tab">
-            <ul v-bind:class="{'d-none': isShowDetails}" class="list-group">
-              <li class="list-group-item">
-                <button v-on:click="showCollapse()" type="button">
-                  Вопрос
+            <ul class="list-group">
+              <li v-for="question in questions" :key="question.id" :class="{'is-show': question.isShow, 'is-hide' : question.isHide}" class="list-group-item">
+                <button :id="question.id" v-bind:class="{'d-none': question.isShow}" v-on:click="showQuestion(question, $event)" type="button">
+                  {{question.title}}
                 </button>
+                <div v-bind:class="{'d-none': question.isHide}" class="faq-details-item">
+                  <div class="faq-details-item-header d-flex justify-content-between">
+                    <h3 class="faq-title">{{question.title}}</h3>
+                    <button :id="question.id" v-on:click="showQuestion(question, $event)" class="faq-back">Вернуться</button>
+                  </div>
+                  <div class="faq-details-item-body">
+                    <p class="faq-description">
+                      {{question.description}}
+                    </p>
+                  </div>
+                </div>
               </li>
             </ul>
-            <div v-bind:class="{'d-none': isHideDetails}" class="faq-details">
-              <div class="faq-details-header">
-                <h3 class="faq-title">Вопрос</h3>
-                <button v-on:click="showCollapse()" class="faq-back">Вернуться</button>
-              </div>
-              <div class="faq-details-body">
-                <p class="faq-description">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -53,14 +53,21 @@ export default {
   name: "FAQContent",
   data() {
     return {
-      isShowDetails: false,
-      isHideDetails: true,
+      questions: [
+        {id: 1, title: 'Вопрос1', description: 'lorem lorem lorem', isShow: false, isHide: true},
+        {id: 2, title: 'Вопрос2', description: 'lorem lorem lorem', isShow: false, isHide: true},
+        {id: 3, title: 'Вопрос3', description: 'lorem lorem lorem', isShow: false, isHide: true},
+      ]
+    }
+  },
+  computed: {
+    hideQuestions: function (){
     }
   },
   methods: {
-    showCollapse: function () {
-      this.isHideDetails = !this.isHideDetails;
-      this.isShowDetails = !this.isShowDetails;
+    showQuestion: function (question,event) {
+      question.isHide = !question.isHide;
+      question.isShow = !question.isShow;
     }
   }
 }
@@ -112,6 +119,22 @@ export default {
           button:hover {
             @include animation;
             color: $blue-active;
+          }
+        }
+        .faq-details-item {
+          &-header {
+            margin-bottom: 32px;
+            .faq-title {
+              @include font($uni,$bold,20px,27px,$base);
+            }
+            .faq-back {
+              @include font($uni,$light,18px,24.3px,$blue-link);
+            }
+          }
+          &-body {
+            .faq-description {
+              @include font($uni,$light,18px,24.3px,$base);
+            }
           }
         }
       }

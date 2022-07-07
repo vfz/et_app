@@ -97,21 +97,36 @@ export default {
   }
   .nav {
     @media screen and (max-width: 991px) {
+      width: 100%;
       overflow-x: scroll;
       overflow-y: hidden;
+      display: block;
+      white-space: nowrap;
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
     }
     &-item {
+      @media screen and (max-width: 991px) {
+        display: inline-block;
+      }
       .nav-link {
         @include font($uni,$bold,24px,32.4px,$deactivate);
         padding-left: 10px;
         padding-right: 10px;
         text-transform: unset;
+        @media screen and (max-width: 991px) {
+          font-size: 18px;
+          line-height: 24.3px;
+        }
       }
       .active {
         color: $blue-active;
         border-bottom: 1px solid $blue-active;
       }
     }
+  }
+  .nav::-webkit-scrollbar {
+    display: none;
   }
   .tab-content {
     margin-top: 38px;

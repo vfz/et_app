@@ -5,10 +5,12 @@
   <section class="europoints-section">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-8">
+        <div class="col-7">
           <EuropointsStats/>
         </div>
-        <div class="col-4"></div>
+        <div class="col-5">
+          <img class="img-section" src="/img/europoints/europoints.svg" alt="евробаллы">
+        </div>
       </div>
     </div>
   </section>
@@ -42,6 +44,10 @@ export default {
     @media screen and (max-width: 991px) {
       margin-left: 20px;
       margin-right: 20px;
+    }
+    .img-section {
+      width: 100%;
+      max-width: 697px;
     }
   }
 }

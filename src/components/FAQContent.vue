@@ -141,11 +141,19 @@ export default {
           padding-bottom: 16px;
           border-radius: 0;
           border-bottom: 1px solid #E1EEF6;
+          @media screen and (max-width: 991px) {
+            font-size: 14px;
+            line-height: 18.9px;
+          }
           button {
             @include font($uni,$bold,20px,27px,$base);
             border: none;
             background: none;
             padding: 0;
+            @media screen and (max-width: 991px) {
+              font-size: 14px;
+              line-height: 18.9px;
+            }
           }
           button:hover {
             @include animation;
@@ -155,22 +163,40 @@ export default {
         .faq-details-item {
           &-header {
             margin-bottom: 32px;
+            @media screen and (max-width: 991px) {
+              margin-bottom: 16px;
+            }
             .faq-title {
               @include font($uni,$bold,20px,27px,$base);
+              @media screen and (max-width: 991px) {
+                font-size: 14px;
+                line-height: 18.9px;
+              }
             }
             .faq-back {
               @include font($uni,$light,18px,24.3px,$blue-link);
+              @media screen and (max-width: 991px) {
+                font-size: 14px;
+                line-height: 18.9px;
+              }
             }
           }
           &-body {
             .faq-description {
               @include font($uni,$light,18px,24.3px,$base);
+              @media screen and (max-width: 991px) {
+                font-size: 14px;
+                line-height: 18.9px;
+              }
             }
           }
         }
       }
       .pagination {
         margin-top: 31px;
+        @media screen and (max-width: 991px) {
+          margin-top: 16px;
+        }
         .page-item {
           @include font($uni,$light,18px,24.3px,$deactivate);
           .page-link:focus {

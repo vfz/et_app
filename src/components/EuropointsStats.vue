@@ -13,8 +13,32 @@
       </div>
     </div>
   </div>
-  <div class="col"></div>
-  <div class="col"></div>
+  <div class="col">
+    <div class="stats">
+      <h3 class="stats-title">
+        На данный момент
+      </h3>
+      <div class="stats-number stats-current">
+        440
+      </div>
+      <div class="stats-footer">
+        Евробаллов
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="stats">
+      <h3 class="stats-title">
+        За весь период
+      </h3>
+      <div class="stats-number stats-amount">
+        10 550
+      </div>
+      <div class="stats-footer">
+        Евробаллов
+      </div>
+    </div>
+  </div>
 </div>
 </template>
 
@@ -38,6 +62,14 @@ export default {
     @include font($uni,$bold,24px,32.4px,$blue-active);
     margin-bottom: 16px;
     text-align: center;
+  }
+  &-current {
+    font-size: 48px;
+    line-height: 64.8px;
+    color: $base;
+  }
+  &-amount {
+    color: $secondary;
   }
   &-footer {
     @include font($uni,$regular,14px,18.9px,#B5BDDB);

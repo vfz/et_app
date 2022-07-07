@@ -2,6 +2,7 @@
 <div class="body-app-white">
   <Header/>
   <SectionTitle title="Евробаллы"/>
+  <EuropointsStats/>
   <LoginModal/>
   <RegistrationModal/>
   <ForgotPasswordModal/>
@@ -14,9 +15,10 @@ import SectionTitle from "@/components/SectionTitle";
 import LoginModal from "@/components/LoginModal";
 import RegistrationModal from "@/components/RegistrationModal";
 import ForgotPasswordModal from "@/components/ForgotPasswordModal";
+import EuropointsStats from "@/components/EuropointsStats";
 export default {
   name: "Europoints",
-  components: {ForgotPasswordModal, RegistrationModal, LoginModal, SectionTitle, Header}
+  components: {EuropointsStats, ForgotPasswordModal, RegistrationModal, LoginModal, SectionTitle, Header}
 }
 </script>
 

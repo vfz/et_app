@@ -2,7 +2,7 @@
 <div class="faq-content-section">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-9 col-xl-9 col-xxl-7">
+      <div class="col-12 col-xl-9 col-xxl-8">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
           <li class="nav-item" role="presentation">
             <button class="nav-link active" id="europoints-tab" data-bs-toggle="tab" data-bs-target="#europoints" type="button" role="tab" aria-controls="europoints" aria-selected="true">Евробаллы</button>
@@ -51,7 +51,7 @@
           </div>
         </div>
       </div>
-      <div class="col-3 col-xl-3 col-xxl-5 d-flex justify-content-center">
+      <div class="col-3 col-xl-3 col-xxl-4 d-none d-lg-flex justify-content-center">
         <img class="img-section" src="/img/faq/faq.svg" alt="faq">
       </div>
     </div>
@@ -96,6 +96,10 @@ export default {
     margin-right: 20px;
   }
   .nav {
+    @media screen and (max-width: 991px) {
+      overflow-x: scroll;
+      overflow-y: hidden;
+    }
     &-item {
       .nav-link {
         @include font($uni,$bold,24px,32.4px,$deactivate);
@@ -170,6 +174,9 @@ export default {
   }
   .img-section {
     max-width: 390px;
+    @media (min-width: 1200px) and (max-width: 1400px) {
+      width: 100%;
+    }
   }
 }
 

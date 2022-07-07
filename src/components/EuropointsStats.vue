@@ -1,7 +1,7 @@
 <template>
 <div class="row">
   <div class="col">
-    <div class="stats">
+    <div class="stats d-flex flex-column justify-content-between align-items-center">
       <h3 class="stats-title">
         За прошлый месяц
       </h3>
@@ -14,7 +14,7 @@
     </div>
   </div>
   <div class="col">
-    <div class="stats">
+    <div class="stats d-flex flex-column justify-content-between align-items-center">
       <h3 class="stats-title">
         На данный момент
       </h3>
@@ -27,7 +27,7 @@
     </div>
   </div>
   <div class="col">
-    <div class="stats">
+    <div class="stats d-flex flex-column justify-content-between align-items-center">
       <h3 class="stats-title">
         За весь период
       </h3>
@@ -53,6 +53,7 @@ export default {
 @import "src/assets/font.scss";
 
 .stats {
+  height: 100%;
   &-title {
     @include font($uni,$regular,14px,18.9px,$base);
     text-align: center;

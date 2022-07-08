@@ -9,7 +9,7 @@
           <AgentsDescription/>
         </div>
         <div class="col-12 col-lg-5">
-
+          <AgentsForm/>
         </div>
       </div>
     </div>
@@ -29,9 +29,12 @@ import LoginModal from "@/components/LoginModal";
 import RegistrationModal from "@/components/RegistrationModal";
 import ForgotPasswordModal from "@/components/ForgotPasswordModal";
 import AgentsDescription from "@/components/AgentsDescription";
+import AgentsForm from "@/components/AgentsForm";
 export default {
   name: "Agents",
-  components: {AgentsDescription, ForgotPasswordModal, RegistrationModal, LoginModal, SectionTitle, Footer, Header}
+  components: {
+    AgentsForm,
+    AgentsDescription, ForgotPasswordModal, RegistrationModal, LoginModal, SectionTitle, Footer, Header}
 }
 </script>
 

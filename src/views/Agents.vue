@@ -5,10 +5,10 @@
   <section class="agents-section">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-12 col-lg-7">
+        <div class="col-12 col-lg-7 col-xl-6 col-xxl-7">
           <AgentsDescription/>
         </div>
-        <div class="col-12 col-lg-5">
+        <div class="col-12 col-lg-5 col-xl-6 col-xxl-5 d-xl-flex justify-content-end">
           <AgentsForm/>
         </div>
       </div>

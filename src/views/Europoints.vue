@@ -16,6 +16,7 @@
       </div>
     </div>
   </section>
+  <Footer/>
   <LoginModal/>
   <RegistrationModal/>
   <ForgotPasswordModal/>
@@ -31,9 +32,11 @@ import ForgotPasswordModal from "@/components/ForgotPasswordModal";
 import EuropointsStats from "@/components/EuropointsStats";
 import EuropointsAbout from "@/components/EuropointsAbout";
 import EuropointsTripsHistory from "@/components/EuropointsTripsHistory";
+import Footer from "@/components/Footer";
 export default {
   name: "Europoints",
   components: {
+    Footer,
     EuropointsTripsHistory,
     EuropointsAbout,
     EuropointsStats, ForgotPasswordModal, RegistrationModal, LoginModal, SectionTitle, Header},

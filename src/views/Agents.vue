@@ -44,6 +44,14 @@ export default {
 
 .body-app-white {
   background-color: $bg-app-light;
+  .agents-section {
+    margin-left: 88px;
+    margin-right: 88px;
+    @media screen and (max-width: 991px) {
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+  }
 }
 .footer {
   margin-top: 72px;

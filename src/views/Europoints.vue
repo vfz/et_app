@@ -3,15 +3,15 @@
   <Header/>
   <SectionTitle title="Евробаллы"/>
   <section class="europoints-section">
-    <div class="container-fluid px-4">
-      <div class="row gx-5">
-        <div class="col-7">
+    <div class="container-fluid px-lg-4">
+      <div class="row gx-lg-5">
+        <div class="col-12 col-lg-7">
           <EuropointsStats/>
           <EuropointsAbout/>
           <EuropointsTripsHistory/>
         </div>
-        <div class="col-5">
-          <img class="img-section" src="/img/europoints/europoints.svg" alt="евробаллы">
+        <div class="col-12 col-lg-5">
+          <img v-if="!isMobile()" class="img-section" src="/img/europoints/europoints.svg" alt="евробаллы">
         </div>
       </div>
     </div>
@@ -36,7 +36,12 @@ export default {
   components: {
     EuropointsTripsHistory,
     EuropointsAbout,
-    EuropointsStats, ForgotPasswordModal, RegistrationModal, LoginModal, SectionTitle, Header}
+    EuropointsStats, ForgotPasswordModal, RegistrationModal, LoginModal, SectionTitle, Header},
+  methods: {
+    isMobile() {
+      return screen.width <= 992;
+    }
+  }
 }
 </script>
 

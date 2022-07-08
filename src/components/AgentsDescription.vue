@@ -22,14 +22,19 @@
     </ul>
   </div>
   <div class="col-6">
-    <img class="img-section" src="/img/agents/agents.svg" alt="агентам">
+    <img v-if="!isMobile()" class="img-section" src="/img/agents/agents.svg" alt="агентам">
   </div>
 </div>
 </template>
 
 <script>
 export default {
-  name: "AgentsDescription"
+  name: "AgentsDescription",
+  methods: {
+    isMobile() {
+      return screen.width <= 991;
+    }
+  }
 }
 </script>
 
@@ -46,9 +51,18 @@ export default {
   .title-section {
     @include font($uni,$bold,24px,32.4px,$base);
     margin-bottom: 32px;
+    @media screen and (max-width: 991px) {
+      font-size: 18px;
+      line-height: 24.3px;
+      margin-bottom: 16px;
+    }
   }
   .description-section {
     @include font($uni,$light,18px,24.3px,$base);
+    @media screen and (max-width: 991px) {
+      font-size: 14px;
+      line-height: 18.9px;
+    }
     span {
       font-weight: $regular;
     }
@@ -60,6 +74,10 @@ export default {
       border: none;
       padding-left: 0;
       padding-right: 0;
+      @media screen and (max-width: 991px) {
+        font-size: 14px;
+        line-height: 18.9px;
+      }
     }
   }
   .img-section {

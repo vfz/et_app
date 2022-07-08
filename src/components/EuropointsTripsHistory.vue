@@ -139,6 +139,7 @@ export default {
     border-radius: 0 16px 16px 16px;
     box-shadow: $regular-shadow;
     padding: 12px 0;
+    white-space: nowrap;
     .table>:not(:first-child) {
       border-top: unset;
     }
@@ -146,15 +147,9 @@ export default {
       margin-bottom: 0;
       td {
         padding: 1rem 1rem;
-        @media screen and (max-width: 1199px) {
-          padding: 0.5rem 0.5rem;
-        }
       }
       th {
         padding: 1rem 1rem;
-        @media screen and (max-width: 1199px) {
-          padding: 0.5rem 0.5rem;
-        }
       }
       thead {
         tr {

@@ -51,6 +51,10 @@ export default {
   @media screen and (max-width: 1199px) {
     padding: 32px 30px;
   }
+  @media screen and (max-width: 991px) {
+    box-shadow: none;
+    padding: 0;
+  }
   .title-section {
     @include font($uni,$bold,24px,32.4px,$base);
     margin-bottom: 40px;
@@ -60,6 +64,10 @@ export default {
     .form-label {
       @include font($uni,$regular,18px,24.3px,$secondary);
       margin-bottom: 12px;
+      @media screen and (max-width: 991px) {
+        font-size: 14px;
+        line-height: 18.9px;
+      }
     }
     .form-control {
       @include font($uni,$regular,18px,24.3px,$base);
@@ -69,6 +77,10 @@ export default {
       box-shadow: $regular-shadow;
       border: none;
       border-radius: 8px;
+      @media screen and (max-width: 991px) {
+        font-size: 14px;
+        line-height: 18.9px;
+      }
     }
     .form-control::-moz-placeholder {
       color: #B5BDDB; /* Цвет подсказывающего текста */

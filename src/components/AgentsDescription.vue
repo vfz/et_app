@@ -8,7 +8,7 @@
       <span> (Описание о том, что это и как это работает) </span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
     </p>
   </div>
-  <div class="col-6">
+  <div class="col-12 col-lg-6">
     <h2 class="title-section">
       У вас появится возможность:
     </h2>
@@ -21,7 +21,7 @@
       </li>
     </ul>
   </div>
-  <div class="col-6">
+  <div class="col-12 col-lg-6">
     <img v-if="!isMobile()" class="img-section" src="/img/agents/agents.svg" alt="агентам">
   </div>
 </div>
@@ -68,6 +68,9 @@ export default {
     }
   }
   .list-group {
+    @media screen and (max-width: 991px) {
+      margin-bottom: 24px;
+    }
     &-item {
       @include font($uni,$light,18px,24.3px,$base);
       background: none;

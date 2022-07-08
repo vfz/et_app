@@ -8,7 +8,7 @@
         <div class="col-12 col-lg-7 col-xl-6 col-xxl-7">
           <AgentsDescription/>
         </div>
-        <div class="col-12 col-lg-5 col-xl-6 col-xxl-5 d-xl-flex justify-content-end">
+        <div class="col-12 col-lg-5 col-xl-6 col-xxl-5 d-flex justify-content-center justify-content-lg-end">
           <AgentsForm/>
         </div>
       </div>

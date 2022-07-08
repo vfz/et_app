@@ -21,7 +21,9 @@
       </li>
     </ul>
   </div>
-  <div class="col-6"></div>
+  <div class="col-6">
+    <img class="img-section" src="/img/agents/agents.svg" alt="агентам">
+  </div>
 </div>
 </template>
 
@@ -59,6 +61,10 @@ export default {
       padding-left: 0;
       padding-right: 0;
     }
+  }
+  .img-section {
+    width: 100%;
+    max-width: 624px;
   }
 }
 </style>

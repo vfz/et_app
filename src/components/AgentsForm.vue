@@ -19,11 +19,21 @@
         </div>
         <div class="col-12">
           <label for="email" class="form-label">Эл. почта</label>
-          <input type="email" class="form-control" id="email" placeholder="Введите email">
+          <div class="input-group position-relative">
+            <input type="email" class="form-control is-valid" id="email" placeholder="Введите email">
+            <div class="valid-feedback icon-bg position-absolute d-flex align-items-center">
+              <MailIcon/>
+            </div>
+          </div>
         </div>
         <div class="col-12">
           <label for="number" class="form-label">Телефон</label>
-          <input type="text" class="form-control" id="number" placeholder="+7 (___)-___-__-__">
+          <div class="input-group position-relative">
+            <input type="text" class="form-control" id="number" placeholder="+7 (___)-___-__-__">
+            <div class="valid-feedback icon-bg position-absolute d-flex align-items-center">
+              <MobileIcon/>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -31,8 +41,11 @@
 </template>
 
 <script>
+import MailIcon from "@/components/icons/MailIcon";
+import MobileIcon from "@/components/icons/MobileIcon";
 export default {
-  name: "AgentsForm"
+  name: "AgentsForm",
+  components: {MobileIcon, MailIcon}
 }
 </script>
 
@@ -89,6 +102,16 @@ export default {
     .form-control:-ms-input-placeholder { color: #B5BDDB; }
     .form-control::-ms-input-placeholder { color: #B5BDDB; }
     .form-control::placeholder { color: #B5BDDB; }
+    .icon-bg {
+      background-color: $blue-active;
+      height: 100%;
+      padding-left: 20px;
+      padding-right: 20px;
+      right: 0;
+      border-radius: 8px;
+      margin: 0;
+      z-index: 9999;
+    }
   }
   .col-12:last-child {
     margin-bottom: 0;

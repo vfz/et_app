@@ -291,7 +291,7 @@ export default {
     }
   }
   .pagination {
-    margin-top: 31px;
+    margin-top: 18px;
     @media screen and (max-width: 991px) {
       margin-top: 16px;
     }

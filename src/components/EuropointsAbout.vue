@@ -126,6 +126,10 @@ export default {
   margin-bottom: 32px;
   .europoints-description {
     @include font($uni,$light,18px,24.3px,$base);
+    @media screen and (max-width: 767px) {
+      font-size: 14px;
+      line-height: 18.9px;
+    }
   }
   .details {
     padding-bottom: 16px;
@@ -136,6 +140,10 @@ export default {
       border: none;
       padding-left: 0;
       @include font($uni,$bold,24px,32.4px,$base);
+      @media screen and (max-width: 767px) {
+        font-size: 18px;
+        line-height: 24.3px;
+      }
       svg {
 
       }
@@ -159,9 +167,17 @@ export default {
     }
     &-title {
       @include font($uni,$regular,18px,24.3px,$base);
+      @media screen and (max-width: 767px) {
+        font-size: 14px;
+        line-height: 18.9px;
+      }
     }
     &-description {
       @include font($uni,$light,18px,24.3px,$base);
+      @media screen and (max-width: 767px) {
+        font-size: 14px;
+        line-height: 18.9px;
+      }
       span {
         color: $secondary;
       }

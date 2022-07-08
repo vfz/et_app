@@ -32,6 +32,11 @@ export default {
   .title-section {
     @include font($uni,$bold,24px,32.4px,$base);
     margin-bottom: 32px;
+    @media screen and (max-width: 991px) {
+      font-size: 18px;
+      line-height: 24.3px;
+      margin-bottom: 16px;
+    }
   }
   .form-wrapper {
     background-color: $white;
@@ -48,6 +53,10 @@ export default {
     }
     .form-control, .form-select {
       @include font($uni,$regular,18px,24.3px,$base);
+      @media screen and (max-width: 991px) {
+        font-size: 14px;
+        line-height: 18.9px;
+      }
     }
     .form-select {
       padding-bottom: 3.28px;

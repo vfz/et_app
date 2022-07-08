@@ -16,6 +16,7 @@ import FAQ from "@/views/FAQ";
 import Europoints from "@/views/Europoints";
 import Agents from "@/views/Agents";
 import About from "@/views/About";
+import JobDescription from "@/views/JobDescription";
 
 Vue.use(VueRouter)
 
@@ -77,7 +78,14 @@ const routes = [{
     {
         path: '/jobs',
         name: 'Jobs',
-        component: Jobs
+        component: Jobs,
+        props: true
+    },
+    {
+        path: '/jobs/:id',
+        name: 'JobDescription',
+        component: JobDescription,
+        props: true
     },
     {
         path: '/faq',

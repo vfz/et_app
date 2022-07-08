@@ -52,6 +52,7 @@ export default {
     margin-bottom: 32px;
     @media screen and (max-width: 991px) {
       font-size: 18px;
+      margin-bottom: 16px;
     }
   }
   .title-section-description {
@@ -74,9 +75,17 @@ export default {
     }
     .form-label {
       @include font($uni,$light,14px,18.9px,$secondary);
+      @media screen and (max-width: 991px) {
+        font-size: 11px;
+        line-height: 14.85px;
+      }
     }
     .form-control, .form-select {
       @include font($uni,$regular,18px,24.3px,$base);
+      @media screen and (max-width: 991px) {
+        font-size: 14px;
+        line-height: 18.9px;
+      }
     }
     .form-control {
       border: none;

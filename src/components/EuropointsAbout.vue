@@ -134,6 +134,7 @@ export default {
       background: none;
       outline: none;
       border: none;
+      padding-left: 0;
       @include font($uni,$bold,24px,32.4px,$base);
       svg {
 

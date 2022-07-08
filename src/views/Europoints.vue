@@ -8,6 +8,7 @@
         <div class="col-7">
           <EuropointsStats/>
           <EuropointsAbout/>
+          <EuropointsTripsHistory/>
         </div>
         <div class="col-5">
           <img class="img-section" src="/img/europoints/europoints.svg" alt="евробаллы">
@@ -29,9 +30,11 @@ import RegistrationModal from "@/components/RegistrationModal";
 import ForgotPasswordModal from "@/components/ForgotPasswordModal";
 import EuropointsStats from "@/components/EuropointsStats";
 import EuropointsAbout from "@/components/EuropointsAbout";
+import EuropointsTripsHistory from "@/components/EuropointsTripsHistory";
 export default {
   name: "Europoints",
   components: {
+    EuropointsTripsHistory,
     EuropointsAbout,
     EuropointsStats, ForgotPasswordModal, RegistrationModal, LoginModal, SectionTitle, Header}
 }

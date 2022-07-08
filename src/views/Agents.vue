@@ -5,10 +5,10 @@
   <section class="agents-section">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-12 col-lg-7">
+        <div class="col-12 col-lg-7 col-xl-6 col-xxl-7">
           <AgentsDescription/>
         </div>
-        <div class="col-12 col-lg-5">
+        <div class="col-12 col-lg-5 col-xl-6 col-xxl-5 d-flex justify-content-center justify-content-lg-end">
           <AgentsForm/>
         </div>
       </div>
@@ -38,6 +38,22 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "src/assets/variables.scss";
+@import "src/assets/font.scss";
 
+.body-app-white {
+  background-color: $bg-app-light;
+  .agents-section {
+    margin-left: 88px;
+    margin-right: 88px;
+    @media screen and (max-width: 991px) {
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+  }
+}
+.footer {
+  margin-top: 72px;
+}
 </style>

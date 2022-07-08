@@ -6,7 +6,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-12 col-lg-7">
-
+          <AgentsDescription/>
         </div>
         <div class="col-12 col-lg-5">
 
@@ -28,9 +28,10 @@ import SectionTitle from "@/components/SectionTitle";
 import LoginModal from "@/components/LoginModal";
 import RegistrationModal from "@/components/RegistrationModal";
 import ForgotPasswordModal from "@/components/ForgotPasswordModal";
+import AgentsDescription from "@/components/AgentsDescription";
 export default {
   name: "Agents",
-  components: {ForgotPasswordModal, RegistrationModal, LoginModal, SectionTitle, Footer, Header}
+  components: {AgentsDescription, ForgotPasswordModal, RegistrationModal, LoginModal, SectionTitle, Footer, Header}
 }
 </script>
 

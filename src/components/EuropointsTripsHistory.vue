@@ -157,9 +157,15 @@ export default {
       margin-bottom: 0;
       td {
         padding: 1rem 1rem;
+        @media screen and (max-width: 767px) {
+          padding: 0.5rem 0.5rem;
+        }
       }
       th {
         padding: 1rem 1rem;
+        @media screen and (max-width: 767px) {
+          padding: 0.5rem 0.5rem;
+        }
       }
       thead {
         tr {

@@ -1,5 +1,11 @@
 <template>
-
+<div class="row agents-description-section">
+  <div class="col-12">
+    <h2 class="title-section">
+      Приглашаем агентов к сотрудничеству по продаже автобусных билетов
+    </h2>
+  </div>
+</div>
 </template>
 
 <script>
@@ -8,6 +14,6 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 </style>

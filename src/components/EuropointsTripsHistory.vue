@@ -13,10 +13,10 @@
           <th>
             Дата
           </th>
-          <th>
+          <th v-if="!isMobile()">
             Маршрут
           </th>
-          <th>
+          <th v-if="!isMobile()">
             Итого
           </th>
           <th>
@@ -35,7 +35,7 @@
               25.11.2019
             </div>
           </td>
-          <td>
+          <td v-if="!isMobile()">
             <div class="path-trip d-flex align-items-center">
               <div class="path-trip-start">
                 Белгород
@@ -46,7 +46,7 @@
               </div>
             </div>
           </td>
-          <td>
+          <td v-if="!isMobile()">
             <div class="amount-sum-trip">
               4 500₽
             </div>
@@ -68,7 +68,7 @@
               25.10.2020
             </div>
           </td>
-          <td>
+          <td v-if="!isMobile()">
             <div class="path-trip d-flex align-items-center">
               <div class="path-trip-start">
                 Ставрополь
@@ -79,7 +79,7 @@
               </div>
             </div>
           </td>
-          <td>
+          <td v-if="!isMobile()">
             <div class="amount-sum-trip">
               8 500₽
             </div>
@@ -100,7 +100,7 @@
     </div>
   </div>
   <div class="col-12">
-    <div class="pagination">
+    <div v-if="!isMobile()" class="pagination">
       <nav aria-label="...">
         <ul class="pagination">
           <li class="page-item active" aria-current="page">
@@ -122,6 +122,11 @@ import ArrowPathIcon from "@/components/icons/ArrowPathIcon";
 export default {
   name: "EuropointsTripsHistory",
   components: {ArrowPathIcon, CancelIcon, ArrowDownIcon},
+  methods: {
+    isMobile() {
+      return screen.width <= 992;
+    }
+  }
 }
 </script>
 
@@ -133,6 +138,11 @@ export default {
   .title-section {
     @include font($uni,$bold,24px,32.4px,$base);
     margin-bottom: 32px;
+    @media screen and (max-width: 767px) {
+      font-size: 18px;
+      line-height: 24.3px;
+      margin-bottom: 16px;
+    }
   }
   .table-wrapper {
     background-color: $white;
@@ -159,6 +169,10 @@ export default {
               font-size: 11px;
               line-height: 14.85px;
             }
+            @media screen and (max-width: 767px) {
+              font-size: 11px;
+              line-height: 14.85px;
+            }
           }
         }
       }
@@ -168,6 +182,10 @@ export default {
             .path-trip {
               &-start, &-end {
                 @include font($uni,$regular,18px,24.3px,$base);
+                @media screen and (max-width: 767px) {
+                  font-size: 13px;
+                  line-height: 17.55px;
+                }
               }
               &-start {
                 margin-right: 8px;
@@ -178,15 +196,27 @@ export default {
             }
             .date-trip, .tickets-count-trip, .amount-sum-trip {
               @include font($uni,$regular,18px,24.3px,$base);
+              @media screen and (max-width: 767px) {
+                font-size: 13px;
+                line-height: 17.55px;
+              }
             }
             .date-trip, .arrival-time, .dispatch-city, .arrival-city, .places-left {
               margin-bottom: 4px;
             }
             .added-europoints-trip {
               @include font($uni,$regular,18px,24.3px,$blue-active);
+              @media screen and (max-width: 767px) {
+                font-size: 13px;
+                line-height: 17.55px;
+              }
             }
             .used-europoints-trip {
               @include font($uni,$regular,18px,24.3px,$base);
+              @media screen and (max-width: 767px) {
+                font-size: 13px;
+                line-height: 17.55px;
+              }
             }
             .used {
               color: #EE5D5D;
@@ -202,85 +232,6 @@ export default {
         tr:hover{
           @include animation;
           background-color: $blue-hover;
-        }
-      }
-    }
-    .collapse, .collapsing {
-      .collapse-wrapper {
-        background-color: #F3F7FF;
-        padding: 13px 16px;
-        .collapse-title {
-          margin-bottom: 24px;
-          @include font($uni,$bold,24px,32.4px,$base);
-        }
-      }
-      .collapse-section-title {
-        @include font($uni,$bold,20px,27px,$base);
-        margin-bottom: 16px;
-        @media screen and (max-width: 1199px) {
-          font-size: 14px;
-        }
-      }
-      .trip-info {
-        &-title {
-          @include font($uni,$regular,18px,24.3px,$secondary);
-          margin-bottom: 8px;
-          @media screen and (max-width: 1199px) {
-            font-size: 13px;
-          }
-        }
-        &-description {
-          @include font($uni,$regular,18px,24.3px,$base);
-          margin-bottom: 8px;
-          @media screen and (max-width: 1199px) {
-            font-size: 13px;
-          }
-          &-start {
-            margin-right: 8px;
-          }
-          &-end {
-            margin-left: 8px;
-          }
-        }
-        &-link {
-          @include font($uni,$regular,18px,24.3px,$blue-active);
-          @media screen and (max-width: 1199px) {
-            font-size: 13px;
-          }
-        }
-      }
-    }
-    .footer-table {
-      padding: 1rem 1rem;
-      .details {
-        button {
-          background: none;
-          outline: none;
-          border: none;
-          @include font($uni,$light,18px,24.3px,$blue-color);
-          @media screen and (max-width: 1199px) {
-            font-size: 13px;
-            line-height: 17.55px;
-          }
-          svg {
-            margin-left: 8px;
-            @media screen and (max-width: 1199px) {
-              width: 9px;
-            }
-          }
-        }
-      }
-      .details-hide {
-        button {
-          svg {
-            transform: rotate(180deg);
-          }
-        }
-      }
-      .used-europoints {
-        @include font($uni,$light,18px,24.3px,$base);
-        span {
-          color: $blue-color;
         }
       }
     }

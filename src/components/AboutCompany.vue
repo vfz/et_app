@@ -19,7 +19,7 @@
         <img class="director" src="/img/about/director.png" alt="руководитель компании">
       </div>
       <div class="col-6 col-xl-2 col-xxl-2">
-        <div class="about-director d-flex flex-column justify-content-center text-center">
+        <div class="about-director d-flex flex-column justify-content-xl-center text-center">
           <h3 class="title">
             Максим Яцунов
           </h3>
@@ -63,6 +63,9 @@ export default {
     @include font($uni,$regular,18px,24.3px,#000000);
     width: 100%;
     text-align: right;
+    @media screen and (max-width: 1199px) {
+      margin-bottom: 24px;
+    }
     q {
       max-width: 574px;
     }

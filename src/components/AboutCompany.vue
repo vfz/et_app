@@ -15,10 +15,10 @@
           <q>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</q>
         </p>
       </div>
-      <div class="col-6 col-xl-4 col-xxl-3 d-flex justify-content-center align-self-end">
+      <div class="col-7 col-sm-6 col-xl-4 col-xxl-3 d-flex justify-content-center align-self-end">
         <img class="director" src="/img/about/director.png" alt="руководитель компании">
       </div>
-      <div class="col-6 col-xl-2 col-xxl-2">
+      <div class="col-5 col-sm-6 col-xl-2 col-xxl-2">
         <div class="about-director d-flex flex-column justify-content-xl-center text-center">
           <h3 class="title">
             Максим Яцунов
@@ -58,6 +58,10 @@ export default {
   .description-section {
     @include font($uni,$light,18px,24.3px,#000000);
     margin-bottom: 24px;
+    @media screen and (max-width: 768px) {
+      font-size: 14px;
+      line-height: 18.9px;
+    }
   }
   .quote {
     @include font($uni,$regular,18px,24.3px,#000000);
@@ -65,6 +69,10 @@ export default {
     text-align: right;
     @media screen and (max-width: 1199px) {
       margin-bottom: 24px;
+    }
+    @media screen and (max-width: 768px) {
+      font-size: 14px;
+      line-height: 18.9px;
     }
     q {
       max-width: 574px;
@@ -78,18 +86,35 @@ export default {
   }
   .about-director {
     @include font($uni,$regular,18px,24.3px,$base);
+    @media screen and (max-width: 768px) {
+      font-size: 14px;
+      line-height: 18.9px;
+    }
+    @media screen and (max-width: 576px) {
+      font-size: 12px;
+    }
     .border-line {
       height: 102px;
       width: 1px;
       background: #C4C4C4;
       margin-top: 8px;
       margin-bottom: 8px;
+      @media screen and (max-width: 991px) {
+        height: 43px;
+      }
     }
     .title {
       font-weight: $bold;
       font-size: 24px;
       line-height: 32.4px;
       margin-bottom: 0;
+      @media screen and (max-width: 991px) {
+        font-size: 18px;
+        line-height: 24.3px;
+      }
+      @media screen and (max-width: 576px) {
+        font-size: 16px;
+      }
     }
     .description, .job {
       margin-bottom: 0;

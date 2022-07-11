@@ -27,9 +27,7 @@
       </div>
       <div class="col-9">
         <div class="tab-content" id="myTabContent">
-          <div class="tab-pane fade show active" id="twoFloors" role="tabpanel" aria-labelledby="twoFloors-tab">
-            hello
-          </div>
+          <div class="tab-pane fade show active" id="twoFloors" role="tabpanel" aria-labelledby="twoFloors-tab"></div>
           <div class="tab-pane fade" id="semiFloor" role="tabpanel" aria-labelledby="semiFloor-tab"></div>
           <div class="tab-pane fade" id="oneFloor" role="tabpanel" aria-labelledby="oneFloor-tab"></div>
           <div class="tab-pane fade" id="mercedesSprinter" role="tabpanel" aria-labelledby="mercedesSprinter-tab"></div>
@@ -41,8 +39,7 @@
 </template>
 
 <script>
-import {Swiper} from "swiper";
-import 'swiper/swiper.min.css';
+
 export default {
   name: "AboutSlider"
 }

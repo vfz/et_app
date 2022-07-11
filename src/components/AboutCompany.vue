@@ -2,7 +2,7 @@
 <section class="about-company-section">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-7 col-xl-7">
+      <div class="col-12 col-xl-6 col-xxl-7">
         <p class="description-section">
           Компания «Евротранс» занимается пассажирскими
           междугородными перевозками.
@@ -15,10 +15,10 @@
           <q>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</q>
         </p>
       </div>
-      <div class="col-3 col-xl-3 d-flex justify-content-center">
+      <div class="col-6 col-xl-4 col-xxl-3 d-flex justify-content-center align-self-end">
         <img class="director" src="/img/about/director.png" alt="руководитель компании">
       </div>
-      <div class="col-2 col-xl-2">
+      <div class="col-6 col-xl-2 col-xxl-2">
         <div class="about-director d-flex flex-column justify-content-center text-center">
           <h3 class="title">
             Максим Яцунов
@@ -68,7 +68,10 @@ export default {
     }
   }
   .director {
+    width: 100%;
+    height: auto;
     max-width: 349px;
+    object-fit: contain;
   }
   .about-director {
     @include font($uni,$regular,18px,24.3px,$base);

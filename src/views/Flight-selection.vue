@@ -9,8 +9,8 @@
     <FlightTable flight-type="there" v-if="!isMobile()"/>
     <FlightTableMobile flight-type="there" v-if="isMobile()"/>
     
-    <FlightTable flight-type="back" v-if="!isMobile()"/>
-    <FlightTableMobile flight-type="back" v-if="isMobile()"/>
+    <FlightTable flight-type="back" v-if="!isMobile() && !oneWay"/>
+    <FlightTableMobile flight-type="back" v-if="isMobile() && !oneWay"/>
 
     <div class="container-fluid">
       <div class="row">
@@ -94,7 +94,8 @@ export default {
     // Populardirections,
     // Registrationhero,
 
-  },
+  }, 
+  computed: mapGetters(['oneWay']),
   methods: {
     ...mapActions([
       'setFrom',

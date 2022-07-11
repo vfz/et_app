@@ -10,7 +10,7 @@ export default {
         dateBack: '',
         selectDate: false,
         selectDateBack: false,
-
+        oneWay: true,
         flightThere: [],
         flightBack: [],
 
@@ -21,6 +21,15 @@ export default {
         },
         updateToStations(state, toStations) {
             state.toStations = toStations.result
+        },
+        updateFlightThere(state, flights) {
+            state.flightThere = flights.result;
+        },
+        updateFlightBack(state, flights) {
+            state.flightBack = flights.result;
+        },
+        updateOneWay(state, oneWay) {
+            state.oneWay = oneWay;
         },
         updateDateC(state, newDate) {
             if (state.selectDate) {
@@ -115,40 +124,87 @@ export default {
             const res = await fetch(ctx.rootState.API_URL + "?command=to&from_id=" + from);
             const toStations = await res.json();
             ctx.commit('updateToStations', toStations)
+
         },
         //Получаем список станций отправления
         async getFromStations(ctx) {
             const res = await fetch(ctx.rootState.API_URL + "?command=from");
             const fromStations = await res.json();
             ctx.commit('updateFromStations', fromStations)
+
+        },
+        //Получаем список рейсов (туда)
+        async getFlightThere(ctx) {
+
+            const validSearchThere = (!+ctx.state.from || !+ctx.state.to || !ctx.state.dateArival) ? false : true
+            if (!validSearchThere) { return false }
+            const from_okato = ctx.state.fromStations.find(station => station.id_from === ctx.state.from).okato
+            const to_okato = ctx.state.toStations.find(station => station.id_to === ctx.state.to).okato
+
+            const res = await fetch(ctx.rootState.API_URL + "?command=okato_trip&from_id=" + from_okato + "&to_id=" + to_okato + "&date_trip=" + ctx.state.dateArival);
+            const FlightThere = await res.json();
+            ctx.commit('updateFlightThere', FlightThere)
+        },
+        //Получаем список рейсов (обратно)
+        async getFlightBack(ctx) {
+            const validSearchBack = (!+ctx.state.from || !+ctx.state.to || !ctx.state.dateBack || ctx.state.oneWay) ? false : true
+            if (!validSearchBack) { return false }
+            const from_okato = ctx.state.toStations.find(station => station.id_to === ctx.state.to).okato
+            const to_okato = ctx.state.fromStations.find(station => station.id_from === ctx.state.from).okato
+
+            const res = await fetch(ctx.rootState.API_URL + "?command=okato_trip&from_id=" + from_okato + "&to_id=" + to_okato + "&date_trip=" + ctx.state.dateBack);
+            const FlightBack = await res.json();
+            ctx.commit('updateFlightBack', FlightBack)
         },
 
+        // Ракировка откуда куда
         castling(ctx) {
             ctx.commit('castlingPoint')
+            ctx.dispatch('getFlightThere')
+            ctx.dispatch('getFlightBack')
+        },
+        UpdateOneWay(ctx, oneWay) {
+            ctx.commit('updateOneWay', oneWay)
+            ctx.dispatch('getFlightThere')
+            ctx.dispatch('getFlightBack')
         },
         UpdateselectDate(ctx) {
             ctx.commit('newselectDate')
+            ctx.dispatch('getFlightThere')
+            ctx.dispatch('getFlightBack')
         },
         UpdateselectDateBack(ctx) {
             ctx.commit('newselectDateBack')
+            ctx.dispatch('getFlightThere')
+            ctx.dispatch('getFlightBack')
         },
         selectDateFalse(ctx) {
             ctx.commit('DateFalse')
         },
         SetDateArival(ctx, f) {
             ctx.commit('updateDate', f)
+            ctx.dispatch('getFlightThere')
+            ctx.dispatch('getFlightBack')
         },
         SetDateBack(ctx, f) {
             ctx.commit('updateDateBack', f)
+            ctx.dispatch('getFlightThere')
+            ctx.dispatch('getFlightBack')
         },
         SetDate(ctx, newDate) {
             ctx.commit('updateDateC', newDate)
+            ctx.dispatch('getFlightThere')
+            ctx.dispatch('getFlightBack')
         },
         setFrom(ctx, id) {
             ctx.commit('updateFrom', id)
+            ctx.dispatch('getFlightThere')
+            ctx.dispatch('getFlightBack')
         },
         setTo(ctx, id) {
             ctx.commit('updateTo', id)
+            ctx.dispatch('getFlightThere')
+            ctx.dispatch('getFlightBack')
         },
         PlusAdult(ctx) { ctx.commit('plusAdult') },
         MinusAdult(ctx) { ctx.commit('minusAdult') },
@@ -156,10 +212,17 @@ export default {
         MinusChild(ctx) { ctx.commit('minusChild') }
 
 
-
     },
     modules: {},
     getters: {
+
+        flightBack(state) {
+            return state.flightBack
+        },
+
+        flightThere(state) {
+            return state.flightThere
+        },
         fromStations(state) {
             return state.fromStations
         },
@@ -171,6 +234,9 @@ export default {
         },
         to(state) {
             return state.to
+        },
+        oneWay(state) {
+            return state.oneWay
         },
         childrens(state) {
             return state.childrens

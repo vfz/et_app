@@ -130,7 +130,7 @@
         </div>
       </div>
       <div class="col-12 col-lg-6 col-xl-6 col-xxl-5">
-        <img src="/img/about/reasons.svg" alt="Мы заботимся о вас" class="img-section">
+        <img v-if="!isMobile()" src="/img/about/reasons.svg" alt="Мы заботимся о вас" class="img-section">
       </div>
     </div>
   </div>
@@ -139,7 +139,12 @@
 
 <script>
 export default {
-  name: "AboutReasons"
+  name: "AboutReasons",
+  methods: {
+    isMobile() {
+      return screen.width <= 991;
+    }
+  }
 }
 </script>
 

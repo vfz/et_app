@@ -41,6 +41,8 @@
 </template>
 
 <script>
+import {Swiper} from "swiper";
+import 'swiper/swiper.min.css';
 export default {
   name: "AboutSlider"
 }

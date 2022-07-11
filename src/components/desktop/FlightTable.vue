@@ -4,10 +4,10 @@
       <div class="row">
         <div class="col-12">
           <h2 class="title-table" v-if="flightType=='there'">
-             Туда <span class="title-table-counter">(3)</span>
+             Туда <span class="title-table-counter">(1)</span>
           </h2>
           <h2 class="title-table" v-if="flightType=='back'">
-             Обратно <span class="title-table-counter">(3)</span>
+             Обратно <span class="title-table-counter">(2)</span>
           </h2>
         </div>
       </div>

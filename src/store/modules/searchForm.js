@@ -11,6 +11,8 @@ export default {
         selectDate: false,
         selectDateBack: false,
 
+        flightThere: [],
+        flightBack: [],
 
     },
     mutations: {
@@ -108,16 +110,19 @@ export default {
         }
     },
     actions: {
+        //Получаем список станций прибытия
         async getToStations(ctx, from = '') {
-            const res = await fetch("https://evrotrans.net/APIet/?command=to&from_id=" + from);
+            const res = await fetch(ctx.rootState.API_URL + "?command=to&from_id=" + from);
             const toStations = await res.json();
             ctx.commit('updateToStations', toStations)
         },
+        //Получаем список станций отправления
         async getFromStations(ctx) {
-            const res = await fetch("https://evrotrans.net/APIet/?command=from");
+            const res = await fetch(ctx.rootState.API_URL + "?command=from");
             const fromStations = await res.json();
             ctx.commit('updateFromStations', fromStations)
         },
+
         castling(ctx) {
             ctx.commit('castlingPoint')
         },

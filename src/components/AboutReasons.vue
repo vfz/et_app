@@ -163,10 +163,21 @@ export default {
     @include font($uni,$bold,24px,32.4px,$base);
     margin-bottom: 32px;
     margin-top: 40px;
+    @media screen and (max-width: 768px) {
+      font-size: 18px;
+      line-height: 24.3px;
+    }
   }
   .description-section {
     @include font($uni,$light,18px,24.3px,#000);
+    @media screen and (max-width: 768px) {
+      font-size: 14px;
+      line-height: 18.9px;
+    }
     margin-bottom: 32px;
+    @media screen and (max-width: 768px) {
+      margin-bottom: 16px;
+    }
     p {
       margin-bottom: 0;
     }
@@ -175,13 +186,25 @@ export default {
     .title-block {
       @include font($uni,$bold,18px,24.3px,$base);
       margin-bottom: 24px;
+      @media screen and (max-width: 768px) {
+        font-size: 14px;
+        line-height: 18.9px;
+      }
     }
     .title-reason {
       @include font($uni,$bold,18px,24.3px,$secondary);
       margin-bottom: 16px;
+      @media screen and (max-width: 768px) {
+        font-size: 14px;
+        line-height: 18.9px;
+      }
     }
     .description-reason {
       @include font($uni,$light,18px,24.3px,#000);
+      @media screen and (max-width: 768px) {
+        font-size: 14px;
+        line-height: 18.9px;
+      }
     }
   }
   .img-section {

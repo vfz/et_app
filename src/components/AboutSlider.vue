@@ -27,7 +27,13 @@
       </div>
       <div class="col-9">
         <div class="tab-content" id="myTabContent">
-          <div class="tab-pane fade show active" id="twoFloors" role="tabpanel" aria-labelledby="twoFloors-tab"></div>
+          <div class="tab-pane fade show active" id="twoFloors" role="tabpanel" aria-labelledby="twoFloors-tab">
+            <tiny-slider items="1" gutter="20">
+              <div>Slider-item #1</div>
+              <div>Slider-item #2</div>
+              <div>Slider-item #3</div>
+            </tiny-slider>
+          </div>
           <div class="tab-pane fade" id="semiFloor" role="tabpanel" aria-labelledby="semiFloor-tab"></div>
           <div class="tab-pane fade" id="oneFloor" role="tabpanel" aria-labelledby="oneFloor-tab"></div>
           <div class="tab-pane fade" id="mercedesSprinter" role="tabpanel" aria-labelledby="mercedesSprinter-tab"></div>
@@ -39,15 +45,20 @@
 </template>
 
 <script>
+import VueTinySlider from 'vue-tiny-slider';
 
 export default {
-  name: "AboutSlider"
+  name: "AboutSlider",
+  components: {
+    'tiny-slider': VueTinySlider
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 @import "src/assets/variables.scss";
 @import "src/assets/font.scss";
+@import 'tiny-slider/src/tiny-slider';
 
 .about-slider-section {
   margin-left: 88px;

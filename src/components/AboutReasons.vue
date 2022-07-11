@@ -30,9 +30,17 @@ export default {
 @import "src/assets/variables.scss";
 @import "src/assets/font.scss";
 
-.title-section {
-  @include font($uni,$bold,24px,32.4px,$base);
-  margin-bottom: 32px;
-  margin-top: 40px;
+.about-reasons-section {
+  margin-left: 88px;
+  margin-right: 88px;
+  @media screen and (max-width: 991px) {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  .title-section {
+    @include font($uni,$bold,24px,32.4px,$base);
+    margin-bottom: 32px;
+    margin-top: 40px;
+  }
 }
 </style>

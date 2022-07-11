@@ -8,6 +8,14 @@
         </h2>
       </div>
     </div>
+    <div class="row">
+      <div class="col-xl-7">
+
+      </div>
+      <div class="col-xl-5">
+
+      </div>
+    </div>
   </div>
 </section>
 </template>

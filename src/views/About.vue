@@ -5,6 +5,7 @@
   <AboutCompany/>
   <AboutNumbers/>
   <AboutReasons/>
+  <AboutSlider/>
   <Footer/>
   <LoginModal/>
   <RegistrationModal/>
@@ -22,9 +23,11 @@ import ForgotPasswordModal from "@/components/ForgotPasswordModal";
 import AboutCompany from "@/components/AboutCompany";
 import AboutNumbers from "@/components/AboutNumbers";
 import AboutReasons from "@/components/AboutReasons";
+import AboutSlider from "@/components/AboutSlider";
 export default {
   name: "About",
   components: {
+    AboutSlider,
     AboutReasons,
     AboutNumbers,
     AboutCompany, ForgotPasswordModal, RegistrationModal, LoginModal, SectionTitle, Footer, Header}

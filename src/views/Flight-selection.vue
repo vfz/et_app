@@ -5,10 +5,13 @@
     <FlightForm v-if="!isMobile()"/>
     <FlightFormMobile v-if="isMobile()"/>
     <TimelineMobile v-if="isMobile()"/>
-    <ThereTable v-if="!isMobile()"/>
-    <ThereTableMobile v-if="isMobile()"/>
-    <BackTable v-if="!isMobile()"/>
-    <BackTableMobile v-if="isMobile()"/>
+
+    <FlightTable flight-type="there" v-if="!isMobile()"/>
+    <FlightTableMobile flight-type="there" v-if="isMobile()"/>
+    
+    <FlightTable flight-type="back" v-if="!isMobile()"/>
+    <FlightTableMobile flight-type="back" v-if="isMobile()"/>
+
     <div class="container-fluid">
       <div class="row">
         <div class="col-12 d-flex justify-content-center">
@@ -48,17 +51,19 @@
 <script>
 import Header from "@/components/Header"
 import Timeline from "@/components/desktop/Timeline"
-import FlightForm from "@/components/desktop/Flight-form"
-import ThereTable from "@/components/desktop/ThereTable"
-import BackTable from "@/components/desktop/BackTable"
 import TimelineMobile from "@/components/mobile/TimelineMobile"
-import ThereTableMobile from "@/components/mobile/ThereTableMobile"
-import BackTableMobile from "@/components/mobile/BackTableMobile"
+
+import FlightForm from "@/components/desktop/Flight-form"
+import FlightFormMobile from "@/components/mobile/FlightFormMobile"
+
+import FlightTable from "@/components/desktop/FlightTable"
+import FlightTableMobile from "@/components/mobile/FlightTableMobile"
+
 import Footer from '@/components/Footer'
 import DispatchModal from "@/components/Dispatch-modal"
 import DispatchLengthTimeModal from "@/components/Dispatch-length-time-modal"
 import PlaceLeftModal from "@/components/Place-left-modal"
-import FlightFormMobile from "@/components/mobile/FlightFormMobile"
+
 import LoginModal from '@/components/LoginModal'
 import RegistrationModal from '@/components/RegistrationModal'
 import ForgotPasswordModal from '@/components/ForgotPasswordModal'
@@ -67,25 +72,21 @@ import {mapGetters,mapActions} from 'vuex'
 export default {
   name: 'Flight-selection',
   components: {
-
-    FlightFormMobile,
-    PlaceLeftModal,
-    DispatchLengthTimeModal,
-    DispatchModal,
-    BackTableMobile,
-    ThereTableMobile,
     Header,
     Timeline,
-    FlightForm,
     TimelineMobile,
-    ThereTable,
-    ThereTableMobile,
-    BackTable,
-    BackTableMobile,
+
+    FlightForm,
+    FlightFormMobile,
+
+    FlightTable,
+    FlightTableMobile,
+
     Footer,
     DispatchModal,
     DispatchLengthTimeModal,
     PlaceLeftModal,
+    
     LoginModal,
     RegistrationModal,
     ForgotPasswordModal,

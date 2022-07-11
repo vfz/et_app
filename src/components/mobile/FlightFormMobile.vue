@@ -279,7 +279,11 @@ export default {
       return str.toLowerCase().indexOf(target.toLowerCase())+1
     },
     alertPlace(){
-      alert('Едем в '+this.toPlace+' Едем из '+this.fromPlace)
+      // alert('Едем в '+this.toPlace+' Едем из '+this.fromPlace)
+     
+     if(this.from!==this.$route.params.from || this.to!==this.$route.params.to){
+        this.$router.push('/flight-selection/search/'+this.from+'/'+this.to)
+        }
     },
     //Переключение кнопок в полях кол-ва пассажиров в Desabled Enabled
     changeClass() {
@@ -308,9 +312,13 @@ export default {
 
 
   },
-  mounted(){
-    this.getFromStations();
-    this.getToStations();
+   async mounted(){
+    await this.getFromStations();
+    await this.getToStations();
+    this.setFrom(this.$route.params.from);
+    this.setTo(this.$route.params.to);
+    this.toPlace= this.toStations.find(station => station.id_to === this.$route.params.to).name;
+    this.fromPlace= this.fromStations.find(station => station.id_from === this.$route.params.from).name;
 
   },
   // created(){

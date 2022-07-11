@@ -32,7 +32,7 @@ const routes = [{
     },
     {
         path: '/flight-selection/search/:from/:to',
-        name: 'Flight-selection',
+        name: 'Flight-selection-search',
         component: Flightselection
     },
     {
@@ -109,17 +109,17 @@ const routes = [{
     },
     {
         path: '/404',
-        name: '404',
+        // name: '404',
         component: NotFound
     },
     {
         path: '/flight-selection',
         redirect: '/flight-selection/1/190'
     },
-    // {
-    //     path: '*',
-    //     redirect: '/404'
-    // }
+    {
+        path: '*',
+        redirect: '/404'
+    }
 
 
 ]

@@ -317,14 +317,12 @@
 <script>
 import Header from '@/components/Header'
 import DataPicker from '@/components/DataPicker'
-import FlightForm from "@/components/desktop/Flight-form"
-//import axios from 'axios'
 import {mapGetters,mapActions} from 'vuex'
 
 
 export default{ 
     name: 'Hero',
-    components:{FlightForm, Header, DataPicker,},
+    components:{Header, DataPicker},
     computed: mapGetters(['fromStations','toStations','from','to','childrens','adults','dateArival','dateBack','selectDate','selectDateBack']),
     data(){
         return{
@@ -410,6 +408,16 @@ export default{
     async mounted(){
         await this.getFromStations();
         await this.getToStations();
+       
+        // this.setFrom(this.$route.params.from);
+        // this.setTo(this.$route.params.to);
+        if (+this.to){
+          this.toPlace= this.toStations.find(station => station.id_to === this.to).name;
+        }
+        if (+this.from){
+          this.fromPlace= this.fromStations.find(station => station.id_from === this.from).name;
+        }
+  
         
     },
     

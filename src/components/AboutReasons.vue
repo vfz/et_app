@@ -22,7 +22,7 @@
                 Профессиональные водители
               </h3>
             </div>
-            <div class="col">
+            <div class="col-12 col-xl">
               <h4 class="title-reason">
                 Опыт
               </h4>
@@ -30,7 +30,7 @@
                 Все наши водители, имеют опыт междугородных перевозок от 10 лет
               </p>
             </div>
-            <div class="col">
+            <div class="col-12 col-xl">
               <h4 class="title-reason">
                 Режим труда
               </h4>
@@ -38,7 +38,7 @@
                 График работы построен так, чтобы избежать переутомления и переработок
               </p>
             </div>
-            <div class="col">
+            <div class="col-12 col-xl">
               <h4 class="title-reason">
                 Медосмотр
               </h4>
@@ -55,7 +55,7 @@
                 Комфорт в поездке
               </h3>
             </div>
-            <div class="col">
+            <div class="col-12 col-xl">
               <h4 class="title-reason">
                 Безопасность
               </h4>
@@ -66,7 +66,7 @@
                 случай нештатных ситуаций
               </p>
             </div>
-            <div class="col">
+            <div class="col-12 col-xl">
               <h4 class="title-reason">
                 Удобность
               </h4>
@@ -76,7 +76,7 @@
                 Розетки для зарядки гаджетов, остановки в поездке каждые 4 часа
               </p>
             </div>
-            <div class="col">
+            <div class="col-12 col-xl">
               <h4 class="title-reason">
                 Скорость
               </h4>
@@ -95,7 +95,7 @@
                 Современный автотранспорт
               </h3>
             </div>
-            <div class="col">
+            <div class="col-12 col-xl">
               <h4 class="title-reason">
                 Комфорт
               </h4>
@@ -106,7 +106,7 @@
                 техники
               </p>
             </div>
-            <div class="col">
+            <div class="col-12 col-xl">
               <h4 class="title-reason">
                 Исправность
               </h4>
@@ -116,7 +116,7 @@
                 техническое обслуживание
               </p>
             </div>
-            <div class="col">
+            <div class="col-12 col-xl">
               <h4 class="title-reason">
                 Чистота
               </h4>

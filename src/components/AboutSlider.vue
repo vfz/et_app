@@ -119,12 +119,12 @@ export default {
 .tns-controls button[data-controls=next] {
   background-image: url("/img/about/right-arrow.svg");
   background-repeat: no-repeat;
-  top: 85px;
+  top: 50px;
 }
 .tns-controls button[data-controls=prev] {
   background-image: url("/img/about/left-arrow.svg");
   background-repeat: no-repeat;
-  bottom: 85px;
+  bottom: 120px;
 }
 </style>
 

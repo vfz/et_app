@@ -32,27 +32,37 @@
                 <tiny-slider :controls-text="['','']" class="tiny-slider-wrapper" slide-by="page" :nav="false" :mouse-drag="true" gutter="40" :controls="true" items="3" :loop="true">
                   <div class="slide-wrapper">
                     <div class="slide">
-                      <img src="/img/about/buses/twoFloors/1.png" alt="автобус" class="img-slide">
+                      <a data-fancybox="gallery" href="/img/about/buses/twoFloors/1.png">
+                        <img src="/img/about/buses/twoFloors/1.png" alt="автобус" class="img-slide">
+                      </a>
                     </div>
                   </div>
                   <div class="slide-wrapper">
                     <div class="slide">
-                      <img src="/img/about/buses/twoFloors/1.png" alt="автобус" class="img-slide">
+                      <a data-fancybox="gallery" href="/img/about/buses/twoFloors/1.png">
+                        <img src="/img/about/buses/twoFloors/1.png" alt="автобус" class="img-slide">
+                      </a>
                     </div>
                   </div>
                   <div class="slide-wrapper">
                     <div class="slide">
-                      <img src="/img/about/buses/twoFloors/1.png" alt="автобус" class="img-slide">
+                      <a data-fancybox="gallery" href="/img/about/buses/twoFloors/1.png">
+                        <img src="/img/about/buses/twoFloors/1.png" alt="автобус" class="img-slide">
+                      </a>
                     </div>
                   </div>
                   <div class="slide-wrapper">
                     <div class="slide">
-                      <img src="/img/about/buses/twoFloors/1.png" alt="автобус" class="img-slide">
+                      <a data-fancybox="gallery" href="/img/about/buses/twoFloors/1.png">
+                        <img src="/img/about/buses/twoFloors/1.png" alt="автобус" class="img-slide">
+                      </a>
                     </div>
                   </div>
                   <div class="slide-wrapper">
                     <div class="slide">
-                      <img src="/img/about/buses/twoFloors/1.png" alt="автобус" class="img-slide">
+                      <a data-fancybox="gallery" href="/img/about/buses/twoFloors/1.png">
+                        <img src="/img/about/buses/twoFloors/1.png" alt="автобус" class="img-slide">
+                      </a>
                     </div>
                   </div>
                 </tiny-slider>
@@ -70,12 +80,21 @@
 
 <script>
 import VueTinySlider from 'vue-tiny-slider';
+import {Fancybox} from '@fancyapps/ui';
+import '@fancyapps/ui/dist/fancybox.css'
 
 export default {
   name: "AboutSlider",
   components: {
     'tiny-slider': VueTinySlider
-  }
+  },
+  computed: {
+    fancyBoxInit() {
+      Fancybox.bind("[data-fancybox]", {
+        // Your options go here
+      });
+    }
+  },
 }
 </script>
 <style>
@@ -88,7 +107,7 @@ export default {
   bottom: 0;
   right: 88px;
   margin: auto 0;
-  z-index: 9999;
+  z-index: 2;
   background-color: rgba(255, 255, 255, 0.7);
   background-position: center center;
   width: 64px;
@@ -113,6 +132,7 @@ export default {
 @import 'tiny-slider/src/tiny-slider';
 @import "src/assets/variables.scss";
 @import "src/assets/font.scss";
+//@import "@fancyapps/ui/dist/fancybox.css";
 
 .about-slider-section {
   margin-left: 88px;

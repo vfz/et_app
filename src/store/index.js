@@ -4,7 +4,9 @@ import searchForm from './modules/searchForm'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-    state: {},
+    state: {
+        API_URL: 'https://evrotrans.net/APIet/',
+    },
     mutations: {},
     actions: {},
     modules: {

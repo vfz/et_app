@@ -3,8 +3,11 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-12">
-          <h2 class="title-table">
-            Туда <span class="title-table-counter">(3)</span>
+          <h2 class="title-table" v-if="flightType=='there'">
+             Туда <span class="title-table-counter">(1)</span>
+          </h2>
+          <h2 class="title-table" v-if="flightType=='back'">
+             Обратно <span class="title-table-counter">(2)</span>
           </h2>
         </div>
       </div>
@@ -308,54 +311,7 @@
 <script>
 export default {
   name: "ThereTableMobile",
-  // data() {
-  //   return {
-  //     seatStates: {
-  //       available: {
-  //         class: 'free-place',
-  //         text: 'Свободное место',
-  //       },
-  //       booked: {
-  //         class: 'busy-place',
-  //         text: 'Занятое место',
-  //       }
-  //     },
-  //     seats: [
-  //       {
-  //         name: '1',
-  //         type: 'free-place',
-  //       },
-  //       {
-  //         name: '2',
-  //         type: 'free-place'
-  //       },
-  //       {
-  //         name: '3',
-  //         type: 'free-place'
-  //       },
-  //       {
-  //         name: '4',
-  //         type: 'busy-place'
-  //       },
-  //       {
-  //         name: '5',
-  //         type: 'free-place',
-  //       },
-  //       {
-  //         name: '6',
-  //         type: 'free-place'
-  //       },
-  //       {
-  //         name: '7',
-  //         type: 'free-place'
-  //       },
-  //       {
-  //         name: '8',
-  //         type: 'busy-place'
-  //       }
-  //     ]
-  //   }
-  // }
+  props: ['flightType'],
 }
 </script>
 

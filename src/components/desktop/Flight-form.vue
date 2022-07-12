@@ -6,11 +6,11 @@
           <form id="hero-form" class="search-form d-flex flex-wrap justify-content-center">
             <div class="checkbox-form d-block w-100">
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" v-on:click="oneWay=true" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
+                <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(true)" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
                 <label class="form-check-label" for="inlineRadio1">В одну сторону</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" v-on:click="oneWay=false"  name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(false)"  name="inlineRadioOptions" id="inlineRadio2" value="option2">
                 <label class="form-check-label" for="inlineRadio2">Туда-обратно</label>
               </div>
             </div>
@@ -297,11 +297,10 @@ import {mapGetters,mapActions} from 'vuex'
 export default {
   name: "Flight-form",
   components:{DataPicker,},
-  computed: mapGetters(['fromStations','toStations','from','to','childrens','adults','dateArival','dateBack','selectDate','selectDateBack']),
+  computed: mapGetters(['fromStations','toStations','from','to','childrens','adults','dateArival','dateBack','selectDate','selectDateBack','oneWay']),
   data(){
     return{
       title: 'Доступные билеты на автобус от перевозчика',
-      oneWay: true,
       pba: true,
       pbc: true,
       mba: false,
@@ -327,6 +326,7 @@ export default {
   },
   methods: {
     ...mapActions([
+      'UpdateOneWay',
       'getFromStations',
       'getToStations',
       'UpdateselectDate',
@@ -351,7 +351,12 @@ export default {
       return str.toLowerCase().indexOf(target.toLowerCase())+1
     },
     alertPlace(){
-      alert('Едем в '+this.toPlace+' Едем из '+this.fromPlace)
+      // alert('Едем в '+this.toPlace+' Едем из '+this.fromPlace)
+      
+     if(this.from !== this.$route.params.from || this.to !== this.$route.params.to){
+        
+        this.$router.push('/flight-selection/search/'+this.from+'/'+this.to)
+        }
     },
     //Переключение кнопок в полях кол-ва пассажиров в Desabled Enabled
     changeClass() {
@@ -383,6 +388,7 @@ export default {
   async mounted(){
     await this.getFromStations();
     await this.getToStations();
+
     this.setFrom(this.$route.params.from);
     this.setTo(this.$route.params.to);
     this.toPlace= this.toStations.find(station => station.id_to === this.$route.params.to).name;

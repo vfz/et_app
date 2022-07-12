@@ -28,11 +28,16 @@
       <div class="col-9">
         <div class="tab-content" id="myTabContent">
           <div class="tab-pane fade show active" id="twoFloors" role="tabpanel" aria-labelledby="twoFloors-tab">
-            <tiny-slider items="1" gutter="20">
-              <div>Slider-item #1</div>
-              <div>Slider-item #2</div>
-              <div>Slider-item #3</div>
-            </tiny-slider>
+            <div class="slider-block">
+              <tiny-slider slide-by="page" viewport-max="400" :nav="false" :mouse-drag="true" gutter="20" :controls="true" items="1" :loop="false">
+                <img src="/img/about/buses/twoFloors/1.png" alt="автобус" class="img-slide">
+                <img src="/img/about/buses/twoFloors/1.png" alt="автобус" class="img-slide">
+                <img src="/img/about/buses/twoFloors/1.png" alt="автобус" class="img-slide">
+                <img src="/img/about/buses/twoFloors/1.png" alt="автобус" class="img-slide">
+                <img src="/img/about/buses/twoFloors/1.png" alt="автобус" class="img-slide">
+                <img src="/img/about/buses/twoFloors/1.png" alt="автобус" class="img-slide">
+              </tiny-slider>
+            </div>
           </div>
           <div class="tab-pane fade" id="semiFloor" role="tabpanel" aria-labelledby="semiFloor-tab"></div>
           <div class="tab-pane fade" id="oneFloor" role="tabpanel" aria-labelledby="oneFloor-tab"></div>
@@ -56,9 +61,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import 'tiny-slider/src/tiny-slider';
 @import "src/assets/variables.scss";
 @import "src/assets/font.scss";
-@import 'tiny-slider/src/tiny-slider';
 
 .about-slider-section {
   margin-left: 88px;
@@ -88,6 +93,24 @@ export default {
     }
     .active {
       color: $blue-active;
+    }
+  }
+  .tab-pane {
+    .slider-block {
+      width: 700px;
+      position: relative;
+      .slide {
+        width: 593px;
+        height: 349px;
+        max-width: 593px;
+        padding: 16px;
+        box-shadow: $regular-shadow;
+        .img-slide {
+          width: 100%;
+          max-width: 561px;
+          object-fit: cover;
+        }
+      }
     }
   }
 }

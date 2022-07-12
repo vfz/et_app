@@ -60,7 +60,7 @@
                        {{flight.from_name_point}}
                     </div>
                     <div class="table-item-part-left-place table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
-                       {{flight.from_name_point}}
+                       {{flight.from_address_point}}
                     </div>
                   </div>
                 </div>

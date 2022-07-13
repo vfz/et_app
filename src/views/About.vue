@@ -6,6 +6,7 @@
   <AboutNumbers/>
   <AboutReasons/>
   <AboutSlider/>
+  <AboutDownload/>
   <Footer/>
   <LoginModal/>
   <RegistrationModal/>
@@ -24,9 +25,11 @@ import AboutCompany from "@/components/AboutCompany";
 import AboutNumbers from "@/components/AboutNumbers";
 import AboutReasons from "@/components/AboutReasons";
 import AboutSlider from "@/components/AboutSlider";
+import AboutDownload from "@/components/AboutDownload";
 export default {
   name: "About",
   components: {
+    AboutDownload,
     AboutSlider,
     AboutReasons,
     AboutNumbers,

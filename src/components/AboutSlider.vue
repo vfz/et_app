@@ -29,7 +29,7 @@
           <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="TwoFloors" role="tabpanel" aria-labelledby="TwoFloors-tab">
               <div class="slider-block">
-                <tiny-slider :controls-text="['','']" class="tiny-slider-wrapper" slide-by="page" :nav="false" :mouse-drag="true" gutter="40" :controls="true" items="3" :loop="false">
+                <tiny-slider :responsive="{1200: {items: 2, controls: true, nav : false}, 1400: {items: 3}}" :controls-text="['','']" class="tiny-slider-wrapper" slide-by="page" :nav="true" nav-position="bottom" :mouse-drag="true" gutter="40" :controls="false" items="1" :loop="false">
                   <div v-for="bus in twoFloorsBusses" :key="bus.id" class="slide-wrapper">
                     <div class="slide">
                       <a v-bind:href="bus.src" data-fancybox="galleryTwoFloors">

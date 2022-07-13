@@ -20,18 +20,22 @@
         <div class="tab-content" id="myTabContent">
           <div class="tab-pane fade show active" id="europoints" role="tabpanel" aria-labelledby="europoints-tab">
             <ul class="list-group">
-              <li v-for="question in questions" :key="question.id" :class="{'is-show': question.isShow, 'is-hide' : question.isHide}" class="list-group-item">
+              <li v-if="!activeQuestion" class="list-group-item">
+              <div v-for="question in questions" :key="question.id" :class="{'is-show': question.isShow, 'is-hide' : question.isHide}" class="question">
                 <button :id="question.id" v-bind:class="{'d-none': question.isShow}" v-on:click="showQuestion(question, $event)" type="button">
                   {{question.title}}
                 </button>
-                <div v-bind:class="{'d-none': question.isHide}" class="faq-details-item">
+              </div>
+              </li>
+              <li v-else class="list-group-item">
+                <div class="faq-details-item">
                   <div class="faq-details-item-header d-flex justify-content-between">
-                    <h3 class="faq-title">{{question.title}}</h3>
-                    <button :id="question.id" v-on:click="showQuestion(question, $event)" class="faq-back">Вернуться</button>
+                    <h3 class="faq-title">{{activeQuestion.title}}</h3>
+                    <button :id="activeQuestion.id" v-on:click="hideQuestion" class="faq-back">Вернуться</button>
                   </div>
                   <div class="faq-details-item-body">
                     <p class="faq-description">
-                      {{question.description}}
+                      {{activeQuestion.description}}
                     </p>
                   </div>
                 </div>
@@ -68,7 +72,8 @@ export default {
         {id: 1, title: 'Вопрос1', description: 'lorem lorem lorem', isShow: false, isHide: true},
         {id: 2, title: 'Вопрос2', description: 'lorem lorem lorem', isShow: false, isHide: true},
         {id: 3, title: 'Вопрос3', description: 'lorem lorem lorem', isShow: false, isHide: true},
-      ]
+      ],
+      activeQuestion: null,
     }
   },
   computed: {
@@ -77,8 +82,11 @@ export default {
   },
   methods: {
     showQuestion: function (question,event) {
-      question.isHide = !question.isHide;
-      question.isShow = !question.isShow;
+      console.log(question)
+      this.activeQuestion = question
+    },
+    hideQuestion() {
+      this.activeQuestion = null
     }
   }
 }
@@ -133,17 +141,19 @@ export default {
     .tab-pane {
       .list-group {
         &-item {
-          @include font($uni,$bold,20px,27px,$base);
           background: none;
           border: none;
           padding-left: 0;
-          padding-top: 16px;
-          padding-bottom: 16px;
-          border-radius: 0;
-          border-bottom: 1px solid #E1EEF6;
-          @media screen and (max-width: 991px) {
-            font-size: 14px;
-            line-height: 18.9px;
+          .question {
+            border-radius: 0;
+            border-bottom: 1px solid #E1EEF6;
+            padding-top: 16px;
+            padding-bottom: 16px;
+            @include font($uni,$bold,20px,27px,$base);
+            @media screen and (max-width: 991px) {
+              font-size: 14px;
+              line-height: 18.9px;
+            }
           }
           button {
             @include font($uni,$bold,20px,27px,$base);

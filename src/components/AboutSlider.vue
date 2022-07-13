@@ -216,7 +216,7 @@ export default {
     display: none;
   }
   .nav {
-    @media screen and (max-width: 991px) {
+    @media screen and (max-width: 1199px) {
       width: 100%;
       overflow-x: scroll;
       overflow-y: hidden;
@@ -226,7 +226,7 @@ export default {
       scrollbar-width: none;  /* Firefox */
     }
     &-item {
-      @media screen and (max-width: 991px) {
+      @media screen and (max-width: 1199px) {
         display: inline-block;
       }
     }
@@ -236,7 +236,7 @@ export default {
       padding-right: 0;
       text-transform: none;
       text-align: left;
-      @media screen and (max-width: 991px) {
+      @media screen and (max-width: 1199px) {
         padding-right: 10px;
         padding-left: 10px;
       }

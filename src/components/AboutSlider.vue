@@ -194,8 +194,19 @@ export default {
     }
   }
   .nav {
+    @media screen and (max-width: 991px) {
+      width: 100%;
+      overflow-x: scroll;
+      overflow-y: hidden;
+      display: block;
+      white-space: nowrap;
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+    }
     &-item {
-
+      @media screen and (max-width: 991px) {
+        display: inline-block;
+      }
     }
     &-link {
       @include font($uni,$bold,18px,24.3px,$deactivate);
@@ -203,6 +214,10 @@ export default {
       padding-right: 0;
       text-transform: none;
       text-align: left;
+      @media screen and (max-width: 991px) {
+        padding-right: 10px;
+        padding-left: 10px;
+      }
     }
     .active {
       color: $blue-active;

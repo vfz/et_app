@@ -76,10 +76,6 @@ export default {
       activeQuestion: null,
     }
   },
-  computed: {
-    hideQuestions: function (){
-    }
-  },
   methods: {
     showQuestion: function (question,event) {
       console.log(question)

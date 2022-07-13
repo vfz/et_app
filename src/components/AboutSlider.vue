@@ -29,7 +29,7 @@
           <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="twoFloors" role="tabpanel" aria-labelledby="twoFloors-tab">
               <div class="slider-block">
-                <tiny-slider :controls-text="['','']" class="tiny-slider-wrapper" slide-by="page" :nav="false" :mouse-drag="true" gutter="40" :controls="true" items="3" :loop="true">
+                <tiny-slider :controls-text="['','']" class="tiny-slider-wrapper" slide-by="page" :nav="false" :mouse-drag="true" gutter="40" :controls="true" items="3" :loop="false">
                   <div v-for="bus in twoFloorsBusses" :key="bus.id" class="slide-wrapper">
                     <div class="slide">
                       <a v-bind:href="bus.src" data-fancybox="gallery">
@@ -101,13 +101,24 @@ export default {
   border-radius: 4px;
 }
 
-.tns-controls button[data-controls=next] {
+.tns-controls button[data-controls=next][disabled] {
+  background-color: rgba(255, 255, 255, 0.7);
   background-image: url("/img/about/right-arrow.svg");
+}
+.tns-controls button[data-controls=prev][disabled] {
+  background-color: rgba(255, 255, 255, 0.7);
+  background-image: url("/img/about/left-arrow.svg");
+}
+
+.tns-controls button[data-controls=next] {
+  background-color: rgba(40, 50, 86, 1);
+  background-image: url("/img/about/right-arrow-white.svg");
   background-repeat: no-repeat;
   top: 50px;
 }
 .tns-controls button[data-controls=prev] {
-  background-image: url("/img/about/left-arrow.svg");
+  background-color: rgba(40, 50, 86, 1);
+  background-image: url("/img/about/left-arrow-white.svg");
   background-repeat: no-repeat;
   bottom: 120px;
 }

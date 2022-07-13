@@ -41,9 +41,48 @@
                 </tiny-slider>
               </div>
             </div>
-            <div class="tab-pane fade" id="semiFloor" role="tabpanel" aria-labelledby="semiFloor-tab"></div>
-            <div class="tab-pane fade" id="oneFloor" role="tabpanel" aria-labelledby="oneFloor-tab"></div>
-            <div class="tab-pane fade" id="mercedesSprinter" role="tabpanel" aria-labelledby="mercedesSprinter-tab"></div>
+            <div class="tab-pane fade" id="semiFloor" role="tabpanel" aria-labelledby="semiFloor-tab">
+              <div class="slider-block">
+                <tiny-slider :controls-text="['','']" class="tiny-slider-wrapper" slide-by="page" :nav="false" :mouse-drag="true" gutter="40" :controls="true" items="3" :loop="false">
+                  <div v-for="bus in twoFloorsBusses" :key="bus.id" class="slide-wrapper">
+                    <div class="slide">
+                      <a v-bind:href="bus.src" data-fancybox="gallery">
+                        <img v-bind:src="bus.src" alt="автобус" class="img-slide">
+                      </a>
+                      <div v-on:click="fancyBoxInit" class="zoom-icon"></div>
+                    </div>
+                  </div>
+                </tiny-slider>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="oneFloor" role="tabpanel" aria-labelledby="oneFloor-tab">
+              <div class="slider-block">
+                <tiny-slider :controls-text="['','']" class="tiny-slider-wrapper" slide-by="page" :nav="false" :mouse-drag="true" gutter="40" :controls="true" items="3" :loop="false">
+                  <div v-for="bus in twoFloorsBusses" :key="bus.id" class="slide-wrapper">
+                    <div class="slide">
+                      <a v-bind:href="bus.src" data-fancybox="gallery">
+                        <img v-bind:src="bus.src" alt="автобус" class="img-slide">
+                      </a>
+                      <div v-on:click="fancyBoxInit" class="zoom-icon"></div>
+                    </div>
+                  </div>
+                </tiny-slider>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="mercedesSprinter" role="tabpanel" aria-labelledby="mercedesSprinter-tab">
+              <div class="slider-block">
+                <tiny-slider :controls-text="['','']" class="tiny-slider-wrapper" slide-by="page" :nav="false" :mouse-drag="true" gutter="40" :controls="true" items="3" :loop="false">
+                  <div v-for="bus in twoFloorsBusses" :key="bus.id" class="slide-wrapper">
+                    <div class="slide">
+                      <a v-bind:href="bus.src" data-fancybox="gallery">
+                        <img v-bind:src="bus.src" alt="автобус" class="img-slide">
+                      </a>
+                      <div v-on:click="fancyBoxInit" class="zoom-icon"></div>
+                    </div>
+                  </div>
+                </tiny-slider>
+              </div>
+            </div>
           </div>
         </div>
       </div>

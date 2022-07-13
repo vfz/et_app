@@ -202,6 +202,7 @@ export default {
       padding-left: 0;
       padding-right: 0;
       text-transform: none;
+      text-align: left;
     }
     .active {
       color: $blue-active;

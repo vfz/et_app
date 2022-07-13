@@ -255,7 +255,7 @@ export default {
       overflow-x: hidden;
       position: relative;
       @media screen and (max-width: 576px) {
-        max-width: 280px;
+        width: 100%;
       }
       .slide-wrapper {
         max-width: 593px;
@@ -264,7 +264,7 @@ export default {
           max-width: 100%;
         }
         @media screen and (max-width: 576px) {
-          max-width: 280px;
+          width: 100%;
         }
         .slide:hover .zoom-icon {
           display: block;

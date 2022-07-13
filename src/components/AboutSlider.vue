@@ -30,39 +30,12 @@
             <div class="tab-pane fade show active" id="twoFloors" role="tabpanel" aria-labelledby="twoFloors-tab">
               <div class="slider-block">
                 <tiny-slider :controls-text="['','']" class="tiny-slider-wrapper" slide-by="page" :nav="false" :mouse-drag="true" gutter="40" :controls="true" items="3" :loop="true">
-                  <div class="slide-wrapper">
+                  <div v-for="bus in twoFloorsBusses" :key="bus.id" class="slide-wrapper">
                     <div class="slide">
-                      <a data-fancybox="gallery" href="/img/about/buses/twoFloors/1.png">
-                        <img src="/img/about/buses/twoFloors/1.png" alt="автобус" class="img-slide">
+                      <a v-on:mouseover="zoomIconInit" v-on:mouseleave="zoomIconRemove" v-bind:href="bus.src" data-fancybox="gallery">
+                        <img v-bind:src="bus.src" alt="автобус" class="img-slide">
                       </a>
-                    </div>
-                  </div>
-                  <div class="slide-wrapper">
-                    <div class="slide">
-                      <a data-fancybox="gallery" href="/img/about/buses/twoFloors/1.png">
-                        <img src="/img/about/buses/twoFloors/1.png" alt="автобус" class="img-slide">
-                      </a>
-                    </div>
-                  </div>
-                  <div class="slide-wrapper">
-                    <div class="slide">
-                      <a data-fancybox="gallery" href="/img/about/buses/twoFloors/1.png">
-                        <img src="/img/about/buses/twoFloors/1.png" alt="автобус" class="img-slide">
-                      </a>
-                    </div>
-                  </div>
-                  <div class="slide-wrapper">
-                    <div class="slide">
-                      <a data-fancybox="gallery" href="/img/about/buses/twoFloors/1.png">
-                        <img src="/img/about/buses/twoFloors/1.png" alt="автобус" class="img-slide">
-                      </a>
-                    </div>
-                  </div>
-                  <div class="slide-wrapper">
-                    <div class="slide">
-                      <a data-fancybox="gallery" href="/img/about/buses/twoFloors/1.png">
-                        <img src="/img/about/buses/twoFloors/1.png" alt="автобус" class="img-slide">
-                      </a>
+                      <div v-on:click="fancyBoxInit" class="zoom-icon"></div>
                     </div>
                   </div>
                 </tiny-slider>
@@ -88,16 +61,38 @@ export default {
   components: {
     'tiny-slider': VueTinySlider
   },
-  computed: {
-    fancyBoxInit() {
-      Fancybox.bind("[data-fancybox]", {
-        // Your options go here
-      });
+  data() {
+    return {
+      twoFloorsBusses: [
+        {id: 1, src: '/img/about/buses/twoFloors/1.png'},
+        {id: 2, src: '/img/about/buses/twoFloors/1.png'},
+        {id: 3, src: '/img/about/buses/twoFloors/1.png'},
+      ]
     }
   },
+  methods: {
+    fancyBoxInit(event) {
+      Fancybox.show([
+        {
+          src: event.target.src,
+          type: 'image'
+        }
+      ]);
+    },
+    zoomIconInit(event) {
+      console.log(event.target);
+    },
+    zoomIconRemove(event) {
+      console.log(event.target);
+    }
+  }
 }
 </script>
 <style>
+.fancybox__thumbs .carousel__slide .fancybox__thumb::after {
+  border-color: #196EFF;
+  border-radius: 0;
+}
 .tns-liveregion {
   display: none !important;
 }
@@ -176,6 +171,19 @@ export default {
           padding: 16px;
           filter: drop-shadow(0px 8px 12px rgba(161, 159, 255, 0.2));
           background: $white;
+          position: relative;
+          .zoom-icon {
+            cursor: pointer;
+            top: 50%;
+            right: 0;
+            left: 0;
+            margin-left: auto;
+            margin-right: auto;
+            position: absolute;
+            background: url("../../public/img/about/zoom-icon.svg") no-repeat;
+            width: 43px;
+            height: 44px;
+          }
           .img-slide {
             width: 100%;
             max-width: 561px;

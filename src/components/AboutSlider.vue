@@ -238,6 +238,10 @@ export default {
         padding-right: 10px;
         padding-left: 10px;
       }
+      @media screen and (max-width: 768px) {
+        font-size: 14px;
+        line-height: 18.9px;
+      }
     }
     .active {
       color: $blue-active;

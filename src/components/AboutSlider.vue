@@ -9,7 +9,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-3">
+        <div class="col-12 col-xl-3">
           <ul class="nav flex-column nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
               <button class="nav-link active" id="TwoFloors-tab" data-bs-toggle="tab" data-bs-target="#TwoFloors" type="button" role="tab" aria-controls="TwoFloors" aria-selected="true">Двухэтажные автобусы</button>
@@ -25,11 +25,11 @@
             </li>
           </ul>
         </div>
-        <div class="col-9">
+        <div class="col-12 col-xl-9">
           <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="TwoFloors" role="tabpanel" aria-labelledby="TwoFloors-tab">
               <div class="slider-block">
-                <tiny-slider :responsive="{1200: {items: 2, controls: true, nav : false}, 1400: {items: 3}}" :controls-text="['','']" class="tiny-slider-wrapper" slide-by="page" :nav="true" nav-position="bottom" :mouse-drag="true" gutter="40" :controls="false" items="1" :loop="false">
+                <tiny-slider :responsive="{768: {items: 2} ,1200: {items: 2, controls: true, nav : false}, 1400: {items: 3}}" :controls-text="['','']" class="tiny-slider-wrapper" slide-by="page" :nav="true" nav-position="bottom" :mouse-drag="true" gutter="40" :controls="false" items="1" :loop="false">
                   <div v-for="bus in twoFloorsBusses" :key="bus.id" class="slide-wrapper">
                     <div class="slide">
                       <a v-bind:href="bus.src" data-fancybox="galleryTwoFloors">

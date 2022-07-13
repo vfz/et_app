@@ -213,6 +213,9 @@ export default {
       line-height: 24.3px;
     }
   }
+  .nav::-webkit-scrollbar {
+    display: none;
+  }
   .nav {
     @media screen and (max-width: 991px) {
       width: 100%;

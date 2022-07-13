@@ -53,6 +53,111 @@
               </nav>
             </div>
           </div>
+          <div class="tab-pane fade" id="ticket-refund" role="tabpanel" aria-labelledby="ticket-refund-tab">
+            <ul class="list-group">
+              <li v-if="!activeQuestion" class="list-group-item">
+                <div v-for="question in questions" :key="question.id" :class="{'is-show': question.isShow, 'is-hide' : question.isHide}" class="question">
+                  <button :id="question.id" v-bind:class="{'d-none': question.isShow}" v-on:click="showQuestion(question, $event)" type="button">
+                    {{question.title}}
+                  </button>
+                </div>
+              </li>
+              <li v-else class="list-group-item">
+                <div class="faq-details-item">
+                  <div class="faq-details-item-header d-flex justify-content-between">
+                    <h3 class="faq-title">{{activeQuestion.title}}</h3>
+                    <button :id="activeQuestion.id" v-on:click="hideQuestion" class="faq-back">Вернуться</button>
+                  </div>
+                  <div class="faq-details-item-body">
+                    <p class="faq-description">
+                      {{activeQuestion.description}}
+                    </p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <div class="pagination">
+              <nav aria-label="...">
+                <ul class="pagination">
+                  <li class="page-item active" aria-current="page">
+                    <span class="page-link">1</span>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="path-schedule" role="tabpanel" aria-labelledby="path-schedule-tab">
+            <ul class="list-group">
+              <li v-if="!activeQuestion" class="list-group-item">
+                <div v-for="question in questions" :key="question.id" :class="{'is-show': question.isShow, 'is-hide' : question.isHide}" class="question">
+                  <button :id="question.id" v-bind:class="{'d-none': question.isShow}" v-on:click="showQuestion(question, $event)" type="button">
+                    {{question.title}}
+                  </button>
+                </div>
+              </li>
+              <li v-else class="list-group-item">
+                <div class="faq-details-item">
+                  <div class="faq-details-item-header d-flex justify-content-between">
+                    <h3 class="faq-title">{{activeQuestion.title}}</h3>
+                    <button :id="activeQuestion.id" v-on:click="hideQuestion" class="faq-back">Вернуться</button>
+                  </div>
+                  <div class="faq-details-item-body">
+                    <p class="faq-description">
+                      {{activeQuestion.description}}
+                    </p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <div class="pagination">
+              <nav aria-label="...">
+                <ul class="pagination">
+                  <li class="page-item active" aria-current="page">
+                    <span class="page-link">1</span>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="bagage" role="tabpanel" aria-labelledby="bagage-tab">
+            <ul class="list-group">
+              <li v-if="!activeQuestion" class="list-group-item">
+                <div v-for="question in questions" :key="question.id" :class="{'is-show': question.isShow, 'is-hide' : question.isHide}" class="question">
+                  <button :id="question.id" v-bind:class="{'d-none': question.isShow}" v-on:click="showQuestion(question, $event)" type="button">
+                    {{question.title}}
+                  </button>
+                </div>
+              </li>
+              <li v-else class="list-group-item">
+                <div class="faq-details-item">
+                  <div class="faq-details-item-header d-flex justify-content-between">
+                    <h3 class="faq-title">{{activeQuestion.title}}</h3>
+                    <button :id="activeQuestion.id" v-on:click="hideQuestion" class="faq-back">Вернуться</button>
+                  </div>
+                  <div class="faq-details-item-body">
+                    <p class="faq-description">
+                      {{activeQuestion.description}}
+                    </p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <div class="pagination">
+              <nav aria-label="...">
+                <ul class="pagination">
+                  <li class="page-item active" aria-current="page">
+                    <span class="page-link">1</span>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
         </div>
       </div>
       <div class="col-3 col-xl-3 col-xxl-4 d-none d-lg-flex justify-content-center">

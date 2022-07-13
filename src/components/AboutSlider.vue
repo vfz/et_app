@@ -67,6 +67,7 @@ export default {
         {id: 1, src: '/img/about/buses/twoFloors/1.png'},
         {id: 2, src: '/img/about/buses/twoFloors/2.png'},
         {id: 3, src: '/img/about/buses/twoFloors/1.png'},
+        {id: 4, src: '/img/about/buses/twoFloors/1.png'},
       ]
     }
   },

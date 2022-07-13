@@ -7,6 +7,7 @@
         "build": "vue-cli-service build"
     },
     "dependencies": {
+        "@fancyapps/ui": "^4.0.27",
         "@fortawesome/fontawesome-svg-core": "^6.1.1",
         "@fortawesome/free-regular-svg-icons": "^6.1.1",
         "@fortawesome/free-solid-svg-icons": "^6.1.1",
@@ -18,6 +19,7 @@
         "register-service-worker": "^1.7.1",
         "vue": "^2.6.11",
         "vue-router": "^3.2.0",
+        "vue-tiny-slider": "^0.1.39",
         "vuex": "^3.4.0"
     },
     "devDependencies": {

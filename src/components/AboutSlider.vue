@@ -55,7 +55,7 @@
                 </tiny-slider>
               </div>
             </div>
-            <div class="tab-pane fade" id="oneFloor" role="tabpanel" aria-labelledby="oneFloor-tab">
+            <div class="tab-pane fade" id="OneFloor" role="tabpanel" aria-labelledby="oneFloor-tab">
               <div class="slider-block">
                 <tiny-slider :controls-text="['','']" class="tiny-slider-wrapper" slide-by="page" :nav="false" :mouse-drag="true" gutter="40" :controls="true" items="3" :loop="false">
                   <div v-for="bus in twoFloorsBusses" :key="bus.id" class="slide-wrapper">

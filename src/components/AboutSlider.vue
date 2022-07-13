@@ -32,7 +32,7 @@
                 <tiny-slider :controls-text="['','']" class="tiny-slider-wrapper" slide-by="page" :nav="false" :mouse-drag="true" gutter="40" :controls="true" items="3" :loop="true">
                   <div v-for="bus in twoFloorsBusses" :key="bus.id" class="slide-wrapper">
                     <div class="slide">
-                      <a v-on:mouseover="zoomIconInit" v-on:mouseleave="zoomIconRemove" v-bind:href="bus.src" data-fancybox="gallery">
+                      <a v-bind:href="bus.src" data-fancybox="gallery">
                         <img v-bind:src="bus.src" alt="автобус" class="img-slide">
                       </a>
                       <div v-on:click="fancyBoxInit" class="zoom-icon"></div>
@@ -73,12 +73,6 @@ export default {
   methods: {
     fancyBoxInit(event) {
       event.target.previousSibling.click();
-    },
-    zoomIconInit(event) {
-      // console.log(event.target);
-    },
-    zoomIconRemove(event) {
-      // console.log(event.target);
     }
   }
 }
@@ -162,6 +156,9 @@ export default {
       .slide-wrapper {
         max-width: 593px;
         padding-bottom: 40px;
+        .slide:hover .zoom-icon {
+          display: block;
+        }
         .slide {
           padding: 16px;
           filter: drop-shadow(0px 8px 12px rgba(161, 159, 255, 0.2));
@@ -178,6 +175,7 @@ export default {
             background: url("../../public/img/about/zoom-icon.svg") no-repeat;
             width: 43px;
             height: 44px;
+            display: none;
           }
           .img-slide {
             width: 100%;

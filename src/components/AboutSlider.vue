@@ -161,6 +161,14 @@ export default {
   background-repeat: no-repeat;
   bottom: 120px;
 }
+@media screen and (max-width: 1400px) {
+  .tns-controls button {
+    width: 44px;
+    height: 44px;
+    background-size: 22px;
+    right: 30px;
+  }
+}
 </style>
 
 <style lang="scss" scoped>

@@ -18,7 +18,7 @@
               <button class="nav-link" id="semiFloor-tab" data-bs-toggle="tab" data-bs-target="#semiFloor" type="button" role="tab" aria-controls="semiFloor" aria-selected="false">Полутораэтажные автобусы</button>
             </li>
             <li class="nav-item" role="presentation">
-              <button class="nav-link" id="oneFloor-tab" data-bs-toggle="tab" data-bs-target="#oneFloor" type="button" role="tab" aria-controls="oneFloor" aria-selected="false">Одноэтажные автобусы</button>
+              <button class="nav-link" id="oneFloor-tab" data-bs-toggle="tab" data-bs-target="#OneFloor" type="button" role="tab" aria-controls="OneFloor" aria-selected="false">Одноэтажные автобусы</button>
             </li>
             <li class="nav-item" role="presentation">
               <button class="nav-link" id="mercedesSprinter-tab" data-bs-toggle="tab" data-bs-target="#mercedesSprinter" type="button" role="tab" aria-controls="mercedesSprinter" aria-selected="false">Mercedes Sprinter </button>
@@ -27,7 +27,7 @@
         </div>
         <div class="col-9">
           <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="twoFloors" role="tabpanel" aria-labelledby="twoFloors-tab">
+            <div class="tab-pane fade show active" id="TwoFloors" role="tabpanel" aria-labelledby="TwoFloors-tab">
               <div class="slider-block">
                 <tiny-slider :controls-text="['','']" class="tiny-slider-wrapper" slide-by="page" :nav="false" :mouse-drag="true" gutter="40" :controls="true" items="3" :loop="false">
                   <div v-for="bus in twoFloorsBusses" :key="bus.id" class="slide-wrapper">

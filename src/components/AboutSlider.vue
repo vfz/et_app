@@ -65,25 +65,20 @@ export default {
     return {
       twoFloorsBusses: [
         {id: 1, src: '/img/about/buses/twoFloors/1.png'},
-        {id: 2, src: '/img/about/buses/twoFloors/1.png'},
+        {id: 2, src: '/img/about/buses/twoFloors/2.png'},
         {id: 3, src: '/img/about/buses/twoFloors/1.png'},
       ]
     }
   },
   methods: {
     fancyBoxInit(event) {
-      Fancybox.show([
-        {
-          src: event.target.src,
-          type: 'image'
-        }
-      ]);
+      event.target.previousSibling.click();
     },
     zoomIconInit(event) {
-      console.log(event.target);
+      // console.log(event.target);
     },
     zoomIconRemove(event) {
-      console.log(event.target);
+      // console.log(event.target);
     }
   }
 }
@@ -187,6 +182,7 @@ export default {
           .img-slide {
             width: 100%;
             max-width: 561px;
+            max-height: 216px;
             object-fit: cover;
           }
         }

@@ -248,9 +248,18 @@ export default {
       max-width: 100%;
       overflow-x: hidden;
       position: relative;
+      @media screen and (max-width: 576px) {
+        max-width: 280px;
+      }
       .slide-wrapper {
         max-width: 593px;
         padding-bottom: 40px;
+        @media screen and (max-width: 768px) {
+          max-width: 100%;
+        }
+        @media screen and (max-width: 576px) {
+          max-width: 280px;
+        }
         .slide:hover .zoom-icon {
           display: block;
         }
@@ -278,6 +287,10 @@ export default {
             max-width: 561px;
             max-height: 216px;
             object-fit: cover;
+            @media screen and (max-width: 768px) {
+              max-width: unset;
+              width: 100%;
+            }
           }
         }
       }

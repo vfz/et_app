@@ -32,7 +32,7 @@
                 <tiny-slider :controls-text="['','']" class="tiny-slider-wrapper" slide-by="page" :nav="false" :mouse-drag="true" gutter="40" :controls="true" items="3" :loop="false">
                   <div v-for="bus in twoFloorsBusses" :key="bus.id" class="slide-wrapper">
                     <div class="slide">
-                      <a v-bind:href="bus.src" data-fancybox="gallery">
+                      <a v-bind:href="bus.src" data-fancybox="galleryTwoFloors">
                         <img v-bind:src="bus.src" alt="автобус" class="img-slide">
                       </a>
                       <div v-on:click="fancyBoxInit" class="zoom-icon"></div>
@@ -46,7 +46,7 @@
                 <tiny-slider :controls-text="['','']" class="tiny-slider-wrapper" slide-by="page" :nav="false" :mouse-drag="true" gutter="40" :controls="true" items="3" :loop="false">
                   <div v-for="bus in twoFloorsBusses" :key="bus.id" class="slide-wrapper">
                     <div class="slide">
-                      <a v-bind:href="bus.src" data-fancybox="gallery">
+                      <a v-bind:href="bus.src" data-fancybox="gallerySemiFloor">
                         <img v-bind:src="bus.src" alt="автобус" class="img-slide">
                       </a>
                       <div v-on:click="fancyBoxInit" class="zoom-icon"></div>
@@ -60,7 +60,7 @@
                 <tiny-slider :controls-text="['','']" class="tiny-slider-wrapper" slide-by="page" :nav="false" :mouse-drag="true" gutter="40" :controls="true" items="3" :loop="false">
                   <div v-for="bus in twoFloorsBusses" :key="bus.id" class="slide-wrapper">
                     <div class="slide">
-                      <a v-bind:href="bus.src" data-fancybox="gallery">
+                      <a v-bind:href="bus.src" data-fancybox="galleryOneFloor">
                         <img v-bind:src="bus.src" alt="автобус" class="img-slide">
                       </a>
                       <div v-on:click="fancyBoxInit" class="zoom-icon"></div>

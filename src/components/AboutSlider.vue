@@ -161,12 +161,32 @@ export default {
   background-repeat: no-repeat;
   bottom: 120px;
 }
+
+.tns-nav button {
+  width: 80px;
+  height: 2px;
+  background-color: #AFB7CD;
+  margin-right: 8px;
+  border: none;
+  border-radius: 1px;
+}
+.tns-nav button:last-child {
+  margin-right: 0;
+}
+.tns-nav .tns-nav-active {
+  background-color: #283256;
+}
 @media screen and (max-width: 1400px) {
   .tns-controls button {
     width: 44px;
     height: 44px;
     background-size: 22px;
     right: 30px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .tns-nav button {
+    width: 40px;
   }
 }
 </style>

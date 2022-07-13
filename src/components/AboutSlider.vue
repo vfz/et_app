@@ -230,6 +230,7 @@ export default {
           }
           .img-slide {
             width: 100%;
+            height: 216px;
             max-width: 561px;
             max-height: 216px;
             object-fit: cover;

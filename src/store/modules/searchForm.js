@@ -183,13 +183,11 @@ export default {
         },
         SetDateArival(ctx, f) {
             ctx.commit('updateDate', f)
-            ctx.dispatch('getFlightThere')
-            ctx.dispatch('getFlightBack')
+
         },
         SetDateBack(ctx, f) {
             ctx.commit('updateDateBack', f)
-            ctx.dispatch('getFlightThere')
-            ctx.dispatch('getFlightBack')
+
         },
         SetDate(ctx, newDate) {
             ctx.commit('updateDateC', newDate)

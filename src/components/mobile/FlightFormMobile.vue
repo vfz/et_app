@@ -13,11 +13,11 @@
           <form id="hero-form" class="search-form d-flex flex-wrap justify-content-center">
             <div class="checkbox-form d-block w-100">
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" v-on:click="oneWay=true" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(true)" name="inlineRadioOptions" id="inlineRadio1" value="option1" :checked="oneWay">
                 <label class="form-check-label" for="inlineRadio1">В одну сторону</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" v-on:click="oneWay=false"  name="inlineRadioOptions" id="inlineRadio2" value="option2" checked>
+                <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(false)"  name="inlineRadioOptions" id="inlineRadio2" value="option2" :checked="!oneWay">
                 <label class="form-check-label" for="inlineRadio2">Туда-обратно</label>
               </div>
             </div>
@@ -31,30 +31,62 @@
                 <span class="path-content-end">Москва</span>
               </div>
             </div>
-            <!--one-way-input-->
-            <div class="one-way-inputs w-100 form-header" v-if="oneWay">
-              <div class="row">
+            <!-- Form-input-->
+            <div class="two-ways-inputs w-100 form-header">
+              <div class="row flex-wrap">
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl min-w-300">
                   <div class="card h-100">
                     <div class="card-body">
                       <div class="card-body-section position-relative">
+                        <!-- ВЫБОР ПЫНКТА ОТПРАВЛЕНИЯ -->
                         <label for="dataListFrom" class="form-label">Откуда</label>
                         <div class="city-name city-name-from">
-                          <span>Ставрополь</span>
+                          <input class="form-control one-way-inputs-input shadow-none"
+                                 @focus="fromPlaceV=true"
+                                 v-mmodel="fromPlace"
+                                 v-model="fromPlace"
+                                 placeholder="Введите название населенного пункта"
+                                 style="padding-left: 7pt;">
+                          <div class="find-place" v-if="fromPlace  && !from || fromPlaceV">
+                            <div class="meta"
+                                 v-for="pointFrom in fromStations" :key="pointFrom.id_from"
+                                 v-show="search(pointFrom.name,fromPlace)"
+                                 v-on:click="setFrom(pointFrom.id_from);fromPlaceV=false;fromPlace=pointFrom.name"
+                            >
+                              <div class="title">{{pointFrom.name}}</div>
+                              <div class="description" style="color:#ec0000;font-size:12px;font:bold">{{pointFrom.address}}</div>
+                            </div>
+                          </div>
                         </div>
+                        <!-- РАКИРОВКА -->
                         <div id="swiper-inputs" class="swiper-inputs" v-on:click="castling();temp = fromPlace;fromPlace = toPlace;toPlace = temp;">
                           <img alt="swiper-inputs-icon" class="swiper-inputs-icon" src="/img/hero/arrows-mobile.svg">
                         </div>
                         <div class="cross-line first-line"></div>
                       </div>
                       <div class="card-body-section">
+                        <!-- ВЫБОР ПЫНКТА НАЗНАЧЕНИЯ -->
                         <label for="datalistTo" class="form-label">Куда</label>
                         <div class="city-name city-name-to">
-                          <span>Москва</span>
+                          <input class="form-control one-way-inputs-input shadow-none"
+                                 @focus="toPlaceV=true"
+                                 v-model="toPlace"
+                                 v-mmodel="toPlace"
+                                 placeholder="Введите название населенного пункта" style="padding-left: 7pt;">
+                          <div class="find-place" v-if="toPlace && !to || toPlaceV ">
+                            <div class="meta"
+                                 v-for="pointTo in toStations" :key="pointTo.id_to"
+                                 v-show="search(pointTo.name,toPlace)"
+                                 v-on:click="setTo(pointTo.id_to);toPlaceV=false;toPlace=pointTo.name">
+                              <div class="title">{{pointTo.name}}</div>
+                              <div class="description" style="color:#ec0000;font-size:12px;font:bold">{{pointTo.address}}</div>
+                            </div>
+                          </div>
                         </div>
                         <div class="cross-line"></div>
                       </div>
-                      <div class="card-body-section">
+                      <!-- ВЫБОР ДАТЫ ТУДА-->                  
+                      <div class="card-body-section" v-if="oneWay">
                         <div class="path-date d-flex">
                           <div>
                             <label class="form-label dispatch-title">
@@ -62,9 +94,12 @@
                             </label>
                             <div class="dispatch-date d-flex justify-content-between align-items-center">
                               <div>
-                                <span class="dispatch-date-day">30</span>
-                                <span class="dispatch-date-month">Янв'</span>
-                                <span class="dispatch-date-year">20</span>
+                                <span class="dispatch-date-day">{{dateArival.split('.')[0]}} </span>
+                                <span class="dispatch-date-month">{{ monthes[--dateArival.split('.')[1]]}} </span> 
+                                <span class="dispatch-date-year">{{dateArival.split('.')[2]}}</span>
+                              </div>
+                              <div class="select-date" v-if="selectDate">
+                                <DataPicker/>
                               </div>
                               <div>
                                 <span class="input-group-text calendar-span" v-on:click="UpdateselectDate()" ><img class="calendar-icon" alt="calendar" src="/img/hero/calendar.svg"></span>
@@ -74,69 +109,8 @@
                         </div>
                         <div class="cross-line"></div>
                       </div>
-                      <div class="card-body-section">
-                        <div>
-                          <label for="dataListFrom" class="form-label">Пассажиры</label>
-                          <div class="passengers-count" v-bind:class="{'d-none': isHidden}" v-on:click="isHidden = true; isShow = true">
-                            <span>4 человека</span>
-                          </div>
-                          <div v-bind:class="{'d-flex': isShow, 'd-none': !isShow}" class="passengers-count-detail justify-content-between w-100">
-                            <div class="count-passenger d-flex align-items-center flex-wrap">
-                              <div id="minus-button-adult" class="minus-button count-button" :class=" { disabled : !mba } " v-on:click="MinusAdult();changeClass()">-</div>
-                              <input value="1" min="1" max="7" name="adults" v-model="adults" type="number" class="form-control one-way-inputs-input shadow-none text-center"  placeholder="0">
-                              <div id="plus-button-adult" class="plus-button count-button" :class=" { disabled : !pba } " v-on:click="PlusAdult();changeClass()">+</div>
-                              <span class="card-desc d-block w-100">Взрослых</span>
-                            </div>
-                            <div class="count-passenger d-flex">
-                              <div class="d-flex align-items-center flex-wrap">
-                                <div id="minus-button-childeren" class="minus-button count-button" :class=" { disabled : !mbc } " v-on:click="MinusChild();changeClass()">-</div>
-                                <input value="0" min="0" max="5" name="childrens" v-model="childrens" type="number" class="form-control one-way-inputs-input shadow-none text-center" placeholder="0">
-                                <div id="plus-button-childeren" class="plus-button count-button" :class=" { disabled : !pbc } " v-on:click="PlusChild();changeClass()">+</div>
-                                <span class="card-desc d-block w-100">Детских</span>
-                              </div>
-                              <div>
-                                <img class="help-icon" alt="help" src="/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col d-flex justify-content-center align-items-center">
-                  <button id="submit-button" type="button" class="btn" v-on:click="alertPlace()">
-                    Найти билеты
-                  </button>
-                </div>
-              </div>
-            </div>
-            <!-- two-way-input-->
-            <div class="two-ways-inputs w-100 form-header" v-else>
-              <div class="row flex-wrap">
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl min-w-300">
-                  <div class="card h-100">
-                    <div class="card-body">
-                      <div class="card-body-section position-relative">
-                        <label for="dataListFrom" class="form-label">Откуда</label>
-                        <div class="city-name city-name-from">
-                          <span>Ставрополь</span>
-                        </div>
-                        <div id="swiper-inputs" class="swiper-inputs" v-on:click="castling();temp = fromPlace;fromPlace = toPlace;toPlace = temp;">
-                          <img alt="swiper-inputs-icon" class="swiper-inputs-icon" src="/img/hero/arrows-mobile.svg">
-                        </div>
-                        <div class="cross-line first-line"></div>
-                      </div>
-                      <div class="card-body-section">
-                        <label for="datalistTo" class="form-label">Куда</label>
-                        <div class="city-name city-name-to">
-                          <span>Москва</span>
-                        </div>
-                        <div class="cross-line"></div>
-                      </div>
-                      <div class="card-body-section">
+                      <!-- ВЫБОР ДАТ ТУДА - ОБРАТНО-->
+                      <div class="card-body-section" v-else>
                         <div class="path-date d-flex justify-content-between">
                           <div>
                             <label class="form-label dispatch-title">
@@ -144,9 +118,12 @@
                             </label>
                             <div class="dispatch-date d-flex justify-content-between align-items-center">
                               <div>
-                                <span class="dispatch-date-day">30</span>
-                                <span class="dispatch-date-month">Янв'</span>
-                                <span class="dispatch-date-year">20</span>
+                                <span class="dispatch-date-day">{{dateArival.split('.')[0]}} </span>
+                                <span class="dispatch-date-month">{{ monthes[--dateArival.split('.')[1]]}} </span> 
+                                <span class="dispatch-date-year">{{dateArival.split('.')[2]}}</span>
+                              </div>
+                              <div class="select-date" v-if="selectDate">
+                                <DataPicker/>
                               </div>
                               <div>
                                 <span class="input-group-text calendar-span" v-on:click="UpdateselectDate()" ><img class="calendar-icon" alt="calendar" src="/img/hero/calendar.svg"></span>
@@ -159,12 +136,15 @@
                             </label>
                             <div class="arrival-date d-flex justify-content-between align-items-center">
                               <div>
-                                <span class="arrival-date-day">10</span>
-                                <span class="arrival-date-month">Фев'</span>
-                                <span class="arrival-date-year">20</span>
+                                <span class="dispatch-date-day">{{dateBack.split('.')[0]}} </span>
+                                <span class="dispatch-date-month">{{ monthes[--dateBack.split('.')[1]]}} </span> 
+                                <span class="dispatch-date-year">{{dateBack.split('.')[2]}}</span>
+                              </div>
+                              <div class="select-date" v-if="selectDateBack">
+                                <DataPicker/>
                               </div>
                               <div>
-                                <span class="input-group-text calendar-span" v-on:click="UpdateselectDate()" ><img class="calendar-icon" alt="calendar" src="/img/hero/calendar.svg"></span>
+                                <span class="input-group-text calendar-span" v-on:click="UpdateselectDateBack()" ><img class="calendar-icon" alt="calendar" src="/img/hero/calendar.svg"></span>
                               </div>
                             </div>
                           </div>
@@ -175,7 +155,7 @@
                         <div>
                           <label for="dataListFrom" class="form-label">Пассажиры</label>
                           <div class="passengers-count" v-bind:class="{'d-none': isHidden}" v-on:click="isHidden = true; isShow = true">
-                            <span>4 человека</span>
+                            <span>{{childrens+adults}} человека</span>
                           </div>
                           <div v-bind:class="{'d-flex': isShow, 'd-none': !isShow}" class="passengers-count-detail justify-content-between w-100">
                             <div class="count-passenger d-flex align-items-center flex-wrap">
@@ -218,17 +198,14 @@
 </template>
 
 <script>
-import DataPicker from "@/components/DataPicker";
-import {mapActions, mapGetters} from "vuex";
-
+import DataPicker from '@/components/DataPicker'
+import {mapGetters,mapActions} from 'vuex'
 export default {
-  name: "FlightFormMobile",
+  name: "Flight-form",
   components:{DataPicker,},
-  computed: mapGetters(['fromStations','toStations','from','to','childrens','adults','dateArival','dateBack','selectDate','selectDateBack']),
+  computed: mapGetters(['fromStations','toStations','from','to','childrens','adults','dateArival','dateBack','selectDate','selectDateBack','oneWay']),
   data(){
     return{
-      title: 'Доступные билеты на автобус от перевозчика',
-      oneWay: true,
       pba: true,
       pbc: true,
       mba: false,
@@ -241,6 +218,8 @@ export default {
       tomorrow: new Date(new Date()),
       isHidden: false,
       isShow: false,
+      monthes: ["Янв", "Фев", "Мар", "Апр", "Мая", "Июня", "Июля", "Авг", "Сен", "Окт", "Ноя", "Дек"],
+
     }
 
   },
@@ -255,6 +234,7 @@ export default {
   },
   methods: {
     ...mapActions([
+      'UpdateOneWay',
       'getFromStations',
       'getToStations',
       'UpdateselectDate',
@@ -269,7 +249,7 @@ export default {
       'PlusAdult',
       'MinusAdult',
       'PlusChild',
-      'MinusChild',
+      'MinusChild'
     ]),
 
     search(str,target){
@@ -280,8 +260,9 @@ export default {
     },
     alertPlace(){
       // alert('Едем в '+this.toPlace+' Едем из '+this.fromPlace)
-     
-     if(this.from!==this.$route.params.from || this.to!==this.$route.params.to){
+      
+     if(this.from !== this.$route.params.from || this.to !== this.$route.params.to){
+        
         this.$router.push('/flight-selection/search/'+this.from+'/'+this.to)
         }
     },
@@ -312,14 +293,14 @@ export default {
 
 
   },
-   async mounted(){
+  async mounted(){
     await this.getFromStations();
     await this.getToStations();
+
     this.setFrom(this.$route.params.from);
     this.setTo(this.$route.params.to);
     this.toPlace= this.toStations.find(station => station.id_to === this.$route.params.to).name;
     this.fromPlace= this.fromStations.find(station => station.id_from === this.$route.params.from).name;
-
   },
   // created(){
   //     document.addEventListener('click', this.selectDateFalse.bind(this));

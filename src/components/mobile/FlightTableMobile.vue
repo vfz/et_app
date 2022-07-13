@@ -4,15 +4,15 @@
       <div class="row">
         <div class="col-12">
           <h2 class="title-table" v-if="flightType=='there'">
-             Туда <span class="title-table-counter">(1)</span>
+             Туда <span class="title-table-counter">({{flightThere.length}})</span>
           </h2>
           <h2 class="title-table" v-if="flightType=='back'">
-             Обратно <span class="title-table-counter">(2)</span>
+             Обратно <span class="title-table-counter">({{flightBack.length}})</span>
           </h2>
         </div>
       </div>
       <div class="row gy-4">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 col-sm-6" v-for="flight in (flightType=='there') ? flightThere:flightBack" :key="flight.ticket_id_2+'_'+flight.id_trip">
           <div class="table-item">
             <div class="table-item-content-wrapper">
               <div class="row">
@@ -23,12 +23,13 @@
                     </h3>
                     <div class="table-item-part-left-date d-flex">
                       <div class="dispatch-time">
-                        09:30
+                        <!-- время отправления -->
+                        {{flight.time_trip}}
                       </div>
                       <div class="dispatch-date">
-                        <span class="dispatch-date-day">30</span>
-                        <span class="dispatch-date-month">Янв'</span>
-                        <span class="dispatch-date-year">20</span>
+                        <span class="dispatch-date-day">{{flight.date_trip.split('-')[2]}} </span>
+                        <span class="dispatch-date-month">{{ monthes[--flight.date_trip.split('-')[1]]}} </span> 
+                        <span class="dispatch-date-year">{{flight.date_trip.split('-')[0]}}</span>
                       </div>
                     </div>
                   </div>
@@ -40,12 +41,12 @@
                     </h3>
                     <div class="table-item-part-right-date d-flex">
                       <div class="arrival-time">
-                        05:30
+                        {{flight.time_arrival_trip}}
                       </div>
                       <div class="arrival-date">
-                        <span class="arrival-date-day">31</span>
-                        <span class="arrival-date-month">Янв'</span>
-                        <span class="arrival-date-year">20</span>
+                        <span class="arrival-date-day">{{flight.date_arrival_trip.split('-')[2]}} </span>
+                        <span class="arrival-date-month">{{ monthes[--flight.date_arrival_trip.split('-')[1]]}} </span> 
+                        <span class="arrival-date-year">{{flight.date_arrival_trip.split('-')[0]}}</span>
                       </div>
                     </div>
                   </div>
@@ -56,20 +57,20 @@
                 <div class="col-6">
                   <div class="table-item-part-left">
                     <div class="table-item-part-left-city">
-                      Ставрополь
+                       {{flight.from_name_point}}
                     </div>
                     <div class="table-item-part-left-place table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
-                      ж/д вокзал
+                       {{flight.from_address_point}}
                     </div>
                   </div>
                 </div>
                 <div class="col-6">
                   <div class="table-item-part-right">
                     <div class="table-item-part-right-city">
-                      Москва
+                      {{flight.to_name_point}}
                     </div>
                     <div class="table-item-part-right-place table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
-                      АВ “Орехово”
+                       {{flight.to_address_point}}
                     </div>
                   </div>
                 </div>
@@ -83,7 +84,25 @@
                     </h3>
                     <div class="table-item-part-left-date">
                       <div class="dispatch-time table-link" data-bs-toggle="modal" data-bs-target="#dispatch-length-time-modal">
-                        20 часов
+                        <span v-if="flight.time_duration_trip.split(':')[0]>0">
+                            {{flight.time_duration_trip.split(':')[0]}}
+                            {{
+                                hours[
+                                (flight.time_duration_trip.split(':')[0] % 100 > 4 && flight.time_duration_trip.split(':')[0] % 100 < 20) 
+                                ? 2 : cases[(flight.time_duration_trip.split(':')[0] % 10 < 5) ? flight.time_duration_trip.split(':')[0] % 10 : 5]
+                                ]
+                            }} 
+                            </span>
+
+                            <span v-if="flight.time_duration_trip.split(':')[1]>0">
+                            {{flight.time_duration_trip.split(':')[1]}} 
+                            {{
+                                minutes[
+                                (flight.time_duration_trip.split(':')[1] % 100 > 4 && flight.time_duration_trip.split(':')[1] % 100 < 20) 
+                                ? 2 : cases[(flight.time_duration_trip.split(':')[1] % 10 < 5) ? flight.time_duration_trip.split(':')[1] % 10 : 5]
+                                ]
+                            }} 
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -94,8 +113,12 @@
                       Осталось мест
                     </h3>
                     <div class="table-item-part-right-date">
-                      <div class="arrival-time table-link" data-bs-toggle="modal" data-bs-target="#place-left-modal">
-                        24
+                      <div class="arrival-time table-link" data-bs-toggle="modal" data-bs-target="#place-left-modal"  v-if="+flight.count_available_seats_trip>=adults+childrens">
+                         {{flight.count_available_seats_trip}}
+                          Выбрать
+                      </div>
+                      <div class="arrival-time table-link" v-else>
+                         {{flight.count_available_seats_trip}}
                       </div>
                     </div>
                   </div>
@@ -103,203 +126,15 @@
               </div>
             </div>
             <div class="d-grid">
-              <button class="btn btn-primary price" data-bs-toggle="modal" data-bs-target="#place-left-modal">
-                7 000₽
+              <button class="btn btn-primary price"  v-if="+flight.count_available_seats_trip>=adults+childrens">
+                {{(+flight.full_ticket_price*+adults)+(+flight.child_ticket_price*+childrens)}}₽
               </button>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-sm-6">
-          <div class="table-item active">
-            <div class="table-item-content-wrapper">
-              <div class="row">
-                <div class="col-6">
-                  <div class="table-item-part-left">
-                    <h3 class="table-item-part-left-title">
-                      Время отправления
-                    </h3>
-                    <div class="table-item-part-left-date d-flex">
-                      <div class="dispatch-time">
-                        09:30
-                      </div>
-                      <div class="dispatch-date">
-                        <span class="dispatch-date-day">30</span>
-                        <span class="dispatch-date-month">Янв'</span>
-                        <span class="dispatch-date-year">20</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="table-item-part-right">
-                    <h3 class="table-item-part-right-title">
-                      Время прибытия
-                    </h3>
-                    <div class="table-item-part-right-date d-flex">
-                      <div class="arrival-time">
-                        05:30
-                      </div>
-                      <div class="arrival-date">
-                        <span class="arrival-date-day">31</span>
-                        <span class="arrival-date-month">Янв'</span>
-                        <span class="arrival-date-year">20</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-6">
-                  <div class="table-item-part-left">
-                    <div class="table-item-part-left-city">
-                      Ставрополь
-                    </div>
-                    <div class="table-item-part-left-place table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
-                      ж/д вокзал
-                    </div>
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="table-item-part-right">
-                    <div class="table-item-part-right-city">
-                      Москва
-                    </div>
-                    <div class="table-item-part-right-place table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
-                      АВ “Орехово”
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-6">
-                  <div class="table-item-part-left">
-                    <h3 class="table-item-part-left-title">
-                      Время в пути
-                    </h3>
-                    <div class="table-item-part-left-date">
-                      <div class="dispatch-time table-link" data-bs-toggle="modal" data-bs-target="#dispatch-length-time-modal">
-                        20 часов
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="table-item-part-right">
-                    <h3 class="table-item-part-right-title">
-                      Осталось мест
-                    </h3>
-                    <div class="table-item-part-right-date">
-                      <div class="arrival-time table-link" data-bs-toggle="modal" data-bs-target="#place-left-modal">
-                        24
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="d-grid">
-              <button class="btn btn-success price" data-bs-toggle="modal" data-bs-target="#place-left-modal">
+              <button class="btn btn-primary price disabled" v-if="+flight.count_available_seats_trip<adults+childrens || +flight.count_available_seats_trip===0">
+                    недостаточно мест :(
+              </button>
+              <!-- <button class="btn btn-success price">
                 Убрать
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-sm-6">
-          <div class="table-item">
-            <div class="table-item-content-wrapper">
-              <div class="row">
-                <div class="col-6">
-                  <div class="table-item-part-left">
-                    <h3 class="table-item-part-left-title">
-                      Время отправления
-                    </h3>
-                    <div class="table-item-part-left-date d-flex">
-                      <div class="dispatch-time">
-                        09:30
-                      </div>
-                      <div class="dispatch-date">
-                        <span class="dispatch-date-day">30</span>
-                        <span class="dispatch-date-month">Янв'</span>
-                        <span class="dispatch-date-year">20</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="table-item-part-right">
-                    <h3 class="table-item-part-right-title">
-                      Время прибытия
-                    </h3>
-                    <div class="table-item-part-right-date d-flex">
-                      <div class="arrival-time">
-                        05:30
-                      </div>
-                      <div class="arrival-date">
-                        <span class="arrival-date-day">31</span>
-                        <span class="arrival-date-month">Янв'</span>
-                        <span class="arrival-date-year">20</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-6">
-                  <div class="table-item-part-left">
-                    <div class="table-item-part-left-city">
-                      Ставрополь
-                    </div>
-                    <div class="table-item-part-left-place table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
-                      ж/д вокзал
-                    </div>
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="table-item-part-right">
-                    <div class="table-item-part-right-city">
-                      Москва
-                    </div>
-                    <div class="table-item-part-right-place table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
-                      АВ “Орехово”
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-6">
-                  <div class="table-item-part-left">
-                    <h3 class="table-item-part-left-title">
-                      Время в пути
-                    </h3>
-                    <div class="table-item-part-left-date">
-                      <div class="dispatch-time table-link" data-bs-toggle="modal" data-bs-target="#dispatch-length-time-modal">
-                        20 часов
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="table-item-part-right">
-                    <h3 class="table-item-part-right-title">
-                      Осталось мест
-                    </h3>
-                    <div class="table-item-part-right-date">
-                      <div class="arrival-time table-link" data-bs-toggle="modal" data-bs-target="#place-left-modal">
-                        24
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="d-grid">
-              <button class="btn btn-primary price" data-bs-toggle="modal" data-bs-target="#place-left-modal">
-                7 000₽
-              </button>
+              </button> -->
             </div>
           </div>
         </div>
@@ -309,9 +144,23 @@
 </template>
 
 <script>
+import {mapGetters,mapActions} from 'vuex'
 export default {
   name: "ThereTableMobile",
   props: ['flightType'],
+  data(){
+    return{
+        hours: ['час', 'часа', 'часов'],
+        minutes: ['минута', 'минуты', 'минут'],
+        cases: [2, 0, 1, 1, 1, 2],
+        monthes: ["Янв", "Фев", "Мар", "Апр", "Мая", "Июня", "Июля", "Авг", "Сен", "Окт", "Ноя", "Дек"],
+        flights:[],
+    }
+  },
+  computed: mapGetters(['flightThere','flightBack','childrens','adults',]),
+  mounted(){
+    
+  }
 }
 </script>
 

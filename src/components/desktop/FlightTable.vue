@@ -45,7 +45,7 @@
               </thead>
               <tbody>
                 <!--              Добавить класс active-row для tr и будет выделение-->
-              <tr v-for="flight in (flightType=='there') ? flightThere:flightBack" :key="flight.ticket_id_2">
+              <tr v-for="flight in (flightType=='there') ? flightThere:flightBack" :key="flight.ticket_id_2+'_'+flight.id_trip">
                 <td>
                   <div class="dispatch-time">
                     <!-- время отправления -->
@@ -101,9 +101,9 @@
                     {{flight.time_arrival_trip}}
                   </div>
                   <div class="arrival-date">
-                    <span class="dispatch-date-day">{{flight.date_arrival_trip.split('-')[2]}} </span>
-                    <span class="dispatch-date-month">{{ monthes[--flight.date_arrival_trip.split('-')[1]]}}</span> 
-                    <span class="dispatch-date-year">{{flight.date_arrival_trip.split('-')[0]}}</span>
+                    <span class="arrival-date-day">{{flight.date_arrival_trip.split('-')[2]}} </span>
+                    <span class="arrival-date-month">{{ monthes[--flight.date_arrival_trip.split('-')[1]]}}</span> 
+                    <span class="arrival-date-year">{{flight.date_arrival_trip.split('-')[0]}}</span>
                   </div>
                 </td>
                 <td>
@@ -172,13 +172,7 @@ export default {
   },
   computed: mapGetters(['flightThere','flightBack','childrens','adults',]),
   mounted(){
-    if(this.flightType==='there'){
-        this.flights=this.flightThere
-    }
-
-    if(this.flightType==='back'){
-       this.flights=this.flightBack
-    }
+    
   }
 }
 

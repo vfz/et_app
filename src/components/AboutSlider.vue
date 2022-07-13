@@ -195,7 +195,6 @@ export default {
 @import 'tiny-slider/src/tiny-slider';
 @import "src/assets/variables.scss";
 @import "src/assets/font.scss";
-//@import "@fancyapps/ui/dist/fancybox.css";
 
 .about-slider-section {
   margin-left: 88px;

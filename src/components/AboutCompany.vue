@@ -92,6 +92,7 @@ export default {
     }
     @media screen and (max-width: 576px) {
       font-size: 12px;
+      margin-bottom: 31px;
     }
     .border-line {
       height: 102px;

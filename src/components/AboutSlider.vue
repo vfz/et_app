@@ -26,7 +26,7 @@
           </ul>
         </div>
         <div class="col-12 col-xl-9">
-          <div class="tab-content" id="myTabContent">
+          <!-- <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="TwoFloors" role="tabpanel" aria-labelledby="TwoFloors-tab">
               <div class="slider-block">
                 <tiny-slider :responsive="{768: {items: 2, gutter: 40} ,1200: {items: 2, controls: true, nav : false}, 1400: {items: 3}}" :controls-text="['','']" class="tiny-slider-wrapper" slide-by="page" :nav="true" nav-position="bottom" :mouse-drag="true" gutter="0" :controls="false" items="1" :loop="false">
@@ -83,7 +83,7 @@
                 </tiny-slider>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -91,29 +91,29 @@
 </template>
 
 <script>
-import VueTinySlider from 'vue-tiny-slider';
-import {Fancybox} from '@fancyapps/ui';
-import '@fancyapps/ui/dist/fancybox.css'
+// import VueTinySlider from 'vue-tiny-slider';
+// import {Fancybox} from '@fancyapps/ui';
+// import '@fancyapps/ui/dist/fancybox.css'
 
 export default {
   name: "AboutSlider",
   components: {
-    'tiny-slider': VueTinySlider
+    // 'tiny-slider': VueTinySlider
   },
   data() {
     return {
-      twoFloorsBusses: [
-        {id: 1, src: '/img/about/buses/twoFloors/1.png'},
-        {id: 2, src: '/img/about/buses/twoFloors/2.png'},
-        {id: 3, src: '/img/about/buses/twoFloors/1.png'},
-        {id: 4, src: '/img/about/buses/twoFloors/1.png'},
-      ]
+      // twoFloorsBusses: [
+      //   {id: 1, src: '/img/about/buses/twoFloors/1.png'},
+      //   {id: 2, src: '/img/about/buses/twoFloors/2.png'},
+      //   {id: 3, src: '/img/about/buses/twoFloors/1.png'},
+      //   {id: 4, src: '/img/about/buses/twoFloors/1.png'},
+      // ]
     }
   },
   methods: {
-    fancyBoxInit(event) {
-      event.target.previousSibling.click();
-    }
+    // fancyBoxInit(event) {
+    //   event.target.previousSibling.click();
+    // }
   }
 }
 </script>
@@ -192,7 +192,7 @@ export default {
 </style>
 
 <style lang="scss" scoped>
-@import 'tiny-slider/src/tiny-slider';
+// @import 'tiny-slider/src/tiny-slider';
 @import "src/assets/variables.scss";
 @import "src/assets/font.scss";
 

@@ -573,6 +573,7 @@ export default{
             }
           }
            input:-ms-input-placeholder{
+             color: #B5BDDB;
                 font-weight: normal;
                 font-style: normal;
                 font-family: $uniBook;
@@ -581,6 +582,7 @@ export default{
              }
             }
             input::-webkit-input-placeholder{
+              color: #B5BDDB;
                 font-weight: normal;
                 font-style: normal;
                 font-family: $uniBook;
@@ -589,6 +591,7 @@ export default{
               }
             }
             input::-moz-placeholder{
+              color: #B5BDDB;
                 font-weight: normal;
                 font-style: normal;
                 font-family: $uniBook;
@@ -597,6 +600,7 @@ export default{
               }
             }
             input:-moz-placeholder{
+              color: #B5BDDB;
                 font-weight: normal;
                 font-style: normal;
                 font-family: $uniBook;

@@ -459,13 +459,44 @@ export default{
         margin-bottom: 33px;
         @media screen and (max-width: 768px) {
           display: flex !important;
-          flex-direction: column;
-          align-items: center;
-          width: unset !important;
+          width: 100% !important;
         }
         .form-check-inline {
           @media screen and (max-width: 768px) {
-            display: block;
+            display: flex;
+            flex-direction: column-reverse;
+            padding-left: 0;
+            margin-right: 38px;
+          }
+          .form-check-input[type=radio] {
+            @media screen and (max-width: 768px) {
+              width: 18px;
+              height: 18px;
+              margin-left: 0;
+              float: unset;
+            }
+          }
+          .form-check-input:checked {
+            border: 4px solid $blue-active;
+          }
+          .form-check-input:checked:before {
+            box-shadow: none;
+          }
+          .form-check-input[type=radio]:before {
+            @media screen and (max-width: 768px) {
+              width: 18px;
+              height: 18px;
+            }
+          }
+          .form-check-input[type=radio]:after {
+            @media screen and (max-width: 768px) {
+              width: 18px;
+              height: auto;
+            }
+          }
+        }
+        .form-check-inline:last-child {
+          @media screen and (max-width: 768px) {
             margin-right: 0;
           }
         }
@@ -480,6 +511,7 @@ export default{
             margin-left: 0;
             font-size: 14px;
             line-height: 18.9px;
+            margin-bottom: 8px;
           }
         }
       }

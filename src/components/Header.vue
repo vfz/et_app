@@ -122,7 +122,7 @@ export default {
   margin-left: 88px;
   margin-right: 88px;
   @media screen and (max-width: 767px) {
-    padding-top: 55px;
+    padding-top: 48px;
     margin-left: 20px;
     margin-right: 20px;
     margin-bottom: 50px;

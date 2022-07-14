@@ -655,15 +655,20 @@ export default{
           z-index: 999;
           cursor: pointer;
           @media screen and (max-width: 767px) {
-            right: 0;
-            bottom: -40px;
-            transform: rotate(90deg);
+            right: 26px;
+            bottom: -20px;
+            width: 40px;
+            height: 40px;
           }
           &-icon {
             background: url("/img/hero/arrows.svg") no-repeat;
             width: 33px;
             height: 24px;
-            
+            @media screen and (max-width: 767px) {
+              background: url("/img/hero/arrows-mobile.svg") no-repeat;
+              width: 16px;
+              height: 21px;
+            }
           }
         }
         .find-place{

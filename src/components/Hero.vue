@@ -32,7 +32,7 @@
                 </div>
                 <!--one-way-input-->
                 <div class="one-way-inputs w-100 form-header" v-if="oneWay">
-                  <div class="row gy-4 gy-xxl-0 d-xxl-flex justify-content-xxl-center">
+                  <div class="row gy-md-4 gy-2 gy-xxl-0 d-xxl-flex justify-content-xxl-center">
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-3 min-w-300">
                       <div class="card h-100">
                         <div class="card-body">

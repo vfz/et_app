@@ -658,6 +658,7 @@ export default{
           right: -46px;
           z-index: 999;
           cursor: pointer;
+          filter: drop-shadow(0px 8px 12px rgba(161, 159, 255, 0.2));
           @media screen and (max-width: 767px) {
             right: 26px;
             bottom: -20px;

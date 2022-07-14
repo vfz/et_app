@@ -56,7 +56,7 @@
                           <span class="card-example">
 
                                                 Например:
-                                                <span id="city-example-from" class="card-example-date city-example-from text-decoration-underline"
+                                                <span id="city-example-from" class="card-example-date city-example-from"
                                                       v-on:click="setFrom('1');fromPlaceV=false;fromPlace='Ставрополь'"
                                                 >Ставрополь</span>
                                             </span>
@@ -87,7 +87,7 @@
                           </div>
                           <span class="card-example">
                                                 Например:
-                                                <span id="city-example-to" class="card-example-date city-example-to text-decoration-underline"
+                                                <span id="city-example-to" class="card-example-date city-example-to"
                                                       v-on:click="setTo('190');toPlaceV=false;toPlace='Москва'">Москва</span>
                                             </span>
                         </div>
@@ -137,10 +137,10 @@
                           </div>
                           <span class="card-example d-block w-100">
 
-                                                <span id="today-date-toggle" class="card-example-date today-date-toggle text-decoration-underline"
+                                                <span id="today-date-toggle" class="card-example-date today-date-toggle"
                                                       v-on:click="UpdateselectDate();SetDateArival(false);UpdateselectDate()">Сегодня</span>
                                                 /
-                                                <span id="tomorrow-date-toggle" class="card-example-date tomorrow-date-toggle text-decoration-underline"
+                                                <span id="tomorrow-date-toggle" class="card-example-date tomorrow-date-toggle"
                                                       v-on:click="UpdateselectDate();SetDateArival(true);UpdateselectDate()">Завтра</span>
                                             </span>
                         </div>
@@ -181,7 +181,7 @@
                           <span class="card-example">
 
                                                 Например:
-                                                <span id="city-example-from" class="card-example-date city-example-from text-decoration-underline"
+                                                <span id="city-example-from" class="card-example-date city-example-from"
                                                       v-on:click="setFrom('1');fromPlaceV=false;fromPlace='Ставрополь'"
                                                 >Ставрополь</span>
                                             </span>
@@ -213,7 +213,7 @@
                           <span class="card-example">
 
                                                 Например:
-                                                <span id="city-example-to" class="card-example-date city-example-to text-decoration-underline"
+                                                <span id="city-example-to" class="card-example-date city-example-to"
                                                       v-on:click="setTo('190');toPlaceV=false;toPlace='Москва'">Москва</span>
                                             </span>
                         </div>
@@ -263,10 +263,10 @@
                           </div>
                           <span class="card-example d-block w-100">
 
-                                                <span id="today-date-toggle" class="card-example-date today-date-toggle text-decoration-underline"
+                                                <span id="today-date-toggle" class="card-example-date today-date-toggle"
                                                       v-on:click="UpdateselectDate();SetDateArival(false);UpdateselectDate()">Сегодня</span>
                                                 /
-                                                <span id="tomorrow-date-toggle" class="card-example-date tomorrow-date-toggle text-decoration-underline"
+                                                <span id="tomorrow-date-toggle" class="card-example-date tomorrow-date-toggle"
                                                       v-on:click="UpdateselectDate();SetDateArival(true);UpdateselectDate()">Завтра</span>
                                             </span>
                         </div>
@@ -288,10 +288,10 @@
                           </div>
                           <span class="card-example d-block w-100">
 
-                                                <span id="today-date-toggle" class="card-example-date today-date-toggle text-decoration-underline"
+                                                <span id="today-date-toggle" class="card-example-date today-date-toggle"
                                                       v-on:click="UpdateselectDateBack();SetDateBack(false);UpdateselectDateBack()">Сегодня</span>
                                                 /
-                                                <span id="tomorrow-date-toggle" class="card-example-date tomorrow-date-toggle text-decoration-underline"
+                                                <span id="tomorrow-date-toggle" class="card-example-date tomorrow-date-toggle"
                                                       v-on:click="UpdateselectDateBack();SetDateBack(true);UpdateselectDateBack()">Завтра</span>
                                             </span>
                         </div>
@@ -633,9 +633,6 @@ export default{
             }
             
           }
-          .card-example-date {
-            cursor: pointer;
-          }
         }
         .swiper-inputs {
           background-color: $blue-active;
@@ -692,6 +689,20 @@ export default{
                 z-index: 9999;
             }
 
+        }
+        &-example {
+          @include font($uni,$light,14px,18.9px,#676767);
+          @media screen and (max-width: 768px) {
+            font-size: 12px;
+          }
+          &-date {
+            cursor: pointer;
+            color: #77BCFC;
+            text-decoration: underline dotted #77BCFC;
+            @media screen and (max-width: 768px) {
+              text-decoration: none;
+            }
+          }
         }
         
         .calendar-span{

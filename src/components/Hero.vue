@@ -440,7 +440,12 @@ export default{
   background-size: cover;
   padding-bottom: 99px;
   &-content {
-    
+    .title-section {
+      @media screen and (max-width: 767px) {
+        line-height: 27px;
+        margin-bottom: 16px;
+      }
+    }
     .form-header {
       margin-left: 88px;
       margin-right: 88px;

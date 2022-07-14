@@ -480,6 +480,11 @@ export default{
           .form-check-input:checked {
             border: 4px solid $blue-active;
           }
+          .form-check-input:checked + .form-check-label {
+            @media screen and (max-width: 768px) {
+              font-weight: $bold;
+            }
+          }
           .form-check-input:checked:before {
             box-shadow: none;
           }
@@ -503,7 +508,7 @@ export default{
         }
         .form-check-label {
           font-family: $uni;
-          font-weight: $bold;
+          font-weight: $regular;
           font-size: 18px;
           margin-left: 24px;
           color: $white;

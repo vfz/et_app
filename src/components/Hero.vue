@@ -540,6 +540,11 @@ export default{
             font-weight: $regular;
             font-size: 18px;
             color: $black;
+            @media screen and (max-width: 768px) {
+              font-size: 12px;
+              color: $base;
+              line-height: 16.2px;
+            }
           }
           .form-control {
             padding-left: 0;
@@ -550,27 +555,45 @@ export default{
             color: $base;
             border: none;
             outline: none !important;
-            
+            @media screen and (max-width: 768px) {
+              padding-left: 0 !important;
+              padding-bottom: 2px;
+              font-size: 16px;
+              border-radius: 0;
+              border-bottom: 1px dashed rgba(19, 153, 255, 0.4);
+            }
           }
            input:-ms-input-placeholder{
                 font-weight: normal;
                 font-style: normal;
                 font-family: $uniBook;
+             @media screen and (max-width: 768px) {
+               font-size: 14px;
+             }
             }
             input::-webkit-input-placeholder{
                 font-weight: normal;
                 font-style: normal;
                 font-family: $uniBook;
+              @media screen and (max-width: 768px) {
+                font-size: 14px;
+              }
             }
             input::-moz-placeholder{
                 font-weight: normal;
                 font-style: normal;
                 font-family: $uniBook;
+              @media screen and (max-width: 768px) {
+                font-size: 14px;
+              }
             }
             input:-moz-placeholder{
                 font-weight: normal;
                 font-style: normal;
                 font-family: $uniBook;
+              @media screen and (max-width: 768px) {
+                font-size: 14px;
+              }
             }
           .count-passenger {
             /* Chrome, Safari, Edge, Opera */

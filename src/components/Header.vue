@@ -133,6 +133,14 @@ export default {
       padding-top: 0;
       padding-bottom: 0;
     }
+    .navbar-toggler {
+      padding-bottom: 0;
+      padding-right: 0;
+      &-icon {
+        width: auto;
+        height: auto;
+      }
+    }
   }
   .logo-link {
     .logo {

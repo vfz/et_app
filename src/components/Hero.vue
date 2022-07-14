@@ -478,6 +478,8 @@ export default{
           @media screen and (max-width: 768px) {
             display: block;
             margin-left: 0;
+            font-size: 14px;
+            line-height: 18.9px;
           }
         }
       }

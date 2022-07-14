@@ -533,7 +533,10 @@ export default{
         }
       }
       .card {
-        border-radius: .85rem;  
+        border-radius: .85rem;
+        @media screen and (max-width: 768px) {
+          border-radius: 8px;
+        }
         &-body {
           @media screen and (max-width: 768px) {
             padding: 8px 12px;

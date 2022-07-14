@@ -450,8 +450,10 @@ export default{
       margin-left: 88px;
       margin-right: 88px;
       @media screen and (max-width: 767px) {
-        margin-left: 5px;
-        margin-right: 5px;
+        //margin-left: 5px;
+        //margin-right: 5px;
+        margin-left: 8px;
+        margin-right: 8px;
       }
     }
     .search-form {
@@ -461,6 +463,8 @@ export default{
           display: flex !important;
           width: 100% !important;
           margin-bottom: 16px;
+          margin-left: 8px;
+          margin-right: 8px;
         }
         .form-check-inline {
           @media screen and (max-width: 768px) {

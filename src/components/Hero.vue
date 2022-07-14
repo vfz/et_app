@@ -460,6 +460,7 @@ export default{
         @media screen and (max-width: 768px) {
           display: flex !important;
           width: 100% !important;
+          margin-bottom: 16px;
         }
         .form-check-inline {
           @media screen and (max-width: 768px) {

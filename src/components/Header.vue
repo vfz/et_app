@@ -121,13 +121,17 @@ export default {
   margin-bottom: 64px;
   margin-left: 88px;
   margin-right: 88px;
+  @media screen and (max-width: 767px) {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 50px;
+  }
   .navbar {
     box-shadow: none;
+    @media screen and (max-width: 767px) {
+      padding-bottom: 0;
+    }
   }
-  @media screen and (max-width: 767px) {
-        margin-left: 20px;
-        margin-right: 20px;
-      }
   .logo-link {
     .logo {
       width: 324px;

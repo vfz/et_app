@@ -60,8 +60,8 @@
                                                       v-on:click="setFrom('1');fromPlaceV=false;fromPlace='Ставрополь'"
                                                 >Ставрополь</span>
                                             </span>
-                                            
-                          <div id="swiper-inputs" class="swiper-inputs" v-on:click="castling();temp = fromPlace;fromPlace = toPlace;toPlace = temp;">
+<!--                          TODO добавить неактивный статус для swiper-inputs когда данные пустые в форме. deactivate - цвет деактивации-->
+                          <div id="swiper-inputs" class="swiper-inputs deactivate" v-on:click="castling();temp = fromPlace;fromPlace = toPlace;toPlace = temp;">
                             <div class="swiper-inputs-icon"></div>
                           </div>
                         </div>
@@ -674,6 +674,9 @@ export default{
               height: 21px;
             }
           }
+        }
+        .deactivate {
+          background-color: #A3D7FF;
         }
         .find-place{
             position: absolute;

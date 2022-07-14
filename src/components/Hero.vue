@@ -535,6 +535,9 @@ export default{
       .card {
         border-radius: .85rem;  
         &-body {
+          @media screen and (max-width: 768px) {
+            padding: 8px 12px;
+          }
           .form-label {
             font-family: $uni;
             font-weight: $regular;
@@ -560,7 +563,6 @@ export default{
               padding-bottom: 2px;
               font-size: 16px;
               border-radius: 0;
-              border-bottom: 1px dashed rgba(19, 153, 255, 0.4);
             }
           }
            input:-ms-input-placeholder{

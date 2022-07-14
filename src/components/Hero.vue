@@ -572,42 +572,42 @@ export default{
               border-radius: 0;
             }
           }
-           input:-ms-input-placeholder{
-             color: #B5BDDB;
-                font-weight: normal;
-                font-style: normal;
-                font-family: $uniBook;
-             @media screen and (max-width: 768px) {
-               font-size: 14px;
-             }
+          input:-ms-input-placeholder{
+            color: #B5BDDB;
+            font-weight: normal;
+            font-style: normal;
+            font-family: $uniBook;
+            @media screen and (max-width: 768px) {
+              font-size: 14px;
             }
-            input::-webkit-input-placeholder{
-              color: #B5BDDB;
-                font-weight: normal;
-                font-style: normal;
-                font-family: $uniBook;
-              @media screen and (max-width: 768px) {
-                font-size: 14px;
-              }
+          }
+          input::-webkit-input-placeholder{
+            color: #B5BDDB;
+            font-weight: normal;
+            font-style: normal;
+            font-family: $uniBook;
+            @media screen and (max-width: 768px) {
+              font-size: 14px;
             }
-            input::-moz-placeholder{
-              color: #B5BDDB;
-                font-weight: normal;
-                font-style: normal;
-                font-family: $uniBook;
-              @media screen and (max-width: 768px) {
-                font-size: 14px;
-              }
+          }
+          input::-moz-placeholder{
+            color: #B5BDDB;
+            font-weight: normal;
+            font-style: normal;
+            font-family: $uniBook;
+            @media screen and (max-width: 768px) {
+              font-size: 14px;
             }
-            input:-moz-placeholder{
-              color: #B5BDDB;
-                font-weight: normal;
-                font-style: normal;
-                font-family: $uniBook;
-              @media screen and (max-width: 768px) {
-                font-size: 14px;
-              }
+          }
+          input:-moz-placeholder{
+            color: #B5BDDB;
+            font-weight: normal;
+            font-style: normal;
+            font-family: $uniBook;
+            @media screen and (max-width: 768px) {
+              font-size: 14px;
             }
+          }
           .count-passenger {
             /* Chrome, Safari, Edge, Opera */
             input::-webkit-outer-spin-button,

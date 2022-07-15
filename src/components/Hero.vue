@@ -468,6 +468,9 @@ export default{
           margin-left: 8px;
           margin-right: 8px;
         }
+        .form-check {
+          margin-bottom: 0;
+        }
         .form-check-inline {
           @media screen and (max-width: 768px) {
             display: flex;
@@ -553,9 +556,11 @@ export default{
             font-size: 18px;
             color: $black;
             @media screen and (max-width: 768px) {
+              display: block;
               font-size: 12px;
               color: $base;
               line-height: 16.2px;
+              margin-bottom: 8px;
             }
           }
           .form-control {
@@ -568,6 +573,7 @@ export default{
             border: none;
             outline: none !important;
             @media screen and (max-width: 768px) {
+              padding-top: 0;
               padding-left: 0 !important;
               padding-bottom: 2px;
               font-size: 16px;

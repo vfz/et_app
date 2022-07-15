@@ -60,6 +60,12 @@
                                                       v-on:click="setFrom('1');fromPlaceV=false;fromPlace='Ставрополь'"
                                                 >Ставрополь</span>
                                             </span>
+                          <!--                          TODO добавить вывод станции отправления. Убрать d-none для отображения-->
+                          <a href="#" class="card-place-link d-none" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
+                            <div>
+                              Ставрополь, ж/д
+                            </div>
+                          </a>
 <!--                          TODO добавить неактивный статус для swiper-inputs когда данные пустые в форме. disabled - цвет деактивации-->
                           <div id="swiper-inputs" class="swiper-inputs disabled" v-on:click="castling();temp = fromPlace;fromPlace = toPlace;toPlace = temp;">
                             <div class="swiper-inputs-icon"></div>
@@ -90,6 +96,12 @@
                                                 <span id="city-example-to" class="card-example-date city-example-to"
                                                       v-on:click="setTo('190');toPlaceV=false;toPlace='Москва'">Москва</span>
                                             </span>
+                          <!--                          TODO добавить вывод станции отправления. Убрать d-none для отображения-->
+                          <a href="#" class="card-place-link d-none" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
+                            <div>
+                              Москва, АВ “Орехово”
+                            </div>
+                          </a>
                         </div>
                       </div>
                     </div>
@@ -186,6 +198,12 @@
                                                       v-on:click="setFrom('1');fromPlaceV=false;fromPlace='Ставрополь'"
                                                 >Ставрополь</span>
                                             </span>
+                          <!--                          TODO добавить вывод станции отправления. Убрать d-none для отображения-->
+                          <a href="#" class="card-place-link d-none" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
+                            <div>
+                              Москва, АВ “Орехово”
+                            </div>
+                          </a>
                           <!--                          TODO добавить неактивный статус для swiper-inputs когда данные пустые в форме. disabled - цвет деактивации-->
                           <div id="swiper-inputs" class="swiper-inputs disabled" v-on:click="castling();temp = fromPlace;fromPlace = toPlace;toPlace = temp;">
                             <div class="swiper-inputs-icon"></div>
@@ -217,6 +235,12 @@
                                                 <span id="city-example-to" class="card-example-date city-example-to"
                                                       v-on:click="setTo('190');toPlaceV=false;toPlace='Москва'">Москва</span>
                                             </span>
+                          <!--                          TODO добавить вывод станции отправления. Убрать d-none для отображения-->
+                          <a href="#" class="card-place-link d-none" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
+                            <div>
+                              Москва, АВ “Орехово”
+                            </div>
+                          </a>
                         </div>
                       </div>
                     </div>
@@ -768,6 +792,15 @@ export default{
             text-decoration: underline dotted #77BCFC;
             @media screen and (max-width: 768px) {
               text-decoration: none;
+            }
+          }
+        }
+        &-place-link {
+          div {
+            @include font($uni,$light,14px,18.9px,$blue-active);
+            @media screen and (max-width: 768px) {
+              font-size: 12px;
+              line-height: 16.2px;
             }
           }
         }

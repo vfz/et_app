@@ -495,8 +495,12 @@ export default{
           }
           .form-check-input:checked {
             border: 4px solid $blue-active;
+            @media screen and (max-width: 768px) {
+              border: 4px solid $blue-active;
+            }
           }
           .form-check-input:checked + .form-check-label {
+            font-weight: $bold;
             @media screen and (max-width: 768px) {
               font-weight: $bold;
             }
@@ -506,6 +510,10 @@ export default{
           }
           .form-check-input:checked:before {
             box-shadow: none;
+          }
+          .form-check-input:checked:after {
+            border: none;
+            background: none;
           }
           .form-check-input[type=radio]:before {
             @media screen and (max-width: 768px) {
@@ -574,7 +582,7 @@ export default{
             }
           }
           .form-control {
-            padding-left: 0;
+            padding-left: 0 !important;
             padding-right: 0;
             font-family: $uni;
             font-weight: $bold;

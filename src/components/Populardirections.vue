@@ -28,7 +28,7 @@
             </div>
           </div>
         </div>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-3 mt-4">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 gy-2 g-md-3">
             <div class="col">
                 <div class="card card-city-direction">
                     <div class="card-body d-flex justify-content-between">
@@ -153,15 +153,6 @@
   @media screen and (max-width: 768px) {
     padding-top: 40px;
   }
-
-  .card-directions:first-child {
-    margin-right: 16px;
-    @media screen and (max-width: 768px) {
-      margin-right: 0;
-      margin-bottom: 8px;
-    }
-  }
-
   .card-city-direction {
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 16px;
@@ -234,12 +225,26 @@
     box-shadow: none;
   }
 
+  .card-directions:first-child {
+    margin-right: 16px;
+    @media screen and (max-width: 768px) {
+      margin-right: 0;
+      margin-bottom: 8px;
+    }
+  }
+  .card-directions:last-child {
+    @media screen and (max-width: 768px) {
+      margin-right: 0;
+      margin-bottom: 16px;
+    }
+  }
   .card-directions {
     width: 100%;
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 16px;
     box-shadow: none;
     max-width: 262px;
+    margin-bottom: 40px;
     .card-body {
       padding: 12px 16px;
       @media screen and (max-width: 768px) {

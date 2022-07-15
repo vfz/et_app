@@ -125,7 +125,8 @@ export default {
     padding-top: 48px;
     margin-left: 20px;
     margin-right: 20px;
-    margin-bottom: 50px;
+    //margin-bottom: 50px;
+    margin-bottom: 35px;
   }
   .navbar {
     box-shadow: none;

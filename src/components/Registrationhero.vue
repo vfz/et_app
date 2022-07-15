@@ -27,11 +27,15 @@
   margin-top: 90px;
   padding-top: 72px;
   padding-bottom: 72px;
+  padding-left: 88px;
+  padding-right: 88px;
   @media screen and (max-width: 768px) {
     margin-top: 40px;
     padding-top: 48px;
     padding-bottom: 29px;
     background-position: 67%;
+    padding-left: 20px;
+    padding-right: 20px;
   }
   .title-section {
     @media screen and (max-width: 768px) {

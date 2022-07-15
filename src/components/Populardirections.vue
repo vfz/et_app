@@ -6,7 +6,7 @@
                 <h2 class="title-section dark-title text-center">Популярные направления из:</h2>
             </div>
         </div>
-        <div class="row">
+        <div class="row gx-0 gx-md-4">
           <div class="col-12">
             <div class="d-flex flex-column flex-md-row justify-content-center align-items-center">
               <div class="card card-directions">
@@ -28,7 +28,7 @@
             </div>
           </div>
         </div>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 gy-2 g-md-3">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-xl-4 gy-2 gx-0 gx-sm-3">
             <div class="col">
                 <div class="card card-city-direction">
                     <div class="card-body d-flex justify-content-between">
@@ -150,8 +150,12 @@
 @import "src/assets/font.scss";
 .popular-directions {
   padding-top: 72px;
+  margin-right: 88px;
+  margin-left: 88px;
   @media screen and (max-width: 768px) {
     padding-top: 40px;
+    margin-left: 20px;
+    margin-right: 20px;
   }
   .card-city-direction {
     border: 1px solid rgba(0, 0, 0, 0.1);

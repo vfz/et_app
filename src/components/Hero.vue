@@ -60,8 +60,8 @@
                                                       v-on:click="setFrom('1');fromPlaceV=false;fromPlace='Ставрополь'"
                                                 >Ставрополь</span>
                                             </span>
-<!--                          TODO добавить неактивный статус для swiper-inputs когда данные пустые в форме. deactivate - цвет деактивации-->
-                          <div id="swiper-inputs" class="swiper-inputs deactivate" v-on:click="castling();temp = fromPlace;fromPlace = toPlace;toPlace = temp;">
+<!--                          TODO добавить неактивный статус для swiper-inputs когда данные пустые в форме. disabled - цвет деактивации-->
+                          <div id="swiper-inputs" class="swiper-inputs disabled" v-on:click="castling();temp = fromPlace;fromPlace = toPlace;toPlace = temp;">
                             <div class="swiper-inputs-icon"></div>
                           </div>
                         </div>
@@ -186,8 +186,8 @@
                                                       v-on:click="setFrom('1');fromPlaceV=false;fromPlace='Ставрополь'"
                                                 >Ставрополь</span>
                                             </span>
-                          <!--                          TODO добавить неактивный статус для swiper-inputs когда данные пустые в форме. deactivate - цвет деактивации-->
-                          <div id="swiper-inputs" class="swiper-inputs deactivate" v-on:click="castling();temp = fromPlace;fromPlace = toPlace;toPlace = temp;">
+                          <!--                          TODO добавить неактивный статус для swiper-inputs когда данные пустые в форме. disabled - цвет деактивации-->
+                          <div id="swiper-inputs" class="swiper-inputs disabled" v-on:click="castling();temp = fromPlace;fromPlace = toPlace;toPlace = temp;">
                             <div class="swiper-inputs-icon"></div>
                           </div>
                         </div>
@@ -441,6 +441,9 @@ export default{
   background: url("/img/header/bg.jpg") no-repeat center center ;
   background-size: cover;
   padding-bottom: 99px;
+  @media screen and (max-width: 768px) {
+    padding-bottom: 48px;
+  }
   &-content {
     .title-section {
       @media screen and (max-width: 767px) {
@@ -707,8 +710,9 @@ export default{
             }
           }
         }
-        .deactivate {
-          background-color: #A3D7FF;
+        .disabled {
+          opacity: 1;
+          background-color: $disabled;
         }
         .find-place{
             position: absolute;
@@ -790,9 +794,19 @@ export default{
         margin-top: 40px;
         color: $white;
         background-color: $blue-active;
+        @media screen and (max-width: 768px) {
+          padding: 10px 0;
+          width: 100%;
+          font-size: 16px;
+          margin-top: 24px;
+        }
+      }
+      .disabled {
+        opacity: 1;
+        background-color: $disabled;
       }
       .btn-disabled {
-        background-color: #A3D7FF;
+        background-color: $disabled;
       }
       .mw-300{
         max-width: 300px;

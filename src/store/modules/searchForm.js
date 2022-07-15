@@ -13,9 +13,16 @@ export default {
         oneWay: true,
         flightThere: [],
         flightBack: [],
+        busTriptId: "",
+
 
     },
     mutations: {
+        //обновить id рейса для которого нужно выводить Схему автобуса
+        updatebBusTriptId(state, tripId) {
+            state.busTriptId = tripId
+        },
+
         updateFromStations(state, fromStations) {
             state.fromStations = fromStations.result
         },
@@ -119,6 +126,10 @@ export default {
         }
     },
     actions: {
+        //обновить id рейса для которого нужно выводить Схему автобуса
+        updatebBusTriptId(ctx, tripId) {
+            ctx.commit('updatebBusTriptId', tripId)
+        },
         //Получаем список станций прибытия
         async getToStations(ctx, from = '') {
             const res = await fetch(ctx.rootState.API_URL + "?command=to&from_id=" + from);
@@ -213,6 +224,13 @@ export default {
     },
     modules: {},
     getters: {
+        mergeFlights(state) {
+            const flights = state.flightThere.concat(state.flightBack);
+            return flights
+        },
+        busTriptId(state) {
+            return state.busTriptId
+        },
 
         flightBack(state) {
             return state.flightBack

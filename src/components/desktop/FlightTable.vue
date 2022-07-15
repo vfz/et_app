@@ -121,7 +121,12 @@
                     {{flight.count_available_seats_trip}}
                   </div>
                   <!-- При нажатии открывается модальное окно с-->
-                  <div class="place-choice table-link" data-bs-toggle="modal" data-bs-target="#place-left-modal" v-if="+flight.count_available_seats_trip>=adults+childrens">
+                  <div 
+                    class="place-choice table-link" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#place-left-modal"
+                    v-on:click="updatebBusTriptId(flight.id_trip)"
+                    v-if="+flight.count_available_seats_trip>=adults+childrens">
                     Выбрать 
                     <span v-if="childrens+adults===1">место</span>
                     <span v-if="childrens+adults>1">места</span>
@@ -173,6 +178,11 @@ export default {
   computed: mapGetters(['flightThere','flightBack','childrens','adults',]),
   mounted(){
     
+  },
+    methods: {
+    ...mapActions([
+      'updatebBusTriptId',
+    ]),
   }
 }
 

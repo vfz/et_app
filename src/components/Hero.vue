@@ -445,7 +445,8 @@ export default{
     .title-section {
       @media screen and (max-width: 767px) {
         line-height: 27px;
-        margin-bottom: 16px;
+        //margin-bottom: 16px;
+        margin-bottom: 15px;
       }
     }
     .form-header {
@@ -493,6 +494,9 @@ export default{
             @media screen and (max-width: 768px) {
               font-weight: $bold;
             }
+          }
+          .form-check-label {
+            padding-left: 0;
           }
           .form-check-input:checked:before {
             box-shadow: none;

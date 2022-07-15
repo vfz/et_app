@@ -32,6 +32,7 @@
                 </div>
                 <!--one-way-input-->
                 <div class="one-way-inputs w-100 form-header" v-if="oneWay">
+<!--                  межстрочное расстоение gy-->
                   <div class="row gy-md-4 gy-2 gy-xxl-0 d-xxl-flex justify-content-xxl-center">
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-3 min-w-300">
                       <div class="card h-100">
@@ -98,25 +99,28 @@
                         <div class="card-body">
                           <div class="d-flex justify-content-between align-items-center">
                             <label class="form-label">Пассажиры</label>
-                            <img class="help-icon" alt="help" src="/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
+<!--                             Начало изменений-->
+                            <div class="d-none d-lg-block help-icon-block-desktop">
+                              <img class="help-icon" alt="help" src="/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
+                            </div>
                           </div>
-                          <div class="row">
-                            <div class="col">
-                              <div class="count-passenger d-flex align-items-center justify-content-between flex-wrap">
-                                <div id="minus-button-adult" class="minus-button count-button" :class=" { disabled : !mba } " v-on:click="MinusAdult();changeClass()">-</div>
-                                <input value="1" min="1" max="7" name="adults" v-model="adults" type="number" class="form-control one-way-inputs-input shadow-none"  placeholder="0">
-                                <div id="plus-button-adult" class="plus-button count-button" :class=" { disabled : !pba } " v-on:click="PlusAdult();changeClass()">+</div>
-                                <span class="card-desc d-block w-100">Взрослых</span>
-                              </div>
+                          <div class="d-flex justify-content-between">
+                            <div class="count-passenger d-flex align-items-center flex-wrap">
+                              <div id="minus-button-adult" class="minus-button count-button" :class=" { disabled : !mba } " v-on:click="MinusAdult();changeClass()">-</div>
+                              <input value="1" min="1" max="7" name="adults" v-model="adults" type="number" class="form-control text-center one-way-inputs-input shadow-none"  placeholder="0">
+                              <div id="plus-button-adult" class="plus-button count-button" :class=" { disabled : !pba } " v-on:click="PlusAdult();changeClass()">+</div>
+                              <span class="card-desc d-block w-100">Взрослых</span>
                             </div>
-                            <div class="col">
-                              <div class="count-passenger d-flex align-items-center justify-content-between flex-wrap">
-                                <div id="minus-button-childeren" class="minus-button count-button" :class=" { disabled : !mbc } " v-on:click="MinusChild();changeClass()">-</div>
-                                <input value="0" min="0" max="5" name="childrens" v-model="childrens" type="number" class="form-control one-way-inputs-input shadow-none" placeholder="0">
-                                <div id="plus-button-childeren" class="plus-button count-button" :class=" { disabled : !pbc } " v-on:click="PlusChild();changeClass()">+</div>
-                                <span class="card-desc d-block w-100">Детских</span>
-                              </div>
+                            <div class="count-passenger d-flex align-items-center flex-wrap">
+                              <div id="minus-button-childeren" class="minus-button count-button" :class=" { disabled : !mbc } " v-on:click="MinusChild();changeClass()">-</div>
+                              <input value="0" min="0" max="5" name="childrens" v-model="childrens" type="number" class="form-control text-center one-way-inputs-input shadow-none" placeholder="0">
+                              <div id="plus-button-childeren" class="plus-button count-button" :class=" { disabled : !pbc } " v-on:click="PlusChild();changeClass()">+</div>
+                              <span class="card-desc d-block w-100">Детских</span>
                             </div>
+                            <div class="d-block d-lg-none help-icon-block-mobile">
+                              <img class="help-icon" alt="help" src="/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
+                            </div>
+<!--                            Конец изменений-->
                           </div>
                         </div>
                       </div>
@@ -624,6 +628,12 @@ export default{
             .form-control {
               width: 20px;
             }
+            .minus-button {
+              margin-right: 8px;
+            }
+            .plus-button {
+              margin-left: 8px;
+            }
             .count-button {
               display: flex;
               align-items: center;
@@ -638,11 +648,19 @@ export default{
             }
             .disabled {
               background-color: #F8FAFC;
-              border: 1px solid #F8FAFC;
+              border: 1px solid rgba(47, 56, 71, 0.1);
               color: #c0c0c0;
               cursor: auto;
             }
             
+          }
+        }
+        &-desc {
+          margin-top: 8px;
+          @include font($uni,$light,14px,18.9px,$secondary);
+          @media screen and (max-width: 768px) {
+            font-size: 12px;
+            line-height: 16.2px;
           }
         }
         .swiper-inputs {

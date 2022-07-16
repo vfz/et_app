@@ -154,8 +154,8 @@
   margin-left: 88px;
   @media screen and (max-width: 768px) {
     padding-top: 40px;
-    margin-left: 0;
-    margin-right: 0;
+    margin-left: 8px;
+    margin-right: 8px;
   }
   .card-city-direction {
     border: 1px solid rgba(0, 0, 0, 0.1);

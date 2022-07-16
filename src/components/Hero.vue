@@ -843,6 +843,7 @@ export default{
           width: 100%;
           font-size: 16px;
           margin-top: 24px;
+          border-radius: 8px;
         }
       }
       .disabled {

@@ -34,8 +34,8 @@
     padding-top: 48px;
     padding-bottom: 29px;
     background-position: 67%;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 8px;
+    padding-right: 8px;
   }
   .title-section {
     @media screen and (max-width: 768px) {

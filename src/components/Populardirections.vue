@@ -236,6 +236,10 @@
     box-shadow: none;
     max-width: 262px;
     margin-bottom: 40px;
+    @media screen and (max-width: 768px) {
+      max-width: unset;
+      width: 100%;
+    }
     .card-body {
       padding: 12px 16px;
       @media screen and (max-width: 768px) {

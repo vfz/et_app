@@ -22,11 +22,11 @@
               <form id="hero-form" class="search-form d-flex flex-wrap justify-content-center">
                 <div class="checkbox-form d-block w-100 text-center">
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(true)" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
+                    <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(true)" name="inlineRadioOptions" id="inlineRadio1" value="option1"  :checked="oneWay">
                     <label class="form-check-label" for="inlineRadio1">В одну сторону</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(false)"  name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                    <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(false)"  name="inlineRadioOptions" id="inlineRadio2" value="option2" :checked="!oneWay">
                     <label class="form-check-label" for="inlineRadio2">Туда-обратно</label>
                   </div>
                 </div>
@@ -53,13 +53,19 @@
                               <div class="description" style="color:#ec0000;font-size:12px;font:bold">{{pointFrom.address}}</div>
                             </div>
                           </div>
-                          <span class="card-example">
+                          <span class="card-example" v-if="!+from">
 
-                                                Например:
-                                                <span id="city-example-from" class="card-example-date city-example-from"
-                                                      v-on:click="setFrom('1');fromPlaceV=false;fromPlace='Ставрополь'"
-                                                >Ставрополь</span>
-                                            </span>
+                            Например:
+                            <span 
+                              id="city-example-from" 
+                              class="card-example-date city-example-from"
+                              v-on:click="setFrom('1');fromPlaceV=false;fromPlace='Ставрополь'">
+                              Ставрополь
+                              </span>
+                          </span>
+                          <span class="card-example" v-else>
+                            {{ fromStations.find(station => station.id_from === from).address }}
+                          </span>
                           <!--                          TODO добавить вывод станции отправления. Убрать d-none для отображения-->
                           <a href="#" class="card-place-link d-none" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
                             <div>
@@ -67,7 +73,7 @@
                             </div>
                           </a>
 <!--                          TODO добавить неактивный статус для swiper-inputs когда данные пустые в форме. disabled - цвет деактивации-->
-                          <div id="swiper-inputs" class="swiper-inputs disabled" v-on:click="castling();temp = fromPlace;fromPlace = toPlace;toPlace = temp;">
+                          <div id="swiper-inputs" class="swiper-inputs" :class="{ disabled : !+from || !+to }" v-on:click="castling();temp = fromPlace;fromPlace = toPlace;toPlace = temp;">
                             <div class="swiper-inputs-icon"></div>
                           </div>
                         </div>
@@ -91,11 +97,20 @@
                               <div class="description" style="color:#ec0000;font-size:12px;font:bold">{{pointTo.address}}</div>
                             </div>
                           </div>
-                          <span class="card-example">
-                                                Например:
-                                                <span id="city-example-to" class="card-example-date city-example-to"
-                                                      v-on:click="setTo('190');toPlaceV=false;toPlace='Москва'">Москва</span>
-                                            </span>
+                          <span class="card-example" v-if="!+to">
+
+                            Например:
+                            <span 
+                              id="city-example-to" 
+                              class="card-example-date city-example-to"
+                              v-on:click="setTo('190');toPlaceV=false;toPlace='Москва'">
+                              Москва
+                            </span>
+                          </span>
+                          <span class="card-example" v-else>
+
+                            {{ toStations.find(station => station.id_to === to).address }}
+                          </span>
                           <!--                          TODO добавить вывод станции отправления. Убрать d-none для отображения-->
                           <a href="#" class="card-place-link d-none" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
                             <div>
@@ -150,12 +165,12 @@
                           </div>
                           <span class="card-example d-block w-100">
 
-                                                <span id="today-date-toggle" class="card-example-date today-date-toggle"
-                                                      v-on:click="UpdateselectDate();SetDateArival(false);UpdateselectDate()">Сегодня</span>
-                                                /
-                                                <span id="tomorrow-date-toggle" class="card-example-date tomorrow-date-toggle"
-                                                      v-on:click="UpdateselectDate();SetDateArival(true);UpdateselectDate()">Завтра</span>
-                                            </span>
+                              <span id="today-date-toggle" class="card-example-date today-date-toggle"
+                                    v-on:click="UpdateselectDate();SetDateArival(false);UpdateselectDate()">Сегодня</span>
+                              /
+                              <span id="tomorrow-date-toggle" class="card-example-date tomorrow-date-toggle"
+                                    v-on:click="UpdateselectDate();SetDateArival(true);UpdateselectDate()">Завтра</span>
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -191,13 +206,17 @@
                               <div class="description" style="color:#ec0000;font-size:12px;font:bold">{{pointFrom.address}}</div>
                             </div>
                           </div>
-                          <span class="card-example">
+                          <span class="card-example" v-if="!+from">
 
                                                 Например:
                                                 <span id="city-example-from" class="card-example-date city-example-from"
                                                       v-on:click="setFrom('1');fromPlaceV=false;fromPlace='Ставрополь'"
                                                 >Ставрополь</span>
                                             </span>
+                          <span class="card-example" v-else>
+
+                            {{ fromStations.find(station => station.id_from === from).address }}
+                          </span>
                           <!--                          TODO добавить вывод станции отправления. Убрать d-none для отображения-->
                           <a href="#" class="card-place-link d-none" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
                             <div>
@@ -205,7 +224,7 @@
                             </div>
                           </a>
                           <!--                          TODO добавить неактивный статус для swiper-inputs когда данные пустые в форме. disabled - цвет деактивации-->
-                          <div id="swiper-inputs" class="swiper-inputs disabled" v-on:click="castling();temp = fromPlace;fromPlace = toPlace;toPlace = temp;">
+                          <div id="swiper-inputs" class="swiper-inputs" :class="{ disabled : !+from || !+to }" v-on:click="castling();temp = fromPlace;fromPlace = toPlace;toPlace = temp;">
                             <div class="swiper-inputs-icon"></div>
                           </div>
                         </div>
@@ -229,12 +248,22 @@
                               <div class="description" style="color:#ec0000;font-size:12px;font:bold">{{pointTo.address}}</div>
                             </div>
                           </div>
-                          <span class="card-example">
+                          <span class="card-example" v-if="!+to">
 
-                                                Например:
-                                                <span id="city-example-to" class="card-example-date city-example-to"
-                                                      v-on:click="setTo('190');toPlaceV=false;toPlace='Москва'">Москва</span>
-                                            </span>
+                            Например:
+                            <span 
+                              id="city-example-to" 
+                              class="card-example-date city-example-to"
+                              v-on:click="setTo('190');toPlaceV=false;toPlace='Москва'">
+                              Москва
+                            </span>
+                          </span>
+                          <span class="card-example" v-else>
+
+                            {{ toStations.find(station => station.id_to === to).address }}
+                          </span>
+
+
                           <!--                          TODO добавить вывод станции отправления. Убрать d-none для отображения-->
                           <a href="#" class="card-place-link d-none" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
                             <div>
@@ -326,7 +355,8 @@
                   </div>
                   <div class="row">
                     <div class="col d-flex justify-content-center align-items-center">
-                      <button id="submit-button-twoWays" type="button" class="btn"  :class="{ disabled : !+from || !+to || !dateArival }" v-on:click="alertPlace()">
+                      <button id="submit-button-twoWays" type="button" class="btn"  
+                        :class="{ disabled : !+from || !+to || !dateArival ||!dateBack }" v-on:click="alertPlace()">
                         Найти билеты
                       </button>
                     </div>

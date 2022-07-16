@@ -22,17 +22,17 @@
               <form id="hero-form" class="search-form d-flex flex-wrap justify-content-center">
                 <div class="checkbox-form d-block w-100 text-center">
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(true)" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
+                    <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(true)" name="inlineRadioOptions" id="inlineRadio1" value="option1"  :checked="oneWay">
                     <label class="form-check-label" for="inlineRadio1">В одну сторону</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(false)"  name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                    <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(false)"  name="inlineRadioOptions" id="inlineRadio2" value="option2" :checked="!oneWay">
                     <label class="form-check-label" for="inlineRadio2">Туда-обратно</label>
                   </div>
                 </div>
                 <!--one-way-input-->
                 <div class="one-way-inputs w-100 form-header" v-if="oneWay">
-                  <div class="row gy-4 gy-xxl-0 d-xxl-flex justify-content-xxl-center">
+                  <div class="row gy-md-4 gy-2 gy-xxl-0 d-xxl-flex justify-content-xxl-center">
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-3 min-w-300">
                       <div class="card h-100">
                         <div class="card-body">
@@ -53,15 +53,27 @@
                               <div class="description" style="color:#ec0000;font-size:12px;font:bold">{{pointFrom.address}}</div>
                             </div>
                           </div>
-                          <span class="card-example">
+                          <span class="card-example" v-if="!+from">
 
-                                                Например:
-                                                <span id="city-example-from" class="card-example-date city-example-from text-decoration-underline"
-                                                      v-on:click="setFrom('1');fromPlaceV=false;fromPlace='Ставрополь'"
-                                                >Ставрополь</span>
-                                            </span>
-                                            
-                          <div id="swiper-inputs" class="swiper-inputs" v-on:click="castling();temp = fromPlace;fromPlace = toPlace;toPlace = temp;">
+                            Например:
+                            <span 
+                              id="city-example-from" 
+                              class="card-example-date city-example-from"
+                              v-on:click="setFrom('1');fromPlaceV=false;fromPlace='Ставрополь'">
+                              Ставрополь
+                              </span>
+                          </span>
+                          <span class="card-example" v-else>
+                            {{ fromStations.find(station => station.id_from === from).address }}
+                          </span>
+                          <!--                          TODO добавить вывод станции отправления. Убрать d-none для отображения-->
+                          <a href="#" class="card-place-link d-none" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
+                            <div>
+                              Ставрополь, ж/д
+                            </div>
+                          </a>
+<!--                          TODO добавить неактивный статус для swiper-inputs когда данные пустые в форме. disabled - цвет деактивации-->
+                          <div id="swiper-inputs" class="swiper-inputs" :class="{ disabled : !+from || !+to }" v-on:click="castling();temp = fromPlace;fromPlace = toPlace;toPlace = temp;">
                             <div class="swiper-inputs-icon"></div>
                           </div>
                         </div>
@@ -85,11 +97,26 @@
                               <div class="description" style="color:#ec0000;font-size:12px;font:bold">{{pointTo.address}}</div>
                             </div>
                           </div>
-                          <span class="card-example">
-                                                Например:
-                                                <span id="city-example-to" class="card-example-date city-example-to text-decoration-underline"
-                                                      v-on:click="setTo('190');toPlaceV=false;toPlace='Москва'">Москва</span>
-                                            </span>
+                          <span class="card-example" v-if="!+to">
+
+                            Например:
+                            <span 
+                              id="city-example-to" 
+                              class="card-example-date city-example-to"
+                              v-on:click="setTo('190');toPlaceV=false;toPlace='Москва'">
+                              Москва
+                            </span>
+                          </span>
+                          <span class="card-example" v-else>
+
+                            {{ toStations.find(station => station.id_to === to).address }}
+                          </span>
+                          <!--                          TODO добавить вывод станции отправления. Убрать d-none для отображения-->
+                          <a href="#" class="card-place-link d-none" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
+                            <div>
+                              Москва, АВ “Орехово”
+                            </div>
+                          </a>
                         </div>
                       </div>
                     </div>
@@ -98,24 +125,25 @@
                         <div class="card-body">
                           <div class="d-flex justify-content-between align-items-center">
                             <label class="form-label">Пассажиры</label>
-                            <img class="help-icon" alt="help" src="/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
-                          </div>
-                          <div class="row">
-                            <div class="col">
-                              <div class="count-passenger d-flex align-items-center justify-content-between flex-wrap">
-                                <div id="minus-button-adult" class="minus-button count-button" :class=" { disabled : !mba } " v-on:click="MinusAdult();changeClass()">-</div>
-                                <input value="1" min="1" max="7" name="adults" v-model="adults" type="number" class="form-control one-way-inputs-input shadow-none"  placeholder="0">
-                                <div id="plus-button-adult" class="plus-button count-button" :class=" { disabled : !pba } " v-on:click="PlusAdult();changeClass()">+</div>
-                                <span class="card-desc d-block w-100">Взрослых</span>
-                              </div>
+                            <div class="d-none d-lg-block help-icon-block-desktop">
+                              <img class="help-icon" alt="help" src="/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
                             </div>
-                            <div class="col">
-                              <div class="count-passenger d-flex align-items-center justify-content-between flex-wrap">
-                                <div id="minus-button-childeren" class="minus-button count-button" :class=" { disabled : !mbc } " v-on:click="MinusChild();changeClass()">-</div>
-                                <input value="0" min="0" max="5" name="childrens" v-model="childrens" type="number" class="form-control one-way-inputs-input shadow-none" placeholder="0">
-                                <div id="plus-button-childeren" class="plus-button count-button" :class=" { disabled : !pbc } " v-on:click="PlusChild();changeClass()">+</div>
-                                <span class="card-desc d-block w-100">Детских</span>
-                              </div>
+                          </div>
+                          <div class="d-flex justify-content-between">
+                            <div class="count-passenger d-flex align-items-center flex-wrap">
+                              <div id="minus-button-adult" class="minus-button count-button" :class=" { disabled : !mba } " v-on:click="MinusAdult();changeClass()">-</div>
+                              <input value="1" min="1" max="7" name="adults" v-model="adults" type="number" class="form-control text-center one-way-inputs-input shadow-none"  placeholder="0">
+                              <div id="plus-button-adult" class="plus-button count-button" :class=" { disabled : !pba } " v-on:click="PlusAdult();changeClass()">+</div>
+                              <span class="card-desc d-block w-100">Взрослых</span>
+                            </div>
+                            <div class="count-passenger d-flex align-items-center flex-wrap">
+                              <div id="minus-button-childeren" class="minus-button count-button" :class=" { disabled : !mbc } " v-on:click="MinusChild();changeClass()">-</div>
+                              <input value="0" min="0" max="5" name="childrens" v-model="childrens" type="number" class="form-control text-center one-way-inputs-input shadow-none" placeholder="0">
+                              <div id="plus-button-childeren" class="plus-button count-button" :class=" { disabled : !pbc } " v-on:click="PlusChild();changeClass()">+</div>
+                              <span class="card-desc d-block w-100">Детских</span>
+                            </div>
+                            <div class="d-block d-lg-none help-icon-block-mobile">
+                              <img class="help-icon" alt="help" src="/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
                             </div>
                           </div>
                         </div>
@@ -137,12 +165,12 @@
                           </div>
                           <span class="card-example d-block w-100">
 
-                                                <span id="today-date-toggle" class="card-example-date today-date-toggle text-decoration-underline"
-                                                      v-on:click="UpdateselectDate();SetDateArival(false);UpdateselectDate()">Сегодня</span>
-                                                /
-                                                <span id="tomorrow-date-toggle" class="card-example-date tomorrow-date-toggle text-decoration-underline"
-                                                      v-on:click="UpdateselectDate();SetDateArival(true);UpdateselectDate()">Завтра</span>
-                                            </span>
+                              <span id="today-date-toggle" class="card-example-date today-date-toggle"
+                                    v-on:click="UpdateselectDate();SetDateArival(false);UpdateselectDate()">Сегодня</span>
+                              /
+                              <span id="tomorrow-date-toggle" class="card-example-date tomorrow-date-toggle"
+                                    v-on:click="UpdateselectDate();SetDateArival(true);UpdateselectDate()">Завтра</span>
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -157,7 +185,7 @@
                 </div>
                 <!-- two-way-input-->
                 <div class="two-ways-inputs w-100 form-header" v-else>
-                  <div class="row flex-wrap">
+                  <div class="row gy-md-4 gy-2 gy-xxl-0 d-xxl-flex justify-content-xxl-center">
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl min-w-300">
                       <div class="card h-100">
                         <div class="card-body">
@@ -178,21 +206,31 @@
                               <div class="description" style="color:#ec0000;font-size:12px;font:bold">{{pointFrom.address}}</div>
                             </div>
                           </div>
-                          <span class="card-example">
+                          <span class="card-example" v-if="!+from">
 
                                                 Например:
-                                                <span id="city-example-from" class="card-example-date city-example-from text-decoration-underline"
+                                                <span id="city-example-from" class="card-example-date city-example-from"
                                                       v-on:click="setFrom('1');fromPlaceV=false;fromPlace='Ставрополь'"
                                                 >Ставрополь</span>
                                             </span>
+                          <span class="card-example" v-else>
 
-                          <div id="swiper-inputs" class="swiper-inputs" v-on:click="castling();temp = fromPlace;fromPlace = toPlace;toPlace = temp;">
+                            {{ fromStations.find(station => station.id_from === from).address }}
+                          </span>
+                          <!--                          TODO добавить вывод станции отправления. Убрать d-none для отображения-->
+                          <a href="#" class="card-place-link d-none" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
+                            <div>
+                              Москва, АВ “Орехово”
+                            </div>
+                          </a>
+                          <!--                          TODO добавить неактивный статус для swiper-inputs когда данные пустые в форме. disabled - цвет деактивации-->
+                          <div id="swiper-inputs" class="swiper-inputs" :class="{ disabled : !+from || !+to }" v-on:click="castling();temp = fromPlace;fromPlace = toPlace;toPlace = temp;">
                             <div class="swiper-inputs-icon"></div>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div class="col-12 col-sm-12 mt-4 mt-md-0 col-md-6 col-lg-6 col-xl min-w-300">
+                    <div class="col-12 col-sm-12 mt-md-0 col-md-6 col-lg-6 col-xl min-w-300">
                       <div class="card h-100">
                         <div class="card-body">
                           <label for="datalistTo" class="form-label">Куда</label>
@@ -210,44 +248,61 @@
                               <div class="description" style="color:#ec0000;font-size:12px;font:bold">{{pointTo.address}}</div>
                             </div>
                           </div>
-                          <span class="card-example">
+                          <span class="card-example" v-if="!+to">
 
-                                                Например:
-                                                <span id="city-example-to" class="card-example-date city-example-to text-decoration-underline"
-                                                      v-on:click="setTo('190');toPlaceV=false;toPlace='Москва'">Москва</span>
-                                            </span>
+                            Например:
+                            <span 
+                              id="city-example-to" 
+                              class="card-example-date city-example-to"
+                              v-on:click="setTo('190');toPlaceV=false;toPlace='Москва'">
+                              Москва
+                            </span>
+                          </span>
+                          <span class="card-example" v-else>
+
+                            {{ toStations.find(station => station.id_to === to).address }}
+                          </span>
+
+
+                          <!--                          TODO добавить вывод станции отправления. Убрать d-none для отображения-->
+                          <a href="#" class="card-place-link d-none" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
+                            <div>
+                              Москва, АВ “Орехово”
+                            </div>
+                          </a>
                         </div>
                       </div>
                     </div>
-                    <div class="col-12 col-sm-12 mt-4 mt-md-0 col-md-4 col-lg-4 col-xl mw-300 min-w-300">
+                    <div class="col-12 col-sm-12 mt-md-0 col-md-4 col-lg-4 col-xl mw-300 min-w-300">
                       <div class="card h-100">
                         <div class="card-body">
                           <div class="d-flex justify-content-between align-items-center">
                             <label class="form-label">Пассажиры</label>
-                            <img class="help-icon" alt="help" src="/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
-                          </div>
-                          <div class="row">
-                            <div class="col">
-                              <div class="count-passenger d-flex align-items-center justify-content-between flex-wrap">
-                                <div id="minus-button-adult" class="minus-button count-button" :class=" { disabled : !mba } " v-on:click="MinusAdult();changeClass()">-</div>
-                                <input value="1" min="1" max="7" name="adults" v-model="adults" type="number" class="form-control one-way-inputs-input shadow-none"  placeholder="0">
-                                <div id="plus-button-adult" class="plus-button count-button" :class=" { disabled : !pba } " v-on:click="PlusAdult();changeClass()">+</div>
-                                <span class="card-desc d-block w-100">Взрослых</span>
-                              </div>
+                            <div class="d-none d-lg-block help-icon-block-desktop">
+                              <img class="help-icon" alt="help" src="/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
                             </div>
-                            <div class="col">
-                              <div class="count-passenger d-flex align-items-center justify-content-between flex-wrap">
-                                <div id="minus-button-childeren" class="minus-button count-button" :class=" { disabled : !mbc } " v-on:click="MinusChild();changeClass()">-</div>
-                                <input value="0" min="0" max="5" name="childrens" v-model="childrens" type="number" class="form-control one-way-inputs-input shadow-none" placeholder="0">
-                                <div id="plus-button-childeren" class="plus-button count-button" :class=" { disabled : !pbc } " v-on:click="PlusChild();changeClass()">+</div>
-                                <span class="card-desc d-block w-100">Детских</span>
-                              </div>
+                          </div>
+                          <div class="d-flex justify-content-between">
+                            <div class="count-passenger d-flex align-items-center flex-wrap">
+                              <div id="minus-button-adult" class="minus-button count-button" :class=" { disabled : !mba } " v-on:click="MinusAdult();changeClass()">-</div>
+                              <input value="1" min="1" max="7" name="adults" v-model="adults" type="number" class="form-control text-center one-way-inputs-input shadow-none"  placeholder="0">
+                              <div id="plus-button-adult" class="plus-button count-button" :class=" { disabled : !pba } " v-on:click="PlusAdult();changeClass()">+</div>
+                              <span class="card-desc d-block w-100">Взрослых</span>
+                            </div>
+                            <div class="count-passenger d-flex align-items-center flex-wrap">
+                              <div id="minus-button-childeren" class="minus-button count-button" :class=" { disabled : !mbc } " v-on:click="MinusChild();changeClass()">-</div>
+                              <input value="0" min="0" max="5" name="childrens" v-model="childrens" type="number" class="form-control text-center one-way-inputs-input shadow-none" placeholder="0">
+                              <div id="plus-button-childeren" class="plus-button count-button" :class=" { disabled : !pbc } " v-on:click="PlusChild();changeClass()">+</div>
+                              <span class="card-desc d-block w-100">Детских</span>
+                            </div>
+                            <div class="d-block d-lg-none help-icon-block-mobile">
+                              <img class="help-icon" alt="help" src="/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div class="col-12 col-sm-12 mt-4 mt-xl-0 col-md-6 col-lg-6 col-xl mw-300 min-w-300">
+                    <div class="col-12 col-sm-12 mt-xl-0 col-md-6 col-lg-6 col-xl mw-300 min-w-300">
                       <div class="card h-100">
                         <div class="card-body">
                           <label for="datepickerinputStart" class="form-label">Когда</label>
@@ -263,16 +318,16 @@
                           </div>
                           <span class="card-example d-block w-100">
 
-                                                <span id="today-date-toggle" class="card-example-date today-date-toggle text-decoration-underline"
+                                                <span id="today-date-toggle" class="card-example-date today-date-toggle"
                                                       v-on:click="UpdateselectDate();SetDateArival(false);UpdateselectDate()">Сегодня</span>
                                                 /
-                                                <span id="tomorrow-date-toggle" class="card-example-date tomorrow-date-toggle text-decoration-underline"
+                                                <span id="tomorrow-date-toggle" class="card-example-date tomorrow-date-toggle"
                                                       v-on:click="UpdateselectDate();SetDateArival(true);UpdateselectDate()">Завтра</span>
                                             </span>
                         </div>
                       </div>
                     </div>
-                    <div class="col-12 col-sm-12 mt-4 mt-xl-0 col-md-6 col-lg-6 col-xl mw-300 min-w-300">
+                    <div class="col-12 col-sm-12 mt-xl-0 col-md-6 col-lg-6 col-xl mw-300 min-w-300">
                       <div class="card h-100">
                         <div class="card-body">
                           <label for="datepickerinputStart" class="form-label">Обратно</label>
@@ -288,10 +343,10 @@
                           </div>
                           <span class="card-example d-block w-100">
 
-                                                <span id="today-date-toggle" class="card-example-date today-date-toggle text-decoration-underline"
+                                                <span id="today-date-toggle" class="card-example-date today-date-toggle"
                                                       v-on:click="UpdateselectDateBack();SetDateBack(false);UpdateselectDateBack()">Сегодня</span>
                                                 /
-                                                <span id="tomorrow-date-toggle" class="card-example-date tomorrow-date-toggle text-decoration-underline"
+                                                <span id="tomorrow-date-toggle" class="card-example-date tomorrow-date-toggle"
                                                       v-on:click="UpdateselectDateBack();SetDateBack(true);UpdateselectDateBack()">Завтра</span>
                                             </span>
                         </div>
@@ -300,7 +355,8 @@
                   </div>
                   <div class="row">
                     <div class="col d-flex justify-content-center align-items-center">
-                      <button id="submit-button-twoWays" type="button" class="btn"  :class="{ disabled : !+from || !+to || !dateArival }" v-on:click="alertPlace()">
+                      <button id="submit-button-twoWays" type="button" class="btn"  
+                        :class="{ disabled : !+from || !+to || !dateArival ||!dateBack }" v-on:click="alertPlace()">
                         Найти билеты
                       </button>
                     </div>
@@ -439,14 +495,25 @@ export default{
   background: url("/img/header/bg.jpg") no-repeat center center ;
   background-size: cover;
   padding-bottom: 99px;
+  @media screen and (max-width: 768px) {
+    padding-bottom: 48px;
+  }
   &-content {
-    
+    .title-section {
+      @media screen and (max-width: 767px) {
+        line-height: 27px;
+        //margin-bottom: 16px;
+        margin-bottom: 15px;
+      }
+    }
     .form-header {
       margin-left: 88px;
       margin-right: 88px;
       @media screen and (max-width: 767px) {
-        margin-left: 5px;
-        margin-right: 5px;
+        //margin-left: 5px;
+        //margin-right: 5px;
+        margin-left: 8px;
+        margin-right: 8px;
       }
     }
     .search-form {
@@ -454,25 +521,84 @@ export default{
         margin-bottom: 33px;
         @media screen and (max-width: 768px) {
           display: flex !important;
-          flex-direction: column;
-          align-items: center;
-          width: unset !important;
+          width: 100% !important;
+          margin-bottom: 16px;
+          margin-left: 8px;
+          margin-right: 8px;
+        }
+        .form-check {
+          margin-bottom: 0;
         }
         .form-check-inline {
           @media screen and (max-width: 768px) {
-            display: block;
+            display: flex;
+            flex-direction: column-reverse;
+            padding-left: 0;
+            margin-right: 38px;
+          }
+          .form-check-input {
+            border-color: #1399FF;
+          }
+          .form-check-input[type=radio] {
+            @media screen and (max-width: 768px) {
+              width: 18px;
+              height: 18px;
+              margin-left: 0;
+              float: unset;
+            }
+          }
+          .form-check-input:checked {
+            border: 4px solid $blue-active;
+            @media screen and (max-width: 768px) {
+              border: 4px solid $blue-active;
+            }
+          }
+          .form-check-input:checked + .form-check-label {
+            font-weight: $bold;
+            @media screen and (max-width: 768px) {
+              font-weight: $bold;
+            }
+          }
+          .form-check-label {
+            padding-left: 0;
+          }
+          .form-check-input:checked:before {
+            box-shadow: none;
+          }
+          .form-check-input:checked:after {
+            border: none;
+            background: none;
+          }
+          .form-check-input[type=radio]:before {
+            @media screen and (max-width: 768px) {
+              width: 18px;
+              height: 18px;
+            }
+          }
+          .form-check-input[type=radio]:after {
+            @media screen and (max-width: 768px) {
+              width: 18px;
+              height: auto;
+            }
+          }
+        }
+        .form-check-inline:last-child {
+          @media screen and (max-width: 768px) {
             margin-right: 0;
           }
         }
         .form-check-label {
           font-family: $uni;
-          font-weight: $bold;
+          font-weight: $regular;
           font-size: 18px;
           margin-left: 24px;
           color: $white;
           @media screen and (max-width: 768px) {
             display: block;
             margin-left: 0;
+            font-size: 14px;
+            line-height: 18.9px;
+            margin-bottom: 8px;
           }
         }
       }
@@ -488,16 +614,29 @@ export default{
         }
       }
       .card {
-        border-radius: .85rem;  
+        border-radius: .85rem;
+        @media screen and (max-width: 768px) {
+          border-radius: 8px;
+        }
         &-body {
+          @media screen and (max-width: 768px) {
+            padding: 8px 12px;
+          }
           .form-label {
             font-family: $uni;
             font-weight: $regular;
             font-size: 18px;
             color: $black;
+            @media screen and (max-width: 768px) {
+              display: block;
+              font-size: 12px;
+              color: $base;
+              line-height: 16.2px;
+              margin-bottom: 8px;
+            }
           }
           .form-control {
-            padding-left: 0;
+            padding-left: 0 !important;
             padding-right: 0;
             font-family: $uni;
             font-weight: $bold;
@@ -505,28 +644,50 @@ export default{
             color: $base;
             border: none;
             outline: none !important;
-            
+            @media screen and (max-width: 768px) {
+              padding-top: 0;
+              padding-left: 0 !important;
+              padding-bottom: 2px;
+              font-size: 16px;
+              border-radius: 0;
+            }
           }
-           input:-ms-input-placeholder{
-                font-weight: normal;
-                font-style: normal;
-                font-family: $uniBook;
+          input:-ms-input-placeholder{
+            color: #B5BDDB;
+            font-weight: normal;
+            font-style: normal;
+            font-family: $uniBook;
+            @media screen and (max-width: 768px) {
+              font-size: 14px;
             }
-            input::-webkit-input-placeholder{
-                font-weight: normal;
-                font-style: normal;
-                font-family: $uniBook;
+          }
+          input::-webkit-input-placeholder{
+            color: #B5BDDB;
+            font-weight: normal;
+            font-style: normal;
+            font-family: $uniBook;
+            @media screen and (max-width: 768px) {
+              font-size: 14px;
             }
-            input::-moz-placeholder{
-                font-weight: normal;
-                font-style: normal;
-                font-family: $uniBook;
+          }
+          input::-moz-placeholder{
+            color: #B5BDDB;
+            font-weight: normal;
+            font-style: normal;
+            font-family: $uniBook;
+            @media screen and (max-width: 768px) {
+              font-size: 14px;
             }
-            input:-moz-placeholder{
-                font-weight: normal;
-                font-style: normal;
-                font-family: $uniBook;
+          }
+          input:-moz-placeholder{
+            color: #B5BDDB;
+            font-weight: normal;
+            font-style: normal;
+            font-family: $uniBook;
+            @media screen and (max-width: 768px) {
+              font-size: 14px;
             }
+          }
           .count-passenger {
             /* Chrome, Safari, Edge, Opera */
             input::-webkit-outer-spin-button,
@@ -543,6 +704,12 @@ export default{
             .form-control {
               width: 20px;
             }
+            .minus-button {
+              margin-right: 8px;
+            }
+            .plus-button {
+              margin-left: 8px;
+            }
             .count-button {
               display: flex;
               align-items: center;
@@ -554,17 +721,27 @@ export default{
               color: $white;
               border: 1px solid $blue-active;
               cursor: pointer;
+              @media screen and (max-width: 768px) {
+                width: 24px;
+                height: 24px;
+                font-size: 10px;
+              }
             }
             .disabled {
               background-color: #F8FAFC;
-              border: 1px solid #F8FAFC;
+              border: 1px solid rgba(47, 56, 71, 0.1);
               color: #c0c0c0;
               cursor: auto;
             }
             
           }
-          .card-example-date {
-            cursor: pointer;
+        }
+        &-desc {
+          margin-top: 8px;
+          @include font($uni,$light,14px,18.9px,$secondary);
+          @media screen and (max-width: 768px) {
+            font-size: 12px;
+            line-height: 16.2px;
           }
         }
         .swiper-inputs {
@@ -580,17 +757,27 @@ export default{
           right: -46px;
           z-index: 999;
           cursor: pointer;
+          filter: drop-shadow(0px 8px 12px rgba(161, 159, 255, 0.2));
           @media screen and (max-width: 767px) {
-            right: 0;
-            bottom: -40px;
-            transform: rotate(90deg);
+            right: 26px;
+            bottom: -20px;
+            width: 40px;
+            height: 40px;
           }
           &-icon {
             background: url("/img/hero/arrows.svg") no-repeat;
             width: 33px;
             height: 24px;
-            
+            @media screen and (max-width: 767px) {
+              background: url("/img/hero/arrows-mobile.svg") no-repeat;
+              width: 16px;
+              height: 21px;
+            }
           }
+        }
+        .disabled {
+          opacity: 1;
+          background-color: $disabled;
         }
         .find-place{
             position: absolute;
@@ -622,6 +809,34 @@ export default{
                 z-index: 9999;
             }
 
+        }
+        &-example {
+          @include font($uni,$light,14px,18.9px,#676767);
+          @media screen and (max-width: 768px) {
+            display: block;
+            font-size: 12px;
+          }
+          &-date {
+            cursor: pointer;
+            color: #77BCFC;
+            text-decoration: underline dotted #77BCFC;
+            @media screen and (max-width: 768px) {
+              text-decoration: none;
+            }
+          }
+          &-date:hover {
+            @include animation;
+            color: $blue-active;
+          }
+        }
+        &-place-link {
+          div {
+            @include font($uni,$light,14px,18.9px,$blue-active);
+            @media screen and (max-width: 768px) {
+              font-size: 12px;
+              line-height: 16.2px;
+            }
+          }
         }
         
         .calendar-span{
@@ -657,9 +872,20 @@ export default{
         margin-top: 40px;
         color: $white;
         background-color: $blue-active;
+        @media screen and (max-width: 768px) {
+          padding: 10px 0;
+          width: 100%;
+          font-size: 16px;
+          margin-top: 24px;
+          border-radius: 8px;
+        }
+      }
+      .disabled {
+        opacity: 1;
+        background-color: $disabled;
       }
       .btn-disabled {
-        background-color: #A3D7FF;
+        background-color: $disabled;
       }
       .mw-300{
         max-width: 300px;

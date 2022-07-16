@@ -14,6 +14,9 @@
 .hero {
   .title-page {
     margin-bottom: 56px;
+    @media screen and (max-width: 768px) {
+      margin-bottom: 16px;
+    }
   }
 }
 .title-page {
@@ -23,6 +26,7 @@
   color: $white;
   @media screen and (max-width: 768px) {
     font-size: 24px;
+    line-height: 32.4px;
   }
 }
 

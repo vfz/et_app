@@ -121,13 +121,28 @@ export default {
   margin-bottom: 64px;
   margin-left: 88px;
   margin-right: 88px;
+  @media screen and (max-width: 767px) {
+    padding-top: 48px;
+    margin-left: 20px;
+    margin-right: 20px;
+    //margin-bottom: 50px;
+    margin-bottom: 35px;
+  }
   .navbar {
     box-shadow: none;
-  }
-  @media screen and (max-width: 767px) {
-        margin-left: 20px;
-        margin-right: 20px;
+    @media screen and (max-width: 767px) {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+    .navbar-toggler {
+      padding-bottom: 0;
+      padding-right: 0;
+      &-icon {
+        width: auto;
+        height: auto;
       }
+    }
+  }
   .logo-link {
     .logo {
       width: 324px;

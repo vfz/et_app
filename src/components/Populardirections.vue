@@ -6,29 +6,29 @@
                 <h2 class="title-section dark-title text-center">Популярные направления из:</h2>
             </div>
         </div>
-        <div class="row row-cols-4 g-3 justify-content-center">
-            <div class="col-12 col-sm col-md col-lg">
-                <div class="card card-directions">
-                    <div class="card-body">
-                        <h3 class="card-title">
-                            Город отправления
-                        </h3>
-                        <span class="card-value">Ставрополь</span>
-                    </div>
+        <div class="row gx-0 gx-md-4">
+          <div class="col-12">
+            <div class="d-flex flex-column flex-md-row justify-content-center align-items-center">
+              <div class="card card-directions">
+                <div class="card-body">
+                  <h3 class="card-title">
+                    Город отправления
+                  </h3>
+                  <span class="card-value">Ставрополь</span>
                 </div>
-            </div>
-            <div class="col-12 col-sm col-md col-lg">
-                <div class="card card-directions">
-                    <div class="card-body">
-                        <h3 class="card-title">
-                            Дата поездки
-                        </h3>
-                        <span class="card-value">30 января</span>
-                    </div>
+              </div>
+              <div class="card card-directions">
+                <div class="card-body">
+                  <h3 class="card-title">
+                    Дата поездки
+                  </h3>
+                  <span class="card-value">30 <span>января</span></span>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-3 mt-4">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-xl-4 gy-2 gx-0 gx-sm-3">
             <div class="col">
                 <div class="card card-city-direction">
                     <div class="card-body d-flex justify-content-between">
@@ -150,27 +150,50 @@
 @import "src/assets/font.scss";
 .popular-directions {
   padding-top: 72px;
-
-  .card-directions:first-child {
-    margin-right: 16px;
+  margin-right: 88px;
+  margin-left: 88px;
+  @media screen and (max-width: 768px) {
+    padding-top: 40px;
+    margin-left: 8px;
+    margin-right: 8px;
   }
-
   .card-city-direction {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    max-width: 424px;
+    @media screen and (max-width: 768px) {
+      max-width: unset;
+    }
     .card-body {
+      padding: 12px 16px;
+      @media screen and (max-width: 768px) {
+        padding: 12px 16px;
+      }
       &-city {
         &-title {
           font-family: $uni;
-          font-weight: $regular;
-          font-size: 18px;
-          color: $black;
-          margin-bottom: 12px;
+          font-weight: $bold;
+          font-size: 20px;
+          line-height: 27px;
+          color: $base;
+          margin-bottom: 8px;
+          opacity: 0.6;
+          @media screen and (max-width: 768px) {
+            font-size: 14px;
+            line-height: 18.9px;
+          }
         }
         &-value {
           display: block;
           font-family: $uni;
           font-weight: $bold;
           font-size: 24px;
-          color: $black;
+          color: $base;
+          line-height: 32.4px;
+          @media screen and (max-width: 768px) {
+            font-size: 16px;
+            line-height: 21.6px;
+          }
         }
       }
       &-price {
@@ -178,40 +201,94 @@
           font-family: $uni;
           font-weight: $regular;
           font-size: 18px;
-          color: $black;
-          margin-bottom: 12px;
+          line-height: 24.3px;
+          color: $base;
+          margin-bottom: 8px;
+          @media screen and (max-width: 768px) {
+            font-size: 12px;
+            line-height: 16.2px;
+          }
         }
         &-value {
           display: block;
           font-family: $uni;
           font-weight: $bold;
           font-size: 24px;
-          color: $black;
+          line-height: 32.4px;
+          color: $base;
+          @media screen and (max-width: 768px) {
+            font-size: 16px;
+            line-height: 21.6px;
+          }
         }
       }
     }
   }
   .card-city-direction:hover {
     background-color: #F2F7FF;
+    box-shadow: none;
   }
 
   .card-directions {
     width: 100%;
-    .card-title {
-      font-family: $uni;
-      font-weight: $regular;
-      font-size: 18px;
-      color: $black;
-      text-align: center;
-      margin-bottom: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    box-shadow: none;
+    max-width: 262px;
+    margin-bottom: 40px;
+    @media screen and (max-width: 768px) {
+      max-width: unset;
+      width: 100%;
     }
-    .card-value {
-      display: block;
-      font-family: $uni;
-      font-weight: $bold;
-      font-size: 24px;
-      color: $black;
-      text-align: center;
+    .card-body {
+      padding: 12px 16px;
+      @media screen and (max-width: 768px) {
+        padding: 12px 16px;
+      }
+      .card-title {
+        font-family: $uni;
+        font-weight: $regular;
+        font-size: 18px;
+        color: $base;
+        text-align: center;
+        margin-bottom: 12px;
+        @media screen and (max-width: 768px) {
+          font-size: 12px;
+          line-height: 16.2px;
+        }
+      }
+      .card-value {
+        display: block;
+        font-family: $uni;
+        font-weight: $bold;
+        font-size: 24px;
+        color: $base;
+        text-align: center;
+        @media screen and (max-width: 768px) {
+          font-size: 16px;
+          line-height: 21.6px;
+        }
+        span {
+          font-size: 18px;
+          @media screen and (max-width: 768px) {
+            font-size: 12px;
+            line-height: 16.2px;
+          }
+        }
+      }
+    }
+  }
+  .card-directions:first-child {
+    margin-right: 16px;
+    @media screen and (max-width: 768px) {
+      margin-right: 0;
+      margin-bottom: 8px;
+    }
+  }
+  .card-directions:last-child {
+    @media screen and (max-width: 768px) {
+      margin-right: 0;
+      margin-bottom: 16px;
     }
   }
 }

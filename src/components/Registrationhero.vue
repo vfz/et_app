@@ -71,6 +71,7 @@
       text-align: center;
       font-size: 16px;
       line-height: 21.6px;
+      border-radius: 8px;
     }
   }
   &-button:hover {

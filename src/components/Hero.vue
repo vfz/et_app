@@ -794,6 +794,10 @@ export default{
               text-decoration: none;
             }
           }
+          &-date:hover {
+            @include animation;
+            color: $blue-active;
+          }
         }
         &-place-link {
           div {

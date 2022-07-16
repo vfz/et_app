@@ -229,19 +229,6 @@
     box-shadow: none;
   }
 
-  .card-directions:first-child {
-    margin-right: 16px;
-    @media screen and (max-width: 768px) {
-      margin-right: 0;
-      margin-bottom: 8px;
-    }
-  }
-  .card-directions:last-child {
-    @media screen and (max-width: 768px) {
-      margin-right: 0;
-      margin-bottom: 16px;
-    }
-  }
   .card-directions {
     width: 100%;
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -285,6 +272,19 @@
           }
         }
       }
+    }
+  }
+  .card-directions:first-child {
+    margin-right: 16px;
+    @media screen and (max-width: 768px) {
+      margin-right: 0;
+      margin-bottom: 8px;
+    }
+  }
+  .card-directions:last-child {
+    @media screen and (max-width: 768px) {
+      margin-right: 0;
+      margin-bottom: 16px;
     }
   }
 }

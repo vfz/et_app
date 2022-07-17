@@ -33,10 +33,15 @@
               <div class="col-12">
                 <div class="floor-header d-flex align-items-center">
                   <!-- TODO Проверить работу  Object.keys(myObject).length в старых браузерах -->
-                  <div class="floor-item" :class="{ active : Object.keys(mergeFlights.find(trip => trip.id_trip===busTriptId).bus_config).length===1}">
+                  <div class="floor-item" 
+                  :class="{ active : floor===1}"
+                  v-on:click="floor=1"
+                  >
                     1 этаж
                   </div>
-                  <div class="floor-item" :class="{ active : Object.keys(mergeFlights.find(trip => trip.id_trip===busTriptId).bus_config).length===2}">
+                  <div class="floor-item" :class="{ active : floor===2}"
+                  v-on:click="floor=2"
+                  >
                     2 этаж
                   </div>
                 </div>
@@ -56,12 +61,12 @@
                   <!-- </div> -->
                   <table>
                     <!--TODO переключнение этажей, подсветка занятых мест, подсветка выбранных мест-->
-                    <tr v-for="stroka in mergeFlights.find(trip => trip.id_trip===busTriptId).bus_config[1]" :key="stroka">
+                    <tr v-for="stroka in mergeFlights.find(trip => trip.id_trip===busTriptId).bus_config[floor]" :key="stroka">
                       <td v-for="seat in stroka" :key="seat"
                         :rowspan="seat.split('+')[1]" 
                         :colspan="seat.split('+')[2]" 
                         align="center">
-                        <div :class=" seat.split('+')[0]" :id="'seat_'+seat.split('+')[3].replace('_', '')">{{seat.split('+')[3].replace('_', '')}}</div>
+                        <div :class="seat.split('+')[0]" :id="'seat_'+seat.split('+')[3].replace('_', '')">{{seat.split('+')[3].replace('_', '')}}</div>
 
                       </td>
                     </tr>
@@ -85,11 +90,7 @@ export default {
   props: ['flightType'],
   data(){
     return{
-        hours: ['час', 'часа', 'часов'],
-        minutes: ['минута', 'минуты', 'минут'],
-        cases: [2, 0, 1, 1, 1, 2],
-        monthes: ["Янв", "Фев", "Мар", "Апр", "Мая", "Июня", "Июля", "Авг", "Сен", "Окт", "Ноя", "Дек"],
-        flights:[],
+      floor:1,
     }
   },
   computed: mapGetters(['busTriptId','mergeFlights',]),
@@ -174,31 +175,6 @@ export default {
     padding: 16px;
     margin: auto;
     width: fit-content;
-
-    .avtobus {
-        width: max-content;
-        height: max-content;
-        background: #FFFFFF;
-        /* Text / Инпут */
-        border: 1px solid #B5BDDB;
-        box-sizing: border-box;
-        /* Shadow / Hover */
-        box-shadow: 0 2px 4px rgba(161, 159, 255, 0.1);
-        border-radius: 16px;
-        padding: 16px;
-    }
-
-    .row_seat {
-        /*margin-bottom: 8px;*/
-    }
-
-    .male {
-        background: #4682B4;
-    }
-
-    .fa_male {
-        background: #FFC0CB;
-    }
 
     .seat {
         width: 32px;
@@ -384,7 +360,26 @@ export default {
         /* Text / Неактивный */
         color: #196EFF;
     }
-
+    .busy-seat {
+        background-color: $secondary;
+        color: $white;
+        width: 32px;
+        height: 32px;
+        margin-right: 10px;
+        margin-bottom: 6px;
+        padding-top: 6px;
+        /* Button / Inactive */
+        border: 1px solid #A3D7FF;
+        box-sizing: border-box;
+        /* Shadow / Normal */
+        box-shadow: 0 8px 12px rgba(161, 159, 255, 0.2);
+        border-radius: 4px;
+        font-family: $uni;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 19px;
+      }
     .text_floor {
         font-family: $uni;
         font-style: normal;

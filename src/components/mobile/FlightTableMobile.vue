@@ -226,9 +226,10 @@ export default {
         }
         &-city {
           @include font($uni,$bold,14px,18.9px,$base);
+          margin-bottom: 3px;
         }
         &-place {
-          @include font($uni, $light, 14px, 18.9px, $blue-link);
+          @include font($uni, $light, 11px, 14.85px, $blue-active);
         }
       }
       &-right {
@@ -261,9 +262,10 @@ export default {
         }
         &-city {
           @include font($uni,$bold,14px,18.9px,$base);
+          margin-bottom: 3px;
         }
         &-place {
-          @include font($uni, $light, 14px, 18.9px, $blue-link);
+          @include font($uni, $light, 11px, 14.85px, $blue-active);
         }
       }
     }

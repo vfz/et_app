@@ -394,6 +394,9 @@ export default {
             }
           }
         }
+        .form-check {
+          margin-bottom: 0;
+        }
         .form-check-inline:last-child {
           @media screen and (max-width: 768px) {
             margin-right: 0;
@@ -403,7 +406,7 @@ export default {
       .path-direction {
         margin-bottom: 8px;
         .path-title {
-          @include font($uni,$regular,14px,18.9px,$base);
+          @include font($uni,$light,14px,18.9px,$base);
         }
         .path-content {
           @include font($uni,$bold,14px,18.9px,$base);

@@ -83,7 +83,7 @@
                       Время в пути
                     </h3>
                     <div class="table-item-part-left-date">
-                      <div class="dispatch-time table-link" data-bs-toggle="modal" data-bs-target="#dispatch-length-time-modal">
+                      <div class="time-length-trip table-link" data-bs-toggle="modal" data-bs-target="#dispatch-length-time-modal">
                         <span v-if="flight.time_duration_trip.split(':')[0]>0">
                             {{flight.time_duration_trip.split(':')[0]}}
                             {{
@@ -222,6 +222,9 @@ export default {
               font-size: 10px;
               line-height: 13.5px;
             }
+          }
+          .time-length-trip {
+            @include font($uni,$bold,13px,17.55px,$base);
           }
         }
         &-city {

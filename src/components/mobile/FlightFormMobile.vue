@@ -317,8 +317,8 @@ export default {
     margin-left: 88px;
     margin-right: 88px;
     @media screen and (max-width: 767px) {
-      margin-left: 5px;
-      margin-right: 5px;
+      margin-left: 8px;
+      margin-right: 8px;
     }
     .search-form {
       .checkbox-form {

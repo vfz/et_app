@@ -105,9 +105,6 @@ export default {
     isMobile() {
       return screen.width <= 992;
     },
-    currentRouteName() {
-      return this.$route.name;
-    }
   },
   mounted(){
   }

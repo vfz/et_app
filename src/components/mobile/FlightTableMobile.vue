@@ -227,6 +227,10 @@ export default {
           .time-length-trip {
             @include font($uni,$bold,13px,17.55px,$base);
           }
+          .time-length-trip:hover {
+            @include animation;
+            color: $blue-active;
+          }
         }
         &-city {
           @include font($uni,$bold,14px,18.9px,$base);

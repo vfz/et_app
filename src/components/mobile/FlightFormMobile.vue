@@ -433,10 +433,11 @@ export default {
               font-weight: $regular;
               font-size: 12px;
               color: $black;
+              margin-bottom: 8px;
             }
             .city-name {
               @include font($uni,$bold,16px,21.6px,$blue-color);
-              margin-bottom: 12px;
+              margin-bottom: 11px;
               span {
                 border-bottom: 1px dashed $blue-color;
               }
@@ -490,19 +491,22 @@ export default {
                 right: 0;
                 bottom: -20px;
                 transform: rotate(180deg);
-                box-shadow: 0 25px 0 0 rgb(255,255,255);
+                //box-shadow: 0 25px 0 0 rgb(255,255,255);
+                -webkit-box-shadow: 12px 0px 0px -4px rgba(255, 255, 255, 1);
+                -moz-box-shadow: 12px 0px 0px -4px rgba(255, 255, 255, 1);
+                box-shadow: 12px 0px 0px -4px rgba(255, 255, 255, 1);
               }
             }
           }
           //TODO deleted form control
           .form-control {
-            padding-left: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            padding-left: 0 !important;
             padding-right: 0;
-            font-family: $uni;
-            font-weight: $bold;
-            font-size: 18px;
-            color: $base;
+            @include font($uni,$bold,16px,21.6px,$blue-color);
             border: none;
+            text-decoration: underline dotted $blue-color;
             outline: none !important;
 
           }
@@ -608,6 +612,12 @@ export default {
           background: #FFF;
           border: 0px;
           padding: 0;
+          .calendar-icon {
+            @media screen and (max-width: 767px) {
+              width: 16px;
+              height: auto;
+            }
+          }
         }
         .select-date{
           position: absolute;

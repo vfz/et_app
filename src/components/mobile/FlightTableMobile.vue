@@ -113,11 +113,11 @@
                       Осталось мест
                     </h3>
                     <div class="table-item-part-right-date">
-                      <div class="arrival-time table-link" data-bs-toggle="modal" data-bs-target="#place-left-modal"  v-if="+flight.count_available_seats_trip>=adults+childrens">
+                      <div class="place-left-count table-link" data-bs-toggle="modal" data-bs-target="#place-left-modal"  v-if="+flight.count_available_seats_trip>=adults+childrens">
                          {{flight.count_available_seats_trip}}
                           Выбрать
                       </div>
-                      <div class="arrival-time table-link" v-else>
+                      <div class="place-left-count table-link" v-else>
                          {{flight.count_available_seats_trip}}
                       </div>
                     </div>
@@ -238,7 +238,7 @@ export default {
       &-right {
         &-title {
           @include font($uni,$regular,11px,14.85px,$base);
-          margin-bottom: 10px;
+          margin-bottom: 4px;
         }
         &-date {
           .arrival-time {
@@ -261,6 +261,9 @@ export default {
               font-size: 10px;
               line-height: 13.5px;
             }
+          }
+          .place-left-count {
+            @include font($uni,$bold,13px,17.55px,$base);
           }
         }
         &-city {

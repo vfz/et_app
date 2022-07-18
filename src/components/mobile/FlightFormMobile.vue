@@ -151,7 +151,7 @@
                         </div>
                         <div class="cross-line"></div>
                       </div>
-                      <div class="card-body-section">
+                      <div class="card-body-section d-flex justify-content-between align-items-center">
                         <div>
                           <label for="dataListFrom" class="form-label">Пассажиры</label>
                           <div class="passengers-count" v-bind:class="{'d-none': isHidden}" v-on:click="isHidden = true; isShow = true">
@@ -176,6 +176,9 @@
                               </div>
                             </div>
                           </div>
+                        </div>
+                        <div v-bind:class="{'d-block': !isShow, 'd-none': isShow}">
+                          <img class="help-icon" alt="help" src="/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
                         </div>
                       </div>
                     </div>
@@ -424,7 +427,7 @@ export default {
         }
       }
       .card {
-        border-radius: .85rem;
+        border-radius: 8px;
         &-body {
           padding: 8px 12px;
           &-section {
@@ -467,6 +470,10 @@ export default {
               span {
                 border-bottom: 1px dashed $blue-color;
               }
+            }
+            .passengers-count:hover {
+              @include animation;
+              color: $blue-active;
             }
             .cross-line {
               width: 100%;

@@ -55,51 +55,16 @@ export default {
   margin-left: 88px;
   margin-right: 88px;
   @media screen and (max-width: 767px) {
-    margin-left: 20px;
-    margin-right: 20px;
-  }
-  .active {
-    .timeline-item-title {
-      color: $black;
-    }
-    .timeline-item-underline {
-      background-color: $black;
-      .timeline-item-underline-point {
-        background-color: $black;
-      }
-    }
-    .timeline-item-description {
-      color: $black;
-    }
-  }
-  .ready {
-    .timeline-item-title {
-      color: $blue-active;
-    }
-    .timeline-item-underline {
-      background-color: $blue-active;
-      .timeline-item-underline-point {
-        background-color: $blue-active;
-      }
-    }
-    .timeline-item-description {
-      color: $blue-active;
-    }
+    margin-left: 8px;
+    margin-right: 8px;
   }
   .timeline-item {
     &-title {
-      font-family: $uni;
-      font-weight: $bold;
-      font-size: 30px;
-      color: $deactivate;
-      padding-right: 40px;
+      @include font($uni,$bold,20px,27px,$base);
+      margin-bottom: 4px;
     }
     &-description {
-      margin-top: 7px;
-      font-family: $uni;
-      font-weight: $light;
-      font-size: 14px;
-      color: $base;
+      @include font($uni,$light,11px,14.85px,$base);
     }
   }
 }

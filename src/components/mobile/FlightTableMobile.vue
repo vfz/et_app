@@ -186,6 +186,7 @@ export default {
   .table-item {
     max-width: unset;
     box-shadow: $regular-shadow;
+    border-radius: 8px;
     &-content-wrapper {
       padding-top: 16px;
       padding-left: 16px;
@@ -277,8 +278,9 @@ export default {
     }
     .btn {
       @include font($uni,$bold,16px,21.6px,$white);
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
+      padding-top: 11px;
+      padding-bottom: 11px;
+      border-radius: 0 0 8px 8px;
     }
   }
   .active {

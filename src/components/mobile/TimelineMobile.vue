@@ -4,31 +4,31 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
-            <div v-if="currentRouteName === 'Flight-selection-search'" class="timeline-wrapper d-flex">
+            <div class="timeline-wrapper d-flex">
               <div class="timeline-item active">
                 <h1 class="timeline-item-title">
-                  Выбор рейса
+                  {{title}}
                 </h1>
                 <div class="timeline-item-description">
-                  Шаг 1
+                  {{description}}
                 </div>
               </div>
             </div>
-            <div v-if="currentRouteName === 'Ticket-booking'" class="timeline-wrapper d-flex">
-              <div class="timeline-item ready">
-                <h1 class="timeline-item-title">
-                  Бронирование билета
-                </h1>
-                <div class="timeline-item-description">
-                  шаг 2
-                </div>
-              </div>
-<!--              <div class="timeline-item">-->
+<!--            <div class="timeline-wrapper d-flex">-->
+<!--              <div class="timeline-item ready">-->
 <!--                <h1 class="timeline-item-title">-->
-<!--                  Оплата-->
+<!--                  Бронирование билета-->
 <!--                </h1>-->
+<!--                <div class="timeline-item-description">-->
+<!--                  шаг 2-->
+<!--                </div>-->
 <!--              </div>-->
-            </div>
+<!--&lt;!&ndash;              <div class="timeline-item">&ndash;&gt;-->
+<!--&lt;!&ndash;                <h1 class="timeline-item-title">&ndash;&gt;-->
+<!--&lt;!&ndash;                  Оплата&ndash;&gt;-->
+<!--&lt;!&ndash;                </h1>&ndash;&gt;-->
+<!--&lt;!&ndash;              </div>&ndash;&gt;-->
+<!--            </div>-->
           </div>
         </div>
       </div>
@@ -43,7 +43,8 @@ export default {
     currentRouteName() {
       return this.$route.name;
     }
-  }
+  },
+  props: ['title', 'description']
 }
 </script>
 

@@ -651,11 +651,16 @@ export default {
         font-weight: $regular;
         font-size: 16px;
         padding: 10px 65px;
-        border-radius: 15px;
+        border-radius: 8px;
         border: none;
         margin-top: 20px;
         color: $white;
         background-color: $blue-active;
+        filter: drop-shadow(0px 8px 12px rgba(161, 159, 255, 0.56));
+      }
+      .btn:hover {
+        @include animation;
+        background-color: $btn-hover;
       }
       .btn-disabled {
         background-color: #A3D7FF;

@@ -317,17 +317,86 @@ export default {
     margin-left: 88px;
     margin-right: 88px;
     @media screen and (max-width: 767px) {
+      margin-top: 24px;
       margin-left: 8px;
       margin-right: 8px;
     }
     .search-form {
       .checkbox-form {
         margin-bottom: 16px;
-        .form-check-label {
-          font-family: $uni;
-          font-weight: $bold;
-          font-size: 14px;
-          color: $base;
+        @media screen and (max-width: 767px) {
+          display: flex !important;
+          width: 100% !important;
+          margin-bottom: 16px;
+          margin-left: 0;
+          margin-right: 0;
+        }
+        .form-check-inline {
+          @media screen and (max-width: 767px) {
+            display: flex;
+            flex-direction: column-reverse;
+            padding-left: 0;
+            margin-right: 38px;
+          }
+          .form-check-input[type=radio] {
+            @media screen and (max-width: 767px) {
+              width: 18px;
+              height: 18px;
+              margin-left: 0;
+              float: unset;
+            }
+          }
+          .form-check-input:checked {
+            border: 4px solid $blue-active;
+            @media screen and (max-width: 768px) {
+              border: 4px solid $blue-active;
+            }
+          }
+          .form-check-input:checked:before {
+            box-shadow: none;
+          }
+          .form-check-input:checked:after {
+            border: none;
+            background: none;
+          }
+          .form-check-input[type=radio]:before {
+            @media screen and (max-width: 767px) {
+              width: 18px;
+              height: 18px;
+            }
+          }
+          .form-check-input[type=radio]:after {
+            @media screen and (max-width: 767px) {
+              width: 18px;
+              height: auto;
+            }
+          }
+          .form-check-input:checked + .form-check-label {
+            font-weight: $bold;
+            @media screen and (max-width: 768px) {
+              font-weight: $bold;
+            }
+          }
+          .form-check-label {
+            font-family: $uni;
+            font-weight: $regular;
+            font-size: 18px;
+            margin-left: 24px;
+            color: $base;
+            padding-left: 0;
+            @media screen and (max-width: 767px) {
+              display: block;
+              margin-left: 0;
+              font-size: 14px;
+              line-height: 18.9px;
+              margin-bottom: 8px;
+            }
+          }
+        }
+        .form-check-inline:last-child {
+          @media screen and (max-width: 768px) {
+            margin-right: 0;
+          }
         }
       }
       .path-direction {

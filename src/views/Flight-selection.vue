@@ -1,7 +1,7 @@
 <template>
   <div class="body-app-white">
     <Header/>
-    <Timeline v-if="!isMobile()"/>
+    <Timeline page="flight-selection" v-if="!isMobile()"/>
     <FlightForm v-if="!isMobile()"/>
     <FlightFormMobile v-if="isMobile()"/>
     <TimelineMobile title="Выбор рейса" description="Шаг 1" v-if="isMobile()"/>

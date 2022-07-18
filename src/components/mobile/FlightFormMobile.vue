@@ -338,6 +338,9 @@ export default {
             padding-left: 0;
             margin-right: 38px;
           }
+          .form-check-input {
+            border-color: #1399FF;
+          }
           .form-check-input[type=radio] {
             @media screen and (max-width: 767px) {
               width: 18px;

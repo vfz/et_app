@@ -28,7 +28,7 @@
                       </div>
                       <div class="dispatch-date">
                         <span class="dispatch-date-day">{{flight.date_trip.split('-')[2]}} </span>
-                        <span class="dispatch-date-month">{{ monthes[--flight.date_trip.split('-')[1]]}} </span> 
+                        <span class="dispatch-date-month">{{ monthes[--flight.date_trip.split('-')[1]]}}</span>
                         <span class="dispatch-date-year">{{flight.date_trip.split('-')[0]}}</span>
                       </div>
                     </div>
@@ -170,13 +170,16 @@ export default {
 .thereTable-section-mobile {
   margin: 41px 88px;
   @media screen and (max-width: 767px) {
-    margin-left: 5px;
-    margin-right: 5px;
+    margin-left: 8px;
+    margin-right: 8px;
+    margin-top: 24px;
   }
   .title-table {
-    @include font($uni,$bold, 24px, 32.4px, $black);
+    @include font($uni,$bold,18px,24.3px,$base);
+    margin-bottom: 16px;
     &-counter {
-      font-size: 18px;
+      font-size: 14px;
+      line-height: 18.9px;
       color: $secondary;
     }
   }
@@ -196,7 +199,7 @@ export default {
       &-left {
         &-title {
           @include font($uni,$regular,11px,14.85px,$base);
-          margin-bottom: 10px;
+          margin-bottom: 4px;
         }
         &-date {
           .dispatch-time {
@@ -209,13 +212,15 @@ export default {
           }
           .dispatch-date {
             &-day, &-month, &-year {
-              @include font($uni,$regular,12px,24.3px,$secondary)
+              @include font($uni,$regular,18px,21.94px,$secondary)
             }
-            &-day {
-              margin-right: 4px;
+            &-month {
+              font-size: 12px;
+              line-height: 16.2px;
             }
             &-month, &-year {
               font-size: 10px;
+              line-height: 13.5px;
             }
           }
         }
@@ -242,13 +247,15 @@ export default {
           }
           .arrival-date {
             &-day, &-month, &-year {
-              @include font($uni,$regular,12px,24.3px,$secondary)
+              @include font($uni,$regular,18px,21.94px,$secondary)
             }
-            &-day {
-              margin-right: 4px;
+            &-month {
+              font-size: 12px;
+              line-height: 16.2px;
             }
             &-month, &-year {
               font-size: 10px;
+              line-height: 13.5px;
             }
           }
         }

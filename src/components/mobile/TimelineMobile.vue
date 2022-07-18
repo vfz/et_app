@@ -4,7 +4,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
-            <div v-if="currentRouteName === 'Flight-selection'" class="timeline-wrapper d-flex">
+            <div v-if="currentRouteName === 'Flight-selection-search'" class="timeline-wrapper d-flex">
               <div class="timeline-item active">
                 <h1 class="timeline-item-title">
                   Выбор рейса

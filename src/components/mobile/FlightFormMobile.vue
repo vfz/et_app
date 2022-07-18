@@ -372,17 +372,15 @@ export default {
             }
           }
           .form-check-input:checked + .form-check-label {
-            font-weight: $bold;
-            @media screen and (max-width: 768px) {
-              font-weight: $bold;
-            }
+            font-weight: $light;
+            color: $base;
           }
           .form-check-label {
             font-family: $uni;
-            font-weight: $regular;
+            font-weight: $light;
             font-size: 18px;
             margin-left: 24px;
-            color: $base;
+            color: $deactivate;
             padding-left: 0;
             @media screen and (max-width: 767px) {
               display: block;

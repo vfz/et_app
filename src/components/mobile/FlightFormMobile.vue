@@ -563,6 +563,7 @@ export default {
               color: $white;
               border: 1px solid $blue-active;
               cursor: pointer;
+              box-shadow: 0px 12px 18px -6px rgba(0, 0, 0, 0.25);
             }
             .minus-button {
               margin-right: 8px;
@@ -572,9 +573,10 @@ export default {
             }
             .disabled {
               background-color: #F8FAFC;
-              border: 1px solid #F8FAFC;
+              border: 1px solid rgba(47, 56, 71, 0.1);
               color: #c0c0c0;
               cursor: auto;
+              box-shadow: none;
             }
 
           }

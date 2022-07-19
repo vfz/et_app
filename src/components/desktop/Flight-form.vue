@@ -596,12 +596,14 @@ export default {
               border: 1px solid $blue-active;
               cursor: pointer;
               font-size: 10px;
+              box-shadow: 0px 12px 18px -6px rgba(0, 0, 0, 0.25);
             }
             .disabled {
               background-color: #F8FAFC;
               border: 1px solid rgba(47, 56, 71, 0.1);
               color: #c0c0c0;
               cursor: auto;
+              box-shadow: none;
             }
 
           }

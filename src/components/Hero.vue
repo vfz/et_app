@@ -185,8 +185,8 @@
                 </div>
                 <!-- two-way-input-->
                 <div class="two-ways-inputs w-100 form-header" v-else>
-                  <div class="row gy-md-4 gy-2 gy-xxl-0 d-xxl-flex justify-content-xxl-center">
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl min-w-300">
+                  <div class="row gy-md-4 gy-2 gy-lg-0 d-xxl-flex justify-content-xxl-center">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xxl mb-lg-4 mb-xxl-0 col-xl-6 min-w-300">
                       <div class="card h-100">
                         <div class="card-body">
                           <label for="dataListFrom" class="form-label">Откуда</label>
@@ -230,7 +230,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-12 col-sm-12 mt-md-0 col-md-6 col-lg-6 col-xl min-w-300">
+                    <div class="col-12 col-sm-12 mt-md-0 col-md-6 col-lg-6 col-xxl mb-lg-4 mb-xxl-0 col-xl-6 min-w-300">
                       <div class="card h-100">
                         <div class="card-body">
                           <label for="datalistTo" class="form-label">Куда</label>
@@ -273,7 +273,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-12 col-sm-12 mt-md-0 col-md-4 col-lg-4 col-xl mw-300 min-w-300">
+                    <div class="col-12 col-sm-12 mt-md-0 col-md-4 col-lg-6 col-xxl mb-lg-4 mb-xxl-0 col-xl-6 mw-300 min-w-300">
                       <div class="card h-100">
                         <div class="card-body">
                           <div class="d-flex justify-content-between align-items-center">
@@ -302,7 +302,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-12 col-sm-12 mt-xl-0 col-md-6 col-lg-6 col-xl mw-300 min-w-300">
+                    <div class="col-12 col-sm-12 mt-xl-0 col-md-6 col-lg-6 col-xxl mb-lg-4 mb-xxl-0 col-xl-6 mw-300 min-w-300">
                       <div class="card h-100">
                         <div class="card-body">
                           <label for="datepickerinputStart" class="form-label">Когда</label>
@@ -327,7 +327,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-12 col-sm-12 mt-xl-0 col-md-6 col-lg-6 col-xl mw-300 min-w-300">
+                    <div class="col-12 col-sm-12 mt-xl-0 col-md-6 col-lg-6 col-xxl mw-300 min-w-300">
                       <div class="card h-100">
                         <div class="card-body">
                           <label for="datepickerinputStart" class="form-label">Обратно</label>
@@ -622,6 +622,9 @@ export default{
           @media screen and (max-width: 768px) {
             padding: 8px 12px;
           }
+          @media (min-width: 1400px) and (max-width: 1416px) {
+            padding: 12px 14px;
+          }
           .form-label {
             font-family: $uni;
             font-weight: $regular;
@@ -722,7 +725,7 @@ export default{
               border: 1px solid $blue-active;
               cursor: pointer;
               box-shadow: 0px 12px 18px -6px rgba(0, 0, 0, 0.25);
-              @media screen and (max-width: 768px) {
+              @media screen and (max-width: 1572px) {
                 width: 24px;
                 height: 24px;
                 font-size: 10px;
@@ -903,6 +906,9 @@ export default{
         min-width: 300px;
          @media screen and (max-width: 779px) {
            min-width: 280px;
+         }
+         @media (min-width: 1400px) {
+           min-width: unset;
          }
       }
       .w-300{

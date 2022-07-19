@@ -34,7 +34,7 @@
             <!-- Form-input-->
             <div class="two-ways-inputs w-100 form-header">
               <div class="row flex-wrap">
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl min-w-300">
+                <div class="col-12 col-sm-12 col-lg-6 col-xl min-w-300">
                   <div class="card h-100">
                     <div class="card-body">
                       <div class="card-body-section position-relative">
@@ -490,19 +490,14 @@ export default {
               align-items: center;
               justify-content: center;
               position: absolute;
-              bottom: 30px;
-              right: -46px;
+              bottom: -20px;
+              right: 0;
               z-index: 999;
               cursor: pointer;
-              @media screen and (max-width: 767px) {
-                right: 0;
-                bottom: -20px;
-                transform: rotate(180deg);
-                //box-shadow: 0 25px 0 0 rgb(255,255,255);
-                -webkit-box-shadow: 12px 0px 0px -4px rgba(255, 255, 255, 1);
-                -moz-box-shadow: 12px 0px 0px -4px rgba(255, 255, 255, 1);
-                box-shadow: 12px 0px 0px -4px rgba(255, 255, 255, 1);
-              }
+              -webkit-box-shadow: 12px 0px 0px -4px rgba(255, 255, 255, 1);
+              -moz-box-shadow: 12px 0px 0px -4px rgba(255, 255, 255, 1);
+              box-shadow: 12px 0px 0px -4px rgba(255, 255, 255, 1);
+              transform: rotate(180deg);
             }
           }
           //TODO deleted form control

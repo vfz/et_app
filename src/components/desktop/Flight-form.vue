@@ -150,8 +150,8 @@
             </div>
             <!-- two-way-input-->
             <div class="two-ways-inputs w-100 form-header" v-else>
-              <div class="row flex-wrap">
-                <div class="col-lg-6 col-xl min-w-300">
+              <div class="row">
+                <div class="col-lg-6 col-xl-6 col-xxl mb-lg-4 mb-xxl-0 mw-300 min-w-300">
                   <div class="card h-100">
                     <div class="card-body">
                       <label for="dataListFrom" class="form-label">Откуда</label>
@@ -184,7 +184,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-6 col-xxl-3 min-w-300">
+                <div class="col-lg-6 col-xl-6 col-xxl mb-lg-4 mb-xxl-0 mw-300 min-w-300">
                   <div class="card h-100">
                     <div class="card-body">
                       <label for="datalistTo" class="form-label">Куда</label>
@@ -210,7 +210,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-6 col-xxl-3 mw-300 min-w-300">
+                <div class="col-lg-6 col-xl-6 col-xxl mb-lg-4 mb-xxl-0 mw-300 min-w-300">
                   <div class="card h-100">
                     <div class="card-body">
                       <div class="d-flex justify-content-between align-items-center">
@@ -219,7 +219,7 @@
                       </div>
                       <div class="row">
                         <div class="col">
-                          <div class="count-passenger d-flex align-items-center justify-content-between flex-wrap">
+                          <div class="count-passenger d-flex align-items-center flex-wrap">
                             <div id="minus-button-adult" class="minus-button count-button" :class=" { disabled : !mba } " v-on:click="MinusAdult();changeClass()">-</div>
                             <input value="1" min="1" max="7" name="adults" v-model="adults" type="number" class="form-control text-center one-way-inputs-input shadow-none"  placeholder="0">
                             <div id="plus-button-adult" class="plus-button count-button" :class=" { disabled : !pba } " v-on:click="PlusAdult();changeClass()">+</div>
@@ -227,7 +227,7 @@
                           </div>
                         </div>
                         <div class="col">
-                          <div class="count-passenger d-flex align-items-center justify-content-between flex-wrap">
+                          <div class="count-passenger d-flex align-items-center flex-wrap">
                             <div id="minus-button-childeren" class="minus-button count-button" :class=" { disabled : !mbc } " v-on:click="MinusChild();changeClass()">-</div>
                             <input value="0" min="0" max="5" name="childrens" v-model="childrens" type="number" class="form-control text-center one-way-inputs-input shadow-none" placeholder="0">
                             <div id="plus-button-childeren" class="plus-button count-button" :class=" { disabled : !pbc } " v-on:click="PlusChild();changeClass()">+</div>
@@ -238,7 +238,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-6 col-xxl-3 mw-300 min-w-300">
+                <div class="col-lg-6 col-xl-6 col-xxl mb-lg-4 mb-xxl-0 mw-300 min-w-300">
                   <div class="card h-100">
                     <div class="card-body">
                       <label for="datepickerinputStart" class="form-label">Когда</label>
@@ -262,7 +262,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-6 col-xxl-3 mw-300 min-w-300">
+                <div class="col-lg-6 col-xl-6 col-xxl mw-300 min-w-300">
                   <div class="card h-100">
                     <div class="card-body">
                       <label for="datepickerinputStart" class="form-label">Обратно</label>
@@ -525,6 +525,9 @@ export default {
         border-radius: .85rem;
         &-body {
           padding: 12px 16px;
+          @media (min-width: 1400px) and (max-width: 1416px) {
+            padding: 12px 14px;
+          }
           .form-label {
             @include font($uni,$regular,18px,24.3px,$base);
             margin-bottom: 19px;
@@ -596,7 +599,7 @@ export default {
             }
             .disabled {
               background-color: #F8FAFC;
-              border: 1px solid #F8FAFC;
+              border: 1px solid rgba(47, 56, 71, 0.1);
               color: #c0c0c0;
               cursor: auto;
             }
@@ -711,6 +714,9 @@ export default {
       }
       .mw-300{
         max-width: 300px;
+        @media screen and (min-width: 1291px) {
+          max-width: 1200px;
+        }
         @media screen and (max-width: 1290px){
           max-width: 1200px;
         }
@@ -720,7 +726,9 @@ export default {
       }
       .min-w-300{
         min-width: 300px;
-
+        @media (min-width: 1400px) {
+          min-width: unset;
+        }
       }
     }
 

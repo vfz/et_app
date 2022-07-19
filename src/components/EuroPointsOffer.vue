@@ -27,8 +27,8 @@ export default {
   margin-left: 88px;
   margin-right: 88px;
   @media screen and (max-width: 767px) {
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 8px;
+    margin-right: 8px;
   }
   .description-section {
     @include font($uni,$light,18px,24.3px,$base);

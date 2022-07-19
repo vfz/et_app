@@ -95,7 +95,9 @@
                             <div class="dispatch-date d-flex justify-content-between align-items-center">
                               <div>
                                 <span class="dispatch-date-day">{{dateArival.split('.')[0]}} </span>
-                                <span class="dispatch-date-month">{{ monthes[--dateArival.split('.')[1]]}} </span> 
+<!--                                TODO требуется сокращение месяца-->
+                                <span class="dispatch-date-month">{{ monthes[--dateArival.split('.')[1]]}} </span>
+                                <!--                                TODO требуется сокращение года-->
                                 <span class="dispatch-date-year">{{dateArival.split('.')[2]}}</span>
                               </div>
                               <div class="select-date" v-if="selectDate">
@@ -137,7 +139,9 @@
                             <div class="arrival-date d-flex justify-content-between align-items-center">
                               <div>
                                 <span class="dispatch-date-day">{{dateBack.split('.')[0]}} </span>
-                                <span class="dispatch-date-month">{{ monthes[--dateBack.split('.')[1]]}} </span> 
+                                <!--                                TODO требуется сокращение месяца-->
+                                <span class="dispatch-date-month">{{ monthes[--dateBack.split('.')[1]]}} </span>
+                                <!--                                TODO требуется сокращение года-->
                                 <span class="dispatch-date-year">{{dateBack.split('.')[2]}}</span>
                               </div>
                               <div class="select-date" v-if="selectDateBack">

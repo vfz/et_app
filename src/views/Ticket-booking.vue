@@ -2,7 +2,7 @@
   <div class="body-app-white">
     <Header/>
     <Timeline v-if="!isMobile()"/>
-    <TimelineMobile v-if="isMobile()"/>
+    <TimelineMobile class="timeline-mobile" title="Бронирование билета" description="Шаг 2" v-if="isMobile()"/>
     <FlightForm v-if="!isMobile()"/>
     <ThereBackTabs v-if="!isMobile()"/>
     <ThereTabMobile v-if="isMobile()"/>
@@ -55,6 +55,12 @@ export default {
   }
 }
 </script>
+
+<style>
+.timeline-mobile .timeline-section {
+  margin-top: 24px;
+}
+</style>
 
 <style lang="scss" scoped>
 @import "src/assets/variables.scss";

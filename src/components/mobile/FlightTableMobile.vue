@@ -213,7 +213,7 @@ export default {
           }
           .dispatch-date {
             &-day, &-month, &-year {
-              @include font($uni,$regular,18px,21.94px,$secondary)
+              @include font($uni,$regular,12px,21.94px,$secondary)
             }
             &-month {
               font-size: 12px;
@@ -256,7 +256,7 @@ export default {
           }
           .arrival-date {
             &-day, &-month, &-year {
-              @include font($uni,$regular,18px,21.94px,$secondary)
+              @include font($uni,$regular,12px,21.94px,$secondary)
             }
             &-month {
               font-size: 12px;

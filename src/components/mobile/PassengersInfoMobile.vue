@@ -10,6 +10,9 @@
       <div class="tab-content position-relative" id="nav-tabContent">
         <div class="tab-pane fade show active" id="passenger-1" role="tabpanel" aria-labelledby="passenger-1-tab">
           <div class="form-wrapper">
+            <div class="row my-data-button-row">
+              <MyDataButton :isLogin="false"/>
+            </div>
             <div class="checkbox-form d-flex flex-wrap align-items-center justify-content-between w-100">
               <MyDataButton class="d-none"/>
               <div class="checkbox-form d-block w-100">

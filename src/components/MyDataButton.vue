@@ -1,9 +1,19 @@
 <template>
   <div class="my-data-button d-inline-flex align-items-center">
-    <select id="inputState" class="form-select my-data-button-title">
-      <option>Мои данные</option>
-      <option>...</option>
-    </select>
+    <div v-if="isLogin" class="my-data-button-login">
+      <select id="inputState" class="form-select my-data-button-title">
+        <option>Мои данные</option>
+        <option>...</option>
+      </select>
+    </div>
+    <div v-else class="my-data-button-notLogin d-flex justify-content-between align-items-center w-100">
+      <div class="my-data-button-notLogin-title">
+        Данные из личного кабинета
+      </div>
+      <div class="arrow-down">
+        <ArrowDownIcon color="#C4C4C4"/>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -11,7 +21,13 @@
 import ArrowDownIcon from "@/components/icons/ArrowDownIcon";
 export default {
   name: "MyDataButton",
-  components: {ArrowDownIcon}
+  components: {ArrowDownIcon},
+  data(){
+    return {
+      isLogin : false
+    }
+  },
+  props: ['isLogin']
 
 }
 </script>
@@ -24,6 +40,15 @@ export default {
   &-title {
     @include font($uni,$bold,18px,24.3px,$base);
     border: none;
+  }
+}
+.my-data-button-notLogin {
+  margin-bottom: 32px;
+  &-title {
+    @include font($uni,$light,14px,18.9px,$deactivate);
+  }
+  .arrow-down {
+    width: 9px;
   }
 }
 </style>

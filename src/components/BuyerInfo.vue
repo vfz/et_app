@@ -20,7 +20,7 @@
     <div class="col-12">
       <div class="form-wrapper">
         <div class="row my-data-button-row">
-          <MyDataButton class="d-none"/>
+          <MyDataButton :isLogin="false"/>
         </div>
         <div class="row">
           <div class="d-block">

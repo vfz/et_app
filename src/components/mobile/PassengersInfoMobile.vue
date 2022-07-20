@@ -28,7 +28,7 @@
                     <!-- Button trigger modal -->
                     <button type="button" class="remove-button" data-bs-toggle="modal" data-bs-target="#removeModal">
                       Убрать
-                      <CancelIcon color="#1399FF"/>
+                      <CancelIcon color="#196EFFFF"/>
                     </button>
                   </div>
                 </div>
@@ -463,9 +463,12 @@ export default {
       }
     }
     .remove-button {
+      @include font($uni,$light,14px,18.9px,$blue-active);
       background: none;
       border: none;
-      @include font($uni,$light,18px,24.3px,$blue-link);
+      svg {
+        margin-left: 8px;
+      }
     }
     .form-label {
       @include font($uni,$light,14px,18.9px,$secondary);

@@ -8,7 +8,7 @@
 
     <FlightTable flight-type="there" v-if="!isMobile()"/>
     <FlightTableMobile flight-type="there" v-if="isMobile()"/>
-    
+
     <FlightTable flight-type="back" v-if="!isMobile() && !oneWay"/>
     <FlightTableMobile flight-type="back" v-if="isMobile() && !oneWay"/>
 

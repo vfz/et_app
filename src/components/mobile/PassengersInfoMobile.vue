@@ -123,9 +123,6 @@ export default {
     border-radius: 0 16px 16px 16px;
     box-shadow: $regular-shadow;
     padding: 35px 29px;
-    @media screen and (max-width: 992px) {
-      margin-bottom: 40px;
-    }
     @media screen and (max-width: 767px) {
       padding: 12px 16px 32px;
     }

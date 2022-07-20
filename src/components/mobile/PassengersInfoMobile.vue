@@ -356,6 +356,11 @@ export default {
       border-top-left-radius: 16px;
       border-top-right-radius: 16px;
       border-bottom: none;
+      @media screen and (max-width: 767px) {
+        font-size: 16px;
+        line-height: 21.6px;
+        padding: 12px 16px;
+      }
     }
     .active {
       border-color: unset;

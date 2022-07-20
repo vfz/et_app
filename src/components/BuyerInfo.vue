@@ -23,19 +23,19 @@
           <MyDataButton class="d-none"/>
         </div>
         <div class="row">
-          <div class="col-12 col-lg-6 col-xl-3">
+          <div class="d-block">
             <label for="secondNameBuyer" class="form-label">Фамилия</label>
             <input type="text" class="form-control" id="secondNameBuyer" placeholder="Иванов">
           </div>
-          <div class="col-12 col-lg-6 col-xl-3">
+          <div class="d-block">
             <label for="firstNameBuyer" class="form-label">Имя</label>
             <input type="text" class="form-control" id="firstNameBuyer" placeholder="Иван">
           </div>
-          <div class="col-12 col-lg-6 col-xl-3">
+          <div class="d-block">
             <label for="mailBuyer" class="form-label">Электронная почта</label>
             <input type="text" class="form-control" id="mailBuyer" placeholder="name@mail.ru">
           </div>
-          <div class="col-12 col-lg-6 col-xl-3">
+          <div class="d-block">
             <label for="numberBuyer" class="form-label">Телефон</label>
             <input type="text" class="form-control" id="numberBuyer" placeholder="+7 (___)-___-__-__">
           </div>
@@ -83,45 +83,50 @@ export default {
     border-radius: 0 16px 16px 16px;
     box-shadow: $regular-shadow;
     padding: 35px 29px;
-    .cancel-button {
-      background: none;
-      border: none;
-      @include font($uni,$light,18px,24.3px,$blue-link);
+    @media screen and (max-width: 768px) {
+      padding: 16px 16px 32px;
     }
-    .form-label {
-      @include font($uni,$light,14px,18.9px,$secondary);
+    .d-block {
+      margin-bottom: 32px;
+      .form-label {
+        @include font($uni,$light,14px,18.9px,$secondary);
+        @media screen and (max-width: 768px) {
+          font-size: 11px;
+          line-height: 14.45px;
+          margin-bottom: 6px;
+        }
+      }
+      .form-control {
+        @include font($uni,$regular,18px,24.3px,$base);
+        @media screen and (max-width: 768px) {
+          font-size: 14px;
+          line-height: 18.9px;
+          padding-bottom: 6px;
+        }
+      }
+      .form-control {
+        border: none;
+        border-bottom: 1px solid #8F8C8C;
+        border-radius: 0;
+        padding-left: 0;
+      }
+      .form-control:focus {
+        @include animation;
+        outline: none;
+        border: none;
+        border-bottom: 1px solid $blue-active;
+        box-shadow: none;
+      }
+      .form-control::-moz-placeholder {
+        color: #B5BDDB; /* Цвет подсказывающего текста */
+      }
+      .form-control::-webkit-input-placeholder { color: #B5BDDB; }
+      .form-control:-ms-input-placeholder { color: #B5BDDB; }
+      .form-control::-ms-input-placeholder { color: #B5BDDB; }
+      .form-control::placeholder { color: #B5BDDB; }
     }
-    .form-control, .form-select {
-      @include font($uni,$regular,18px,24.3px,$base);
-    }
-    .form-control {
-      border: none;
-      border-bottom: 1px solid #8F8C8C;
-      border-radius: 0;
-      padding-left: 0;
-    }
-    .form-control:focus {
-      @include animation;
-      outline: none;
-      border: none;
-      border-bottom: 1px solid $blue-active;
-      box-shadow: none;
-    }
-    .form-control::-moz-placeholder {
-      color: #B5BDDB; /* Цвет подсказывающего текста */
-    }
-    .form-control::-webkit-input-placeholder { color: #B5BDDB; }
-    .form-control:-ms-input-placeholder { color: #B5BDDB; }
-    .form-control::-ms-input-placeholder { color: #B5BDDB; }
-    .form-control::placeholder { color: #B5BDDB; }
-    .form-select {
-      border: none;
-      border-bottom: 1px solid #8F8C8C;
-      border-radius: 0;
-      padding-left: 0;
-    }
-    .form-select::selection {
-      color: #B5BDDB;
+    .d-block:last-child {
+      margin-bottom: 0;
     }
   }
 }

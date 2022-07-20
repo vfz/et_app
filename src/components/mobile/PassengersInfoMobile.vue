@@ -376,7 +376,7 @@ export default {
       padding: 12px 16px 32px;
     }
     .checkbox-form {
-      margin-bottom: 16px;
+      margin-bottom: 16px !important;
       @media screen and (max-width: 767px) {
         width: 100% !important;
         margin-bottom: 16px;
@@ -385,7 +385,7 @@ export default {
       }
       .form-check {
         margin-top: 16px !important;
-        margin-bottom: 16px !important;
+        margin-bottom: 0;
         @media screen and (max-width: 767px) {
           padding-left: 0;
         }
@@ -441,23 +441,19 @@ export default {
             margin-left: 0;
             font-size: 14px;
             line-height: 18.9px;
-            margin-bottom: 8px;
+            margin-bottom: 0;
           }
         }
       }
-      .form-check {
-        margin-bottom: 0;
-      }
-      .form-check-inline:last-child {
-        @media screen and (max-width: 768px) {
-          margin-right: 0;
-        }
+      .form-check:first-child {
+        margin-top: 0 !important;
       }
     }
     .remove-button {
       @include font($uni,$light,14px,18.9px,$blue-active);
       background: none;
       border: none;
+      padding-left: 0;
       svg {
         margin-left: 8px;
       }

@@ -14,13 +14,13 @@
               <div class="col-12">
                 <div class="checkbox-form d-flex flex-wrap align-items-center justify-content-between w-100">
                   <MyDataButton class="d-none"/>
-                  <div class="form-checks">
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" v-on:click="oneWay=true" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
+                  <div class="checkbox-form d-block w-100">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(true)" name="inlineRadioOptions" id="inlineRadio1" value="option1" :checked="oneWay">
                       <label class="form-check-label" for="inlineRadio1">В одну сторону</label>
                     </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" v-on:click="oneWay=false"  name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(false)"  name="inlineRadioOptions" id="inlineRadio2" value="option2" :checked="!oneWay">
                       <label class="form-check-label" for="inlineRadio2">Туда-обратно</label>
                     </div>
                   </div>
@@ -96,13 +96,13 @@
               <div class="col-12">
                 <div class="checkbox-form d-flex flex-wrap align-items-center justify-content-between w-100">
                   <MyDataButton class="d-none"/>
-                  <div class="form-checks">
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" v-on:click="oneWay=true" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
+                  <div class="checkbox-form d-block w-100">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(true)" name="inlineRadioOptions" id="inlineRadio1" value="option1" :checked="oneWay">
                       <label class="form-check-label" for="inlineRadio1">В одну сторону</label>
                     </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" v-on:click="oneWay=false"  name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(false)"  name="inlineRadioOptions" id="inlineRadio2" value="option2" :checked="!oneWay">
                       <label class="form-check-label" for="inlineRadio2">Туда-обратно</label>
                     </div>
                   </div>
@@ -178,13 +178,13 @@
               <div class="col-12">
                 <div class="checkbox-form d-flex flex-wrap align-items-center justify-content-between w-100">
                   <MyDataButton class="d-none"/>
-                  <div class="form-checks">
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" v-on:click="oneWay=true" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
+                  <div class="checkbox-form d-block w-100">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(true)" name="inlineRadioOptions" id="inlineRadio1" value="option1" :checked="oneWay">
                       <label class="form-check-label" for="inlineRadio1">В одну сторону</label>
                     </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" v-on:click="oneWay=false"  name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(false)"  name="inlineRadioOptions" id="inlineRadio2" value="option2" :checked="!oneWay">
                       <label class="form-check-label" for="inlineRadio2">Туда-обратно</label>
                     </div>
                   </div>
@@ -260,13 +260,13 @@
               <div class="col-12">
                 <div class="checkbox-form d-flex flex-wrap align-items-center justify-content-between w-100">
                   <MyDataButton class="d-none"/>
-                  <div class="form-checks">
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" v-on:click="oneWay=true" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
+                  <div class="checkbox-form d-block w-100">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(true)" name="inlineRadioOptions" id="inlineRadio1" value="option1" :checked="oneWay">
                       <label class="form-check-label" for="inlineRadio1">В одну сторону</label>
                     </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" v-on:click="oneWay=false"  name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(false)"  name="inlineRadioOptions" id="inlineRadio2" value="option2" :checked="!oneWay">
                       <label class="form-check-label" for="inlineRadio2">Туда-обратно</label>
                     </div>
                   </div>
@@ -384,7 +384,83 @@ export default {
       padding: 12px 16px;
     }
     .checkbox-form {
-      margin-bottom: 24px;
+      margin-bottom: 16px;
+      @media screen and (max-width: 767px) {
+        width: 100% !important;
+        margin-bottom: 16px;
+        margin-left: 0;
+        margin-right: 0;
+      }
+      .form-check {
+        margin-top: 16px !important;
+        margin-bottom: 16px !important;
+        @media screen and (max-width: 767px) {
+          padding-left: 0;
+        }
+        .form-check-input {
+          border-color: #1399FF;
+        }
+        .form-check-input[type=radio] {
+          @media screen and (max-width: 767px) {
+            width: 18px;
+            height: 18px;
+            margin-left: 0;
+            margin-right: 16px;
+          }
+        }
+        .form-check-input:checked {
+          border: 4px solid $blue-active;
+          @media screen and (max-width: 768px) {
+            border: 4px solid $blue-active;
+          }
+        }
+        .form-check-input:checked:before {
+          box-shadow: none;
+        }
+        .form-check-input:checked:after {
+          border: none;
+          background: none;
+        }
+        .form-check-input[type=radio]:before {
+          @media screen and (max-width: 767px) {
+            width: 18px;
+            height: 18px;
+          }
+        }
+        .form-check-input[type=radio]:after {
+          @media screen and (max-width: 767px) {
+            width: 18px;
+            height: auto;
+          }
+        }
+        .form-check-input:checked + .form-check-label {
+          font-weight: $light;
+          color: $base;
+        }
+        .form-check-label {
+          font-family: $uni;
+          font-weight: $light;
+          font-size: 18px;
+          margin-left: 24px;
+          color: $deactivate;
+          padding-left: 0;
+          @media screen and (max-width: 767px) {
+            display: block;
+            margin-left: 0;
+            font-size: 14px;
+            line-height: 18.9px;
+            margin-bottom: 8px;
+          }
+        }
+      }
+      .form-check {
+        margin-bottom: 0;
+      }
+      .form-check-inline:last-child {
+        @media screen and (max-width: 768px) {
+          margin-right: 0;
+        }
+      }
     }
     .remove-button {
       background: none;

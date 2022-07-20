@@ -60,10 +60,19 @@ export default {
   .title-section {
     @include font($uni,$bold,24px,32.4px,$base);
     margin-bottom: 16px;
+    @media screen and (max-width: 767px) {
+      font-size: 16px;
+      line-height: 24.3px;
+    }
   }
   .title-section-description {
     @include font($uni,$light,18px,24.3px,$base);
     margin-bottom: 40px;
+    @media screen and (max-width: 767px) {
+      font-size: 14px;
+      line-height: 18.9px;
+      margin-bottom: 12px;
+    }
   }
   .active-description {
     color: $blue-active;

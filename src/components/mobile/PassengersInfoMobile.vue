@@ -380,6 +380,9 @@ export default {
     @media screen and (max-width: 992px) {
       margin-bottom: 40px;
     }
+    @media screen and (max-width: 767px) {
+      padding: 12px 16px;
+    }
     .checkbox-form {
       margin-bottom: 24px;
     }

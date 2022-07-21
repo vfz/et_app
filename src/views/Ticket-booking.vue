@@ -6,7 +6,7 @@
     <FlightForm v-if="!isMobile()"/>
     <ThereBackTabs v-if="!isMobile()"/>
 <!--    TODO добавить props для отображения контента внутри слайдер-->
-    <section class="carousel-bootstrap">
+    <section v-if="isMobile()" class="carousel-bootstrap">
       <div class="container-fluid">
         <div class="row">
           <div class="col-12 p-0">

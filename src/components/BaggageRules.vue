@@ -8,7 +8,7 @@
       <p class="title-section-description">
         Вы можете бесплатно перевезти одно место ручной клади.
       </p>
-      <div class="mb-3">
+      <div class="d-block">
         <h3 class="title-info-baggage">
           Ограничение для ручной клади:
         </h3>
@@ -18,12 +18,12 @@
           — Вес до 7 килограмм
         </p>
       </div>
-      <div class="mb-3">
+      <div class="d-block">
         <p class="description-info-baggage">
           Цена платного багажа составляет <span> 250 ₽.</span>
         </p>
       </div>
-      <div class="mb-3">
+      <div class="d-block">
         <h3 class="title-info-baggage">
           Ограничения для платного багажа:
         </h3>
@@ -40,7 +40,7 @@
         <p class="title-section-description">
           Введите промокод в соответствующее поле
         </p>
-        <div class="mb-3">
+        <div class="d-block">
           <div class="row">
             <div class="col-12 col-md-6">
               <div class="input-group position-relative">
@@ -51,13 +51,13 @@
               </div>
             </div>
             <div class="col-12 col-md-6">
-              <button type="button" class="btn btn-primary btn-promo-code">
+              <button type="button" class="btn btn-primary btn-promo-code disabled">
                 Применить
               </button>
             </div>
           </div>
         </div>
-        <div class="row flex-column-reverse flex-md-row g-2">
+        <div class="row flex-column-reverse flex-md-row">
           <div class="col-12 col-md-6">
             <button class="btn btn-lg btn-primary">
               Перейти к оплате
@@ -93,24 +93,49 @@ export default {
 <style lang="scss" scoped>
 @import "src/assets/variables.scss";
 @import "src/assets/font.scss";
+p {
+  margin-bottom: 0;
+}
 .rules-baggage {
   margin-top: 40px;
   .title-section {
     @include font($uni,$bold,24px,32.4px,$base);
     margin-bottom: 16px;
+    @media screen and (max-width: 767px) {
+      font-size: 18px;
+      line-height: 24.3px;
+    }
   }
   .title-section-description {
     @include font($uni,$light,18px,24.3px,$base);
-    margin-bottom: 40px;
+    margin-bottom: 8px;
+    @media screen and (max-width: 767px) {
+      font-size: 14px;
+      line-height: 18.9px;
+    }
   }
   .title-info-baggage {
-    @include font($uni,$regular-shadow,18px,24.3px,$secondary);
+    @include font($uni,$regular,18px,24.3px,$secondary);
     margin-bottom: 0;
+    @media screen and (max-width: 767px) {
+      font-size: 14px;
+      line-height: 18.9px;
+      font-weight: $light;
+    }
   }
   .description-info-baggage {
-    @include font($uni,$light,18px,24.3px,$secondary);
+    @include font($uni,$light,18px,24.3px,$base);
+    margin-bottom: 12px;
+    @media screen and (max-width: 767px) {
+      font-size: 14px;
+      line-height: 18.9px;
+    }
     span {
       @include font($uni,$regular,18px,24.3px,$base);
+      @media screen and (max-width: 767px) {
+        font-size: 14px;
+        line-height: 18.9px;
+      }
     }
   }
   .payment-img {
@@ -120,7 +145,16 @@ export default {
   }
   .promo-code {
     margin-top: 40px;
+    @media screen and (max-width: 767px) {
+      margin-top: 24px;
+    }
     .title-section-description {
+      margin-bottom: 24px;
+      @media screen and (max-width: 767px) {
+        margin-bottom: 16px;
+      }
+    }
+    .d-block {
       margin-bottom: 24px;
     }
     .input-group {
@@ -135,12 +169,14 @@ export default {
     }
     .form-control {
       height: 100%;
-      padding-top: 12px;
-      padding-bottom: 12px;
-      padding-left: 16px;
-      padding-right: 16px;
+      padding: 12px 16px;
       @include font($uni,$regular,18px,24.3px,$base);
       border-radius: 8px !important;
+      @media screen and (max-width: 767px) {
+        font-size: 14px;
+        line-height: 24px;
+        padding: 10px 16px;
+      }
     }
     .form-control::-moz-placeholder {
       color: #B5BDDB; /* Цвет подсказывающего текста */
@@ -149,16 +185,21 @@ export default {
     .form-control:-ms-input-placeholder { color: #B5BDDB; }
     .form-control::-ms-input-placeholder { color: #B5BDDB; }
     .form-control::placeholder { color: #B5BDDB; }
-    .btn {
-      padding-top: 12px;
-      padding-bottom: 12px;
-      padding-left: 68px;
-      padding-right: 68px;
-      @include font($uni,$regular,18px,24.3px,$white);
+    .btn {@include font($uni,$regular,18px,24.3px,$white);
+      padding: 12px 68px;
       text-transform: none;
-      @media screen and (max-width: 768px) {
+      border-radius: 16px;
+      @media screen and (max-width: 767px) {
+        border-radius: 8px;
         width: 100%;
+        font-size: 16px;
+        line-height: 21.6px;
       }
+    }
+    .disabled {
+      opacity: 1;
+      background-color: $disabled;
+      box-shadow: none;
     }
     .btn-promo-code {
       @media screen and (max-width: 768px) {
@@ -167,11 +208,16 @@ export default {
     }
     .btn-lg {
       @include font($uni,$regular,18px,24.3px,$white);
-      padding-top: 23px;
-      padding-bottom: 23px;
-      padding-left: 46px;
-      padding-right: 46px;
+      padding: 23px 46px;
       border-radius: 16px;
+      @media screen and (max-width: 767px) {
+        margin-top: 24px;
+        padding: 10px 0;
+        width: 100%;
+        border-radius: 8px;
+        font-size: 16px;
+        line-height: 21.6px;
+      }
     }
     .form-check {
       position: relative;

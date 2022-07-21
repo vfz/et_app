@@ -5,7 +5,7 @@
     <TimelineMobile class="timeline-mobile" title="Бронирование билета" description="Шаг 2" v-if="isMobile()"/>
     <FlightForm v-if="!isMobile()"/>
     <ThereBackTabs v-if="!isMobile()"/>
-<!--    TODO добавить props для отображения контента-->
+<!--    TODO добавить props для отображения контента внутри слайдер-->
     <section class="carousel-bootstrap">
       <div class="container-fluid">
         <div class="row">
@@ -77,7 +77,7 @@ export default {
     ThereBackTabs, Footer, FlightForm, Timeline, Header, LoginModal, RegistrationModal, ForgotPasswordModal},
   methods: {
     isMobile() {
-      return screen.width <= 992;
+      return screen.width <= 991;
     }
   }
 }

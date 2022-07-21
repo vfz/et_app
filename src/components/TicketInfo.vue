@@ -373,7 +373,7 @@ export default {
   components: {ArrowPathIcon},
   methods: {
     isMobile() {
-      return screen.width <= 992;
+      return screen.width <= 991;
     }
   }
 }

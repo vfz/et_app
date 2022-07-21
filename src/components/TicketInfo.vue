@@ -4,6 +4,7 @@
     <h3 v-if="isMobile()" class="title-card">
       Информация о билете
     </h3>
+<!--    TODO доделать слайдер-->
     <div class="info-ticket-wrapper">
       <h3 v-if="!isMobile()" class="title-card">
         Информация о билете

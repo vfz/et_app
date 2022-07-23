@@ -13,7 +13,7 @@
       </div>
       <div class="row">
         <div class="col-12 col-lg-8 col-xl-9">
-          <form>
+          <form class="needs-validation" novalidate>
             <PassengersInfoMobile/>
             <BuyerInfo/>
             <TicketInfo/>
@@ -36,7 +36,7 @@ import PassengersInfoMobile from "@/components/mobile/PassengersInfoMobile";
 
 export default {
   name: "PassengersFormInfoMobile",
-  components: {TicketInfo, BaggageRules, BuyerInfo, PassengersInfoMobile, CheckIcon, ArrowPathIcon, CancelIcon}
+  components: {TicketInfo, BaggageRules, BuyerInfo, PassengersInfoMobile, CheckIcon, ArrowPathIcon, CancelIcon},
 }
 </script>
 

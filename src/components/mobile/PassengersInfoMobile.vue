@@ -44,19 +44,19 @@
                         </div>
                         <div class="d-block">
                           <label for="secondName1" class="form-label">Фамилия</label>
-                          <input type="text" class="form-control" id="secondName1" placeholder="Иванов">
+                          <input type="text" class="form-control" id="secondName1" placeholder="Иванов" required>
                         </div>
                         <div class="d-block">
                           <label for="firstName1" class="form-label">Имя</label>
-                          <input type="text" class="form-control" id="firstName1" placeholder="Иван">
+                          <input type="text" class="form-control" id="firstName1" placeholder="Иван" required>
                         </div>
                         <div class="d-block">
                           <label for="MiddleName1" class="form-label">Отчество</label>
-                          <input type="text" class="form-control" id="MiddleName1" placeholder="Иванович">
+                          <input type="text" class="form-control" id="MiddleName1" placeholder="Иванович" required>
                         </div>
                         <div class="d-block">
                           <label for="birthday1" class="form-label">Дата рождения</label>
-                          <input type="text" class="form-control" id="birthday1" placeholder="дд.мм.гггг">
+                          <input type="text" class="form-control" id="birthday1" placeholder="дд.мм.гггг" required>
                         </div>
                         <div class="d-block">
                           <label for="gender1" class="form-label">Пол</label>
@@ -81,7 +81,7 @@
                         </div>
                         <div class="d-block">
                           <label for="documentInfo1" class="form-label">Серия и номер документа</label>
-                          <input type="text" class="form-control" id="documentInfo1" placeholder="01 23 456789">
+                          <input type="text" class="form-control" id="documentInfo1" placeholder="01 23 456789" required>
                         </div>
                       </div>
                     </div>
@@ -122,19 +122,19 @@
                         </div>
                         <div class="d-block">
                           <label for="secondName1" class="form-label">Фамилия</label>
-                          <input type="text" class="form-control" id="secondName1" placeholder="Иванов">
+                          <input type="text" class="form-control" id="secondName1" placeholder="Иванов" required>
                         </div>
                         <div class="d-block">
                           <label for="firstName1" class="form-label">Имя</label>
-                          <input type="text" class="form-control" id="firstName1" placeholder="Иван">
+                          <input type="text" class="form-control" id="firstName1" placeholder="Иван" required>
                         </div>
                         <div class="d-block">
                           <label for="MiddleName1" class="form-label">Отчество</label>
-                          <input type="text" class="form-control" id="MiddleName1" placeholder="Иванович">
+                          <input type="text" class="form-control" id="MiddleName1" placeholder="Иванович" required>
                         </div>
                         <div class="d-block">
                           <label for="birthday1" class="form-label">Дата рождения</label>
-                          <input type="text" class="form-control" id="birthday1" placeholder="дд.мм.гггг">
+                          <input type="text" class="form-control" id="birthday1" placeholder="дд.мм.гггг" required>
                         </div>
                         <div class="d-block">
                           <label for="gender1" class="form-label">Пол</label>
@@ -159,7 +159,7 @@
                         </div>
                         <div class="d-block">
                           <label for="documentInfo1" class="form-label">Серия и номер документа</label>
-                          <input type="text" class="form-control" id="documentInfo1" placeholder="01 23 456789">
+                          <input type="text" class="form-control" id="documentInfo1" placeholder="01 23 456789" required>
                         </div>
                       </div>
                     </div>
@@ -345,13 +345,6 @@ export default {
         border-radius: 0;
         padding-left: 0;
       }
-      .form-control:focus {
-        @include animation;
-        outline: none;
-        border: none;
-        border-bottom: 1px solid $blue-active;
-        box-shadow: none;
-      }
       .form-control::-moz-placeholder {
         color: #B5BDDB; /* Цвет подсказывающего текста */
       }
@@ -373,5 +366,24 @@ export default {
       margin-bottom: 0;
     }
   }
+}
+
+//form style validation
+
+.form-control:focus {
+  @include animation;
+  border-bottom: 2px solid $active !important;
+  box-shadow: none;
+  outline: none;
+}
+.form-control:valid {
+  border-bottom: 2px solid $ok;
+  box-shadow: none;
+  outline: none;
+}
+.form-control:invalid {
+  border-bottom: 2px solid $error;
+  box-shadow: none;
+  outline: none;
 }
 </style>

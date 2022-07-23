@@ -24,7 +24,6 @@
                           <MyDataButton :isLogin="false"/>
                         </div>
                         <div class="checkbox-form d-flex flex-wrap align-items-center justify-content-between w-100">
-                          <MyDataButton class="d-none"/>
                           <div class="checkbox-form d-block w-100">
                             <div class="form-check">
                               <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(true)" name="inlineRadioOptions" id="inlineRadio1" value="option1" :checked="oneWay">
@@ -103,7 +102,6 @@
                           <MyDataButton :isLogin="false"/>
                         </div>
                         <div class="checkbox-form d-flex flex-wrap align-items-center justify-content-between w-100">
-                          <MyDataButton class="d-none"/>
                           <div class="checkbox-form d-block w-100">
                             <div class="form-check">
                               <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(true)" name="inlineRadioOptions" id="inlineRadio1" value="option1" :checked="oneWay">

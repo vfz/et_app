@@ -41,9 +41,26 @@ export default {
     @include font($uni,$bold,18px,24.3px,$base);
     border: none;
   }
+  &-login {
+    @media screen and (max-width: 767px) {
+      width: 100%;
+      margin-bottom: 16px;
+    }
+    .my-data-button-title {
+      @media screen and (max-width: 767px) {
+        padding-left: 0;
+        padding-right: 0;
+        font-size: 14px;
+        line-height: 18.9px;
+      }
+    }
+  }
 }
 .my-data-button-notLogin {
   margin-bottom: 32px;
+  @media screen and (max-width: 767px) {
+    margin-bottom: 16px;
+  }
   &-title {
     @include font($uni,$light,14px,18.9px,$deactivate);
   }

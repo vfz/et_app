@@ -1,7 +1,7 @@
 <template>
   <!--    для вызова модального окна нужно создать индивидуальный id, таким образом будет открываться свое окно-->
   <div class="modal fade place-left-modal" id="place-left-modal" tabindex="-1" aria-labelledby="place-left-modal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header justify-content-end">
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -108,6 +108,9 @@ export default {
 @import "src/assets/variables.scss";
 @import "src/assets/font.scss";
 .modal {
+  .modal-dialog {
+    max-width: 688px;
+  }
   &-header {
     .btn-close {
       margin: unset;

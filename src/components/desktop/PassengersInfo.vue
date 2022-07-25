@@ -331,6 +331,10 @@ export default {
       border-top-left-radius: 16px;
       border-top-right-radius: 16px;
       border-bottom: none;
+      @media (min-width: 992px) and (max-width: 1199px) {
+        font-size: 18px;
+        padding: 12px 16px;
+      }
     }
     .active {
       border-color: unset;

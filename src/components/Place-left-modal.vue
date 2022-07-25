@@ -109,7 +109,7 @@ export default {
 @import "src/assets/font.scss";
 .modal {
   .modal-dialog {
-    max-width: 688px;
+    max-width: 1000px;
   }
   &-header {
     .btn-close {

@@ -17,16 +17,14 @@
             </div>
             <div class="row">
               <div class="col-12 d-inline-flex justify-content-center align-content-center">
-
-<!--                <div class="squares-place-status d-flex flex-wrap align-items-center justify-content-center">-->
-<!--                  <div v-for="(value, key) in seatStates" class="square-place-status-item d-flex">-->
-<!--                    <div v-bind:class="value.class + ' square-place-status'"></div>-->
-<!--                    <div class="square-place-text d-flex align-items-center">-->
-<!--                      {{value.text}}-->
-<!--                    </div>-->
-<!--                  </div>-->
-<!--                </div>-->
-
+                <div class="place-left-scheme d-flex align-items-center">
+                  <div class="place-left-square active"></div>
+                  <p class="place-left-description">Свободное место</p>
+                </div>
+                <div class="place-left-scheme d-flex align-items-center">
+                  <div class="place-left-square deactivate"></div>
+                  <p class="place-left-description">Занятое место</p>
+                </div>
               </div>
             </div>
             <div class="row">
@@ -167,6 +165,30 @@ export default {
       .floor-item:first-child {
         margin-right: 32px;
       }
+    }
+    .place-left-scheme {
+      .place-left-square {
+        width: 32px;
+        height: 32px;
+        border-radius: 4px;
+      }
+      .active {
+        background-color: $white;
+        box-shadow: $regular-shadow;
+        border: 1px solid #A3D7FF;
+      }
+      .deactivate {
+        background-color: $deactivate;
+        border: 1px solid $deactivate
+      }
+      .place-left-description {
+        @include font($uni,$regular,14px,18.9px,$secondary);
+        margin-left: 12px;
+        margin-bottom: 0;
+      }
+    }
+    .place-left-scheme:first-child {
+      margin-right: 40px;
     }
    .bus-scheme {
     background-color: $white;

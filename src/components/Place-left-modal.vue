@@ -66,8 +66,8 @@
                         :rowspan="seat.split('+')[1]" 
                         :colspan="seat.split('+')[2]" 
                         align="center">
-                        <div :class="seat.split('+')[0]" :id="'seat_'+seat.split('+')[3].replace('_', '')">{{seat.split('+')[3].replace('_', '')}}</div>
-
+                        <div v-if="seat.split('+')[3].replace('_', '') !== ''" :class="seat.split('+')[0]" :id="'seat_'+seat.split('+')[3].replace('_', '')">{{seat.split('+')[3].replace('_', '')}}</div>
+                        <div v-else-if="seat.split('+')[0] == 'voditel'" :class="seat.split('+')[0]" :id="'seat_'+seat.split('+')[3].replace('_', '')">{{seat.split('+')[3].replace('_', '')}}</div>
                       </td>
                     </tr>
                   </table>

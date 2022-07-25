@@ -1,7 +1,7 @@
 <template>
   <!--    для вызова модального окна нужно создать индивидуальный id, таким образом будет открываться свое окно-->
   <div class="modal fade place-left-modal" id="place-left-modal" tabindex="-1" aria-labelledby="place-left-modal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header justify-content-end">
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -17,16 +17,14 @@
             </div>
             <div class="row">
               <div class="col-12 d-inline-flex justify-content-center align-content-center">
-
-<!--                <div class="squares-place-status d-flex flex-wrap align-items-center justify-content-center">-->
-<!--                  <div v-for="(value, key) in seatStates" class="square-place-status-item d-flex">-->
-<!--                    <div v-bind:class="value.class + ' square-place-status'"></div>-->
-<!--                    <div class="square-place-text d-flex align-items-center">-->
-<!--                      {{value.text}}-->
-<!--                    </div>-->
-<!--                  </div>-->
-<!--                </div>-->
-
+                <div class="place-left-scheme d-flex align-items-center">
+                  <div class="place-left-square active"></div>
+                  <p class="place-left-description">Свободное место</p>
+                </div>
+                <div class="place-left-scheme d-flex align-items-center">
+                  <div class="place-left-square deactivate"></div>
+                  <p class="place-left-description">Занятое место</p>
+                </div>
               </div>
             </div>
             <div class="row">
@@ -54,8 +52,8 @@
                         :rowspan="seat.split('+')[1]" 
                         :colspan="seat.split('+')[2]" 
                         align="center">
-                        <div :class="seat.split('+')[0]" :id="'seat_'+seat.split('+')[3].replace('_', '')">{{seat.split('+')[3].replace('_', '')}}</div>
-
+                        <div v-if="seat.split('+')[3].replace('_', '') !== ''" :class="seat.split('+')[0]" :id="'seat_'+seat.split('+')[3].replace('_', '')">{{seat.split('+')[3].replace('_', '')}}</div>
+                        <div v-else-if="seat.split('+')[0] == 'voditel'" :class="seat.split('+')[0]" :id="'seat_'+seat.split('+')[3].replace('_', '')">{{seat.split('+')[3].replace('_', '')}}</div>
                       </td>
                     </tr>
                   </table>
@@ -151,6 +149,9 @@ export default {
 @import "src/assets/variables.scss";
 @import "src/assets/font.scss";
 .modal {
+  .modal-dialog {
+    max-width: 688px;
+  }
   &-header {
     .btn-close {
       margin: unset;
@@ -208,6 +209,30 @@ export default {
       .floor-item:first-child {
         margin-right: 32px;
       }
+    }
+    .place-left-scheme {
+      .place-left-square {
+        width: 32px;
+        height: 32px;
+        border-radius: 4px;
+      }
+      .active {
+        background-color: $white;
+        box-shadow: $regular-shadow;
+        border: 1px solid #A3D7FF;
+      }
+      .deactivate {
+        background-color: $deactivate;
+        border: 1px solid $deactivate
+      }
+      .place-left-description {
+        @include font($uni,$regular,14px,18.9px,$secondary);
+        margin-left: 12px;
+        margin-bottom: 0;
+      }
+    }
+    .place-left-scheme:first-child {
+      margin-right: 40px;
     }
    .bus-scheme {
     background-color: $white;

@@ -17,6 +17,10 @@
   border-bottom: 2px solid $error !important;
   box-shadow: none !important;
   outline: none !important;
+  background-image: url("/img/icons/error.svg");
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+  background-position: right;
 }
 
 .error-feedback {

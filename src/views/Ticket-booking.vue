@@ -85,17 +85,10 @@ export default {
     },
   computed: mapGetters(['oneWay']),
   methods: {
-    
     isMobile() {
       return screen.width <= 991;
     }
-  },
-  mounted() {
-    const myCarousel = document.querySelector('#carouselPath')
-    const carousel = new bootstrap.Carousel(myCarousel, {
-      pause: true,
-    })
-  },
+  }
 }
 </script>
 <style>

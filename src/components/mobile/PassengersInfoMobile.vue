@@ -44,7 +44,7 @@
                         </div>
                         <div class="d-block">
                           <label for="secondName1" class="form-label">Фамилия</label>
-                          <input type="text" class="form-control" id="secondName1" placeholder="Иванов" required>
+                          <input type="text" class="form-control is-ok" id="secondName1" placeholder="Иванов" required>
                         </div>
                         <div class="d-block">
                           <label for="firstName1" class="form-label">Имя</label>

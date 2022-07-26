@@ -7,13 +7,13 @@
   outline: none;
 }
 
-.is-valid {
+.is-ok {
   border-bottom: 2px solid $ok;
   box-shadow: none;
   outline: none;
 }
 
-.is-invalid {
+.is-error {
   border-bottom: 2px solid $error;
   box-shadow: none;
   outline: none;

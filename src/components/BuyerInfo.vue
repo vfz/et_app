@@ -23,21 +23,30 @@
           <MyDataButton :isLogin="false"/>
         </div>
         <div class="row">
+          <!--                        TODO сделать валидацию по классам .is-ok и .is-error-->
           <div class="d-block">
             <label for="secondNameBuyer" class="form-label">Фамилия</label>
             <input type="text" class="form-control" id="secondNameBuyer" placeholder="Иванов">
+            <!--                          TODO убрать d-none когда валидация неверная-->
+            <div class="error-feedback d-none">Укажите фамилию</div>
           </div>
           <div class="d-block">
             <label for="firstNameBuyer" class="form-label">Имя</label>
             <input type="text" class="form-control" id="firstNameBuyer" placeholder="Иван">
+            <!--                          TODO убрать d-none когда валидация неверная-->
+            <div class="error-feedback d-none">Укажите имя</div>
           </div>
           <div class="d-block">
             <label for="mailBuyer" class="form-label">Электронная почта</label>
             <input type="text" class="form-control" id="mailBuyer" placeholder="name@mail.ru">
+            <!--                          TODO убрать d-none когда валидация неверная-->
+            <div class="error-feedback d-none">Электронная почта в неправильном формате</div>
           </div>
           <div class="d-block">
             <label for="numberBuyer" class="form-label">Телефон</label>
             <input type="text" class="form-control" id="numberBuyer" placeholder="+7 (___)-___-__-__">
+            <!--                          TODO убрать d-none когда валидация неверная-->
+            <div class="error-feedback d-none">Номер телефона в неправильном формате</div>
           </div>
         </div>
       </div>
@@ -56,6 +65,7 @@ export default {
 <style lang="scss" scoped>
 @import "src/assets/variables.scss";
 @import "src/assets/font.scss";
+@import "src/assets/formValidation";
 .info-buyer {
   .title-section {
     @include font($uni,$bold,24px,32.4px,$base);

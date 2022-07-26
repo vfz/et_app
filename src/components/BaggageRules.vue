@@ -44,10 +44,13 @@
           <div class="row">
             <div class="col-12 col-md-6">
               <div class="input-group position-relative">
-                <input type="text" class="form-control" placeholder="Введите промокод">
+                <input type="text" class="form-control form-control-bordered" placeholder="Введите промокод">
                 <div class="icon-bg position-absolute d-flex align-items-center">
                   <CheckIcon/>
                 </div>
+              </div>
+              <div class="error-feedback">
+                Неверный промокод
               </div>
             </div>
             <div class="col-12 col-md-6">
@@ -93,6 +96,7 @@ export default {
 <style lang="scss" scoped>
 @import "src/assets/variables.scss";
 @import "src/assets/font.scss";
+@import "src/assets/formValidation.scss";
 p {
   margin-bottom: 0;
 }
@@ -165,6 +169,7 @@ p {
         padding-right: 20px;
         right: 0;
         border-radius: 8px;
+        z-index: 9999;
       }
     }
     .form-control {

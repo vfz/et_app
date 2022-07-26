@@ -46,12 +46,8 @@
               <div class="input-group position-relative">
 <!--                TODO добавить класс is-ok-bordered или is-error-bordered для инпута-->
                 <input type="text" class="form-control form-control-bordered" placeholder="Введите промокод">
-                <!--                TODO добавить d-none когда верная или неверная валидация -->
-                <div class="icon-bg position-absolute d-flex align-items-center">
-                  <CheckIcon color="#B5BDDB"/>
-                </div>
-                <!--                TODO изменить класс is-ok-icon на is-error-icon, если валидация неверная -->
-                <div class="is-ok-icon icon-bg position-absolute d-flex align-items-center">
+                <!--                TODO изменить класс is-ok-icon на is-error-icon, если валидация неверная. Убрать d-none для отображения элемента -->
+                <div class="d-none is-error-icon icon-bg position-absolute d-flex align-items-center">
                   <CheckIcon color="#fff"/>
                 </div>
               </div>

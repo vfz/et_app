@@ -188,6 +188,7 @@ export default {
 <style lang="scss" scoped>
 @import "src/assets/variables.scss";
 @import "src/assets/font.scss";
+@import "src/assets/formValidation";
 .carousel-bootstrap {
   .container-fluid {
     padding: 0;
@@ -366,24 +367,5 @@ export default {
       margin-bottom: 0;
     }
   }
-}
-
-//form style validation
-
-.form-control:focus {
-  @include animation;
-  border-bottom: 2px solid $active !important;
-  box-shadow: none;
-  outline: none;
-}
-.form-control:valid {
-  border-bottom: 2px solid $ok;
-  box-shadow: none;
-  outline: none;
-}
-.form-control:invalid {
-  border-bottom: 2px solid $error;
-  box-shadow: none;
-  outline: none;
 }
 </style>

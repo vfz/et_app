@@ -1,0 +1,20 @@
+//form style validation
+
+.form-control:focus {
+  @include animation;
+  border-bottom: 2px solid $active !important;
+  box-shadow: none;
+  outline: none;
+}
+
+.is-valid {
+  border-bottom: 2px solid $ok;
+  box-shadow: none;
+  outline: none;
+}
+
+.is-invalid {
+  border-bottom: 2px solid $error;
+  box-shadow: none;
+  outline: none;
+}

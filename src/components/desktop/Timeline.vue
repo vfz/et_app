@@ -4,8 +4,13 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-12">
-          <div v-if="page === 'flight-selection'" class="timeline-wrapper d-flex">
-            <div class="timeline-item active">
+          <div  class="timeline-wrapper d-flex">
+            <div class="timeline-item" 
+              :class="{
+                'active' : $route.name === 'Flight-selection',
+                'active' : $route.name === 'Flight-selection-search',
+                'ready' :  $route.name === 'Ticket-booking'}" 
+              >
               <h1 class="timeline-item-title">
                 {{title}}
                 Выбор рейса
@@ -18,7 +23,7 @@
                 Куда поедем?
               </div>
             </div>
-            <div class="timeline-item">
+            <div class="timeline-item" :class="{'active' : $route.name === 'Ticket-booking' }">
               <h1 class="timeline-item-title">
                 Бронирование билета
               </h1>
@@ -41,42 +46,6 @@
               </span>
             </div>
           </div>
-          <div v-if="page === 'ticket-booking'" class="timeline-wrapper d-flex">
-            <div class="timeline-item ready">
-              <h1 class="timeline-item-title">
-                Выбор рейса
-              </h1>
-              <div class="timeline-item-underline position-relative">
-                <div class="timeline-item-underline-point start"></div>
-              </div>
-              <div class="timeline-item-description">
-                Куда поедем?
-              </div>
-            </div>
-            <div class="timeline-item active">
-              <h1 class="timeline-item-title">
-                Бронирование билета
-              </h1>
-              <div class="timeline-item-underline position-relative">
-                <div class="timeline-item-underline-point start"></div>
-                <div class="timeline-item-underline-point end"></div>
-              </div>
-              <span class="timeline-item-description">
-                Оформляем документы
-              </span>
-            </div>
-            <div class="timeline-item">
-              <h1 class="timeline-item-title">
-                Оплата
-              </h1>
-              <div class="timeline-item-underline position-relative">
-                <div class="timeline-item-underline-point end"></div>
-              </div>
-              <span class="timeline-item-description">
-                Оплачиваем билет
-              </span>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -87,7 +56,6 @@
 <script>
 export default {
   name: "Timeline",
-  props: ['page']
 }
 </script>
 

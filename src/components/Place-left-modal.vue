@@ -49,8 +49,7 @@
                     <!--TODO подсветка выбранных мест-->
                     <tr v-for="(stroka,indexstr) in mergeFlights.find(trip => trip.id_trip===busTriptId).bus_config[floor]" :key="indexstr">
                       <td v-for="(seat,index) in stroka" :key="index"
-                        :rowspan="seat.split('+')[1]" 
-                        :colspan="seat.split('+')[2]" 
+                         
                         align="center">
                         <div :class="seat.split('+')[0]" :id="'seat_'+seat.split('+')[3].replace('_', '')">{{seat.split('+')[3].replace('_', '')}}</div>
                       </td>
@@ -61,8 +60,7 @@
                     <!--TODO подсветка выбранных мест-->
                     <tr v-for="(stroka,indexstrm) in shemeMobile[floor]" :key="indexstrm">
                       <td v-for="(seat,indexm) in stroka" :key="indexm"
-                        :colspan="seat.split('+')[1]" 
-                        :rowspan="seat.split('+')[2]" 
+                        
                         align="center">
                         <div :class="seat.split('+')[0]" :id="'seat_'+seat.split('+')[3].replace('_', '')">{{seat.split('+')[3].replace('_', '')}}</div>
 
@@ -110,30 +108,27 @@ export default {
           let floorObject={
                 ...floors[fl][1].reverse()
               }
-          let o=0
-          let d=0
-          let t=0
-          let h=0
-          let p=0   
+               
           //console.log(strMObile)
           for (let i=2; i<=5; i++)
           {
+            
             let floorObject1={
                 ...floors[fl][i].reverse()
               }
             
-            for(var key in floorObject1){
-                // console.log(floorObject1[key].split('+')[1]+' это ')
-                // console.log(typeof floorObject1[key].split('+')[1])
-                // if(floorObject1[key].split('+')[1]==+2){
-                //   floorObject1.unshift('prohod+1+1+_')
-                //   console.log('Добавили проход')
-                // }
-                if(floorObject.hasOwnProperty(key)===true){ 
-                    
-                    floorObject[key]=[].concat(floorObject[key],floorObject1[key]);
+            for(var key in floorObject){
+                // console.log(floorObject[key].split('+')[1]+' это ')
+                // console.log(typeof floorObject[key].split('+')[1]
+                // console.log(typeof floorObject[key])
+                
+                // console.log(' А ВОТ это ')
+                // console.log(typeof floorObject1[key])
 
-                } 
+                      floorObject[key]=[].concat(floorObject[key],floorObject1[key]); 
+
+
+                 
             }
             
               // console.log(floorObject)
@@ -272,6 +267,12 @@ export default {
         cursor: pointer;
     }
     .prohod {
+          margin-right: 0;//10px;
+          margin-bottom: 0;//6px;
+          width: 0;//32px;
+          height: 0;//32px;
+    }
+    .breakeseat {
           margin-right: 0;//10px;
           margin-bottom: 0;//6px;
           width: 0;//32px;
@@ -419,18 +420,23 @@ export default {
       
       .tualet {
           transform: rotate(-90deg);
+          margin-bottom: -32px;
       }
       .lest {
           transform: rotate(-90deg);
+          margin-bottom: -32px;
       }
       .lest_b {
           transform: rotate(-90deg);
+          margin-bottom: -32px;
       }
       .stol {
           transform: rotate(-90deg);
+          margin-bottom: -32px;
       }
       .exit {
           transform: rotate(-90deg);
+          margin-bottom: -32px;
       }
       
     }

@@ -24,6 +24,7 @@ export default {
             state.busTriptId = tripId
         },
         mergeFlightsM(state) {
+            state.flights = []
             state.flights = state.flights.concat(state.flightThere, state.flightBack);
         },
         updateFromStations(state, fromStations) {

@@ -599,19 +599,20 @@ export default {
     position: relative;
     z-index: 1;
     .nav-link {
-      @include font($uni,$bold,24px,32.4px,$base);
+      @include font($uni,$bold,24px,32.4px,$deactivate);
       text-transform: unset;
       border-top-left-radius: 16px;
       border-top-right-radius: 16px;
       border-bottom: none;
       background-color: #FAFBFF;
-      @media screen and (max-width: 767px) {
+      @media screen and (max-width: 992px) {
         font-size: 16px;
         line-height: 21.6px;
         padding: 12px 16px;
       }
     }
     .active {
+      color: $base;
       border-color: unset;
       border-bottom: none;
       box-shadow: $regular-shadow;

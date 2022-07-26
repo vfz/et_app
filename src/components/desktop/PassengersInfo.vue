@@ -340,7 +340,7 @@ export default {
     position: relative;
     z-index: 1;
     .nav-link {
-      @include font($uni,$bold,24px,32.4px,$base);
+      @include font($uni,$bold,24px,32.4px,$deactivate);
       text-transform: unset;
       border-top-left-radius: 16px;
       border-top-right-radius: 16px;
@@ -352,6 +352,7 @@ export default {
       }
     }
     .active {
+      color: $base;
       border-color: unset;
       border-bottom: none;
       box-shadow: $regular-shadow;

@@ -7,6 +7,17 @@
   outline: none;
 }
 
+.form-control-bordered:focus {
+  @include animation;
+  box-shadow: $focus-shadow;
+  border: none !important;
+}
+
+.form-control-bordered {
+  box-shadow: $regular-shadow;
+  border: none;
+}
+
 .is-ok {
   border-bottom: 2px solid $ok !important;
   box-shadow: none !important;

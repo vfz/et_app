@@ -1,184 +1,353 @@
 <template>
   <!--    информация о пассажирах-->
-  <div class="carousel-bootstrap">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-12 p-0">
-          <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            </div>
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <div class="info-passengers-mobile">
-                  <nav>
-                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                      <button class="nav-link active" id="passenger-1-tab" data-bs-toggle="tab" data-bs-target="#passenger-1" type="button" role="tab" aria-controls="passenger-1" aria-selected="true">Пассажир №1</button>
+  <div class="passengers-info-mobile-section">
+    <div class="passengers-info-mobile-wrapper">
+      <div class="container-fluid p-0">
+        <div class="row">
+          <div class="col-12 p-0">
+            <div class="info-passengers-mobile">
+              <nav>
+                <div class="nav nav-tabs flex-nowrap overflow-x-scroll" id="nav-tab" role="tablist">
+                  <button class="nav-link active" id="passenger-1-tab" data-bs-toggle="tab" data-bs-target="#passenger-1" type="button" role="tab" aria-controls="passenger-1" aria-selected="true">Пассажир №1</button>
+                  <button class="nav-link" id="passenger-2-tab" data-bs-toggle="tab" data-bs-target="#passenger-2" type="button" role="tab" aria-controls="passenger-2" aria-selected="true">Пассажир №2</button>
+                  <button class="nav-link" id="passenger-3-tab" data-bs-toggle="tab" data-bs-target="#passenger-3" type="button" role="tab" aria-controls="passenger-3" aria-selected="true">Пассажир №3</button>
+                  <button class="nav-link" id="passenger-4-tab" data-bs-toggle="tab" data-bs-target="#passenger-4" type="button" role="tab" aria-controls="passenger-4" aria-selected="true">Пассажир №4</button>
+                </div>
+              </nav>
+              <div class="tab-content position-relative" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="passenger-1" ref="tabpanel" aria-labelledby="passenger-1-tab">
+                  <div class="form-wrapper">
+                    <div class="row my-data-button-row">
+                      <MyDataButton :isLogin="false"/>
                     </div>
-                  </nav>
-                  <div class="tab-content position-relative" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="passenger-1" role="tabpanel" aria-labelledby="passenger-1-tab">
-                      <div class="form-wrapper">
-                        <div class="row my-data-button-row">
-                          <MyDataButton :isLogin="false"/>
+                    <div class="checkbox-form d-flex flex-wrap align-items-center justify-content-between w-100">
+                      <div class="checkbox-form d-block w-100">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(true)" name="inlineRadioOptions" id="inlineRadio1" value="option1" :checked="oneWay">
+                          <label class="form-check-label" for="inlineRadio1">В одну сторону</label>
                         </div>
-                        <div class="checkbox-form d-flex flex-wrap align-items-center justify-content-between w-100">
-                          <div class="checkbox-form d-block w-100">
-                            <div class="form-check">
-                              <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(true)" name="inlineRadioOptions" id="inlineRadio1" value="option1" :checked="oneWay">
-                              <label class="form-check-label" for="inlineRadio1">В одну сторону</label>
-                            </div>
-                            <div class="form-check">
-                              <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(false)"  name="inlineRadioOptions" id="inlineRadio2" value="option2" :checked="!oneWay">
-                              <label class="form-check-label" for="inlineRadio2">Туда-обратно</label>
-                            </div>
-                          </div>
-                          <div class="d-inline-block">
-                            <!-- Button trigger modal -->
-                            <button type="button" class="remove-button" data-bs-toggle="modal" data-bs-target="#removeModal">
-                              Убрать
-                              <CancelIcon color="#196EFFFF"/>
-                            </button>
-                          </div>
-                        </div>
-<!--                        TODO сделать валидацию по классам .is-ok и .is-error-->
-                        <div class="d-block">
-                          <label for="secondName1" class="form-label">Фамилия</label>
-                          <input type="text" class="form-control is-ok" id="secondName1" placeholder="Иванов" required>
-<!--                          TODO убрать d-none когда валидация неверная-->
-                          <div class="error-feedback d-none">Укажите фамилию</div>
-                        </div>
-                        <div class="d-block">
-                          <label for="firstName1" class="form-label">Имя</label>
-                          <input type="text" class="form-control" id="firstName1" placeholder="Иван" required>
-                          <!--                          TODO убрать d-none когда валидация неверная-->
-                          <div class="error-feedback d-none">Укажите имя</div>
-                        </div>
-                        <div class="d-block">
-                          <label for="MiddleName1" class="form-label">Отчество</label>
-                          <input type="text" class="form-control" id="MiddleName1" placeholder="Иванович" required>
-                          <!--                          TODO убрать d-none когда валидация неверная-->
-                          <div class="error-feedback d-none">Укажите отчество</div>
-                        </div>
-                        <div class="d-block">
-                          <label for="birthday1" class="form-label">Дата рождения</label>
-                          <input type="text" class="form-control" id="birthday1" placeholder="дд.мм.гггг" required>
-                          <!--                          TODO убрать d-none когда валидация неверная-->
-                          <div class="error-feedback d-none">Некорректная дата, вам больше 125 лет?</div>
-                        </div>
-                        <div class="d-block">
-                          <label for="gender1" class="form-label">Пол</label>
-                          <select id="gender1" class="form-select">
-                            <option selected>Мужской</option>
-                            <option>Женский</option>
-                          </select>
-                          <!--                          TODO убрать d-none когда валидация неверная-->
-                          <div class="error-feedback d-none">Выберите пол</div>
-                        </div>
-                        <div class="d-block">
-                          <label for="citizenship1" class="form-label">Гражданство</label>
-                          <select id="citizenship1" class="form-select">
-                            <option selected>Российская Федерация</option>
-                            <option>...</option>
-                          </select>
-                          <!--                          TODO убрать d-none когда валидация неверная-->
-                          <div class="error-feedback d-none">Выберите гражданство</div>
-                        </div>
-                        <div class="d-block">
-                          <label for="document1" class="form-label">Документ</label>
-                          <select id="document1" class="form-select">
-                            <option selected>Паспорт РФ</option>
-                            <option>...</option>
-                          </select>
-                          <!--                          TODO убрать d-none когда валидация неверная-->
-                          <div class="error-feedback d-none">Выберите документ</div>
-                        </div>
-                        <div class="d-block">
-                          <label for="documentInfo1" class="form-label">Серия и номер документа</label>
-                          <input type="text" class="form-control" id="documentInfo1" placeholder="01 23 456789" required>
-                          <!--                          TODO убрать d-none когда валидация неверная-->
-                          <div class="error-feedback d-none">Некорректные серия и номер документа</div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(false)"  name="inlineRadioOptions" id="inlineRadio2" value="option2" :checked="!oneWay">
+                          <label class="form-check-label" for="inlineRadio2">Туда-обратно</label>
                         </div>
                       </div>
+                      <div class="d-inline-block">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="remove-button" data-bs-toggle="modal" data-bs-target="#removeModal">
+                          Убрать
+                          <CancelIcon color="#196EFFFF"/>
+                        </button>
+                      </div>
+                    </div>
+                    <!--                        TODO сделать валидацию по классам .is-ok и .is-error-->
+                    <div class="d-block">
+                      <label for="secondName1" class="form-label">Фамилия</label>
+                      <input type="text" class="form-control is-ok" id="secondName1" placeholder="Иванов" required>
+                      <!--                          TODO убрать d-none когда валидация неверная-->
+                      <div class="error-feedback d-none">Укажите фамилию</div>
+                    </div>
+                    <div class="d-block">
+                      <label for="firstName1" class="form-label">Имя</label>
+                      <input type="text" class="form-control" id="firstName1" placeholder="Иван" required>
+                      <!--                          TODO убрать d-none когда валидация неверная-->
+                      <div class="error-feedback d-none">Укажите имя</div>
+                    </div>
+                    <div class="d-block">
+                      <label for="MiddleName1" class="form-label">Отчество</label>
+                      <input type="text" class="form-control" id="MiddleName1" placeholder="Иванович" required>
+                      <!--                          TODO убрать d-none когда валидация неверная-->
+                      <div class="error-feedback d-none">Укажите отчество</div>
+                    </div>
+                    <div class="d-block">
+                      <label for="birthday1" class="form-label">Дата рождения</label>
+                      <input type="text" class="form-control" id="birthday1" placeholder="дд.мм.гггг" required>
+                      <!--                          TODO убрать d-none когда валидация неверная-->
+                      <div class="error-feedback d-none">Некорректная дата, вам больше 125 лет?</div>
+                    </div>
+                    <div class="d-block">
+                      <label for="gender1" class="form-label">Пол</label>
+                      <select id="gender1" class="form-select">
+                        <option selected>Мужской</option>
+                        <option>Женский</option>
+                      </select>
+                      <!--                          TODO убрать d-none когда валидация неверная-->
+                      <div class="error-feedback d-none">Выберите пол</div>
+                    </div>
+                    <div class="d-block">
+                      <label for="citizenship1" class="form-label">Гражданство</label>
+                      <select id="citizenship1" class="form-select">
+                        <option selected>Российская Федерация</option>
+                        <option>...</option>
+                      </select>
+                      <!--                          TODO убрать d-none когда валидация неверная-->
+                      <div class="error-feedback d-none">Выберите гражданство</div>
+                    </div>
+                    <div class="d-block">
+                      <label for="document1" class="form-label">Документ</label>
+                      <select id="document1" class="form-select">
+                        <option selected>Паспорт РФ</option>
+                        <option>...</option>
+                      </select>
+                      <!--                          TODO убрать d-none когда валидация неверная-->
+                      <div class="error-feedback d-none">Выберите документ</div>
+                    </div>
+                    <div class="d-block">
+                      <label for="documentInfo1" class="form-label">Серия и номер документа</label>
+                      <input type="text" class="form-control" id="documentInfo1" placeholder="01 23 456789" required>
+                      <!--                          TODO убрать d-none когда валидация неверная-->
+                      <div class="error-feedback d-none">Некорректные серия и номер документа</div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="carousel-item">
-                <div class="info-passengers-mobile">
-                  <nav>
-                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                      <button class="nav-link active" id="passenger-1-tab" data-bs-toggle="tab" data-bs-target="#passenger-1" type="button" role="tab" aria-controls="passenger-1" aria-selected="true">Пассажир №1</button>
+                <div class="tab-pane fade" id="passenger-2" role="tabpanel" aria-labelledby="passenger-2-tab">
+                  <div class="form-wrapper">
+                    <div class="row my-data-button-row">
+                      <MyDataButton :isLogin="false"/>
                     </div>
-                  </nav>
-                  <div class="tab-content position-relative" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="passenger-1" role="tabpanel" aria-labelledby="passenger-1-tab">
-                      <div class="form-wrapper">
-                        <div class="row my-data-button-row">
-                          <MyDataButton :isLogin="false"/>
+                    <div class="checkbox-form d-flex flex-wrap align-items-center justify-content-between w-100">
+                      <div class="checkbox-form d-block w-100">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(true)" name="inlineRadioOptions" id="inlineRadio1" value="option1" :checked="oneWay">
+                          <label class="form-check-label" for="inlineRadio1">В одну сторону</label>
                         </div>
-                        <div class="checkbox-form d-flex flex-wrap align-items-center justify-content-between w-100">
-                          <div class="checkbox-form d-block w-100">
-                            <div class="form-check">
-                              <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(true)" name="inlineRadioOptions" id="inlineRadio1" value="option1" :checked="oneWay">
-                              <label class="form-check-label" for="inlineRadio1">В одну сторону</label>
-                            </div>
-                            <div class="form-check">
-                              <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(false)"  name="inlineRadioOptions" id="inlineRadio2" value="option2" :checked="!oneWay">
-                              <label class="form-check-label" for="inlineRadio2">Туда-обратно</label>
-                            </div>
-                          </div>
-                          <div class="d-inline-block">
-                            <!-- Button trigger modal -->
-                            <button type="button" class="remove-button" data-bs-toggle="modal" data-bs-target="#removeModal">
-                              Убрать
-                              <CancelIcon color="#196EFFFF"/>
-                            </button>
-                          </div>
-                        </div>
-                        <div class="d-block">
-                          <label for="secondName1" class="form-label">Фамилия</label>
-                          <input type="text" class="form-control" id="secondName1" placeholder="Иванов" required>
-                        </div>
-                        <div class="d-block">
-                          <label for="firstName1" class="form-label">Имя</label>
-                          <input type="text" class="form-control" id="firstName1" placeholder="Иван" required>
-                        </div>
-                        <div class="d-block">
-                          <label for="MiddleName1" class="form-label">Отчество</label>
-                          <input type="text" class="form-control" id="MiddleName1" placeholder="Иванович" required>
-                        </div>
-                        <div class="d-block">
-                          <label for="birthday1" class="form-label">Дата рождения</label>
-                          <input type="text" class="form-control" id="birthday1" placeholder="дд.мм.гггг" required>
-                        </div>
-                        <div class="d-block">
-                          <label for="gender1" class="form-label">Пол</label>
-                          <select id="gender1" class="form-select">
-                            <option selected>Мужской</option>
-                            <option>Женский</option>
-                          </select>
-                        </div>
-                        <div class="d-block">
-                          <label for="citizenship1" class="form-label">Гражданство</label>
-                          <select id="citizenship1" class="form-select">
-                            <option selected>Российская Федерация</option>
-                            <option>...</option>
-                          </select>
-                        </div>
-                        <div class="d-block">
-                          <label for="document1" class="form-label">Документ</label>
-                          <select id="document1" class="form-select">
-                            <option selected>Паспорт РФ</option>
-                            <option>...</option>
-                          </select>
-                        </div>
-                        <div class="d-block">
-                          <label for="documentInfo1" class="form-label">Серия и номер документа</label>
-                          <input type="text" class="form-control" id="documentInfo1" placeholder="01 23 456789" required>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(false)"  name="inlineRadioOptions" id="inlineRadio2" value="option2" :checked="!oneWay">
+                          <label class="form-check-label" for="inlineRadio2">Туда-обратно</label>
                         </div>
                       </div>
+                      <div class="d-inline-block">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="remove-button" data-bs-toggle="modal" data-bs-target="#removeModal">
+                          Убрать
+                          <CancelIcon color="#196EFFFF"/>
+                        </button>
+                      </div>
+                    </div>
+                    <!--                        TODO сделать валидацию по классам .is-ok и .is-error-->
+                    <div class="d-block">
+                      <label for="secondName1" class="form-label">Фамилия</label>
+                      <input type="text" class="form-control is-ok" id="secondName1" placeholder="Иванов" required>
+                      <!--                          TODO убрать d-none когда валидация неверная-->
+                      <div class="error-feedback d-none">Укажите фамилию</div>
+                    </div>
+                    <div class="d-block">
+                      <label for="firstName1" class="form-label">Имя</label>
+                      <input type="text" class="form-control" id="firstName1" placeholder="Иван" required>
+                      <!--                          TODO убрать d-none когда валидация неверная-->
+                      <div class="error-feedback d-none">Укажите имя</div>
+                    </div>
+                    <div class="d-block">
+                      <label for="MiddleName1" class="form-label">Отчество</label>
+                      <input type="text" class="form-control" id="MiddleName1" placeholder="Иванович" required>
+                      <!--                          TODO убрать d-none когда валидация неверная-->
+                      <div class="error-feedback d-none">Укажите отчество</div>
+                    </div>
+                    <div class="d-block">
+                      <label for="birthday1" class="form-label">Дата рождения</label>
+                      <input type="text" class="form-control" id="birthday1" placeholder="дд.мм.гггг" required>
+                      <!--                          TODO убрать d-none когда валидация неверная-->
+                      <div class="error-feedback d-none">Некорректная дата, вам больше 125 лет?</div>
+                    </div>
+                    <div class="d-block">
+                      <label for="gender1" class="form-label">Пол</label>
+                      <select id="gender1" class="form-select">
+                        <option selected>Мужской</option>
+                        <option>Женский</option>
+                      </select>
+                      <!--                          TODO убрать d-none когда валидация неверная-->
+                      <div class="error-feedback d-none">Выберите пол</div>
+                    </div>
+                    <div class="d-block">
+                      <label for="citizenship1" class="form-label">Гражданство</label>
+                      <select id="citizenship1" class="form-select">
+                        <option selected>Российская Федерация</option>
+                        <option>...</option>
+                      </select>
+                      <!--                          TODO убрать d-none когда валидация неверная-->
+                      <div class="error-feedback d-none">Выберите гражданство</div>
+                    </div>
+                    <div class="d-block">
+                      <label for="document1" class="form-label">Документ</label>
+                      <select id="document1" class="form-select">
+                        <option selected>Паспорт РФ</option>
+                        <option>...</option>
+                      </select>
+                      <!--                          TODO убрать d-none когда валидация неверная-->
+                      <div class="error-feedback d-none">Выберите документ</div>
+                    </div>
+                    <div class="d-block">
+                      <label for="documentInfo1" class="form-label">Серия и номер документа</label>
+                      <input type="text" class="form-control" id="documentInfo1" placeholder="01 23 456789" required>
+                      <!--                          TODO убрать d-none когда валидация неверная-->
+                      <div class="error-feedback d-none">Некорректные серия и номер документа</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="passenger-3" role="tabpanel" aria-labelledby="passenger-3-tab">
+                  <div class="form-wrapper">
+                    <div class="row my-data-button-row">
+                      <MyDataButton :isLogin="false"/>
+                    </div>
+                    <div class="checkbox-form d-flex flex-wrap align-items-center justify-content-between w-100">
+                      <div class="checkbox-form d-block w-100">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(true)" name="inlineRadioOptions" id="inlineRadio1" value="option1" :checked="oneWay">
+                          <label class="form-check-label" for="inlineRadio1">В одну сторону</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(false)"  name="inlineRadioOptions" id="inlineRadio2" value="option2" :checked="!oneWay">
+                          <label class="form-check-label" for="inlineRadio2">Туда-обратно</label>
+                        </div>
+                      </div>
+                      <div class="d-inline-block">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="remove-button" data-bs-toggle="modal" data-bs-target="#removeModal">
+                          Убрать
+                          <CancelIcon color="#196EFFFF"/>
+                        </button>
+                      </div>
+                    </div>
+                    <!--                        TODO сделать валидацию по классам .is-ok и .is-error-->
+                    <div class="d-block">
+                      <label for="secondName1" class="form-label">Фамилия</label>
+                      <input type="text" class="form-control is-ok" id="secondName1" placeholder="Иванов" required>
+                      <!--                          TODO убрать d-none когда валидация неверная-->
+                      <div class="error-feedback d-none">Укажите фамилию</div>
+                    </div>
+                    <div class="d-block">
+                      <label for="firstName1" class="form-label">Имя</label>
+                      <input type="text" class="form-control" id="firstName1" placeholder="Иван" required>
+                      <!--                          TODO убрать d-none когда валидация неверная-->
+                      <div class="error-feedback d-none">Укажите имя</div>
+                    </div>
+                    <div class="d-block">
+                      <label for="MiddleName1" class="form-label">Отчество</label>
+                      <input type="text" class="form-control" id="MiddleName1" placeholder="Иванович" required>
+                      <!--                          TODO убрать d-none когда валидация неверная-->
+                      <div class="error-feedback d-none">Укажите отчество</div>
+                    </div>
+                    <div class="d-block">
+                      <label for="birthday1" class="form-label">Дата рождения</label>
+                      <input type="text" class="form-control" id="birthday1" placeholder="дд.мм.гггг" required>
+                      <!--                          TODO убрать d-none когда валидация неверная-->
+                      <div class="error-feedback d-none">Некорректная дата, вам больше 125 лет?</div>
+                    </div>
+                    <div class="d-block">
+                      <label for="gender1" class="form-label">Пол</label>
+                      <select id="gender1" class="form-select">
+                        <option selected>Мужской</option>
+                        <option>Женский</option>
+                      </select>
+                      <!--                          TODO убрать d-none когда валидация неверная-->
+                      <div class="error-feedback d-none">Выберите пол</div>
+                    </div>
+                    <div class="d-block">
+                      <label for="citizenship1" class="form-label">Гражданство</label>
+                      <select id="citizenship1" class="form-select">
+                        <option selected>Российская Федерация</option>
+                        <option>...</option>
+                      </select>
+                      <!--                          TODO убрать d-none когда валидация неверная-->
+                      <div class="error-feedback d-none">Выберите гражданство</div>
+                    </div>
+                    <div class="d-block">
+                      <label for="document1" class="form-label">Документ</label>
+                      <select id="document1" class="form-select">
+                        <option selected>Паспорт РФ</option>
+                        <option>...</option>
+                      </select>
+                      <!--                          TODO убрать d-none когда валидация неверная-->
+                      <div class="error-feedback d-none">Выберите документ</div>
+                    </div>
+                    <div class="d-block">
+                      <label for="documentInfo1" class="form-label">Серия и номер документа</label>
+                      <input type="text" class="form-control" id="documentInfo1" placeholder="01 23 456789" required>
+                      <!--                          TODO убрать d-none когда валидация неверная-->
+                      <div class="error-feedback d-none">Некорректные серия и номер документа</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="passenger-4" role="tabpanel" aria-labelledby="passenger-24-tab">
+                  <div class="form-wrapper">
+                    <div class="row my-data-button-row">
+                      <MyDataButton :isLogin="false"/>
+                    </div>
+                    <div class="checkbox-form d-flex flex-wrap align-items-center justify-content-between w-100">
+                      <div class="checkbox-form d-block w-100">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(true)" name="inlineRadioOptions" id="inlineRadio1" value="option1" :checked="oneWay">
+                          <label class="form-check-label" for="inlineRadio1">В одну сторону</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(false)"  name="inlineRadioOptions" id="inlineRadio2" value="option2" :checked="!oneWay">
+                          <label class="form-check-label" for="inlineRadio2">Туда-обратно</label>
+                        </div>
+                      </div>
+                      <div class="d-inline-block">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="remove-button" data-bs-toggle="modal" data-bs-target="#removeModal">
+                          Убрать
+                          <CancelIcon color="#196EFFFF"/>
+                        </button>
+                      </div>
+                    </div>
+                    <!--                        TODO сделать валидацию по классам .is-ok и .is-error-->
+                    <div class="d-block">
+                      <label for="secondName1" class="form-label">Фамилия</label>
+                      <input type="text" class="form-control is-ok" id="secondName1" placeholder="Иванов" required>
+                      <!--                          TODO убрать d-none когда валидация неверная-->
+                      <div class="error-feedback d-none">Укажите фамилию</div>
+                    </div>
+                    <div class="d-block">
+                      <label for="firstName1" class="form-label">Имя</label>
+                      <input type="text" class="form-control" id="firstName1" placeholder="Иван" required>
+                      <!--                          TODO убрать d-none когда валидация неверная-->
+                      <div class="error-feedback d-none">Укажите имя</div>
+                    </div>
+                    <div class="d-block">
+                      <label for="MiddleName1" class="form-label">Отчество</label>
+                      <input type="text" class="form-control" id="MiddleName1" placeholder="Иванович" required>
+                      <!--                          TODO убрать d-none когда валидация неверная-->
+                      <div class="error-feedback d-none">Укажите отчество</div>
+                    </div>
+                    <div class="d-block">
+                      <label for="birthday1" class="form-label">Дата рождения</label>
+                      <input type="text" class="form-control" id="birthday1" placeholder="дд.мм.гггг" required>
+                      <!--                          TODO убрать d-none когда валидация неверная-->
+                      <div class="error-feedback d-none">Некорректная дата, вам больше 125 лет?</div>
+                    </div>
+                    <div class="d-block">
+                      <label for="gender1" class="form-label">Пол</label>
+                      <select id="gender1" class="form-select">
+                        <option selected>Мужской</option>
+                        <option>Женский</option>
+                      </select>
+                      <!--                          TODO убрать d-none когда валидация неверная-->
+                      <div class="error-feedback d-none">Выберите пол</div>
+                    </div>
+                    <div class="d-block">
+                      <label for="citizenship1" class="form-label">Гражданство</label>
+                      <select id="citizenship1" class="form-select">
+                        <option selected>Российская Федерация</option>
+                        <option>...</option>
+                      </select>
+                      <!--                          TODO убрать d-none когда валидация неверная-->
+                      <div class="error-feedback d-none">Выберите гражданство</div>
+                    </div>
+                    <div class="d-block">
+                      <label for="document1" class="form-label">Документ</label>
+                      <select id="document1" class="form-select">
+                        <option selected>Паспорт РФ</option>
+                        <option>...</option>
+                      </select>
+                      <!--                          TODO убрать d-none когда валидация неверная-->
+                      <div class="error-feedback d-none">Выберите документ</div>
+                    </div>
+                    <div class="d-block">
+                      <label for="documentInfo1" class="form-label">Серия и номер документа</label>
+                      <input type="text" class="form-control" id="documentInfo1" placeholder="01 23 456789" required>
+                      <!--                          TODO убрать d-none когда валидация неверная-->
+                      <div class="error-feedback d-none">Некорректные серия и номер документа</div>
                     </div>
                   </div>
                 </div>
@@ -188,6 +357,195 @@
         </div>
       </div>
     </div>
+<!--    <div class="carousel-bootstrap">-->
+<!--      <div class="container-fluid p-0">-->
+<!--        <div class="row">-->
+<!--          <div class="col-12 p-0">-->
+<!--            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">-->
+<!--              <div class="carousel-indicators">-->
+<!--                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>-->
+<!--                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>-->
+<!--              </div>-->
+<!--              <div class="carousel-inner">-->
+<!--                <div class="carousel-item active">-->
+<!--                  <div class="info-passengers-mobile">-->
+<!--                    <nav>-->
+<!--                      <div class="nav nav-tabs" id="nav-tab" role="tablist">-->
+<!--                        <button class="nav-link active" id="passenger-1-tab" data-bs-toggle="tab" data-bs-target="#passenger-1" type="button" role="tab" aria-controls="passenger-1" aria-selected="true">Пассажир №1</button>-->
+<!--                      </div>-->
+<!--                    </nav>-->
+<!--                    <div class="tab-content position-relative" id="nav-tabContent">-->
+<!--                      <div class="tab-pane fade show active" id="passenger-1" role="tabpanel" aria-labelledby="passenger-1-tab">-->
+<!--                        <div class="form-wrapper">-->
+<!--                          <div class="row my-data-button-row">-->
+<!--                            <MyDataButton :isLogin="false"/>-->
+<!--                          </div>-->
+<!--                          <div class="checkbox-form d-flex flex-wrap align-items-center justify-content-between w-100">-->
+<!--                            <div class="checkbox-form d-block w-100">-->
+<!--                              <div class="form-check">-->
+<!--                                <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(true)" name="inlineRadioOptions" id="inlineRadio1" value="option1" :checked="oneWay">-->
+<!--                                <label class="form-check-label" for="inlineRadio1">В одну сторону</label>-->
+<!--                              </div>-->
+<!--                              <div class="form-check">-->
+<!--                                <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(false)"  name="inlineRadioOptions" id="inlineRadio2" value="option2" :checked="!oneWay">-->
+<!--                                <label class="form-check-label" for="inlineRadio2">Туда-обратно</label>-->
+<!--                              </div>-->
+<!--                            </div>-->
+<!--                            <div class="d-inline-block">-->
+<!--                              &lt;!&ndash; Button trigger modal &ndash;&gt;-->
+<!--                              <button type="button" class="remove-button" data-bs-toggle="modal" data-bs-target="#removeModal">-->
+<!--                                Убрать-->
+<!--                                <CancelIcon color="#196EFFFF"/>-->
+<!--                              </button>-->
+<!--                            </div>-->
+<!--                          </div>-->
+<!--                          &lt;!&ndash;                        TODO сделать валидацию по классам .is-ok и .is-error&ndash;&gt;-->
+<!--                          <div class="d-block">-->
+<!--                            <label for="secondName1" class="form-label">Фамилия</label>-->
+<!--                            <input type="text" class="form-control is-ok" id="secondName1" placeholder="Иванов" required>-->
+<!--                            &lt;!&ndash;                          TODO убрать d-none когда валидация неверная&ndash;&gt;-->
+<!--                            <div class="error-feedback d-none">Укажите фамилию</div>-->
+<!--                          </div>-->
+<!--                          <div class="d-block">-->
+<!--                            <label for="firstName1" class="form-label">Имя</label>-->
+<!--                            <input type="text" class="form-control" id="firstName1" placeholder="Иван" required>-->
+<!--                            &lt;!&ndash;                          TODO убрать d-none когда валидация неверная&ndash;&gt;-->
+<!--                            <div class="error-feedback d-none">Укажите имя</div>-->
+<!--                          </div>-->
+<!--                          <div class="d-block">-->
+<!--                            <label for="MiddleName1" class="form-label">Отчество</label>-->
+<!--                            <input type="text" class="form-control" id="MiddleName1" placeholder="Иванович" required>-->
+<!--                            &lt;!&ndash;                          TODO убрать d-none когда валидация неверная&ndash;&gt;-->
+<!--                            <div class="error-feedback d-none">Укажите отчество</div>-->
+<!--                          </div>-->
+<!--                          <div class="d-block">-->
+<!--                            <label for="birthday1" class="form-label">Дата рождения</label>-->
+<!--                            <input type="text" class="form-control" id="birthday1" placeholder="дд.мм.гггг" required>-->
+<!--                            &lt;!&ndash;                          TODO убрать d-none когда валидация неверная&ndash;&gt;-->
+<!--                            <div class="error-feedback d-none">Некорректная дата, вам больше 125 лет?</div>-->
+<!--                          </div>-->
+<!--                          <div class="d-block">-->
+<!--                            <label for="gender1" class="form-label">Пол</label>-->
+<!--                            <select id="gender1" class="form-select">-->
+<!--                              <option selected>Мужской</option>-->
+<!--                              <option>Женский</option>-->
+<!--                            </select>-->
+<!--                            &lt;!&ndash;                          TODO убрать d-none когда валидация неверная&ndash;&gt;-->
+<!--                            <div class="error-feedback d-none">Выберите пол</div>-->
+<!--                          </div>-->
+<!--                          <div class="d-block">-->
+<!--                            <label for="citizenship1" class="form-label">Гражданство</label>-->
+<!--                            <select id="citizenship1" class="form-select">-->
+<!--                              <option selected>Российская Федерация</option>-->
+<!--                              <option>...</option>-->
+<!--                            </select>-->
+<!--                            &lt;!&ndash;                          TODO убрать d-none когда валидация неверная&ndash;&gt;-->
+<!--                            <div class="error-feedback d-none">Выберите гражданство</div>-->
+<!--                          </div>-->
+<!--                          <div class="d-block">-->
+<!--                            <label for="document1" class="form-label">Документ</label>-->
+<!--                            <select id="document1" class="form-select">-->
+<!--                              <option selected>Паспорт РФ</option>-->
+<!--                              <option>...</option>-->
+<!--                            </select>-->
+<!--                            &lt;!&ndash;                          TODO убрать d-none когда валидация неверная&ndash;&gt;-->
+<!--                            <div class="error-feedback d-none">Выберите документ</div>-->
+<!--                          </div>-->
+<!--                          <div class="d-block">-->
+<!--                            <label for="documentInfo1" class="form-label">Серия и номер документа</label>-->
+<!--                            <input type="text" class="form-control" id="documentInfo1" placeholder="01 23 456789" required>-->
+<!--                            &lt;!&ndash;                          TODO убрать d-none когда валидация неверная&ndash;&gt;-->
+<!--                            <div class="error-feedback d-none">Некорректные серия и номер документа</div>-->
+<!--                          </div>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="carousel-item">-->
+<!--                  <div class="info-passengers-mobile">-->
+<!--                    <nav>-->
+<!--                      <div class="nav nav-tabs" id="nav-tab" role="tablist">-->
+<!--                        <button class="nav-link active" id="passenger-1-tab" data-bs-toggle="tab" data-bs-target="#passenger-1" type="button" role="tab" aria-controls="passenger-1" aria-selected="true">Пассажир №1</button>-->
+<!--                      </div>-->
+<!--                    </nav>-->
+<!--                    <div class="tab-content position-relative" id="nav-tabContent">-->
+<!--                      <div class="tab-pane fade show active" id="passenger-1" role="tabpanel" aria-labelledby="passenger-1-tab">-->
+<!--                        <div class="form-wrapper">-->
+<!--                          <div class="row my-data-button-row">-->
+<!--                            <MyDataButton :isLogin="false"/>-->
+<!--                          </div>-->
+<!--                          <div class="checkbox-form d-flex flex-wrap align-items-center justify-content-between w-100">-->
+<!--                            <div class="checkbox-form d-block w-100">-->
+<!--                              <div class="form-check">-->
+<!--                                <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(true)" name="inlineRadioOptions" id="inlineRadio1" value="option1" :checked="oneWay">-->
+<!--                                <label class="form-check-label" for="inlineRadio1">В одну сторону</label>-->
+<!--                              </div>-->
+<!--                              <div class="form-check">-->
+<!--                                <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(false)"  name="inlineRadioOptions" id="inlineRadio2" value="option2" :checked="!oneWay">-->
+<!--                                <label class="form-check-label" for="inlineRadio2">Туда-обратно</label>-->
+<!--                              </div>-->
+<!--                            </div>-->
+<!--                            <div class="d-inline-block">-->
+<!--                              &lt;!&ndash; Button trigger modal &ndash;&gt;-->
+<!--                              <button type="button" class="remove-button" data-bs-toggle="modal" data-bs-target="#removeModal">-->
+<!--                                Убрать-->
+<!--                                <CancelIcon color="#196EFFFF"/>-->
+<!--                              </button>-->
+<!--                            </div>-->
+<!--                          </div>-->
+<!--                          <div class="d-block">-->
+<!--                            <label for="secondName1" class="form-label">Фамилия</label>-->
+<!--                            <input type="text" class="form-control" id="secondName1" placeholder="Иванов" required>-->
+<!--                          </div>-->
+<!--                          <div class="d-block">-->
+<!--                            <label for="firstName1" class="form-label">Имя</label>-->
+<!--                            <input type="text" class="form-control" id="firstName1" placeholder="Иван" required>-->
+<!--                          </div>-->
+<!--                          <div class="d-block">-->
+<!--                            <label for="MiddleName1" class="form-label">Отчество</label>-->
+<!--                            <input type="text" class="form-control" id="MiddleName1" placeholder="Иванович" required>-->
+<!--                          </div>-->
+<!--                          <div class="d-block">-->
+<!--                            <label for="birthday1" class="form-label">Дата рождения</label>-->
+<!--                            <input type="text" class="form-control" id="birthday1" placeholder="дд.мм.гггг" required>-->
+<!--                          </div>-->
+<!--                          <div class="d-block">-->
+<!--                            <label for="gender1" class="form-label">Пол</label>-->
+<!--                            <select id="gender1" class="form-select">-->
+<!--                              <option selected>Мужской</option>-->
+<!--                              <option>Женский</option>-->
+<!--                            </select>-->
+<!--                          </div>-->
+<!--                          <div class="d-block">-->
+<!--                            <label for="citizenship1" class="form-label">Гражданство</label>-->
+<!--                            <select id="citizenship1" class="form-select">-->
+<!--                              <option selected>Российская Федерация</option>-->
+<!--                              <option>...</option>-->
+<!--                            </select>-->
+<!--                          </div>-->
+<!--                          <div class="d-block">-->
+<!--                            <label for="document1" class="form-label">Документ</label>-->
+<!--                            <select id="document1" class="form-select">-->
+<!--                              <option selected>Паспорт РФ</option>-->
+<!--                              <option>...</option>-->
+<!--                            </select>-->
+<!--                          </div>-->
+<!--                          <div class="d-block">-->
+<!--                            <label for="documentInfo1" class="form-label">Серия и номер документа</label>-->
+<!--                            <input type="text" class="form-control" id="documentInfo1" placeholder="01 23 456789" required>-->
+<!--                          </div>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
   </div>
 </template>
 
@@ -206,10 +564,16 @@ export default {
 @import "src/assets/variables.scss";
 @import "src/assets/font.scss";
 @import "src/assets/formValidation";
-.carousel-bootstrap {
-  .container-fluid {
-    padding: 0;
+
+.passengers-info-mobile-wrapper {
+  padding: 12px 12px 28px;
+  .nav-tabs {
+    .nav-link {
+      min-width: 135px;
+    }
   }
+}
+.carousel-bootstrap {
   .carousel-indicators {
     margin-bottom: 0;
   }

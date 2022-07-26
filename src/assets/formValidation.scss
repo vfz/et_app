@@ -52,3 +52,11 @@
   margin-top: 8px;
   @include font($uni,$regular,11px,14.85px,$error);
 }
+
+.is-ok-icon {
+  background-color: $ok;
+}
+
+.is-error-icon {
+  background-color: $error;
+}

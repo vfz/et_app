@@ -44,12 +44,19 @@
           <div class="row">
             <div class="col-12 col-md-6">
               <div class="input-group position-relative">
+<!--                TODO добавить класс is-ok-bordered или is-error-bordered для инпута-->
                 <input type="text" class="form-control form-control-bordered" placeholder="Введите промокод">
+                <!--                TODO добавить d-none когда верная или неверная валидация -->
                 <div class="icon-bg position-absolute d-flex align-items-center">
-                  <CheckIcon/>
+                  <CheckIcon color="#B5BDDB"/>
+                </div>
+                <!--                TODO изменить класс is-ok-icon на is-error-icon, если валидация неверная -->
+                <div class="is-ok-icon icon-bg position-absolute d-flex align-items-center">
+                  <CheckIcon color="#fff"/>
                 </div>
               </div>
-              <div class="error-feedback-bordered">
+<!--              TODO убрать d-none для отображения ответа неверной валидации-->
+              <div class="error-feedback-bordered d-none">
                 Неверный промокод
               </div>
             </div>
@@ -163,7 +170,6 @@ p {
     }
     .input-group {
       .icon-bg {
-        background-color: $blue-active;
         height: 100%;
         padding-left: 20px;
         padding-right: 20px;

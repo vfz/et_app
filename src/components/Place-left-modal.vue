@@ -110,6 +110,11 @@ export default {
           let floorObject={
                 ...floors[fl][1].reverse()
               }
+          let o=0
+          let d=0
+          let t=0
+          let h=0
+          let p=0   
           //console.log(strMObile)
           for (let i=2; i<=5; i++)
           {
@@ -127,6 +132,7 @@ export default {
                 if(floorObject.hasOwnProperty(key)===true){ 
                     
                     floorObject[key]=[].concat(floorObject[key],floorObject1[key]);
+
                 } 
             }
             
@@ -266,10 +272,10 @@ export default {
         cursor: pointer;
     }
     .prohod {
-          margin-right: 10px;
-          margin-bottom: 6px;
-          width: 32px;
-          height: 32px;
+          margin-right: 0;//10px;
+          margin-bottom: 0;//6px;
+          width: 0;//32px;
+          height: 0;//32px;
     }
     .voditel {
         margin-right: 10px;
@@ -317,6 +323,91 @@ export default {
         cursor: pointer;
         color: #AFB7CD;
     }
+    .tualet {
+      height: 32px;
+      width: 72px;
+      margin-right: -10px;
+      margin-left: -16px;
+      margin-bottom: 6px;
+      padding-top: 6px;
+      background: #B5BDDB;
+      border-radius: 4px;
+      font-family: $uni;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 11px;
+      line-height: 15px;
+      text-align: center;
+      color: #FFFFFF;
+
+    }
+    .lest {
+      height: 32px;
+      width: 72px;
+      margin-right: -10px;
+      margin-left: -16px;
+      margin-bottom: 6px;
+      padding-top: 6px;
+      background: #B5BDDB;
+      border-radius: 4px;
+      font-family: $uni;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 11px;
+      line-height: 15px;
+      text-align: center;
+      color: #FFFFFF;
+    }
+    .lest_b {
+      width: 76px;
+      height: 72px;
+      margin-right: 10px;
+      margin-bottom: 6px;
+      padding-top: 6px;
+      background: #B5BDDB;
+      border-radius: 4px;
+      font-family: $uni;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 11px;
+      line-height: 15px;
+      text-align: center;
+      color: #FFFFFF;
+    }
+    .stol {
+      height: 32px;
+      width: 72px;
+      margin-right: -10px;
+      margin-left: -16px;
+      margin-bottom: 6px;
+      padding-top: 6px;
+      background: #B5BDDB;
+      border-radius: 4px;
+      font-family: $uni;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 11px;
+      line-height: 15px;
+      text-align: center;
+      color: #FFFFFF;
+    }
+    .exit {
+      height: 32px;
+      width: 72px;
+      margin-right: -10px;
+      margin-left: -16px;
+      margin-bottom: 6px;
+      padding-top: 6px;
+      background: #B5BDDB;
+      border-radius: 4px;
+      font-family: $uni;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 11px;
+      line-height: 15px;
+      text-align: center;
+      color: #FFFFFF;
+    }
 
    .bus-scheme {
     background-color: $white;
@@ -327,201 +418,29 @@ export default {
     width: fit-content;
       
       .tualet {
-          height: 32px;
-          width: 72px;
-          margin-right: -10px;
-          margin-left: -16px;
-          margin-bottom: 6px;
-          padding-top: 6px;
-          background: #B5BDDB;
-          border-radius: 4px;
-          font-family: $uni;
-          font-style: normal;
-          font-weight: 500;
-          font-size: 11px;
-          line-height: 15px;
           transform: rotate(-90deg);
-          text-align: center;
-          color: #FFFFFF;
       }
       .lest {
-          height: 32px;
-          width: 72px;
-          margin-right: -10px;
-          margin-left: -16px;
-          margin-bottom: 6px;
-          padding-top: 6px;
-          background: #B5BDDB;
-          border-radius: 4px;
-          font-family: $uni;
-          font-style: normal;
-          font-weight: 500;
-          font-size: 11px;
-          line-height: 15px;
           transform: rotate(-90deg);
-          text-align: center;
-          color: #FFFFFF;
       }
       .lest_b {
-          width: 76px;
-          height: 72px;
-          margin-right: 10px;
-          margin-bottom: 6px;
-          padding-top: 6px;
-          background: #B5BDDB;
-          border-radius: 4px;
-          font-family: $uni;
-          font-style: normal;
-          font-weight: 500;
-          font-size: 11px;
-          line-height: 15px;
           transform: rotate(-90deg);
-          text-align: center;
-          color: #FFFFFF;
       }
       .stol {
-          height: 32px;
-          width: 72px;
-          margin-right: -10px;
-          margin-left: -16px;
-          margin-bottom: 6px;
-          padding-top: 6px;
-          background: #B5BDDB;
-          border-radius: 4px;
-          font-family: $uni;
-          font-style: normal;
-          font-weight: 500;
-          font-size: 11px;
-          line-height: 15px;
           transform: rotate(-90deg);
-          text-align: center;
-          color: #FFFFFF;
-
       }
       .exit {
-          height: 32px;
-          width: 72px;
-          margin-right: -10px;
-          margin-left: -16px;
-          margin-bottom: 6px;
-          padding-top: 6px;
-          background: #B5BDDB;
-          border-radius: 4px;
-          font-family: $uni;
-          font-style: normal;
-          font-weight: 500;
-          font-size: 11px;
-          line-height: 15px;
           transform: rotate(-90deg);
-          text-align: center;
-          color: #FFFFFF;
       }
       
     }
    .bus-scheme-mobile {
-    background-color: $white;
-    border: 1px solid #B5BDDB;
-    border-radius: 16px;
-    padding: 16px;
-    margin: auto;
-    width: fit-content;
-      .tualet {
-          height: 32px;
-          width: 72px;
-          margin-right: -10px;
-          margin-left: -16px;
-          margin-bottom: 6px;
-          padding-top: 6px;
-          background: #B5BDDB;
-          border-radius: 4px;
-          font-family: $uni;
-          font-style: normal;
-          font-weight: 500;
-          font-size: 11px;
-          line-height: 15px;
-          // transform: rotate(-90deg);
-          text-align: center;
-          color: #FFFFFF;
-
-      }
-      .lest {
-          height: 32px;
-          width: 72px;
-          margin-right: -10px;
-          margin-left: -16px;
-          margin-bottom: 6px;
-          padding-top: 6px;
-          background: #B5BDDB;
-          border-radius: 4px;
-          font-family: $uni;
-          font-style: normal;
-          font-weight: 500;
-          font-size: 11px;
-          line-height: 15px;
-          // transform: rotate(-90deg);
-          text-align: center;
-          color: #FFFFFF;
-      }
-      .lest_b {
-          width: 76px;
-          height: 72px;
-          margin-right: 10px;
-          margin-bottom: 6px;
-          padding-top: 6px;
-          background: #B5BDDB;
-          border-radius: 4px;
-          font-family: $uni;
-          font-style: normal;
-          font-weight: 500;
-          font-size: 11px;
-          line-height: 15px;
-          // transform: rotate(-90deg);
-          text-align: center;
-          color: #FFFFFF;
-          /* identical to box height */
-          /* Text / Инпут 
-            color: #B5BDDB;*/
-          /* text-align: center;
-            white-space: nowrap;
-            vertical-align: middle;*/
-      }
-      .stol {
-          height: 32px;
-          width: 72px;
-          margin-right: -10px;
-          margin-left: -16px;
-          margin-bottom: 6px;
-          padding-top: 6px;
-          background: #B5BDDB;
-          border-radius: 4px;
-          font-family: $uni;
-          font-style: normal;
-          font-weight: 500;
-          font-size: 11px;
-          line-height: 15px;
-          // transform: rotate(-90deg);
-          text-align: center;
-          color: #FFFFFF;
-      }
-      .exit {
-          height: 32px;
-          width: 72px;
-          margin-right: -10px;
-          margin-left: -16px;
-          margin-bottom: 6px;
-          padding-top: 6px;
-          background: #B5BDDB;
-          border-radius: 4px;
-          font-family: $uni;
-          font-style: normal;
-          font-weight: 500;
-          font-size: 11px;
-          line-height: 15px;
-          // transform: rotate(-90deg);
-          text-align: center;
-          color: #FFFFFF;
-      }
-     
+      background-color: $white;
+      border: 1px solid #B5BDDB;
+      border-radius: 16px;
+      padding: 16px;
+      margin: auto;
+      width: fit-content;
     }
     .modal-title {
       @include font($uni, $bold, 36px, 48.6px, $base);

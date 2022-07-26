@@ -567,7 +567,14 @@ export default {
 
 .passengers-info-mobile-wrapper {
   padding: 12px 12px 28px;
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .nav-tabs::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
   .nav-tabs {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
     .nav-link {
       min-width: 135px;
     }

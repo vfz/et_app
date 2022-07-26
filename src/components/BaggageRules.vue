@@ -49,7 +49,7 @@
                   <CheckIcon/>
                 </div>
               </div>
-              <div class="error-feedback">
+              <div class="error-feedback-bordered">
                 Неверный промокод
               </div>
             </div>

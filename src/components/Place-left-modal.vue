@@ -52,11 +52,11 @@
                         :rowspan="seat.split('+')[1]" 
                         :colspan="seat.split('+')[2]" 
                         align="center">
-                        <div v-if="seat.split('+')[3].replace('_', '') !== ''" :class="seat.split('+')[0]" :id="'seat_'+seat.split('+')[3].replace('_', '')">{{seat.split('+')[3].replace('_', '')}}</div>
-                        <div v-else-if="seat.split('+')[0] == 'voditel'" :class="seat.split('+')[0]" :id="'seat_'+seat.split('+')[3].replace('_', '')">{{seat.split('+')[3].replace('_', '')}}</div>
+                        <div :class="seat.split('+')[0]" :id="'seat_'+seat.split('+')[3].replace('_', '')">{{seat.split('+')[3].replace('_', '')}}</div>
                       </td>
                     </tr>
                   </table>
+                  <!-- Таблица с автобусом для мобильных -->
                   <table v-else>
                     <!--TODO подсветка выбранных мест-->
                     <tr v-for="(stroka,indexstrm) in shemeMobile[floor]" :key="indexstrm">
@@ -234,14 +234,8 @@ export default {
     .place-left-scheme:first-child {
       margin-right: 40px;
     }
-   .bus-scheme {
-    background-color: $white;
-    border: 1px solid #B5BDDB;
-    border-radius: 16px;
-    padding: 16px;
-    margin: auto;
-    width: fit-content;
-      .seat {
+
+    .seat {
           width: 32px;
           height: 32px;
           margin-right: 10px;
@@ -261,16 +255,77 @@ export default {
           line-height: 19px;
           /* identical to box height */
           /* Text / Инпут */
-          color: #B5BDDB;
+          color: $black;//#B5BDDB;
           /* text-align: center;
             white-space: nowrap;
             vertical-align: middle;*/
-      }
-      .seat:hover {
-          background: #A3D7FF;
-          color: #ffffff;
-          cursor: pointer;
-      }
+    }
+    .seat:hover {
+        background: #A3D7FF;
+        color: #ffffff;
+        cursor: pointer;
+    }
+    .prohod {
+          margin-right: 10px;
+          margin-bottom: 6px;
+          width: 32px;
+          height: 32px;
+    }
+    .voditel {
+        margin-right: 10px;
+        margin-bottom: 6px;
+        width: 32px;
+        height: 32px;
+        background: url("/img/modal/driver.png") repeat-y;
+        background-size: contain;
+        transform: rotate(90deg);
+    }
+    .text_floor_activ {
+        font-family: $uni;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 20px;
+        line-height: 27px;
+        color: #196EFF;
+    }
+    .busy-seat {
+        background-color: #D8DADE;
+        color: #B5BDDB;
+        width: 32px;
+        height: 32px;
+        margin-right: 10px;
+        margin-bottom: 6px;
+        padding-top: 6px;
+        /* Button / Inactive */
+        border: 1px solid #A3D7FF;
+        box-sizing: border-box;
+        /* Shadow / Normal */
+        box-shadow: 0 8px 12px rgba(161, 159, 255, 0.2);
+        border-radius: 4px;
+        font-family: $uni;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 19px;
+    }
+    .text_floor {
+        font-family: $uni;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 20px;
+        line-height: 27px;
+        cursor: pointer;
+        color: #AFB7CD;
+    }
+
+   .bus-scheme {
+    background-color: $white;
+    border: 1px solid #B5BDDB;
+    border-radius: 16px;
+    padding: 16px;
+    margin: auto;
+    width: fit-content;
+      
       .tualet {
           height: 32px;
           width: 72px;
@@ -288,12 +343,6 @@ export default {
           transform: rotate(-90deg);
           text-align: center;
           color: #FFFFFF;
-          /* identical to box height */
-          /* Text / Инпут 
-            color: #B5BDDB;*/
-          /* text-align: center;
-            white-space: nowrap;
-            vertical-align: middle;*/
       }
       .lest {
           height: 32px;
@@ -312,12 +361,6 @@ export default {
           transform: rotate(-90deg);
           text-align: center;
           color: #FFFFFF;
-          /* identical to box height */
-          /* Text / Инпут 
-            color: #B5BDDB;*/
-          /* text-align: center;
-            white-space: nowrap;
-            vertical-align: middle;*/
       }
       .lest_b {
           width: 76px;
@@ -335,12 +378,6 @@ export default {
           transform: rotate(-90deg);
           text-align: center;
           color: #FFFFFF;
-          /* identical to box height */
-          /* Text / Инпут 
-            color: #B5BDDB;*/
-          /* text-align: center;
-            white-space: nowrap;
-            vertical-align: middle;*/
       }
       .stol {
           height: 32px;
@@ -359,12 +396,7 @@ export default {
           transform: rotate(-90deg);
           text-align: center;
           color: #FFFFFF;
-          /* identical to box height */
-          /* Text / Инпут 
-            color: #B5BDDB;*/
-          /* text-align: center;
-            white-space: nowrap;
-            vertical-align: middle;*/
+
       }
       .exit {
           height: 32px;
@@ -383,70 +415,8 @@ export default {
           transform: rotate(-90deg);
           text-align: center;
           color: #FFFFFF;
-          /* identical to box height */
-          /* Text / Инпут 
-            color: #B5BDDB;*/
-          /* text-align: center;
-            white-space: nowrap;
-            vertical-align: middle;*/
       }
-      .prohod {
-          margin-right: 10px;
-          margin-bottom: 6px;
-          width: 32px;
-          height: 32px;
-      }
-      .voditel {
-          margin-right: 10px;
-          margin-bottom: 6px;
-          width: 32px;
-          height: 32px;
-          background: url("/img/modal/driver.png") repeat-y;
-          background-size: contain;
-          transform: rotate(90deg);
-      }
-      .text_floor_activ {
-          font-family: $uni;
-          font-style: normal;
-          font-weight: bold;
-          font-size: 20px;
-          line-height: 27px;
-          /*cursor: pointer;
-            identical to box height */
-          /* Text / Неактивный */
-          color: #196EFF;
-      }
-      .busy-seat {
-          background-color: $secondary;
-          color: $white;
-          width: 32px;
-          height: 32px;
-          margin-right: 10px;
-          margin-bottom: 6px;
-          padding-top: 6px;
-          /* Button / Inactive */
-          border: 1px solid #A3D7FF;
-          box-sizing: border-box;
-          /* Shadow / Normal */
-          box-shadow: 0 8px 12px rgba(161, 159, 255, 0.2);
-          border-radius: 4px;
-          font-family: $uni;
-          font-style: normal;
-          font-weight: 500;
-          font-size: 14px;
-          line-height: 19px;
-      }
-      .text_floor {
-          font-family: $uni;
-          font-style: normal;
-          font-weight: bold;
-          font-size: 20px;
-          line-height: 27px;
-          cursor: pointer;
-          /* identical to box height */
-          /* Text / Неактивный */
-          color: #AFB7CD;
-      }
+      
     }
    .bus-scheme-mobile {
     background-color: $white;
@@ -455,36 +425,6 @@ export default {
     padding: 16px;
     margin: auto;
     width: fit-content;
-      .seat {
-          width: 32px;
-          height: 32px;
-          margin-right: 10px;
-          margin-bottom: 6px;
-          padding-top: 6px;
-          background: #FFFFFF;
-          /* Button / Inactive */
-          border: 1px solid #A3D7FF;
-          box-sizing: border-box;
-          /* Shadow / Normal */
-          box-shadow: 0 8px 12px rgba(161, 159, 255, 0.2);
-          border-radius: 4px;
-          font-family: $uni;
-          font-style: normal;
-          font-weight: 500;
-          font-size: 14px;
-          line-height: 19px;
-          /* identical to box height */
-          /* Text / Инпут */
-          color: #B5BDDB;
-          /* text-align: center;
-            white-space: nowrap;
-            vertical-align: middle;*/
-      }
-      .seat:hover {
-          background: #A3D7FF;
-          color: #ffffff;
-          cursor: pointer;
-      }
       .tualet {
           height: 32px;
           width: 72px;
@@ -502,12 +442,7 @@ export default {
           // transform: rotate(-90deg);
           text-align: center;
           color: #FFFFFF;
-          /* identical to box height */
-          /* Text / Инпут 
-            color: #B5BDDB;*/
-          /* text-align: center;
-            white-space: nowrap;
-            vertical-align: middle;*/
+
       }
       .lest {
           height: 32px;
@@ -526,12 +461,6 @@ export default {
           // transform: rotate(-90deg);
           text-align: center;
           color: #FFFFFF;
-          /* identical to box height */
-          /* Text / Инпут 
-            color: #B5BDDB;*/
-          /* text-align: center;
-            white-space: nowrap;
-            vertical-align: middle;*/
       }
       .lest_b {
           width: 76px;
@@ -573,12 +502,6 @@ export default {
           // transform: rotate(-90deg);
           text-align: center;
           color: #FFFFFF;
-          /* identical to box height */
-          /* Text / Инпут 
-            color: #B5BDDB;*/
-          /* text-align: center;
-            white-space: nowrap;
-            vertical-align: middle;*/
       }
       .exit {
           height: 32px;
@@ -597,70 +520,8 @@ export default {
           // transform: rotate(-90deg);
           text-align: center;
           color: #FFFFFF;
-          /* identical to box height */
-          /* Text / Инпут 
-            color: #B5BDDB;*/
-          /* text-align: center;
-            white-space: nowrap;
-            vertical-align: middle;*/
       }
-      .prohod {
-          margin-right: 10px;
-          margin-bottom: 6px;
-          width: 32px;
-          height: 32px;
-      }
-      .voditel {
-          margin-right: 10px;
-          margin-bottom: 6px;
-          width: 32px;
-          height: 32px;
-          background: url("/img/modal/driver.png") repeat-y;
-          background-size: contain;
-          // transform: rotate(90deg);
-      }
-      .text_floor_activ {
-          font-family: $uni;
-          font-style: normal;
-          font-weight: bold;
-          font-size: 20px;
-          line-height: 27px;
-          /*cursor: pointer;
-            identical to box height */
-          /* Text / Неактивный */
-          color: #196EFF;
-      }
-      .busy-seat {
-          background-color: $secondary;
-          color: $white;
-          width: 32px;
-          height: 32px;
-          margin-right: 10px;
-          margin-bottom: 6px;
-          padding-top: 6px;
-          /* Button / Inactive */
-          border: 1px solid #A3D7FF;
-          box-sizing: border-box;
-          /* Shadow / Normal */
-          box-shadow: 0 8px 12px rgba(161, 159, 255, 0.2);
-          border-radius: 4px;
-          font-family: $uni;
-          font-style: normal;
-          font-weight: 500;
-          font-size: 14px;
-          line-height: 19px;
-      }
-      .text_floor {
-          font-family: $uni;
-          font-style: normal;
-          font-weight: bold;
-          font-size: 20px;
-          line-height: 27px;
-          cursor: pointer;
-          /* identical to box height */
-          /* Text / Неактивный */
-          color: #AFB7CD;
-      }
+     
     }
     .modal-title {
       @include font($uni, $bold, 36px, 48.6px, $base);

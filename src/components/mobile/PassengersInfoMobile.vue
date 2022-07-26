@@ -42,21 +42,30 @@
                             </button>
                           </div>
                         </div>
+<!--                        TODO сделать валидацию по классам .is-ok и .is-error-->
                         <div class="d-block">
                           <label for="secondName1" class="form-label">Фамилия</label>
                           <input type="text" class="form-control is-ok" id="secondName1" placeholder="Иванов" required>
+<!--                          TODO убрать d-none когда валидация неверная-->
+                          <div class="error-feedback d-none">Укажите фамилию</div>
                         </div>
                         <div class="d-block">
                           <label for="firstName1" class="form-label">Имя</label>
                           <input type="text" class="form-control" id="firstName1" placeholder="Иван" required>
+                          <!--                          TODO убрать d-none когда валидация неверная-->
+                          <div class="error-feedback d-none">Укажите имя</div>
                         </div>
                         <div class="d-block">
                           <label for="MiddleName1" class="form-label">Отчество</label>
                           <input type="text" class="form-control" id="MiddleName1" placeholder="Иванович" required>
+                          <!--                          TODO убрать d-none когда валидация неверная-->
+                          <div class="error-feedback d-none">Укажите отчество</div>
                         </div>
                         <div class="d-block">
                           <label for="birthday1" class="form-label">Дата рождения</label>
                           <input type="text" class="form-control" id="birthday1" placeholder="дд.мм.гггг" required>
+                          <!--                          TODO убрать d-none когда валидация неверная-->
+                          <div class="error-feedback d-none">Некорректная дата, вам больше 125 лет?</div>
                         </div>
                         <div class="d-block">
                           <label for="gender1" class="form-label">Пол</label>
@@ -64,6 +73,8 @@
                             <option selected>Мужской</option>
                             <option>Женский</option>
                           </select>
+                          <!--                          TODO убрать d-none когда валидация неверная-->
+                          <div class="error-feedback d-none">Выберите пол</div>
                         </div>
                         <div class="d-block">
                           <label for="citizenship1" class="form-label">Гражданство</label>
@@ -71,6 +82,8 @@
                             <option selected>Российская Федерация</option>
                             <option>...</option>
                           </select>
+                          <!--                          TODO убрать d-none когда валидация неверная-->
+                          <div class="error-feedback d-none">Выберите гражданство</div>
                         </div>
                         <div class="d-block">
                           <label for="document1" class="form-label">Документ</label>
@@ -78,10 +91,14 @@
                             <option selected>Паспорт РФ</option>
                             <option>...</option>
                           </select>
+                          <!--                          TODO убрать d-none когда валидация неверная-->
+                          <div class="error-feedback d-none">Выберите документ</div>
                         </div>
                         <div class="d-block">
                           <label for="documentInfo1" class="form-label">Серия и номер документа</label>
                           <input type="text" class="form-control" id="documentInfo1" placeholder="01 23 456789" required>
+                          <!--                          TODO убрать d-none когда валидация неверная-->
+                          <div class="error-feedback d-none">Некорректные серия и номер документа</div>
                         </div>
                       </div>
                     </div>

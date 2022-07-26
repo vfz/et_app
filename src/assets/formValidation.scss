@@ -8,13 +8,17 @@
 }
 
 .is-ok {
-  border-bottom: 2px solid $ok;
-  box-shadow: none;
-  outline: none;
+  border-bottom: 2px solid $ok !important;
+  box-shadow: none !important;
+  outline: none !important;
 }
 
 .is-error {
-  border-bottom: 2px solid $error;
-  box-shadow: none;
-  outline: none;
+  border-bottom: 2px solid $error !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.error-feedback {
+  @include font($uni,$regular,11px,14.85px,$error);
 }

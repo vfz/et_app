@@ -14,6 +14,7 @@ export default {
         flightThere: [],
         flightBack: [],
         busTriptId: "",
+        flights: []
 
 
     },
@@ -22,7 +23,9 @@ export default {
         updatebBusTriptId(state, tripId) {
             state.busTriptId = tripId
         },
-
+        mergeFlightsM(state) {
+            state.flights = state.flights.concat(state.flightThere, state.flightBack);
+        },
         updateFromStations(state, fromStations) {
             state.fromStations = fromStations.result
         },
@@ -142,7 +145,6 @@ export default {
             const res = await fetch(ctx.rootState.API_URL + "?command=from");
             const fromStations = await res.json();
             ctx.commit('updateFromStations', fromStations)
-
         },
         //Получаем список рейсов (туда)
         async getFlightThere(ctx) {
@@ -155,6 +157,8 @@ export default {
             const res = await fetch(ctx.rootState.API_URL + "?command=okato_trip&from_id=" + from_okato + "&to_id=" + to_okato + "&date_trip=" + ctx.state.dateArival);
             const FlightThere = await res.json();
             ctx.commit('updateFlightThere', FlightThere)
+            ctx.commit('mergeFlightsM')
+
         },
         //Получаем список рейсов (обратно)
         async getFlightBack(ctx) {
@@ -166,6 +170,8 @@ export default {
             const res = await fetch(ctx.rootState.API_URL + "?command=okato_trip&from_id=" + from_okato + "&to_id=" + to_okato + "&date_trip=" + ctx.state.dateBack);
             const FlightBack = await res.json();
             ctx.commit('updateFlightBack', FlightBack)
+            ctx.commit('mergeFlightsM')
+
         },
 
         // Ракировка откуда куда
@@ -225,9 +231,12 @@ export default {
     modules: {},
     getters: {
         mergeFlights(state) {
-            const flights = state.flightThere.concat(state.flightBack);
-            return flights
+            return state.flights
         },
+        // mergeFlights(state) {
+        //     let flights = state.flightThere.concat(state.flightBack);
+        //     return flights
+        // },
         busTriptId(state) {
             return state.busTriptId
         },

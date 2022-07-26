@@ -345,6 +345,7 @@ export default {
       border-top-left-radius: 16px;
       border-top-right-radius: 16px;
       border-bottom: none;
+      background-color: #FAFBFF;
       @media (min-width: 992px) and (max-width: 1399px) {
         font-size: 18px;
         padding: 12px 16px;
@@ -354,6 +355,7 @@ export default {
       border-color: unset;
       border-bottom: none;
       box-shadow: $regular-shadow;
+      background-color: $white;
     }
   }
   .tab-content {

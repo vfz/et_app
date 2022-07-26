@@ -604,6 +604,7 @@ export default {
       border-top-left-radius: 16px;
       border-top-right-radius: 16px;
       border-bottom: none;
+      background-color: #FAFBFF;
       @media screen and (max-width: 767px) {
         font-size: 16px;
         line-height: 21.6px;
@@ -614,6 +615,7 @@ export default {
       border-color: unset;
       border-bottom: none;
       box-shadow: $regular-shadow;
+      background-color: $white;
     }
   }
   .tab-content {

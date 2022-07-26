@@ -37,21 +37,30 @@
                 </div>
               </div>
               <div class="row">
+                <!--                        TODO сделать валидацию по классам .is-ok и .is-error-->
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="secondName1" class="form-label">Фамилия</label>
-                  <input type="text" class="form-control" id="secondName1" placeholder="Иванов">
+                  <input type="text" class="form-control is-ok" id="secondName1" placeholder="Иванов">
+                  <!--                          TODO убрать d-none когда валидация неверная-->
+                  <div class="error-feedback d-none">Укажите фамилию</div>
                 </div>
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="firstName1" class="form-label">Имя</label>
                   <input type="text" class="form-control" id="firstName1" placeholder="Иван">
+                  <!--                          TODO убрать d-none когда валидация неверная-->
+                  <div class="error-feedback d-none">Укажите имя</div>
                 </div>
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="MiddleName1" class="form-label">Отчество</label>
                   <input type="text" class="form-control" id="MiddleName1" placeholder="Иванович">
+                  <!--                          TODO убрать d-none когда валидация неверная-->
+                  <div class="error-feedback d-none">Укажите отчество</div>
                 </div>
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="birthday1" class="form-label">Дата рождения</label>
                   <input type="text" class="form-control" id="birthday1" placeholder="дд.мм.гггг">
+                  <!--                          TODO убрать d-none когда валидация неверная-->
+                  <div class="error-feedback d-none">Некорректная дата, вам больше 125 лет?</div>
                 </div>
               </div>
               <div class="row gy-2">
@@ -68,6 +77,8 @@
                     <option selected>Российская Федерация</option>
                     <option>...</option>
                   </select>
+                  <!--                          TODO убрать d-none когда валидация неверная-->
+                  <div class="error-feedback d-none">Выберите пол</div>
                 </div>
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="document1" class="form-label">Документ</label>
@@ -79,6 +90,8 @@
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="documentInfo1" class="form-label">Серия и номер документа</label>
                   <input type="text" class="form-control" id="documentInfo1" placeholder="01 23 456789">
+                  <!--                          TODO убрать d-none когда валидация неверная-->
+                  <div class="error-feedback d-none">Некорректные серия и номер документа</div>
                 </div>
               </div>
             </div>
@@ -321,6 +334,7 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/variables.scss";
 @import "@/assets/font.scss";
+@import "@/assets/formValidation.scss";
 .info-passengers {
   .nav-tabs {
     position: relative;

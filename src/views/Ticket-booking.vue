@@ -59,23 +59,33 @@ import PassengersFormInfoMobile from "@/components/mobile/PassengersFormInfoMobi
 import EuroPointsOffer from "@/components/EuroPointsOffer";
 import FlightTable from "@/components/desktop/FlightTable";
 import FlightTableMobile from "@/components/mobile/FlightTableMobile";
+import {mapGetters,mapActions} from 'vuex'
+
 export default {
   name: "Ticket-booking",
   components: {
     EuroPointsOffer,
     PassengersFormInfoMobile,
-
     FlightTable,
     FlightTableMobile,
-
     BackTabMobile,
     ThereTabMobile,
     TimelineMobile,
     RemoveModal,
     PassengersFormInfo,
     CurrentPoints,
-    ThereBackTabs, Footer, FlightForm, Timeline, Header, LoginModal, RegistrationModal, ForgotPasswordModal},
+    ThereBackTabs, 
+    Footer, 
+    FlightForm, 
+    Timeline, 
+    Header, 
+    LoginModal, 
+    RegistrationModal, 
+    ForgotPasswordModal
+    },
+  computed: mapGetters(['oneWay']),
   methods: {
+    
     isMobile() {
       return screen.width <= 991;
     }

@@ -108,8 +108,8 @@ export default {
 
 .body-app-white {
   .header {
-    padding-top: 55px;
-    margin-bottom: 26px;
+    padding-top: 48px;
+    margin-bottom: 24px;
     .navbar {
       padding: 0;
     }

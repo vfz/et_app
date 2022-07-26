@@ -18,53 +18,53 @@
                 </div>
                 <div class="dispatch-timeline">
                   <ul class="timeline">
-                    <li class="timeline-item mb-5">
+                    <li class="timeline-item">
                       <h5 class="timeline-city">Ставрополь</h5>
                       <p class="timeline-time">9:30</p>
                       <p class="timeline-place">
                         Агентство “Евротранс” (рядом с железнодорожным вокзалом), проспект Карла Маркса, дом 1А
                       </p>
                     </li>
-                    <li class="timeline-item mb-5">
+                    <li class="timeline-item">
                       <h5 class="timeline-city">Московское</h5>
                       <p class="timeline-time">10:10</p>
                       <p class="timeline-place">
                         Московское (АС)
                       </p>
                     </li>
-                    <li class="timeline-item mb-5">
+                    <li class="timeline-item">
                       <h5 class="timeline-city">Донское</h5>
                       <p class="timeline-time">10:30</p>
                       <p class="timeline-place">
                         Донское (АС)
                       </p>
                     </li>
-                    <li class="timeline-item mb-5">
+                    <li class="timeline-item">
                       <h5 class="timeline-city">Безопасное</h5>
                       <p class="timeline-time">10:50</p>
                     </li>
-                    <li class="timeline-item mb-5">
+                    <li class="timeline-item">
                       <h5 class="timeline-city">Ставрополь</h5>
                       <p class="timeline-time">9:30</p>
                       <p class="timeline-place">
                         Агентство “Евротранс” (рядом с железнодорожным вокзалом), проспект Карла Маркса, дом 1А
                       </p>
                     </li>
-                    <li class="timeline-item mb-5">
+                    <li class="timeline-item">
                       <h5 class="timeline-city">Московское</h5>
                       <p class="timeline-time">10:10</p>
                       <p class="timeline-place">
                         Московское (АС)
                       </p>
                     </li>
-                    <li class="timeline-item mb-5">
+                    <li class="timeline-item">
                       <h5 class="timeline-city">Донское</h5>
                       <p class="timeline-time">10:30</p>
                       <p class="timeline-place">
                         Донское (АС)
                       </p>
                     </li>
-                    <li class="timeline-item mb-5">
+                    <li class="timeline-item">
                       <h5 class="timeline-city">Безопасное</h5>
                       <p class="timeline-time">10:50</p>
                     </li>
@@ -95,6 +95,7 @@ export default {
 @import "src/assets/font.scss";
 .modal {
   &-header {
+    border-bottom: none;
     .btn-close {
       margin: unset;
     }
@@ -105,109 +106,31 @@ export default {
     }
   }
   &-body {
-    .square-place-status-item {
-      .square-place-text {
-        @include font($uni, $regular, 14px, normal, $secondary);
-        margin-bottom: 0;
-      }
-      .square-place-status {
-        width: 32px;
-        height: 32px;
-        border-radius: 4px;
-        box-shadow: $regular-shadow;
-        margin-right: 12px;
-      }
-      .free-place {
-        background-color: $white;
-        border: 1px solid $blue-link;
-      }
-      .busy-place {
-        background-color: $deactivate;
-      }
-    }
-    .square-place-status-item:first-child {
-      margin-right: 40px;
-    }
-    .floor-header {
-      margin-top: 24px;
-      margin-bottom: 24px;
-      .floor-item {
-        @include font($uni,$bold,20px,27px,$deactivate);
-        cursor: pointer;
-      }
-      .floor-item:hover {
-        @include animation;
-        color: $blue-link;
-        border-bottom: 2px solid $blue-link;
-      }
-      .active {
-        color: $blue-active;
-        border-bottom: 2px solid $blue-active;
-      }
-      .active:hover {
-        color: $blue-active;
-        border-bottom: 2px solid $blue-active;
-      }
-      .floor-item:first-child {
-        margin-right: 32px;
-      }
-    }
-    .bus-scheme {
-      background-color: $white;
-      border: 1px solid #B5BDDB;
-      border-radius: 16px;
-      padding: 16px;
-      &-column {
-        display: grid;
-        grid-template-columns: repeat(13, 1fr);
-        grid-template-rows: repeat(4, 1fr);
-        grid-column-gap: 12px;
-        grid-row-gap: 8px;
-        &-item {
-          width: 32px;
-          height: 32px;
-          border-radius: 4px;
-          box-shadow: $regular-shadow;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          @include font($uni,$regular,14px,18.9px,#B5BDDB);
-          cursor: pointer;
-        }
-        .free-place {
-          color: #B5BDDB;
-          border: 1px solid $blue-link;
-        }
-        .free-place:hover {
-          @include animation;
-          background-color: $blue-link;
-          color: $white;
-          border: none;
-        }
-        .selected {
-          background-color: $blue-active;
-          color: $white;
-          border: none;
-        }
-        .busy-place {
-          background-color: $secondary;
-          color: $white;
-          border: none;
-        }
-      }
+    @media screen and (max-width: 767px) {
+      padding: 0;
     }
     .modal-title {
       @include font($uni, $bold, 36px, 48.6px, $base);
       margin-bottom: 32px;
+      @media screen and (max-width: 767px) {
+        font-size: 20px;
+        line-height: 27px;
+        margin-bottom: 24px;
+      }
     }
     .modal-date {
       @include font($uni, $bold, 20px, 27px, $secondary);
       margin-bottom: 16px;
+      @media screen and (max-width: 767px) {
+        font-size: 14px;
+        line-height: 18.9px;
+        margin-bottom: 12px;
+      }
     }
     .dispatch-map {
       iframe {
         border-radius: 16px;
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: 767px) {
           height: 300px;
         }
       }
@@ -266,12 +189,25 @@ export default {
       }
 
       .timeline-item {
+        margin-bottom: 16px;
+        @media screen and (max-width: 767px) {
+          margin-bottom: 12px;
+        }
         .timeline-city, .timeline-time {
           @include font($uni, $bold, 20px, 27px, $base);
           margin-bottom: 8px;
+          @media screen and (max-width: 767px) {
+            font-size: 14px;
+            line-height: 18.9px;
+          }
         }
         .timeline-place {
           @include font($uni, $regular, 20px, 24.3px, #b5bddb);
+          margin-bottom: 0;
+          @media screen and (max-width: 767px) {
+            font-size: 13px;
+            line-height: 17.55px;
+          }
         }
       }
 
@@ -286,12 +222,27 @@ export default {
       }
 
       .timeline .timeline-item:after {
-        background-color: $blue-active;
-        left: -38px;
+        border: 1px solid $blue-active;
+        background-color: $white;
+        left: -36.5px;
         border-radius: 50%;
-        height: 11px;
-        width: 11px;
+        height: 8px;
+        width: 8px;
         content: "";
+      }
+      .timeline .timeline-item:first-child:after {
+        border: 3px solid $blue-active;
+        background-color: $white;
+        width: 12px;
+        height: 12px;
+        left: -38px;
+      }
+      .timeline .timeline-item:last-child:after {
+        border: 3px solid $blue-active;
+        background-color: $white;
+        width: 12px;
+        height: 12px;
+        left: -38px;
       }
     }
   }

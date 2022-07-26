@@ -17,7 +17,7 @@
             <!--one-way-input-->
             <div class="one-way-inputs w-100 form-header" v-if="oneWay">
               <div class="row">
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl min-w-300">
+                <div class="col-md-12 col-lg-6 col-xl-6 col-xxl-3 mb-lg-4 mb-xxl-0">
                   <div class="card h-100">
                     <div class="card-body">
                       <label for="dataListFrom" class="form-label">Откуда</label>
@@ -43,14 +43,19 @@
                                                       v-on:click="setFrom('1');fromPlaceV=false;fromPlace='Ставрополь'"
                                                 >Ставрополь</span>
                                             </span>
-
+                      <!--                          TODO добавить вывод станции отправления. Убрать d-none для отображения-->
+                      <a href="#" class="card-place-link d-none" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
+                        <div>
+                          Ставрополь, ж/д
+                        </div>
+                      </a>
                       <div id="swiper-inputs" class="swiper-inputs" v-on:click="castling();temp = fromPlace;fromPlace = toPlace;toPlace = temp;">
                         <div class="swiper-inputs-icon"></div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-12 col-sm-12 mt-4 mt-md-0 col-md-6 col-lg-6 col-xl min-w-300">
+                <div class="col-md-12 col-lg-6 col-xl-6 col-xxl-3 mb-lg-4 mb-xxl-0">
                   <div class="card h-100">
                     <div class="card-body">
                       <label for="datalistTo" class="form-label">Куда</label>
@@ -73,10 +78,16 @@
                                                 <span id="city-example-to" class="card-example-date city-example-to text-decoration-underline"
                                                       v-on:click="setTo('190');toPlaceV=false;toPlace='Москва'">Москва</span>
                                             </span>
+                      <!--                          TODO добавить вывод станции отправления. Убрать d-none для отображения-->
+                      <a href="#" class="card-place-link d-none" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
+                        <div>
+                          Ставрополь, ж/д
+                        </div>
+                      </a>
                     </div>
                   </div>
                 </div>
-                <div class="col-12 col-sm-12 mt-4 mt-xl-0 col-md-6 col-lg-6 col-xl mw-300 min-w-300">
+                <div class="col-md-12 col-lg-6 col-xl-6 col-xxl-3">
                   <div class="card h-100">
                     <div class="card-body">
                       <div class="d-flex justify-content-between align-items-center">
@@ -85,7 +96,7 @@
                       </div>
                       <div class="row">
                         <div class="col">
-                          <div class="count-passenger d-flex align-items-center justify-content-between flex-wrap">
+                          <div class="count-passenger d-flex align-items-center flex-wrap">
                             <div id="minus-button-adult" class="minus-button count-button" :class=" { disabled : !mba } " v-on:click="MinusAdult();changeClass()">-</div>
                             <input value="1" min="1" max="7" name="adults" v-model="adults" type="number" class="form-control one-way-inputs-input shadow-none"  placeholder="0">
                             <div id="plus-button-adult" class="plus-button count-button" :class=" { disabled : !pba } " v-on:click="PlusAdult();changeClass()">+</div>
@@ -93,7 +104,7 @@
                           </div>
                         </div>
                         <div class="col">
-                          <div class="count-passenger d-flex align-items-center justify-content-between flex-wrap">
+                          <div class="count-passenger d-flex align-items-center flex-wrap">
                             <div id="minus-button-childeren" class="minus-button count-button" :class=" { disabled : !mbc } " v-on:click="MinusChild();changeClass()">-</div>
                             <input value="0" min="0" max="5" name="childrens" v-model="childrens" type="number" class="form-control one-way-inputs-input shadow-none" placeholder="0">
                             <div id="plus-button-childeren" class="plus-button count-button" :class=" { disabled : !pbc } " v-on:click="PlusChild();changeClass()">+</div>
@@ -104,7 +115,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-12 col-sm-12 mt-4 mt-xl-0 col-md-6 col-lg-6 col-xl mw-300 min-w-300">
+                <div class="col-md-12 col-lg-6 col-xl-6 col-xxl-3">
                   <div class="card h-100">
                     <div class="card-body">
                       <label for="datepickerinputStart" class="form-label">Когда</label>
@@ -139,8 +150,8 @@
             </div>
             <!-- two-way-input-->
             <div class="two-ways-inputs w-100 form-header" v-else>
-              <div class="row flex-wrap">
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl min-w-300">
+              <div class="row">
+                <div class="col-lg-6 col-xl-6 col-xxl mb-lg-4 mb-xxl-0 mw-300 min-w-300">
                   <div class="card h-100">
                     <div class="card-body">
                       <label for="dataListFrom" class="form-label">Откуда</label>
@@ -173,7 +184,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-12 col-sm-12 mt-4 mt-md-0 col-md-6 col-lg-6 col-xl min-w-300">
+                <div class="col-lg-6 col-xl-6 col-xxl mb-lg-4 mb-xxl-0 mw-300 min-w-300">
                   <div class="card h-100">
                     <div class="card-body">
                       <label for="datalistTo" class="form-label">Куда</label>
@@ -199,7 +210,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-12 col-sm-12 mt-4 mt-md-0 col-md-4 col-lg-4 col-xl mw-300 min-w-300">
+                <div class="col-lg-6 col-xl-6 col-xxl mb-lg-4 mb-xxl-0 mw-300 min-w-300">
                   <div class="card h-100">
                     <div class="card-body">
                       <div class="d-flex justify-content-between align-items-center">
@@ -208,17 +219,17 @@
                       </div>
                       <div class="row">
                         <div class="col">
-                          <div class="count-passenger d-flex align-items-center justify-content-between flex-wrap">
+                          <div class="count-passenger d-flex align-items-center flex-wrap">
                             <div id="minus-button-adult" class="minus-button count-button" :class=" { disabled : !mba } " v-on:click="MinusAdult();changeClass()">-</div>
-                            <input value="1" min="1" max="7" name="adults" v-model="adults" type="number" class="form-control one-way-inputs-input shadow-none"  placeholder="0">
+                            <input value="1" min="1" max="7" name="adults" v-model="adults" type="number" class="form-control text-center one-way-inputs-input shadow-none"  placeholder="0">
                             <div id="plus-button-adult" class="plus-button count-button" :class=" { disabled : !pba } " v-on:click="PlusAdult();changeClass()">+</div>
                             <span class="card-desc d-block w-100">Взрослых</span>
                           </div>
                         </div>
                         <div class="col">
-                          <div class="count-passenger d-flex align-items-center justify-content-between flex-wrap">
+                          <div class="count-passenger d-flex align-items-center flex-wrap">
                             <div id="minus-button-childeren" class="minus-button count-button" :class=" { disabled : !mbc } " v-on:click="MinusChild();changeClass()">-</div>
-                            <input value="0" min="0" max="5" name="childrens" v-model="childrens" type="number" class="form-control one-way-inputs-input shadow-none" placeholder="0">
+                            <input value="0" min="0" max="5" name="childrens" v-model="childrens" type="number" class="form-control text-center one-way-inputs-input shadow-none" placeholder="0">
                             <div id="plus-button-childeren" class="plus-button count-button" :class=" { disabled : !pbc } " v-on:click="PlusChild();changeClass()">+</div>
                             <span class="card-desc d-block w-100">Детских</span>
                           </div>
@@ -227,7 +238,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-12 col-sm-12 mt-4 mt-xl-0 col-md-6 col-lg-6 col-xl mw-300 min-w-300">
+                <div class="col-lg-6 col-xl-6 col-xxl mb-lg-4 mb-xxl-0 mw-300 min-w-300">
                   <div class="card h-100">
                     <div class="card-body">
                       <label for="datepickerinputStart" class="form-label">Когда</label>
@@ -251,7 +262,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-12 col-sm-12 mt-4 mt-xl-0 col-md-6 col-lg-6 col-xl mw-300 min-w-300">
+                <div class="col-lg-6 col-xl-6 col-xxl mw-300 min-w-300">
                   <div class="card h-100">
                     <div class="card-body">
                       <label for="datepickerinputStart" class="form-label">Обратно</label>
@@ -419,13 +430,84 @@ export default {
     }
     .search-form {
       .checkbox-form {
-        margin-bottom: 33px;
+        margin-bottom: 32px;
+        @media screen and (max-width: 991px) {
+          display: flex !important;
+          width: 100% !important;
+          margin-bottom: 16px;
+          margin-left: 0;
+          margin-right: 0;
+        }
         .form-check-label {
           font-family: $uni;
           font-weight: $bold;
           font-size: 18px;
           margin-left: 24px;
           color: $base;
+        }
+        .form-check-inline {
+          display: inline-flex;
+          align-items: center;
+          margin-right: 64px;
+          @media screen and (max-width: 991px) {
+            display: flex;
+            flex-direction: column-reverse;
+            padding-left: 0;
+            margin-right: 38px;
+          }
+          .form-check-input {
+            border-color: #1399FF;
+          }
+          .form-check-input[type=radio] {
+            margin-right: 0;
+          }
+          .form-check-input:checked {
+            border: 4px solid $blue-active;
+          }
+          .form-check-input:checked:before {
+            box-shadow: none;
+          }
+          .form-check-input:checked:after {
+            border: none;
+            background: none;
+          }
+          .form-check-input[type=radio]:before {
+            @media screen and (max-width: 991px) {
+              width: 18px;
+              height: 18px;
+            }
+          }
+          .form-check-input[type=radio]:after {
+            @media screen and (max-width: 991px) {
+              width: 18px;
+              height: auto;
+            }
+          }
+          .form-check-input:checked + .form-check-label {
+            font-weight: $light;
+            color: $base;
+          }
+          .form-check-label {
+            font-family: $uni;
+            font-weight: $light;
+            font-size: 18px;
+            margin-left: 24px;
+            color: $deactivate;
+            padding-left: 0;
+            @media screen and (max-width: 991px) {
+              display: block;
+              margin-left: 0;
+              font-size: 14px;
+              line-height: 18.9px;
+              margin-bottom: 8px;
+            }
+          }
+        }
+        .form-check {
+          margin-bottom: 0;
+        }
+        .form-check-inline:last-child {
+          margin-right: 0;
         }
       }
       .card:first-child {
@@ -442,14 +524,16 @@ export default {
       .card {
         border-radius: .85rem;
         &-body {
+          padding: 12px 16px;
+          @media (min-width: 1400px) and (max-width: 1416px) {
+            padding: 12px 14px;
+          }
           .form-label {
-            font-family: $uni;
-            font-weight: $regular;
-            font-size: 18px;
-            color: $black;
+            @include font($uni,$regular,18px,24.3px,$base);
+            margin-bottom: 19px;
           }
           .form-control {
-            padding-left: 0;
+            padding-left: 0 !important;
             padding-right: 0;
             font-family: $uni;
             font-weight: $bold;
@@ -457,7 +541,6 @@ export default {
             color: $base;
             border: none;
             outline: none !important;
-
           }
           input:-ms-input-placeholder{
             font-weight: normal;
@@ -495,23 +578,32 @@ export default {
             .form-control {
               width: 20px;
             }
+            .minus-button {
+              margin-right: 8px;
+            }
+            .plus-button {
+              margin-left: 8px;
+            }
             .count-button {
               display: flex;
               align-items: center;
               justify-content: center;
-              width: 32px;
-              height: 32px;
+              width: 24px;
+              height: 24px;
               border-radius: 5px;
               background-color: $blue-active;
               color: $white;
               border: 1px solid $blue-active;
               cursor: pointer;
+              font-size: 10px;
+              box-shadow: 0px 12px 18px -6px rgba(0, 0, 0, 0.25);
             }
             .disabled {
               background-color: #F8FAFC;
-              border: 1px solid #F8FAFC;
+              border: 1px solid rgba(47, 56, 71, 0.1);
               color: #c0c0c0;
               cursor: auto;
+              box-shadow: none;
             }
 
           }
@@ -575,6 +667,15 @@ export default {
           }
 
         }
+        &-place-link {
+          div {
+            @include font($uni,$light,14px,18.9px,$blue-active);
+            @media screen and (max-width: 768px) {
+              font-size: 12px;
+              line-height: 16.2px;
+            }
+          }
+        }
 
         .calendar-span{
           background: #FFF;
@@ -615,6 +716,9 @@ export default {
       }
       .mw-300{
         max-width: 300px;
+        @media screen and (min-width: 1291px) {
+          max-width: 1200px;
+        }
         @media screen and (max-width: 1290px){
           max-width: 1200px;
         }
@@ -624,7 +728,9 @@ export default {
       }
       .min-w-300{
         min-width: 300px;
-
+        @media (min-width: 1400px) {
+          min-width: unset;
+        }
       }
     }
 

@@ -4,9 +4,10 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-12">
-          <div v-if="currentRouteName === 'Flight-selection'" class="timeline-wrapper d-flex">
+          <div v-if="page === 'flight-selection'" class="timeline-wrapper d-flex">
             <div class="timeline-item active">
               <h1 class="timeline-item-title">
+                {{title}}
                 Выбор рейса
               </h1>
               <div class="timeline-item-underline position-relative">
@@ -40,7 +41,7 @@
               </span>
             </div>
           </div>
-          <div v-if="currentRouteName === 'Ticket-booking'" class="timeline-wrapper d-flex">
+          <div v-if="page === 'ticket-booking'" class="timeline-wrapper d-flex">
             <div class="timeline-item ready">
               <h1 class="timeline-item-title">
                 Выбор рейса
@@ -86,11 +87,7 @@
 <script>
 export default {
   name: "Timeline",
-  computed: {
-    currentRouteName() {
-      return this.$route.name;
-    }
-  }
+  props: ['page']
 }
 </script>
 

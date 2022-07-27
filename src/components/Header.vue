@@ -77,7 +77,7 @@
                   </span>
           </button>
           <div class="collapse navbar-collapse d-lg-flex justify-content-end" id="navbarSupportedContent">
-            <nav class="nav-header log-out">
+            <nav v-if="isLogin === true" class="nav-header log-out">
               <ul class="nav flex-column">
                 <li class="nav-item">
                   <button v-on:click="rotateArrow" class="d-flex align-items-center justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHelp" aria-expanded="false" aria-controls="collapseHelp">
@@ -108,14 +108,40 @@
               </ul>
             </nav>
             <!--                log in user-->
-            <nav class="nav-header log-in d-none">
-              <ul class="nav justify-content-end align-items-center">
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLogIn" role="button" data-bs-toggle="dropdown" aria-expanded="false">Служба поддержки</a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdownLogIn">
-                    <li><a class="dropdown-item" href="#">Позвоните мне</a></li>
-                    <li><a class="dropdown-item" href="#">Вопросы и ответы</a></li>
-                  </ul>
+            <nav v-else class="nav-header log-in">
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <p class="nav-item-description">
+                    Звонок по России бесплатный
+                  </p>
+                  <a class="nav-item-number" href="tel:88007002099">
+                    8 (800) 700 – 20 – 99
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#" id="navbarDropdownLogInAvatar" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img alt="avatar" class="avatar-user" src="https://images.unsplash.com/photo-1554080353-a576cf803bda?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cGhvdG98ZW58MHx8MHx8&w=1000&q=80">
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <button v-on:click="rotateArrow" class="d-flex align-items-center justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProfile" aria-expanded="false" aria-controls="collapseHelp">
+                    <a class="nav-link" href="#collapseProfile" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapseProfile">Личный Кабинет</a>
+                    <ArrowDownIcon id="arrow-down-collapse" color="#fff"/>
+                  </button>
+                  <div class="collapse" id="collapseProfile">
+                    <ul class="list-group">
+                      <li class="list-group-item">
+                        <a class="list-group-item-link" href="#">
+                          Настройки
+                        </a>
+                      </li>
+                      <li class="list-group-item">
+                        <a class="list-group-item-link" href="#">
+                          Выйти
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">О нас</a>
@@ -130,13 +156,7 @@
                   <a class="nav-link" href="#">Мои поездки</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#" id="navbarDropdownLogInAvatar" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img alt="avatar" class="avatar-user" src="https://images.unsplash.com/photo-1554080353-a576cf803bda?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cGhvdG98ZW58MHx8MHx8&w=1000&q=80">
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdownLogInAvatar">
-                    <li><a class="dropdown-item" href="#">Настройки</a></li>
-                    <li><a class="dropdown-item" href="#">Выйти</a></li>
-                  </ul>
+                  <a class="nav-link-rent" href="#">Заказ и аренда автобусов</a>
                 </li>
               </ul>
             </nav>
@@ -153,6 +173,7 @@ export default {
     return {
       isVisibleElement: true,
       isShow: false,
+      isLogin: false,
     }
   },
   methods: {
@@ -315,14 +336,37 @@ export default {
         padding-right: 0;
         font-size: 14px;
         line-height: 18.9px;
+        .avatar-user {
+          width: 48px;
+          height: 48px;
+        }
+      }
+      .nav-link-rent {
+        display: block;
+        margin-top: 42px;
+        @include font($uni,$regular,12px,16.2px,$blue-active);
       }
     }
     .collapse {
+      .nav {
+        &-item {
+          &-description {
+            @include font($uni,$regular,10px,13.5px,$white);
+            margin-top: 26px;
+            margin-bottom: 8px;
+          }
+          &-number {
+            @include font($uni,$bold,16px,21.6px,$blue-active);
+            margin-bottom: 34px;
+          }
+        }
+      }
       .list-group {
         &-item {
+          padding-top: 16px;
+          padding-bottom: 12px;
           padding-left: 0;
           border: none;
-          padding-bottom: 16px;
           background: none;
           border-radius: 0;
           .list-group-item-link {
@@ -352,6 +396,72 @@ export default {
             transform: scaleX(1);
             transform-origin: bottom left;
           }
+        }
+        &-item:first-child {
+          padding-top: 0;
+        }
+        &-item:last-child {
+          padding-top: 0;
+          padding-bottom: 16px;
+        }
+      }
+    }
+    .collapsing {
+      .nav {
+        &-item {
+          &-description {
+            @include font($uni,$regular,10px,13.5px,$white);
+            margin-top: 26px;
+            margin-bottom: 8px;
+          }
+          &-number {
+            @include font($uni,$bold,16px,21.6px,$blue-active);
+            margin-bottom: 34px;
+          }
+        }
+      }
+      .list-group {
+        &-item {
+          padding-top: 16px;
+          padding-bottom: 12px;
+          padding-left: 0;
+          border: none;
+          background: none;
+          border-radius: 0;
+          .list-group-item-link {
+            @include font($uni,$light,12px,16.2px,$white);
+          }
+          .list-group-item-link:hover {
+            @include animation;
+            color: $blue-color;
+          }
+          .list-group-item-link:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: $blue-color;
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+          }
+          .list-group-item-link:hover {
+            @include animation;
+            color: $blue-color;
+          }
+          .list-group-item-link:hover:after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+          }
+        }
+        &-item:first-child {
+          padding-top: 0;
+        }
+        &-item:last-child {
+          padding-top: 0;
+          padding-bottom: 16px;
         }
       }
     }

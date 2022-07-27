@@ -35,21 +35,21 @@ export default {
         // функция для перестройки схемы автобуса в мобильную
         async busMobile(state) {
             const flights = [].concat(state.flightThere, state.flightBack)
-            console.log(flights)
+                // console.log(flights)
             const floors = flights.find(trip => trip.id_trip === state.busTriptId).bus_config
 
             let strMObile = {...floors }
             Object.keys(floors).map(fl => {
 
                     let floorObject = {
-                        ...floors[fl][1].reverse()
+                        ...floors[fl][1].slice(0).reverse()
                     }
 
                     //console.log(strMObile)
                     for (let i = 2; i <= 5; i++) {
 
                         let floorObject1 = {
-                            ...floors[fl][i].reverse()
+                            ...floors[fl][i].slice(0).reverse()
                         }
 
                         for (var key in floorObject) {

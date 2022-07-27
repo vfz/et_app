@@ -13,7 +13,7 @@
       </div>
       <div class="row">
         <div class="col-12 col-lg-8 col-xl-9">
-          <form>
+          <form class="needs-validation" novalidate>
             <PassengersInfoMobile/>
             <BuyerInfo/>
             <TicketInfo/>
@@ -36,7 +36,7 @@ import PassengersInfoMobile from "@/components/mobile/PassengersInfoMobile";
 
 export default {
   name: "PassengersFormInfoMobile",
-  components: {TicketInfo, BaggageRules, BuyerInfo, PassengersInfoMobile, CheckIcon, ArrowPathIcon, CancelIcon}
+  components: {TicketInfo, BaggageRules, BuyerInfo, PassengersInfoMobile, CheckIcon, ArrowPathIcon, CancelIcon},
 }
 </script>
 
@@ -48,16 +48,26 @@ export default {
   margin-right: 88px;
   margin-top: 40px;
   @media screen and (max-width: 767px) {
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-top: 24px;
+    margin-left: 8px;
+    margin-right: 8px;
   }
   .title-section {
     @include font($uni,$bold,24px,32.4px,$base);
     margin-bottom: 16px;
+    @media screen and (max-width: 767px) {
+      font-size: 18px;
+      line-height: 24.3px;
+    }
   }
   .title-section-description {
     @include font($uni,$light,18px,24.3px,$base);
     margin-bottom: 40px;
+    @media screen and (max-width: 767px) {
+      font-size: 14px;
+      line-height: 18.9px;
+      margin-bottom: 16px;
+    }
   }
 }
 </style>

@@ -16,7 +16,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-12 d-inline-flex justify-content-center align-content-center">
+              <div class="col-12 d-flex flex-column flex-lg-row d-lg-inline-flex justify-content-center align-content-center">
                 <div class="place-left-scheme d-flex align-items-center">
                   <div class="place-left-square active"></div>
                   <p class="place-left-description">Свободное место</p>
@@ -212,6 +212,10 @@ export default {
       }
     }
     .place-left-scheme {
+      @media screen and (max-width: 992px) {
+        display: block;
+        width: 100%;
+      }
       .place-left-square {
         width: 32px;
         height: 32px;
@@ -234,6 +238,10 @@ export default {
     }
     .place-left-scheme:first-child {
       margin-right: 40px;
+      @media screen and (max-width: 992px) {
+        margin-bottom: 16px;
+        margin-right: 0;
+      }
     }
 
     .seat {
@@ -451,6 +459,11 @@ export default {
     .modal-title {
       @include font($uni, $bold, 36px, 48.6px, $base);
       margin-bottom: 32px;
+      @media screen and (max-width: 767px) {
+        font-size: 18px;
+        line-height: 24.3px;
+        margin-bottom: 24px;
+      }
     }
     .modal-date {
       @include font($uni, $bold, 20px, 27px, $secondary);

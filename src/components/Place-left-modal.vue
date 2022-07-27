@@ -38,18 +38,19 @@
                     1 этаж
                   </div>
                   <div class="floor-item" :class="{ active : floor===2}"
-                  v-on:click="floor=2" v-if="Object.keys(mergeFlights.find(trip => trip.id_trip===busTriptId).bus_config).length===2"
+                  v-on:click="floor=2" v-if="floorsQ()"
                   >
                     2 этаж
                   </div>
-                 <div class="floor-item" v-on:click="busMobile()">busMobile</div>
+                 <!-- <div class="floor-item" v-on:click="busMobile()">busMobile</div> -->
                 </div>
                 <div :class="!mobileButoon ? 'bus-scheme' :  'bus-scheme-mobile'">
                   <table v-if="!mobileButoon">
                     <!--TODO подсветка выбранных мест-->
                     <tr v-for="(stroka,indexstr) in mergeFlights.find(trip => trip.id_trip===busTriptId).bus_config[floor]" :key="indexstr">
-                      <td v-for="(seat,index) in stroka" :key="index"
-                         
+                      <td v-for="(seat,index) in stroka.filter(seatt=> seatt.length >7)" :key="index"
+                        :rowspan="seat.split('+')[1]" 
+                        :colspan="seat.split('+')[2]"
                         align="center">
                         <div :class="seat.split('+')[0]" :id="'seat_'+seat.split('+')[3].replace('_', '')">{{seat.split('+')[3].replace('_', '')}}</div>
                       </td>
@@ -59,8 +60,9 @@
                   <table v-else>
                     <!--TODO подсветка выбранных мест-->
                     <tr v-for="(stroka,indexstrm) in shemeMobile[floor]" :key="indexstrm">
-                      <td v-for="(seat,indexm) in stroka" :key="indexm"
-                        
+                      <td v-for="(seat,indexm) in stroka.filter(seatt=> seatt.length >7)" :key="indexm"
+                        :colspan="seat.split('+')[1]" 
+                        :rowspan="seat.split('+')[2]"
                         align="center">
                         <div :class="seat.split('+')[0]" :id="'seat_'+seat.split('+')[3].replace('_', '')">{{seat.split('+')[3].replace('_', '')}}</div>
 
@@ -81,16 +83,14 @@
 <script>
 import {mapGetters,mapActions} from 'vuex'
 export default {
-   name: "Place-left-modal",
-  props: ['flightType'],
+  name: "Place-left-modal",
+  props: ['mobileButoon'],
   data(){
     return{
       floor:1,
-      shemeMobile:{},
-      mobileButoon:false
     }
   },
-  computed: mapGetters(['busTriptId','mergeFlights',]),
+  computed: mapGetters(['busTriptId','mergeFlights','shemeMobile']),
   mounted(){
     
   },
@@ -98,49 +98,14 @@ export default {
     ...mapActions([
       'updatebBusTriptId',
     ]),
-    busMobile(){
-
-        const floors=this.mergeFlights.find(trip => trip.id_trip===this.busTriptId).bus_config
-
-        let  strMObile={...floors}
-        Object.keys(floors).map(fl =>{
-          
-          let floorObject={
-                ...floors[fl][1].reverse()
-              }
-               
-          //console.log(strMObile)
-          for (let i=2; i<=5; i++)
-          {
-            
-            let floorObject1={
-                ...floors[fl][i].reverse()
-              }
-            
-            for(var key in floorObject){
-                // console.log(floorObject[key].split('+')[1]+' это ')
-                // console.log(typeof floorObject[key].split('+')[1]
-                // console.log(typeof floorObject[key])
-                
-                // console.log(' А ВОТ это ')
-                // console.log(typeof floorObject1[key])
-
-                      floorObject[key]=[].concat(floorObject[key],floorObject1[key]); 
-
-
-                 
-            }
-            
-              // console.log(floorObject)
-          }
-
-          strMObile[fl]=floorObject
-             
-          this.shemeMobile=strMObile
-          
-        })
-        this.mobileButoon=!this.mobileButoon
-    }
+    floorsQ(){
+      if(this.mobileButoon){
+   
+      }
+      
+      return true
+    },
+    
   }
 }
 
@@ -254,12 +219,8 @@ export default {
           font-weight: 500;
           font-size: 14px;
           line-height: 19px;
-          /* identical to box height */
-          /* Text / Инпут */
           color: $black;//#B5BDDB;
-          /* text-align: center;
-            white-space: nowrap;
-            vertical-align: middle;*/
+
     }
     .seat:hover {
         background: #A3D7FF;
@@ -285,7 +246,7 @@ export default {
         height: 32px;
         background: url("/img/modal/driver.png") repeat-y;
         background-size: contain;
-        transform: rotate(90deg);
+        
     }
     .text_floor_activ {
         font-family: $uni;
@@ -327,7 +288,7 @@ export default {
     .tualet {
       height: 32px;
       width: 72px;
-      margin-right: -10px;
+      margin-right: -5px;
       margin-left: -16px;
       margin-bottom: 6px;
       padding-top: 6px;
@@ -345,7 +306,7 @@ export default {
     .lest {
       height: 32px;
       width: 72px;
-      margin-right: -10px;
+      margin-right: -5px;
       margin-left: -16px;
       margin-bottom: 6px;
       padding-top: 6px;
@@ -378,7 +339,7 @@ export default {
     .stol {
       height: 32px;
       width: 72px;
-      margin-right: -10px;
+      margin-right: -5px;
       margin-left: -16px;
       margin-bottom: 6px;
       padding-top: 6px;
@@ -395,7 +356,7 @@ export default {
     .exit {
       height: 32px;
       width: 72px;
-      margin-right: -10px;
+      margin-right: -5px;
       margin-left: -16px;
       margin-bottom: 6px;
       padding-top: 6px;
@@ -418,25 +379,34 @@ export default {
     margin: auto;
     width: fit-content;
       
+      .voditel{
+        transform: rotate(90deg);
+      }
       .tualet {
           transform: rotate(-90deg);
-          margin-bottom: -32px;
+          margin-right: -10px;
+
+          // margin-bottom: -32px;
       }
       .lest {
           transform: rotate(-90deg);
-          margin-bottom: -32px;
+          // margin-bottom: -32px;
+          margin-right: -10px;
+
       }
       .lest_b {
           transform: rotate(-90deg);
-          margin-bottom: -32px;
+          // margin-bottom: -32px;
       }
       .stol {
           transform: rotate(-90deg);
-          margin-bottom: -32px;
+          // margin-bottom: -32px;
+          margin-right: -10px;
       }
       .exit {
           transform: rotate(-90deg);
-          margin-bottom: -32px;
+          // margin-bottom: -32px;
+          margin-right: -10px;
       }
       
     }

@@ -113,7 +113,11 @@
                       Осталось мест
                     </h3>
                     <div class="table-item-part-right-date">
-                      <div class="arrival-time table-link" data-bs-toggle="modal" data-bs-target="#place-left-modal"  v-if="+flight.count_available_seats_trip>=adults+childrens">
+                      <div class="arrival-time table-link" 
+                        data-bs-toggle="modal" 
+                        data-bs-target="#place-left-modal"
+                        v-on:click="updatebBusTriptId(flight.id_trip)"
+                        v-if="+flight.count_available_seats_trip>=adults+childrens">
                          {{flight.count_available_seats_trip}}
                           Выбрать
                       </div>
@@ -160,6 +164,11 @@ export default {
   computed: mapGetters(['flightThere','flightBack','childrens','adults',]),
   mounted(){
     
+  },
+    methods: {
+    ...mapActions([
+      'updatebBusTriptId',
+    ]),
   }
 }
 </script>

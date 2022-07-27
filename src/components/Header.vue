@@ -1,71 +1,136 @@
 <template>
     <header class="header">
-    <nav class="navbar navbar-expand-lg navbar-dark">
+      <nav v-if="!isMobile()" class="header-desktop navbar navbar-expand-lg navbar-dark">
+          <div class="container-fluid">
+            <router-link to="/" class="logo-link">
+              <img alt="logo" src="/img/header/logo.png" class="logo">
+            </router-link>
+            <button @click="toggleElement" ref="button" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                  <span class="navbar-toggler-icon">
+                    <fa class="toggler-icon-open" v-if="isVisibleElement" icon="bars" />
+                    <fa class="toggler-icon-close" v-else icon="xmark"/>
+                  </span>
+            </button>
+            <div class="collapse navbar-collapse d-lg-flex justify-content-end" id="navbarSupportedContent">
+              <nav class="nav-header log-out">
+                <ul class="nav">
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Служба поддержки</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" href="#">Позвоните мне</a></li>
+                      <li><a class="dropdown-item" href="#">Вопросы и ответы</a></li>
+                    </ul>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">О нас</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#enterLogin">Войти</a>
+                  </li>
+                </ul>
+              </nav>
+              <!--                log in user-->
+              <nav class="nav-header log-in d-none">
+                <ul class="nav justify-content-end align-items-center">
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLogIn" role="button" data-bs-toggle="dropdown" aria-expanded="false">Служба поддержки</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownLogIn">
+                      <li><a class="dropdown-item" href="#">Позвоните мне</a></li>
+                      <li><a class="dropdown-item" href="#">Вопросы и ответы</a></li>
+                    </ul>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">О нас</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Евробаллы</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Билеты</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Мои поездки</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#" id="navbarDropdownLogInAvatar" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <img alt="avatar" class="avatar-user" src="https://images.unsplash.com/photo-1554080353-a576cf803bda?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cGhvdG98ZW58MHx8MHx8&w=1000&q=80">
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownLogInAvatar">
+                      <li><a class="dropdown-item" href="#">Настройки</a></li>
+                      <li><a class="dropdown-item" href="#">Выйти</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+      </nav>
+      <nav v-if="isMobile()" class="header-mobile navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
           <router-link to="/" class="logo-link">
             <img alt="logo" src="/img/header/logo.png" class="logo">
           </router-link>
-            <button @click="toggleElement" ref="button" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
-                <span class="navbar-toggler-icon">
-                  <fa class="toggler-icon-open" v-if="isVisibleElement" icon="bars" />
-                  <fa class="toggler-icon-close" v-else icon="xmark"/>
-                </span>
-            </button>
-            <div class="collapse navbar-collapse d-lg-flex justify-content-end" id="navbarSupportedContent">
-                <nav class="nav-header log-out">
-                    <ul class="nav">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Служба поддержки</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Позвоните мне</a></li>
-                                <li><a class="dropdown-item" href="#">Вопросы и ответы</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">О нас</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#enterLogin">Войти</a>
-                        </li>
-                    </ul>
-                </nav>
-                <!--                log in user-->
-                <nav class="nav-header log-in d-none">
-                    <ul class="nav justify-content-end align-items-center">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLogIn" role="button" data-bs-toggle="dropdown" aria-expanded="false">Служба поддержки</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownLogIn">
-                                <li><a class="dropdown-item" href="#">Позвоните мне</a></li>
-                                <li><a class="dropdown-item" href="#">Вопросы и ответы</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">О нас</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Евробаллы</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Билеты</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Мои поездки</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" id="navbarDropdownLogInAvatar" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img alt="avatar" class="avatar-user" src="https://images.unsplash.com/photo-1554080353-a576cf803bda?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cGhvdG98ZW58MHx8MHx8&w=1000&q=80">
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownLogInAvatar">
-                                <li><a class="dropdown-item" href="#">Настройки</a></li>
-                                <li><a class="dropdown-item" href="#">Выйти</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+          <button @click="toggleElement" ref="button" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                  <span class="navbar-toggler-icon">
+                    <fa class="toggler-icon-open" v-if="isVisibleElement" icon="bars" />
+                    <fa class="toggler-icon-close" v-else icon="xmark"/>
+                  </span>
+          </button>
+          <div class="collapse navbar-collapse d-lg-flex justify-content-end" id="navbarSupportedContent">
+            <nav class="nav-header log-out">
+              <ul class="nav">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Служба поддержки</a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#">Позвоните мне</a></li>
+                    <li><a class="dropdown-item" href="#">Вопросы и ответы</a></li>
+                  </ul>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">О нас</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#enterLogin">Войти</a>
+                </li>
+              </ul>
+            </nav>
+            <!--                log in user-->
+            <nav class="nav-header log-in d-none">
+              <ul class="nav justify-content-end align-items-center">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLogIn" role="button" data-bs-toggle="dropdown" aria-expanded="false">Служба поддержки</a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdownLogIn">
+                    <li><a class="dropdown-item" href="#">Позвоните мне</a></li>
+                    <li><a class="dropdown-item" href="#">Вопросы и ответы</a></li>
+                  </ul>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">О нас</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Евробаллы</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Билеты</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Мои поездки</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#" id="navbarDropdownLogInAvatar" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img alt="avatar" class="avatar-user" src="https://images.unsplash.com/photo-1554080353-a576cf803bda?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cGhvdG98ZW58MHx8MHx8&w=1000&q=80">
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdownLogInAvatar">
+                    <li><a class="dropdown-item" href="#">Настройки</a></li>
+                    <li><a class="dropdown-item" href="#">Выйти</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </nav>
+          </div>
         </div>
-    </nav>
-</header>
+      </nav>
+    </header>
 </template>
 <script>
 export default {
@@ -77,6 +142,9 @@ export default {
   methods: {
     toggleElement(){
       this.isVisibleElement = !this.isVisibleElement;
+    },
+    isMobile() {
+      return screen.width <= 991;
     }
   },
   mounted(){

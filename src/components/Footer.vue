@@ -235,6 +235,37 @@
                     </ul>
                   </div>
                 </li>
+                <li class="nav-item">
+                  <button v-on:click="rotateArrow" class="d-flex align-items-center justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAnother" aria-expanded="false" aria-controls="collapseAnother">
+                    Остальное
+                    <ArrowDownIcon v-on:click="rotateArrow" class="arrow-down-collapse" color="#fff"/>
+                  </button>
+                  <!--                  TODO заполнить ссылками страницами-->
+                  <div class="collapse" id="collapseAnother">
+                    <ul class="list-group">
+                      <li class="list-group-item">
+                        <a class="list-group-item-link" href="#">
+                          Агентам
+                        </a>
+                      </li>
+                      <li class="list-group-item">
+                        <a class="list-group-item-link" href="#">
+                          Договор оферты
+                        </a>
+                      </li>
+                      <li class="list-group-item">
+                        <a class="list-group-item-link" href="#">
+                          Бюро находок
+                        </a>
+                      </li>
+                      <li class="list-group-item">
+                        <a class="list-group-item-link" href="#">
+                          Вопросы и ответы
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
               </ul>
             </nav>
           </div>

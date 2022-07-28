@@ -200,6 +200,12 @@ export default {
   }
 }
 </script>
+<style>
+/*if bg white then added fill black*/
+.body-app-white #arrow-down-collapse path {
+  fill: #283256;
+}
+</style>
 <style lang="scss" scoped>
 
 @import "src/assets/variables.scss";

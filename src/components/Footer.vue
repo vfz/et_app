@@ -173,7 +173,37 @@
                     </ul>
                   </div>
                 </li>
-                <li class="nav-item"></li>
+                <li class="nav-item">
+                  <button v-on:click="rotateArrow" class="d-flex align-items-center justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePartners" aria-expanded="false" aria-controls="collapsePartners">
+                    Партнерам
+                    <ArrowDownIcon v-on:click="rotateArrow" class="arrow-down-collapse" color="#fff"/>
+                  </button>
+<!--                  TODO заполнить правильными страницами-->
+                  <div class="collapse" id="collapsePartners">
+                    <ul class="list-group">
+                      <li class="list-group-item">
+                        <a class="list-group-item-link" href="#">
+                          О нас
+                        </a>
+                      </li>
+                      <li class="list-group-item">
+                        <a class="list-group-item-link" href="#">
+                          Вакансии
+                        </a>
+                      </li>
+                      <li class="list-group-item">
+                        <a class="list-group-item-link" href="#">
+                          Аренда автобусов
+                        </a>
+                      </li>
+                      <li class="list-group-item">
+                        <a class="list-group-item-link" href="#">
+                          Контакты
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
                 <li class="nav-item"></li>
               </ul>
             </nav>

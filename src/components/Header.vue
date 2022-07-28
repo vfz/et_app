@@ -77,7 +77,7 @@
                   </span>
           </button>
           <div class="collapse navbar-collapse d-lg-flex justify-content-end" id="navbarSupportedContent">
-            <nav v-if="isLogin === false" class="nav-header log-out">
+            <nav v-if="isLogin === true" class="nav-header log-out">
               <ul class="nav flex-column">
                 <li class="nav-item nav-item-header">
                   <p class="nav-item-description">
@@ -364,7 +364,7 @@ export default {
   //style for header mobile
   .header-mobile {
     .nav-item {
-      //border-bottom: 1px solid #E6EAEF;
+      padding-top: 16px;
       button {
         background: none;
         border: none;
@@ -372,8 +372,7 @@ export default {
         padding: 0;
       }
       .nav-link {
-        padding-left: 0;
-        padding-right: 0;
+        padding: 0;
         @include font($uni,$regular,14px,18.9px,$base);
         .avatar-user {
           width: 48px;
@@ -385,6 +384,12 @@ export default {
         margin-top: 42px;
         @include font($uni,$regular,12px,16.2px,$blue-active);
       }
+    }
+    .nav-item-header {
+      padding-top: 0;
+    }
+    .nav-item-footer {
+      padding-bottom: 0;
     }
     .collapse {
       .nav {

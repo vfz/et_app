@@ -204,7 +204,37 @@
                     </ul>
                   </div>
                 </li>
-                <li class="nav-item"></li>
+                <li class="nav-item">
+                  <button v-on:click="rotateArrow" class="d-flex align-items-center justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSupport" aria-expanded="false" aria-controls="collapseSupport">
+                    Поддержка
+                    <ArrowDownIcon v-on:click="rotateArrow" class="arrow-down-collapse" color="#fff"/>
+                  </button>
+                  <!--                  TODO заполнить ссылками страницами-->
+                  <div class="collapse" id="collapseSupport">
+                    <ul class="list-group">
+                      <li class="list-group-item">
+                        <a class="list-group-item-link" href="#" data-bs-toggle="modal" data-bs-target="#WriteUsModal">
+                          Написать нам
+                        </a>
+                      </li>
+                      <li class="list-group-item">
+                        <a class="list-group-item-link" href="#">
+                          Возврат билета
+                        </a>
+                      </li>
+                      <li class="list-group-item">
+                        <a class="list-group-item-link" href="#">
+                          Бюро находок
+                        </a>
+                      </li>
+                      <li class="list-group-item">
+                        <a class="list-group-item-link" href="#">
+                          Вопросы и ответы
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
               </ul>
             </nav>
           </div>

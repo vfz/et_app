@@ -154,8 +154,8 @@
   margin-left: 88px;
   @media screen and (max-width: 768px) {
     padding-top: 40px;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 8px;
+    margin-right: 8px;
   }
   .card-city-direction {
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -229,19 +229,6 @@
     box-shadow: none;
   }
 
-  .card-directions:first-child {
-    margin-right: 16px;
-    @media screen and (max-width: 768px) {
-      margin-right: 0;
-      margin-bottom: 8px;
-    }
-  }
-  .card-directions:last-child {
-    @media screen and (max-width: 768px) {
-      margin-right: 0;
-      margin-bottom: 16px;
-    }
-  }
   .card-directions {
     width: 100%;
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -249,6 +236,10 @@
     box-shadow: none;
     max-width: 262px;
     margin-bottom: 40px;
+    @media screen and (max-width: 768px) {
+      max-width: unset;
+      width: 100%;
+    }
     .card-body {
       padding: 12px 16px;
       @media screen and (max-width: 768px) {
@@ -285,6 +276,19 @@
           }
         }
       }
+    }
+  }
+  .card-directions:first-child {
+    margin-right: 16px;
+    @media screen and (max-width: 768px) {
+      margin-right: 0;
+      margin-bottom: 8px;
+    }
+  }
+  .card-directions:last-child {
+    @media screen and (max-width: 768px) {
+      margin-right: 0;
+      margin-bottom: 16px;
     }
   }
 }

@@ -6,7 +6,7 @@
   <div class="modal fade dispatch-modal" id="dispatch-modal" tabindex="-1" aria-labelledby="dispatch-modal-label" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
-        <div class="modal-header justify-content-end">
+        <div class="modal-header justify-content-between justify-content-md-end">
           <a class="modal-link" href="#">Проложить маршрут</a>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
@@ -36,6 +36,11 @@ export default {
       margin-right: 64px;
       text-decoration: none;
       @include font($uni, $light, 18px, 28.3px, $blue-link);
+      @media screen and (max-width: 768px) {
+        font-size: 14px;
+        line-height: 18.9px;
+        color: $blue-active;
+      }
     }
   }
   &-body {

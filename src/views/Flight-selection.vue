@@ -1,14 +1,14 @@
 <template>
   <div class="body-app-white">
     <Header/>
-    <Timeline v-if="!isMobile()"/>
+    <Timeline page="flight-selection" v-if="!isMobile()"/>
     <FlightForm v-if="!isMobile()"/>
     <FlightFormMobile v-if="isMobile()"/>
-    <TimelineMobile v-if="isMobile()"/>
+    <TimelineMobile title="Выбор рейса" description="Шаг 1" v-if="isMobile()"/>
 
     <FlightTable flight-type="there" v-if="!isMobile()"/>
     <FlightTableMobile flight-type="there" v-if="isMobile()"/>
-    
+
     <FlightTable flight-type="back" v-if="!isMobile() && !oneWay"/>
     <FlightTableMobile flight-type="back" v-if="isMobile() && !oneWay"/>
 
@@ -103,8 +103,8 @@ export default {
     ]),
 
     isMobile() {
-      return screen.width <= 992;
-    }
+      return screen.width <= 991;
+    },
   },
   mounted(){
   }

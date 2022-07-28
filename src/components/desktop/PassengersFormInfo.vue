@@ -12,15 +12,16 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-9 col-lg-8 col-xl-9">
+      <div class="col-9 col-lg-12 col-xl-9">
         <form>
           <PassengersInfo/>
           <BuyerInfo/>
+          <TicketInfo v-if="isTablet()"/>
           <BaggageRules/>
         </form>
       </div>
-      <div class="col-3 col-lg-4 col-xl-3">
-        <TicketInfo/>
+      <div class="col-3 col-lg-12 col-xl-3">
+        <TicketInfo v-if="!isTablet()"/>
       </div>
     </div>
   </div>
@@ -37,7 +38,12 @@ import BaggageRules from "@/components/BaggageRules";
 import TicketInfo from "@/components/TicketInfo";
 export default {
   name: "PassengersFormInfo",
-  components: {TicketInfo, BaggageRules, BuyerInfo, PassengersInfo, CheckIcon, ArrowPathIcon, CancelIcon}
+  components: {TicketInfo, BaggageRules, BuyerInfo, PassengersInfo, CheckIcon, ArrowPathIcon, CancelIcon},
+  methods: {
+    isTablet() {
+      return screen.width <= 1199;
+    }
+  }
 }
 </script>
 

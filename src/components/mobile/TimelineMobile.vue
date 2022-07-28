@@ -4,31 +4,31 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
-            <div v-if="currentRouteName === 'Flight-selection'" class="timeline-wrapper d-flex">
+            <div class="timeline-wrapper d-flex">
               <div class="timeline-item active">
                 <h1 class="timeline-item-title">
-                  Выбор рейса
+                  {{title}}
                 </h1>
                 <div class="timeline-item-description">
-                  Шаг 1
+                  {{description}}
                 </div>
               </div>
             </div>
-            <div v-if="currentRouteName === 'Ticket-booking'" class="timeline-wrapper d-flex">
-              <div class="timeline-item ready">
-                <h1 class="timeline-item-title">
-                  Бронирование билета
-                </h1>
-                <div class="timeline-item-description">
-                  шаг 2
-                </div>
-              </div>
-<!--              <div class="timeline-item">-->
+<!--            <div class="timeline-wrapper d-flex">-->
+<!--              <div class="timeline-item ready">-->
 <!--                <h1 class="timeline-item-title">-->
-<!--                  Оплата-->
+<!--                  Бронирование билета-->
 <!--                </h1>-->
+<!--                <div class="timeline-item-description">-->
+<!--                  шаг 2-->
+<!--                </div>-->
 <!--              </div>-->
-            </div>
+<!--&lt;!&ndash;              <div class="timeline-item">&ndash;&gt;-->
+<!--&lt;!&ndash;                <h1 class="timeline-item-title">&ndash;&gt;-->
+<!--&lt;!&ndash;                  Оплата&ndash;&gt;-->
+<!--&lt;!&ndash;                </h1>&ndash;&gt;-->
+<!--&lt;!&ndash;              </div>&ndash;&gt;-->
+<!--            </div>-->
           </div>
         </div>
       </div>
@@ -43,7 +43,8 @@ export default {
     currentRouteName() {
       return this.$route.name;
     }
-  }
+  },
+  props: ['title', 'description']
 }
 </script>
 
@@ -55,51 +56,16 @@ export default {
   margin-left: 88px;
   margin-right: 88px;
   @media screen and (max-width: 767px) {
-    margin-left: 20px;
-    margin-right: 20px;
-  }
-  .active {
-    .timeline-item-title {
-      color: $black;
-    }
-    .timeline-item-underline {
-      background-color: $black;
-      .timeline-item-underline-point {
-        background-color: $black;
-      }
-    }
-    .timeline-item-description {
-      color: $black;
-    }
-  }
-  .ready {
-    .timeline-item-title {
-      color: $blue-active;
-    }
-    .timeline-item-underline {
-      background-color: $blue-active;
-      .timeline-item-underline-point {
-        background-color: $blue-active;
-      }
-    }
-    .timeline-item-description {
-      color: $blue-active;
-    }
+    margin-left: 8px;
+    margin-right: 8px;
   }
   .timeline-item {
     &-title {
-      font-family: $uni;
-      font-weight: $bold;
-      font-size: 30px;
-      color: $deactivate;
-      padding-right: 40px;
+      @include font($uni,$bold,20px,27px,$base);
+      margin-bottom: 4px;
     }
     &-description {
-      margin-top: 7px;
-      font-family: $uni;
-      font-weight: $light;
-      font-size: 14px;
-      color: $base;
+      @include font($uni,$light,11px,14.85px,$base);
     }
   }
 }

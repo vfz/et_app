@@ -52,11 +52,17 @@ export default {
   margin-left: 88px;
   margin-right: 88px;
   @media screen and (max-width: 767px) {
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-top: 24px;
+    margin-left: 8px;
+    margin-right: 8px;
   }
   .title-section {
     @include font($uni,$bold,24px,32.4px,$base);
+    @media screen and (max-width: 767px) {
+      font-size: 18px;
+      line-height: 24.3px;
+      margin-bottom: 14px;
+    }
   }
   .current-value-points {
     @include font($uni,$regular,18px,24.3px,$base);
@@ -69,6 +75,7 @@ export default {
     @media screen and (max-width: 576px) {
       flex-wrap: wrap;
       font-size: 14px;
+      line-height: 18.9px;
     }
     &-data, &-europoints {
       color: $blue-active;
@@ -86,6 +93,7 @@ export default {
       color: $white;
       background-color: $blue-active;
       text-transform: none;
+      filter: drop-shadow(0px 8px 12px rgba(161, 159, 255, 0.56));
       @media screen and (max-width: 767px) {
         width: 100%;
       }

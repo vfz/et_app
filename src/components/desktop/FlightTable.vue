@@ -54,7 +54,7 @@
                   <div class="dispatch-date">
                     <span class="dispatch-date-day">{{flight.date_trip.split('-')[2]}} </span>
                     <span class="dispatch-date-month">{{ monthes[--flight.date_trip.split('-')[1]]}}</span> 
-                    <span class="dispatch-date-year">{{flight.date_trip.split('-')[0]}}</span>
+                    <span class="dispatch-date-year">`{{flight.date_trip.split('-')[0].split('')[2]+flight.date_trip.split('-')[0].split('')[2]}}</span>
                     
                   </div>
                 </td>
@@ -103,7 +103,7 @@
                   <div class="arrival-date">
                     <span class="arrival-date-day">{{flight.date_arrival_trip.split('-')[2]}} </span>
                     <span class="arrival-date-month">{{ monthes[--flight.date_arrival_trip.split('-')[1]]}}</span> 
-                    <span class="arrival-date-year">{{flight.date_arrival_trip.split('-')[0]}}</span>
+                    <span class="arrival-date-year">`{{flight.date_arrival_trip.split('-')[0].split('')[2]+flight.date_arrival_trip.split('-')[0].split('')[3]}}</span>
                   </div>
                 </td>
                 <td>
@@ -171,7 +171,7 @@ export default {
         hours: ['час', 'часа', 'часов'],
         minutes: ['минута', 'минуты', 'минут'],
         cases: [2, 0, 1, 1, 1, 2],
-        monthes: ["Янв", "Фев", "Мар", "Апр", "Мая", "Июня", "Июля", "Авг", "Сен", "Окт", "Ноя", "Дек"],
+        monthes: ["Янв", "Фев", "Мар", "Апр", "Мая", "Июн", "Июл", "Авг", "Сен", "Окт", "Ноя", "Дек"],
         flights:[],
     }
   },

@@ -34,7 +34,7 @@
             <!-- Form-input-->
             <div class="two-ways-inputs w-100 form-header">
               <div class="row flex-wrap">
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl min-w-300">
+                <div class="col-12 col-sm-12 col-lg-6 col-xl min-w-300">
                   <div class="card h-100">
                     <div class="card-body">
                       <div class="card-body-section position-relative">
@@ -95,8 +95,8 @@
                             <div class="dispatch-date d-flex justify-content-between align-items-center">
                               <div>
                                 <span class="dispatch-date-day">{{dateArival.split('.')[0]}} </span>
-                                <span class="dispatch-date-month">{{ monthes[--dateArival.split('.')[1]]}} </span> 
-                                <span class="dispatch-date-year">{{dateArival.split('.')[2]}}</span>
+                                <span class="dispatch-date-month">{{  monthes[--dateArival.split('.')[1]].split('')[0]+monthes[--dateArival.split('.')[1]].split('')[1]+ monthes[--dateArival.split('.')[1]].split('')[2]}} </span>
+                                <span class="dispatch-date-year">`{{dateArival.split('.')[2].split('')[2]+dateArival.split('.')[2].split('')[3]}}</span>
                               </div>
                               <div class="select-date" v-if="selectDate">
                                 <DataPicker/>
@@ -119,8 +119,8 @@
                             <div class="dispatch-date d-flex justify-content-between align-items-center">
                               <div>
                                 <span class="dispatch-date-day">{{dateArival.split('.')[0]}} </span>
-                                <span class="dispatch-date-month">{{ monthes[--dateArival.split('.')[1]]}} </span> 
-                                <span class="dispatch-date-year">{{dateArival.split('.')[2]}}</span>
+                                <span class="dispatch-date-month">{{ monthes[--dateArival.split('.')[1]].split('')[0]+monthes[--dateArival.split('.')[1]].split('')[1]+monthes[--dateArival.split('.')[1]].split('')[2]}} </span> 
+                                <span class="dispatch-date-year">`{{dateArival.split('.')[2].split('')[2]+dateArival.split('.')[2].split('')[3]}}</span>
                               </div>
                               <div class="select-date" v-if="selectDate">
                                 <DataPicker/>
@@ -137,8 +137,8 @@
                             <div class="arrival-date d-flex justify-content-between align-items-center">
                               <div>
                                 <span class="dispatch-date-day">{{dateBack.split('.')[0]}} </span>
-                                <span class="dispatch-date-month">{{ monthes[--dateBack.split('.')[1]]}} </span> 
-                                <span class="dispatch-date-year">{{dateBack.split('.')[2]}}</span>
+                                <span class="dispatch-date-month">{{ monthes[--dateBack.split('.')[1]].split('')[0]+monthes[--dateBack.split('.')[1]].split('')[1]+monthes[--dateBack.split('.')[1]].split('')[2]}} </span>
+                                <span class="dispatch-date-year">`{{dateBack.split('.')[2].split('')[2]+dateBack.split('.')[2].split('')[3]}}</span>
                               </div>
                               <div class="select-date" v-if="selectDateBack">
                                 <DataPicker/>
@@ -151,7 +151,7 @@
                         </div>
                         <div class="cross-line"></div>
                       </div>
-                      <div class="card-body-section">
+                      <div class="card-body-section d-flex justify-content-between align-items-center">
                         <div>
                           <label for="dataListFrom" class="form-label">Пассажиры</label>
                           <div class="passengers-count" v-bind:class="{'d-none': isHidden}" v-on:click="isHidden = true; isShow = true">
@@ -176,6 +176,9 @@
                               </div>
                             </div>
                           </div>
+                        </div>
+                        <div v-bind:class="{'d-block': !isShow, 'd-none': isShow}">
+                          <img class="help-icon" alt="help" src="/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
                         </div>
                       </div>
                     </div>
@@ -317,23 +320,96 @@ export default {
     margin-left: 88px;
     margin-right: 88px;
     @media screen and (max-width: 767px) {
-      margin-left: 5px;
-      margin-right: 5px;
+      margin-top: 24px;
+      margin-left: 8px;
+      margin-right: 8px;
     }
     .search-form {
       .checkbox-form {
         margin-bottom: 16px;
-        .form-check-label {
-          font-family: $uni;
-          font-weight: $bold;
-          font-size: 14px;
-          color: $base;
+        @media screen and (max-width: 767px) {
+          display: flex !important;
+          width: 100% !important;
+          margin-bottom: 16px;
+          margin-left: 0;
+          margin-right: 0;
+        }
+        .form-check-inline {
+          @media screen and (max-width: 767px) {
+            display: flex;
+            flex-direction: column-reverse;
+            padding-left: 0;
+            margin-right: 38px;
+          }
+          .form-check-input {
+            border-color: #1399FF;
+          }
+          .form-check-input[type=radio] {
+            @media screen and (max-width: 767px) {
+              width: 18px;
+              height: 18px;
+              margin-left: 0;
+              float: unset;
+            }
+          }
+          .form-check-input:checked {
+            border: 4px solid $blue-active;
+            @media screen and (max-width: 768px) {
+              border: 4px solid $blue-active;
+            }
+          }
+          .form-check-input:checked:before {
+            box-shadow: none;
+          }
+          .form-check-input:checked:after {
+            border: none;
+            background: none;
+          }
+          .form-check-input[type=radio]:before {
+            @media screen and (max-width: 767px) {
+              width: 18px;
+              height: 18px;
+            }
+          }
+          .form-check-input[type=radio]:after {
+            @media screen and (max-width: 767px) {
+              width: 18px;
+              height: auto;
+            }
+          }
+          .form-check-input:checked + .form-check-label {
+            font-weight: $light;
+            color: $base;
+          }
+          .form-check-label {
+            font-family: $uni;
+            font-weight: $light;
+            font-size: 18px;
+            margin-left: 24px;
+            color: $deactivate;
+            padding-left: 0;
+            @media screen and (max-width: 767px) {
+              display: block;
+              margin-left: 0;
+              font-size: 14px;
+              line-height: 18.9px;
+              margin-bottom: 8px;
+            }
+          }
+        }
+        .form-check {
+          margin-bottom: 0;
+        }
+        .form-check-inline:last-child {
+          @media screen and (max-width: 768px) {
+            margin-right: 0;
+          }
         }
       }
       .path-direction {
         margin-bottom: 8px;
         .path-title {
-          @include font($uni,$regular,14px,18.9px,$base);
+          @include font($uni,$light,14px,18.9px,$base);
         }
         .path-content {
           @include font($uni,$bold,14px,18.9px,$base);
@@ -351,7 +427,7 @@ export default {
         }
       }
       .card {
-        border-radius: .85rem;
+        border-radius: 8px;
         &-body {
           padding: 8px 12px;
           &-section {
@@ -360,10 +436,11 @@ export default {
               font-weight: $regular;
               font-size: 12px;
               color: $black;
+              margin-bottom: 8px;
             }
             .city-name {
               @include font($uni,$bold,16px,21.6px,$blue-color);
-              margin-bottom: 12px;
+              margin-bottom: 11px;
               span {
                 border-bottom: 1px dashed $blue-color;
               }
@@ -394,6 +471,10 @@ export default {
                 border-bottom: 1px dashed $blue-color;
               }
             }
+            .passengers-count:hover {
+              @include animation;
+              color: $blue-active;
+            }
             .cross-line {
               width: 100%;
               height: 1px;
@@ -409,27 +490,25 @@ export default {
               align-items: center;
               justify-content: center;
               position: absolute;
-              bottom: 30px;
-              right: -46px;
+              bottom: -20px;
+              right: 0;
               z-index: 999;
               cursor: pointer;
-              @media screen and (max-width: 767px) {
-                right: 0;
-                bottom: -20px;
-                transform: rotate(180deg);
-                box-shadow: 0 25px 0 0 rgb(255,255,255);
-              }
+              -webkit-box-shadow: 12px 0px 0px -4px rgba(255, 255, 255, 1);
+              -moz-box-shadow: 12px 0px 0px -4px rgba(255, 255, 255, 1);
+              box-shadow: 12px 0px 0px -4px rgba(255, 255, 255, 1);
+              transform: rotate(180deg);
             }
           }
           //TODO deleted form control
           .form-control {
-            padding-left: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            padding-left: 0 !important;
             padding-right: 0;
-            font-family: $uni;
-            font-weight: $bold;
-            font-size: 18px;
-            color: $base;
+            @include font($uni,$bold,16px,21.6px,$blue-color);
             border: none;
+            text-decoration: underline dotted $blue-color;
             outline: none !important;
 
           }
@@ -480,6 +559,7 @@ export default {
               color: $white;
               border: 1px solid $blue-active;
               cursor: pointer;
+              box-shadow: 0px 12px 18px -6px rgba(0, 0, 0, 0.25);
             }
             .minus-button {
               margin-right: 8px;
@@ -489,9 +569,10 @@ export default {
             }
             .disabled {
               background-color: #F8FAFC;
-              border: 1px solid #F8FAFC;
+              border: 1px solid rgba(47, 56, 71, 0.1);
               color: #c0c0c0;
               cursor: auto;
+              box-shadow: none;
             }
 
           }
@@ -535,6 +616,12 @@ export default {
           background: #FFF;
           border: 0px;
           padding: 0;
+          .calendar-icon {
+            @media screen and (max-width: 767px) {
+              width: 16px;
+              height: auto;
+            }
+          }
         }
         .select-date{
           position: absolute;
@@ -561,11 +648,16 @@ export default {
         font-weight: $regular;
         font-size: 16px;
         padding: 10px 65px;
-        border-radius: 15px;
+        border-radius: 8px;
         border: none;
         margin-top: 20px;
         color: $white;
         background-color: $blue-active;
+        filter: drop-shadow(0px 8px 12px rgba(161, 159, 255, 0.56));
+      }
+      .btn:hover {
+        @include animation;
+        background-color: $btn-hover;
       }
       .btn-disabled {
         background-color: #A3D7FF;

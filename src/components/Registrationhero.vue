@@ -34,8 +34,8 @@
     padding-top: 48px;
     padding-bottom: 29px;
     background-position: 67%;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 8px;
+    padding-right: 8px;
   }
   .title-section {
     @media screen and (max-width: 768px) {
@@ -71,6 +71,7 @@
       text-align: center;
       font-size: 16px;
       line-height: 21.6px;
+      border-radius: 8px;
     }
   }
   &-button:hover {

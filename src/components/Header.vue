@@ -231,6 +231,24 @@ export default {
         .nav-link {
           color: $black !important;
         }
+        .collapse {
+          .list-group {
+            &-item {
+              &-link {
+                color: $base !important;
+              }
+            }
+          }
+        }
+        .collapsing {
+          .list-group {
+            &-item {
+              &-link {
+                color: $base !important;
+              }
+            }
+          }
+        }
       }
     }
   }

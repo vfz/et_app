@@ -1,6 +1,6 @@
 <template>
     <footer class="footer">
-        <div class="container-fluid">
+        <div v-if="!isMobile()" class="footer-desktop container-fluid">
             <div class="row">
                 <div class="col-12 col-xl-4">
                     <div class="logo-footer d-flex flex-wrap w-100">
@@ -114,9 +114,105 @@
                 </div>
             </div>
         </div>
+      <div v-else class="footer-mobile container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <ul class="socials justify-content-center d-flex flex-row">
+              <li class="socials-item">
+                <a href="#" class="socials-item-link">
+                  <img alt="vk" src="/img/footer/vk.svg">
+                </a>
+              </li>
+              <li class="socials-item">
+                <a href="#" class="socials-item-link">
+                  <img alt="instagram" src="/img/footer/instagram.svg">
+                </a>
+              </li>
+            </ul>
+            <div class="logo-footer d-flex flex-column">
+              <span class="call-free d-block w-100 text-center">
+                            Звонок по России бесплатный
+                        </span>
+              <a class="call-free-number d-block w-100 text-center" href="tel:88007002099">
+                8 (800) 700 - 20 - 99
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <nav>
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <button v-on:click="rotateArrow" class="d-flex align-items-center justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInfo" aria-expanded="false" aria-controls="collapseInfo">
+                    Информация
+                    <ArrowDownIcon v-on:click="rotateArrow" class="arrow-down-collapse" color="#fff"/>
+                  </button>
+                  <div class="collapse" id="collapseInfo">
+                    <ul class="list-group">
+                      <li class="list-group-item">
+                        <a class="list-group-item-link" href="#">
+                          О нас
+                        </a>
+                      </li>
+                      <li class="list-group-item">
+                        <a class="list-group-item-link" href="#">
+                          Вакансии
+                        </a>
+                      </li>
+                      <li class="list-group-item">
+                        <a class="list-group-item-link" href="#">
+                          Аренда автобусов
+                        </a>
+                      </li>
+                      <li class="list-group-item">
+                        <a class="list-group-item-link" href="#">
+                          Контакты
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="nav-item"></li>
+                <li class="nav-item"></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
       <WriteUsModal/>
     </footer>
 </template>
+<script>
+import WriteUsModal from "@/components/WriteUsModal";
+import ArrowDownIcon from "@/components/icons/ArrowDownIcon";
+export default {
+  components: {ArrowDownIcon, WriteUsModal},
+  data: () => {
+    return {
+      isShow: false,
+    }
+  },
+  methods: {
+    isMobile() {
+      return screen.width <= 991;
+    },
+    rotateArrow(event) {
+      const parent = event.target;
+      const arrow = parent.querySelector('.arrow-down-collapse');
+      this.isShow = !this.isShow;
+      if (this.isShow === true) {
+        arrow.style.transform = 'rotate(180deg)';
+        arrow.style.transition = '0.2s ease-in'
+      }
+      else {
+        arrow.style.transform = 'rotate(0deg)';
+        arrow.style.transition = '0.2s ease-in'
+      }
+    }
+  }
+}
+</script>
 <style lang="scss" scoped>
 @import "src/assets/variables.scss";
 @import "src/assets/font.scss";
@@ -125,6 +221,81 @@
   background-color: #06309B;
   padding-top: 60px;
   padding-bottom: 30px;
+  .footer-mobile {
+    .logo-footer {
+      margin-top: 24px;
+      margin-bottom: 24px;
+      .call-free-number {
+       @include font($uni,$bold,16px,21.6px,$white);
+      }
+    }
+    .nav {
+      &-item {
+        padding-bottom: 16px;
+        border-bottom: 1px solid #4C98D1;
+        button {
+          width: 100%;
+          border: none;
+          background: none;
+          padding: 0;
+          outline: none;
+          @include font($uni,$bold,14px,18.9px,$white);
+          text-transform: uppercase;
+          svg {
+            pointer-events: none;
+          }
+        }
+        .collapse {
+          .list-group {
+            &-item {
+              padding-top: 0;
+              padding-left: 0;
+              padding-bottom: 0;
+              border: none;
+              background: none;
+              border-radius: 0;
+              margin-bottom: 12px;
+              &-link {
+                @include font($uni,$light,12px,16.2px,$white);
+              }
+            }
+            &-item:first-child {
+              padding-top: 16px;
+            }
+            &-item:last-child {
+              margin-bottom: 0;
+            }
+          }
+        }
+        .collapsing {
+          .list-group {
+            &-item {
+              padding-top: 0;
+              padding-left: 0;
+              padding-bottom: 0;
+              border: none;
+              background: none;
+              border-radius: 0;
+              margin-bottom: 12px;
+              &-link {
+                @include font($uni,$light,12px,16.2px,$white);
+              }
+            }
+            &-item:first-child {
+              padding-top: 16px;
+            }
+            &-item:last-child {
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+      &-item:first-child {
+        border-top: 1px solid #4C98D1;
+        padding-top: 16px;
+      }
+    }
+  }
   .logo-footer {
     .logo-link {
       margin-bottom: 30px;
@@ -218,9 +389,3 @@
   }
 }
 </style>
-<script>
-import WriteUsModal from "@/components/WriteUsModal";
-export default {
-  components: {WriteUsModal}
-}
-</script>

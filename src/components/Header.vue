@@ -77,7 +77,7 @@
                   </span>
           </button>
           <div class="collapse navbar-collapse d-lg-flex justify-content-end" id="navbarSupportedContent">
-            <nav v-if="isLogin === true" class="nav-header log-out">
+            <nav v-if="isLogin === false" class="nav-header log-out">
               <ul class="nav flex-column">
                 <li class="nav-item">
                   <button v-on:click="rotateArrow" class="d-flex align-items-center justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHelp" aria-expanded="false" aria-controls="collapseHelp">

@@ -221,6 +221,10 @@ export default {
   background-color: #06309B;
   padding-top: 60px;
   padding-bottom: 30px;
+  @media screen and (max-width: 991px) {
+    padding-top: 40px;
+    padding-bottom: 16px;
+  }
   .footer-mobile {
     .logo-footer {
       margin-top: 24px;

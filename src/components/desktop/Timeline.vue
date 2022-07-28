@@ -12,7 +12,6 @@
                 'ready' :  $route.name === 'Ticket-booking'}" 
               >
               <h1 class="timeline-item-title">
-                {{title}}
                 Выбор рейса
               </h1>
               <div class="timeline-item-underline position-relative">

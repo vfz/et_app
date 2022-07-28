@@ -212,6 +212,13 @@ export default {
 @import "src/assets/font.scss";
 
 .body-app-white {
+  .header {
+    padding-top: 48px;
+    margin-bottom: 24px;
+    .navbar {
+      padding: 0;
+    }
+  }
   .toggler-icon-close {
     color: $base !important;
   }
@@ -225,16 +232,6 @@ export default {
           color: $black !important;
         }
       }
-    }
-  }
-}
-
-.body-app-white {
-  .header {
-    padding-top: 48px;
-    margin-bottom: 24px;
-    .navbar {
-      padding: 0;
     }
   }
 }

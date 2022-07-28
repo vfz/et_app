@@ -354,6 +354,7 @@ export default {
     }
     .nav {
       &-item {
+        padding-top: 16px;
         padding-bottom: 16px;
         border-bottom: 1px solid #4C98D1;
         button {
@@ -416,6 +417,10 @@ export default {
       &-item:first-child {
         border-top: 1px solid #4C98D1;
         padding-top: 16px;
+      }
+      &-item:last-child {
+        padding-bottom: 16px;
+        border-bottom: none;
       }
     }
     .title-col-footer {

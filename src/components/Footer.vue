@@ -270,6 +270,27 @@
             </nav>
           </div>
         </div>
+        <div class="row">
+          <div class="col-12">
+            <h3 class="title-col-footer">
+              Есть вопросы?
+              <br>
+              Мы вам перезвоним
+            </h3>
+            <div class="callback-form d-flex">
+              <div class="form-floating">
+                <input type="text" class="form-control shadow-none" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Введите ваше имя</label>
+              </div>
+              <div class="callback-form-next-step">
+                <a href="#" class="next-step-link text-center">
+                  <img class="d-block" src="/img/footer/next-step.svg" alt="next-step">
+                  <span class="next-desc d-block">Далее</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <WriteUsModal/>
     </footer>
@@ -389,6 +410,11 @@ export default {
         border-top: 1px solid #4C98D1;
         padding-top: 16px;
       }
+    }
+    .title-col-footer {
+      margin-top: 16px;
+      font-size: 14px;
+      line-height: 18.9px;
     }
   }
   .logo-footer {

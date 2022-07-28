@@ -272,7 +272,7 @@
                     <br>
                     Мы вам перезвоним
                   </h3>
-                  <div class="callback-form d-flex align-items-end">
+                  <div class="callback-form d-flex justify-content-between align-items-end">
                     <div class="form-floating">
                       <input type="text" class="form-control shadow-none" id="floatingInput" placeholder="name@example.com">
                       <label for="floatingInput">Введите ваше имя</label>
@@ -448,7 +448,6 @@ export default {
         }
       }
       &-next-step {
-        margin-left: 73px;
         img {
           width: 38px;
         }

@@ -79,6 +79,14 @@
           <div class="collapse navbar-collapse d-lg-flex justify-content-end" id="navbarSupportedContent">
             <nav v-if="isLogin === false" class="nav-header log-out">
               <ul class="nav flex-column">
+                <li class="nav-item nav-item-header">
+                  <p class="nav-item-description">
+                    Звонок по России бесплатный
+                  </p>
+                  <a class="nav-item-number" href="tel:88007002099">
+                    8 (800) 700 – 20 – 99
+                  </a>
+                </li>
                 <li class="nav-item">
                   <button v-on:click="rotateArrow" class="d-flex align-items-center justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHelp" aria-expanded="false" aria-controls="collapseHelp">
                     <a class="nav-link" href="#collapseHelp" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapseHelp">Служба поддержки</a>
@@ -105,12 +113,15 @@
                 <li class="nav-item">
                   <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#enterLogin">Войти</a>
                 </li>
+                <li class="nav-item nav-item-footer">
+                  <a class="nav-link-rent" href="#">Заказ и аренда автобусов</a>
+                </li>
               </ul>
             </nav>
             <!--                log in user-->
             <nav v-else class="nav-header log-in">
               <ul class="nav flex-column">
-                <li class="nav-item">
+                <li class="nav-item nav-item-header">
                   <p class="nav-item-description">
                     Звонок по России бесплатный
                   </p>
@@ -118,7 +129,7 @@
                     8 (800) 700 – 20 – 99
                   </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item nav-item-avatar">
                   <a class="nav-link" href="#" id="navbarDropdownLogInAvatar" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <img alt="avatar" class="avatar-user" src="https://images.unsplash.com/photo-1554080353-a576cf803bda?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cGhvdG98ZW58MHx8MHx8&w=1000&q=80">
                   </a>
@@ -155,7 +166,7 @@
                 <li class="nav-item">
                   <a class="nav-link" href="#">Мои поездки</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item nav-item-footer">
                   <a class="nav-link-rent" href="#">Заказ и аренда автобусов</a>
                 </li>
               </ul>
@@ -228,6 +239,11 @@ export default {
   .nav-header {
     .nav {
       &-item {
+        padding-bottom: 16px;
+        border-bottom: 1px solid #E6EAEF;;
+        &-description {
+          color: $black !important;
+        }
         .nav-link {
           color: $black !important;
         }
@@ -249,6 +265,9 @@ export default {
             }
           }
         }
+      }
+      &-item-header, &-item-footer, &-item-avatar {
+        border: none;
       }
     }
   }
@@ -355,8 +374,7 @@ export default {
       .nav-link {
         padding-left: 0;
         padding-right: 0;
-        font-size: 14px;
-        line-height: 18.9px;
+        @include font($uni,$regular,14px,18.9px,$base);
         .avatar-user {
           width: 48px;
           height: 48px;

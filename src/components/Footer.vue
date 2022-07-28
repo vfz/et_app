@@ -377,11 +377,6 @@ export default {
     margin: 0;
     &-item {
       margin-right: 32px;
-    //   &-link {
-    //     img {
-
-    //     }
-    //   }
     }
     &-item:last-child {
       margin-right: 0;

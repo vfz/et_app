@@ -1,7 +1,7 @@
 <template>
   <!--    для вызова модального окна нужно создать индивидуальный id, таким образом будет открываться свое окно-->
   <div class="modal fade place-left-modal" id="place-left-modal" tabindex="-1" aria-labelledby="place-left-modal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header justify-content-end">
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -16,43 +16,59 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-12 d-inline-flex justify-content-center align-content-center">
-
-<!--                <div class="squares-place-status d-flex flex-wrap align-items-center justify-content-center">-->
-<!--                  <div v-for="(value, key) in seatStates" class="square-place-status-item d-flex">-->
-<!--                    <div v-bind:class="value.class + ' square-place-status'"></div>-->
-<!--                    <div class="square-place-text d-flex align-items-center">-->
-<!--                      {{value.text}}-->
-<!--                    </div>-->
-<!--                  </div>-->
-<!--                </div>-->
-
+              <div class="col-12 d-flex flex-column flex-lg-row d-lg-inline-flex justify-content-center align-content-center">
+                <div class="place-left-scheme d-flex align-items-center">
+                  <div class="place-left-square active"></div>
+                  <p class="place-left-description">Свободное место</p>
+                </div>
+                <div class="place-left-scheme d-flex align-items-center">
+                  <div class="place-left-square deactivate"></div>
+                  <p class="place-left-description">Занятое место</p>
+                </div>
               </div>
             </div>
             <div class="row">
               <div class="col-12">
                 <div class="floor-header d-flex align-items-center">
-                  <div class="floor-item">
+                  <!-- TODO Проверить работу  Object.keys(myObject).length в старых браузерах -->
+                  <div class="floor-item" 
+                  :class="{ active : floor===1}"
+                  v-on:click="floor=1"
+                  >
                     1 этаж
                   </div>
-                  <div class="floor-item active">
+                  <div class="floor-item" :class="{ active : floor===2}"
+                  v-on:click="floor=2" v-if="floorsQ()"
+                  >
                     2 этаж
                   </div>
+                 <!-- <div class="floor-item" v-on:click="busMobile()">busMobile</div> -->
                 </div>
-                <div class="bus-scheme">
-                  <div class="bus-scheme-column">
-                    <!--                      bus-scheme-column-item-->
-                    <!--                      TODO ошибка необходимо исправить-->
-                    <!--                      <div-->
-                    <!--                          v-for="{seat, i} in seats"-->
-                    <!--                          :key="seat.type"-->
-                    <!--                          :class=-->
-                    <!--                              "{'free-place' : seat.type === 'free-place',-->
-                    <!--                              'busy-place' : seat.type === 'busy-place'-->
-                    <!--                              }">-->
-                    <!--                        {{seat.name}}}
-                                          </div>-->
-                  </div>
+                <div :class="!mobileButoon ? 'bus-scheme' :  'bus-scheme-mobile'">
+                  <table v-if="!mobileButoon">
+                    <!--TODO подсветка выбранных мест-->
+                    <tr v-for="(stroka,indexstr) in mergeFlights.find(trip => trip.id_trip===busTriptId).bus_config[floor]" :key="indexstr">
+                      <td v-for="(seat,index) in stroka.filter(seatt=> seatt.length >7)" :key="index"
+                        :rowspan="seat.split('+')[1]" 
+                        :colspan="seat.split('+')[2]"
+                        align="center">
+                        <div :class="seat.split('+')[0]" :id="'seat_'+seat.split('+')[3].replace('_', '')">{{seat.split('+')[3].replace('_', '')}}</div>
+                      </td>
+                    </tr>
+                  </table>
+                  <!-- Таблица с автобусом для мобильных -->
+                  <table v-else>
+                    <!--TODO подсветка выбранных мест-->
+                    <tr v-for="(stroka,indexstrm) in shemeMobile[floor]" :key="indexstrm">
+                      <td v-for="(seat,indexm) in stroka.filter(seatt=> seatt.length >7)" :key="indexm"
+                        :colspan="seat.split('+')[1]" 
+                        :rowspan="seat.split('+')[2]"
+                        align="center">
+                        <div :class="seat.split('+')[0]" :id="'seat_'+seat.split('+')[3].replace('_', '')">{{seat.split('+')[3].replace('_', '')}}</div>
+
+                      </td>
+                    </tr>
+                  </table>
                 </div>
               </div>
             </div>
@@ -63,16 +79,45 @@
   </div>
 </template>
 
+
 <script>
+import {mapGetters,mapActions} from 'vuex'
 export default {
-  name: "Place-left-modal"
+  name: "Place-left-modal",
+  props: ['mobileButoon'],
+  data(){
+    return{
+      floor:1,
+    }
+  },
+  computed: mapGetters(['busTriptId','mergeFlights','shemeMobile']),
+  mounted(){
+    
+  },
+    methods: {
+    ...mapActions([
+      'updatebBusTriptId',
+    ]),
+    floorsQ(){
+      if(this.mobileButoon){
+   
+      }
+      
+      return true
+    },
+    
+  }
 }
+
 </script>
 
 <style lang="scss" scoped>
 @import "src/assets/variables.scss";
 @import "src/assets/font.scss";
 .modal {
+  .modal-dialog {
+    max-width: 1000px;
+  }
   &-header {
     .btn-close {
       margin: unset;
@@ -131,53 +176,264 @@ export default {
         margin-right: 32px;
       }
     }
-    .bus-scheme {
+    .place-left-scheme {
+      @media screen and (max-width: 992px) {
+        display: block;
+        width: 100%;
+      }
+      .place-left-square {
+        width: 32px;
+        height: 32px;
+        border-radius: 4px;
+      }
+      .active {
+        background-color: $white;
+        box-shadow: $regular-shadow;
+        border: 1px solid #A3D7FF;
+      }
+      .deactivate {
+        background-color: $deactivate;
+        border: 1px solid $deactivate
+      }
+      .place-left-description {
+        @include font($uni,$regular,14px,18.9px,$secondary);
+        margin-left: 12px;
+        margin-bottom: 0;
+      }
+    }
+    .place-left-scheme:first-child {
+      margin-right: 40px;
+      @media screen and (max-width: 992px) {
+        margin-bottom: 16px;
+        margin-right: 0;
+      }
+    }
+
+    .seat {
+          width: 32px;
+          height: 32px;
+          margin-right: 10px;
+          margin-bottom: 6px;
+          padding-top: 6px;
+          background: #FFFFFF;
+          /* Button / Inactive */
+          border: 1px solid #A3D7FF;
+          box-sizing: border-box;
+          /* Shadow / Normal */
+          box-shadow: 0 8px 12px rgba(161, 159, 255, 0.2);
+          border-radius: 4px;
+          font-family: $uni;
+          font-style: normal;
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 19px;
+          color: $black;//#B5BDDB;
+
+    }
+    .seat:hover {
+        background: #A3D7FF;
+        color: #ffffff;
+        cursor: pointer;
+    }
+    .prohod {
+          margin-right: 0;//10px;
+          margin-bottom: 0;//6px;
+          width: 0;//32px;
+          height: 0;//32px;
+    }
+    .breakeseat {
+          margin-right: 0;//10px;
+          margin-bottom: 0;//6px;
+          width: 0;//32px;
+          height: 0;//32px;
+    }
+    .voditel {
+        margin-right: 10px;
+        margin-bottom: 6px;
+        width: 32px;
+        height: 32px;
+        background: url("/img/modal/driver.png") repeat-y;
+        background-size: contain;
+        
+    }
+    .text_floor_activ {
+        font-family: $uni;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 20px;
+        line-height: 27px;
+        color: #196EFF;
+    }
+    .busy-seat {
+        background-color: #D8DADE;
+        color: #B5BDDB;
+        width: 32px;
+        height: 32px;
+        margin-right: 10px;
+        margin-bottom: 6px;
+        padding-top: 6px;
+        /* Button / Inactive */
+        border: 1px solid #A3D7FF;
+        box-sizing: border-box;
+        /* Shadow / Normal */
+        box-shadow: 0 8px 12px rgba(161, 159, 255, 0.2);
+        border-radius: 4px;
+        font-family: $uni;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 19px;
+    }
+    .text_floor {
+        font-family: $uni;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 20px;
+        line-height: 27px;
+        cursor: pointer;
+        color: #AFB7CD;
+    }
+    .tualet {
+      height: 32px;
+      width: 72px;
+      margin-right: -5px;
+      margin-left: -16px;
+      margin-bottom: 6px;
+      padding-top: 6px;
+      background: #B5BDDB;
+      border-radius: 4px;
+      font-family: $uni;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 11px;
+      line-height: 15px;
+      text-align: center;
+      color: #FFFFFF;
+
+    }
+    .lest {
+      height: 32px;
+      width: 72px;
+      margin-right: -5px;
+      margin-left: -16px;
+      margin-bottom: 6px;
+      padding-top: 6px;
+      background: #B5BDDB;
+      border-radius: 4px;
+      font-family: $uni;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 11px;
+      line-height: 15px;
+      text-align: center;
+      color: #FFFFFF;
+    }
+    .lest_b {
+      width: 76px;
+      height: 72px;
+      margin-right: 10px;
+      margin-bottom: 6px;
+      padding-top: 6px;
+      background: #B5BDDB;
+      border-radius: 4px;
+      font-family: $uni;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 11px;
+      line-height: 15px;
+      text-align: center;
+      color: #FFFFFF;
+    }
+    .stol {
+      height: 32px;
+      width: 72px;
+      margin-right: -5px;
+      margin-left: -16px;
+      margin-bottom: 6px;
+      padding-top: 6px;
+      background: #B5BDDB;
+      border-radius: 4px;
+      font-family: $uni;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 11px;
+      line-height: 15px;
+      text-align: center;
+      color: #FFFFFF;
+    }
+    .exit {
+      height: 32px;
+      width: 72px;
+      margin-right: -5px;
+      margin-left: -16px;
+      margin-bottom: 6px;
+      padding-top: 6px;
+      background: #B5BDDB;
+      border-radius: 4px;
+      font-family: $uni;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 11px;
+      line-height: 15px;
+      text-align: center;
+      color: #FFFFFF;
+    }
+
+   .bus-scheme {
+    background-color: $white;
+    border: 1px solid #B5BDDB;
+    border-radius: 16px;
+    padding: 16px;
+    margin: auto;
+    width: fit-content;
+      
+      .voditel{
+        transform: rotate(90deg);
+      }
+      .tualet {
+          transform: rotate(-90deg);
+          margin-right: -10px;
+
+          // margin-bottom: -32px;
+      }
+      .lest {
+          transform: rotate(-90deg);
+          // margin-bottom: -32px;
+          margin-right: -10px;
+
+      }
+      .lest_b {
+          transform: rotate(-90deg);
+          // margin-bottom: -32px;
+      }
+      .stol {
+          transform: rotate(-90deg);
+          // margin-bottom: -32px;
+          margin-right: -10px;
+      }
+      .exit {
+          transform: rotate(-90deg);
+          // margin-bottom: -32px;
+          margin-right: -10px;
+      }
+      
+    }
+   .bus-scheme-mobile {
       background-color: $white;
       border: 1px solid #B5BDDB;
       border-radius: 16px;
       padding: 16px;
-      &-column {
-        display: grid;
-        grid-template-columns: repeat(13, 1fr);
-        grid-template-rows: repeat(4, 1fr);
-        grid-column-gap: 12px;
-        grid-row-gap: 8px;
-        &-item {
-          width: 32px;
-          height: 32px;
-          border-radius: 4px;
-          box-shadow: $regular-shadow;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          @include font($uni,$regular,14px,18.9px,#B5BDDB);
-          cursor: pointer;
-        }
-        .free-place {
-          color: #B5BDDB;
-          border: 1px solid $blue-link;
-        }
-        .free-place:hover {
-          @include animation;
-          background-color: $blue-link;
-          color: $white;
-          border: none;
-        }
-        .selected {
-          background-color: $blue-active;
-          color: $white;
-          border: none;
-        }
-        .busy-place {
-          background-color: $secondary;
-          color: $white;
-          border: none;
-        }
-      }
+      margin: auto;
+      width: fit-content;
     }
     .modal-title {
       @include font($uni, $bold, 36px, 48.6px, $base);
       margin-bottom: 32px;
+      @media screen and (max-width: 767px) {
+        font-size: 18px;
+        line-height: 24.3px;
+        margin-bottom: 24px;
+      }
     }
     .modal-date {
       @include font($uni, $bold, 20px, 27px, $secondary);

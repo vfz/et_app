@@ -13,9 +13,67 @@ export default {
         oneWay: true,
         flightThere: [],
         flightBack: [],
+        busTriptId: "7",
+        flights: [{
+            id_trip: "7",
+            bus_config: {
+
+                "1": {
+                    "1": ["prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "tualet+2+1+Туалет", "busy-seat+1+1+69", "busy-seat+1+1+65", "busy-seat+1+1+61", "busy-seat+1+1+57", "stol+2+1+Стол", "busy-seat+1+1+53", "prohod+1+1+_", "voditel+1+1+_"],
+                    "2": ["prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "Breake", "busy-seat+1+1+70", "busy-seat+1+1+66", "busy-seat+1+1+62", "busy-seat+1+1+58", "Breake", "busy-seat+1+1+54", "prohod+1+1+_", "prohod+1+1+_"],
+                    "3": ["prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_"],
+                    "4": ["prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "exit+2+1+Выход/Вход", "busy-seat+1+1+72", "busy-seat+1+1+68", "busy-seat+1+1+64", "busy-seat+1+1+60", "stol+2+1+Стол", "busy-seat+1+1+56", "busy-seat+1+1+86", "exit+2+1+Выход/Вход"],
+                    "5": ["prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "Breake", "busy-seat+1+1+71", "busy-seat+1+1+67", "busy-seat+1+1+63", "busy-seat+1+1+59", "Breake", "busy-seat+1+1+55", "busy-seat+1+1+85", "Breake"]
+                }
+            }
+        }, ],
+        shemeMobile: []
+
 
     },
     mutations: {
+        // функция для перестройки схемы автобуса в мобильную
+        async busMobile(state) {
+            const flights = [].concat(state.flightThere, state.flightBack)
+                // console.log(flights)
+            const floors = flights.find(trip => trip.id_trip === state.busTriptId).bus_config
+
+            let strMObile = {...floors }
+            Object.keys(floors).map(fl => {
+
+                    let floorObject = {
+                        ...floors[fl][1].slice(0).reverse()
+                    }
+
+                    //console.log(strMObile)
+                    for (let i = 2; i <= 5; i++) {
+
+                        let floorObject1 = {
+                            ...floors[fl][i].slice(0).reverse()
+                        }
+
+                        for (var key in floorObject) {
+                            floorObject[key] = [].concat(floorObject[key], floorObject1[key]);
+                        }
+
+                        // console.log(floorObject)
+                    }
+
+                    strMObile[fl] = floorObject
+
+                    state.shemeMobile = strMObile
+
+                })
+                // this.mobileButoon=!this.mobileButoon
+        },
+        //обновить id рейса для которого нужно выводить Схему автобуса
+        updatebBusTriptId(state, tripId) {
+            state.busTriptId = tripId
+        },
+        mergeFlightsM(state) {
+            state.flights = []
+            state.flights = state.flights.concat(state.flightThere, state.flightBack);
+        },
         updateFromStations(state, fromStations) {
             state.fromStations = fromStations.result
         },
@@ -119,6 +177,11 @@ export default {
         }
     },
     actions: {
+        //обновить id рейса для которого нужно выводить Схему автобуса
+        updatebBusTriptId(ctx, tripId) {
+            ctx.commit('updatebBusTriptId', tripId)
+            ctx.commit('busMobile')
+        },
         //Получаем список станций прибытия
         async getToStations(ctx, from = '') {
             const res = await fetch(ctx.rootState.API_URL + "?command=to&from_id=" + from);
@@ -131,7 +194,6 @@ export default {
             const res = await fetch(ctx.rootState.API_URL + "?command=from");
             const fromStations = await res.json();
             ctx.commit('updateFromStations', fromStations)
-
         },
         //Получаем список рейсов (туда)
         async getFlightThere(ctx) {
@@ -144,6 +206,9 @@ export default {
             const res = await fetch(ctx.rootState.API_URL + "?command=okato_trip&from_id=" + from_okato + "&to_id=" + to_okato + "&date_trip=" + ctx.state.dateArival);
             const FlightThere = await res.json();
             ctx.commit('updateFlightThere', FlightThere)
+            ctx.commit('mergeFlightsM')
+
+
         },
         //Получаем список рейсов (обратно)
         async getFlightBack(ctx) {
@@ -155,6 +220,8 @@ export default {
             const res = await fetch(ctx.rootState.API_URL + "?command=okato_trip&from_id=" + from_okato + "&to_id=" + to_okato + "&date_trip=" + ctx.state.dateBack);
             const FlightBack = await res.json();
             ctx.commit('updateFlightBack', FlightBack)
+            ctx.commit('mergeFlightsM')
+
         },
 
         // Ракировка откуда куда
@@ -213,6 +280,19 @@ export default {
     },
     modules: {},
     getters: {
+        shemeMobile(state) {
+            return state.shemeMobile
+        },
+        mergeFlights(state) {
+            return state.flights
+        },
+        // mergeFlights(state) {
+        //     let flights = state.flightThere.concat(state.flightBack);
+        //     return flights
+        // },
+        busTriptId(state) {
+            return state.busTriptId
+        },
 
         flightBack(state) {
             return state.flightBack

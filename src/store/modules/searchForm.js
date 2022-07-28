@@ -6,7 +6,11 @@ export default {
         to: '',
         adults: 1,
         childrens: 0,
-        dateArival: '',
+        dateArival: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()).toLocaleDateString('ru-RU', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+        }),
         dateBack: '',
         selectDate: false,
         selectDateBack: false,

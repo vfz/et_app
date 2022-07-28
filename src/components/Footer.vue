@@ -266,29 +266,36 @@
                     </ul>
                   </div>
                 </li>
+                <li class="nav-item">
+                  <h3 class="title-col-footer">
+                    Есть вопросы?
+                    <br>
+                    Мы вам перезвоним
+                  </h3>
+                  <div class="callback-form d-flex align-items-end">
+                    <div class="form-floating">
+                      <input type="text" class="form-control shadow-none" id="floatingInput" placeholder="name@example.com">
+                      <label for="floatingInput">Введите ваше имя</label>
+                      <div class="callback-form-step d-flex justify-content-between">
+                        <span>Введите ваше имя</span>
+                        <span>Шаг 1</span>
+                      </div>
+                    </div>
+                    <div class="callback-form-next-step">
+                      <a href="#" class="next-step-link text-center">
+                        <img class="d-block" src="/img/footer/next-step.svg" alt="next-step">
+                        <span class="next-desc d-block">Далее</span>
+                      </a>
+                    </div>
+                  </div>
+                </li>
+                <li class="nav-item">
+                  <span class="credits">
+                        © 2022, ИП Яцунов С.П. Все права защищены.
+                    </span>
+                </li>
               </ul>
             </nav>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-12">
-            <h3 class="title-col-footer">
-              Есть вопросы?
-              <br>
-              Мы вам перезвоним
-            </h3>
-            <div class="callback-form d-flex">
-              <div class="form-floating">
-                <input type="text" class="form-control shadow-none" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">Введите ваше имя</label>
-              </div>
-              <div class="callback-form-next-step">
-                <a href="#" class="next-step-link text-center">
-                  <img class="d-block" src="/img/footer/next-step.svg" alt="next-step">
-                  <span class="next-desc d-block">Далее</span>
-                </a>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -415,6 +422,35 @@ export default {
       margin-top: 16px;
       font-size: 14px;
       line-height: 18.9px;
+    }
+    .callback-form {
+      .form-floating {
+        .form-control {
+          font-size: 12px;
+          line-height: 16.2px;
+          color: $deactivate;
+        }
+        label {
+          padding-left: 0;
+          font-size: 12px;
+          line-height: 16.2px;
+        }
+        .callback-form-step {
+          margin-top: 6px;
+          span {
+            @include font($uni,$light,10px,13.5px,$deactivate);
+          }
+        }
+      }
+      &-next-step {
+        margin-left: 73px;
+        img {
+          width: 38px;
+        }
+        .next-desc {
+          @include font($uni,$light,12px,16.2px,$white);
+        }
+      }
     }
   }
   .logo-footer {

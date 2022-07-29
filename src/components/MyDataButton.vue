@@ -1,23 +1,9 @@
 <template>
   <div class="my-data-button d-inline-flex align-items-center">
-    <div v-if="isLogin" class="my-data-button-login">
-      <select id="inputState" class="form-select my-data-button-title">
-        <option>Мои данные</option>
-        <option>...</option>
-      </select>
-    </div>
-      <button v-on:click="rotateArrow" v-if="isCollapse" class="my-data-button-collapse d-flex justify-content-between align-items-center d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseData" aria-expanded="false" aria-controls="collapseData">
-        Мои данные
-        <ArrowDownIcon class="arrow-down-collapse arrow-up" color="#283256"/>
-      </button>
-    <div v-else class="my-data-button-notLogin d-flex justify-content-between align-items-center w-100">
-      <div class="my-data-button-notLogin-title">
-        Данные из личного кабинета
-      </div>
-      <div class="arrow-down">
-        <ArrowDownIcon color="#C4C4C4"/>
-      </div>
-    </div>
+    <button v-if="isCollapse" v-on:click="rotateArrow" class="my-data-button-collapse d-flex justify-content-between align-items-center d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseData" aria-expanded="false" aria-controls="collapseData">
+      Мои данные
+      <ArrowDownIcon class="arrow-down-collapse arrow-up" color="#283256"/>
+    </button>
   </div>
 </template>
 

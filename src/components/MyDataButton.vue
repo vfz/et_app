@@ -16,7 +16,7 @@
         <option>Пасажир№3</option>
       </select>
     </div>
-    <button v-else-if="!isCollapse && !isLogin" class="my-data-button-collapse is-not-login d-flex justify-content-between align-items-center d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseData" aria-expanded="false" aria-controls="collapseData">
+    <button v-else-if="!isCollapse && !isLogin" class="my-data-button-collapse d-flex justify-content-between align-items-center d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseData" aria-expanded="false" aria-controls="collapseData">
       Данные из личного кабинета
       <ArrowDownIcon class="arrow-down-collapse" color="#AFB7CD"/>
     </button>
@@ -55,6 +55,7 @@ export default {
 <style lang="scss" scoped>
 @import "src/assets/variables.scss";
 @import "src/assets/font.scss";
+@import "src/assets/formValidation.scss";
 
 .is-not-login {
   color: $deactivate !important;

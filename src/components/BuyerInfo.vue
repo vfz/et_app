@@ -69,7 +69,11 @@ import MyDataButton from "@/components/MyDataButton";
 export default {
   name: "BuyerInfo",
   components: {MyDataButton},
-  props: ['isLogin'],
+  data: () => {
+    return {
+      isLogin: false,
+    }
+  },
 }
 </script>
 

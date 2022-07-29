@@ -370,7 +370,7 @@ export default {
   components: {MyDataButton, ArrowDownIcon, CancelIcon},
   data: () => {
     return {
-      isLogin: true,
+      isLogin: false,
     }
   },
 }

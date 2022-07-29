@@ -1,5 +1,6 @@
 <template>
   <div class="my-data-button d-inline-flex align-items-center">
+<!--    TODO заменить collapse на accordion-->
     <button v-if="isCollapse && isLogin" v-on:click="rotateArrow" class="my-data-button-collapse d-flex justify-content-between align-items-center d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseData" aria-expanded="false" aria-controls="collapseData">
       Мои данные
       <ArrowDownIcon class="arrow-down-collapse arrow-up" color="#283256"/>
@@ -8,6 +9,7 @@
       Данные из личного кабинета
       <ArrowDownIcon class="arrow-down-collapse arrow-up" color="#AFB7CD"/>
     </button>
+<!--    TODO добавить select-->
     <button v-if="!isCollapse && isLogin" class="my-data-button-collapse d-flex justify-content-between align-items-center d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseData" aria-expanded="false" aria-controls="collapseData">
       Мои данные
       <ArrowDownIcon class="arrow-down-collapse" color="#283256"/>

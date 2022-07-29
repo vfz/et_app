@@ -1,8 +1,12 @@
 <template>
   <div class="my-data-button d-inline-flex align-items-center">
-    <button v-if="isCollapse" v-on:click="rotateArrow" class="my-data-button-collapse d-flex justify-content-between align-items-center d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseData" aria-expanded="false" aria-controls="collapseData">
+    <button v-if="isCollapse && isLogin" v-on:click="rotateArrow" class="my-data-button-collapse d-flex justify-content-between align-items-center d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseData" aria-expanded="false" aria-controls="collapseData">
       Мои данные
       <ArrowDownIcon class="arrow-down-collapse arrow-up" color="#283256"/>
+    </button>
+    <button v-if="isCollapse && !isLogin" v-on:click="rotateArrow" class="my-data-button-collapse is-not-login d-flex justify-content-between align-items-center d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseData" aria-expanded="false" aria-controls="collapseData">
+      Данные из личного кабинета
+      <ArrowDownIcon class="arrow-down-collapse arrow-up" color="#AFB7CD"/>
     </button>
   </div>
 </template>
@@ -40,13 +44,18 @@ export default {
 @import "src/assets/variables.scss";
 @import "src/assets/font.scss";
 
+.is-not-login {
+  color: $deactivate !important;
+}
+
 .my-data-button-collapse {
   padding: 0;
   width: 100%;
   background: none;
   border: none;
   outline: none;
-  .my-data-button-login-title {
+  @include font($uni,$bold,18px,24.3px,$base);
+  @media screen and (max-width: 767px) {
     @include font($uni,$bold,14px,18.9px,$base);
   }
   .arrow-down-collapse {

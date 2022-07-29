@@ -20,7 +20,7 @@
     <div class="col-12">
       <div class="form-wrapper">
         <div class="row my-data-button-row">
-          <MyDataButton :is-collapse="true"/>
+          <MyDataButton :is-login="false" :is-collapse="true"/>
         </div>
         <div class="collapse" id="collapseData">
           <div class="row">

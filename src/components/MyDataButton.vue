@@ -18,7 +18,7 @@
     </div>
     <button v-else-if="!isCollapse && !isLogin" class="my-data-button-collapse is-not-login d-flex justify-content-between align-items-center d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseData" aria-expanded="false" aria-controls="collapseData">
       Данные из личного кабинета
-      <ArrowDownIcon class="arrow-down-collapse arrow-up" color="#AFB7CD"/>
+      <ArrowDownIcon class="arrow-down-collapse" color="#AFB7CD"/>
     </button>
   </div>
 </template>

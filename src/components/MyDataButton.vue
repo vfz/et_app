@@ -6,6 +6,10 @@
         <option>...</option>
       </select>
     </div>
+      <button v-on:click="rotateArrow" v-if="isCollapse" class="my-data-button-collapse d-flex justify-content-between align-items-center d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseData" aria-expanded="false" aria-controls="collapseData">
+        Мои данные
+        <ArrowDownIcon class="arrow-down-collapse arrow-up" color="#283256"/>
+      </button>
     <div v-else class="my-data-button-notLogin d-flex justify-content-between align-items-center w-100">
       <div class="my-data-button-notLogin-title">
         Данные из личного кабинета
@@ -24,10 +28,24 @@ export default {
   components: {ArrowDownIcon},
   data(){
     return {
-      isLogin : false
+      isLogin : false,
+      isShow: false,
     }
   },
-  props: ['isLogin']
+  props: ['isLogin', 'isCollapse', 'isShow'],
+  methods: {
+    rotateArrow(event) {
+      const parent = event.target;
+      const arrow = parent.querySelector('.arrow-down-collapse');
+      this.isShow = !this.isShow;
+      if (this.isShow === true) {
+        arrow.classList.remove('arrow-up')
+      }
+      else {
+        arrow.classList.add('arrow-up')
+      }
+    }
+  }
 
 }
 </script>
@@ -35,6 +53,27 @@ export default {
 <style lang="scss" scoped>
 @import "src/assets/variables.scss";
 @import "src/assets/font.scss";
+
+.my-data-button-collapse {
+  padding: 0;
+  width: 100%;
+  background: none;
+  border: none;
+  outline: none;
+  .my-data-button-login-title {
+    @include font($uni,$bold,14px,18.9px,$base);
+  }
+  .arrow-down-collapse {
+    @include animation;
+    transform: rotate(0deg);
+    pointer-events: none;
+  }
+  .arrow-up {
+    @include animation;
+    transform: rotate(180deg);
+  }
+
+}
 .my-data-button {
   cursor: pointer;
   &-title {

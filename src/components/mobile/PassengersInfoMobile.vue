@@ -391,21 +391,10 @@ export default {
     }
   }
 }
-.carousel-bootstrap {
-  .carousel-indicators {
-    margin-bottom: 0;
-  }
-  .carousel-indicators .active {
-    background-color: $base;
-  }
-  .carousel-indicators button {
-    background-color: $deactivate;
-  }
-  .carousel-inner {
-    padding: 12px 12px 28px;
-  }
-}
 .info-passengers-mobile {
+  .my-data-button-row {
+    margin-bottom: 32px;
+  }
   .nav-tabs {
     position: relative;
     z-index: 1;

@@ -20,7 +20,7 @@
     <div class="col-12">
       <div class="form-wrapper">
         <div class="row my-data-button-row">
-          <MyDataButton :is-login="isLogin" :is-collapse="true"/>
+          <MyDataButton :is-login="false" :is-collapse="true"/>
         </div>
         <div class="collapse" id="collapseData">
           <div class="row">
@@ -68,12 +68,7 @@
 import MyDataButton from "@/components/MyDataButton";
 export default {
   name: "BuyerInfo",
-  components: {MyDataButton},
-  data: () => {
-    return {
-      isLogin: false,
-    }
-  },
+  components: {MyDataButton}
 }
 </script>
 

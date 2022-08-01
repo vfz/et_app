@@ -383,6 +383,9 @@ export default {
 
 .passengers-info-mobile-wrapper {
   padding: 12px 12px 28px;
+  @media screen and (max-width: 767px) {
+    padding: 12px 12px 0;
+  }
   /* Hide scrollbar for Chrome, Safari and Opera */
   .nav-tabs::-webkit-scrollbar {
     display: none;

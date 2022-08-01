@@ -156,13 +156,12 @@
             </button>
           </div>
           <div class="col-12 col-md-6">
-            <div class="form-check d-flex align-items-center">
-              <input class="form-check-custom-input form-check-input" type="checkbox" value="" id="privacyCheck">
-              <label class="form-check-label" for="privacyCheck">
-                Я ознакомлен и согласен с <a href="#">договором оферты</a>
+            <div class="payment-info d-flex align-items-center">
+              <p>
+                Нажимая на кнопку "перейти к оплате" я соглашаюсь с <a href="#">договором оферты</a>
                 и <a href="#">политикой конфиденциальности</a> и даю
                 <a href="#">согласие на обработку персональных данных.</a>
-              </label>
+              </p>
             </div>
           </div>
         </div>
@@ -345,21 +344,27 @@ p {
         line-height: 21.6px;
       }
     }
-    .form-check {
-      position: relative;
-      &-label {
-        @include font($uni,$light,14px,18.9px,$base);
-        a {
-          color: $blue-link;
-        }
-        a:hover {
-          @include animation;
-          color: $blue-active;
-        }
-      }
-      &-input {
-        position: absolute;
-      }
+  }
+  .payment-info {
+    margin-bottom: 24px;
+    @include font($uni,$light,14px,18.9px,$base);
+    a {
+      color: $blue-link;
+    }
+    a:hover {
+      @include animation;
+      color: $blue-active;
+    }
+  }
+  .btn {
+    padding: 12px 68px;
+    text-transform: none;
+    border-radius: 16px;
+    @media screen and (max-width: 767px) {
+      border-radius: 8px;
+      width: 100%;
+      font-size: 16px;
+      line-height: 21.6px;
     }
   }
   .arrow-down-collapse {

@@ -77,6 +77,9 @@ export default {
 @import "src/assets/font.scss";
 @import "src/assets/formValidation";
 .info-buyer {
+  @media screen and (max-width: 767px) {
+    margin-top: 16px;
+  }
   .title-section {
     @include font($uni,$bold,24px,32.4px,$base);
     margin-bottom: 16px;

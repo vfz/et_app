@@ -20,41 +20,41 @@
     <div class="col-12">
       <div class="form-wrapper">
         <div class="row my-data-button-row">
-          <MyDataButton :is-login="false" :is-collapse="true"/>
-        </div>
-        <div class="collapse" id="collapseData">
-          <div class="row">
-            <!--                        TODO сделать валидацию по классам .is-ok и .is-error к классу form-control -->
-            <div class="col-12 col-lg-6 col-xl mb-lg-4 mb-xl-0">
-              <div class="d-block">
-                <label for="secondNameBuyer" class="form-label">Фамилия</label>
-                <input type="text" class="form-control" id="secondNameBuyer" placeholder="Иванов">
-                <!--                          TODO убрать d-none когда валидация неверная-->
-                <div class="error-feedback d-none">Укажите фамилию</div>
+          <MyDataButton class="my-data-button-component" :is-login="false" :is-collapse="true"/>
+          <div class="collapse" id="collapseData">
+            <div class="row">
+              <!--                        TODO сделать валидацию по классам .is-ok и .is-error к классу form-control -->
+              <div class="col-12 col-lg-6 col-xl mb-lg-4 mb-xl-0">
+                <div class="d-block">
+                  <label for="secondNameBuyer" class="form-label">Фамилия</label>
+                  <input type="text" class="form-control" id="secondNameBuyer" placeholder="Иванов">
+                  <!--                          TODO убрать d-none когда валидация неверная-->
+                  <div class="error-feedback d-none">Укажите фамилию</div>
+                </div>
               </div>
-            </div>
-            <div class="col-12 col-lg-6 col-xl mb-lg-4 mb-xl-0">
-              <div class="d-block">
-                <label for="firstNameBuyer" class="form-label">Имя</label>
-                <input type="text" class="form-control" id="firstNameBuyer" placeholder="Иван">
-                <!--                          TODO убрать d-none когда валидация неверная-->
-                <div class="error-feedback d-none">Укажите имя</div>
+              <div class="col-12 col-lg-6 col-xl mb-lg-4 mb-xl-0">
+                <div class="d-block">
+                  <label for="firstNameBuyer" class="form-label">Имя</label>
+                  <input type="text" class="form-control" id="firstNameBuyer" placeholder="Иван">
+                  <!--                          TODO убрать d-none когда валидация неверная-->
+                  <div class="error-feedback d-none">Укажите имя</div>
+                </div>
               </div>
-            </div>
-            <div class="col-12 col-lg-6 col-xl">
-              <div class="d-block">
-                <label for="mailBuyer" class="form-label">Электронная почта</label>
-                <input type="text" class="form-control" id="mailBuyer" placeholder="name@mail.ru">
-                <!--                          TODO убрать d-none когда валидация неверная-->
-                <div class="error-feedback d-none">Электронная почта в неправильном формате</div>
+              <div class="col-12 col-lg-6 col-xl">
+                <div class="d-block">
+                  <label for="mailBuyer" class="form-label">Электронная почта</label>
+                  <input type="text" class="form-control" id="mailBuyer" placeholder="name@mail.ru">
+                  <!--                          TODO убрать d-none когда валидация неверная-->
+                  <div class="error-feedback d-none">Электронная почта в неправильном формате</div>
+                </div>
               </div>
-            </div>
-            <div class="col-12 col-lg-6 col-xl">
-              <div class="d-block">
-                <label for="numberBuyer" class="form-label">Телефон</label>
-                <input type="text" class="form-control" id="numberBuyer" placeholder="+7 (___)-___-__-__">
-                <!--                          TODO убрать d-none когда валидация неверная-->
-                <div class="error-feedback d-none">Номер телефона в неправильном формате</div>
+              <div class="col-12 col-lg-6 col-xl">
+                <div class="d-block">
+                  <label for="numberBuyer" class="form-label">Телефон</label>
+                  <input type="text" class="form-control" id="numberBuyer" placeholder="+7 (___)-___-__-__">
+                  <!--                          TODO убрать d-none когда валидация неверная-->
+                  <div class="error-feedback d-none">Номер телефона в неправильном формате</div>
+                </div>
               </div>
             </div>
           </div>
@@ -147,6 +147,22 @@ export default {
     }
     .d-block:last-child {
       margin-bottom: 0;
+    }
+    .my-data-button-component + .show {
+      @include animation;
+      margin-top: 37px;
+      @media screen and (max-width: 767px) {
+        @include animation;
+        margin-top: 32px;
+      }
+    }
+    .my-data-button-component + .collapsing {
+      @include animation;
+      margin-top: 37px;
+      @media screen and (max-width: 767px) {
+        @include animation;
+        margin-top: 32px;
+      }
     }
   }
 }

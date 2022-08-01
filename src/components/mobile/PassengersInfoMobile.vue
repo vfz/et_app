@@ -102,7 +102,7 @@
                 <div class="tab-pane fade" id="passenger-2" role="tabpanel" aria-labelledby="passenger-2-tab">
                   <div class="form-wrapper">
                     <div class="row my-data-button-row">
-                      <MyDataButton is-collapse="false" :isLogin="isLogin"/>
+                      <MyDataButton :is-collapse="false" :isLogin="isLogin"/>
                     </div>
                     <div class="checkbox-form d-flex flex-wrap align-items-center justify-content-between w-100">
                       <div class="checkbox-form d-block w-100">

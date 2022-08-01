@@ -403,6 +403,7 @@ export default {
   .nav-tabs {
     position: relative;
     z-index: 1;
+    overflow-y: hidden;
     .nav-link {
       @include font($uni,$bold,24px,32.4px,$deactivate);
       text-transform: unset;

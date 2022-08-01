@@ -71,13 +71,12 @@
               </button>
             </div>
             <div class="col-12 col-md-6">
-              <div class="form-check d-flex align-items-center">
-                <input class="form-check-custom-input form-check-input" type="checkbox" value="" id="privacyCheck">
-                <label class="form-check-label" for="privacyCheck">
-                  Я ознакомлен и согласен с <a href="#">договором оферты</a>
+              <div class="payment-info d-flex align-items-center">
+                <p>
+                  Нажимая на кнопку "перейти к оплате" я соглашаюсь с <a href="#">договором оферты</a>
                   и <a href="#">политикой конфиденциальности</a> и даю
                   <a href="#">согласие на обработку персональных данных.</a>
-                </label>
+                </p>
               </div>
             </div>
           </div>

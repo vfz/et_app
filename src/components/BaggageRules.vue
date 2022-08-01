@@ -84,7 +84,7 @@
         </div>
       </div>
       <div v-if="isMobile()">
-        <a v-on:click="rotateArrow" class="title-section-mobile pointer-event d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#collapseBaggage" aria-expanded="false" aria-controls="collapseBaggage">
+        <a v-on:click="rotateArrowBaggage" class="title-section-mobile pointer-event d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#collapseBaggage" aria-expanded="false" aria-controls="collapseBaggage">
           <h2>Правила перевозки багажа</h2>
           <ArrowDownIcon class="arrow-down-collapse arrow-up" color="#283256"/>
         </a>
@@ -117,10 +117,13 @@
               — Вес до 20 килограмм
             </p>
           </div>
-          <div class="promo-code">
-            <h2 class="title-section">
-              Промокод
-            </h2>
+        </div>
+        <div class="promo-code">
+          <a v-on:click="rotateArrowPromocode" class="title-section-mobile pointer-event d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#collapsePromocode" aria-expanded="false" aria-controls="collapsePromocode">
+            <h2>Промокод</h2>
+            <ArrowDownIcon class="arrow-down-collapse arrow-up" color="#283256"/>
+          </a>
+          <div class="collapse" id="collapsePromocode">
             <p class="title-section-description">
               Введите промокод в соответствующее поле
             </p>
@@ -181,18 +184,32 @@ export default {
   components: {ArrowDownIcon, CheckIcon},
   data(){
     return {
-      isShow: false,
+      isShowBaggage: false,
+      isShowPromocode: false,
     }
   },
   methods: {
     isMobile() {
       return screen.width <= 991;
     },
-    rotateArrow(event) {
+    rotateArrowBaggage(event) {
       const parent = event.target;
       const arrow = parent.querySelector('.arrow-down-collapse');
-      this.isShow = !this.isShow;
-      if (this.isShow === true) {
+      const collapse = parent.nextSibling;
+      this.isShowBaggage = !this.isShowBaggage;
+      if (this.isShowBaggage === true) {
+        arrow.classList.remove('arrow-up')
+      }
+      else {
+        arrow.classList.add('arrow-up')
+      }
+    },
+    rotateArrowPromocode(event) {
+      const parent = event.target;
+      const arrow = parent.querySelector('.arrow-down-collapse');
+      const collapse = parent.nextSibling;
+      this.isShowPromocode = !this.isShowPromocode;
+      if (this.isShowPromocode === true) {
         arrow.classList.remove('arrow-up')
       }
       else {

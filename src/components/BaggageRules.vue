@@ -349,11 +349,11 @@ p {
     margin-bottom: 24px;
     @include font($uni,$light,14px,18.9px,$base);
     a {
-      color: $blue-link;
+      color: $blue-active;
     }
     a:hover {
       @include animation;
-      color: $blue-active;
+      color: $blue-link;
     }
   }
   .btn {

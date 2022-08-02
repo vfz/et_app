@@ -12,6 +12,9 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "src/assets/variables.scss";
+@import "src/assets/font.scss";
+@import "@/assets/formValidation.scss";
 
 </style>

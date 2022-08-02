@@ -1,19 +1,24 @@
 <template>
   <div class="my-data-button d-inline-flex align-items-center">
-    <div v-if="isLogin" class="my-data-button-login">
-      <select id="inputState" class="form-select my-data-button-title">
-        <option>Мои данные</option>
-        <option>...</option>
-      </select>
-    </div>
-    <div v-else class="my-data-button-notLogin d-flex justify-content-between align-items-center w-100">
-      <div class="my-data-button-notLogin-title">
-        Данные из личного кабинета
-      </div>
-      <div class="arrow-down">
-        <ArrowDownIcon color="#C4C4C4"/>
-      </div>
-    </div>
+<!--    TODO is-error-myDataButton - если данные были заполнены неверно -->
+    <button v-if="isCollapse && isLogin" v-on:click="rotateArrow" class="my-data-button-collapse d-flex justify-content-between align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseData" aria-expanded="false" aria-controls="collapseData">
+      Мои данные
+      <ArrowDownIcon class="arrow-down-collapse arrow-up" :color="'#283256'"/>
+    </button>
+    <button v-else-if="isCollapse && !isLogin" v-on:click="rotateArrow" class="my-data-button-collapse is-not-login d-flex justify-content-between align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseData" aria-expanded="false" aria-controls="collapseData">
+      Данные из личного кабинета
+      <ArrowDownIcon class="arrow-down-collapse arrow-up" color="#AFB7CD"/>
+    </button>
+<!--    TODO добавить select-->
+    <!--    TODO is-error-myDataButton - если данные были заполнены неверно -->
+    <button v-if="!isCollapse && isLogin" class="my-data-button-collapse d-flex justify-content-between align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseData" aria-expanded="false" aria-controls="collapseData">
+      Мои данные
+      <ArrowDownIcon class="arrow-down-collapse" color="#283256"/>
+    </button>
+    <button v-else-if="!isCollapse && !isLogin" class="my-data-button-collapse is-not-login d-flex justify-content-between align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseData" aria-expanded="false" aria-controls="collapseData">
+      Данные из личного кабинета
+      <ArrowDownIcon class="arrow-down-collapse" color="#AFB7CD"/>
+    </button>
   </div>
 </template>
 
@@ -24,10 +29,23 @@ export default {
   components: {ArrowDownIcon},
   data(){
     return {
-      isLogin : false
+      isShow: false,
     }
   },
-  props: ['isLogin']
+  props: ['isLogin', 'isCollapse'],
+  methods: {
+    rotateArrow(event) {
+      const parent = event.target;
+      const arrow = parent.querySelector('.arrow-down-collapse');
+      this.isShow = !this.isShow;
+      if (this.isShow === true) {
+        arrow.classList.remove('arrow-up')
+      }
+      else {
+        arrow.classList.add('arrow-up')
+      }
+    }
+  }
 
 }
 </script>
@@ -35,6 +53,33 @@ export default {
 <style lang="scss" scoped>
 @import "src/assets/variables.scss";
 @import "src/assets/font.scss";
+@import "src/assets/formValidation.scss";
+
+.is-not-login {
+  color: $deactivate !important;
+}
+
+.my-data-button-collapse {
+  padding: 0;
+  width: 100%;
+  background: none;
+  border: none;
+  outline: none;
+  @include font($uni,$bold,18px,24.3px,$base);
+  @media screen and (max-width: 767px) {
+    @include font($uni,$bold,14px,18.9px,$base);
+  }
+  .arrow-down-collapse {
+    @include animation;
+    transform: rotate(0deg);
+    pointer-events: none;
+  }
+  .arrow-up {
+    @include animation;
+    transform: rotate(180deg);
+  }
+
+}
 .my-data-button {
   cursor: pointer;
   &-title {

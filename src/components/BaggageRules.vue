@@ -2,64 +2,152 @@
   <!--          правила перевозки багажа-->
   <div class="row rules-baggage">
     <div class="col-12 col-lg-12 col-xl-7 col-xxl-7">
-      <h2 class="title-section">
+      <h2 v-if="!isMobile()" class="title-section">
         Правила перевозки багажа
       </h2>
-      <p class="title-section-description">
-        Вы можете бесплатно перевезти одно место ручной клади.
-      </p>
-      <div class="d-block">
-        <h3 class="title-info-baggage">
-          Ограничение для ручной клади:
-        </h3>
-        <p class="description-info-baggage">
-          — Сумма измерений не превышает 120 см (Высота + Ширина + Длина)
-          <br>
-          — Вес до 7 килограмм
-        </p>
-      </div>
-      <div class="d-block">
-        <p class="description-info-baggage">
-          Цена платного багажа составляет <span> 250 ₽.</span>
-        </p>
-      </div>
-      <div class="d-block">
-        <h3 class="title-info-baggage">
-          Ограничения для платного багажа:
-        </h3>
-        <p class="description-info-baggage">
-          — Сумма измерений не превышает 180 см (Высота + Ширина + Длина)
-          <br>
-          — Вес до 20 килограмм
-        </p>
-      </div>
-      <div class="promo-code">
-        <h2 class="title-section">
-          Промокод
-        </h2>
+      <div v-if="!isMobile()">
         <p class="title-section-description">
-          Введите промокод в соответствующее поле
+          Вы можете бесплатно перевезти одно место ручной клади.
         </p>
         <div class="d-block">
-          <div class="row">
-            <div class="col-12 col-md-6">
-              <div class="input-group position-relative">
-<!--                TODO добавить класс is-ok-bordered или is-error-bordered для инпута-->
-                <input type="text" class="form-control form-control-bordered" placeholder="Введите промокод">
-                <!--                TODO изменить класс is-ok-icon на is-error-icon, если валидация неверная. Убрать d-none для отображения элемента -->
-                <div class="d-none is-error-icon icon-bg position-absolute d-flex align-items-center">
-                  <CheckIcon color="#fff"/>
+          <h3 class="title-info-baggage">
+            Ограничение для ручной клади:
+          </h3>
+          <p class="description-info-baggage">
+            — Сумма измерений не превышает 120 см (Высота + Ширина + Длина)
+            <br>
+            — Вес до 7 килограмм
+          </p>
+        </div>
+        <div class="d-block">
+          <p class="description-info-baggage">
+            Цена платного багажа составляет <span> 250 ₽.</span>
+          </p>
+        </div>
+        <div class="d-block">
+          <h3 class="title-info-baggage">
+            Ограничения для платного багажа:
+          </h3>
+          <p class="description-info-baggage">
+            — Сумма измерений не превышает 180 см (Высота + Ширина + Длина)
+            <br>
+            — Вес до 20 килограмм
+          </p>
+        </div>
+        <div class="promo-code">
+          <h2 class="title-section">
+            Промокод
+          </h2>
+          <p class="title-section-description">
+            Введите промокод в соответствующее поле
+          </p>
+          <div class="d-block">
+            <div class="row">
+              <div class="col-12 col-md-6">
+                <div class="input-group position-relative">
+                  <!--                TODO добавить класс is-ok-bordered или is-error-bordered для инпута-->
+                  <input type="text" class="form-control form-control-bordered" placeholder="Введите промокод">
+                  <!--                TODO изменить класс is-ok-icon на is-error-icon, если валидация неверная. Убрать d-none для отображения элемента -->
+                  <div class="d-none is-error-icon icon-bg position-absolute d-flex align-items-center">
+                    <CheckIcon color="#fff"/>
+                  </div>
+                </div>
+                <!--              TODO убрать d-none для отображения ответа неверной валидации-->
+                <div class="error-feedback-bordered d-none">
+                  Неверный промокод
                 </div>
               </div>
-<!--              TODO убрать d-none для отображения ответа неверной валидации-->
-              <div class="error-feedback-bordered d-none">
-                Неверный промокод
+              <div class="col-12 col-md-6">
+                <button type="button" class="btn btn-primary btn-promo-code disabled">
+                  Применить
+                </button>
               </div>
             </div>
+          </div>
+          <div class="row flex-column-reverse flex-md-row">
             <div class="col-12 col-md-6">
-              <button type="button" class="btn btn-primary btn-promo-code disabled">
-                Применить
+              <button class="btn btn-lg btn-primary">
+                Перейти к оплате
               </button>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="payment-info d-flex align-items-center">
+                <p>
+                  Нажимая на кнопку "перейти к оплате" я соглашаюсь с <a href="#">договором оферты</a>
+                  и <a href="#">политикой конфиденциальности</a> и даю
+                  <a href="#">согласие на обработку персональных данных.</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div v-if="isMobile()">
+        <a v-on:click="rotateArrowBaggage" class="title-section-mobile pointer-event d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#collapseBaggage" aria-expanded="false" aria-controls="collapseBaggage">
+          <h2>Правила перевозки багажа</h2>
+          <ArrowDownIcon class="arrow-down-collapse arrow-up" color="#283256"/>
+        </a>
+        <div class="collapse" id="collapseBaggage">
+          <p class="title-section-description">
+            Вы можете бесплатно перевезти одно место ручной клади.
+          </p>
+          <div class="d-block">
+            <h3 class="title-info-baggage">
+              Ограничение для ручной клади:
+            </h3>
+            <p class="description-info-baggage">
+              — Сумма измерений не превышает 120 см (Высота + Ширина + Длина)
+              <br>
+              — Вес до 7 килограмм
+            </p>
+          </div>
+          <div class="d-block">
+            <p class="description-info-baggage">
+              Цена платного багажа составляет <span> 250 ₽.</span>
+            </p>
+          </div>
+          <div class="d-block">
+            <h3 class="title-info-baggage">
+              Ограничения для платного багажа:
+            </h3>
+            <p class="description-info-baggage">
+              — Сумма измерений не превышает 180 см (Высота + Ширина + Длина)
+              <br>
+              — Вес до 20 килограмм
+            </p>
+          </div>
+        </div>
+        <div class="promo-code">
+          <a v-on:click="rotateArrowPromocode" class="title-section-mobile pointer-event d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#collapsePromocode" aria-expanded="false" aria-controls="collapsePromocode">
+            <h2>Промокод</h2>
+            <ArrowDownIcon class="arrow-down-collapse arrow-up" color="#283256"/>
+          </a>
+          <div class="collapse" id="collapsePromocode">
+            <p class="title-section-description">
+              Введите промокод в соответствующее поле
+            </p>
+            <div class="d-block">
+              <div class="row">
+                <div class="col-12 col-md-6">
+                  <div class="input-group position-relative">
+                    <!--                TODO добавить класс is-ok-bordered или is-error-bordered для инпута-->
+                    <input type="text" class="form-control form-control-bordered" placeholder="Введите промокод">
+                    <!--                TODO изменить класс is-ok-icon на is-error-icon, если валидация неверная. Убрать d-none для отображения элемента -->
+                    <div class="d-none is-error-icon icon-bg position-absolute d-flex align-items-center">
+                      <CheckIcon color="#fff"/>
+                    </div>
+                  </div>
+                  <!--              TODO убрать d-none для отображения ответа неверной валидации-->
+                  <div class="error-feedback-bordered d-none">
+                    Неверный промокод
+                  </div>
+                </div>
+                <div class="col-12 col-md-6">
+                  <button type="button" class="btn btn-primary btn-promo-code disabled">
+                    Применить
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -70,13 +158,12 @@
             </button>
           </div>
           <div class="col-12 col-md-6">
-            <div class="form-check d-flex align-items-center">
-              <input class="form-check-custom-input form-check-input" type="checkbox" value="" id="privacyCheck">
-              <label class="form-check-label" for="privacyCheck">
-                Я ознакомлен и согласен с <a href="#">договором оферты</a>
+            <div class="payment-info d-flex align-items-center">
+              <p>
+                Нажимая на кнопку "перейти к оплате" я соглашаюсь с <a href="#">договором оферты</a>
                 и <a href="#">политикой конфиденциальности</a> и даю
                 <a href="#">согласие на обработку персональных данных.</a>
-              </label>
+              </p>
             </div>
           </div>
         </div>
@@ -90,9 +177,45 @@
 
 <script>
 import CheckIcon from "@/components/icons/CheckIcon";
+import ArrowDownIcon from "@/components/icons/ArrowDownIcon";
 export default {
   name: "BaggageRules",
-  components: {CheckIcon}
+  components: {ArrowDownIcon, CheckIcon},
+  data(){
+    return {
+      isShowBaggage: false,
+      isShowPromocode: false,
+    }
+  },
+  methods: {
+    isMobile() {
+      return screen.width <= 991;
+    },
+    rotateArrowBaggage(event) {
+      const parent = event.target;
+      const arrow = parent.querySelector('.arrow-down-collapse');
+      const collapse = parent.nextSibling;
+      this.isShowBaggage = !this.isShowBaggage;
+      if (this.isShowBaggage === true) {
+        arrow.classList.remove('arrow-up')
+      }
+      else {
+        arrow.classList.add('arrow-up')
+      }
+    },
+    rotateArrowPromocode(event) {
+      const parent = event.target;
+      const arrow = parent.querySelector('.arrow-down-collapse');
+      const collapse = parent.nextSibling;
+      this.isShowPromocode = !this.isShowPromocode;
+      if (this.isShowPromocode === true) {
+        arrow.classList.remove('arrow-up')
+      }
+      else {
+        arrow.classList.add('arrow-up')
+      }
+    }
+  }
 }
 </script>
 
@@ -111,6 +234,17 @@ p {
     @media screen and (max-width: 767px) {
       font-size: 18px;
       line-height: 24.3px;
+    }
+  }
+  .title-section-mobile {
+    margin-bottom: 16px;
+    h2 {
+      @include font($uni,$bold,24px,32.4px,$base);
+      margin-bottom: 0;
+      @media screen and (max-width: 767px) {
+        font-size: 18px;
+        line-height: 24.3px;
+      }
     }
   }
   .title-section-description {
@@ -226,22 +360,37 @@ p {
         line-height: 21.6px;
       }
     }
-    .form-check {
-      position: relative;
-      &-label {
-        @include font($uni,$light,14px,18.9px,$base);
-        a {
-          color: $blue-link;
-        }
-        a:hover {
-          @include animation;
-          color: $blue-active;
-        }
-      }
-      &-input {
-        position: absolute;
-      }
+  }
+  .payment-info {
+    margin-bottom: 24px;
+    @include font($uni,$light,14px,18.9px,$base);
+    a {
+      color: $blue-active;
     }
+    a:hover {
+      @include animation;
+      color: $blue-link;
+    }
+  }
+  .btn {
+    padding: 12px 68px;
+    text-transform: none;
+    border-radius: 16px;
+    @media screen and (max-width: 767px) {
+      border-radius: 8px;
+      width: 100%;
+      font-size: 16px;
+      line-height: 21.6px;
+    }
+  }
+  .arrow-down-collapse {
+    @include animation;
+    pointer-events: none;
+    transform: rotate(0deg);
+  }
+  .arrow-up {
+    @include animation;
+    transform: rotate(180deg);
   }
 }
 </style>

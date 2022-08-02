@@ -59,7 +59,7 @@
                     <div class="table-item-part-left-city">
                        {{flight.from_name_point}}
                     </div>
-                    <div class="table-item-part-left-place table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
+                    <div class="table-item-part-left-place table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal" v-on:click="updateCords(flight.from_yam),updateIcon(flight.from_name)">
                        {{flight.from_address_point}}
                     </div>
                   </div>
@@ -69,7 +69,7 @@
                     <div class="table-item-part-right-city">
                       {{flight.to_name_point}}
                     </div>
-                    <div class="table-item-part-right-place table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
+                    <div class="table-item-part-right-place table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal" v-on:click="updateCords(flight.to_yam),updateIcon(flight.to_name)">
                        {{flight.to_address_point}}
                     </div>
                   </div>
@@ -169,6 +169,8 @@ export default {
     methods: {
     ...mapActions([
       'updatebBusTriptId',
+      'updateCords',
+      'updateIcon'
     ]),
   }
 }

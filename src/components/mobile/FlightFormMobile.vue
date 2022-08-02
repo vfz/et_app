@@ -204,7 +204,7 @@
 import DataPicker from '@/components/DataPicker'
 import {mapGetters,mapActions} from 'vuex'
 export default {
-  name: "Flight-form",
+  name: "Flight-form-mobile",
   components:{DataPicker,},
   computed: mapGetters(['fromStations','toStations','from','to','childrens','adults','dateArival','dateBack','selectDate','selectDateBack','oneWay']),
   data(){

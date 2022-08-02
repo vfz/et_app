@@ -65,7 +65,7 @@
                   <!--                  для вызова модального окна нужно добавить атрибуты data-bs-toggle со значением modal и data-bs-target со значением id модального окна
                  data-bs-target="#dispatch-modal" :data-bs-target="flight.id_from_point"-->
                   
-                  <div class="dispatch-place table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
+                  <div class="dispatch-place table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal" v-on:click="updateCords(flight.from_yam),updateIcon(flight.from_name)">
                      {{flight.from_address_point}}
                   </div>
                 </td>
@@ -92,9 +92,9 @@
                     </span>
                   </div>
                   <!--                  для вызова модального окна нужно добавить атрибуты data-bs-toggle со значением modal и data-bs-target со значением id модального окна-->
-                  <div class="dispatch-length-time-saw table-link" data-bs-toggle="modal" data-bs-target="#dispatch-length-time-modal">
+                  <!-- <div class="dispatch-length-time-saw table-link" data-bs-toggle="modal" data-bs-target="#dispatch-length-time-modal">
                     Посмотреть
-                  </div>
+                  </div> -->
                 </td>
                 <td>
                   <div class="arrival-time">
@@ -112,7 +112,7 @@
                   </div>
                   <!--                  для вызова модального окна нужно добавить атрибуты data-bs-toggle со значением modal и data-bs-target со значением id модального окна
                  data-bs-target="#dispatch-modal" :data-bs-target="flight.id_to_point"-->
-                  <div class="arrival-place">
+                  <div class="arrival-place  table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal" v-on:click="updateCords(flight.to_yam),updateIcon(flight.to_name)">
                    {{flight.to_address_point}}
                   </div>
                 </td>
@@ -182,6 +182,8 @@ export default {
     methods: {
     ...mapActions([
       'updatebBusTriptId',
+      'updateCords',
+      'updateIcon'
     ]),
   }
 }

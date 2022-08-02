@@ -83,7 +83,8 @@
                       Время в пути
                     </h3>
                     <div class="table-item-part-left-date">
-                      <div class="time-length-trip table-link" data-bs-toggle="modal" data-bs-target="#dispatch-length-time-modal">
+                      <!-- <div class="time-length-trip table-link" data-bs-toggle="modal" data-bs-target="#dispatch-length-time-modal"> -->
+                        <div class="time-length-trip" >
                         <span v-if="flight.time_duration_trip.split(':')[0]>0">
                             {{flight.time_duration_trip.split(':')[0]}}
                             {{

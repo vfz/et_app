@@ -311,7 +311,6 @@ export default {
   computed: mapGetters(['fromStations','toStations','from','to','childrens','adults','dateArival','dateBack','selectDate','selectDateBack','oneWay']),
   data(){
     return{
-      title: 'Доступные билеты на автобус от перевозчика',
       pba: true,
       pbc: true,
       mba: false,

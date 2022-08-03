@@ -7,11 +7,22 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
         <div class="modal-header justify-content-between justify-content-md-end">
-          <a class="modal-link" href="#">Проложить маршрут</a>
+          <!-- <a class="modal-link" href="#">Проложить маршрут</a> -->
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <!-- <div style="position:relative;overflow:hidden;"><a href="https://yandex.ru/maps/org/tsentralny_avtovokzal/1078537708/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Центральный Автовокзал</a><a href="https://yandex.ru/maps/36/stavropol/category/bus_station/184108121/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:14px;">Автовокзал, автостанция в Ставрополе</a><a href="https://yandex.ru/maps/36/stavropol/category/bus_tickets/184108281/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:28px;">Автобусные билеты в Ставрополе</a><iframe src="https://yandex.ru/map-widget/v1/-/CCUJ5LQHwC" width="100%" height="400" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe></div> -->
+          <yandex-map 
+            :coords="getCord"
+            :zoom="16"
+            
+          >
+             <ymap-marker 
+              :coords="getCord" 
+              marker-id="123"
+              :icon="getIcon"
+              marker-type="placemark"
+              ></ymap-marker>
+          </yandex-map>
         </div>
       </div>
     </div>
@@ -19,8 +30,19 @@
 </template>
 
 <script>
+import { yandexMap, ymapMarker } from 'vue-yandex-maps'
+import {mapGetters,mapActions} from 'vuex'
 export default {
-  name: "Dispatch-modal"
+  name: "Dispatch-modal",
+  components: { yandexMap, ymapMarker },
+  computed: mapGetters(['getCord','getIcon']),
+  data(){
+    return{
+      
+    }
+  }
+
+  
 }
 </script>
 
@@ -28,6 +50,14 @@ export default {
 @import "src/assets/variables.scss";
 @import "src/assets/font.scss";
 .modal {
+  .modal-body{
+  width: 100%;
+  height: 50vh;
+}
+
+  .ymap-container {
+  height: 100%;
+}
   &-header {
     .btn-close {
       margin: unset;

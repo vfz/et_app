@@ -6,7 +6,8 @@ export default {
             41.998846
         ],
         icon: {
-            content: '',
+            content: 'Данные загружаются',
+            color: 'red'
         }
     },
     mutations: {

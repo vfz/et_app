@@ -1,8 +1,4 @@
 <template>
-  <!-- Modal -->
-  <!--    для вызова модального окна нужно создать индивидуальный id, таким образом будет открываться свое окно. Предпологаю что
-  окна будут рендериться через цикл
-  -->
   <div class="modal fade dispatch-modal" id="dispatch-modal" tabindex="-1" aria-labelledby="dispatch-modal-label" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
@@ -14,7 +10,6 @@
           <yandex-map 
             :coords="getCord"
             :zoom="16"
-            
           >
              <ymap-marker 
               :coords="getCord" 
@@ -31,11 +26,12 @@
 
 <script>
 import { yandexMap, ymapMarker } from 'vue-yandex-maps'
-import {mapGetters,mapActions} from 'vuex'
+import {mapGetters} from 'vuex'
 export default {
   name: "Dispatch-modal",
   components: { yandexMap, ymapMarker },
   computed: mapGetters(['getCord','getIcon']),
+  
   data(){
     return{
       

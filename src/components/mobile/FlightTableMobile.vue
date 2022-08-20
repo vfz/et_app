@@ -160,7 +160,7 @@ export default {
         minutes: ['минута', 'минуты', 'минут'],
         cases: [2, 0, 1, 1, 1, 2],
         monthes: ["Янв", "Фев", "Мар", "Апр", "Мая", "Июн", "Июл", "Авг", "Сен", "Окт", "Ноя", "Дек"],
-        flights:[],
+        // flights:[],
     }
   },
   computed: mapGetters(['flightThere','flightBack','childrens','adults',]),

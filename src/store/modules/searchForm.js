@@ -18,26 +18,13 @@ export default {
         flightThere: [],
         flightBack: [],
         busTriptId: "7",
-        flights: [{
-            id_trip: "7",
-            bus_config: {
-
-                "1": {
-                    "1": ["prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "tualet+2+1+Туалет", "busy-seat+1+1+69", "busy-seat+1+1+65", "busy-seat+1+1+61", "busy-seat+1+1+57", "stol+2+1+Стол", "busy-seat+1+1+53", "prohod+1+1+_", "voditel+1+1+_"],
-                    "2": ["prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "Breake", "busy-seat+1+1+70", "busy-seat+1+1+66", "busy-seat+1+1+62", "busy-seat+1+1+58", "Breake", "busy-seat+1+1+54", "prohod+1+1+_", "prohod+1+1+_"],
-                    "3": ["prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_"],
-                    "4": ["prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "exit+2+1+Выход/Вход", "busy-seat+1+1+72", "busy-seat+1+1+68", "busy-seat+1+1+64", "busy-seat+1+1+60", "stol+2+1+Стол", "busy-seat+1+1+56", "busy-seat+1+1+86", "exit+2+1+Выход/Вход"],
-                    "5": ["prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "prohod+1+1+_", "Breake", "busy-seat+1+1+71", "busy-seat+1+1+67", "busy-seat+1+1+63", "busy-seat+1+1+59", "Breake", "busy-seat+1+1+55", "busy-seat+1+1+85", "Breake"]
-                }
-            }
-        }, ],
-        shemeMobile: []
-
+        shemeMobile: [],
+        shemeDesktop: []
 
     },
     mutations: {
         // функция для перестройки схемы автобуса в мобильную
-        async busMobile(state) {
+        busMobile(state) {
             const flights = [].concat(state.flightThere, state.flightBack)
                 // console.log(flights)
             const floors = flights.find(trip => trip.id_trip === state.busTriptId).bus_config
@@ -45,38 +32,42 @@ export default {
             let strMObile = {...floors }
             Object.keys(floors).map(fl => {
 
-                    let floorObject = {
-                        ...floors[fl][1].slice(0).reverse()
+                let floorObject = {
+                    ...floors[fl][1].slice(0).reverse()
+                }
+
+                //console.log(strMObile)
+                for (let i = 2; i <= 5; i++) {
+
+                    let floorObject1 = {
+                        ...floors[fl][i].slice(0).reverse()
                     }
 
-                    //console.log(strMObile)
-                    for (let i = 2; i <= 5; i++) {
-
-                        let floorObject1 = {
-                            ...floors[fl][i].slice(0).reverse()
-                        }
-
-                        for (var key in floorObject) {
-                            floorObject[key] = [].concat(floorObject[key], floorObject1[key]);
-                        }
-
-                        // console.log(floorObject)
+                    for (var key in floorObject) {
+                        floorObject[key] = [].concat(floorObject[key], floorObject1[key]);
                     }
 
-                    strMObile[fl] = floorObject
+                    // console.log(floorObject)
+                }
 
-                    state.shemeMobile = strMObile
+                strMObile[fl] = floorObject
 
-                })
-                // this.mobileButoon=!this.mobileButoon
+                state.shemeMobile = strMObile
+
+            })
         },
+        // функция для схемы автобуса на дексктопе
+        busDesktop(state) {
+            const flights = [].concat(state.flightThere, state.flightBack)
+                // console.log(flights)
+            const floors = flights.find(trip => trip.id_trip === state.busTriptId).bus_config
+            state.shemeDesktop = floors
+
+        },
+
         //обновить id рейса для которого нужно выводить Схему автобуса
         updatebBusTriptId(state, tripId) {
             state.busTriptId = tripId
-        },
-        mergeFlightsM(state) {
-            state.flights = []
-            state.flights = state.flights.concat(state.flightThere, state.flightBack);
         },
         updateFromStations(state, fromStations) {
             state.fromStations = fromStations.result
@@ -185,6 +176,7 @@ export default {
         updatebBusTriptId(ctx, tripId) {
             ctx.commit('updatebBusTriptId', tripId)
             ctx.commit('busMobile')
+            ctx.commit('busDesktop')
         },
         //Получаем список станций прибытия
         async getToStations(ctx, from = '') {
@@ -210,7 +202,6 @@ export default {
             const res = await fetch(ctx.rootState.API_URL + "?command=okato_trip&from_id=" + from_okato + "&to_id=" + to_okato + "&date_trip=" + ctx.state.dateArival);
             const FlightThere = await res.json();
             ctx.commit('updateFlightThere', FlightThere)
-            ctx.commit('mergeFlightsM')
 
 
         },
@@ -224,7 +215,6 @@ export default {
             const res = await fetch(ctx.rootState.API_URL + "?command=okato_trip&from_id=" + from_okato + "&to_id=" + to_okato + "&date_trip=" + ctx.state.dateBack);
             const FlightBack = await res.json();
             ctx.commit('updateFlightBack', FlightBack)
-            ctx.commit('mergeFlightsM')
 
         },
 
@@ -287,9 +277,10 @@ export default {
         shemeMobile(state) {
             return state.shemeMobile
         },
-        mergeFlights(state) {
-            return state.flights
+        shemeDesktop(state) {
+            return state.shemeDesktop
         },
+
         // mergeFlights(state) {
         //     let flights = state.flightThere.concat(state.flightBack);
         //     return flights

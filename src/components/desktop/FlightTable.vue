@@ -112,7 +112,7 @@
                   </div>
                   <!--                  для вызова модального окна нужно добавить атрибуты data-bs-toggle со значением modal и data-bs-target со значением id модального окна
                  data-bs-target="#dispatch-modal" :data-bs-target="flight.id_to_point"-->
-                  <div class="arrival-place  table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal" v-on:click="updateCords(flight.to_yam),updateIcon(flight.to_name)">
+                  <div class="arrival-place  table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal" v-on:click="updateIcon(flight.to_name),updateCords(flight.to_yam)">
                    {{flight.to_address_point}}
                   </div>
                 </td>

@@ -24,7 +24,7 @@
     <Footer/>
     <DispatchModal/>
     <DispatchLengthTimeModal/>
-    <PlaceLeftModal :mobileButoon="isMobile()"/>
+    <PlaceLeftModal :mobile="isMobile()"/>
     <LoginModal/>
     <RegistrationModal/>
     <ForgotPasswordModal/>

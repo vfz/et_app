@@ -18,6 +18,7 @@ export default {
             ]
         },
         newIcon(state, icon) {
+
             state.icon = {
                 'content': icon,
                 color: 'red'
@@ -26,14 +27,20 @@ export default {
     },
     actions: {
         updateCords(ctx, coords) {
+            setTimeout(() => {
+                ctx.commit('newCords', coords)
+            }, 500)
 
-            ctx.commit('newCords', coords)
         },
 
         updateIcon(ctx, icon) {
 
             ctx.commit('newIcon', icon)
         },
+        updateMap(ctx, coords, icon) {
+            ctx.commit('newCords', coords)
+            ctx.commit('newIcon', icon)
+        }
 
     },
     modules: {},

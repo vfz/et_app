@@ -44,10 +44,10 @@
                   </div>
                  <!-- <div class="floor-item" v-on:click="busMobile()">busMobile</div> -->
                 </div>
-                <div :class="!mobileButoon ? 'bus-scheme' :  'bus-scheme-mobile'">
-                  <table v-if="!mobileButoon">
-                    <!--TODO подсветка выбранных мест-->
-                    <tr v-for="(stroka,indexstr) in mergeFlights.find(trip => trip.id_trip===busTriptId).bus_config[floor]" :key="indexstr">
+                <div :class="!mobile ? 'bus-scheme' :  'bus-scheme-mobile'">
+                  <table v-if="!mobile">
+                    <!--TODO: подсветка выбранных мест-->
+                    <tr v-for="(stroka,indexstr) in shemeDesktop[floor]" :key="indexstr">
                       <td v-for="(seat,index) in stroka.filter(seatt=> seatt.length >7)" :key="index"
                         :rowspan="seat.split('+')[1]" 
                         :colspan="seat.split('+')[2]"
@@ -58,7 +58,7 @@
                   </table>
                   <!-- Таблица с автобусом для мобильных -->
                   <table v-else>
-                    <!--TODO подсветка выбранных мест-->
+                    <!--TODO: подсветка выбранных мест-->
                     <tr v-for="(stroka,indexstrm) in shemeMobile[floor]" :key="indexstrm">
                       <td v-for="(seat,indexm) in stroka.filter(seatt=> seatt.length >7)" :key="indexm"
                         :colspan="seat.split('+')[1]" 
@@ -84,23 +84,24 @@
 import {mapGetters,mapActions} from 'vuex'
 export default {
   name: "Place-left-modal",
-  props: ['mobileButoon'],
+  props: ['mobile'],
   data(){
     return{
       floor:1,
+      testFl:[]
     }
   },
-  computed: mapGetters(['busTriptId','mergeFlights','shemeMobile']),
+  computed: mapGetters(['busTriptId','shemeMobile','shemeDesktop']),
   mounted(){
-    
+
   },
     methods: {
     ...mapActions([
       'updatebBusTriptId',
     ]),
     floorsQ(){
-      if(this.mobileButoon){
-   
+      if(this.mobile){
+        //TODO: Добавить проверку есть ли второй этаж в текущем автобусе
       }
       
       return true

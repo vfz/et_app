@@ -1,5 +1,9 @@
 # et_app
 
+# Сыллка на макет
+
+https://www.figma.com/file/nWSKCnMIyUlU014npeIm4B/Passenger-transportation-(Evrotrans)
+
 ## Project setup
 ```
 npm install

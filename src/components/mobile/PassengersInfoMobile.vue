@@ -379,7 +379,7 @@ export default {
 <style lang="scss" scoped>
 @import "src/assets/variables.scss";
 @import "src/assets/font.scss";
-@import "src/assets/formValidation";
+@import "src/assets/formValidation.scss";
 
 .passengers-info-mobile-wrapper {
   padding: 12px 12px 28px;

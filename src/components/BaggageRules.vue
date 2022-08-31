@@ -170,7 +170,7 @@
       </div>
     </div>
     <div class="col-7 col-xl-5 col-xxl-5 d-none d-lg-none d-xl-flex justify-content-xl-center">
-      <img class="payment-img" alt="оплата" src="/img/ticket-booking/payment.svg">
+      <img class="payment-img" alt="оплата" src="img/ticket-booking/payment.svg">
     </div>
   </div>
 </template>

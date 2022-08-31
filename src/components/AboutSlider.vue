@@ -142,22 +142,22 @@ export default {
 
 .tns-controls button[data-controls=next][disabled] {
   background-color: rgba(255, 255, 255, 0.7);
-  background-image: url("/img/about/right-arrow.svg");
+  background-image: url("../../public/img/about/right-arrow.svg");
 }
 .tns-controls button[data-controls=prev][disabled] {
   background-color: rgba(255, 255, 255, 0.7);
-  background-image: url("/img/about/left-arrow.svg");
+  background-image: url("../../public/img/about/left-arrow.svg");
 }
 
 .tns-controls button[data-controls=next] {
   background-color: rgba(40, 50, 86, 1);
-  background-image: url("/img/about/right-arrow-white.svg");
+  background-image: url("../../public/img/about/right-arrow-white.svg");
   background-repeat: no-repeat;
   top: 50px;
 }
 .tns-controls button[data-controls=prev] {
   background-color: rgba(40, 50, 86, 1);
-  background-image: url("/img/about/left-arrow-white.svg");
+  background-image: url("../../public/img/about/left-arrow-white.svg");
   background-repeat: no-repeat;
   bottom: 120px;
 }

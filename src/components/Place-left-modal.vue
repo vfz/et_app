@@ -253,7 +253,7 @@ export default {
         margin-bottom: 6px;
         width: 32px;
         height: 32px;
-        background: url("/img/modal/driver.png") repeat-y;
+        background: url("../../public/img/modal/driver.png") repeat-y;
         background-size: contain;
         
     }

@@ -629,7 +629,7 @@ export default {
             transform: rotate(90deg);
           }
           &-icon {
-            background: url("/img/hero/arrows.svg") no-repeat;
+            background: url("@/../public/img/hero/arrows.svg") no-repeat;
             width: 33px;
             height: 24px;
 

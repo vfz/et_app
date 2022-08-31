@@ -20,7 +20,7 @@
 @import "src/assets/font.scss";
 
 .registration-hero {
-  background-image: url("/img/hero/bg-reg.png");
+  background-image: url("../../public/img/hero/bg-reg.png");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;

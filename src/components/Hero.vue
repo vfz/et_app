@@ -126,7 +126,7 @@
                           <div class="d-flex justify-content-between align-items-center">
                             <label class="form-label">Пассажиры</label>
                             <div class="d-none d-lg-block help-icon-block-desktop">
-                              <img class="help-icon" alt="help" src="/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
+                              <img class="help-icon" alt="help" src="../../public/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
                             </div>
                           </div>
                           <div class="d-flex justify-content-between">
@@ -143,7 +143,7 @@
                               <span class="card-desc d-block w-100">Детских</span>
                             </div>
                             <div class="d-block d-lg-none help-icon-block-mobile">
-                              <img class="help-icon" alt="help" src="/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
+                              <img class="help-icon" alt="help" src="../../public/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
                             </div>
                           </div>
                         </div>
@@ -158,7 +158,7 @@
                                    v-model="dateArival"
                                    @focus="UpdateselectDate()"
                             >
-                            <span class="input-group-text calendar-span" v-on:click="UpdateselectDate()" ><img class="calendar-icon" alt="calendar" src="/img/hero/calendar.svg"></span>
+                            <span class="input-group-text calendar-span" v-on:click="UpdateselectDate()" ><img class="calendar-icon" alt="calendar" src="../../public/img/hero/calendar.svg"></span>
                           </div>
                           <div class="select-date" v-if="selectDate">
                             <DataPicker/>
@@ -279,7 +279,7 @@
                           <div class="d-flex justify-content-between align-items-center">
                             <label class="form-label">Пассажиры</label>
                             <div class="d-none d-lg-block help-icon-block-desktop">
-                              <img class="help-icon" alt="help" src="/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
+                              <img class="help-icon" alt="help" src="../../public/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
                             </div>
                           </div>
                           <div class="d-flex justify-content-between">
@@ -296,7 +296,7 @@
                               <span class="card-desc d-block w-100">Детских</span>
                             </div>
                             <div class="d-block d-lg-none help-icon-block-mobile">
-                              <img class="help-icon" alt="help" src="/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
+                              <img class="help-icon" alt="help" src="../../public/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
                             </div>
                           </div>
                         </div>
@@ -311,7 +311,7 @@
                                    v-model="dateArival"
                                    @focus="UpdateselectDate()"
                             >
-                            <span class="input-group-text calendar-span" v-on:click="UpdateselectDate()" ><img class="calendar-icon" alt="calendar" src="/img/hero/calendar.svg"></span>
+                            <span class="input-group-text calendar-span" v-on:click="UpdateselectDate()" ><img class="calendar-icon" alt="calendar" src="../../public/img/hero/calendar.svg"></span>
                           </div>
                           <div class="select-date" v-if="selectDate">
                             <DataPicker/>
@@ -336,7 +336,7 @@
                                    v-model="dateBack"
                                    @focus="UpdateselectDateBack()"
                             >
-                            <span class="input-group-text calendar-span" v-on:click="UpdateselectDateBack()" ><img class="calendar-icon" alt="calendar" src="/img/hero/calendar.svg"></span>
+                            <span class="input-group-text calendar-span" v-on:click="UpdateselectDateBack()" ><img class="calendar-icon" alt="calendar" src="../../public/img/hero/calendar.svg"></span>
                           </div>
                           <div class="select-date" v-if="selectDateBack">
                             <DataPicker/>
@@ -492,7 +492,7 @@ export default{
 @import "src/assets/font.scss";
 
 .hero {
-  background: url("/img/header/bg.jpg") no-repeat center center ;
+  background: url("../../public/img/header/bg.jpg") no-repeat center center ;
   background-size: cover;
   padding-bottom: 99px;
   @media screen and (max-width: 768px) {
@@ -770,11 +770,11 @@ export default{
             height: 40px;
           }
           &-icon {
-            background: url("/img/hero/arrows.svg") no-repeat;
+            background: url("../../public/img/hero/arrows.svg") no-repeat;
             width: 33px;
             height: 24px;
             @media screen and (max-width: 767px) {
-              background: url("/img/hero/arrows-mobile.svg") no-repeat;
+              background: url("../../public/img/hero/arrows-mobile.svg") no-repeat;
               width: 16px;
               height: 21px;
             }

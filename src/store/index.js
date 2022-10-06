@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import searchForm from './modules/searchForm'
 import mapModal from './modules/mapModal';
+import {flightsSelectedSeats} from "@/store/modules/flightsSelectedSeats";
 import YmapPlugin from 'vue-yandex-maps'
 Vue.use(Vuex)
 
@@ -13,7 +14,7 @@ export default new Vuex.Store({
     actions: {},
     modules: {
         searchForm,
-        mapModal
-
+        mapModal,
+        flightsSelectedSeats
     }
 })

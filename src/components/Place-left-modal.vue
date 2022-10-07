@@ -294,6 +294,24 @@ export default {
         font-size: 14px;
         line-height: 19px;
     }
+    .active_seat {
+      width: 32px;
+      height: 32px;
+      margin-right: 10px;
+      margin-bottom: 6px;
+      padding-top: 6px;
+      background: #196EFF ;
+      /* Button / Inactive */
+      border: 1px solid #196EFF;
+      box-sizing: border-box;
+      border-radius: 4px;
+      font-family: $uni;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 19px;
+      color: $white;//#B5BDDB;
+    }
     .text_floor {
         font-family: $uni;
         font-style: normal;

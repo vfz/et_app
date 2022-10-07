@@ -310,7 +310,7 @@ export default {
       font-weight: 500;
       font-size: 14px;
       line-height: 19px;
-      color: $white;//#B5BDDB;
+      color: $white;
     }
     .text_floor {
         font-family: $uni;

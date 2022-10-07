@@ -3,7 +3,7 @@ export const flightsSelectedSeats = {
         flightThere: {},
         flightBack: {},
         currentFlight: {},
-        selectedCountPlaces: 0,
+        peopleCount: 0,
         freePlaces: [],
     }),
     mutations: {
@@ -21,8 +21,8 @@ export const flightsSelectedSeats = {
         setFlightBack (state, flightBack) {
           state.flightBack = flightBack.result;
         },
-        setSelectedCountPlaces (state, selectedCountPlaces) {
-            state.selectedCountPlaces = selectedCountPlaces;
+        setPeopleCount (state, peopleCount) {
+            state.peopleCount = peopleCount;
         },
     },
     namespaced: true,

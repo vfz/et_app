@@ -18,6 +18,7 @@ export default {
         flightThere: [],
         flightBack: [],
         busTriptId: "7",
+        currentFlight: {},
         shemeMobile: [],
         shemeDesktop: []
 
@@ -177,6 +178,8 @@ export default {
             ctx.commit('updatebBusTriptId', tripId)
             ctx.commit('busMobile')
             ctx.commit('busDesktop')
+            ctx.commit('currentFlight')
+            ctx.commit('flightsSelectedSeats/setCurrentFlight', tripId)
         },
         //Получаем список станций прибытия
         async getToStations(ctx, from = '') {
@@ -202,6 +205,7 @@ export default {
             const res = await fetch(ctx.rootState.API_URL + "?command=okato_trip&from_id=" + from_okato + "&to_id=" + to_okato + "&date_trip=" + ctx.state.dateArival);
             const FlightThere = await res.json();
             ctx.commit('updateFlightThere', FlightThere)
+            ctx.commit('flightsSelectedSeats/setFlightThere', FlightThere)
 
 
         },
@@ -215,6 +219,7 @@ export default {
             const res = await fetch(ctx.rootState.API_URL + "?command=okato_trip&from_id=" + from_okato + "&to_id=" + to_okato + "&date_trip=" + ctx.state.dateBack);
             const FlightBack = await res.json();
             ctx.commit('updateFlightBack', FlightBack)
+            ctx.commit('flightsSelectedSeats/setFlightBack', FlightBack);
 
         },
 

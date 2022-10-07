@@ -125,7 +125,7 @@
                     class="place-choice table-link" 
                     data-bs-toggle="modal" 
                     data-bs-target="#place-left-modal"
-                    v-on:click="updatebBusTriptId(flight.id_trip)"
+                    v-on:click="updatebBusTriptId(flight.id_trip);updateSelectedCountPlaces()"
                     v-if="+flight.count_available_seats_trip>=adults+childrens">
                     Выбрать 
                     <span v-if="childrens+adults===1">место</span>
@@ -185,6 +185,9 @@ export default {
       'updateCords',
       'updateIcon'
     ]),
+      updateSelectedCountPlaces() {
+        this.$store.commit('flightsSelectedSeats/setSelectedCountPlaces', this.adults+this.childrens)
+      }
   }
 }
 

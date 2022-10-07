@@ -52,7 +52,7 @@
                         :rowspan="seat.split('+')[1]" 
                         :colspan="seat.split('+')[2]"
                         align="center">
-                        <div :class="seat.split('+')[0]" :id="'seat_'+seat.split('+')[3].replace('_', '')">{{seat.split('+')[3].replace('_', '')}}</div>
+                        <div @click="getSelectedPlace(seat.split('+')[0],seat.split('+')[3].replace('_', ''))" :class="seat.split('+')[0]" :id="'seat_'+seat.split('+')[3].replace('_', '')">{{seat.split('+')[3].replace('_', '')}}</div>
                       </td>
                     </tr>
                   </table>
@@ -81,17 +81,22 @@
 
 
 <script>
-import {mapGetters,mapActions} from 'vuex'
+import {mapGetters,mapActions, mapState} from 'vuex'
 export default {
   name: "Place-left-modal",
   props: ['mobile'],
   data(){
     return{
       floor:1,
-      testFl:[]
+      testFl:[],
+      isSelected: false,
     }
   },
   computed: mapGetters(['busTriptId','shemeMobile','shemeDesktop']),
+  ...mapState({
+    peopleCount : state => state.flightsSelectedSeats.peopleCount,
+    selectedCountPlace : state => state.flightsSelectedSeats.selectedCountPlace
+  }),
   mounted(){
 
   },
@@ -106,7 +111,11 @@ export default {
       
       return true
     },
-    
+    getSelectedPlace(classPlace,numberPlace) {
+      if (classPlace === 'seat') {
+        // this.isSelected = true
+      }
+    }
   }
 }
 

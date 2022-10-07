@@ -4,6 +4,7 @@ export const flightsSelectedSeats = {
         flightBack: {},
         currentFlight: {},
         peopleCount: 0,
+        selectedCountPlace: 1,
         freePlaces: [],
     }),
     mutations: {

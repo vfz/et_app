@@ -18,7 +18,6 @@ export default {
         flightThere: [],
         flightBack: [],
         busTriptId: "7",
-        currentFlight: {},
         shemeMobile: [],
         shemeDesktop: []
 
@@ -178,7 +177,6 @@ export default {
             ctx.commit('updatebBusTriptId', tripId)
             ctx.commit('busMobile')
             ctx.commit('busDesktop')
-            ctx.commit('currentFlight')
             ctx.commit('flightsSelectedSeats/setCurrentFlight', tripId)
         },
         //Получаем список станций прибытия

@@ -1,12 +1,11 @@
 export const flightsSelectedSeats = {
     state: () => ({
-
+        freePlaces: [],
     }),
     mutations: {
-
-    },
-    actions: {
-
+        setFreePlaces(state, freePlaces) {
+            state.freePlaces = freePlaces;
+        }
     },
     namespaced: true,
 }

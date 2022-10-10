@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import searchForm from './modules/searchForm'
 import mapModal from './modules/mapModal';
 import YmapPlugin from 'vue-yandex-maps'
+import {passengersModule} from "@/store/modules/passengersModule";
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -13,7 +14,8 @@ export default new Vuex.Store({
     actions: {},
     modules: {
         searchForm,
-        mapModal
+        mapModal,
+
 
     }
 })

@@ -12,7 +12,6 @@ export const flightsSelectedSeats = {
             state.freePlaces = freePlaces;
         },
         setCurrentFlight(state, tripId) {
-            console.log(tripId)
             const flights = [].concat(state.flightThere, state.flightBack)
             state.currentFlight = flights.find(trip => trip.id_trip === tripId);
         },

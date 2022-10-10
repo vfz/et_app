@@ -97,6 +97,19 @@ export default {
     peopleCount : state => state.flightsSelectedSeats.peopleCount,
     selectedCountPlace : state => state.flightsSelectedSeats.selectedCountPlace
   }),
+  watch: {
+    shemeDesktop() {
+      const parseRows = JSON.parse(JSON.stringify(this.shemeDesktop[this.floor]))
+      const values = Object.values(parseRows)
+      values.forEach(row => {
+        row.forEach((item, index) => {
+          if (index < 3) {
+            console.log(item)
+          }
+        })
+      })
+    }
+  },
   mounted(){
 
   },

@@ -25,6 +25,9 @@ export const flightsSelectedSeats = {
         setPeopleCount (state, peopleCount) {
             state.peopleCount = peopleCount;
         },
+        setSelectedPlace(state, numberPlace) {
+
+        }
     },
     namespaced: true,
 }

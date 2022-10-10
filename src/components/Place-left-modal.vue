@@ -113,7 +113,7 @@ export default {
     },
     getSelectedPlace(classPlace,numberPlace) {
       if (classPlace === 'seat') {
-        // this.isSelected = true
+        this.$store.commit('flightsSelectedSeats/setSelectedPlace',  numberPlace, )
       }
     }
   }

@@ -1,4 +1,4 @@
-export const passengersModule = {
+export const passengerModule = {
     state: () => ({
         passengers: [],
         tripId: 0,

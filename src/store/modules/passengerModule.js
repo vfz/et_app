@@ -1,6 +1,7 @@
 export const passengerModule = {
     state: () => ({
         passengers: [],
+        countPassengers: 1,
         tripId: 0,
         flightId: 0,
         placeNumber: [],

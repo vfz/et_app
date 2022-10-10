@@ -82,6 +82,7 @@
 
 <script>
 import {mapGetters,mapActions, mapState} from 'vuex'
+import {flightsSelectedSeats} from "@/store/modules/flightsSelectedSeats";
 export default {
   name: "Place-left-modal",
   props: ['mobile'],
@@ -99,15 +100,7 @@ export default {
   }),
   watch: {
     shemeDesktop() {
-      const parseRows = JSON.parse(JSON.stringify(this.shemeDesktop[this.floor]))
-      const values = Object.values(parseRows)
-      values.forEach(row => {
-        row.forEach((item, index) => {
-          if (index < 3) {
-            console.log(item)
-          }
-        })
-      })
+
     }
   },
   mounted(){

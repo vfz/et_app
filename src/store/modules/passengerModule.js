@@ -15,12 +15,20 @@ export const passengerModule = {
         promocode: '',
     }),
     mutations: {
-
+        countPassengers(state, countPassengers) {
+            state.countPassengers = countPassengers
+        }
     },
     actions: {
-
+        fetchCountPassengers(ctx) {
+            console.log('helllo1')
+            const countPassengers = ctx.getters.getCountPassengers;
+            ctx.commit('countPassengers', countPassengers);
+        }
     },
     getters: {
-
+        getCountPassengers(state, getters) {
+            return getters.adults + getters.childrens;
+        }
     },
 }

@@ -131,9 +131,9 @@
                           </div>
                           <div class="d-flex justify-content-between">
                             <div class="count-passenger d-flex align-items-center flex-wrap">
-                              <div id="minus-button-adult" class="minus-button count-button" :class=" { disabled : !mba } " v-on:click="MinusAdult();changeClass()">-</div>
+                              <div id="minus-button-adult" class="minus-button count-button" :class=" { disabled : !mba } " v-on:click="MinusAdult();fetchCountPassengers();changeClass()">-</div>
                               <input value="1" min="1" max="7" name="adults" v-model="adults" type="number" class="form-control text-center one-way-inputs-input shadow-none"  placeholder="0">
-                              <div id="plus-button-adult" class="plus-button count-button" :class=" { disabled : !pba } " v-on:click="PlusAdult();changeClass()">+</div>
+                              <div id="plus-button-adult" class="plus-button count-button" :class=" { disabled : !pba } " v-on:click="PlusAdult();fetchCountPassengers();changeClass()">+</div>
                               <span class="card-desc d-block w-100">Взрослых</span>
                             </div>
                             <div class="count-passenger d-flex align-items-center flex-wrap">
@@ -425,6 +425,7 @@ export default{
           'MinusChild',
           'getFlightThere',
           'getFlightBack',
+            'fetchCountPassengers'
             ]),
             
         search(str,target){
@@ -476,6 +477,7 @@ export default{
         if (+this.from){
           this.fromPlace= this.fromStations.find(station => station.id_from === this.from).name;
         }
+        this.fetchCountPassengers()
   
         
     },

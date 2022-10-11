@@ -4,7 +4,7 @@
     <div class="col-12">
       <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-          <button class="nav-link active" id="passenger-1-tab" data-bs-toggle="tab" data-bs-target="#passenger-1" type="button" role="tab" aria-controls="passenger-1" aria-selected="true">Пассажир №1</button>
+          <button v-for="passenger in getCountPassengers" class="nav-link active" id="passenger-1-tab" data-bs-toggle="tab" data-bs-target="#passenger-1" type="button" role="tab" aria-controls="passenger-1" aria-selected="true">Пассажир №1</button>
           <button class="nav-link" id="passenger-2-tab" data-bs-toggle="tab" data-bs-target="#passenger-2" type="button" role="tab" aria-controls="passenger-2" aria-selected="false">Пассажир №2</button>
           <button class="nav-link" id="passenger-3-tab" data-bs-toggle="tab" data-bs-target="#passenger-3" type="button" role="tab" aria-controls="passenger-3" aria-selected="false">Пассажир №3</button>
           <button class="nav-link" id="passenger-3-tab" data-bs-toggle="tab" data-bs-target="#passenger-4" type="button" role="tab" aria-controls="passenger-4" aria-selected="false">Пассажир №4</button>
@@ -325,9 +325,25 @@
 import CancelIcon from "@/components/icons/CancelIcon";
 import ArrowDownIcon from "@/components/icons/ArrowDownIcon";
 import MyDataButton from "@/components/MyDataButton";
+import {mapState, mapActions, mapGetters} from 'vuex';
+
 export default {
   name: "PassengersInfo",
-  components: {MyDataButton, ArrowDownIcon, CancelIcon}
+  components: {MyDataButton, ArrowDownIcon, CancelIcon},
+  methods: {
+    ...mapActions({
+
+    })
+  },
+
+  computed: {
+    ...mapState({
+
+    }),
+    ...mapGetters({
+      getCountPassengers: 'getCountPassengers'
+    }),
+  }
 }
 </script>
 

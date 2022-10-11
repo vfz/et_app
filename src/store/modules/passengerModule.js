@@ -25,7 +25,6 @@ export const passengerModule = {
     },
     actions: {
         fetchCountPassengers(ctx) {
-            console.log('helllo1')
             const countPassengers = ctx.getters.getCountPassengers;
             ctx.commit('countPassengers', countPassengers);
         },

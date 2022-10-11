@@ -425,7 +425,8 @@ export default{
           'MinusChild',
           'getFlightThere',
           'getFlightBack',
-            'fetchCountPassengers'
+            'fetchCountPassengers',
+            'getPassengersArrays'
             ]),
             
         search(str,target){
@@ -477,6 +478,7 @@ export default{
         if (+this.from){
           this.fromPlace= this.fromStations.find(station => station.id_from === this.from).name;
         }
+        this.getPassengersArrays()
         this.fetchCountPassengers()
   
         

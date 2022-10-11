@@ -59,35 +59,35 @@
                   <div class="error-feedback d-none">Укажите фамилию</div>
                 </div>
                 <div class="col-3 col-lg-6 col-xl-3">
-                  <label for="firstName1" class="form-label">Имя</label>
-                  <input type="text" class="form-control" id="firstName1" placeholder="Иван">
+                  <label for="firstName" class="form-label">Имя</label>
+                  <input type="text" class="form-control" id="firstName" placeholder="Иван">
                   <!--                          TODO убрать d-none когда валидация неверная-->
                   <div class="error-feedback d-none">Укажите имя</div>
                 </div>
                 <div class="col-3 col-lg-6 col-xl-3">
-                  <label for="MiddleName1" class="form-label">Отчество</label>
-                  <input type="text" class="form-control" id="MiddleName1" placeholder="Иванович">
+                  <label for="MiddleName" class="form-label">Отчество</label>
+                  <input type="text" class="form-control" id="MiddleName" placeholder="Иванович">
                   <!--                          TODO убрать d-none когда валидация неверная-->
                   <div class="error-feedback d-none">Укажите отчество</div>
                 </div>
                 <div class="col-3 col-lg-6 col-xl-3">
-                  <label for="birthday1" class="form-label">Дата рождения</label>
-                  <input type="text" class="form-control" id="birthday1" placeholder="дд.мм.гггг">
+                  <label for="birthday" class="form-label">Дата рождения</label>
+                  <input type="text" class="form-control" id="birthday" placeholder="дд.мм.гггг">
                   <!--                          TODO убрать d-none когда валидация неверная-->
                   <div class="error-feedback d-none">Некорректная дата, вам больше 125 лет?</div>
                 </div>
               </div>
               <div class="row gy-2">
                 <div class="col-3 col-lg-6 col-xl-3">
-                  <label for="gender1" class="form-label">Пол</label>
-                  <select id="gender1" class="form-select">
+                  <label for="gender" class="form-label">Пол</label>
+                  <select id="gender" class="form-select">
                     <option selected>Мужской</option>
                     <option>Женский</option>
                   </select>
                 </div>
                 <div class="col-3 col-lg-6 col-xl-3">
-                  <label for="citizenship1" class="form-label">Гражданство</label>
-                  <select id="citizenship1" class="form-select">
+                  <label for="citizenship" class="form-label">Гражданство</label>
+                  <select id="citizenship" class="form-select">
                     <option selected>Российская Федерация</option>
                     <option>...</option>
                   </select>
@@ -95,15 +95,15 @@
                   <div class="error-feedback d-none">Выберите пол</div>
                 </div>
                 <div class="col-3 col-lg-6 col-xl-3">
-                  <label for="document1" class="form-label">Документ</label>
-                  <select id="document1" class="form-select">
+                  <label for="document" class="form-label">Документ</label>
+                  <select id="document" class="form-select">
                     <option selected>Паспорт РФ</option>
                     <option>...</option>
                   </select>
                 </div>
                 <div class="col-3 col-lg-6 col-xl-3">
-                  <label for="documentInfo1" class="form-label">Серия и номер документа</label>
-                  <input type="text" class="form-control" id="documentInfo1" placeholder="01 23 456789">
+                  <label for="documentInfo" class="form-label">Серия и номер документа</label>
+                  <input type="text" class="form-control" id="documentInfo" placeholder="01 23 456789">
                   <!--                          TODO убрать d-none когда валидация неверная-->
                   <div class="error-feedback d-none">Некорректные серия и номер документа</div>
                 </div>

@@ -21,6 +21,9 @@ export const passengerModule = {
         },
         arraysPassengers(state, arraysPassengers) {
             state.passengers = arraysPassengers
+        },
+        updateSecondName(state, secondName) {
+
         }
     },
     actions: {

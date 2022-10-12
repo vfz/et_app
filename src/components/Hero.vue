@@ -137,9 +137,9 @@
                               <span class="card-desc d-block w-100">Взрослых</span>
                             </div>
                             <div class="count-passenger d-flex align-items-center flex-wrap">
-                              <div id="minus-button-childeren" class="minus-button count-button" :class=" { disabled : !mbc } " v-on:click="MinusChild();changeClass()">-</div>
+                              <div id="minus-button-childeren" class="minus-button count-button" :class=" { disabled : !mbc } " v-on:click="MinusChild();fetchCountPassengers();changeClass()">-</div>
                               <input value="0" min="0" max="5" name="childrens" v-model="childrens" type="number" class="form-control text-center one-way-inputs-input shadow-none" placeholder="0">
-                              <div id="plus-button-childeren" class="plus-button count-button" :class=" { disabled : !pbc } " v-on:click="PlusChild();changeClass()">+</div>
+                              <div id="plus-button-childeren" class="plus-button count-button" :class=" { disabled : !pbc } " v-on:click="PlusChild();fetchCountPassengers();changeClass()">+</div>
                               <span class="card-desc d-block w-100">Детских</span>
                             </div>
                             <div class="d-block d-lg-none help-icon-block-mobile">
@@ -478,8 +478,8 @@ export default{
         if (+this.from){
           this.fromPlace= this.fromStations.find(station => station.id_from === this.from).name;
         }
-        this.getPassengersArrays()
-        this.fetchCountPassengers()
+        await this.getPassengersArrays()
+        await this.fetchCountPassengers()
   
         
     },

@@ -352,7 +352,8 @@ export default {
       'MinusAdult',
       'PlusChild',
       'MinusChild',
-      'fetchCountPassengers'
+      'fetchCountPassengers',
+        'getPassengersArrays'
     ]),
 
     search(str,target){
@@ -399,12 +400,13 @@ export default {
   async mounted(){
     await this.getFromStations();
     await this.getToStations();
+    await this.fetchCountPassengers()
+    await this.getPassengersArrays()
 
     this.setFrom(this.$route.params.from);
     this.setTo(this.$route.params.to);
     this.toPlace= this.toStations.find(station => station.id_to === this.$route.params.to).name;
     this.fromPlace= this.fromStations.find(station => station.id_from === this.$route.params.from).name;
-    this.fetchCountPassengers()
   },
   // created(){
   //     document.addEventListener('click', this.selectDateFalse.bind(this));

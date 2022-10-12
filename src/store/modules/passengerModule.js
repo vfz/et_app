@@ -12,6 +12,16 @@ export const passengerModule = {
             email: '',
             number: '',
         },
+        formFields: {
+            secondName: '',
+            firstName: '',
+            middleName: '',
+            birthday: '',
+            gender: '',
+            citizenship: '',
+            document: '',
+            documentInfo: '',
+        },
         promocode: '',
     }),
     mutations: {
@@ -22,8 +32,9 @@ export const passengerModule = {
         arraysPassengers(state, arraysPassengers) {
             state.passengers = arraysPassengers
         },
-        updateSecondName(state, secondName) {
-
+        updateSecondName(state, {value, id}) {
+            // TODO внести id в качестве ключа, а value в качестве ключа обьекта для создания фамилии
+            console.log(value, id, 'мутация')
         }
     },
     actions: {
@@ -34,6 +45,12 @@ export const passengerModule = {
         getPassengersArrays(ctx) {
             const arraysPassengers = ctx.getters.getPassengersArrays;
             ctx.commit('arraysPassengers', arraysPassengers)
+        },
+        updateSecondName(ctx, event) {
+            const value = event.target.value;
+            //исключить наименование и оставить только цифры в id
+            const id = event.target.id.replace(/[^0-9]/g,"");
+            ctx.commit('updateSecondName', {value, id});
         }
     },
     getters: {

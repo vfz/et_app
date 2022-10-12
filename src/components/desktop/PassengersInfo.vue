@@ -54,7 +54,7 @@
                 <!--                        TODO сделать валидацию по классам .is-ok и .is-error-->
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="secondName" class="form-label">Фамилия</label>
-                  <input @input="updateSecondName" type="text" class="form-control is-ok" id="secondName" placeholder="Иванов">
+                  <input :value="formFields.secondName" @input="updateSecondName" type="text" class="form-control is-ok" :id="'secondName' + passenger" placeholder="Иванов">
                   <!--                          TODO убрать d-none когда валидация неверная-->
                   <div class="error-feedback d-none">Укажите фамилию</div>
                 </div>
@@ -125,13 +125,24 @@ import {mapState, mapActions, mapGetters} from 'vuex';
 export default {
   name: "PassengersInfo",
   components: {MyDataButton, ArrowDownIcon, CancelIcon},
-  methods: {
-    ...mapActions({
-
-    }),
-    updateSecondName(index, event) {
-      this.$store.commit('updateSecondName', event.target.value)
+  data(){
+    return{
+      formFields: {
+        secondName: '',
+        firstName: '',
+        middleName: '',
+        birthday: '',
+        gender: '',
+        citizenship: '',
+        document: '',
+        documentInfo: '',
+      },
     }
+  },
+  methods: {
+    ...mapActions([
+        'updateSecondName'
+    ])
   },
 
   computed: {

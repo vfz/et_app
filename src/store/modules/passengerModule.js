@@ -35,7 +35,6 @@ export const passengerModule = {
         updateSecondName(state, {value, id}) {
             // TODO внести id в качестве ключа, а value в качестве ключа обьекта для создания фамилии
             console.log(value, id, 'мутация')
-
         }
     },
     actions: {
@@ -57,6 +56,9 @@ export const passengerModule = {
     getters: {
         getCountPassengers(state, getters) {
             return getters.adults + getters.childrens;
+        },
+        getPassengers(state, getters) {
+            return state.passengers;
         },
         getPassengersArrays(state, getters) {
             return [...Array(getters.adults+getters.childrens).keys()]

@@ -5,23 +5,23 @@
       <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
           <button
-              v-for="passenger in getCountPassengers"
+              v-for="passenger in getPassengers"
               :key="passenger"
-              :class="{active: passenger === 1}"
+              :class="{active: passenger === 0}"
               class="nav-link"
               :id="'passenger-'+passenger+'-tab'"
               data-bs-toggle="tab"
               :data-bs-target="'#passenger-'+passenger"
               type="button" role="tab"
               :aria-controls="'passenger-'+passenger"
-              :aria-selected="{true : passenger === 1}">Пассажир №{{passenger}}</button>
+              :aria-selected="{true : passenger === 0}">Пассажир №{{passenger+1}}</button>
         </div>
       </nav>
       <div class="tab-content position-relative" id="nav-tabContent">
         <div
-            v-for="passenger in getCountPassengers"
+            v-for="passenger in getPassengers"
             :key="passenger"
-            :class="{'show active': passenger === 1}"
+            :class="{'show active': passenger === 0}"
             class="tab-pane fade"
             :id="'passenger-'+passenger"
             role="tabpanel"
@@ -147,11 +147,11 @@ export default {
 
   computed: {
     ...mapState({
-
+      passengers: state => state.passengers
     }),
-    ...mapGetters({
-      getCountPassengers: 'getCountPassengers'
-    }),
+    ...mapGetters([
+       'getPassengers'
+    ])
   }
 }
 </script>

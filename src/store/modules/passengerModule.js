@@ -33,8 +33,7 @@ export const passengerModule = {
             state.passengers = arraysPassengers
         },
         updateSecondName(state, {value, id}) {
-            // TODO внести id в качестве ключа, а value в качестве ключа обьекта для создания фамилии
-            console.log(value, id, 'мутация')
+            state.passengers[id] = {secondName: value}
         }
     },
     actions: {

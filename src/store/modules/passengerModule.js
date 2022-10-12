@@ -48,7 +48,7 @@ export const passengerModule = {
         },
         updateSecondName(ctx, event) {
             const value = event.target.value;
-            //исключить наименование и оставить только цифры в id
+            //исключить наименование и оставить только цифры в id при помощи replace
             const id = event.target.id.replace(/[^0-9]/g,"");
             ctx.commit('updateSecondName', {value, id});
         }

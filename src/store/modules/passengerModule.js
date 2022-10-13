@@ -22,9 +22,9 @@ export const passengerModule = {
             state.passengers[id] = {id: Number(id),secondName: value}
             // state.passengers[id]['secondName'] = value;
         },
-        // updateIsValid(state, isValid) {
-        //     state.isValid = isValid;
-        // }
+        updateError(state, error) {
+            state.error = error;
+        }
     },
     actions: {
         async getPassengersArrays(ctx) {
@@ -37,12 +37,12 @@ export const passengerModule = {
             const id = event.target.id.replace(/[^0-9]/g,"");
             ctx.commit('updateSecondName', {value, id});
         },
-        // validateNameField(ctx, event) {
-        //     const value = event.target.value;
-        //     if (value === '') {
-        //         ctx.commit('updateIsValid', false);
-        //     }
-        // }
+        validateNameField(ctx, event) {
+            const value = event.target.value;
+            if (value === '') {
+                ctx.commit('updateError', 'ошибка');
+            }
+        }
     },
     getters: {
         getPassengers(state, getters) {

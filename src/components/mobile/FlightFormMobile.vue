@@ -159,16 +159,16 @@
                           </div>
                           <div v-bind:class="{'d-flex': isShow, 'd-none': !isShow}" class="passengers-count-detail justify-content-between w-100">
                             <div class="count-passenger d-flex align-items-center flex-wrap">
-                              <div id="minus-button-adult" class="minus-button count-button" :class=" { disabled : !mba } " v-on:click="MinusAdult();changeClass()">-</div>
+                              <div id="minus-button-adult" class="minus-button count-button" :class=" { disabled : !mba } " v-on:click="MinusAdult();getPassengersArrays();changeClass()">-</div>
                               <input value="1" min="1" max="7" name="adults" v-model="adults" type="number" class="form-control one-way-inputs-input shadow-none text-center"  placeholder="0">
-                              <div id="plus-button-adult" class="plus-button count-button" :class=" { disabled : !pba } " v-on:click="PlusAdult();changeClass()">+</div>
+                              <div id="plus-button-adult" class="plus-button count-button" :class=" { disabled : !pba } " v-on:click="PlusAdult();getPassengersArrays();changeClass()">+</div>
                               <span class="card-desc d-block w-100">Взрослых</span>
                             </div>
                             <div class="count-passenger d-flex">
                               <div class="d-flex align-items-center flex-wrap">
-                                <div id="minus-button-childeren" class="minus-button count-button" :class=" { disabled : !mbc } " v-on:click="MinusChild();changeClass()">-</div>
+                                <div id="minus-button-childeren" class="minus-button count-button" :class=" { disabled : !mbc } " v-on:click="MinusChild();getPassengersArrays();changeClass()">-</div>
                                 <input value="0" min="0" max="5" name="childrens" v-model="childrens" type="number" class="form-control one-way-inputs-input shadow-none text-center" placeholder="0">
-                                <div id="plus-button-childeren" class="plus-button count-button" :class=" { disabled : !pbc } " v-on:click="PlusChild();changeClass()">+</div>
+                                <div id="plus-button-childeren" class="plus-button count-button" :class=" { disabled : !pbc } " v-on:click="PlusChild();getPassengersArrays();changeClass()">+</div>
                                 <span class="card-desc d-block w-100">Детских</span>
                               </div>
                               <div>
@@ -253,7 +253,7 @@ export default {
       'MinusAdult',
       'PlusChild',
       'MinusChild',
-        'fetchCountPassengers'
+        'getPassengersArrays'
     ]),
 
     search(str,target){
@@ -300,7 +300,7 @@ export default {
   async mounted(){
     await this.getFromStations();
     await this.getToStations();
-
+    await this.getPassengersArrays();
     this.setFrom(this.$route.params.from);
     this.setTo(this.$route.params.to);
     this.toPlace= this.toStations.find(station => station.id_to === this.$route.params.to).name;

@@ -61,7 +61,7 @@
                       class="form-control" :id="'secondName' + passenger"
                       placeholder="Иванов">
                   <!--                          TODO убрать d-none когда валидация неверная-->
-                  <div class="error-feedback d-none"></div>
+                  <div :class="{'d-none' : error === ''}" class="error-feedback">{{error}}</div>
                 </div>
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="firstName" class="form-label">Имя</label>
@@ -154,6 +154,7 @@ export default {
   computed: {
     ...mapState({
       passengers: state => state.passengers,
+      error: state => state.error
     }),
     ...mapGetters([
        'getPassengers',

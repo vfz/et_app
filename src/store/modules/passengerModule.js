@@ -39,8 +39,13 @@ export const passengerModule = {
         },
         validateNameField(ctx, event) {
             const value = event.target.value;
-            if (value === '') {
-                ctx.commit('updateError', 'ошибка');
+            //получение названия поля
+            const field = event.target.id.replace(/[0-9]/g, '')
+            if (field === 'secondName' && value === '') {
+                ctx.commit('updateError', 'Заполните Фамилию');
+            }
+            else {
+                ctx.commit('updateError', '');
             }
         }
     },
@@ -51,8 +56,8 @@ export const passengerModule = {
         getPassengersArrays(state, getters) {
             return [...Array(getters.adults+getters.childrens).keys()]
         },
-        // getIsValid(state) {
-        //     return state.isValid;
-        // }
+        getError(state) {
+            return state.error;
+        }
     },
 }

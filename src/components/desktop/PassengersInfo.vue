@@ -5,27 +5,27 @@
       <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
           <button
-              v-for="passenger in getPassengers"
-              :key="passenger"
-              :class="{active: passenger === 0}"
+              v-for="passenger of getPassengers"
+              :key="passenger.id"
+              :class="{active: passenger.id === 0}"
               class="nav-link"
-              :id="'passenger-'+passenger+'-tab'"
+              :id="'passenger-'+passenger.id+'-tab'"
               data-bs-toggle="tab"
-              :data-bs-target="'#passenger-'+passenger"
+              :data-bs-target="'#passenger-'+passenger.id"
               type="button" role="tab"
-              :aria-controls="'passenger-'+passenger"
-              :aria-selected="{true : passenger === 0}">Пассажир №{{passenger+1}}</button>
+              :aria-controls="'passenger-'+passenger.id"
+              :aria-selected="{true : passenger.id === 0}">Пассажир №{{passenger.id+1}}</button>
         </div>
       </nav>
       <div class="tab-content position-relative" id="nav-tabContent">
         <div
             v-for="passenger in getPassengers"
-            :key="passenger"
-            :class="{'show active': passenger === 0}"
+            :key="passenger.id"
+            :class="{'show active': passenger.id === 0}"
             class="tab-pane fade"
-            :id="'passenger-'+passenger"
+            :id="'passenger-'+passenger.id"
             role="tabpanel"
-            :aria-labelledby="'passenger-'+passenger+'-tab'">
+            :aria-labelledby="'passenger-'+passenger.id+'-tab'">
           <div class="form-wrapper">
             <div class="row">
               <div class="col-12">
@@ -54,9 +54,14 @@
                 <!--                        TODO сделать валидацию по классам .is-ok и .is-error-->
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="secondName" class="form-label">Фамилия</label>
-                  <input :value="formFields.secondName" @input="updateSecondName" type="text" class="form-control is-ok" :id="'secondName' + passenger" placeholder="Иванов">
+                  <input
+                      @input="updateSecondName($event);validateNameField($event);"
+                      :value="formFields.secondName"
+                      type="text"
+                      class="form-control" :id="'secondName' + passenger"
+                      placeholder="Иванов">
                   <!--                          TODO убрать d-none когда валидация неверная-->
-                  <div class="error-feedback d-none">Укажите фамилию</div>
+                  <div class="error-feedback d-none"></div>
                 </div>
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="firstName" class="form-label">Имя</label>
@@ -141,16 +146,18 @@ export default {
   },
   methods: {
     ...mapActions([
-        'updateSecondName'
+        'updateSecondName',
+        'validateNameField'
     ])
   },
 
   computed: {
     ...mapState({
-      passengers: state => state.passengers
+      passengers: state => state.passengers,
     }),
     ...mapGetters([
-       'getPassengers'
+       'getPassengers',
+        'getError'
     ])
   }
 }

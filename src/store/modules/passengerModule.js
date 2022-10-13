@@ -1,7 +1,6 @@
 export const passengerModule = {
     state: () => ({
         passengers: [],
-        countPassengers: 1,
         tripId: 0,
         flightId: 0,
         placeNumber: [],
@@ -12,55 +11,51 @@ export const passengerModule = {
             email: '',
             number: '',
         },
-        formFields: {
-            secondName: '',
-            firstName: '',
-            middleName: '',
-            birthday: '',
-            gender: '',
-            citizenship: '',
-            document: '',
-            documentInfo: '',
-        },
+        error: '',
         promocode: '',
     }),
     mutations: {
-        countPassengers(state, countPassengers) {
-            state.countPassengers = countPassengers
-            state.passengers = [...Array(countPassengers).keys()]
-        },
         arraysPassengers(state, arraysPassengers) {
             state.passengers = arraysPassengers
         },
         updateSecondName(state, {value, id}) {
-            state.passengers[id] = {secondName: value}
-        }
+            state.passengers[id] = {id: Number(id),secondName: value}
+            // state.passengers[id]['secondName'] = value;
+        },
+        // updateIsValid(state, isValid) {
+        //     state.isValid = isValid;
+        // }
     },
     actions: {
-        fetchCountPassengers(ctx) {
-            const countPassengers = ctx.getters.getCountPassengers;
-            ctx.commit('countPassengers', countPassengers);
-        },
-        getPassengersArrays(ctx) {
+        async getPassengersArrays(ctx) {
             const arraysPassengers = ctx.getters.getPassengersArrays;
-            ctx.commit('arraysPassengers', arraysPassengers)
+            await ctx.commit('arraysPassengers', arraysPassengers)
+        },
+        getPassengerId(ctx) {
+
         },
         updateSecondName(ctx, event) {
             const value = event.target.value;
             //исключить наименование и оставить только цифры в id при помощи replace
             const id = event.target.id.replace(/[^0-9]/g,"");
             ctx.commit('updateSecondName', {value, id});
-        }
+        },
+        // validateNameField(ctx, event) {
+        //     const value = event.target.value;
+        //     if (value === '') {
+        //         ctx.commit('updateIsValid', false);
+        //     }
+        // }
     },
     getters: {
-        getCountPassengers(state, getters) {
-            return getters.adults + getters.childrens;
-        },
         getPassengers(state, getters) {
             return state.passengers;
         },
         getPassengersArrays(state, getters) {
             return [...Array(getters.adults+getters.childrens).keys()]
-        }
+        },
+        // getIsValid(state) {
+        //     return state.isValid;
+        // }
     },
 }

@@ -31,9 +31,6 @@ export const passengerModule = {
             const arraysPassengers = ctx.getters.getPassengersArrays;
             await ctx.commit('arraysPassengers', arraysPassengers)
         },
-        getPassengerId(ctx) {
-
-        },
         updateSecondName(ctx, event) {
             const value = event.target.value;
             //исключить наименование и оставить только цифры в id при помощи replace

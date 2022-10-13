@@ -6,26 +6,26 @@
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
           <button
               v-for="passenger of getPassengers"
-              :key="passenger.id"
-              :class="{active: passenger.id === 0}"
+              :key="passenger"
+              :class="{active: passenger === 0}"
               class="nav-link"
-              :id="'passenger-'+passenger.id+'-tab'"
+              :id="'passenger-'+passenger+'-tab'"
               data-bs-toggle="tab"
-              :data-bs-target="'#passenger-'+passenger.id"
+              :data-bs-target="'#passenger-'+passenger"
               type="button" role="tab"
-              :aria-controls="'passenger-'+passenger.id"
-              :aria-selected="{true : passenger.id === 0}">Пассажир №{{passenger.id+1}}</button>
+              :aria-controls="'passenger-'+passenger"
+              :aria-selected="{true : passenger === 0}">Пассажир №{{passenger+1}}</button>
         </div>
       </nav>
       <div class="tab-content position-relative" id="nav-tabContent">
         <div
             v-for="passenger in getPassengers"
             :key="passenger.id"
-            :class="{'show active': passenger.id === 0}"
+            :class="{'show active': passenger === 0}"
             class="tab-pane fade"
-            :id="'passenger-'+passenger.id"
+            :id="'passenger-'+passenger"
             role="tabpanel"
-            :aria-labelledby="'passenger-'+passenger.id+'-tab'">
+            :aria-labelledby="'passenger-'+passenger+'-tab'">
           <div class="form-wrapper">
             <div class="row">
               <div class="col-12">

@@ -26,9 +26,9 @@ export const passengerModule = {
         }
     },
     actions: {
-        async getPassengersArrays(ctx) {
-            const arraysPassengers = [ctx.getters.getPassengersArrays];
-            await ctx.commit('addArraysPassengers', arraysPassengers)
+        getPassengersArrays(ctx) {
+            const arraysPassengers = [ctx.getters.getPassengersCount];
+            ctx.commit('addArraysPassengers', arraysPassengers)
         },
         updateSecondName(ctx, event) {
             const value = event.target.value;
@@ -54,8 +54,8 @@ export const passengerModule = {
         getPassengers(state, getters) {
             return state.passengers;
         },
-        getPassengersArrays(state, getters) {
-            return {id: getters.adults+getters.childrens}
+        getPassengersCount(getters) {
+            return getters.adults+getters.childrens
         }
     },
 }

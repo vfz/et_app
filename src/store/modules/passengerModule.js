@@ -15,11 +15,15 @@ export const passengerModule = {
         promocode: '',
     }),
     mutations: {
-        arraysPassengers(state, arraysPassengers) {
-            state.passengers = arraysPassengers
+        addArraysPassengers(state, arraysPassengers) {
+            // state.passengers = arraysPassengers
+            state.passengers.push(...arraysPassengers)
+        },
+        removeArraysPassengers(state, arrayPassengers) {
+
         },
         updateSecondName(state, {value, id}) {
-            state.passengers[id] = {id: Number(id),secondName: value}
+            state.passengers[id-1] = {id: Number(id),secondName: value}
             // state.passengers[id]['secondName'] = value;
         },
         updateError(state, error) {
@@ -28,8 +32,9 @@ export const passengerModule = {
     },
     actions: {
         async getPassengersArrays(ctx) {
-            const arraysPassengers = ctx.getters.getPassengersArrays;
-            await ctx.commit('arraysPassengers', arraysPassengers)
+            const arraysPassengers = [ctx.getters.getPassengersArrays];
+            // state.passengers[arraysPassengers.id - 1] = {id: arraysPassengers.id - 1}
+            await ctx.commit('addArraysPassengers', arraysPassengers)
         },
         updateSecondName(ctx, event) {
             const value = event.target.value;
@@ -51,12 +56,16 @@ export const passengerModule = {
     },
     getters: {
         getPassengers(state, getters) {
+            console.log(state.passengers, 'геттер getPassengers')
             return state.passengers;
         },
         getPassengersArrays(state, getters) {
-            return [...Array(getters.adults+getters.childrens).keys()]
+
+            return {id: getters.adults+getters.childrens}
+            // return Object.create({id: getters.adults+getters.childrens})
+            // return [...Array(getters.adults+getters.childrens).keys()]
         },
-        //происходит ошибка при появлении этого геттера. Из-за того что массив превращается обьект, он теряет ключ.
+        // происходит ошибка при появлении этого геттера. Из-за того что массив превращается обьект, он теряет ключ.
         getError(state) {
             return state.error;
         }

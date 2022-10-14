@@ -4,28 +4,30 @@
     <div class="col-12">
       <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <div v-for="passenger in getPassengers">
+          </div>
           <button
-              v-for="passenger of getPassengers"
-              :key="passenger"
-              :class="{active: passenger === 0}"
+              v-for="passenger in getPassengers"
+              :key="passenger.id"
+              :class="{active: passenger.id === 1}"
               class="nav-link"
-              :id="'passenger-'+passenger+'-tab'"
+              :id="'passenger-'+passenger.id+'-tab'"
               data-bs-toggle="tab"
-              :data-bs-target="'#passenger-'+passenger"
+              :data-bs-target="'#passenger-'+passenger.id"
               type="button" role="tab"
-              :aria-controls="'passenger-'+passenger"
-              :aria-selected="{true : passenger === 0}">Пассажир №{{passenger+1}}</button>
+              :aria-controls="'passenger-'+passenger.id"
+              :aria-selected="{true : passenger.id === 1}">Пассажир №{{passenger.id}}</button>
         </div>
       </nav>
       <div class="tab-content position-relative" id="nav-tabContent">
         <div
             v-for="passenger in getPassengers"
-            :key="passenger"
-            :class="{'show active': passenger === 0}"
+            :key="passenger.id"
+            :class="{'show active': passenger.id === 1}"
             class="tab-pane fade"
-            :id="'passenger-'+passenger"
+            :id="'passenger-'+passenger.id"
             role="tabpanel"
-            :aria-labelledby="'passenger-'+passenger+'-tab'">
+            :aria-labelledby="'passenger-'+passenger.id+'-tab'">
           <div class="form-wrapper">
             <div class="row">
               <div class="col-12">
@@ -58,7 +60,7 @@
                       @input="updateSecondName($event);validateNameField($event);"
                       :value="formFields.secondName"
                       type="text"
-                      class="form-control" :id="'secondName' + passenger"
+                      class="form-control" :id="'secondName' + passenger.id"
                       placeholder="Иванов">
                   <!--                          TODO убрать d-none когда валидация неверная-->
                   <div :class="{'d-none' : getError === ''}" class="error-feedback">{{getError}}</div>
@@ -147,7 +149,8 @@ export default {
   methods: {
     ...mapActions([
         'updateSecondName',
-        'validateNameField'
+        'validateNameField',
+        'getPassengersArrays'
     ])
   },
 
@@ -159,8 +162,8 @@ export default {
     ...mapGetters([
        'getPassengers',
         'getError'
-    ])
-  }
+    ]),
+  },
 }
 </script>
 

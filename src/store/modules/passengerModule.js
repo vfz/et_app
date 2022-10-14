@@ -16,12 +16,10 @@ export const passengerModule = {
     }),
     mutations: {
         addArraysPassengers(state, arraysPassengers) {
-            // state.passengers = arraysPassengers
             state.passengers.push(...arraysPassengers)
         },
         updateSecondName(state, {value, id}) {
             state.passengers[id-1] = {id: Number(id),secondName: value}
-            // state.passengers[id]['secondName'] = value;
         },
         updateError(state, error) {
             state.error = error;
@@ -30,7 +28,6 @@ export const passengerModule = {
     actions: {
         async getPassengersArrays(ctx) {
             const arraysPassengers = [ctx.getters.getPassengersArrays];
-            // state.passengers[arraysPassengers.id - 1] = {id: arraysPassengers.id - 1}
             await ctx.commit('addArraysPassengers', arraysPassengers)
         },
         updateSecondName(ctx, event) {
@@ -57,10 +54,7 @@ export const passengerModule = {
             return state.passengers;
         },
         getPassengersArrays(state, getters) {
-
             return {id: getters.adults+getters.childrens}
-            // return Object.create({id: getters.adults+getters.childrens})
-            // return [...Array(getters.adults+getters.childrens).keys()]
         },
         // происходит ошибка при появлении этого геттера. Из-за того что массив превращается обьект, он теряет ключ.
         getError(state) {

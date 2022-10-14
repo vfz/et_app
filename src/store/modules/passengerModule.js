@@ -11,7 +11,6 @@ export const passengerModule = {
             email: '',
             number: '',
         },
-        error: '',
         promocode: '',
     }),
     mutations: {
@@ -19,10 +18,11 @@ export const passengerModule = {
             state.passengers.push(...arraysPassengers)
         },
         updateSecondName(state, {value, id}) {
-            state.passengers[id-1] = {id: Number(id),secondName: value}
+            // state.passengers[id-1] = {id: Number(id),secondName: value}
+            state.passengers[id-1].secondName = value;
         },
-        updateError(state, error) {
-            state.error = error;
+        updateError(state, [error, id]) {
+            state.passengers[id-1].error = error
         }
     },
     actions: {
@@ -40,17 +40,20 @@ export const passengerModule = {
             const value = event.target.value;
             //получение названия поля
             const field = event.target.id.replace(/[0-9]/g, '')
+            //исключить наименование и оставить только цифры в id при помощи replace
+            const id = event.target.id.replace(/[^0-9]/g,"");
             if (field === 'secondName' && value === '') {
-                ctx.commit('updateError', 'Заполните Фамилию');
+                console.log('нет фамилии')
+                ctx.commit('updateError', ['заполните фамилию', id]);
             }
-            else {
-                ctx.commit('updateError', '');
+            if (field === 'secondName' && value !== '') {
+                console.log('есть фамилия')
+                ctx.commit('updateError', id)
             }
         }
     },
     getters: {
         getPassengers(state, getters) {
-            console.log(state.passengers, 'геттер getPassengers')
             return state.passengers;
         },
         getPassengersArrays(state, getters) {

@@ -4,8 +4,6 @@
     <div class="col-12">
       <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-          <div v-for="passenger in getPassengers">
-          </div>
           <button
               v-for="passenger in getPassengers"
               :key="passenger.id"
@@ -63,7 +61,8 @@
                       class="form-control" :id="'secondName' + passenger.id"
                       placeholder="Иванов">
                   <!--                          TODO убрать d-none когда валидация неверная-->
-                  <div :class="{'d-none' : getError === ''}" class="error-feedback">{{getError}}</div>
+                  {{passenger.error}}
+                  <div v-if="passenger.error" class="error-feedback">{{passenger.error}}</div>
                 </div>
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="firstName" class="form-label">Имя</label>

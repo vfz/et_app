@@ -4,17 +4,7 @@
     <div class="col-12">
       <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-          <button
-              v-for="passenger in getPassengers"
-              :key="passenger.id"
-              :class="{active: passenger.id === 1}"
-              class="nav-link"
-              :id="'passenger-'+passenger.id+'-tab'"
-              data-bs-toggle="tab"
-              :data-bs-target="'#passenger-'+passenger.id"
-              type="button" role="tab"
-              :aria-controls="'passenger-'+passenger.id"
-              :aria-selected="{true : passenger.id === 1}">Пассажир №{{passenger.id}}</button>
+          <NavTab :passengers="getPassengers"/>
         </div>
       </nav>
       <div class="tab-content position-relative" id="nav-tabContent">
@@ -126,10 +116,11 @@ import CancelIcon from "@/components/icons/CancelIcon";
 import ArrowDownIcon from "@/components/icons/ArrowDownIcon";
 import MyDataButton from "@/components/MyDataButton";
 import {mapState, mapActions, mapGetters} from 'vuex';
+import NavTab from "@/components/loop/nav-tab";
 
 export default {
   name: "PassengersInfo",
-  components: {MyDataButton, ArrowDownIcon, CancelIcon},
+  components: {NavTab, MyDataButton, ArrowDownIcon, CancelIcon},
   data(){
     return{
       formFields: {

@@ -20,7 +20,7 @@
       <div class="tab-content position-relative" id="nav-tabContent">
         <div
             v-for="passenger in getPassengers"
-            :key="passenger.id"
+            :key="passenger"
             :class="{'show active': passenger === 0}"
             class="tab-pane fade"
             :id="'passenger-'+passenger"
@@ -61,7 +61,7 @@
                       class="form-control" :id="'secondName' + passenger"
                       placeholder="Иванов">
                   <!--                          TODO убрать d-none когда валидация неверная-->
-                  <div :class="{'d-none' : error === ''}" class="error-feedback">{{error}}</div>
+                  <div :class="{'d-none' : getError === ''}" class="error-feedback">{{getError}}</div>
                 </div>
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="firstName" class="form-label">Имя</label>

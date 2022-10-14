@@ -56,6 +56,7 @@ export const passengerModule = {
         getPassengersArrays(state, getters) {
             return [...Array(getters.adults+getters.childrens).keys()]
         },
+        //происходит ошибка при появлении этого геттера. Из-за того что массив превращается обьект, он теряет ключ.
         getError(state) {
             return state.error;
         }

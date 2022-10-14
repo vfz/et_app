@@ -19,9 +19,6 @@ export const passengerModule = {
             // state.passengers = arraysPassengers
             state.passengers.push(...arraysPassengers)
         },
-        removeArraysPassengers(state, arrayPassengers) {
-
-        },
         updateSecondName(state, {value, id}) {
             state.passengers[id-1] = {id: Number(id),secondName: value}
             // state.passengers[id]['secondName'] = value;

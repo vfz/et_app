@@ -132,20 +132,6 @@ import {mapState, mapActions, mapGetters} from 'vuex';
 export default {
   name: "PassengersInfo",
   components: {MyDataButton, ArrowDownIcon, CancelIcon},
-  data(){
-    return{
-      formFields: {
-        secondName: '',
-        firstName: '',
-        middleName: '',
-        birthday: '',
-        gender: '',
-        citizenship: '',
-        document: '',
-        documentInfo: '',
-      },
-    }
-  },
   methods: {
     ...mapActions([
         'updateSecondName',

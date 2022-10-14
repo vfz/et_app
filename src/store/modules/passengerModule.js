@@ -21,8 +21,8 @@ export const passengerModule = {
         promocode: '',
     }),
     mutations: {
-        addArraysPassengers(state, [adultCount, childrenCount, id]) {
-            state.passengers[id].id = id
+        addArraysPassengers(state, id) {
+            state.passengers[id-1] = {id:id}
         },
         updateSecondName(state, {value, id}) {
             // state.passengers[id-1] = {id: Number(id),secondName: value}
@@ -33,12 +33,11 @@ export const passengerModule = {
         }
     },
     actions: {
-        getPassengersArrays(ctx, adults, childrens) {
-            console.log(adults, childrens)
+        getPassengersArrays(ctx) {
             const agultCount = ctx.getters.adults;
             const childrenCount = ctx.getters.childrens;
             const id = agultCount+childrenCount
-            ctx.commit('addArraysPassengers', [agultCount, childrenCount, id])
+            ctx.commit('addArraysPassengers', id)
         },
         updateSecondName(ctx, event) {
             const value = event.target.value;
@@ -64,8 +63,11 @@ export const passengerModule = {
         getPassengers(state, getters) {
             return state.passengers;
         },
-        getPassengersCount(getters) {
-            return getters.adults+getters.childrens
+        adults(getters) {
+            return getters.adults
+        },
+        childrens(getters) {
+          return getters.childrens
         }
     },
 }

@@ -43,12 +43,10 @@ export const passengerModule = {
             //исключить наименование и оставить только цифры в id при помощи replace
             const id = event.target.id.replace(/[^0-9]/g,"");
             if (field === 'secondName' && value === '') {
-                console.log('нет фамилии')
                 ctx.commit('updateError', ['заполните фамилию', id]);
             }
             if (field === 'secondName' && value !== '') {
-                console.log('есть фамилия')
-                ctx.commit('updateError', id)
+                ctx.commit('updateError', ['', id])
             }
         }
     },
@@ -58,10 +56,6 @@ export const passengerModule = {
         },
         getPassengersArrays(state, getters) {
             return {id: getters.adults+getters.childrens}
-        },
-        // происходит ошибка при появлении этого геттера. Из-за того что массив превращается обьект, он теряет ключ.
-        getError(state) {
-            return state.error;
         }
     },
 }

@@ -56,12 +56,11 @@
                   <label for="secondName" class="form-label">Фамилия</label>
                   <input
                       @input="updateSecondName($event);validateNameField($event);"
-                      :value="formFields.secondName"
+                      :value="passenger.secondName"
                       type="text"
                       class="form-control" :id="'secondName' + passenger.id"
                       placeholder="Иванов">
                   <!--                          TODO убрать d-none когда валидация неверная-->
-                  {{passenger.error}}
                   <div v-if="passenger.error" class="error-feedback">{{passenger.error}}</div>
                 </div>
                 <div class="col-3 col-lg-6 col-xl-3">
@@ -156,7 +155,6 @@ export default {
   computed: {
     ...mapState({
       passengers: state => state.passengers,
-      error: state => state.error
     }),
     ...mapGetters([
        'getPassengers',

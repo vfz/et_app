@@ -4,7 +4,7 @@ export const passengerModule = {
     state: () => ({
         passengers: [
             {
-                id: 1,
+                id: 0,
                 secondName: '',
                 error: '',
                 isAdult: true,
@@ -23,8 +23,8 @@ export const passengerModule = {
         promocode: '',
     }),
     mutations: {
-        addArraysPassengers(state, id) {
-            state.passengers.push(state.passengers[id])
+        addArraysPassengers(state, passenger) {
+            state.passengers.push(passenger)
         },
         updateSecondName(state, {value, id}) {
             state.passengers[id-1] = {secondName: value};
@@ -38,8 +38,9 @@ export const passengerModule = {
             const agultCount = ctx.getters.adults;
             const childrenCount = ctx.getters.childrens;
             //прибавляется единица, так как по умолчанию выбран один человек
-            const id = agultCount+childrenCount+1
-            ctx.commit('addArraysPassengers', id)
+            const id = agultCount+childrenCount-1
+            const passenger = {id: id}
+            ctx.commit('addArraysPassengers', passenger)
         },
         updateSecondName(ctx, event) {
             const value = event.target.value;

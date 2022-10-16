@@ -34,12 +34,12 @@ export const passengerModule = {
         }
     },
     actions: {
-        getPassengersArrays(ctx) {
+        getPassengersArrays(ctx, isAdult) {
             const agultCount = ctx.getters.adults;
             const childrenCount = ctx.getters.childrens;
             //прибавляется единица, так как по умолчанию выбран один человек
             const id = agultCount+childrenCount-1
-            const passenger = {id: id}
+            const passenger = {id: id, isAdult: isAdult}
             ctx.commit('addArraysPassengers', passenger)
         },
         updateSecondName(ctx, event) {

@@ -300,7 +300,6 @@ export default {
   async mounted(){
     await this.getFromStations();
     await this.getToStations();
-    await this.getPassengersArrays();
     this.setFrom(this.$route.params.from);
     this.setTo(this.$route.params.to);
     this.toPlace= this.toStations.find(station => station.id_to === this.$route.params.to).name;

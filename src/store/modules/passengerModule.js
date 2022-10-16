@@ -1,3 +1,5 @@
+import Vue from "vue";
+
 export const passengerModule = {
     state: () => ({
         passengers: [
@@ -22,11 +24,10 @@ export const passengerModule = {
     }),
     mutations: {
         addArraysPassengers(state, id) {
-            state.passengers[id-1] = {id:id}
+            state.passengers.push(state.passengers[id])
         },
         updateSecondName(state, {value, id}) {
-            // state.passengers[id-1] = {id: Number(id),secondName: value}
-            state.passengers[id-1].secondName = value;
+            state.passengers[id-1] = {secondName: value};
         },
         updateError(state, [error, id]) {
             state.passengers[id-1].error = error
@@ -36,7 +37,8 @@ export const passengerModule = {
         getPassengersArrays(ctx) {
             const agultCount = ctx.getters.adults;
             const childrenCount = ctx.getters.childrens;
-            const id = agultCount+childrenCount
+            //прибавляется единица, так как по умолчанию выбран один человек
+            const id = agultCount+childrenCount+1
             ctx.commit('addArraysPassengers', id)
         },
         updateSecondName(ctx, event) {

@@ -104,9 +104,12 @@
               <div class="row gy-2">
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="gender" class="form-label">Пол</label>
-                  <select id="gender" class="form-select">
-                    <option selected>Мужской</option>
-                    <option>Женский</option>
+                  <select
+                      @change="updateGender"
+                      :id="'gender'+passenger.id"
+                      class="form-select">
+                    <option value="Мужской" selected>Мужской</option>
+                    <option value="Женский">Женский</option>
                   </select>
                 </div>
                 <div class="col-3 col-lg-6 col-xl-3">
@@ -155,11 +158,14 @@ export default {
         'updateFirstName',
         'updateMiddleName',
         'updateBirthday',
+        'updateGender',
         'validateNameField',
         'addPassenger',
-    ])
+    ]),
   },
-
+  mounted() {
+    this.updateGender();
+  },
   computed: {
     ...mapState({
       passengers: state => state.passengers,

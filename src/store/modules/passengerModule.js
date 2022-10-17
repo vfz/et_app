@@ -50,6 +50,9 @@ export const passengerModule = {
         updateBirthday(state, [value, id]) {
             state.passengers[id].birthday = value
         },
+        updateGender(state, [value, id]) {
+            state.passengers[id].gender = value
+        },
         updateError(state, [error, id]) {
             state.passengers[id].error = error
         }
@@ -97,6 +100,18 @@ export const passengerModule = {
             //исключить наименование и оставить только цифры в id при помощи replace
             const id = event.target.id.replace(/[^0-9]/g,"");
             ctx.commit('updateBirthday', [value, id]);
+        },
+        updateGender(ctx,event) {
+            //установка мужского пола для 1-го пассажира по умолчанию
+            if (event === undefined) {
+                const value = 'Мужской';
+                const id = 0
+                ctx.commit('updateGender', [value, id]);
+            }
+            const value = event.target.value;
+            //исключить наименование и оставить только цифры в id при помощи replace
+            const id = event.target.id.replace(/[^0-9]/g,"");
+            ctx.commit('updateGender', [value, id]);
         },
         validateNameField(ctx, event) {
             const value = event.target.value;

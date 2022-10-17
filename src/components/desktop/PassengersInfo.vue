@@ -90,7 +90,13 @@
                 </div>
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="birthday" class="form-label">Дата рождения</label>
-                  <input type="date" class="form-control" id="birthday" placeholder="дд.мм.гггг">
+                  <input
+                      @input="updateBirthday($event)"
+                      :value="passenger.birthday"
+                      type="text"
+                      class="form-control"
+                      :id="'birthday'+passenger.id"
+                      placeholder="дд.мм.гггг">
                   <!--                          TODO убрать d-none когда валидация неверная-->
                   <div class="error-feedback d-none">Некорректная дата, вам больше 125 лет?</div>
                 </div>
@@ -148,6 +154,7 @@ export default {
         'updateSecondName',
         'updateFirstName',
         'updateMiddleName',
+        'updateBirthday',
         'validateNameField',
         'addPassenger',
     ])

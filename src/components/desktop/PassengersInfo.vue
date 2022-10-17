@@ -66,7 +66,13 @@
                 </div>
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="firstName" class="form-label">Имя</label>
-                  <input type="text" class="form-control" id="firstName" placeholder="Иван">
+                  <input
+                      @input="updateFirstName($event);"
+                      :value="passenger.firstName"
+                      type="text"
+                      class="form-control"
+                      :id="'firstName'+ passenger.id"
+                      placeholder="Иван">
                   <!--                          TODO убрать d-none когда валидация неверная-->
                   <div class="error-feedback d-none">Укажите имя</div>
                 </div>
@@ -134,6 +140,7 @@ export default {
   methods: {
     ...mapActions([
         'updateSecondName',
+        'updateFirstName',
         'validateNameField',
         'addPassenger',
     ])

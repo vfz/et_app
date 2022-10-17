@@ -34,8 +34,8 @@ export const passengerModule = {
                 passenger.id = index
             })
         },
-        updateSecondName(state, {value, id}) {
-            state.passengers[id-1] = {secondName: value};
+        updateSecondName(state, [value, id]) {
+            state.passengers[id].secondName = value;
         },
         updateError(state, [error, id]) {
             state.passengers[id].error = error
@@ -69,7 +69,7 @@ export const passengerModule = {
             const value = event.target.value;
             //исключить наименование и оставить только цифры в id при помощи replace
             const id = event.target.id.replace(/[^0-9]/g,"");
-            ctx.commit('updateSecondName', {value, id});
+            ctx.commit('updateSecondName', [value, id]);
         },
         validateNameField(ctx, event) {
             const value = event.target.value;

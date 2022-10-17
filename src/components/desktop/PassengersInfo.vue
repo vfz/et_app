@@ -7,22 +7,22 @@
           <button
               v-for="passenger in getPassengers"
               :key="passenger.id"
-              :class="{active: passenger.id === 1}"
+              :class="{active: passenger.id === 0}"
               class="nav-link"
               :id="'passenger-'+passenger.id+'-tab'"
               data-bs-toggle="tab"
               :data-bs-target="'#passenger-'+passenger.id"
               type="button" role="tab"
               :aria-controls="'passenger-'+passenger.id"
-              :aria-selected="{true : passenger.id === 1}"
-          >Пассажир №{{passenger.id}}</button>
+              :aria-selected="{true : passenger.id === 0}"
+          >Пассажир №{{passenger.id+1}}</button>
         </div>
       </nav>
       <div class="tab-content position-relative" id="nav-tabContent">
         <div
             v-for="passenger in getPassengers"
             :key="passenger.id"
-            :class="{'show active': passenger.id === 1}"
+            :class="{'show active': passenger.id === 0}"
             class="tab-pane fade"
             :id="'passenger-'+passenger.id"
             role="tabpanel"

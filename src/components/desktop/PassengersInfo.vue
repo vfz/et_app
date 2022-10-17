@@ -242,6 +242,10 @@ export default {
     }
     .form-control, .form-select {
       @include font($uni,$regular,18px,24.3px,$base);
+      padding-bottom: 0.5rem;
+    }
+    .form-select {
+      padding-bottom: 0.4rem;
     }
     .form-control {
       border: none;

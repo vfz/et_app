@@ -60,6 +60,9 @@ export const passengerModule = {
         updateDocument(state, [value, id]) {
             state.passengers[id].document = value
         },
+        updateDocumentInfo(state, [value, id]) {
+            state.passengers[id].documentInfo = value;
+        },
         updateError(state, [error, id]) {
             state.passengers[id].error = error
         }
@@ -149,6 +152,12 @@ export const passengerModule = {
                 const id = event.target.id.replace(/[^0-9]/g,"");
                 ctx.commit('updateDocument', [value, id]);
             }
+        },
+        updateDocumentInfo(ctx, event) {
+            const value = event.target.value;
+            //исключить наименование и оставить только цифры в id при помощи replace
+            const id = event.target.id.replace(/[^0-9]/g,"");
+            ctx.commit('updateDocumentInfo', [value, id]);
         },
         validateNameField(ctx, event) {
             const value = event.target.value;

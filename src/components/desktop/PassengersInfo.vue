@@ -127,15 +127,19 @@
                   <label for="document" class="form-label">Документ</label>
                   <select
                       @change="updateDocument"
-                      id="document"
+                      :id="'document'+passenger.id"
                       class="form-select">
                     <option value="Паспорт РФ" selected>Паспорт РФ</option>
-                    <option>...</option>
                   </select>
                 </div>
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="documentInfo" class="form-label">Серия и номер документа</label>
-                  <input type="text" class="form-control" id="documentInfo" placeholder="01 23 456789">
+                  <input
+                      @input="updateDocumentInfo($event)"
+                      type="text"
+                      class="form-control"
+                      :id="'documentInfo'+passenger.id"
+                      placeholder="01 23 456789">
                   <!--                          TODO убрать d-none когда валидация неверная-->
                   <div class="error-feedback d-none">Некорректные серия и номер документа</div>
                 </div>
@@ -166,6 +170,7 @@ export default {
         'updateGender',
         'updateCitizenship',
         'updateDocument',
+        'updateDocumentInfo',
         'validateNameField',
         'addPassenger',
     ]),

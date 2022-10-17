@@ -1,5 +1,3 @@
-import Vue from "vue";
-
 export const passengerModule = {
     state: () => ({
         passengers: [
@@ -26,7 +24,7 @@ export const passengerModule = {
             email: '',
             number: '',
         },
-        promocode: '',
+        promoCode: '',
     }),
     mutations: {
         addPassenger(state, passenger) {
@@ -35,7 +33,7 @@ export const passengerModule = {
         removePassenger(state, passenger) {
             state.passengers.splice(passenger, 1)
         },
-        changePassengerId(state, passenger) {
+        changePassengerId(state) {
             state.passengers.forEach(function (passenger, index){
                 passenger.id = index
             })
@@ -49,19 +47,15 @@ export const passengerModule = {
     },
     actions: {
         addPassenger(ctx, isAdult) {
-            const agultCount = ctx.getters.adults;
+            const adultCount = ctx.getters.adults;
             const childrenCount = ctx.getters.childrens;
             //прибавляется единица, так как по умолчанию выбран один человек
-            const id = agultCount+childrenCount-1
+            const id = adultCount+childrenCount-1
             const passenger = {id: id, isAdult: isAdult}
             ctx.commit('addPassenger', passenger)
             ctx.commit('changePassengerId', passenger)
         },
         removePassenger(ctx, isAdult) {
-            const agultCount = ctx.getters.adults;
-            const childrenCount = ctx.getters.childrens;
-            //прибавляется единица, так как по умолчанию выбран один человек
-            const id = agultCount+childrenCount
             //getIndex() выбирает
             function getIndex(passenger) {
                 if (passenger.isAdult === isAdult) {
@@ -94,7 +88,7 @@ export const passengerModule = {
         }
     },
     getters: {
-        getPassengers(state, getters) {
+        getPassengers(state) {
             return state.passengers;
         },
         adults(getters) {

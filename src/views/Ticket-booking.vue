@@ -36,7 +36,7 @@
     <LoginModal/>
     <RegistrationModal/>
     <ForgotPasswordModal/>
-    <RemoveModal/>
+    <RemoveModal v-for="passenger in getPassengers" :key="passenger.id" :passenger="passenger"/>
   </div>
 </template>
 
@@ -83,7 +83,7 @@ export default {
     RegistrationModal, 
     ForgotPasswordModal
     },
-  computed: mapGetters(['oneWay']),
+  computed: mapGetters(['oneWay', 'getPassengers']),
   methods: {
     isMobile() {
       return screen.width <= 991;

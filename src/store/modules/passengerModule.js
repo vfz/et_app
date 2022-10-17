@@ -1,3 +1,4 @@
+import {Modal} from 'bootstrap/dist/js/bootstrap.esm.min'
 export const passengerModule = {
     state: () => ({
         passengers: [
@@ -85,6 +86,17 @@ export const passengerModule = {
                 }
             }
             const passenger = ctx.state.passengers.findIndex(getIndex)
+            ctx.commit('removePassenger', passenger)
+        },
+        removePassengerById(ctx, id) {
+            function getIndex(passenger) {
+                if (passenger.id === id) {
+                    return passenger
+                }
+            }
+            const passenger = ctx.state.passengers.findIndex(getIndex)
+            // TODO закрыть модальное окно
+            const modal = new Modal(document.getElementById('removeModal'+id));
             ctx.commit('removePassenger', passenger)
         },
         updateSecondName(ctx, event) {

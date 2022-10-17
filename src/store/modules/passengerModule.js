@@ -44,6 +44,9 @@ export const passengerModule = {
         updateFirstName(state, [value, id]) {
             state.passengers[id].firstName = value
         },
+        updateMiddleName(state, [value, id]) {
+            state.passengers[id].middleName = value
+        },
         updateError(state, [error, id]) {
             state.passengers[id].error = error
         }
@@ -79,6 +82,12 @@ export const passengerModule = {
             //исключить наименование и оставить только цифры в id при помощи replace
             const id = event.target.id.replace(/[^0-9]/g,"");
             ctx.commit('updateFirstName', [value, id]);
+        },
+        updateMiddleName(ctx, event) {
+            const value = event.target.value;
+            //исключить наименование и оставить только цифры в id при помощи replace
+            const id = event.target.id.replace(/[^0-9]/g,"");
+            ctx.commit('updateMiddleName', [value, id]);
         },
         validateNameField(ctx, event) {
             const value = event.target.value;

@@ -38,7 +38,7 @@ export const passengerModule = {
             state.passengers[id-1] = {secondName: value};
         },
         updateError(state, [error, id]) {
-            state.passengers[id-1].error = error
+            state.passengers[id].error = error
         }
     },
     actions: {
@@ -78,9 +78,11 @@ export const passengerModule = {
             //исключить наименование и оставить только цифры в id при помощи replace
             const id = event.target.id.replace(/[^0-9]/g,"");
             if (field === 'secondName' && value === '') {
+                console.log('заполните фамилию')
                 ctx.commit('updateError', ['заполните фамилию', id]);
             }
             if (field === 'secondName' && value !== '') {
+                console.log('все корректно')
                 ctx.commit('updateError', ['', id])
             }
         }

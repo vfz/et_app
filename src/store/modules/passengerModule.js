@@ -9,6 +9,7 @@ export const passengerModule = {
                 birthday: '',
                 gender: '',
                 citizenship: '',
+                document: '',
                 documentInfo: '',
                 error: '',
                 isAdult: true,
@@ -55,6 +56,9 @@ export const passengerModule = {
         },
         updateCitizenship(state, [value, id]) {
             state.passengers[id].citizenship = value
+        },
+        updateDocument(state, [value, id]) {
+            state.passengers[id].document = value
         },
         updateError(state, [error, id]) {
             state.passengers[id].error = error
@@ -130,6 +134,20 @@ export const passengerModule = {
                 //исключить наименование и оставить только цифры в id при помощи replace
                 const id = event.target.id.replace(/[^0-9]/g,"");
                 ctx.commit('updateCitizenship', [value, id]);
+            }
+        },
+        updateDocument(ctx,event) {
+            //установка паспорта для 1-го пассажира по умолчанию
+            if (event === undefined) {
+                const value = 'Паспорт РФ';
+                const id = 0
+                ctx.commit('updateDocument', [value, id]);
+            }
+            else {
+                const value = event.target.value;
+                //исключить наименование и оставить только цифры в id при помощи replace
+                const id = event.target.id.replace(/[^0-9]/g,"");
+                ctx.commit('updateDocument', [value, id]);
             }
         },
         validateNameField(ctx, event) {

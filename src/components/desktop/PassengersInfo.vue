@@ -125,8 +125,11 @@
                 </div>
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="document" class="form-label">Документ</label>
-                  <select id="document" class="form-select">
-                    <option selected>Паспорт РФ</option>
+                  <select
+                      @change="updateDocument"
+                      id="document"
+                      class="form-select">
+                    <option value="Паспорт РФ" selected>Паспорт РФ</option>
                     <option>...</option>
                   </select>
                 </div>
@@ -162,6 +165,7 @@ export default {
         'updateBirthday',
         'updateGender',
         'updateCitizenship',
+        'updateDocument',
         'validateNameField',
         'addPassenger',
     ]),
@@ -169,6 +173,7 @@ export default {
   mounted() {
     this.updateGender();
     this.updateCitizenship();
+    this.updateDocument();
   },
   computed: {
     ...mapState({

@@ -53,6 +53,9 @@ export const passengerModule = {
         updateGender(state, [value, id]) {
             state.passengers[id].gender = value
         },
+        updateCitizenship(state, [value, id]) {
+            state.passengers[id].citizenship = value
+        },
         updateError(state, [error, id]) {
             state.passengers[id].error = error
         }
@@ -108,10 +111,26 @@ export const passengerModule = {
                 const id = 0
                 ctx.commit('updateGender', [value, id]);
             }
-            const value = event.target.value;
-            //исключить наименование и оставить только цифры в id при помощи replace
-            const id = event.target.id.replace(/[^0-9]/g,"");
-            ctx.commit('updateGender', [value, id]);
+            else {
+                const value = event.target.value;
+                //исключить наименование и оставить только цифры в id при помощи replace
+                const id = event.target.id.replace(/[^0-9]/g,"");
+                ctx.commit('updateGender', [value, id]);
+            }
+        },
+        updateCitizenship(ctx,event) {
+            //установка Российской федерации для 1-го пассажира по умолчанию
+            if (event === undefined) {
+                const value = 'Российская федерация';
+                const id = 0
+                ctx.commit('updateCitizenship', [value, id]);
+            }
+            else {
+                const value = event.target.value;
+                //исключить наименование и оставить только цифры в id при помощи replace
+                const id = event.target.id.replace(/[^0-9]/g,"");
+                ctx.commit('updateCitizenship', [value, id]);
+            }
         },
         validateNameField(ctx, event) {
             const value = event.target.value;

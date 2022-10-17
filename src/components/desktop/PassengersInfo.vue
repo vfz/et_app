@@ -114,9 +114,11 @@
                 </div>
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="citizenship" class="form-label">Гражданство</label>
-                  <select id="citizenship" class="form-select">
-                    <option selected>Российская Федерация</option>
-                    <option>...</option>
+                  <select
+                      @change="updateCitizenship"
+                      :id="'citizenship'+passenger.id"
+                      class="form-select">
+                    <option value="Российская Федерация" selected>Российская Федерация</option>
                   </select>
                   <!--                          TODO убрать d-none когда валидация неверная-->
                   <div class="error-feedback d-none">Выберите пол</div>
@@ -159,12 +161,14 @@ export default {
         'updateMiddleName',
         'updateBirthday',
         'updateGender',
+        'updateCitizenship',
         'validateNameField',
         'addPassenger',
     ]),
   },
   mounted() {
     this.updateGender();
+    this.updateCitizenship();
   },
   computed: {
     ...mapState({

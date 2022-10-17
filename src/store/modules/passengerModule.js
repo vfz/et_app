@@ -6,6 +6,12 @@ export const passengerModule = {
             {
                 id: 0,
                 secondName: '',
+                firstName: '',
+                middleName: '',
+                birthday: '',
+                gender: '',
+                citizenship: '',
+                documentInfo: '',
                 error: '',
                 isAdult: true,
             }

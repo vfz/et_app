@@ -90,7 +90,7 @@
                 </div>
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="birthday" class="form-label">Дата рождения</label>
-                  <input type="text" class="form-control" id="birthday" placeholder="дд.мм.гггг">
+                  <input type="date" class="form-control" id="birthday" placeholder="дд.мм.гггг">
                   <!--                          TODO убрать d-none когда валидация неверная-->
                   <div class="error-feedback d-none">Некорректная дата, вам больше 125 лет?</div>
                 </div>
@@ -221,6 +221,11 @@ export default {
       border-bottom: 1px solid #8F8C8C;
       border-radius: 0;
       padding-left: 0;
+    }
+    input[type="date"]::-webkit-inner-spin-button,
+    input[type="date"]::-webkit-calendar-picker-indicator {
+      display: none;
+      -webkit-appearance: none;
     }
     .form-control:focus {
       @include animation;

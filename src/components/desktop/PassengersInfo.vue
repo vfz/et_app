@@ -229,11 +229,6 @@ export default {
       border-radius: 0;
       padding-left: 0;
     }
-    input[type="date"]::-webkit-inner-spin-button,
-    input[type="date"]::-webkit-calendar-picker-indicator {
-      display: none;
-      -webkit-appearance: none;
-    }
     .form-control:focus {
       @include animation;
       outline: none;

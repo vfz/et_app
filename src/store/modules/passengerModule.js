@@ -23,7 +23,7 @@ export const passengerModule = {
         promocode: '',
     }),
     mutations: {
-        addArraysPassengers(state, passenger) {
+        addPassenger(state, passenger) {
             state.passengers.push(passenger)
         },
         removePassenger(state, passenger) {
@@ -37,13 +37,13 @@ export const passengerModule = {
         }
     },
     actions: {
-        getPassengersArrays(ctx, isAdult) {
+        addPassenger(ctx, isAdult) {
             const agultCount = ctx.getters.adults;
             const childrenCount = ctx.getters.childrens;
             //прибавляется единица, так как по умолчанию выбран один человек
             const id = agultCount+childrenCount-1
             const passenger = {id: id, isAdult: isAdult}
-            ctx.commit('addArraysPassengers', passenger)
+            ctx.commit('addPassenger', passenger)
         },
         removePassenger(ctx, isAdult) {
             const agultCount = ctx.getters.adults;

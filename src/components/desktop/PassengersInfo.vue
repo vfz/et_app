@@ -136,7 +136,7 @@ export default {
     ...mapActions([
         'updateSecondName',
         'validateNameField',
-        'getPassengersArrays',
+        'addPassenger',
     ])
   },
 

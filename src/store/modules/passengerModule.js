@@ -26,6 +26,9 @@ export const passengerModule = {
         addArraysPassengers(state, passenger) {
             state.passengers.push(passenger)
         },
+        removePassenger(state, passenger) {
+            state.passengers.splice(passenger, 1)
+        },
         updateSecondName(state, {value, id}) {
             state.passengers[id-1] = {secondName: value};
         },
@@ -41,6 +44,20 @@ export const passengerModule = {
             const id = agultCount+childrenCount-1
             const passenger = {id: id, isAdult: isAdult}
             ctx.commit('addArraysPassengers', passenger)
+        },
+        removePassenger(ctx, isAdult) {
+            const agultCount = ctx.getters.adults;
+            const childrenCount = ctx.getters.childrens;
+            //прибавляется единица, так как по умолчанию выбран один человек
+            const id = agultCount+childrenCount
+            //getIndex() выбирает
+            function getIndex(passenger) {
+                if (passenger.isAdult === isAdult) {
+                    return passenger
+                }
+            }
+            const passenger = ctx.state.passengers.findIndex(getIndex)
+            ctx.commit('removePassenger', passenger)
         },
         updateSecondName(ctx, event) {
             const value = event.target.value;

@@ -97,7 +97,7 @@
                       <div class="row">
                         <div class="col">
                           <div class="count-passenger d-flex align-items-center flex-wrap">
-                            <div id="minus-button-adult" class="minus-button count-button" :class=" { disabled : !mba } " v-on:click="MinusAdult();getPassengersArrays(true);changeClass();">-</div>
+                            <div id="minus-button-adult" class="minus-button count-button" :class=" { disabled : !mba } " v-on:click="MinusAdult();removePassenger(true);changeClass();">-</div>
                             <input value="1" min="1" max="7" name="adults" v-model="adults" type="number" class="form-control one-way-inputs-input shadow-none"  placeholder="0">
                             <div id="plus-button-adult" class="plus-button count-button" :class=" { disabled : !pba } " v-on:click="PlusAdult();getPassengersArrays(true);changeClass();">+</div>
                             <span class="card-desc d-block w-100">Взрослых</span>
@@ -105,7 +105,7 @@
                         </div>
                         <div class="col">
                           <div class="count-passenger d-flex align-items-center flex-wrap">
-                            <div id="minus-button-childeren" class="minus-button count-button" :class=" { disabled : !mbc } " v-on:click="MinusChild();getPassengersArrays(false);changeClass();">-</div>
+                            <div id="minus-button-childeren" class="minus-button count-button" :class=" { disabled : !mbc } " v-on:click="MinusChild();removePassenger(false);changeClass();">-</div>
                             <input value="0" min="0" max="5" name="childrens" v-model="childrens" type="number" class="form-control one-way-inputs-input shadow-none" placeholder="0">
                             <div id="plus-button-childeren" class="plus-button count-button" :class=" { disabled : !pbc } " v-on:click="PlusChild();getPassengersArrays(false);changeClass();">+</div>
                             <span class="card-desc d-block w-100">Детских</span>
@@ -220,7 +220,7 @@
                       <div class="row">
                         <div class="col">
                           <div class="count-passenger d-flex align-items-center flex-wrap">
-                            <div id="minus-button-adult" class="minus-button count-button" :class=" { disabled : !mba } " v-on:click="MinusAdult();getPassengersArrays(true);changeClass();">-</div>
+                            <div id="minus-button-adult" class="minus-button count-button" :class=" { disabled : !mba } " v-on:click="MinusAdult();removePassenger(true);changeClass();">-</div>
                             <input value="1" min="1" max="7" name="adults" v-model="adults" type="number" class="form-control text-center one-way-inputs-input shadow-none"  placeholder="0">
                             <div id="plus-button-adult" class="plus-button count-button" :class=" { disabled : !pba } " v-on:click="PlusAdult();getPassengersArrays(true);changeClass();">+</div>
                             <span class="card-desc d-block w-100">Взрослых</span>
@@ -228,7 +228,7 @@
                         </div>
                         <div class="col">
                           <div class="count-passenger d-flex align-items-center flex-wrap">
-                            <div id="minus-button-childeren" class="minus-button count-button" :class=" { disabled : !mbc } " v-on:click="MinusChild();getPassengersArrays(false);changeClass();">-</div>
+                            <div id="minus-button-childeren" class="minus-button count-button" :class=" { disabled : !mbc } " v-on:click="MinusChild();removePassenger(false);changeClass();">-</div>
                             <input value="0" min="0" max="5" name="childrens" v-model="childrens" type="number" class="form-control text-center one-way-inputs-input shadow-none" placeholder="0">
                             <div id="plus-button-childeren" class="plus-button count-button" :class=" { disabled : !pbc } " v-on:click="PlusChild();getPassengersArrays(false);changeClass();">+</div>
                             <span class="card-desc d-block w-100">Детских</span>
@@ -352,7 +352,8 @@ export default {
       'MinusAdult',
       'PlusChild',
       'MinusChild',
-        'getPassengersArrays'
+        'getPassengersArrays',
+        'removePassenger'
     ]),
 
     search(str,target){

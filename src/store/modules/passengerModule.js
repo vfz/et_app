@@ -29,6 +29,11 @@ export const passengerModule = {
         removePassenger(state, passenger) {
             state.passengers.splice(passenger, 1)
         },
+        changePassengerId(state, passenger) {
+            state.passengers.forEach(function (passenger, index){
+                passenger.id = index
+            })
+        },
         updateSecondName(state, {value, id}) {
             state.passengers[id-1] = {secondName: value};
         },
@@ -44,6 +49,7 @@ export const passengerModule = {
             const id = agultCount+childrenCount-1
             const passenger = {id: id, isAdult: isAdult}
             ctx.commit('addPassenger', passenger)
+            ctx.commit('changePassengerId', passenger)
         },
         removePassenger(ctx, isAdult) {
             const agultCount = ctx.getters.adults;

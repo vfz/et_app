@@ -11,7 +11,16 @@ export const passengerModule = {
                 citizenship: '',
                 document: '',
                 documentInfo: '',
-                error: '',
+                errors: {
+                    secondName: '',
+                    firstName: '',
+                    middleName: '',
+                    birthday: '',
+                    gender: '',
+                    citizenship: '',
+                    document: '',
+                    documentInfo: '',
+                },
                 isAdult: true,
             }
         ],
@@ -71,8 +80,8 @@ export const passengerModule = {
         updateDocumentInfo(state, [value, id]) {
             state.passengers[id].documentInfo = value;
         },
-        updateError(state, [error, id]) {
-            state.passengers[id].error = error
+        updateError(state, [id, errorText, formField]) {
+            state.passengers[id].errors[formField] = errorText
         }
     },
     actions: {
@@ -207,12 +216,12 @@ export const passengerModule = {
             //исключить наименование и оставить только цифры в id при помощи replace
             const id = event.target.id.replace(/[^0-9]/g,"");
             if (value === '') {
-                console.log('заполните фамилию')
-                ctx.commit('updateError', ['заполните фамилию', id]);
+                ///аргументы (mutation, [id, errorText, formField ])
+                ctx.commit('updateError', [id, 'заполните фамилию', 'secondName']);
             }
             if (value !== '') {
-                console.log('все корректно')
-                ctx.commit('updateError', ['', id])
+                ///аргументы (mutation, [id, errorText, formField ])
+                ctx.commit('updateError', [id, '', 'secondName'])
             }
         }
     },

@@ -62,7 +62,7 @@
                       class="form-control" :id="'secondName' + passenger.id"
                       placeholder="Иванов">
                   <!--                          TODO убрать d-none когда валидация неверная-->
-                  <div :class="{'d-none': !passenger.error}" class="error-feedback">{{passenger.error}}</div>
+                  <div :class="{'d-none': !passenger.errors.secondName}" class="error-feedback">{{passenger.errors.secondName}}</div>
                 </div>
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="firstName" class="form-label">Имя</label>

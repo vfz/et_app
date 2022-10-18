@@ -1,4 +1,3 @@
-import {Modal} from 'bootstrap/dist/js/bootstrap.esm.min'
 export const passengerModule = {
     state: () => ({
         passengers: [
@@ -203,17 +202,15 @@ export const passengerModule = {
                 console.log(error, 'ошибка гражданство')
             }
         },
-        validateNameField(ctx, event) {
+        validateSecondName(ctx, event){
             const value = event.target.value;
-            //получение названия поля
-            const field = event.target.id.replace(/[0-9]/g, '')
             //исключить наименование и оставить только цифры в id при помощи replace
             const id = event.target.id.replace(/[^0-9]/g,"");
-            if (field === 'secondName' && value === '') {
+            if (value === '') {
                 console.log('заполните фамилию')
                 ctx.commit('updateError', ['заполните фамилию', id]);
             }
-            if (field === 'secondName' && value !== '') {
+            if (value !== '') {
                 console.log('все корректно')
                 ctx.commit('updateError', ['', id])
             }

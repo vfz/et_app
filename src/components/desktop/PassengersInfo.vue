@@ -56,7 +56,7 @@
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="secondName" class="form-label">Фамилия</label>
                   <input
-                      @input="updateSecondName($event);validateNameField($event);"
+                      @input="updateSecondName($event);validateSecondName($event);"
                       :value="passenger.secondName"
                       type="text"
                       class="form-control" :id="'secondName' + passenger.id"
@@ -177,7 +177,7 @@ export default {
         'updateDocumentInfo',
         'fetchDocumentType',
         'fetchCitizenShip',
-        'validateNameField',
+        'validateSecondName',
         'addPassenger',
     ]),
   },

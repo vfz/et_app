@@ -67,14 +67,14 @@
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="firstName" class="form-label">Имя</label>
                   <input
-                      @input="updateFirstName($event);"
+                      @input="updateFirstName($event);validateFirstName($event)"
                       :value="passenger.firstName"
                       type="text"
                       class="form-control"
                       :id="'firstName'+ passenger.id"
                       placeholder="Иван">
                   <!--                          TODO убрать d-none когда валидация неверная-->
-                  <div class="error-feedback d-none">Укажите имя</div>
+                  <div :class="{'d-none': !passenger.errors.firstName}" class="error-feedback">{{passenger.errors.firstName}}</div>
                 </div>
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="MiddleName" class="form-label">Отчество</label>
@@ -86,7 +86,7 @@
                       :id="'MiddleName' + passenger.id"
                       placeholder="Иванович">
                   <!--                          TODO убрать d-none когда валидация неверная-->
-                  <div class="error-feedback d-none">Укажите отчество</div>
+                  <div class="error-feedback d-none">Некорректная дата, вам больше 125 лет?</div>
                 </div>
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="birthday" class="form-label">Дата рождения</label>
@@ -178,6 +178,7 @@ export default {
         'fetchDocumentType',
         'fetchCitizenShip',
         'validateSecondName',
+        'validateFirstName',
         'addPassenger',
     ]),
   },

@@ -215,13 +215,28 @@ export const passengerModule = {
             const value = event.target.value;
             //исключить наименование и оставить только цифры в id при помощи replace
             const id = event.target.id.replace(/[^0-9]/g,"");
+            const formField = 'secondName'
             if (value === '') {
                 ///аргументы (mutation, [id, errorText, formField ])
-                ctx.commit('updateError', [id, 'заполните фамилию', 'secondName']);
+                ctx.commit('updateError', [id, 'заполните фамилию', formField]);
             }
             if (value !== '') {
                 ///аргументы (mutation, [id, errorText, formField ])
-                ctx.commit('updateError', [id, '', 'secondName'])
+                ctx.commit('updateError', [id, '', formField])
+            }
+        },
+        validateFirstName(ctx, event){
+            const value = event.target.value;
+            //исключить наименование и оставить только цифры в id при помощи replace
+            const id = event.target.id.replace(/[^0-9]/g,"");
+            const formField = 'firstName'
+            if (value === '') {
+                ///аргументы (mutation, [id, errorText, formField ])
+                ctx.commit('updateError', [id, 'заполните имя', formField]);
+            }
+            if (value !== '') {
+                ///аргументы (mutation, [id, errorText, formField ])
+                ctx.commit('updateError', [id, '', formField])
             }
         }
     },

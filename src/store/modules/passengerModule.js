@@ -238,6 +238,20 @@ export const passengerModule = {
                 ///аргументы (mutation, [id, errorText, formField ])
                 ctx.commit('updateError', [id, '', formField])
             }
+        },
+        validateMiddleName(ctx, event){
+            const value = event.target.value;
+            //исключить наименование и оставить только цифры в id при помощи replace
+            const id = event.target.id.replace(/[^0-9]/g,"");
+            const formField = 'middleName'
+            if (value === '') {
+                ///аргументы (mutation, [id, errorText, formField ])
+                ctx.commit('updateError', [id, 'заполните отчество', formField]);
+            }
+            if (value !== '') {
+                ///аргументы (mutation, [id, errorText, formField ])
+                ctx.commit('updateError', [id, '', formField])
+            }
         }
     },
     getters: {

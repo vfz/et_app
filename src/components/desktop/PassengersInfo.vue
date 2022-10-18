@@ -130,6 +130,7 @@
                       :id="'document'+passenger.id"
                       class="form-select">
                     <option v-for="documentType in getDocumentsTypes"
+                            :key="documentType.id"
                             :value="documentType.name">
                       {{documentType.name}}
                     </option>

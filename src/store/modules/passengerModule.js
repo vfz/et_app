@@ -179,10 +179,14 @@ export const passengerModule = {
             try {
                 const response = await fetch(ctx.rootState.API_URL+ '?command=type_doc')
                 const documentTypes = await response.json();
+                //Очистить строку от &nbsp;
+                documentTypes.result.forEach(function (documentType, index) {
+                    documentType.name = documentType.name.replaceAll('&nbsp;', ' ')
+                });
                 ctx.commit('setDocumentTypes', documentTypes.result)
             }
             catch (error) {
-                console.log(error)
+                console.log(error, 'ошибка')
             }
         },
         validateNameField(ctx, event) {

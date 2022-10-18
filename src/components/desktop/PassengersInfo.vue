@@ -129,7 +129,10 @@
                       @change="updateDocument"
                       :id="'document'+passenger.id"
                       class="form-select">
-                    <option value="Паспорт РФ" selected>Паспорт РФ</option>
+                    <option v-for="documentType in getDocumentsTypes"
+                            :value="documentType.name">
+                      {{documentType.name}}
+                    </option>
                   </select>
                 </div>
                 <div class="col-3 col-lg-6 col-xl-3">
@@ -171,6 +174,7 @@ export default {
         'updateCitizenship',
         'updateDocument',
         'updateDocumentInfo',
+        'fetchDocumentType',
         'validateNameField',
         'addPassenger',
     ]),
@@ -179,6 +183,8 @@ export default {
     this.updateGender();
     this.updateCitizenship();
     this.updateDocument();
+    this.fetchDocumentType();
+    console.log(this.getDocumentsTypes)
   },
   computed: {
     ...mapState({
@@ -186,7 +192,8 @@ export default {
     }),
     ...mapGetters([
        'getPassengers',
-        'getError'
+        'getError',
+        'getDocumentsTypes'
     ]),
   },
 }

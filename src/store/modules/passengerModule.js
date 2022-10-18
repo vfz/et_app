@@ -16,6 +16,7 @@ export const passengerModule = {
                 isAdult: true,
             }
         ],
+        documentTypes: [],
         tripId: 0,
         flightId: 0,
         placeNumber: [],
@@ -39,6 +40,9 @@ export const passengerModule = {
             state.passengers.forEach(function (passenger, index){
                 passenger.id = index
             })
+        },
+        setDocumentTypes(state, documentTypes) {
+            state.documentTypes = documentTypes
         },
         updateSecondName(state, [value, id]) {
             state.passengers[id].secondName = value;
@@ -171,6 +175,16 @@ export const passengerModule = {
             const id = event.target.id.replace(/[^0-9]/g,"");
             ctx.commit('updateDocumentInfo', [value, id]);
         },
+        async fetchDocumentType(ctx) {
+            try {
+                const response = await fetch(ctx.rootState.API_URL+ '?command=type_doc')
+                const documentTypes = await response.json();
+                ctx.commit('setDocumentTypes', documentTypes.result)
+            }
+            catch (error) {
+                console.log(error)
+            }
+        },
         validateNameField(ctx, event) {
             const value = event.target.value;
             //получение названия поля
@@ -196,6 +210,9 @@ export const passengerModule = {
         },
         childrens(getters) {
           return getters.childrens
+        },
+        getDocumentsTypes(state) {
+          return state.documentTypes
         }
     },
 }

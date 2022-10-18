@@ -99,8 +99,8 @@ export const passengerModule = {
                 }
             }
             const passenger = ctx.state.passengers.findIndex(getIndex)
-            // TODO закрыть модальное окно
-            const modal = new Modal(document.getElementById('removeModal'+id));
+            const modal = document.getElementById('btn-close'+id)
+            modal.click()
             ctx.commit('removePassenger', passenger)
         },
         updateSecondName(ctx, event) {

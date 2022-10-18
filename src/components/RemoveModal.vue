@@ -27,7 +27,7 @@
           <button @click="removePassengerById(passenger.id)" class="btn-yes">
             Да
           </button>
-          <button class="btn-close" data-bs-dismiss="modal">
+          <button class="btn-close" data-bs-dismiss="modal" :id="'btn-close'+passenger.id">
             Нет
           </button>
         </div>

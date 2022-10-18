@@ -176,6 +176,7 @@ export default {
         'updateDocument',
         'updateDocumentInfo',
         'fetchDocumentType',
+        'fetchCitizenShip',
         'validateNameField',
         'addPassenger',
     ]),
@@ -185,6 +186,7 @@ export default {
     this.updateCitizenship();
     this.updateDocument();
     this.fetchDocumentType();
+    this.fetchCitizenShip();
     console.log(this.getDocumentsTypes)
   },
   computed: {

@@ -17,6 +17,7 @@ export const passengerModule = {
             }
         ],
         documentTypes: [],
+        citizenShips: [],
         tripId: 0,
         flightId: 0,
         placeNumber: [],
@@ -43,6 +44,9 @@ export const passengerModule = {
         },
         setDocumentTypes(state, documentTypes) {
             state.documentTypes = documentTypes
+        },
+        setCitizenShips(state, citizenShips) {
+            state.citizenShips = citizenShips
         },
         updateSecondName(state, [value, id]) {
             state.passengers[id].secondName = value;
@@ -186,7 +190,17 @@ export const passengerModule = {
                 ctx.commit('setDocumentTypes', documentTypes.result)
             }
             catch (error) {
-                console.log(error, 'ошибка')
+                console.log(error, 'ошибка тип документа')
+            }
+        },
+        async fetchCitizenShip (ctx) {
+            try {
+                const response = await fetch(ctx.rootState.API_URL+ '?command=nationality')
+                const citizenShips = await response.json();
+                ctx.commit('setCitizenShips', citizenShips.result)
+            }
+            catch (error) {
+                console.log(error, 'ошибка гражданство')
             }
         },
         validateNameField(ctx, event) {

@@ -252,6 +252,49 @@ export const passengerModule = {
                 ///аргументы (mutation, [id, errorText, formField ])
                 ctx.commit('updateError', [id, '', formField])
             }
+        },
+        validateBirthday(ctx, event){
+            // TODO доделать валидацию на невозможность выбрать несуществующую дату
+            const value = event.target.value;
+            //исключить наименование и оставить только цифры в id при помощи replace
+            const id = event.target.id.replace(/[^0-9]/g,"");
+            const formField = 'birthday';
+            if (value === '') {
+                ///аргументы (mutation, [id, errorText, formField ])
+                ctx.commit('updateError', [id, 'заполните дату рождения', formField]);
+            }
+            if (value.length > 10 && value !== '') {
+                ///аргументы (mutation, [id, errorText, formField ])
+                ctx.commit('updateError', [id, 'дата рождения указана неверно', formField]);
+            }
+            else if (value.length <= 10 && value !== '') {
+                ///аргументы (mutation, [id, errorText, formField ])
+                ctx.commit('updateError', [id, '', formField])
+            }
+            if (value.length === 10) {
+                const currentDate = new Date(); //текущая дата
+                const currentDateWithoutTime = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()); //текущая дата без времени
+                const day = value.substr(0,2); //день рождения
+                const month = value.substr(3,2) - 1; // месяц рождения
+                const year = value.substr(6,10); //год рождения
+                const birthDay = new Date(year,month,day); //день рождения в формате date
+                const birthDayCurrent = new Date(currentDateWithoutTime.getFullYear(),birthDay.getMonth(), birthDay.getDate()) //день рождения в этом году
+                let age = currentDateWithoutTime.getFullYear() - birthDay.getFullYear()
+
+                const document = ctx.state.passengers[id].document
+                // console.log(document);
+                if (currentDateWithoutTime < birthDayCurrent) {
+                    age = age-1
+                }
+                // console.log(age, 'возраст')
+                if (age < 14 && document === 'Паспорт гражданина Российской Федерации') {
+                    ///аргументы (mutation, [id, errorText, formField ])
+                    ctx.commit('updateError', [id, 'До 14 лет, билеты оформляются по свидетельству о рождении', formField])
+                }
+                if (age > 125) {
+                    ctx.commit('updateError', [id, 'Некорректная дата, вам больше 125 лет?', formField])
+                }
+            }
         }
     },
     getters: {

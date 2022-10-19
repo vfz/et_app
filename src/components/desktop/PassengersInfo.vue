@@ -108,7 +108,7 @@
                   <select
                       @change="updateGender"
                       :id="'gender'+passenger.id"
-                      class="form-select">
+                      class="form-select is-ok">
                     <option value="Мужской" selected>Мужской</option>
                     <option value="Женский">Женский</option>
                   </select>
@@ -118,7 +118,7 @@
                   <select
                       @change="updateCitizenship"
                       :id="'citizenship'+passenger.id"
-                      class="form-select">
+                      class="form-select is-ok">
                     <option value="Российская Федерация" selected>Российская Федерация</option>
                   </select>
                   <!--                          TODO убрать d-none когда валидация неверная-->
@@ -129,7 +129,7 @@
                   <select
                       @change="updateDocument"
                       :id="'document'+passenger.id"
-                      class="form-select">
+                      class="form-select is-ok">
                     <option v-for="documentType in getDocumentsTypes"
                             :key="documentType.id"
                             :value="documentType.name">

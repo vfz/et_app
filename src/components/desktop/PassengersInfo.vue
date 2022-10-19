@@ -116,14 +116,25 @@
                 </div>
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="citizenship" class="form-label">Гражданство</label>
-                  <select
-                      @change="updateCitizenship"
-                      :id="'citizenship'+passenger.id"
-                      class="form-select is-ok">
-                    <option value="Российская Федерация" selected>Российская Федерация</option>
-                  </select>
-                  <!--                          TODO убрать d-none когда валидация неверная-->
-                  <div class="error-feedback d-none">Выберите пол</div>
+                  <div class="position-relative">
+                    <input
+                        @input="searchCitizenship($event);"
+                        :value="passenger.citizenShipSearchQuery"
+                        :class="{'is-ok': passenger.citizenship, 'is-error' : passenger.errors.citizenship}"
+                        class="form-control"
+                        :id="'citizenship'+passenger.id"
+                        placeholder="Российская федерация"
+                        type="text">
+                    <div v-if="passenger.citizenShipSearchQuery !== passenger.citizenship" class="find-citizenship">
+                      <div
+                          v-for="citizenship in getCitizenshipsById(passenger.id)"
+                          :key="citizenship.code"
+                          @click="updateCitizenship([citizenship.name, passenger.id]);"
+                          class="meta">
+                        <div class="title">{{citizenship.name}}</div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="document" class="form-label">Документ</label>
@@ -179,6 +190,7 @@ export default {
         'updateDocumentInfo',
         'fetchDocumentType',
         'fetchCitizenShip',
+        'searchCitizenship',
         'validateSecondName',
         'validateFirstName',
         'validateMiddleName',
@@ -188,7 +200,6 @@ export default {
   },
   mounted() {
     this.updateGender();
-    this.updateCitizenship();
     this.updateDocument();
     this.fetchDocumentType();
     this.fetchCitizenShip();
@@ -198,7 +209,8 @@ export default {
     }),
     ...mapGetters([
        'getPassengers',
-        'getDocumentsTypes'
+        'getDocumentsTypes',
+        'getCitizenshipsById'
     ]),
   },
 }
@@ -287,6 +299,37 @@ export default {
     }
     .form-select::selection {
       color: #B5BDDB;
+    }
+    .find-citizenship{
+      position: absolute;
+      display: block;
+      z-index: 998;
+      left:0;
+      width:100%;
+      max-height: 160px;
+      margin: 0;
+      overflow-y: auto;
+      //overflow-y: hidden;
+      background: #F3F7FF;
+      cursor: pointer;
+
+      /* Shadow / Hover */
+      :hover{
+        background: #1399FF;
+      }
+      box-shadow: 0px 2px 4px rgba(161, 159, 255, 0.1);
+      border-radius: 0px 0px 16px 16px;
+      .meta{
+        padding: 0 .7rem .4rem .7rem ;
+      }
+      .meta-end{
+        padding: 0 .7rem .4rem .7rem ;
+        border-radius: 0px 0px 16px 16px;
+      }
+      @media screen and (max-width: 767px) {
+        z-index: 9999;
+      }
+
     }
   }
 }

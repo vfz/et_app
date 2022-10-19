@@ -9,6 +9,7 @@ export const passengerModule = {
                 birthday: '',
                 gender: '',
                 citizenship: '',
+                citizenShipSearchQuery: '',
                 document: '',
                 documentInfo: '',
                 errors: {
@@ -73,6 +74,9 @@ export const passengerModule = {
         },
         updateCitizenship(state, [value, id]) {
             state.passengers[id].citizenship = value
+        },
+        updateCitizenshipSearchQuery(state, [value, id]) {
+          state.passengers[id].citizenShipSearchQuery = value
         },
         updateDocument(state, [value, id]) {
             state.passengers[id].document = value
@@ -174,19 +178,14 @@ export const passengerModule = {
                 ctx.commit('updateGender', [value, id]);
             }
         },
-        updateCitizenship(ctx,event) {
-            //установка Российской федерации для 1-го пассажира по умолчанию
-            if (event === undefined) {
-                const value = 'Российская федерация';
-                const id = 0
-                ctx.commit('updateCitizenship', [value, id]);
-            }
-            else {
-                const value = event.target.value;
-                //исключить наименование и оставить только цифры в id при помощи replace
-                const id = event.target.id.replace(/[^0-9]/g,"");
-                ctx.commit('updateCitizenship', [value, id]);
-            }
+        updateCitizenship(ctx, [value, id]) {
+            ctx.commit('updateCitizenship', [value, id])
+            ctx.commit('updateCitizenshipSearchQuery', [value, id])
+        },
+        searchCitizenship(ctx,event) {
+            const value = event.target.value;
+            const id = event.target.id.replace(/[^0-9]/g,"");
+            ctx.commit('updateCitizenshipSearchQuery', [value, id])
         },
         updateDocument(ctx,event) {
             //установка паспорта для 1-го пассажира по умолчанию
@@ -341,6 +340,10 @@ export const passengerModule = {
         },
         getDocumentsTypes(state) {
           return state.documentTypes
+        },
+        getCitizenshipsById: (state) => (id) => {
+            return [...state.citizenShips].filter(citizenShip => citizenShip.name.toLowerCase().includes(state.passengers[id].citizenShipSearchQuery.toLowerCase()))
         }
+
     },
 }

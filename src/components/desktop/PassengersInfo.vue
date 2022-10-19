@@ -59,9 +59,10 @@
                       @input="updateSecondName($event);validateSecondName($event);"
                       :value="passenger.secondName"
                       type="text"
-                      class="form-control" :id="'secondName' + passenger.id"
+                      class="form-control"
+                      :class="{'is-ok': passenger.secondName, 'is-error' : passenger.errors.secondName}"
+                      :id="'secondName' + passenger.id"
                       placeholder="Иванов">
-                  <!--                          TODO убрать d-none когда валидация неверная-->
                   <div :class="{'d-none': !passenger.errors.secondName}" class="error-feedback">{{passenger.errors.secondName}}</div>
                 </div>
                 <div class="col-3 col-lg-6 col-xl-3">
@@ -71,6 +72,7 @@
                       :value="passenger.firstName"
                       type="text"
                       class="form-control"
+                      :class="{'is-ok': passenger.firstName, 'is-error' : passenger.errors.firstName}"
                       :id="'firstName'+ passenger.id"
                       placeholder="Иван">
                   <!--                          TODO убрать d-none когда валидация неверная-->
@@ -83,9 +85,9 @@
                       :value="passenger.middleName"
                       type="text"
                       class="form-control"
+                      :class="{'is-ok': passenger.middleName, 'is-error' : passenger.errors.middleName}"
                       :id="'MiddleName' + passenger.id"
                       placeholder="Иванович">
-                  <!--                          TODO убрать d-none когда валидация неверная-->
                   <div :class="{'d-none': !passenger.errors.middleName}" class="error-feedback">{{passenger.errors.middleName}}</div>
                 </div>
                 <div class="col-3 col-lg-6 col-xl-3">
@@ -95,11 +97,10 @@
                       :value="passenger.birthday"
                       type="text"
                       class="form-control"
+                      :class="{'is-ok': passenger.birthday, 'is-error' : passenger.errors.birthday}"
                       :id="'birthday'+passenger.id"
                       placeholder="дд.мм.гггг">
-                  <!--                          TODO убрать d-none когда валидация неверная-->
                   <div :class="{'d-none': !passenger.errors.birthday}" class="error-feedback">{{passenger.errors.birthday}}</div>
-                  <div class="error-feedback d-none">Некорректная дата, вам больше 125 лет?</div>
                 </div>
               </div>
               <div class="row gy-2">
@@ -143,10 +144,10 @@
                       @input="updateDocumentInfo($event)"
                       type="text"
                       class="form-control"
+                      :class="{'is-ok': passenger.documentInfo, 'is-error' : passenger.errors.documentInfo}"
                       :id="'documentInfo'+passenger.id"
                       placeholder="01 23 456789">
-                  <!--                          TODO убрать d-none когда валидация неверная-->
-                  <div class="error-feedback d-none">Некорректные серия и номер документа</div>
+                  <div :class="{'d-none': !passenger.errors.documentInfo}" class="error-feedback">{{passenger.errors.documentInfo}}</div>
                 </div>
               </div>
             </div>

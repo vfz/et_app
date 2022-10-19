@@ -192,7 +192,6 @@ export default {
     this.updateDocument();
     this.fetchDocumentType();
     this.fetchCitizenShip();
-    console.log(this.getDocumentsTypes)
   },
   computed: {
     ...mapState({

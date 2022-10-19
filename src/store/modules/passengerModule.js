@@ -295,6 +295,17 @@ export const passengerModule = {
                     ctx.commit('updateError', [id, 'Некорректная дата, вам больше 125 лет?', formField])
                 }
             }
+        },
+        validateDocumentInfo(ctx, event) {
+            //TODO доделать валидацию для документа
+            const value = event.target.value;
+            //исключить наименование и оставить только цифры в id при помощи replace
+            const id = event.target.id.replace(/[^0-9]/g,"");
+            const formField = 'documentInfo';
+            if (value === '') {
+                ///аргументы (mutation, [id, errorText, formField ])
+                ctx.commit('updateError', [id, 'заполните серию и номер документа', formField]);
+            }
         }
     },
     getters: {

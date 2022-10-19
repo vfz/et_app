@@ -195,11 +195,9 @@ export default {
   },
   computed: {
     ...mapState({
-      passengers: state => state.passengers,
     }),
     ...mapGetters([
        'getPassengers',
-        'getError',
         'getDocumentsTypes'
     ]),
   },

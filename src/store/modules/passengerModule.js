@@ -90,7 +90,28 @@ export const passengerModule = {
             const childrenCount = ctx.getters.childrens;
             //прибавляется единица, так как по умолчанию выбран один человек
             const id = adultCount+childrenCount-1
-            const passenger = {id: id, isAdult: isAdult}
+            const passenger = {
+                id: id,
+                secondName: '',
+                firstName: '',
+                middleName: '',
+                birthday: '',
+                gender: '',
+                citizenship: '',
+                document: '',
+                documentInfo: '',
+                errors: {
+                    secondName: '',
+                    firstName: '',
+                    middleName: '',
+                    birthday: '',
+                    gender: '',
+                    citizenship: '',
+                    document: '',
+                    documentInfo: '',
+                },
+                isAdult: isAdult
+            }
             ctx.commit('addPassenger', passenger)
             ctx.commit('changePassengerId', passenger)
         },

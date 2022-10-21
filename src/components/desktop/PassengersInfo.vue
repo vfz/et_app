@@ -106,13 +106,24 @@
               <div class="row gy-2">
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="gender" class="form-label">Пол</label>
-                  <select
-                      @change="updateGender"
-                      :id="'gender'+passenger.id"
-                      class="form-select is-ok">
-                    <option value="Мужской" selected>Мужской</option>
-                    <option value="Женский">Женский</option>
-                  </select>
+                  <div @click="OpenDropdownGender" class="position-relative">
+                    <ArrowDownIcon class="arrow-down-icon position-absolute" color="#283256"/>
+                    <input
+                        @input="searchGender($event)"
+                        :value="passenger.genderSearchQuery"
+                        class="form-control"
+                        :id="'gender'+passenger.id"
+                        placeholder="Мужской"
+                        :class="{'is-ok': passenger.gender, 'is-error' : passenger.errors.gender}">
+                    <div :class="{'d-none': passenger.genderSearchQuery === passenger.gender}" class="find-gender">
+                      <div @click="updateGender(['Мужской', passenger.id]);" class="meta">
+                        <div class="title">Мужской</div>
+                      </div>
+                      <div @click="updateGender(['Женский', passenger.id]);" class="meta">
+                        <div class="title">Женский</div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="citizenship" class="form-label">Гражданство</label>
@@ -128,8 +139,7 @@
                         placeholder="Российская федерация"
                         type="text">
                     <div
-                        :class="{'d-none': isShow === false && passenger.citizenShipSearchQuery === passenger.citizenship   }"
-                        v-if="" class="find-citizenship">
+                        :class="{'d-none': passenger.citizenShipSearchQuery === passenger.citizenship   }" class="find-citizenship">
                       <div
                           v-for="citizenship in getCitizenshipsById(passenger.id)"
                           :key="citizenship.code"
@@ -182,11 +192,6 @@ import {mapState, mapActions, mapGetters} from 'vuex';
 export default {
   name: "PassengersInfo",
   components: {MyDataButton, ArrowDownIcon, CancelIcon},
-  data(){
-    return {
-      isShow: false,
-    }
-  },
   methods: {
     ...mapActions([
         'updateSecondName',
@@ -194,6 +199,7 @@ export default {
         'updateMiddleName',
         'updateBirthday',
         'updateGender',
+        'searchGender',
         'updateCitizenship',
         'updateDocument',
         'updateDocumentInfo',
@@ -207,11 +213,13 @@ export default {
         'addPassenger',
     ]),
     openDropdown() {
+      this.isShowCitizenship = !this.isShowCitizenship
+    },
+    OpenDropdownGender() {
       this.isShow = !this.isShow
     }
   },
   mounted() {
-    this.updateGender();
     this.updateDocument();
     this.fetchDocumentType();
     this.fetchCitizenShip();
@@ -348,6 +356,36 @@ export default {
         z-index: 9999;
       }
 
+    }
+    .find-gender {
+      position: absolute;
+      display: block;
+      z-index: 998;
+      left:0;
+      width:100%;
+      max-height: 160px;
+      margin: 0;
+      overflow-y: auto;
+      //overflow-y: hidden;
+      background: #F3F7FF;
+      cursor: pointer;
+
+      /* Shadow / Hover */
+      :hover{
+        background: #1399FF;
+      }
+      box-shadow: 0px 2px 4px rgba(161, 159, 255, 0.1);
+      border-radius: 0px 0px 16px 16px;
+      .meta{
+        padding: 0 .7rem .4rem .7rem ;
+      }
+      .meta-end{
+        padding: 0 .7rem .4rem .7rem ;
+        border-radius: 0px 0px 16px 16px;
+      }
+      @media screen and (max-width: 767px) {
+        z-index: 9999;
+      }
     }
   }
 }

@@ -8,6 +8,7 @@ export const passengerModule = {
                 middleName: '',
                 birthday: '',
                 gender: '',
+                genderSearchQuery: '',
                 citizenship: '',
                 citizenShipSearchQuery: '',
                 document: '',
@@ -71,6 +72,9 @@ export const passengerModule = {
         },
         updateGender(state, [value, id]) {
             state.passengers[id].gender = value
+        },
+        updateGenderSearchQuery(state, [value, id]) {
+            state.passengers[id].genderSearchQuery = value;
         },
         updateCitizenship(state, [value, id]) {
             state.passengers[id].citizenship = value
@@ -164,19 +168,14 @@ export const passengerModule = {
             const id = event.target.id.replace(/[^0-9]/g,"");
             ctx.commit('updateBirthday', [value, id]);
         },
-        updateGender(ctx,event) {
-            //установка мужского пола для 1-го пассажира по умолчанию
-            if (event === undefined) {
-                const value = 'Мужской';
-                const id = 0
-                ctx.commit('updateGender', [value, id]);
-            }
-            else {
-                const value = event.target.value;
-                //исключить наименование и оставить только цифры в id при помощи replace
-                const id = event.target.id.replace(/[^0-9]/g,"");
-                ctx.commit('updateGender', [value, id]);
-            }
+        updateGender(ctx,[value, id]) {
+            ctx.commit('updateGender', [value, id])
+            ctx.commit('updateGenderSearchQuery', [value, id])
+        },
+        searchGender(ctx, event) {
+            const value = event.target.value;
+            const id = event.target.id.replace(/[^0-9]/g,"");
+            ctx.commit('updateGenderSearchQuery', [value, id])
         },
         updateCitizenship(ctx, [value, id]) {
             ctx.commit('updateCitizenship', [value, id])

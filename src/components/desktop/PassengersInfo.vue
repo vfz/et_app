@@ -116,7 +116,9 @@
                 </div>
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="citizenship" class="form-label">Гражданство</label>
-                  <div class="position-relative">
+<!--                  TODO при клике выводить список-->
+                  <div @click="openDropdown" class="position-relative">
+                    <ArrowDownIcon class="arrow-down-icon position-absolute" color="#283256"/>
                     <input
                         @input="searchCitizenship($event);"
                         :value="passenger.citizenShipSearchQuery"
@@ -125,7 +127,9 @@
                         :id="'citizenship'+passenger.id"
                         placeholder="Российская федерация"
                         type="text">
-                    <div v-if="passenger.citizenShipSearchQuery !== passenger.citizenship" class="find-citizenship">
+                    <div
+                        :class="{'d-none': isShow === false && passenger.citizenShipSearchQuery === passenger.citizenship   }"
+                        v-if="" class="find-citizenship">
                       <div
                           v-for="citizenship in getCitizenshipsById(passenger.id)"
                           :key="citizenship.code"
@@ -178,6 +182,11 @@ import {mapState, mapActions, mapGetters} from 'vuex';
 export default {
   name: "PassengersInfo",
   components: {MyDataButton, ArrowDownIcon, CancelIcon},
+  data(){
+    return {
+      isShow: false,
+    }
+  },
   methods: {
     ...mapActions([
         'updateSecondName',
@@ -197,6 +206,9 @@ export default {
         'validateBirthday',
         'addPassenger',
     ]),
+    openDropdown() {
+      this.isShow = !this.isShow
+    }
   },
   mounted() {
     this.updateGender();
@@ -271,11 +283,17 @@ export default {
     .form-select {
       padding-bottom: 0.4rem;
     }
+    .arrow-down-icon {
+      right: 0;
+      bottom: 50%;
+      cursor: pointer;
+    }
     .form-control {
       border: none;
       border-bottom: 1px solid #8F8C8C;
       border-radius: 0;
       padding-left: 0;
+      padding-right: 2.25rem;
     }
     .form-control:focus {
       @include animation;

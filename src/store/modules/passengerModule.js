@@ -12,6 +12,7 @@ export const passengerModule = {
                 citizenship: '',
                 citizenShipSearchQuery: '',
                 document: '',
+                documentSearchQuery: '',
                 documentInfo: '',
                 errors: {
                     secondName: '',
@@ -84,6 +85,9 @@ export const passengerModule = {
         },
         updateDocument(state, [value, id]) {
             state.passengers[id].document = value
+        },
+        updateDocumentSearchQuery(state, [value, id]) {
+          state.passengers[id].documentSearchQuery = value
         },
         updateDocumentInfo(state, [value, id]) {
             state.passengers[id].documentInfo = value;
@@ -186,19 +190,14 @@ export const passengerModule = {
             const id = event.target.id.replace(/[^0-9]/g,"");
             ctx.commit('updateCitizenshipSearchQuery', [value, id])
         },
-        updateDocument(ctx,event) {
-            //установка паспорта для 1-го пассажира по умолчанию
-            if (event === undefined) {
-                const value = 'Паспорт РФ';
-                const id = 0
-                ctx.commit('updateDocument', [value, id]);
-            }
-            else {
-                const value = event.target.value;
-                //исключить наименование и оставить только цифры в id при помощи replace
-                const id = event.target.id.replace(/[^0-9]/g,"");
-                ctx.commit('updateDocument', [value, id]);
-            }
+        updateDocument(ctx,[value,id]) {
+            ctx.commit('updateDocument', [value, id])
+            ctx.commit('updateDocumentSearchQuery', [value, id])
+        },
+        searchDocument(ctx, event) {
+            const value = event.target.value;
+            const id = event.target.id.replace(/[^0-9]/g,"");
+            ctx.commit('updateDocumentSearchQuery', [value, id])
         },
         updateDocumentInfo(ctx, event) {
             const value = event.target.value;

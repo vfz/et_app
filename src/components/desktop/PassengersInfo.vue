@@ -106,7 +106,7 @@
               <div class="row gy-2">
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="gender" class="form-label">Пол</label>
-                  <div @click="OpenDropdownGender" class="position-relative">
+                  <div class="position-relative">
                     <ArrowDownIcon class="arrow-down-icon position-absolute" color="#283256"/>
                     <input
                         @input="searchGender($event)"
@@ -128,7 +128,7 @@
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="citizenship" class="form-label">Гражданство</label>
 <!--                  TODO при клике выводить список-->
-                  <div @click="openDropdown" class="position-relative">
+                  <div class="position-relative">
                     <ArrowDownIcon class="arrow-down-icon position-absolute" color="#283256"/>
                     <input
                         @input="searchCitizenship($event);"
@@ -152,16 +152,27 @@
                 </div>
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="document" class="form-label">Документ</label>
-                  <select
-                      @change="updateDocument"
-                      :id="'document'+passenger.id"
-                      class="form-select is-ok">
-                    <option v-for="documentType in getDocumentsTypes"
-                            :key="documentType.id"
-                            :value="documentType.name">
-                      {{documentType.name}}
-                    </option>
-                  </select>
+                  <div class="position-relative">
+                    <ArrowDownIcon class="arrow-down-icon position-absolute" color="#283256"/>
+                    <input
+                        @focus="toggleDropDown()"
+                        @input="searchDocument($event)"
+                        :value="passenger.documentSearchQuery"
+                        :class="{'is-ok': passenger.document, 'is-error' : passenger.errors.document}"
+                        class="form-control"
+                        :id="'document'+passenger.id"
+                        placeholder="Паспорт РФ"
+                        type="text">
+                    <div :class="{'d-none': passenger.documentSearchQuery === passenger.document && !isShow   }" class="find-document">
+                      <div
+                          @click="updateDocument([documentType.name, passenger.id]);toggleDropDown()"
+                          v-for="documentType in getDocumentsTypes"
+                          :key="documentType.id"
+                          class="meta">
+                        <div class="title">{{documentType.name}}</div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="documentInfo" class="form-label">Серия и номер документа</label>
@@ -192,6 +203,11 @@ import {mapState, mapActions, mapGetters} from 'vuex';
 export default {
   name: "PassengersInfo",
   components: {MyDataButton, ArrowDownIcon, CancelIcon},
+  data(){
+    return {
+      isShow: false,
+    }
+  },
   methods: {
     ...mapActions([
         'updateSecondName',
@@ -202,6 +218,7 @@ export default {
         'searchGender',
         'updateCitizenship',
         'updateDocument',
+        'searchDocument',
         'updateDocumentInfo',
         'fetchDocumentType',
         'fetchCitizenShip',
@@ -212,15 +229,11 @@ export default {
         'validateBirthday',
         'addPassenger',
     ]),
-    openDropdown() {
-      this.isShowCitizenship = !this.isShowCitizenship
-    },
-    OpenDropdownGender() {
+    toggleDropDown() {
       this.isShow = !this.isShow
     }
   },
   mounted() {
-    this.updateDocument();
     this.fetchDocumentType();
     this.fetchCitizenShip();
   },
@@ -326,7 +339,7 @@ export default {
     .form-select::selection {
       color: #B5BDDB;
     }
-    .find-citizenship{
+    .find-citizenship, .find-document, .find-gender{
       position: absolute;
       display: block;
       z-index: 998;
@@ -356,36 +369,6 @@ export default {
         z-index: 9999;
       }
 
-    }
-    .find-gender {
-      position: absolute;
-      display: block;
-      z-index: 998;
-      left:0;
-      width:100%;
-      max-height: 160px;
-      margin: 0;
-      overflow-y: auto;
-      //overflow-y: hidden;
-      background: #F3F7FF;
-      cursor: pointer;
-
-      /* Shadow / Hover */
-      :hover{
-        background: #1399FF;
-      }
-      box-shadow: 0px 2px 4px rgba(161, 159, 255, 0.1);
-      border-radius: 0px 0px 16px 16px;
-      .meta{
-        padding: 0 .7rem .4rem .7rem ;
-      }
-      .meta-end{
-        padding: 0 .7rem .4rem .7rem ;
-        border-radius: 0px 0px 16px 16px;
-      }
-      @media screen and (max-width: 767px) {
-        z-index: 9999;
-      }
     }
   }
 }

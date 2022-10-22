@@ -139,7 +139,7 @@
                         placeholder="Российская федерация"
                         type="text">
                     <div
-                        :class="{'d-none': passenger.citizenShipSearchQuery === passenger.citizenship   }" class="find-citizenship">
+                        :class="{'d-none': passenger.citizenShipSearchQuery === passenger.citizenship && !isShow   }" class="find-citizenship">
                       <div
                           v-for="citizenship in getCitizenshipsById(passenger.id)"
                           :key="citizenship.code"
@@ -155,7 +155,6 @@
                   <div class="position-relative">
                     <ArrowDownIcon class="arrow-down-icon position-absolute" color="#283256"/>
                     <input
-                        @focus="toggleDropDown()"
                         @input="searchDocument($event)"
                         :value="passenger.documentSearchQuery"
                         :class="{'is-ok': passenger.document, 'is-error' : passenger.errors.document}"
@@ -165,8 +164,8 @@
                         type="text">
                     <div :class="{'d-none': passenger.documentSearchQuery === passenger.document && !isShow   }" class="find-document">
                       <div
-                          @click="updateDocument([documentType.name, passenger.id]);toggleDropDown()"
-                          v-for="documentType in getDocumentsTypes"
+                          @click="updateDocument([documentType.name, passenger.id])"
+                          v-for="documentType in getDocumentById(passenger.id)"
                           :key="documentType.id"
                           class="meta">
                         <div class="title">{{documentType.name}}</div>
@@ -229,9 +228,6 @@ export default {
         'validateBirthday',
         'addPassenger',
     ]),
-    toggleDropDown() {
-      this.isShow = !this.isShow
-    }
   },
   mounted() {
     this.fetchDocumentType();
@@ -243,7 +239,8 @@ export default {
     ...mapGetters([
        'getPassengers',
         'getDocumentsTypes',
-        'getCitizenshipsById'
+        'getCitizenshipsById',
+        'getDocumentById'
     ]),
   },
 }

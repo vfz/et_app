@@ -324,7 +324,7 @@ export const passengerModule = {
                 ///аргументы (mutation, [id, errorText, formField ])
                 ctx.commit('updateError', [id, 'заполните серию и номер документа', formField]);
             }
-        }
+        },
     },
     getters: {
         getPassengers(state) {
@@ -341,6 +341,9 @@ export const passengerModule = {
         },
         getCitizenshipsById: (state) => (id) => {
             return [...state.citizenShips].filter(citizenShip => citizenShip.name.toLowerCase().includes(state.passengers[id].citizenShipSearchQuery.toLowerCase()))
+        },
+        getDocumentById: (state) => (id) => {
+            return [...state.documentTypes].filter(documentType => documentType.name.toLowerCase().includes(state.passengers[id].documentSearchQuery.toLowerCase()))
         }
 
     },

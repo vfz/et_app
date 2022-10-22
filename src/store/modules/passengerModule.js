@@ -93,7 +93,6 @@ export const passengerModule = {
             state.passengers[id].documentInfo = value;
         },
         updateError(state, [id, errorText, formField]) {
-            console.log(id,errorText,formField)
             state.passengers[id].errors[formField] = errorText
         }
     },
@@ -347,6 +346,28 @@ export const passengerModule = {
             }
             else if (documentType === 'Заграничный паспорт гражданина Российской Федерации' && value.length === 9 ) {
                 ctx.commit('updateError', [id, '', formField])
+            }
+
+            if (documentType === 'Военный билет военнослужащего срочной службы' || documentType === 'Удостоверение личности военнослужащего действительной службы') {
+                let regexp = /[а-яё]/i;
+                let serial = value.substr(0, 2)
+                let number = value.substr(2, 9)
+                console.log(number, 'номер военного')
+                if (regexp.test(serial)) {
+                    ctx.commit('updateError', [id, '', formField])
+                    if (number.length > 7) {
+                        ctx.commit('updateError', [id, 'Номер военного билета указан неверно', formField])
+                    }
+                    else if (number.length < 7) {
+                        ctx.commit('updateError', [id, 'Номер военного билета указан неверно', formField])
+                    }
+                    else if (number.length === 7) {
+                        ctx.commit('updateError', [id, '', formField])
+                    }
+                }
+                else {
+                    ctx.commit('updateError', [id, 'Серия военного билета указана неверно', formField])
+                }
             }
         },
     },

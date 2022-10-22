@@ -221,6 +221,12 @@ export const passengerModule = {
             else {
                 ctx.commit('updateError', [id, '', formField])
             }
+            if (documentType === 'Заграничный паспорт гражданина Российской Федерации' && value.length > 9) {
+                ctx.commit('updateError', [id, 'Серия и номер паспорта указаны некорректно', formField])
+            }
+            else {
+                ctx.commit('updateError', [id, '', formField])
+            }
         },
         async fetchDocumentType(ctx) {
             try {

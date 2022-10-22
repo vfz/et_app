@@ -93,6 +93,7 @@ export const passengerModule = {
             state.passengers[id].documentInfo = value;
         },
         updateError(state, [id, errorText, formField]) {
+            console.log(id,errorText,formField)
             state.passengers[id].errors[formField] = errorText
         }
     },
@@ -205,29 +206,6 @@ export const passengerModule = {
             const id = event.target.id.replace(/[^0-9]/g,"");
             ctx.commit('updateDocumentInfo', [value, id]);
         },
-        validateDocumentInfo(ctx, [event, documentType]) {
-            //TODO доделать валидацию для документа
-            //Исключить пробелы в значении
-            const value = event.target.value.replace(/\s/g,'');
-            //исключить наименование и оставить только цифры в id при помощи replace
-            const id = event.target.id.replace(/[^0-9]/g,"");
-            const formField = 'documentInfo';
-            if (value === '') {
-                ctx.commit('updateError', [id, 'заполните серию и номер документа', formField]);
-            }
-            if (documentType === 'Паспорт гражданина Российской Федерации' && value.length > 10) {
-                ctx.commit('updateError', [id, 'Серия и номер паспорта указаны некорректно', formField])
-            }
-            else {
-                ctx.commit('updateError', [id, '', formField])
-            }
-            if (documentType === 'Заграничный паспорт гражданина Российской Федерации' && value.length > 9) {
-                ctx.commit('updateError', [id, 'Серия и номер паспорта указаны некорректно', formField])
-            }
-            else {
-                ctx.commit('updateError', [id, '', formField])
-            }
-        },
         async fetchDocumentType(ctx) {
             try {
                 const response = await fetch(ctx.rootState.API_URL+ '?command=type_doc')
@@ -335,6 +313,37 @@ export const passengerModule = {
                 if (age > 125) {
                     ctx.commit('updateError', [id, 'Некорректная дата, вам больше 125 лет?', formField])
                 }
+            }
+        },
+        validateDocumentInfo(ctx, [event, documentType]) {
+            //TODO доделать валидацию для документа
+            //Исключить пробелы в значении
+            const value = event.target.value.replace(/\s/g,'');
+            //исключить наименование и оставить только цифры в id при помощи replace
+            const id = event.target.id.replace(/[^0-9]/g,"");
+            const formField = 'documentInfo';
+            if (value === '') {
+                ctx.commit('updateError', [id, 'заполните серию и номер документа', formField]);
+            }
+
+            if (documentType === 'Паспорт гражданина Российской Федерации' && value.length > 10) {
+                ctx.commit('updateError', [id, 'Серия и номер паспорта указаны некорректно', formField])
+            }
+            else if (documentType === 'Паспорт гражданина Российской Федерации' && value.length < 10) {
+                ctx.commit('updateError', [id, 'Серия и номер паспорта указаны некорректно', formField])
+            }
+            else if (documentType === 'Паспорт гражданина Российской Федерации' && value.length === 10) {
+                ctx.commit('updateError', [id, '', formField])
+            }
+
+            if (documentType === 'Заграничный паспорт гражданина Российской Федерации' && value.length > 9) {
+                ctx.commit('updateError', [id, 'Серия и номер паспорта указаны некорректно', formField])
+            }
+            else if (documentType === 'Заграничный паспорт гражданина Российской Федерации' && value.length < 9) {
+                ctx.commit('updateError', [id, 'Серия и номер паспорта указаны некорректно', formField])
+            }
+            else if (documentType === 'Заграничный паспорт гражданина Российской Федерации' && value.length === 9 ) {
+                ctx.commit('updateError', [id, '', formField])
             }
         },
     },

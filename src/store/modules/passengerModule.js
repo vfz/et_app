@@ -205,7 +205,7 @@ export const passengerModule = {
             const id = event.target.id.replace(/[^0-9]/g,"");
             ctx.commit('updateDocumentInfo', [value, id]);
         },
-        validateDocumentInfo(ctx, event) {
+        validateDocumentInfo(ctx, [event, documentType]) {
             //TODO доделать валидацию для документа
             //Исключить пробелы в значении
             const value = event.target.value.replace(/\s/g,'');
@@ -214,6 +214,12 @@ export const passengerModule = {
             const formField = 'documentInfo';
             if (value === '') {
                 ctx.commit('updateError', [id, 'заполните серию и номер документа', formField]);
+            }
+            if (documentType === 'Паспорт гражданина Российской Федерации' && value.length > 10) {
+                ctx.commit('updateError', [id, 'Серия и номер паспорта указаны некорректно', formField])
+            }
+            else {
+                ctx.commit('updateError', [id, '', formField])
             }
         },
         async fetchDocumentType(ctx) {
@@ -344,7 +350,9 @@ export const passengerModule = {
         },
         getDocumentById: (state) => (id) => {
             return [...state.documentTypes].filter(documentType => documentType.name.toLowerCase().includes(state.passengers[id].documentSearchQuery.toLowerCase()))
+        },
+        getPassengerDocumentById: (state) => (id) => {
+            return state.passengers[id].document
         }
-
     },
 }

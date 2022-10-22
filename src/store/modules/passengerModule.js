@@ -98,6 +98,7 @@ export const passengerModule = {
         }
     },
     actions: {
+        //Обновление данных
         addPassenger(ctx, isAdult) {
             const adultCount = ctx.getters.adults;
             const childrenCount = ctx.getters.childrens;
@@ -206,6 +207,7 @@ export const passengerModule = {
             const id = event.target.id.replace(/[^0-9]/g,"");
             ctx.commit('updateDocumentInfo', [value, id]);
         },
+        //Загрузка с API
         async fetchDocumentType(ctx) {
             try {
                 const response = await fetch(ctx.rootState.API_URL+ '?command=type_doc')
@@ -230,6 +232,7 @@ export const passengerModule = {
                 console.log(error, 'ошибка гражданство')
             }
         },
+        //Валидация
         validateSecondName(ctx, event){
             const value = event.target.value;
             //исключить наименование и оставить только цифры в id при помощи replace

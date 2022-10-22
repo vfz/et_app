@@ -303,11 +303,9 @@ export const passengerModule = {
                 let age = currentDateWithoutTime.getFullYear() - birthDay.getFullYear()
 
                 const document = ctx.state.passengers[id].document
-                // console.log(document);
                 if (currentDateWithoutTime < birthDayCurrent) {
                     age = age-1
                 }
-                // console.log(age, 'возраст')
                 if (age < 14 && document === 'Паспорт гражданина Российской Федерации') {
                     ///аргументы (mutation, [id, errorText, formField ])
                     ctx.commit('updateError', [id, 'До 14 лет, билеты оформляются по свидетельству о рождении', formField])
@@ -352,7 +350,6 @@ export const passengerModule = {
                 let regexp = /[а-яё]/i;
                 let serial = value.substr(0, 2)
                 let number = value.substr(2, 9)
-                console.log(number, 'номер военного')
                 if (regexp.test(serial)) {
                     ctx.commit('updateError', [id, '', formField])
                     if (number.length > 7) {

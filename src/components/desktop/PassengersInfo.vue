@@ -31,7 +31,7 @@
             <div class="row">
               <div class="col-12">
                 <div class="checkbox-form d-flex align-items-center justify-content-between w-100">
-                  <MyDataButton class="d-none"/>
+                  <MyDataButton is-login=""/>
                   <div class="form-checks">
                     <div class="form-check form-check-inline">
                       <input @click="UpdateOneWay(true)" :checked="oneWay" :id="'checkbox1'+passenger.id" class="form-check-input" type="radio" :name="'inlineRadioOptions'+passenger.id">
@@ -139,7 +139,7 @@
                         placeholder="Российская федерация"
                         type="text">
                     <div
-                        :class="{'d-none': passenger.citizenShipSearchQuery === passenger.citizenship && !isShow   }" class="find-citizenship">
+                        :class="{'d-none': passenger.citizenShipSearchQuery === passenger.citizenship}" class="find-citizenship">
                       <div
                           v-for="citizenship in getCitizenshipsById(passenger.id)"
                           :key="citizenship.code"
@@ -162,7 +162,7 @@
                         :id="'document'+passenger.id"
                         placeholder="Паспорт РФ"
                         type="text">
-                    <div :class="{'d-none': passenger.documentSearchQuery === passenger.document && !isShow   }" class="find-document">
+                    <div :class="{'d-none': passenger.documentSearchQuery === passenger.document}" class="find-document">
                       <div
                           @click="updateDocument([documentType.name, passenger.id])"
                           v-for="documentType in getDocumentById(passenger.id)"
@@ -202,11 +202,6 @@ import {mapState, mapActions, mapGetters} from 'vuex';
 export default {
   name: "PassengersInfo",
   components: {MyDataButton, ArrowDownIcon, CancelIcon},
-  data(){
-    return {
-      isShow: false,
-    }
-  },
   methods: {
     ...mapActions([
         'UpdateOneWay',

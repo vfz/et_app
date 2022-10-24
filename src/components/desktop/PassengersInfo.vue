@@ -34,12 +34,12 @@
                   <MyDataButton class="d-none"/>
                   <div class="form-checks">
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" v-on:click="oneWay=true" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
-                      <label class="form-check-label" for="inlineRadio1">В одну сторону</label>
+                      <input @click="UpdateOneWay(true)" :checked="oneWay" :id="'checkbox1'+passenger.id" class="form-check-input" type="radio" :name="'inlineRadioOptions'+passenger.id">
+                      <label class="form-check-label" :for="'checkbox1'+passenger.id">В одну сторону</label>
                     </div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" v-on:click="oneWay=false"  name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                      <label class="form-check-label" for="inlineRadio2">Туда-обратно</label>
+                      <input @click="UpdateOneWay(false)" :checked="!oneWay" :id="'checkbox2'+passenger.id" class="form-check-input" type="radio" :name="'inlineRadioOptions'+passenger.id">
+                      <label class="form-check-label" :for="'checkbox2'+passenger.id">Туда-обратно</label>
                     </div>
                   </div>
                   <div class="d-inline-block">
@@ -209,6 +209,7 @@ export default {
   },
   methods: {
     ...mapActions([
+        'UpdateOneWay',
         'updateSecondName',
         'updateFirstName',
         'updateMiddleName',
@@ -236,13 +237,15 @@ export default {
   },
   computed: {
     ...mapState({
+
     }),
     ...mapGetters([
        'getPassengers',
         'getDocumentsTypes',
         'getCitizenshipsById',
         'getDocumentById',
-        'getPassengerDocumentById'
+        'getPassengerDocumentById',
+        'oneWay'
     ]),
   },
 }
@@ -307,6 +310,77 @@ export default {
       right: 0;
       bottom: 50%;
       cursor: pointer;
+    }
+    .form-check-label {
+      font-family: $uni;
+      font-weight: $bold;
+      font-size: 18px;
+      margin-left: 24px;
+      color: $base;
+    }
+    .form-check-inline {
+      display: inline-flex;
+      align-items: center;
+      margin-right: 64px;
+      @media screen and (max-width: 991px) {
+        display: flex;
+        flex-direction: column-reverse;
+        padding-left: 0;
+        margin-right: 38px;
+      }
+      .form-check-input {
+        border-color: #1399FF;
+      }
+      .form-check-input[type=radio] {
+        margin-right: 0;
+      }
+      .form-check-input:checked {
+        border: 4px solid $blue-active;
+      }
+      .form-check-input:checked:before {
+        box-shadow: none;
+      }
+      .form-check-input:checked:after {
+        border: none;
+        background: none;
+      }
+      .form-check-input[type=radio]:before {
+        @media screen and (max-width: 991px) {
+          width: 18px;
+          height: 18px;
+        }
+      }
+      .form-check-input[type=radio]:after {
+        @media screen and (max-width: 991px) {
+          width: 18px;
+          height: auto;
+        }
+      }
+      .form-check-input:checked + .form-check-label {
+        font-weight: $light;
+        color: $base;
+      }
+      .form-check-label {
+        font-family: $uni;
+        font-weight: $light;
+        font-size: 18px;
+        margin-left: 24px;
+        color: $deactivate;
+        padding-left: 0;
+        @media screen and (max-width: 991px) {
+          display: block;
+          margin-left: 0;
+          font-size: 14px;
+          line-height: 18.9px;
+          margin-bottom: 8px;
+        }
+      }
+    }
+    .form-check {
+      margin-bottom: 0;
+    }
+    .form-check-inline:last-child {
+      margin-right: 0;
     }
     .form-control {
       border: none;

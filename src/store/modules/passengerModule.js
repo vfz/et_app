@@ -384,7 +384,24 @@ export const passengerModule = {
                     ctx.commit('updateError', [id, '', formField])
                 }
             }
-
+            //Проверка паспорта гражданина СССР
+            if (documentType === 'Паспорт гражданина СССР') {
+                let regexpNumber = /[0-9]/;
+                let regexpSerial = /[а-яё]/i;
+                let regexpRomeNumber = /[IVXLCDM]/
+                if (!regexpNumber.test(value)) {
+                    ctx.commit('updateError', [id, 'В паспорте гражданина СССР неверно указан номер', formField])
+                }
+                else if (!regexpSerial.test(value)) {
+                    ctx.commit('updateError', [id, 'В паспорте гражданина СССР неверно указана серия', formField])
+                }
+                else if (!regexpRomeNumber.test(value)) {
+                    ctx.commit('updateError', [id, 'Римские цифры в номере паспорта гражданина СССР указаны неверно', formField])
+                }
+                else {
+                    ctx.commit('updateError', [id, '', formField])
+                }
+            }
         },
     },
     getters: {

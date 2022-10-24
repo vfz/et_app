@@ -325,7 +325,7 @@ export const passengerModule = {
             if (value === '') {
                 ctx.commit('updateError', [id, 'заполните серию и номер документа', formField]);
             }
-
+            //Проверка паспорта РФ
             if (documentType === 'Паспорт гражданина Российской Федерации' && value.length > 10) {
                 ctx.commit('updateError', [id, 'Серия и номер паспорта указаны некорректно', formField])
             }
@@ -335,7 +335,7 @@ export const passengerModule = {
             else if (documentType === 'Паспорт гражданина Российской Федерации' && value.length === 10) {
                 ctx.commit('updateError', [id, '', formField])
             }
-
+            //Проверка паспорта Загранпаспорта
             if (documentType === 'Заграничный паспорт гражданина Российской Федерации' && value.length > 9) {
                 ctx.commit('updateError', [id, 'Серия и номер паспорта указаны некорректно', formField])
             }
@@ -345,7 +345,7 @@ export const passengerModule = {
             else if (documentType === 'Заграничный паспорт гражданина Российской Федерации' && value.length === 9 ) {
                 ctx.commit('updateError', [id, '', formField])
             }
-
+            //Проверка военного билета
             if (documentType === 'Военный билет военнослужащего срочной службы' || documentType === 'Удостоверение личности военнослужащего действительной службы') {
                 let regexp = /[а-яё]/i;
                 let serial = value.substr(0, 2)

@@ -31,7 +31,7 @@
             <div class="row">
               <div class="col-12">
                 <div class="checkbox-form d-flex align-items-center justify-content-between w-100">
-                  <MyDataButton is-login=""/>
+                  <MyDataButton :is-login="getIsLogin" :is-collapse="false"/>
                   <div class="form-checks">
                     <div class="form-check form-check-inline">
                       <input @click="UpdateOneWay(true)" :checked="oneWay" :id="'checkbox1'+passenger.id" class="form-check-input" type="radio" :name="'inlineRadioOptions'+passenger.id">
@@ -231,16 +231,14 @@ export default {
     this.fetchCitizenShip();
   },
   computed: {
-    ...mapState({
-
-    }),
     ...mapGetters([
        'getPassengers',
         'getDocumentsTypes',
         'getCitizenshipsById',
         'getDocumentById',
         'getPassengerDocumentById',
-        'oneWay'
+        'oneWay',
+        'getIsLogin'
     ]),
   },
 }

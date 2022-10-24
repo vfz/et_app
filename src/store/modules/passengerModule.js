@@ -427,6 +427,9 @@ export const passengerModule = {
         },
         getPassengerDocumentById: (state) => (id) => {
             return state.passengers[id].document
+        },
+        getIsLogin(state) {
+            return state.isLogin
         }
     },
 }

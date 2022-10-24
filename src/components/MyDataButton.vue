@@ -73,6 +73,7 @@ export default {
     @include animation;
     transform: rotate(0deg);
     pointer-events: none;
+    margin-left: 36px;
   }
   .arrow-up {
     @include animation;

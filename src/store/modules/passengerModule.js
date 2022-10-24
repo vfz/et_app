@@ -110,8 +110,11 @@ export const passengerModule = {
                 middleName: '',
                 birthday: '',
                 gender: '',
+                genderSearchQuery: '',
                 citizenship: '',
+                citizenShipSearchQuery: '',
                 document: '',
+                documentSearchQuery: '',
                 documentInfo: '',
                 errors: {
                     secondName: '',
@@ -316,7 +319,6 @@ export const passengerModule = {
             }
         },
         validateDocumentInfo(ctx, [event, documentType]) {
-            //TODO доделать валидацию для документа
             //Исключить пробелы в значении
             const value = event.target.value.replace(/\s/g,'');
             //исключить наименование и оставить только цифры в id при помощи replace

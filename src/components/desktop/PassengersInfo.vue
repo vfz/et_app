@@ -52,7 +52,6 @@
                 </div>
               </div>
               <div class="row">
-                <!--                        TODO сделать валидацию по классам .is-ok и .is-error-->
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="secondName" class="form-label">Фамилия</label>
                   <input
@@ -75,7 +74,6 @@
                       :class="{'is-ok': passenger.firstName, 'is-error' : passenger.errors.firstName}"
                       :id="'firstName'+ passenger.id"
                       placeholder="Иван">
-                  <!--                          TODO убрать d-none когда валидация неверная-->
                   <div :class="{'d-none': !passenger.errors.firstName}" class="error-feedback">{{passenger.errors.firstName}}</div>
                 </div>
                 <div class="col-3 col-lg-6 col-xl-3">

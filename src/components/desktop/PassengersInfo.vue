@@ -44,7 +44,7 @@
                   </div>
                   <div class="d-inline-block">
                     <!-- Button trigger modal -->
-                    <button type="button" class="remove-button" data-bs-toggle="modal" :data-bs-target="'#removeModal'+passenger.id">
+                    <button v-if="passenger.id !== 0" type="button" class="remove-button" data-bs-toggle="modal" :data-bs-target="'#removeModal'+passenger.id">
                       Убрать
                       <CancelIcon color="#1399FF"/>
                     </button>

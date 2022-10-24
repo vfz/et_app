@@ -430,6 +430,9 @@ export const passengerModule = {
         },
         getIsLogin(state) {
             return state.isLogin
+        },
+        getBuyerInfo(state) {
+            return state.buyerInfo
         }
     },
 }

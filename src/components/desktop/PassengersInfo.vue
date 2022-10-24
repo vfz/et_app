@@ -30,8 +30,8 @@
           <div class="form-wrapper">
             <div class="row">
               <div class="col-12">
-                <div class="checkbox-form d-flex align-items-center justify-content-between w-100">
-                  <MyDataButton :is-login="getIsLogin" :is-collapse="false"/>
+                <div class="checkbox-form d-flex align-items-center w-100">
+                  <MyDataButton :is-login="getIsLogin" :is-collapse="false" class="my-data-button"/>
                   <div class="form-checks">
                     <div class="form-check form-check-inline">
                       <input @click="UpdateOneWay(true)" :checked="oneWay" :id="'checkbox1'+passenger.id" class="form-check-input" type="radio" :name="'inlineRadioOptions'+passenger.id">
@@ -283,6 +283,30 @@ export default {
     padding: 35px 29px;
     .checkbox-form {
       margin-bottom: 24px;
+      .my-data-button {
+        margin-right: 64px;
+        @media screen and (max-width: 1472px) {
+          margin-right: 32px;
+        }
+        @media screen and (max-width: 1324px) {
+          margin-right: 12px;
+        }
+        @media screen and (max-width: 1199px) {
+          margin-right: 64px;
+        }
+      }
+      .form-checks {
+        margin-right: 64px;
+        @media screen and (max-width: 1472px) {
+          margin-right: 32px;
+        }
+        @media screen and (max-width: 1324px) {
+          margin-right: 12px;
+        }
+        @media screen and (max-width: 1199px) {
+          margin-right: 64px;
+        }
+      }
     }
     .remove-button {
       background: none;
@@ -310,11 +334,29 @@ export default {
       font-size: 18px;
       margin-left: 24px;
       color: $base;
+      @media screen and (max-width: 1472px) {
+        margin-left: 12px !important;
+      }
+      @media screen and (max-width: 1199px) {
+        margin-left: 24px;
+      }
     }
     .form-check-inline {
       display: inline-flex;
       align-items: center;
       margin-right: 64px;
+      @media screen and (max-width: 1472px) {
+        margin-right: 38px;
+      }
+      @media screen and (max-width: 1324px) {
+        margin-right: 12px;
+      }
+      @media screen and (max-width: 1205px) {
+        margin-right: 6px;
+      }
+      @media screen and (max-width: 1199px) {
+        margin-right: 64px;
+      }
       @media screen and (max-width: 991px) {
         display: flex;
         flex-direction: column-reverse;

@@ -74,6 +74,15 @@ export default {
     transform: rotate(0deg);
     pointer-events: none;
     margin-left: 36px;
+    @media screen and (max-width: 1472px) {
+      margin-left: 12px;
+    }
+    @media screen and (max-width: 1324px) {
+      margin-right: 6px;
+    }
+    @media screen and (max-width: 1199px) {
+      margin-left: 36px;
+    }
   }
   .arrow-up {
     @include animation;

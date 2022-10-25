@@ -66,9 +66,16 @@
 
 <script>
 import MyDataButton from "@/components/MyDataButton";
+import {mapGetters} from "vuex";
 export default {
   name: "BuyerInfo",
-  components: {MyDataButton}
+  components: {MyDataButton},
+  computed: {
+    ...mapGetters([
+      'getIsLogin',
+      'getBuyerInfo'
+    ]),
+  },
 }
 </script>
 

@@ -28,56 +28,56 @@
                 <div class="d-block">
                   <label for="secondNameBuyer" class="form-label">Фамилия</label>
                   <input
-                      @input="updateSecondNameBuyer($event)"
+                      @input="updateSecondNameBuyer($event); validateSecondNameBuyer($event)"
                       :value="getBuyerInfo.secondName"
                       type="text"
                       class="form-control"
+                      :class="{'is-ok': getBuyerInfo.secondName, 'is-error' : getBuyerInfo.errors.secondName}"
                       id="secondNameBuyer"
                       placeholder="Иванов">
-                  <!--                          TODO убрать d-none когда валидация неверная-->
-                  <div class="error-feedback d-none">Укажите фамилию</div>
+                  <div :class="{'d-none': !getBuyerInfo.errors.secondName}" class="error-feedback">{{getBuyerInfo.errors.secondName}}</div>
                 </div>
               </div>
               <div class="col-12 col-lg-6 col-xl mb-lg-4 mb-xl-0">
                 <div class="d-block">
                   <label for="firstNameBuyer" class="form-label">Имя</label>
                   <input
-                      @input="updateFirstNameBuyer($event)"
+                      @input="updateFirstNameBuyer($event); validateFirstNameBuyer($event)"
                       :value="getBuyerInfo.firstName"
                       type="text"
                       class="form-control"
+                      :class="{'is-ok': getBuyerInfo.firstName, 'is-error' : getBuyerInfo.errors.firstName}"
                       id="firstNameBuyer"
                       placeholder="Иван">
-                  <!--                          TODO убрать d-none когда валидация неверная-->
-                  <div class="error-feedback d-none">Укажите имя</div>
+                  <div :class="{'d-none': !getBuyerInfo.errors.firstName}" class="error-feedback">{{getBuyerInfo.errors.firstName}}</div>
                 </div>
               </div>
               <div class="col-12 col-lg-6 col-xl">
                 <div class="d-block">
                   <label for="mailBuyer" class="form-label">Электронная почта</label>
                   <input
-                      @input="updateEmailBuyer($event)"
+                      @input="updateEmailBuyer($event); validateEmailBuyer($event)"
                       :value="getBuyerInfo.email"
                       type="text"
                       class="form-control"
+                      :class="{'is-ok': getBuyerInfo.email, 'is-error' : getBuyerInfo.errors.email}"
                       id="mailBuyer"
                       placeholder="name@mail.ru">
-                  <!--                          TODO убрать d-none когда валидация неверная-->
-                  <div class="error-feedback d-none">Электронная почта в неправильном формате</div>
+                  <div :class="{'d-none': !getBuyerInfo.errors.email}" class="error-feedback">{{getBuyerInfo.errors.email}}</div>
                 </div>
               </div>
               <div class="col-12 col-lg-6 col-xl">
                 <div class="d-block">
                   <label for="numberBuyer" class="form-label">Телефон</label>
                   <input
-                      @input="updateNumberBuyer($event)"
+                      @input="updateNumberBuyer($event); validateNumberBuyer($event)"
                       :value="getBuyerInfo.number"
                       type="text"
                       class="form-control"
+                      :class="{'is-ok': getBuyerInfo.number, 'is-error' : getBuyerInfo.errors.number}"
                       id="numberBuyer"
                       placeholder="+7 (___)-___-__-__">
-                  <!--                          TODO убрать d-none когда валидация неверная-->
-                  <div class="error-feedback d-none">Номер телефона в неправильном формате</div>
+                  <div :class="{'d-none': !getBuyerInfo.errors.number}" class="error-feedback">{{getBuyerInfo.errors.number}}</div>
                 </div>
               </div>
             </div>
@@ -90,7 +90,7 @@
 
 <script>
 import MyDataButton from "@/components/MyDataButton";
-import {mapActions, mapGetters, mapState} from "vuex";
+import {mapActions, mapGetters} from "vuex";
 export default {
   name: "BuyerInfo",
   components: {MyDataButton},

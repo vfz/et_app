@@ -94,10 +94,22 @@ export const passengerModule = {
         },
         updateError(state, [id, errorText, formField]) {
             state.passengers[id].errors[formField] = errorText
+        },
+        updateSecondNameBuyer(state, secondName) {
+            state.buyerInfo.secondName = secondName
+        },
+        updateFirstNameBuyer(state, firstName) {
+            state.buyerInfo.firstName = firstName
+        },
+        updateEmailBuyer(state, email) {
+            state.buyerInfo.email = email
+        },
+        updateNumberBuyer(state, number) {
+            state.buyerInfo.number = number
         }
     },
     actions: {
-        //Обновление данных
+        //Обновление данных пассажиров
         addPassenger(ctx, isAdult) {
             const adultCount = ctx.getters.adults;
             const childrenCount = ctx.getters.childrens;
@@ -208,6 +220,23 @@ export const passengerModule = {
             //исключить наименование и оставить только цифры в id при помощи replace
             const id = event.target.id.replace(/[^0-9]/g,"");
             ctx.commit('updateDocumentInfo', [value, id]);
+        },
+
+        updateSecondNameBuyer(ctx, event) {
+            const value = event.target.value
+            ctx.commit('updateSecondNameBuyer', value)
+        },
+        updateFirstNameBuyer(ctx, event) {
+            const value = event.target.value
+            ctx.commit('updateFirstNameBuyer', value)
+        },
+        updateEmailBuyer(ctx, event) {
+            const value = event.target.value
+            ctx.commit('updateEmailBuyer', value)
+        },
+        updateNumberBuyer(ctx,event) {
+            const value = event.target.value
+            ctx.commit('updateNumberBuyer', value)
         },
         //Загрузка с API
         async fetchDocumentType(ctx) {

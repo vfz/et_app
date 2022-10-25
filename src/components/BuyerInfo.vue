@@ -27,7 +27,13 @@
               <div class="col-12 col-lg-6 col-xl mb-lg-4 mb-xl-0">
                 <div class="d-block">
                   <label for="secondNameBuyer" class="form-label">Фамилия</label>
-                  <input type="text" class="form-control" id="secondNameBuyer" placeholder="Иванов">
+                  <input
+                      @input="updateSecondNameBuyer($event)"
+                      :value="getBuyerInfo.secondName"
+                      type="text"
+                      class="form-control"
+                      id="secondNameBuyer"
+                      placeholder="Иванов">
                   <!--                          TODO убрать d-none когда валидация неверная-->
                   <div class="error-feedback d-none">Укажите фамилию</div>
                 </div>
@@ -35,7 +41,13 @@
               <div class="col-12 col-lg-6 col-xl mb-lg-4 mb-xl-0">
                 <div class="d-block">
                   <label for="firstNameBuyer" class="form-label">Имя</label>
-                  <input type="text" class="form-control" id="firstNameBuyer" placeholder="Иван">
+                  <input
+                      @input="updateFirstNameBuyer($event)"
+                      :value="getBuyerInfo.firstName"
+                      type="text"
+                      class="form-control"
+                      id="firstNameBuyer"
+                      placeholder="Иван">
                   <!--                          TODO убрать d-none когда валидация неверная-->
                   <div class="error-feedback d-none">Укажите имя</div>
                 </div>
@@ -43,7 +55,13 @@
               <div class="col-12 col-lg-6 col-xl">
                 <div class="d-block">
                   <label for="mailBuyer" class="form-label">Электронная почта</label>
-                  <input type="text" class="form-control" id="mailBuyer" placeholder="name@mail.ru">
+                  <input
+                      @input="updateEmailBuyer($event)"
+                      :value="getBuyerInfo.email"
+                      type="text"
+                      class="form-control"
+                      id="mailBuyer"
+                      placeholder="name@mail.ru">
                   <!--                          TODO убрать d-none когда валидация неверная-->
                   <div class="error-feedback d-none">Электронная почта в неправильном формате</div>
                 </div>
@@ -51,7 +69,13 @@
               <div class="col-12 col-lg-6 col-xl">
                 <div class="d-block">
                   <label for="numberBuyer" class="form-label">Телефон</label>
-                  <input type="text" class="form-control" id="numberBuyer" placeholder="+7 (___)-___-__-__">
+                  <input
+                      @input="updateNumberBuyer($event)"
+                      :value="getBuyerInfo.number"
+                      type="text"
+                      class="form-control"
+                      id="numberBuyer"
+                      placeholder="+7 (___)-___-__-__">
                   <!--                          TODO убрать d-none когда валидация неверная-->
                   <div class="error-feedback d-none">Номер телефона в неправильном формате</div>
                 </div>
@@ -66,10 +90,18 @@
 
 <script>
 import MyDataButton from "@/components/MyDataButton";
-import {mapGetters} from "vuex";
+import {mapActions, mapGetters, mapState} from "vuex";
 export default {
   name: "BuyerInfo",
   components: {MyDataButton},
+  methods: {
+    ...mapActions([
+        'updateSecondNameBuyer',
+        'updateFirstNameBuyer',
+        'updateEmailBuyer',
+        'updateNumberBuyer'
+    ])
+  },
   computed: {
     ...mapGetters([
       'getIsLogin',

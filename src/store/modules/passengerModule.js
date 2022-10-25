@@ -38,6 +38,12 @@ export const passengerModule = {
             secondName: '',
             email: '',
             number: '',
+            errors: {
+                secondName: '',
+                firstName: '',
+                email: '',
+                number: ''
+            }
         },
         promoCode: '',
     }),
@@ -106,6 +112,9 @@ export const passengerModule = {
         },
         updateNumberBuyer(state, number) {
             state.buyerInfo.number = number
+        },
+        updateErrorBuyer(state, [errorText, formField]) {
+            state.buyerInfo.errors[formField] = errorText
         }
     },
     actions: {
@@ -263,7 +272,7 @@ export const passengerModule = {
                 console.log(error, 'ошибка гражданство')
             }
         },
-        //Валидация
+        //Валидация для пассажиров
         validateSecondName(ctx, event){
             const value = event.target.value;
             //исключить наименование и оставить только цифры в id при помощи replace
@@ -434,6 +443,47 @@ export const passengerModule = {
                 }
             }
         },
+        //Валидация для покупателя
+        validateSecondNameBuyer (ctx, event) {
+            const value = event.target.value;
+            const formField = 'secondName'
+            if (value === '') {
+                ctx.commit('updateErrorBuyer', ['заполните фамилию', formField]);
+            }
+            if (value !== '') {
+                ctx.commit('updateErrorBuyer', ['', formField])
+            }
+        },
+        validateFirstNameBuyer (ctx, event) {
+            const value = event.target.value;
+            const formField = 'firstName'
+            if (value === '') {
+                ctx.commit('updateErrorBuyer', ['заполните имя', formField]);
+            }
+            if (value !== '') {
+                ctx.commit('updateErrorBuyer', ['', formField])
+            }
+        },
+        validateEmailBuyer(ctx, event) {
+            const value = event.target.value;
+            const formField = 'email'
+            if (value === '') {
+                ctx.commit('updateErrorBuyer', ['заполните почту', formField]);
+            }
+            if (value !== '') {
+                ctx.commit('updateErrorBuyer', ['', formField])
+            }
+        },
+        validateNumberBuyer(ctx, event) {
+            const value = event.target.value;
+            const formField = 'number'
+            if (value === '') {
+                ctx.commit('updateErrorBuyer', ['заполните номер', formField]);
+            }
+            if (value !== '') {
+                ctx.commit('updateErrorBuyer', ['', formField])
+            }
+        }
     },
     getters: {
         getPassengers(state) {

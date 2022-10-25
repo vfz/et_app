@@ -99,7 +99,11 @@ export default {
         'updateSecondNameBuyer',
         'updateFirstNameBuyer',
         'updateEmailBuyer',
-        'updateNumberBuyer'
+        'updateNumberBuyer',
+        'validateSecondNameBuyer',
+        'validateFirstNameBuyer',
+        'validateEmailBuyer',
+        'validateNumberBuyer'
     ])
   },
   computed: {

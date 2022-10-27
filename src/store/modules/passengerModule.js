@@ -545,6 +545,9 @@ export const passengerModule = {
             if (value !== '') {
                 ctx.commit('updateErrorBuyer', ['', formField])
             }
+            if (!value.includes('@')) {
+                ctx.commit('updateErrorBuyer', ['Почта указана неверно', formField]);
+            }
         },
         validateNumberBuyer(ctx, event) {
             const value = event.target.value;

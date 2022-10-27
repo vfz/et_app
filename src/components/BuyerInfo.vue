@@ -55,7 +55,8 @@
                 <div class="d-block">
                   <label for="mailBuyer" class="form-label">Электронная почта</label>
                   <input
-                      @input="updateEmailBuyer($event); validateEmailBuyer($event)"
+                      @focusout="validateEmailBuyer($event)"
+                      @input="updateEmailBuyer($event);"
                       :value="getBuyerInfo.email"
                       type="text"
                       class="form-control"

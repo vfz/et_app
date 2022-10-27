@@ -561,12 +561,6 @@ export const passengerModule = {
         getPassengers(state) {
             return state.passengers;
         },
-        adults(getters) {
-            return getters.adults
-        },
-        childrens(getters) {
-          return getters.childrens
-        },
         getDocumentsTypes(state) {
           return state.documentTypes
         },

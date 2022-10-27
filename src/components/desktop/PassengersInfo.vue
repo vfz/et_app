@@ -141,14 +141,15 @@
                         :class="{'is-ok': passenger.citizenship, 'is-error' : passenger.errors.citizenship}"
                         class="form-control"
                         :id="'citizenship'+passenger.id"
-                        placeholder="Российская федерация"
+                        placeholder="Россия"
                         type="text">
                     <div
-                        :class="{'d-none': passenger.citizenShipSearchQuery === passenger.citizenship}" class="find-citizenship">
+                        v-if="getDropdownById(passenger.id).isShowCitizenship" class="find-citizenship">
                       <div
                           v-for="citizenship in getCitizenshipsById(passenger.id)"
                           :key="citizenship.code"
-                          @click="updateCitizenship([citizenship.name, passenger.id]);"
+                          @click="updateCitizenship([citizenship.name, passenger.id]);
+                          $store.commit('updateDropdown', [passenger.id, 'isShowCitizenship'])"
                           class="meta">
                         <div class="title">{{citizenship.name}}</div>
                       </div>

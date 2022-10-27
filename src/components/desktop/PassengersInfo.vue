@@ -171,9 +171,10 @@
                         :id="'document'+passenger.id"
                         placeholder="Паспорт РФ"
                         type="text">
-                    <div :class="{'d-none': passenger.documentSearchQuery === passenger.document}" class="find-document">
+                    <div v-if="getDropdownById(passenger.id).isShowDocument" class="find-document">
                       <div
-                          @click="updateDocument([documentType.name, passenger.id])"
+                          @click="updateDocument([documentType.name, passenger.id]);
+                          $store.commit('updateDropdown', [passenger.id, 'isShowDocument'])"
                           v-for="documentType in getDocumentById(passenger.id)"
                           :key="documentType.id"
                           class="meta">

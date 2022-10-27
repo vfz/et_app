@@ -166,7 +166,7 @@ export const passengerModule = {
             ctx.commit('changePassengerId', passenger)
         },
         removePassenger(ctx, isAdult) {
-            //getIndex() выбирает
+            // TODO доделать удаление пользователя
             function getIndex(passenger) {
                 if (passenger.isAdult === isAdult) {
                     return passenger

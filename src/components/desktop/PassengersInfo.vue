@@ -342,6 +342,7 @@ export default {
       right: 0;
       bottom: 50%;
       cursor: pointer;
+      pointer-events: none;
     }
     .form-check-label {
       font-family: $uni;

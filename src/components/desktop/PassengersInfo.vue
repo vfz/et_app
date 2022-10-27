@@ -169,7 +169,7 @@
                         :class="{'is-ok': passenger.document, 'is-error' : passenger.errors.document}"
                         class="form-control"
                         :id="'document'+passenger.id"
-                        placeholder="Паспорт РФ"
+                        placeholder="Паспорт гражданина Российской Федерации"
                         type="text">
                     <div v-if="getDropdownById(passenger.id).isShowDocument" class="find-document">
                       <div

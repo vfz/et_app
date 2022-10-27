@@ -70,7 +70,8 @@
                 <div class="d-block">
                   <label for="numberBuyer" class="form-label">Телефон</label>
                   <input
-                      @input="updateNumberBuyer($event); validateNumberBuyer($event)"
+                      @focusout="validateNumberBuyer($event);"
+                      @input="updateNumberBuyer($event);"
                       :value="getBuyerInfo.number"
                       type="text"
                       class="form-control"

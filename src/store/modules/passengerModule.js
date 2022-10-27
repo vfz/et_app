@@ -552,12 +552,17 @@ export const passengerModule = {
         validateNumberBuyer(ctx, event) {
             const value = event.target.value;
             const formField = 'number'
+            const regex = /(^8|7|\+7)((\d{10})|(\s\(\d{3}\)\s\d{3}\s\d{2}\s\d{2}))/
             if (value === '') {
                 ctx.commit('updateErrorBuyer', ['заполните номер', formField]);
             }
-            if (value !== '') {
+            if (!regex.test(value)) {
+                ctx.commit('updateErrorBuyer', ['Неверно заполнен номер', formField])
+            }
+            else {
                 ctx.commit('updateErrorBuyer', ['', formField])
             }
+
         }
     },
     getters: {

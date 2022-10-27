@@ -20,10 +20,9 @@
     <div class="col-12">
       <div class="form-wrapper">
         <div class="row my-data-button-row">
-          <MyDataButton class="my-data-button-component" :is-login="false" :is-collapse="true"/>
-          <div class="collapse" id="collapseData">
+          <MyDataButton class="my-data-button-component" :is-login="getIsLogin" :is-collapse="false"/>
+          <div :class="{show : !getIsLogin}" class="collapse" id="collapseData">
             <div class="row">
-              <!--                        TODO сделать валидацию по классам .is-ok и .is-error к классу form-control -->
               <div class="col-12 col-lg-6 col-xl mb-lg-4 mb-xl-0">
                 <div class="d-block">
                   <label for="secondNameBuyer" class="form-label">Фамилия</label>

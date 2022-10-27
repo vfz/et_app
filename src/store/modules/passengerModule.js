@@ -155,6 +155,11 @@ export const passengerModule = {
                     document: '',
                     documentInfo: '',
                 },
+                dropdowns: {
+                    isShowCitizenship: false,
+                    isShowGender: false,
+                    isShowDocument: false,
+                },
                 isAdult: isAdult
             }
             ctx.commit('addPassenger', passenger)

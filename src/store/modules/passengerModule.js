@@ -354,6 +354,20 @@ export const passengerModule = {
                 ctx.commit('updateError', [id, '', formField])
             }
         },
+        validateGender(ctx,event) {
+            const value = event.target.value;
+            //исключить наименование и оставить только цифры в id при помощи replace
+            const id = event.target.id.replace(/[^0-9]/g,"");
+            const formField = 'gender'
+            if (value === '') {
+                ///аргументы (mutation, [id, errorText, formField ])
+                ctx.commit('updateError', [id, 'заполните пол', formField]);
+            }
+            if (value !== '') {
+                ///аргументы (mutation, [id, errorText, formField ])
+                ctx.commit('updateError', [id, '', formField])
+            }
+        },
         validateBirthday(ctx, event){
             // TODO доделать валидацию на невозможность выбрать несуществующую дату
             const value = event.target.value;

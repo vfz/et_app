@@ -105,15 +105,16 @@
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="gender" class="form-label">Пол</label>
                   <div class="position-relative">
-                    <ArrowDownIcon class="arrow-down-icon position-absolute" color="#283256"/>
+                    <ArrowDownIcon v-if="!passenger.errors.gender" class="arrow-down-icon position-absolute" color="#283256"/>
                     <input
                         @click="toggleDropdown($event)"
-                        @input="searchGender($event)"
+                        @input="searchGender($event);validateGender($event)"
                         :value="passenger.genderSearchQuery"
                         class="form-control"
                         :id="'gender'+passenger.id"
                         placeholder="Мужской"
                         :class="{'is-ok': passenger.gender, 'is-error' : passenger.errors.gender}">
+                    <div :class="{'d-none': !passenger.errors.gender}" class="error-feedback">{{passenger.errors.gender}}</div>
                     <div v-if="getDropdownById(passenger.id).isShowGender" class="find-gender">
                       <div
                           @click="updateGender(['Мужской', passenger.id]);
@@ -232,6 +233,7 @@ export default {
         'validateBirthday',
         'validateDocumentInfo',
         'validateCitizenship',
+        'validateGender',
         'addPassenger',
         'toggleDropdown'
     ]),

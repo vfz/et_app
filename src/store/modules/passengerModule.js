@@ -230,7 +230,7 @@ export const passengerModule = {
             const id = event.target.id.replace(/[^0-9]/g,"");
             ctx.commit('updateDocumentInfo', [value, id]);
         },
-
+        //Обновление данных покупателя
         updateSecondNameBuyer(ctx, event) {
             const value = event.target.value
             ctx.commit('updateSecondNameBuyer', value)

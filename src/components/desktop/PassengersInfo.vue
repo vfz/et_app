@@ -133,10 +133,10 @@
                   <label for="citizenship" class="form-label">Гражданство</label>
 <!--                  TODO при клике выводить список-->
                   <div class="position-relative">
-                    <ArrowDownIcon class="arrow-down-icon position-absolute" color="#283256"/>
+                    <ArrowDownIcon v-if="!passenger.errors.citizenship" class="arrow-down-icon position-absolute" color="#283256"/>
                     <input
                         @click="toggleDropdown($event)"
-                        @input="searchCitizenship($event);"
+                        @input="searchCitizenship($event);validateCitizenship($event)"
                         :value="passenger.citizenShipSearchQuery"
                         :class="{'is-ok': passenger.citizenShipSearchQuery, 'is-error' : passenger.errors.citizenship}"
                         class="form-control"
@@ -231,6 +231,7 @@ export default {
         'validateMiddleName',
         'validateBirthday',
         'validateDocumentInfo',
+        'validateCitizenship',
         'addPassenger',
         'toggleDropdown'
     ]),

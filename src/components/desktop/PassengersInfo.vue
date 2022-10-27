@@ -161,10 +161,10 @@
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="document" class="form-label">Документ</label>
                   <div class="position-relative">
-                    <ArrowDownIcon class="arrow-down-icon position-absolute" color="#283256"/>
+                    <ArrowDownIcon v-if="!passenger.errors.document" class="arrow-down-icon position-absolute" color="#283256"/>
                     <input
                         @click="toggleDropdown($event)"
-                        @input="searchDocument($event)"
+                        @input="searchDocument($event);validateDocument($event)"
                         :value="passenger.documentSearchQuery"
                         :class="{'is-ok': passenger.document, 'is-error' : passenger.errors.document}"
                         class="form-control"
@@ -235,6 +235,7 @@ export default {
         'validateDocumentInfo',
         'validateCitizenship',
         'validateGender',
+        'validateDocument',
         'addPassenger',
         'toggleDropdown'
     ]),

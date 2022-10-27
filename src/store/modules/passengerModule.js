@@ -10,7 +10,7 @@ export const passengerModule = {
                 gender: '',
                 genderSearchQuery: '',
                 citizenship: '',
-                citizenShipSearchQuery: '',
+                citizenShipSearchQuery: 'РОССИЯ',
                 document: '',
                 documentSearchQuery: '',
                 documentInfo: '',

@@ -141,7 +141,7 @@
                         :class="{'is-ok': passenger.citizenship, 'is-error' : passenger.errors.citizenship}"
                         class="form-control"
                         :id="'citizenship'+passenger.id"
-                        placeholder="Россия"
+                        placeholder="РОССИЯ"
                         type="text">
                     <div
                         v-if="getDropdownById(passenger.id).isShowCitizenship" class="find-citizenship">

@@ -107,17 +107,23 @@
                   <div class="position-relative">
                     <ArrowDownIcon class="arrow-down-icon position-absolute" color="#283256"/>
                     <input
+                        @click="toggleDropdown($event)"
                         @input="searchGender($event)"
                         :value="passenger.genderSearchQuery"
                         class="form-control"
                         :id="'gender'+passenger.id"
                         placeholder="Мужской"
                         :class="{'is-ok': passenger.gender, 'is-error' : passenger.errors.gender}">
-                    <div :class="{'d-none': passenger.genderSearchQuery === passenger.gender}" class="find-gender">
-                      <div @click="updateGender(['Мужской', passenger.id]);" class="meta">
+                    <div v-if="getDropdownById(passenger.id).isShowGender" class="find-gender">
+                      <div
+                          @click="updateGender(['Мужской', passenger.id]);
+                          $store.commit('updateDropdown', [passenger.id, 'isShowGender'])"
+                          class="meta">
                         <div class="title">Мужской</div>
                       </div>
-                      <div @click="updateGender(['Женский', passenger.id]);" class="meta">
+                      <div @click="updateGender(['Женский', passenger.id]);
+                      $store.commit('updateDropdown', [passenger.id, 'isShowGender'])"
+                           class="meta">
                         <div class="title">Женский</div>
                       </div>
                     </div>
@@ -129,6 +135,7 @@
                   <div class="position-relative">
                     <ArrowDownIcon class="arrow-down-icon position-absolute" color="#283256"/>
                     <input
+                        @click="toggleDropdown($event)"
                         @input="searchCitizenship($event);"
                         :value="passenger.citizenShipSearchQuery"
                         :class="{'is-ok': passenger.citizenship, 'is-error' : passenger.errors.citizenship}"
@@ -153,6 +160,7 @@
                   <div class="position-relative">
                     <ArrowDownIcon class="arrow-down-icon position-absolute" color="#283256"/>
                     <input
+                        @click="toggleDropdown($event)"
                         @input="searchDocument($event)"
                         :value="passenger.documentSearchQuery"
                         :class="{'is-ok': passenger.document, 'is-error' : passenger.errors.document}"
@@ -222,6 +230,7 @@ export default {
         'validateBirthday',
         'validateDocumentInfo',
         'addPassenger',
+        'toggleDropdown'
     ]),
   },
   mounted() {
@@ -236,7 +245,8 @@ export default {
         'getDocumentById',
         'getPassengerDocumentById',
         'oneWay',
-        'getIsLogin'
+        'getIsLogin',
+        'getDropdownById'
     ]),
   },
 }

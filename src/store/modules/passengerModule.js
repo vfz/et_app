@@ -24,6 +24,11 @@ export const passengerModule = {
                     document: '',
                     documentInfo: '',
                 },
+                dropdowns: {
+                  isShowCitizenship: false,
+                  isShowGender: false,
+                  isShowDocument: false,
+                },
                 isAdult: true,
             }
         ],
@@ -115,6 +120,9 @@ export const passengerModule = {
         },
         updateErrorBuyer(state, [errorText, formField]) {
             state.buyerInfo.errors[formField] = errorText
+        },
+        updateDropdown(state, [id, dropdown]) {
+            state.passengers[id].dropdowns[dropdown] = !state.passengers[id].dropdowns[dropdown]
         }
     },
     actions: {
@@ -229,6 +237,23 @@ export const passengerModule = {
             //исключить наименование и оставить только цифры в id при помощи replace
             const id = event.target.id.replace(/[^0-9]/g,"");
             ctx.commit('updateDocumentInfo', [value, id]);
+        },
+        toggleDropdown(ctx, event) {
+            const input = event.target.id.replace(/[0-9]/g, '')
+            const id = event.target.id.replace(/[^0-9]/g,"");
+            let dropdown = ''
+            if (input === 'citizenship') {
+                dropdown = 'isShowCitizenship'
+                ctx.commit('updateDropdown', [id, dropdown])
+            }
+            if (input === 'document') {
+                dropdown = 'isShowDocument'
+                ctx.commit('updateDropdown', [id, dropdown])
+            }
+            if (input === 'gender') {
+                dropdown = 'isShowGender'
+                ctx.commit('updateDropdown', [id, dropdown])
+            }
         },
         //Обновление данных покупателя
         updateSecondNameBuyer(ctx, event) {
@@ -512,6 +537,9 @@ export const passengerModule = {
         },
         getBuyerInfo(state) {
             return state.buyerInfo
+        },
+        getDropdownById: (state) => (id) => {
+            return state.passengers[id].dropdowns
         }
     },
 }

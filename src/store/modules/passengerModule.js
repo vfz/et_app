@@ -50,6 +50,7 @@ export const passengerModule = {
                 number: ''
             }
         },
+        haveErrors: false,
         promoCode: '',
     }),
     mutations: {
@@ -123,6 +124,9 @@ export const passengerModule = {
         },
         updateDropdown(state, [id, dropdown]) {
             state.passengers[id].dropdowns[dropdown] = !state.passengers[id].dropdowns[dropdown]
+        },
+        updateHaveErrors(state, haveError) {
+            state.haveErrors = haveError
         }
     },
     actions: {
@@ -309,10 +313,12 @@ export const passengerModule = {
             const id = event.target.id.replace(/[^0-9]/g,"");
             const formField = 'secondName'
             if (value === '') {
+                ctx.commit('updateHaveErrors', true)
                 ///аргументы (mutation, [id, errorText, formField ])
                 ctx.commit('updateError', [id, 'заполните фамилию', formField]);
             }
             if (value !== '') {
+                ctx.commit('updateHaveErrors', false)
                 ///аргументы (mutation, [id, errorText, formField ])
                 ctx.commit('updateError', [id, '', formField])
             }
@@ -323,10 +329,12 @@ export const passengerModule = {
             const id = event.target.id.replace(/[^0-9]/g,"");
             const formField = 'firstName'
             if (value === '') {
+                ctx.commit('updateHaveErrors', true)
                 ///аргументы (mutation, [id, errorText, formField ])
                 ctx.commit('updateError', [id, 'заполните имя', formField]);
             }
             if (value !== '') {
+                ctx.commit('updateHaveErrors', false)
                 ///аргументы (mutation, [id, errorText, formField ])
                 ctx.commit('updateError', [id, '', formField])
             }
@@ -337,10 +345,12 @@ export const passengerModule = {
             const id = event.target.id.replace(/[^0-9]/g,"");
             const formField = 'middleName'
             if (value === '') {
+                ctx.commit('updateHaveErrors', true)
                 ///аргументы (mutation, [id, errorText, formField ])
                 ctx.commit('updateError', [id, 'заполните отчество', formField]);
             }
             if (value !== '') {
+                ctx.commit('updateHaveErrors', false)
                 ///аргументы (mutation, [id, errorText, formField ])
                 ctx.commit('updateError', [id, '', formField])
             }
@@ -351,10 +361,12 @@ export const passengerModule = {
             const id = event.target.id.replace(/[^0-9]/g,"");
             const formField = 'citizenship'
             if (value === '') {
+                ctx.commit('updateHaveErrors', true)
                 ///аргументы (mutation, [id, errorText, formField ])
                 ctx.commit('updateError', [id, 'заполните гражданство', formField]);
             }
             if (value !== '') {
+                ctx.commit('updateHaveErrors', false)
                 ///аргументы (mutation, [id, errorText, formField ])
                 ctx.commit('updateError', [id, '', formField])
             }
@@ -365,10 +377,12 @@ export const passengerModule = {
             const id = event.target.id.replace(/[^0-9]/g,"");
             const formField = 'gender'
             if (value === '') {
+                ctx.commit('updateHaveErrors', true)
                 ///аргументы (mutation, [id, errorText, formField ])
                 ctx.commit('updateError', [id, 'заполните пол', formField]);
             }
             if (value !== '') {
+                ctx.commit('updateHaveErrors', false)
                 ///аргументы (mutation, [id, errorText, formField ])
                 ctx.commit('updateError', [id, '', formField])
             }
@@ -379,10 +393,12 @@ export const passengerModule = {
             const id = event.target.id.replace(/[^0-9]/g,"");
             const formField = 'document'
             if (value === '') {
+                ctx.commit('updateHaveErrors', true)
                 ///аргументы (mutation, [id, errorText, formField ])
                 ctx.commit('updateError', [id, 'заполните документ', formField]);
             }
             if (value !== '') {
+                ctx.commit('updateHaveErrors', false)
                 ///аргументы (mutation, [id, errorText, formField ])
                 ctx.commit('updateError', [id, '', formField])
             }
@@ -394,14 +410,17 @@ export const passengerModule = {
             const id = event.target.id.replace(/[^0-9]/g,"");
             const formField = 'birthday';
             if (value === '') {
+                ctx.commit('updateHaveErrors', true)
                 ///аргументы (mutation, [id, errorText, formField ])
                 ctx.commit('updateError', [id, 'заполните дату рождения', formField]);
             }
             if (value.length > 10 && value !== '') {
+                ctx.commit('updateHaveErrors', true)
                 ///аргументы (mutation, [id, errorText, formField ])
                 ctx.commit('updateError', [id, 'дата рождения указана неверно', formField]);
             }
             else if (value.length <= 10 && value !== '') {
+                ctx.commit('updateHaveErrors', false)
                 ///аргументы (mutation, [id, errorText, formField ])
                 ctx.commit('updateError', [id, '', formField])
             }
@@ -420,10 +439,12 @@ export const passengerModule = {
                     age = age-1
                 }
                 if (age < 14 && document === 'Паспорт гражданина Российской Федерации') {
+                    ctx.commit('updateHaveErrors', true)
                     ///аргументы (mutation, [id, errorText, formField ])
                     ctx.commit('updateError', [id, 'До 14 лет, билеты оформляются по свидетельству о рождении', formField])
                 }
                 if (age > 125) {
+                    ctx.commit('updateHaveErrors', true)
                     ctx.commit('updateError', [id, 'Некорректная дата, вам больше 125 лет?', formField])
                 }
             }
@@ -435,26 +456,33 @@ export const passengerModule = {
             const id = event.target.id.replace(/[^0-9]/g,"");
             const formField = 'documentInfo';
             if (value === '') {
+                ctx.commit('updateHaveErrors', true)
                 ctx.commit('updateError', [id, 'заполните серию и номер документа', formField]);
             }
             //Проверка паспорта РФ
             if (documentType === 'Паспорт гражданина Российской Федерации' && value.length > 10) {
+                ctx.commit('updateHaveErrors', true)
                 ctx.commit('updateError', [id, 'Серия и номер паспорта указаны некорректно', formField])
             }
             else if (documentType === 'Паспорт гражданина Российской Федерации' && value.length < 10) {
+                ctx.commit('updateHaveErrors', true)
                 ctx.commit('updateError', [id, 'Серия и номер паспорта указаны некорректно', formField])
             }
             else if (documentType === 'Паспорт гражданина Российской Федерации' && value.length === 10) {
+                ctx.commit('updateHaveErrors', false)
                 ctx.commit('updateError', [id, '', formField])
             }
             //Проверка паспорта Загранпаспорта
             if (documentType === 'Заграничный паспорт гражданина Российской Федерации' && value.length > 9) {
+                ctx.commit('updateHaveErrors', true)
                 ctx.commit('updateError', [id, 'Серия и номер паспорта указаны некорректно', formField])
             }
             else if (documentType === 'Заграничный паспорт гражданина Российской Федерации' && value.length < 9) {
+                ctx.commit('updateHaveErrors', true)
                 ctx.commit('updateError', [id, 'Серия и номер паспорта указаны некорректно', formField])
             }
             else if (documentType === 'Заграничный паспорт гражданина Российской Федерации' && value.length === 9 ) {
+                ctx.commit('updateHaveErrors', true)
                 ctx.commit('updateError', [id, '', formField])
             }
             //Проверка военного билета
@@ -463,18 +491,23 @@ export const passengerModule = {
                 let serial = value.substr(0, 2)
                 let number = value.substr(2, 9)
                 if (regexp.test(serial)) {
+                    ctx.commit('updateHaveErrors', false)
                     ctx.commit('updateError', [id, '', formField])
                     if (number.length > 7) {
+                        ctx.commit('updateHaveErrors', true)
                         ctx.commit('updateError', [id, 'Номер военного билета указан неверно', formField])
                     }
                     else if (number.length < 7) {
+                        ctx.commit('updateHaveErrors', true)
                         ctx.commit('updateError', [id, 'Номер военного билета указан неверно', formField])
                     }
                     else if (number.length === 7) {
+                        ctx.commit('updateHaveErrors', false)
                         ctx.commit('updateError', [id, '', formField])
                     }
                 }
                 else {
+                    ctx.commit('updateHaveErrors', true)
                     ctx.commit('updateError', [id, 'Серия военного билета указана неверно', formField])
                 }
             }
@@ -520,9 +553,11 @@ export const passengerModule = {
             const value = event.target.value;
             const formField = 'secondName'
             if (value === '') {
+                ctx.commit('updateHaveErrors', true)
                 ctx.commit('updateErrorBuyer', ['заполните фамилию', formField]);
             }
             if (value !== '') {
+                ctx.commit('updateHaveErrors', false)
                 ctx.commit('updateErrorBuyer', ['', formField])
             }
         },
@@ -530,9 +565,11 @@ export const passengerModule = {
             const value = event.target.value;
             const formField = 'firstName'
             if (value === '') {
+                ctx.commit('updateHaveErrors', true)
                 ctx.commit('updateErrorBuyer', ['заполните имя', formField]);
             }
             if (value !== '') {
+                ctx.commit('updateHaveErrors', false)
                 ctx.commit('updateErrorBuyer', ['', formField])
             }
         },
@@ -540,12 +577,15 @@ export const passengerModule = {
             const value = event.target.value;
             const formField = 'email'
             if (value === '') {
+                ctx.commit('updateHaveErrors', true)
                 ctx.commit('updateErrorBuyer', ['заполните почту', formField]);
             }
             if (value !== '') {
+                ctx.commit('updateHaveErrors', false)
                 ctx.commit('updateErrorBuyer', ['', formField])
             }
             if (!value.includes('@')) {
+                ctx.commit('updateHaveErrors', true)
                 ctx.commit('updateErrorBuyer', ['Почта указана неверно', formField]);
             }
         },
@@ -554,16 +594,19 @@ export const passengerModule = {
             const formField = 'number'
             const regex = /(^8|7|\+7)((\d{10})|(\s\(\d{3}\)\s\d{3}\s\d{2}\s\d{2}))/
             if (value === '') {
+                ctx.commit('updateHaveErrors', true)
                 ctx.commit('updateErrorBuyer', ['заполните номер', formField]);
             }
             if (!regex.test(value)) {
+                ctx.commit('updateHaveErrors', true)
                 ctx.commit('updateErrorBuyer', ['Неверно заполнен номер', formField])
             }
             else {
+                ctx.commit('updateHaveErrors', false)
                 ctx.commit('updateErrorBuyer', ['', formField])
             }
 
-        }
+        },
     },
     getters: {
         getPassengers(state) {

@@ -138,11 +138,12 @@
                         @click="toggleDropdown($event)"
                         @input="searchCitizenship($event);"
                         :value="passenger.citizenShipSearchQuery"
-                        :class="{'is-ok': passenger.citizenship, 'is-error' : passenger.errors.citizenship}"
+                        :class="{'is-ok': passenger.citizenShipSearchQuery, 'is-error' : passenger.errors.citizenship}"
                         class="form-control"
                         :id="'citizenship'+passenger.id"
                         placeholder="РОССИЯ"
                         type="text">
+                    <div :class="{'d-none': !passenger.errors.citizenship}" class="error-feedback">{{passenger.errors.citizenship}}</div>
                     <div
                         v-if="getDropdownById(passenger.id).isShowCitizenship" class="find-citizenship">
                       <div

@@ -9,7 +9,7 @@ export const passengerModule = {
                 birthday: '',
                 gender: '',
                 genderSearchQuery: '',
-                citizenship: '',
+                citizenship: 'РОССИЯ',
                 citizenShipSearchQuery: 'РОССИЯ',
                 document: '',
                 documentSearchQuery: '',
@@ -140,8 +140,8 @@ export const passengerModule = {
                 birthday: '',
                 gender: '',
                 genderSearchQuery: '',
-                citizenship: '',
-                citizenShipSearchQuery: '',
+                citizenship: 'РОССИЯ',
+                citizenShipSearchQuery: 'РОССИЯ',
                 document: '',
                 documentSearchQuery: '',
                 documentInfo: '',
@@ -339,6 +339,9 @@ export const passengerModule = {
                 ///аргументы (mutation, [id, errorText, formField ])
                 ctx.commit('updateError', [id, '', formField])
             }
+        },
+        validateCitizenship(ctx,event) {
+
         },
         validateBirthday(ctx, event){
             // TODO доделать валидацию на невозможность выбрать несуществующую дату

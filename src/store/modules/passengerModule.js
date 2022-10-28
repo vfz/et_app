@@ -60,11 +60,6 @@ export const passengerModule = {
         removePassenger(state, passenger) {
             state.passengers.splice(passenger, 1)
         },
-        changePassengerId(state) {
-            state.passengers.forEach(function (passenger, index){
-                passenger.id = index
-            })
-        },
         setDocumentTypes(state, documentTypes) {
             state.documentTypes = documentTypes
         },
@@ -167,7 +162,6 @@ export const passengerModule = {
                 isAdult: isAdult
             }
             ctx.commit('addPassenger', passenger)
-            ctx.commit('changePassengerId', passenger)
         },
         removePassenger(ctx, isAdult) {
             // TODO доделать удаление пользователя
@@ -629,9 +623,6 @@ export const passengerModule = {
         },
         getBuyerInfo(state) {
             return state.buyerInfo
-        },
-        getDropdownById: (state) => (id) => {
-            return state.passengers[id].dropdowns
         },
         getHaveErrors(state) {
             return state.haveErrors

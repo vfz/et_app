@@ -115,7 +115,7 @@
                         placeholder="Мужской"
                         :class="{'is-ok': passenger.gender, 'is-error' : passenger.errors.gender}">
                     <div :class="{'d-none': !passenger.errors.gender}" class="error-feedback">{{passenger.errors.gender}}</div>
-                    <div v-if="getDropdownById(passenger.id).isShowGender" class="find-gender">
+                    <div v-if="passenger.dropdowns.isShowGender" class="find-gender">
                       <div
                           @click="updateGender(['Мужской', passenger.id]);
                           $store.commit('updateDropdown', [passenger.id, 'isShowGender'])"
@@ -146,7 +146,7 @@
                         type="text">
                     <div :class="{'d-none': !passenger.errors.citizenship}" class="error-feedback">{{passenger.errors.citizenship}}</div>
                     <div
-                        v-if="getDropdownById(passenger.id).isShowCitizenship" class="find-citizenship">
+                        v-if="passenger.dropdowns.isShowCitizenship" class="find-citizenship">
                       <div
                           v-for="citizenship in getCitizenshipsById(passenger.id)"
                           :key="citizenship.code"
@@ -171,7 +171,7 @@
                         :id="'document'+passenger.id"
                         placeholder="Паспорт гражданина Российской Федерации"
                         type="text">
-                    <div v-if="getDropdownById(passenger.id).isShowDocument" class="find-document">
+                    <div v-if="passenger.dropdowns.isShowDocument" class="find-document">
                       <div
                           @click="updateDocument([documentType.name, passenger.id]);
                           $store.commit('updateDropdown', [passenger.id, 'isShowDocument'])"
@@ -253,7 +253,6 @@ export default {
         'getPassengerDocumentById',
         'oneWay',
         'getIsLogin',
-        'getDropdownById'
     ]),
   },
 }

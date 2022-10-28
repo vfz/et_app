@@ -632,6 +632,9 @@ export const passengerModule = {
         },
         getDropdownById: (state) => (id) => {
             return state.passengers[id].dropdowns
+        },
+        getHaveErrors(state) {
+            return state.haveErrors
         }
     },
 }

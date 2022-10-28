@@ -66,7 +66,7 @@
           </div>
           <div class="row flex-column-reverse flex-md-row">
             <div class="col-12 col-md-6">
-              <button class="btn btn-lg btn-primary">
+            <button :class="{'disabled': getHaveErrors}" class="btn btn-lg btn-primary">
                 Перейти к оплате
               </button>
             </div>
@@ -153,7 +153,7 @@
         </div>
         <div class="row flex-column-reverse flex-md-row">
           <div class="col-12 col-md-6">
-            <button class="btn btn-lg btn-primary">
+            <button :class="{'disabled': getHaveErrors}" class="btn btn-lg btn-primary">
               Перейти к оплате
             </button>
           </div>
@@ -178,6 +178,7 @@
 <script>
 import CheckIcon from "@/components/icons/CheckIcon";
 import ArrowDownIcon from "@/components/icons/ArrowDownIcon";
+import {mapGetters} from "vuex";
 export default {
   name: "BaggageRules",
   components: {ArrowDownIcon, CheckIcon},
@@ -186,6 +187,11 @@ export default {
       isShowBaggage: false,
       isShowPromocode: false,
     }
+  },
+  computed: {
+    ...mapGetters([
+        'getHaveErrors'
+    ])
   },
   methods: {
     isMobile() {

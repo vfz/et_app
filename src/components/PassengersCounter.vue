@@ -22,11 +22,19 @@
                     type="number" 
                     class="form-control text-center one-way-inputs-input shadow-none"  
                     placeholder="0">
-                <div id="plus-button-adult" class="plus-button count-button" :class=" { disabled : !pba } " v-on:click="addPassenger(true);changeClass();">+</div>
+                <div 
+                    id="plus-button-adult" 
+                    class="plus-button count-button" 
+                    :class=" { disabled : !pba } " 
+                    v-on:click="addPassenger(true);changeClass();">+</div>
                 <span class="card-desc d-block w-100">Взрослых</span>
             </div>
             <div class="count-passenger d-flex align-items-center flex-wrap">
-                <div id="minus-button-childeren" class="minus-button count-button" :class=" { disabled : !mbc } " v-on:click="removePassenger(false);changeClass();">-</div>
+                <div 
+                    id="minus-button-childeren" 
+                    class="minus-button count-button" 
+                    :class=" { disabled : !mbc } " 
+                    v-on:click="removePassenger(false);changeClass();">-</div>
                 <input 
                     v-model="getChildrensCount"  
                     min="0" 
@@ -74,25 +82,25 @@ export default {
     
         //Переключение кнопок в полях кол-ва пассажиров в Desabled Enabled
         changeClass() {
-        if (this.getPassengers.lenght >= 7) {
+        if (this.getAdultsCount >= 7) {
             this.pba = false;
         } else {
             this.pba = true;
         }
         // дети
-        if (this.getPassengers.lenght >= 5) {
+        if (this.getChildrensCount >= 5) {
             this.pbc = false;
         } else {
             this.pbc = true;
         }
 
-        if (this.getPassengers.lenght > 1) {
+        if (this.getAdultsCount > 1) {
             this.mba = true;
         } else {
             this.mba = false;
         }
         // Дети
-        if (this.getPassengers.lenght > 0) {
+        if (this.getChildrensCount > 0) {
             this.mbc = true;
         } else {
             this.mbc = false;

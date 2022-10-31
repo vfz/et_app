@@ -130,50 +130,51 @@ export default {
         //Обновление данных пассажиров
         addPassenger(ctx, isAdult) {
             if (
-                (state.passengers.filter(passenger => passenger.isAdult === true).length = 7 && isAdult) ||
-                (state.passengers.filter(passenger => passenger.isAdult === false).length = 5 && !isAdult)
+                (ctx.state.passengers.filter(passenger => passenger.isAdult === true).length === 7 && isAdult) ||
+                (ctx.state.passengers.filter(passenger => passenger.isAdult === false).length === 5 && !isAdult)
             ) {
                 return false;
-            }
-            const id = ctx.state.passengers.length
-            const passenger = {
-                id: id,
-                id_trip: 0,
-                seat: 0,
-                secondName: '',
-                firstName: '',
-                middleName: '',
-                birthday: '',
-                gender: '',
-                genderSearchQuery: '',
-                citizenship: 'РОССИЯ',
-                citizenShipSearchQuery: 'РОССИЯ',
-                document: '',
-                documentSearchQuery: '',
-                documentInfo: '',
-                errors: {
+            } else {
+                const id = ctx.state.passengers.length
+                const passenger = {
+                    id: id,
+                    id_trip: 0,
+                    seat: 0,
                     secondName: '',
                     firstName: '',
                     middleName: '',
                     birthday: '',
                     gender: '',
-                    citizenship: '',
+                    genderSearchQuery: '',
+                    citizenship: 'РОССИЯ',
+                    citizenShipSearchQuery: 'РОССИЯ',
                     document: '',
+                    documentSearchQuery: '',
                     documentInfo: '',
-                },
-                dropdowns: {
-                    isShowCitizenship: false,
-                    isShowGender: false,
-                    isShowDocument: false,
-                },
-                isAdult: isAdult
+                    errors: {
+                        secondName: '',
+                        firstName: '',
+                        middleName: '',
+                        birthday: '',
+                        gender: '',
+                        citizenship: '',
+                        document: '',
+                        documentInfo: '',
+                    },
+                    dropdowns: {
+                        isShowCitizenship: false,
+                        isShowGender: false,
+                        isShowDocument: false,
+                    },
+                    isAdult: isAdult
+                }
+                ctx.commit('addPassenger', passenger)
             }
-            ctx.commit('addPassenger', passenger)
         },
         removePassenger(ctx, isAdult) {
             if (
-                (state.passengers.filter(passenger => passenger.isAdult === true).length = 1 && isAdult) ||
-                (state.passengers.filter(passenger => passenger.isAdult === false).length = 0 && !isAdult)
+                (ctx.state.passengers.filter(passenger => passenger.isAdult === true).length === 1 && isAdult) ||
+                (ctx.state.passengers.filter(passenger => passenger.isAdult === false).length === 0 && !isAdult)
             ) {
                 return false;
             }

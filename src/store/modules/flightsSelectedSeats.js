@@ -1,19 +1,17 @@
+import pl from "@fancyapps/ui/src/Fancybox/l10n/pl";
+
 export const flightsSelectedSeats = {
     state: () => ({
-        flightThere: {},
-        flightBack: {},
+        flightThere: [],
+        flightBack: [],
         currentFlight: {},
         peopleCount: 0,
-        selectedCountPlace: 1,
+        selectedPlaces: [],
         freePlaces: [],
     }),
     mutations: {
         setFreePlaces(state, freePlaces) {
             state.freePlaces = freePlaces;
-        },
-        setCurrentFlight(state, tripId) {
-            const flights = [].concat(state.flightThere, state.flightBack)
-            state.currentFlight = flights.find(trip => trip.id_trip === tripId);
         },
         setFlightThere(state, flightThere) {
             state.flightThere = flightThere.result;
@@ -21,12 +19,24 @@ export const flightsSelectedSeats = {
         setFlightBack (state, flightBack) {
           state.flightBack = flightBack.result;
         },
-        setPeopleCount (state, peopleCount) {
-            state.peopleCount = peopleCount;
+        setCurrentFlight(state, currentFlight) {
+            state.currentFlight = currentFlight
         },
-        setSelectedPlace(state, numberPlace) {
-
+        setSelectedPlace(state, place) {
+            state.selectedPlaces.push(place)
         }
     },
-    namespaced: true,
+    actions: {
+        getSelectedFlight(ctx, flight) {
+            ctx.commit('setCurrentFlight', flight)
+        },
+        getSelectedPlace(ctx, place) {
+            ctx.commit('setSelectedPlace', place)
+        },
+    },
+    getters: {
+        getCurrentFlight(state) {
+            return state.currentFlight
+        }
+    }
 }

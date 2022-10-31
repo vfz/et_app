@@ -1,3 +1,5 @@
+import ar from "@fancyapps/ui/src/Fancybox/l10n/ar";
+
 export default {
     state: {
         fromStations: [],
@@ -59,12 +61,14 @@ export default {
         // функция для схемы автобуса на дексктопе
         busDesktop(state) {
             const flights = [].concat(state.flightThere, state.flightBack)
-                // console.log(flights)
             const floors = flights.find(trip => trip.id_trip === state.busTriptId).bus_config
+            const floorsParced = JSON.parse(JSON.stringify(floors))
             state.shemeDesktop = floors
 
         },
+        updatePropertyPlace(state, place) {
 
+        },
         //обновить id рейса для которого нужно выводить Схему автобуса
         updatebBusTriptId(state, tripId) {
             state.busTriptId = tripId
@@ -177,7 +181,6 @@ export default {
             ctx.commit('updatebBusTriptId', tripId)
             ctx.commit('busMobile')
             ctx.commit('busDesktop')
-            ctx.commit('flightsSelectedSeats/setCurrentFlight', tripId)
         },
         //Получаем список станций прибытия
         async getToStations(ctx, from = '') {
@@ -203,7 +206,7 @@ export default {
             const res = await fetch(ctx.rootState.API_URL + "?command=okato_trip&from_id=" + from_okato + "&to_id=" + to_okato + "&date_trip=" + ctx.state.dateArival);
             const FlightThere = await res.json();
             ctx.commit('updateFlightThere', FlightThere)
-            ctx.commit('flightsSelectedSeats/setFlightThere', FlightThere)
+            ctx.commit('setFlightThere', FlightThere)
 
 
         },
@@ -217,7 +220,7 @@ export default {
             const res = await fetch(ctx.rootState.API_URL + "?command=okato_trip&from_id=" + from_okato + "&to_id=" + to_okato + "&date_trip=" + ctx.state.dateBack);
             const FlightBack = await res.json();
             ctx.commit('updateFlightBack', FlightBack)
-            ctx.commit('flightsSelectedSeats/setFlightBack', FlightBack);
+            ctx.commit('setFlightBack', FlightBack);
 
         },
 

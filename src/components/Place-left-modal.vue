@@ -48,11 +48,17 @@
                   <table v-if="!mobile">
                     <!--TODO: подсветка выбранных мест-->
                     <tr v-for="(stroka,indexstr) in shemeDesktop[floor]" :key="indexstr">
-                      <td v-for="(seat,index) in stroka.filter(seatt=> seatt.length >7)" :key="index"
+                      <td
+                          v-for="(seat,index) in stroka.filter(seatt=> seatt.length >7)"
+                          :key="index"
                         :rowspan="seat.split('+')[1]" 
                         :colspan="seat.split('+')[2]"
                         align="center">
-                        <div @click="getSelectedPlace(seat.split('+')[0],seat.split('+')[3].replace('_', ''))" :class="seat.split('+')[0]" :id="'seat_'+seat.split('+')[3].replace('_', '')">{{seat.split('+')[3].replace('_', '')}}</div>
+                        <div
+                            @click="getSelectedPlace(seat);changeClassPlace(seat)"
+                            :class="[seat.split('+')[0], {'active_seat': seat === isSelected}]"
+                            :id="'seat_'+seat.split('+')[3].replace('_', '')">{{seat.split('+')[3].replace('_', '')}}
+                        </div>
                       </td>
                     </tr>
                   </table>
@@ -82,7 +88,7 @@
 
 <script>
 import {mapGetters,mapActions, mapState} from 'vuex'
-import {flightsSelectedSeats} from "@/store/modules/flightsSelectedSeats";
+import pl from "@fancyapps/ui/src/Fancybox/l10n/pl";
 export default {
   name: "Place-left-modal",
   props: ['mobile'],
@@ -90,13 +96,12 @@ export default {
     return{
       floor:1,
       testFl:[],
-      isSelected: false,
+      isSelected: null,
     }
   },
-  computed: mapGetters(['busTriptId','shemeMobile','shemeDesktop']),
+  computed: mapGetters(['busTriptId','shemeMobile','shemeDesktop', 'getCurrentFlight']),
   ...mapState({
-    peopleCount : state => state.flightsSelectedSeats.peopleCount,
-    selectedCountPlace : state => state.flightsSelectedSeats.selectedCountPlace
+    selectedPlaces: state => state.selectedPlaces
   }),
   watch: {
     shemeDesktop() {
@@ -109,6 +114,7 @@ export default {
     methods: {
     ...mapActions([
       'updatebBusTriptId',
+        'getSelectedPlace'
     ]),
     floorsQ(){
       if(this.mobile){
@@ -117,11 +123,9 @@ export default {
       
       return true
     },
-    getSelectedPlace(classPlace,numberPlace) {
-      if (classPlace === 'seat') {
-        this.$store.commit('flightsSelectedSeats/setSelectedPlace',  numberPlace, )
+      changeClassPlace(seat) {
+      this.isSelected = seat
       }
-    }
   }
 }
 
@@ -299,6 +303,7 @@ export default {
         font-weight: 500;
         font-size: 14px;
         line-height: 19px;
+      pointer-events: none;
     }
     .active_seat {
       width: 32px;

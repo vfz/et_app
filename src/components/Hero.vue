@@ -121,33 +121,7 @@
                       </div>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-3 mw-300 min-w-300">
-                      <div class="card h-100">
-                        <div class="card-body">
-                          <div class="d-flex justify-content-between align-items-center">
-                            <label class="form-label">Пассажиры</label>
-                            <div class="d-none d-lg-block help-icon-block-desktop">
-                              <img class="help-icon" alt="help" src="../../public/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
-                            </div>
-                          </div>
-                          <div class="d-flex justify-content-between">
-                            <div class="count-passenger d-flex align-items-center flex-wrap">
-                              <div id="minus-button-adult" class="minus-button count-button" :class=" { disabled : !mba } " v-on:click="MinusAdult();removePassenger(true);changeClass();">-</div>
-                              <input value="1" min="1" max="7" name="adults" v-model="adults" type="number" class="form-control text-center one-way-inputs-input shadow-none"  placeholder="0">
-                              <div id="plus-button-adult" class="plus-button count-button" :class=" { disabled : !pba } " v-on:click="PlusAdult();addPassenger(true);changeClass();">+</div>
-                              <span class="card-desc d-block w-100">Взрослых</span>
-                            </div>
-                            <div class="count-passenger d-flex align-items-center flex-wrap">
-                              <div id="minus-button-childeren" class="minus-button count-button" :class=" { disabled : !mbc } " v-on:click="MinusChild();removePassenger(false);changeClass();">-</div>
-                              <input value="0" min="0" max="5" name="childrens" v-model="childrens" type="number" class="form-control text-center one-way-inputs-input shadow-none" placeholder="0">
-                              <div id="plus-button-childeren" class="plus-button count-button" :class=" { disabled : !pbc } " v-on:click="PlusChild();addPassenger(false);changeClass();">+</div>
-                              <span class="card-desc d-block w-100">Детских</span>
-                            </div>
-                            <div class="d-block d-lg-none help-icon-block-mobile">
-                              <img class="help-icon" alt="help" src="../../public/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                      <PassengersCounter/>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-3 mw-300 min-w-300">
                       <div class="card h-100">
@@ -274,33 +248,7 @@
                       </div>
                     </div>
                     <div class="col-12 col-sm-12 mt-md-0 col-md-4 col-lg-6 col-xxl mb-lg-4 mb-xxl-0 col-xl-6 mw-300 min-w-300">
-                      <div class="card h-100">
-                        <div class="card-body">
-                          <div class="d-flex justify-content-between align-items-center">
-                            <label class="form-label">Пассажиры</label>
-                            <div class="d-none d-lg-block help-icon-block-desktop">
-                              <img class="help-icon" alt="help" src="../../public/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
-                            </div>
-                          </div>
-                          <div class="d-flex justify-content-between">
-                            <div class="count-passenger d-flex align-items-center flex-wrap">
-                              <div id="minus-button-adult" class="minus-button count-button" :class=" { disabled : !mba } " v-on:click="MinusAdult();removePassenger(true);changeClass();">-</div>
-                              <input value="1" min="1" max="7" name="adults" v-model="adults" type="number" class="form-control text-center one-way-inputs-input shadow-none"  placeholder="0">
-                              <div id="plus-button-adult" class="plus-button count-button" :class=" { disabled : !pba } " v-on:click="PlusAdult();addPassenger(true);changeClass();">+</div>
-                              <span class="card-desc d-block w-100">Взрослых</span>
-                            </div>
-                            <div class="count-passenger d-flex align-items-center flex-wrap">
-                              <div id="minus-button-childeren" class="minus-button count-button" :class=" { disabled : !mbc } " v-on:click="MinusChild();removePassenger(false);changeClass();">-</div>
-                              <input value="0" min="0" max="5" name="childrens" v-model="childrens" type="number" class="form-control text-center one-way-inputs-input shadow-none" placeholder="0">
-                              <div id="plus-button-childeren" class="plus-button count-button" :class=" { disabled : !pbc } " v-on:click="PlusChild();addPassenger(false);changeClass();">+</div>
-                              <span class="card-desc d-block w-100">Детских</span>
-                            </div>
-                            <div class="d-block d-lg-none help-icon-block-mobile">
-                              <img class="help-icon" alt="help" src="../../public/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                      <PassengersCounter/>
                     </div>
                     <div class="col-12 col-sm-12 mt-xl-0 col-md-6 col-lg-6 col-xxl mb-lg-4 mb-xxl-0 col-xl-6 mw-300 min-w-300">
                       <div class="card h-100">
@@ -373,20 +321,27 @@
 <script>
 import Header from '@/components/Header'
 import DataPicker from '@/components/DataPicker'
+import PassengersCounter from "@/components/PassengersCounter"
 import {mapGetters,mapActions} from 'vuex'
 
 
 export default{ 
     name: 'Hero',
-    components:{Header, DataPicker},
-    computed: mapGetters(['fromStations','toStations','from','to','childrens','adults','dateArival','dateBack','selectDate','selectDateBack','oneWay']),
+    components:{Header, DataPicker,PassengersCounter},
+    computed: mapGetters([
+      'fromStations',
+      'toStations',
+      'from',
+      'to',
+      'dateArival',
+      'dateBack',
+      'selectDate',
+      'selectDateBack',
+      'oneWay'
+      ]),
     data(){
         return{
             title: 'Доступные билеты на автобус от перевозчика',
-            pba: true,
-            pbc: true,
-            mba: false,
-            mbc: false,
             toPlace:'',
             fromPlace:'',
             fromPlaceV:false,
@@ -419,14 +374,9 @@ export default{
           'setFrom',
           'setTo',
           'castling',
-          'PlusAdult',
-          'MinusAdult',
-          'PlusChild',
-          'MinusChild',
           'getFlightThere',
           'getFlightBack',
-            'addPassenger',
-            'removePassenger'
+
             ]),
             
         search(str,target){
@@ -436,33 +386,8 @@ export default{
             return str.toLowerCase().indexOf(target.toLowerCase())+1
         },
        async alertPlace(){
-            // alert('Едем в '+this.toPlace+' Едем из '+this.fromPlace)
             await this.getFlightThere()
             this.$router.push('/flight-selection/search/'+this.from+'/'+this.to)
-        },
-        //Переключение кнопок в полях кол-ва пассажиров в Desabled Enabled
-        changeClass() {
-            if (this.adults >= 7) {
-                this.pba = false;
-            } else {
-                this.pba = true;
-            }
-            if (this.childrens >= 5) {
-                this.pbc = false;
-            } else {
-                this.pbc = true;
-            }
-
-            if (this.adults > 1) {
-                this.mba = true;
-            } else {
-                this.mba = false;
-            }
-            if (this.childrens > 0) {
-                this.mbc = true;
-            } else {
-                this.mbc = false;
-            }
         },
 
     },
@@ -488,7 +413,7 @@ export default{
 </script>
 
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "src/assets/variables.scss";
 @import "src/assets/font.scss";
 

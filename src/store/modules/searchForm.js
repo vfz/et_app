@@ -4,8 +4,6 @@ export default {
         toStations: [],
         from: '',
         to: '',
-        adults: 1,
-        childrens: 0,
         dateArival: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()).toLocaleDateString('ru-RU', {
             year: 'numeric',
             month: '2-digit',
@@ -146,30 +144,7 @@ export default {
         castlingPoint(state) {
             [state.from, state.to] = [state.to, state.from]
         },
-        plusAdult(state) {
-            state.adults += 1;
-            if (state.adults > 7) {
-                state.adults = 7;
-            }
-        },
-        minusAdult(state) {
-            state.adults -= 1;
-            if (state.adults < 1) {
-                state.adults = 1;
-            }
-        },
-        plusChild(state) {
-            state.childrens += 1;
-            if (state.childrens > 5) {
-                state.childrens = 5;
-            }
-        },
-        minusChild(state) {
-            state.childrens -= 1;
-            if (state.childrens < 0) {
-                state.childrens = 0;
-            }
-        }
+
     },
     actions: {
         //обновить id рейса для которого нужно выводить Схему автобуса
@@ -265,10 +240,7 @@ export default {
             ctx.dispatch('getFlightThere')
             ctx.dispatch('getFlightBack')
         },
-        PlusAdult(ctx) { ctx.commit('plusAdult') },
-        MinusAdult(ctx) { ctx.commit('minusAdult') },
-        PlusChild(ctx) { ctx.commit('plusChild') },
-        MinusChild(ctx) { ctx.commit('minusChild') }
+
 
 
     },
@@ -310,12 +282,6 @@ export default {
         },
         oneWay(state) {
             return state.oneWay
-        },
-        childrens(state) {
-            return state.childrens
-        },
-        adults(state) {
-            return state.adults
         },
         dateArival(state) {
             return state.dateArival

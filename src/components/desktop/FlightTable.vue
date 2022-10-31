@@ -126,16 +126,16 @@
                     data-bs-toggle="modal" 
                     data-bs-target="#place-left-modal"
                     v-on:click="updatebBusTriptId(flight.id_trip)"
-                    v-if="+flight.count_available_seats_trip>=adults+childrens">
+                    v-if="+flight.count_available_seats_trip>=getAdultsCount+getChildrensCount">
                     Выбрать 
-                    <span v-if="childrens+adults===1">место</span>
-                    <span v-if="childrens+adults>1">места</span>
+                    <span v-if="getChildrensCount+getAdultsCount===1">место</span>
+                    <span v-if="getChildrensCount+getAdultsCount>1">места</span>
                   </div>
                 </td>
                 <td class="align-middle">
                   <div class="d-flex align-content-center">
                     <div class="price d-inline-block">
-                      {{(+flight.full_ticket_price*+adults)+(+flight.child_ticket_price*+childrens)}}₽
+                      {{(+flight.full_ticket_price*+getAdultsCount)+(+flight.child_ticket_price*+getChildrensCount)}}₽
                     </div>
                     <div class="d-inline-block">
                       <img class="help-icon" alt="help" src="/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" :title="'Взрослый - '+flight.full_ticket_price+'₽\n'+'Детский - '+flight.child_ticket_price+'₽'" >
@@ -143,10 +143,10 @@
                   </div>
                 </td>
                 <td>
-                  <div class="place-choice-buy" v-if="+flight.count_available_seats_trip>=adults+childrens">
+                  <div class="place-choice-buy" v-if="+flight.count_available_seats_trip>=getAdultsCount+getChildrensCount">
                     Выбрать
                   </div>
-                  <div class="place-choice-buy" v-if="+flight.count_available_seats_trip<adults+childrens || +flight.count_available_seats_trip===0">
+                  <div class="place-choice-buy" v-if="+flight.count_available_seats_trip<getAdultsCount+getChildrensCount || +flight.count_available_seats_trip===0">
                     недостаточно мест :(
                   </div>
                 </td>
@@ -175,7 +175,7 @@ export default {
         flights:[],
     }
   },
-  computed: mapGetters(['flightThere','flightBack','childrens','adults',]),
+  computed: mapGetters(['flightThere','flightBack','getChildrensCount','getAdultsCount',]),
   mounted(){
     
   },

@@ -118,7 +118,7 @@
                         data-bs-toggle="modal" 
                         data-bs-target="#place-left-modal"
                         v-on:click="updatebBusTriptId(flight.id_trip)"
-                        v-if="+flight.count_available_seats_trip>=adults+childrens">
+                        v-if="+flight.count_available_seats_trip>=getAdultsCount+getChildrensCount">
 
                          {{flight.count_available_seats_trip}}
                           Выбрать
@@ -132,10 +132,10 @@
               </div>
             </div>
             <div class="d-grid">
-              <button class="btn btn-primary price"  v-if="+flight.count_available_seats_trip>=adults+childrens">
-                {{(+flight.full_ticket_price*+adults)+(+flight.child_ticket_price*+childrens)}}₽
+              <button class="btn btn-primary price"  v-if="+flight.count_available_seats_trip>=getAdultsCount+getChildrensCount">
+                {{(+flight.full_ticket_price*+getAdultsCount)+(+flight.child_ticket_price*+getChildrensCount)}}₽
               </button>
-              <button class="btn btn-primary price disabled" v-if="+flight.count_available_seats_trip<adults+childrens || +flight.count_available_seats_trip===0">
+              <button class="btn btn-primary price disabled" v-if="+flight.count_available_seats_trip<getAdultsCount+getChildrensCount || +flight.count_available_seats_trip===0">
                     недостаточно мест :(
               </button>
               <!-- <button class="btn btn-success price">
@@ -163,7 +163,7 @@ export default {
         // flights:[],
     }
   },
-  computed: mapGetters(['flightThere','flightBack','childrens','adults',]),
+  computed: mapGetters(['flightThere','flightBack','getChildrensCount','getAdultsCount',]),
   mounted(){
     
   },

@@ -1,3 +1,5 @@
+import { counter } from "@fortawesome/fontawesome-svg-core"
+
 export default {
     state: {
         passengers: [{
@@ -127,10 +129,13 @@ export default {
     actions: {
         //Обновление данных пассажиров
         addPassenger(ctx, isAdult) {
-            const adultCount = ctx.getters.adults;
-            const childrenCount = ctx.getters.childrens;
-            //прибавляется единица, так как по умолчанию выбран один человек
-            const id = adultCount + childrenCount - 1
+            if (
+                (state.passengers.filter(passenger => passenger.isAdult === true).length = 7 && isAdult) ||
+                (state.passengers.filter(passenger => passenger.isAdult === false).length = 5 && !isAdult)
+            ) {
+                return false;
+            }
+            const id = ctx.state.passengers.length
             const passenger = {
                 id: id,
                 id_trip: 0,
@@ -166,6 +171,12 @@ export default {
             ctx.commit('addPassenger', passenger)
         },
         removePassenger(ctx, isAdult) {
+            if (
+                (state.passengers.filter(passenger => passenger.isAdult === true).length = 1 && isAdult) ||
+                (state.passengers.filter(passenger => passenger.isAdult === false).length = 0 && !isAdult)
+            ) {
+                return false;
+            }
             // TODO доделать удаление пользователя
             function getIndex(passenger) {
                 if (passenger.isAdult === isAdult) {
@@ -590,6 +601,12 @@ export default {
     getters: {
         getPassengers(state) {
             return state.passengers;
+        },
+        getChildrensCount(state) {
+            return state.passengers.filter(passenger => passenger.isAdult === false).length;
+        },
+        getAdultsCount(state) {
+            return state.passengers.filter(passenger => passenger.isAdult === true).length;
         },
         getDocumentsTypes(state) {
             return state.documentTypes

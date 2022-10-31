@@ -308,7 +308,20 @@ import {mapGetters,mapActions} from 'vuex'
 export default {
   name: "Flight-form",
   components:{DataPicker,},
-  computed: mapGetters(['fromStations','toStations','from','to','childrens','adults','dateArival','dateBack','selectDate','selectDateBack','oneWay']),
+  computed: mapGetters(
+    [
+      'fromStations',
+      'toStations',
+      'from',
+      'to',
+      'childrens',
+      'adults',
+      'dateArival',
+      'dateBack',
+      'selectDate',
+      'selectDateBack',
+      'oneWay'
+    ]),
   data(){
     return{
       pba: true,

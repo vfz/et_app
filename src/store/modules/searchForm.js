@@ -17,8 +17,9 @@ export default {
         flightBack: [],
         busTriptId: "7",
         shemeMobile: [],
-        shemeDesktop: []
-
+        shemeDesktop: [],
+        selectedSeatThere: [],
+        selectedSeatBack: []
     },
     mutations: {
         // функция для перестройки схемы автобуса в мобильную
@@ -252,7 +253,9 @@ export default {
         shemeDesktop(state) {
             return state.shemeDesktop
         },
-
+        selectedSeat(state) {
+            return state.selectedSeat
+        },
         // mergeFlights(state) {
         //     let flights = state.flightThere.concat(state.flightBack);
         //     return flights

@@ -82,29 +82,29 @@ export default {
     
         //Переключение кнопок в полях кол-ва пассажиров в Desabled Enabled
         changeClass() {
-        if (this.getAdultsCount >= 7) {
-            this.pba = false;
-        } else {
-            this.pba = true;
-        }
-        // дети
-        if (this.getChildrensCount >= 5) {
-            this.pbc = false;
-        } else {
-            this.pbc = true;
-        }
+            if (this.getAdultsCount >= 7) {
+                this.pba = false;
+            } else {
+                this.pba = true;
+            }
+            // дети
+            if (this.getChildrensCount >= 5) {
+                this.pbc = false;
+            } else {
+                this.pbc = true;
+            }
 
-        if (this.getAdultsCount > 1) {
-            this.mba = true;
-        } else {
-            this.mba = false;
-        }
-        // Дети
-        if (this.getChildrensCount > 0) {
-            this.mbc = true;
-        } else {
-            this.mbc = false;
-        }
+            if (this.getAdultsCount > 1) {
+                this.mba = true;
+            } else {
+                this.mba = false;
+            }
+            // Дети
+            if (this.getChildrensCount > 0) {
+                this.mbc = true;
+            } else {
+                this.mbc = false;
+            }
         }
   }
 }

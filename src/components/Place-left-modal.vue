@@ -52,7 +52,11 @@
                         :rowspan="seat.split('+')[1]" 
                         :colspan="seat.split('+')[2]"
                         align="center">
-                        <div :class="seat.split('+')[0]" :id="'seat_'+seat.split('+')[3].replace('_', '')">{{seat.split('+')[3].replace('_', '')}}</div>
+                        <div 
+                          :class="seat.split('+')[0]" 
+                          :id="'seat_'+seat.split('+')[3].replace('_', '')">
+                            {{seat.split('+')[3].replace('_', '')}}
+                        </div>
                       </td>
                     </tr>
                   </table>
@@ -64,7 +68,11 @@
                         :colspan="seat.split('+')[1]" 
                         :rowspan="seat.split('+')[2]"
                         align="center">
-                        <div :class="seat.split('+')[0]" :id="'seat_'+seat.split('+')[3].replace('_', '')">{{seat.split('+')[3].replace('_', '')}}</div>
+                        <div 
+                          :class="seat.split('+')[0]" 
+                          :id="'seat_'+seat.split('+')[3].replace('_', '')">
+                            {{seat.split('+')[3].replace('_', '')}}
+                        </div>
 
                       </td>
                     </tr>
@@ -91,7 +99,13 @@ export default {
       testFl:[]
     }
   },
-  computed: mapGetters(['busTriptId','shemeMobile','shemeDesktop']),
+  computed: mapGetters([
+    'busTriptId',
+    'shemeMobile',
+    'shemeDesktop',
+    'selectedSeatThere',
+    'selectedSeatBack'
+  ]),
   mounted(){
 
   },

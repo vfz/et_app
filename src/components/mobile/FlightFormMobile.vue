@@ -155,19 +155,19 @@
                         <div>
                           <label for="dataListFrom" class="form-label">Пассажиры</label>
                           <div class="passengers-count" v-bind:class="{'d-none': isHidden}" v-on:click="isHidden = true; isShow = true">
-                            <span>{{childrens+adults}} человека</span>
+                            <span>{{getChildrensCount+getAdultsCount}} человека</span>
                           </div>
                           <div v-bind:class="{'d-flex': isShow, 'd-none': !isShow}" class="passengers-count-detail justify-content-between w-100">
                             <div class="count-passenger d-flex align-items-center flex-wrap">
                               <div id="minus-button-adult" class="minus-button count-button" :class=" { disabled : !mba } " v-on:click="MinusAdult();removePassenger(true);changeClass();">-</div>
-                              <input value="1" min="1" max="7" name="adults" v-model="adults" type="number" class="form-control one-way-inputs-input shadow-none text-center"  placeholder="0">
+                              <input value="1" min="1" max="7" name="adults" v-model="getAdultsCount" type="number" class="form-control one-way-inputs-input shadow-none text-center"  placeholder="0">
                               <div id="plus-button-adult" class="plus-button count-button" :class=" { disabled : !pba } " v-on:click="PlusAdult();addPassenger(true);changeClass();">+</div>
                               <span class="card-desc d-block w-100">Взрослых</span>
                             </div>
                             <div class="count-passenger d-flex">
                               <div class="d-flex align-items-center flex-wrap">
                                 <div id="minus-button-childeren" class="minus-button count-button" :class=" { disabled : !mbc } " v-on:click="MinusChild();removePassenger(false);changeClass();">-</div>
-                                <input value="0" min="0" max="5" name="childrens" v-model="childrens" type="number" class="form-control one-way-inputs-input shadow-none text-center" placeholder="0">
+                                <input value="0" min="0" max="5" name="childrens" v-model="getChildrensCount" type="number" class="form-control one-way-inputs-input shadow-none text-center" placeholder="0">
                                 <div id="plus-button-childeren" class="plus-button count-button" :class=" { disabled : !pbc } " v-on:click="PlusChild();addPassenger(false);changeClass();">+</div>
                                 <span class="card-desc d-block w-100">Детских</span>
                               </div>
@@ -206,7 +206,21 @@ import {mapGetters,mapActions} from 'vuex'
 export default {
   name: "Flight-form-mobile",
   components:{DataPicker,},
-  computed: mapGetters(['fromStations','toStations','from','to','childrens','adults','dateArival','dateBack','selectDate','selectDateBack','oneWay']),
+  computed: mapGetters([
+    'fromStations',
+    'toStations',
+    'from',
+    'to',
+    'childrens',
+    'adults',
+    'dateArival',
+    'dateBack',
+    'selectDate',
+    'selectDateBack',
+    'oneWay',
+    'getAdultsCount',
+    'getChildrensCount'
+    ]),
   data(){
     return{
       pba: true,
@@ -273,26 +287,28 @@ export default {
     },
     //Переключение кнопок в полях кол-ва пассажиров в Desabled Enabled
     changeClass() {
-      if (this.adults >= 7) {
-        this.pba = false;
+      if (this.getAdultsCount >= 7) {
+          this.pba = false;
       } else {
-        this.pba = true;
+          this.pba = true;
       }
-      if (this.childrens >= 5) {
-        this.pbc = false;
+      // дети
+      if (this.getChildrensCount >= 5) {
+          this.pbc = false;
       } else {
-        this.pbc = true;
+          this.pbc = true;
       }
 
-      if (this.adults > 1) {
-        this.mba = true;
+      if (this.getAdultsCount > 1) {
+          this.mba = true;
       } else {
-        this.mba = false;
+          this.mba = false;
       }
-      if (this.childrens > 0) {
-        this.mbc = true;
+      // Дети
+      if (this.getChildrensCount > 0) {
+          this.mbc = true;
       } else {
-        this.mbc = false;
+          this.mbc = false;
       }
     }
 

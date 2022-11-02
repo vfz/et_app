@@ -33,6 +33,9 @@
     <PassengersFormInfo v-if="!isMobile()"/>
     <PassengersFormInfoMobile v-if="isMobile()"/>
     <Footer/>
+    <DispatchModal/>
+    <DispatchLengthTimeModal/>
+    <PlaceLeftModal :mobile="isMobile()"/>
     <LoginModal/>
     <RegistrationModal/>
     <ForgotPasswordModal/>
@@ -60,10 +63,16 @@ import EuroPointsOffer from "@/components/EuroPointsOffer";
 import FlightTable from "@/components/desktop/FlightTable";
 import FlightTableMobile from "@/components/mobile/FlightTableMobile";
 import {mapGetters,mapActions} from 'vuex'
+import DispatchModal from "@/components/Dispatch-modal";
+import DispatchLengthTimeModal from "@/components/Dispatch-length-time-modal";
+import PlaceLeftModal from "@/components/Place-left-modal";
 
 export default {
   name: "Ticket-booking",
   components: {
+    PlaceLeftModal,
+    DispatchLengthTimeModal,
+    DispatchModal,
     EuroPointsOffer,
     PassengersFormInfoMobile,
     FlightTable,

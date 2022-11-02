@@ -156,11 +156,11 @@ export default {
   props: ['flightType'],
   data(){
     return{
-        hours: ['час', 'часа', 'часов'],
-        minutes: ['минута', 'минуты', 'минут'],
-        cases: [2, 0, 1, 1, 1, 2],
-        monthes: ["Янв", "Фев", "Мар", "Апр", "Мая", "Июн", "Июл", "Авг", "Сен", "Окт", "Ноя", "Дек"],
-        // flights:[],
+      hours: ['час', 'часа', 'часов'],
+      minutes: ['минута', 'минуты', 'минут'],
+      cases: [2, 0, 1, 1, 1, 2],
+      monthes: ["Янв", "Фев", "Мар", "Апр", "Мая", "Июн", "Июл", "Авг", "Сен", "Окт", "Ноя", "Дек"],
+      flights:[],
     }
   },
   computed: mapGetters(['flightThere','flightBack','getChildrensCount','getAdultsCount',]),

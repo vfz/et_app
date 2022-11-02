@@ -153,29 +153,11 @@
                       </div>
                       <div class="card-body-section d-flex justify-content-between align-items-center">
                         <div>
-                          <label for="dataListFrom" class="form-label">Пассажиры</label>
+                          <label v-bind:class="{'d-none': isHidden}" for="dataListFrom" class="form-label">Пассажиры</label>
                           <div class="passengers-count" v-bind:class="{'d-none': isHidden}" v-on:click="isHidden = true; isShow = true">
-                            <span>{{childrens+adults}} человека</span>
+                            <span>{{getPassengers.length}} человека</span>
                           </div>
-                          <div v-bind:class="{'d-flex': isShow, 'd-none': !isShow}" class="passengers-count-detail justify-content-between w-100">
-                            <div class="count-passenger d-flex align-items-center flex-wrap">
-                              <div id="minus-button-adult" class="minus-button count-button" :class=" { disabled : !mba } " v-on:click="MinusAdult();removePassenger(true);changeClass();">-</div>
-                              <input value="1" min="1" max="7" name="adults" v-model="adults" type="number" class="form-control one-way-inputs-input shadow-none text-center"  placeholder="0">
-                              <div id="plus-button-adult" class="plus-button count-button" :class=" { disabled : !pba } " v-on:click="PlusAdult();addPassenger(true);changeClass();">+</div>
-                              <span class="card-desc d-block w-100">Взрослых</span>
-                            </div>
-                            <div class="count-passenger d-flex">
-                              <div class="d-flex align-items-center flex-wrap">
-                                <div id="minus-button-childeren" class="minus-button count-button" :class=" { disabled : !mbc } " v-on:click="MinusChild();removePassenger(false);changeClass();">-</div>
-                                <input value="0" min="0" max="5" name="childrens" v-model="childrens" type="number" class="form-control one-way-inputs-input shadow-none text-center" placeholder="0">
-                                <div id="plus-button-childeren" class="plus-button count-button" :class=" { disabled : !pbc } " v-on:click="PlusChild();addPassenger(false);changeClass();">+</div>
-                                <span class="card-desc d-block w-100">Детских</span>
-                              </div>
-                              <div>
-                                <img class="help-icon" alt="help" src="/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
-                              </div>
-                            </div>
-                          </div>
+                          <PassengersCounter class="passenger-count-expand" v-bind:class="{'d-flex': isShow, 'd-none': !isShow}"/>
                         </div>
                         <div v-bind:class="{'d-block': !isShow, 'd-none': isShow}">
                           <img class="help-icon" alt="help" src="/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
@@ -203,16 +185,24 @@
 <script>
 import DataPicker from '@/components/DataPicker'
 import {mapGetters,mapActions} from 'vuex'
+import PassengersCounter from "@/components/PassengersCounter";
 export default {
   name: "Flight-form-mobile",
-  components:{DataPicker,},
-  computed: mapGetters(['fromStations','toStations','from','to','childrens','adults','dateArival','dateBack','selectDate','selectDateBack','oneWay']),
+  components:{PassengersCounter, DataPicker,},
+  computed: mapGetters([
+      'fromStations',
+    'toStations',
+    'from',
+    'to',
+    'dateArival',
+    'dateBack',
+    'selectDate',
+    'selectDateBack',
+    'oneWay',
+      'getPassengers'
+  ]),
   data(){
     return{
-      pba: true,
-      pbc: true,
-      mba: false,
-      mbc: false,
       toPlace:'',
       fromPlace:'',
       fromPlaceV:false,
@@ -249,10 +239,6 @@ export default {
       'setFrom',
       'setTo',
       'castling',
-      'PlusAdult',
-      'MinusAdult',
-      'PlusChild',
-      'MinusChild',
         'addPassenger',
         'removePassenger'
     ]),
@@ -271,30 +257,6 @@ export default {
         this.$router.push('/flight-selection/search/'+this.from+'/'+this.to)
         }
     },
-    //Переключение кнопок в полях кол-ва пассажиров в Desabled Enabled
-    changeClass() {
-      if (this.adults >= 7) {
-        this.pba = false;
-      } else {
-        this.pba = true;
-      }
-      if (this.childrens >= 5) {
-        this.pbc = false;
-      } else {
-        this.pbc = true;
-      }
-
-      if (this.adults > 1) {
-        this.mba = true;
-      } else {
-        this.mba = false;
-      }
-      if (this.childrens > 0) {
-        this.mbc = true;
-      } else {
-        this.mbc = false;
-      }
-    }
 
 
   },
@@ -305,13 +267,21 @@ export default {
     this.setTo(this.$route.params.to);
     this.toPlace= this.toStations.find(station => station.id_to === this.$route.params.to).name;
     this.fromPlace= this.fromStations.find(station => station.id_from === this.$route.params.from).name;
-    this.fetchCountPassengers();
   },
   // created(){
   //     document.addEventListener('click', this.selectDateFalse.bind(this));
   // }
 }
 </script>
+
+<style lang="scss">
+.passenger-count-expand {
+  box-shadow: none;
+  .card-body {
+    padding: 0 !important;
+  }
+}
+</style>
 
 <style lang="scss" scoped>
 @import "src/assets/variables.scss";
@@ -381,7 +351,7 @@ export default {
           }
           .form-check-input:checked + .form-check-label {
             font-weight: $light;
-            color: $base;
+            color: $base !important;
           }
           .form-check-label {
             font-family: $uni;

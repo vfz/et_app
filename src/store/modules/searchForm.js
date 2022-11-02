@@ -9,7 +9,12 @@ export default {
             month: '2-digit',
             day: '2-digit',
         }),
-        dateBack: '',
+        dateBack: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()).toLocaleDateString('ru-RU', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+        }),
+
         selectDate: false,
         selectDateBack: false,
         oneWay: true,
@@ -256,10 +261,6 @@ export default {
         selectedSeat(state) {
             return state.selectedSeat
         },
-        // mergeFlights(state) {
-        //     let flights = state.flightThere.concat(state.flightBack);
-        //     return flights
-        // },
         busTriptId(state) {
             return state.busTriptId
         },

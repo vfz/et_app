@@ -15,7 +15,7 @@
               </div>
             </div>
             <!--one-way-input-->
-            <div class="one-way-inputs w-100 form-header" v-if="oneWay">
+            <div class="one-way-inputs w-100" v-if="oneWay">
               <div class="row">
                 <div class="col-md-12 col-lg-6 col-xl-6 col-xxl-3 mb-lg-4 mb-xxl-0">
                   <div class="card h-100">
@@ -124,7 +124,7 @@
               </div>
             </div>
             <!-- two-way-input-->
-            <div class="two-ways-inputs w-100 form-header" v-else>
+            <div class="two-ways-inputs w-100" v-else>
               <div class="row">
                 <div class="col-lg-6 col-xl-6 col-xxl mb-lg-4 mb-xxl-0 mw-300 min-w-300">
                   <div class="card h-100">
@@ -347,7 +347,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 @import "../../assets/variables";
 @import "../../assets/font";
 
@@ -421,7 +421,7 @@ export default {
           }
           .form-check-input:checked + .form-check-label {
             font-weight: $light;
-            color: $base;
+            color: $base !important;
           }
           .form-check-label {
             font-family: $uni;

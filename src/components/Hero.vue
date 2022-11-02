@@ -444,7 +444,7 @@ export default{
     }
     .search-form {
       .checkbox-form {
-        margin-bottom: 33px;
+        margin-bottom: 32px;
         @media screen and (max-width: 768px) {
           display: flex !important;
           width: 100% !important;
@@ -480,10 +480,8 @@ export default{
             }
           }
           .form-check-input:checked + .form-check-label {
-            font-weight: $bold;
-            @media screen and (max-width: 768px) {
-              font-weight: $bold;
-            }
+            color: $white !important;
+            font-weight: $bold !important;
           }
           .form-check-label {
             padding-left: 0;

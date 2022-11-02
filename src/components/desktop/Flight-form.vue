@@ -310,8 +310,8 @@ export default {
       'MinusAdult',
       'PlusChild',
       'MinusChild',
-        'addPassenger',
-        'removePassenger'
+      'addPassenger',
+      'removePassenger'
     ]),
 
     search(str,target){

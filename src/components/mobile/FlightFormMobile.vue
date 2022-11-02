@@ -155,7 +155,13 @@
                         <div>
                           <label v-bind:class="{'d-none': isHidden}" for="dataListFrom" class="form-label">Пассажиры</label>
                           <div class="passengers-count" v-bind:class="{'d-none': isHidden}" v-on:click="isHidden = true; isShow = true">
-                            <span>{{getPassengers.length}} человека</span>
+                            <span>{{getPassengers.length}} 
+                              {{humans[
+                                (getPassengers.length > 10 && getPassengers.length < 20)? 2 :
+                                (getPassengers.length > 1 && getPassengers.length < 5) ? 1 :
+                                (getPassengers.length === 1) ? 0 : 2
+                              ]}} 
+                          </span>
                           </div>
                           <PassengersCounter class="passenger-count-expand" v-bind:class="{'d-flex': isShow, 'd-none': !isShow}"/>
                         </div>
@@ -190,7 +196,7 @@ export default {
   name: "Flight-form-mobile",
   components:{PassengersCounter, DataPicker,},
   computed: mapGetters([
-      'fromStations',
+    'fromStations',
     'toStations',
     'from',
     'to',
@@ -199,7 +205,7 @@ export default {
     'selectDate',
     'selectDateBack',
     'oneWay',
-      'getPassengers'
+    'getPassengers'
   ]),
   data(){
     return{
@@ -212,7 +218,7 @@ export default {
       isHidden: false,
       isShow: false,
       monthes: ["Янв", "Фев", "Мар", "Апр", "Мая", "Июня", "Июля", "Авг", "Сен", "Окт", "Ноя", "Дек"],
-
+      humans: ['Человек', 'Человека', 'Человек'],
     }
 
   },

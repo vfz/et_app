@@ -1,3 +1,6 @@
+import Vue from 'vue'
+import {element} from "mdb-ui-kit/src/js/mdb/util";
+
 export default {
     state: {
         fromStations: [],
@@ -145,14 +148,38 @@ export default {
         castlingPoint(state) {
             [state.from, state.to] = [state.to, state.from]
         },
+        setDefaultPlace(state, place) {
+
+        },
+        setSelectedPlace(state, selectedPlace) {
+            state.flightThere.forEach((element) => {
+                if (element.id_trip === state.busTriptId) {
+                    state.selectedSeatThere.push(selectedPlace)
+                }
+            })
+            state.flightBack.forEach((element) => {
+                if (element.id_trip === state.busTriptId) {
+                    state.selectedSeatBack.push(selectedPlace)
+                }
+            })
+        },
+        removeSelectedPlace(state, selectedPlace) {
+            let selectedSeatThereIndex =  state.selectedSeatThere.findIndex(seat => seat === selectedPlace);
+            let selectedSeatBackIndex = state.selectedSeatBack.findIndex(seat => seat === selectedPlace);
+            state.selectedSeatThere.splice(selectedSeatThereIndex, 1)
+            state.selectedSeatBack.splice(selectedSeatBackIndex, 1)
+            // debugger
+        }
 
     },
     actions: {
         //обновить id рейса для которого нужно выводить Схему автобуса
         updatebBusTriptId(ctx, tripId) {
+            //TODO добавить trip_id для поездки туда и обратно по отдельности
             ctx.commit('updatebBusTriptId', tripId)
             ctx.commit('busMobile')
             ctx.commit('busDesktop')
+            ctx.dispatch('getDefaultPlace')
         },
         //Получаем список станций прибытия
         async getToStations(ctx, from = '') {
@@ -241,6 +268,41 @@ export default {
             ctx.dispatch('getFlightThere')
             ctx.dispatch('getFlightBack')
         },
+        getSelectedPlace(ctx, [strokaIndex ,floor, place, seatIndex, classPlace]) {
+            let selectedPlaceIndex = ctx.state.shemeDesktop[floor][strokaIndex].findIndex(seat => seat === place);
+            let selectedPlace = ctx.state.shemeDesktop[floor][strokaIndex].filter(seat => seat === place)[0].split('+')[3].replace('_', '')
+            if (classPlace === 'seat') {
+                let regexp = /seat/gi;
+                let value = place.replace(regexp, 'active-seat')
+                Vue.set(ctx.state.shemeDesktop[floor][strokaIndex], selectedPlaceIndex, value)
+                ctx.commit('setSelectedPlace', selectedPlace)
+            }
+            if (classPlace === 'active-seat') {
+                let regexp = /active-seat/gi;
+                let value = place.replace(regexp, 'seat')
+                Vue.set(ctx.state.shemeDesktop[floor][strokaIndex], selectedPlaceIndex, value)
+                ctx.commit('removeSelectedPlace', selectedPlace)
+            }
+        },
+        //TODO добавить места по умолчанию
+        getDefaultPlace(ctx) {
+            let floors = Object.values(ctx.state.shemeDesktop)
+            let freeSeats = ''
+            debugger
+            floors.forEach((floor) => {
+                let strokes = Object.values(floor)
+                strokes.forEach((stroke) => {
+                    freeSeats = stroke.filter((seat) => {
+                        let classPlace = seat.split('+')[0]
+                        if (classPlace === 'seat') {
+                            console.log(seat)
+                            return seat
+                        }
+                    })
+                })
+            })
+            console.log(freeSeats)
+        }
 
 
 

@@ -47,13 +47,31 @@
                 <div :class="!mobile ? 'bus-scheme' :  'bus-scheme-mobile'">
                   <table v-if="!mobile">
                     <!--TODO: подсветка выбранных мест-->
+<!--                    TODO нет break-->
                     <tr v-for="(stroka,indexstr) in shemeDesktop[floor]" :key="indexstr">
-                      <td v-for="(seat,index) in stroka.filter(seatt=> seatt.length >7)" :key="index"
+                      <td
+                          @click="getSelectedPlace([indexstr ,floor, seat, index, seat.split('+')[0]])"
+                          v-for="(seat,index) in stroka.filter(seatt=> seatt.length >7)"
+                          :key="index"
                         :rowspan="seat.split('+')[1]" 
                         :colspan="seat.split('+')[2]"
                         align="center">
-                        <div 
-                          :class="seat.split('+')[0]" 
+                        <div
+                            :data-index="index"
+                          :class="{
+                        'busy-seat': seat.split('+')[0] === 'busy-seat',
+                        'active-seat' : seat.split('+')[0] === 'active-seat',
+                        'seat' : seat.split('+')[0] === 'seat',
+                        'prohod' : seat.split('+')[0] === 'prohod',
+                        'breakeseat' : seat.split('+')[0] === 'breakeseat',
+                        'voditel' : seat.split('+')[0] === 'voditel',
+                        'exit' : seat.split('+')[0] === 'exit',
+                        'stol' : seat.split('+')[0] === 'stol',
+                        'lest' : seat.split('+')[0] === 'lest',
+                        'lest_b' : seat.split('+')[0] === 'lest_b',
+                        'tualet' : seat.split('+')[0] === 'tualet',
+                        'text_floor' : seat.split('+')[0] === 'text_floor',
+                        }"
                           :id="'seat_'+seat.split('+')[3].replace('_', '')">
                             {{seat.split('+')[3].replace('_', '')}}
                         </div>
@@ -112,6 +130,7 @@ export default {
     methods: {
     ...mapActions([
       'updatebBusTriptId',
+        'getSelectedPlace',
     ]),
     floorsQ(){
       if(this.mobile){
@@ -250,6 +269,26 @@ export default {
         color: #ffffff;
         cursor: pointer;
     }
+    .active-seat {
+      width: 32px;
+      height: 32px;
+      margin-right: 10px;
+      margin-bottom: 6px;
+      padding-top: 6px;
+      background: $blue-active;
+      /* Button / Inactive */
+      border: 1px solid $blue-active;
+      box-sizing: border-box;
+      /* Shadow / Normal */
+      box-shadow: 0 8px 12px rgba(161, 159, 255, 0.2);
+      border-radius: 4px;
+      font-family: $uni;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 19px;
+      color: $white;
+    }
     .prohod {
           margin-right: 0;//10px;
           margin-bottom: 0;//6px;
@@ -298,6 +337,7 @@ export default {
         font-weight: 500;
         font-size: 14px;
         line-height: 19px;
+      pointer-events: none;
     }
     .text_floor {
         font-family: $uni;

@@ -26,8 +26,10 @@ export default {
         busTriptId: "7",
         shemeMobile: [],
         shemeDesktop: [],
-        selectedSeatThere: [],
-        selectedSeatBack: []
+        selectedSeat: [
+            {1:[1,2,3]}
+        ]
+
     },
     mutations: {
         // функция для перестройки схемы автобуса в мобильную
@@ -273,7 +275,27 @@ export default {
             ctx.dispatch('getFlightThere')
             ctx.dispatch('getFlightBack')
         },
+        // getSelectedPlace(ctx, [strokaIndex ,floor, place, seatIndex, classPlace]) {
+        //     let selectedPlaceIndex = ctx.state.shemeDesktop[floor][strokaIndex].findIndex(seat => seat === place);
+        //     let selectedPlace = ctx.state.shemeDesktop[floor][strokaIndex].filter(seat => seat === place)[0].split('+')[3].replace('_', '')
+        //     if (classPlace === 'seat') {
+        //         let regexp = /seat/gi;
+        //         let value = place.replace(regexp, 'active-seat')
+        //         Vue.set(ctx.state.shemeDesktop[floor][strokaIndex], selectedPlaceIndex, value)
+        //         ctx.commit('setSelectedPlace', selectedPlace)
+        //     }
+        //     if (classPlace === 'active-seat') {
+        //         let regexp = /active-seat/gi;
+        //         let value = place.replace(regexp, 'seat')
+        //         Vue.set(ctx.state.shemeDesktop[floor][strokaIndex], selectedPlaceIndex, value)
+        //         ctx.commit('removeSelectedPlace', selectedPlace)
+        //     }
+        // },
         getSelectedPlace(ctx, [strokaIndex ,floor, place, seatIndex, classPlace]) {
+
+            // selectedSeat: [
+            //     {1:[1,2,3]}
+            // ]
             let selectedPlaceIndex = ctx.state.shemeDesktop[floor][strokaIndex].findIndex(seat => seat === place);
             let selectedPlace = ctx.state.shemeDesktop[floor][strokaIndex].filter(seat => seat === place)[0].split('+')[3].replace('_', '')
             if (classPlace === 'seat') {

@@ -120,7 +120,7 @@
                   <div class="places-left">
                     {{flight.count_available_seats_trip}}
                   </div>
-                  <!-- При нажатии открывается модальное окно с-->
+                  <!-- При нажатии открывается модальное окно с автобусом-->
                   <div 
                     class="place-choice table-link" 
                     data-bs-toggle="modal" 

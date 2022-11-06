@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import {element} from "mdb-ui-kit/src/js/mdb/util";
+import { element } from "mdb-ui-kit/src/js/mdb/util";
 
 export default {
     state: {
@@ -26,9 +26,7 @@ export default {
         busTriptId: "7",
         shemeMobile: [],
         shemeDesktop: [],
-        selectedSeat: [
-            {1:[1,2,3]}
-        ]
+        selectedSeat: []
 
     },
     mutations: {
@@ -73,7 +71,6 @@ export default {
             state.shemeDesktop = floors
 
         },
-
         //обновить id рейса для которого нужно выводить Схему автобуса
         updatebBusTriptId(state, tripId) {
             state.busTriptId = tripId
@@ -171,11 +168,33 @@ export default {
             })
         },
         removeSelectedPlace(state, selectedPlace) {
-            let selectedSeatThereIndex =  state.selectedSeatThere.findIndex(seat => seat === selectedPlace);
+            let selectedSeatThereIndex = state.selectedSeatThere.findIndex(seat => seat === selectedPlace);
             let selectedSeatBackIndex = state.selectedSeatBack.findIndex(seat => seat === selectedPlace);
             state.selectedSeatThere.splice(selectedSeatThereIndex, 1)
             state.selectedSeatBack.splice(selectedSeatBackIndex, 1)
-            // debugger
+                // debugger
+        },
+
+        updateDefaultsSeat(state, passengers) {
+
+            const allFlightf = [
+                ...state.flightBack.filter(flight => (flight.count_available_seats_trip >= passengers.length)),
+                ...state.flightThere.filter(flight => (flight.count_available_seats_trip >= passengers.length))
+            ]
+
+            state.selectedSeat = allFlightf.map(flight => {
+
+                return {
+                    id_trip: flight.id_trip,
+                    seats: [
+                        //Берем первые N мест из рейса с достаточным кол-вом мест где N кол-во пассажиров
+                        ...flight.seats_trip.split('^').slice(0, passengers.length)
+                    ]
+                }
+
+
+            })
+
         }
 
     },
@@ -203,7 +222,6 @@ export default {
         },
         //Получаем список рейсов (туда)
         async getFlightThere(ctx) {
-
             const validSearchThere = (!+ctx.state.from || !+ctx.state.to || !ctx.state.dateArival) ? false : true
             if (!validSearchThere) { return false }
             const from_okato = ctx.state.fromStations.find(station => station.id_from === ctx.state.from).okato
@@ -212,7 +230,7 @@ export default {
             const res = await fetch(ctx.rootState.API_URL + "?command=okato_trip&from_id=" + from_okato + "&to_id=" + to_okato + "&date_trip=" + ctx.state.dateArival);
             const FlightThere = await res.json();
             ctx.commit('updateFlightThere', FlightThere)
-
+            ctx.commit('updateDefaultsSeat', ctx.rootGetters.getPassengers)
 
         },
         //Получаем список рейсов (обратно)
@@ -225,6 +243,7 @@ export default {
             const res = await fetch(ctx.rootState.API_URL + "?command=okato_trip&from_id=" + from_okato + "&to_id=" + to_okato + "&date_trip=" + ctx.state.dateBack);
             const FlightBack = await res.json();
             ctx.commit('updateFlightBack', FlightBack)
+            ctx.commit('updateDefaultsSeat', ctx.rootGetters.getPassengers)
 
         },
 
@@ -291,7 +310,7 @@ export default {
         //         ctx.commit('removeSelectedPlace', selectedPlace)
         //     }
         // },
-        getSelectedPlace(ctx, [strokaIndex ,floor, place, seatIndex, classPlace]) {
+        getSelectedPlace(ctx, [strokaIndex, floor, place, seatIndex, classPlace]) {
 
             // selectedSeat: [
             //     {1:[1,2,3]}
@@ -315,7 +334,7 @@ export default {
         getDefaultPlace(ctx) {
             let floors = Object.values(ctx.state.shemeDesktop)
             let freeSeats = ''
-            debugger
+                ////debugger
             floors.forEach((floor) => {
                 let strokes = Object.values(floor)
                 strokes.forEach((stroke) => {

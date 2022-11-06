@@ -169,6 +169,7 @@ export default {
                     isAdult: isAdult
                 }
                 ctx.commit('addPassenger', passenger)
+                ctx.commit('updateDefaultsSeat', ctx.rootGetters.getPassengers)
             }
         },
         removePassenger(ctx, isAdult) {
@@ -186,6 +187,7 @@ export default {
             }
             const passenger = ctx.state.passengers.findIndex(getIndex)
             ctx.commit('removePassenger', passenger)
+            ctx.commit('updateDefaultsSeat', ctx.rootGetters.getPassengers)
         },
         removePassengerById(ctx, id) {
             function getIndex(passenger) {

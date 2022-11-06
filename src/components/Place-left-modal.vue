@@ -60,7 +60,8 @@
                             :data-index="index"
                           :class="{
                         'busy-seat': seat.split('+')[0] === 'busy-seat',
-                        'active-seat' : seat.split('+')[0] === 'active-seat',
+                        'active-seat' : seat.split('+')[0] === 'active-seat'||
+                        checkAktive(seat.split('+')[3].replace('_', '')),
                         'seat' : seat.split('+')[0] === 'seat',
                         'prohod' : seat.split('+')[0] === 'prohod',
                         'breakeseat' : seat.split('+')[0] === 'breakeseat',
@@ -121,8 +122,7 @@ export default {
     'busTriptId',
     'shemeMobile',
     'shemeDesktop',
-    'selectedSeatThere',
-    'selectedSeatBack'
+    'selectedSeat'
   ]),
   mounted(){
 
@@ -131,7 +131,14 @@ export default {
     ...mapActions([
       'updatebBusTriptId',
         'getSelectedPlace',
+        
     ]),
+    checkAktive(totalSeat){
+      let sealList=this.selectedSeat.find(reis=>(reis.id_trip===this.busTriptId))
+      let test=sealList.seats.includes(totalSeat)
+      return test
+
+    },
     floorsQ(){
       if(this.mobile){
         //TODO: Добавить проверку есть ли второй этаж в текущем автобусе

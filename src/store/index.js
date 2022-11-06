@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import searchForm from './modules/searchForm'
 import mapModal from './modules/mapModal';
-import passengerModule from "@/store/modules/passengerModule";
+import passengerModule from "./modules/passengerModule";
 Vue.use(Vuex)
 
 export default new Vuex.Store({

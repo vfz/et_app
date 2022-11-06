@@ -287,6 +287,10 @@ export default {
         //     }
         // },
         getSelectedPlace(ctx, [strokaIndex ,floor, place, seatIndex, classPlace]) {
+
+            // selectedSeat: [
+            //     {1:[1,2,3]}
+            // ]
             let selectedPlaceIndex = ctx.state.shemeDesktop[floor][strokaIndex].findIndex(seat => seat === place);
             let selectedPlace = ctx.state.shemeDesktop[floor][strokaIndex].filter(seat => seat === place)[0].split('+')[3].replace('_', '')
             if (classPlace === 'seat') {

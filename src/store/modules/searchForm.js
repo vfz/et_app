@@ -174,9 +174,9 @@ export default {
 
         },
 
-        changeSeatList(state, { busTriptId, seat, status, passengers }) {
+        changeSeatList(state, { busTripId, seat, status, passengers }) {
 
-            let selectedFlight = state.selectedSeat.filter(reis => (reis.id_trip === busTriptId))[0]
+            let selectedFlight = state.selectedSeat.filter(reis => (reis.id_trip === busTripId))[0]
             if (status) {
                 selectedFlight.seats.splice(selectedFlight.seats.indexOf(seat), 1)
             }

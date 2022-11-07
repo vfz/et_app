@@ -162,6 +162,7 @@ export default {
             state.selectedSeat = allFlights.map(flight => {
 
                 return {
+                    id_ticket: flight.ticket_id_2,
                     id_trip: flight.id_trip,
                     seats: [
                         //Берем первые N мест из рейса с достаточным кол-вом мест где N кол-во пассажиров
@@ -175,7 +176,6 @@ export default {
         },
 
         changeSeatList(state, { busTripId, seat, status, passengers }) {
-
             let selectedFlight = state.selectedSeat.filter(reis => (reis.id_trip === busTripId))[0]
             if (status) {
                 selectedFlight.seats.splice(selectedFlight.seats.indexOf(seat), 1)
@@ -287,18 +287,18 @@ export default {
             ctx.dispatch('getFlightThere')
             ctx.dispatch('getFlightBack')
         },
-        changeSelectedPlace(ctx, [busTriptId, seat, status]) {
+        changeSelectedPlace(ctx, [busTripId, seat, status]) {
 
             const allFlights = [
-                ...ctx.state.flightBack.filter(flight => (flight.seats_trip.split('^').includes(seat) && flight.id_trip === busTriptId)),
-                ...ctx.state.flightThere.filter(flight => (flight.seats_trip.split('^').includes(seat) && flight.id_trip === busTriptId))
+                ...ctx.state.flightBack.filter(flight => (flight.seats_trip.split('^').includes(seat) && flight.id_trip === busTripId)),
+                ...ctx.state.flightThere.filter(flight => (flight.seats_trip.split('^').includes(seat) && flight.id_trip === busTripId))
             ]
 
             //Вызываем мутацию только если в seat переданн номер места
             //Чистим seat от всего что не цифра и проверяем не осталась ли пустая строка если строка не пустая вызываем мутацию 
             if (seat.replace(/[^\d]/g, '').trim() !== '' && allFlights.length > 0) {
                 let passengers = ctx.rootGetters.getPassengers
-                ctx.commit('changeSeatList', { busTriptId, seat, status, passengers })
+                ctx.commit('changeSeatList', { busTripId, seat, status, passengers })
             }
 
         },

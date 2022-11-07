@@ -45,7 +45,11 @@
               </thead>
               <tbody>
                 <!--              Добавить класс active-row для tr и будет выделение-->
-              <tr v-for="flight in (flightType=='there') ? flightThere:flightBack" :key="flight.ticket_id_2+'_'+flight.id_trip">
+              <tr
+                  v-for="flight in (flightType=='there') ? flightThere:flightBack"
+                  :key="flight.ticket_id_2+'_'+flight.id_trip"
+                  :class="{'active-row' : getActiveSeatStatusById(flight.id_trip)}"
+              >
                 <td>
                   <div class="dispatch-time">
                     <!-- время отправления -->
@@ -117,16 +121,23 @@
                   </div>
                 </td>
                 <td>
-                  <div class="places-left">
+                  <div v-if="!getActiveSeatStatusById(flight.id_trip)" class="places-left">
                     {{flight.count_available_seats_trip}}
                   </div>
+                  <div
+                      class="places-left table-link"
+                      data-bs-toggle="modal"
+                      data-bs-target="#place-left-modal"
+                      v-if="getActiveSeatStatusById(flight.id_trip)">
+<!--                    TODO отобразить выбранные места-->
+                  </div>
                   <!-- При нажатии открывается модальное окно с автобусом-->
-                  <div 
+                  <div
                     class="place-choice table-link" 
                     data-bs-toggle="modal" 
                     data-bs-target="#place-left-modal"
-                    v-on:click="updatebBusTriptId(flight.id_trip)"
-                    v-if="+flight.count_available_seats_trip>=getAdultsCount+getChildrensCount">
+                    v-on:click="updatebBusTriptId(flight.id_trip); selectBusTrip(flight.id_trip)"
+                    v-if="+flight.count_available_seats_trip>=getAdultsCount+getChildrensCount && !getActiveSeatStatusById(flight.id_trip)">
                     Выбрать 
                     <span v-if="getChildrensCount+getAdultsCount===1">место</span>
                     <span v-if="getChildrensCount+getAdultsCount>1">места</span>
@@ -143,11 +154,14 @@
                   </div>
                 </td>
                 <td>
-                  <div class="place-choice-buy" v-if="+flight.count_available_seats_trip>=getAdultsCount+getChildrensCount">
+                  <div class="place-choice-buy" v-if="+flight.count_available_seats_trip>=getAdultsCount+getChildrensCount && !getActiveSeatStatusById(flight.id_trip)">
                     Выбрать
                   </div>
                   <div class="place-choice-buy" v-if="+flight.count_available_seats_trip<getAdultsCount+getChildrensCount || +flight.count_available_seats_trip===0">
                     недостаточно мест :(
+                  </div>
+                  <div class="place-choice-buy" v-if="getActiveSeatStatusById(flight.id_trip)">
+                    Убрать
                   </div>
                 </td>
               </tr>
@@ -162,7 +176,7 @@
 </template>
 
 <script>
-import {mapGetters,mapActions} from 'vuex'
+import {mapGetters, mapActions, mapState} from 'vuex'
 export default {
   name: "ThereTable",
   props: ['flightType'],
@@ -175,7 +189,7 @@ export default {
         flights:[],
     }
   },
-  computed: mapGetters(['flightThere','flightBack','getChildrensCount','getAdultsCount',]),
+  computed: mapGetters(['flightThere','flightBack','getChildrensCount','getAdultsCount', 'selectedSeat', 'getActiveSeatStatusById', 'getSelectedSeatsById']),
   mounted(){
     
   },
@@ -183,7 +197,8 @@ export default {
     ...mapActions([
       'updatebBusTriptId',
       'updateCords',
-      'updateIcon'
+      'updateIcon',
+        'selectBusTrip'
     ]),
   }
 }

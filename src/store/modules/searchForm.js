@@ -164,6 +164,7 @@ export default {
                 return {
                     id_ticket: flight.ticket_id_2,
                     id_trip: flight.id_trip,
+                    is_selected: false,
                     seats: [
                         //Берем первые N мест из рейса с достаточным кол-вом мест где N кол-во пассажиров
                         ...flight.seats_trip.split('^').slice(0, passengers.length)
@@ -190,6 +191,11 @@ export default {
             }
 
         },
+        setBusTripRow(state, busTripId) {
+            state.selectedSeat.filter((reis) => {
+                reis.is_selected = reis.id_trip === busTripId;
+            })
+        }
 
     },
     actions: {
@@ -302,6 +308,9 @@ export default {
             }
 
         },
+        selectBusTrip(ctx, busTripId) {
+            ctx.commit('setBusTripRow', busTripId)
+        },
     },
     modules: {},
     getters: {
@@ -351,7 +360,24 @@ export default {
         },
         selectDateBack(state) {
             return state.selectDateBack
-        }
+        },
+        getActiveSeatStatusById: (state) => (id) => {
+            return state.selectedSeat.find((seat) => {
+                if (seat.id_trip === id && seat.is_selected === true) {
+                    return seat.is_selected === true
+                }
+                else {
+                    return false
+                }
+            })
+        },
+        getSelectedSeatsById: (state) => (id) => {
+            return state.selectedSeat.find((seat) => {
+                if (seat.id_trip === id) {
+                    return seat.seats
+                }
+            })
+        },
 
     }
 

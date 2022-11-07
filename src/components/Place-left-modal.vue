@@ -50,7 +50,7 @@
 <!--                    TODO нет break-->
                     <tr v-for="(stroka,indexstr) in shemeDesktop[floor]" :key="indexstr">
                       <td
-                        @click="chengeSelectedPlace([busTriptId,seat.split('+')[3].replace('_', ''),checkAktive(seat.split('+')[3].replace('_', ''))])"
+                        @click="changeSelectedPlace([busTriptId,seat.split('+')[3].replace('_', ''),checkActive(seat.split('+')[3].replace('_', ''))])"
                         v-for="(seat,index) in stroka.filter(seatt=> seatt.length >7)"
                         :key="index"
                         :rowspan="seat.split('+')[1]" 
@@ -117,10 +117,10 @@ export default {
     methods: {
     ...mapActions([
       'updatebBusTriptId',
-        'chengeSelectedPlace',
+        'changeSelectedPlace',
         
     ]),
-    checkAktive(totalSeat){
+    checkActive(totalSeat){
 
       let seatList=this.selectedSeat.find(reis=>(reis.id_trip===this.busTriptId))
       if(seatList){  

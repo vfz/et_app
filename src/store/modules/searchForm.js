@@ -174,7 +174,7 @@ export default {
 
         },
 
-        chengeSeatList(state, { busTriptId, seat, status, passengers }) {
+        changeSeatList(state, { busTriptId, seat, status, passengers }) {
 
             let selectedFlight = state.selectedSeat.filter(reis => (reis.id_trip === busTriptId))[0]
             if (status) {
@@ -287,23 +287,7 @@ export default {
             ctx.dispatch('getFlightThere')
             ctx.dispatch('getFlightBack')
         },
-        // getSelectedPlace(ctx, [strokaIndex ,floor, place, seatIndex, classPlace]) {
-        //     let selectedPlaceIndex = ctx.state.shemeDesktop[floor][strokaIndex].findIndex(seat => seat === place);
-        //     let selectedPlace = ctx.state.shemeDesktop[floor][strokaIndex].filter(seat => seat === place)[0].split('+')[3].replace('_', '')
-        //     if (classPlace === 'seat') {
-        //         let regexp = /seat/gi;
-        //         let value = place.replace(regexp, 'active-seat')
-        //         Vue.set(ctx.state.shemeDesktop[floor][strokaIndex], selectedPlaceIndex, value)
-        //         ctx.commit('setSelectedPlace', selectedPlace)
-        //     }
-        //     if (classPlace === 'active-seat') {
-        //         let regexp = /active-seat/gi;
-        //         let value = place.replace(regexp, 'seat')
-        //         Vue.set(ctx.state.shemeDesktop[floor][strokaIndex], selectedPlaceIndex, value)
-        //         ctx.commit('removeSelectedPlace', selectedPlace)
-        //     }
-        // },
-        chengeSelectedPlace(ctx, [busTriptId, seat, status]) {
+        changeSelectedPlace(ctx, [busTriptId, seat, status]) {
 
             const allFlights = [
                 ...ctx.state.flightBack.filter(flight => (flight.seats_trip.split('^').includes(seat) && flight.id_trip === busTriptId)),
@@ -314,33 +298,10 @@ export default {
             //Чистим seat от всего что не цифра и проверяем не осталась ли пустая строка если строка не пустая вызываем мутацию 
             if (seat.replace(/[^\d]/g, '').trim() !== '' && allFlights.length > 0) {
                 let passengers = ctx.rootGetters.getPassengers
-                ctx.commit('chengeSeatList', { busTriptId, seat, status, passengers })
+                ctx.commit('changeSeatList', { busTriptId, seat, status, passengers })
             }
 
         },
-        //TODO добавить места по умолчанию
-        getDefaultPlace(ctx) {
-            // let floors = Object.values(ctx.state.shemeDesktop)
-            // let freeSeats = ''
-            //     ////debugger
-            // floors.forEach((floor) => {
-            //     let strokes = Object.values(floor)
-            //     strokes.forEach((stroke) => {
-            //         freeSeats = stroke.filter((seat) => {
-            //             let classPlace = seat.split('+')[0]
-            //             if (classPlace === 'seat') {
-            //                 console.log(seat)
-            //                 return seat
-            //             }
-            //         })
-            //     })
-            // })
-            // console.log(freeSeats)
-
-        }
-
-
-
     },
     modules: {},
     getters: {

@@ -58,7 +58,7 @@
                         align="center"
                       >
                         <div
-                            :data-index="index"
+                          :data-index="index"
                           :class="checkActive(seat.split('+')[3].replace('_', '')) ? 'active-seat' : seat.split('+')[0]"
                           :id="'seat_'+seat.split('+')[3].replace('_', '')">
                             {{seat.split('+')[3].replace('_', '')}}
@@ -70,12 +70,14 @@
                   <table v-else>
                     <!--TODO: подсветка выбранных мест-->
                     <tr v-for="(stroka,indexstrm) in shemeMobile[floor]" :key="indexstrm">
-                      <td v-for="(seat,indexm) in stroka.filter(seatt=> seatt.length >7)" :key="indexm"
+                      <td
+                        @click="changeSelectedPlace([busTriptId,seat.split('+')[3].replace('_', ''),checkActive(seat.split('+')[3].replace('_', ''))])"
+                        v-for="(seat,indexm) in stroka.filter(seatt=> seatt.length >7)" :key="indexm"
                         :colspan="seat.split('+')[1]" 
                         :rowspan="seat.split('+')[2]"
                         align="center">
                         <div 
-                          :class="seat.split('+')[0]" 
+                          :class="checkActive(seat.split('+')[3].replace('_', '')) ? 'active-seat' : seat.split('+')[0]"
                           :id="'seat_'+seat.split('+')[3].replace('_', '')">
                             {{seat.split('+')[3].replace('_', '')}}
                         </div>

@@ -13,7 +13,9 @@
       </div>
       <div class="row gy-4">
         <div class="col-12 col-sm-6" v-for="flight in (flightType=='there') ? flightThere:flightBack" :key="flight.ticket_id_2+'_'+flight.id_trip">
-          <div class="table-item">
+          <div class="table-item"
+            :class="{'active-row' : selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0] && 
+                      selectedSeat.filter(flightFiltr=>(flightFiltr.id_trip === flight.id_trip))[0].is_selected }">
             <div class="table-item-content-wrapper">
               <div class="row">
                 <div class="col-6">
@@ -111,20 +113,22 @@
                 <div class="col-6">
                   <div class="table-item-part-right">
                     <h3 class="table-item-part-right-title">
-                      Осталось мест
+                      Осталось мест ({{flight.count_available_seats_trip}})
                     </h3>
                     <div class="table-item-part-right-date">
                       <div class="arrival-time table-link" 
                         data-bs-toggle="modal" 
                         data-bs-target="#place-left-modal"
                         v-on:click="updatebBusTriptId(flight.id_trip)"
-                        v-if="+flight.count_available_seats_trip>=getAdultsCount+getChildrensCount">
+                        v-if="+flight.count_available_seats_trip>=getAdultsCount+getChildrensCount"
+                      >
 
-                         {{flight.count_available_seats_trip}}
-                          Выбрать
+                          {{ selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0].seats.toString() }} изменить 
+                          <span v-if="getChildrensCount+getAdultsCount===1">место</span>
+                          <span v-if="getChildrensCount+getAdultsCount>1">места</span>
                       </div>
                       <div class="place-left-count table-link" v-else>
-                         {{flight.count_available_seats_trip}}
+                        недостаточно мест :(
                       </div>
                     </div>
                   </div>
@@ -132,7 +136,12 @@
               </div>
             </div>
             <div class="d-grid">
-              <button class="btn btn-primary price"  v-if="+flight.count_available_seats_trip>=getAdultsCount+getChildrensCount">
+              <button 
+                class="btn btn-primary price"
+                :class="{'active-button' : selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0] && 
+                      selectedSeat.filter(flightFiltr=>(flightFiltr.id_trip === flight.id_trip))[0].is_selected }"
+                v-if="+flight.count_available_seats_trip>=getAdultsCount+getChildrensCount"
+                @click="chengeSelectTrip(flight.id_trip)">
                 {{(+flight.full_ticket_price*+getAdultsCount)+(+flight.child_ticket_price*+getChildrensCount)}}₽
               </button>
               <button class="btn btn-primary price disabled" v-if="+flight.count_available_seats_trip<getAdultsCount+getChildrensCount || +flight.count_available_seats_trip===0">
@@ -163,7 +172,13 @@ export default {
       flights:[],
     }
   },
-  computed: mapGetters(['flightThere','flightBack','getChildrensCount','getAdultsCount',]),
+  computed: mapGetters([
+    'flightThere',
+    'flightBack',
+    'getChildrensCount',
+    'getAdultsCount',
+    'selectedSeat'
+  ]),
   mounted(){
     
   },
@@ -171,7 +186,8 @@ export default {
     ...mapActions([
       'updatebBusTriptId',
       'updateCords',
-      'updateIcon'
+      'updateIcon',
+      'chengeSelectTrip'
     ]),
   }
 }
@@ -302,6 +318,12 @@ export default {
   }
   .active {
     background: #F3F7FF;
+  }
+  .active-row {
+          background-color: $blue-hover;
+  }
+  .active-button{
+    background-color: $green;
   }
 }
 </style>

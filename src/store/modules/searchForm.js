@@ -152,37 +152,14 @@ export default {
         castlingPoint(state) {
             [state.from, state.to] = [state.to, state.from]
         },
-        setDefaultPlace(state, place) {
-
-        },
-        setSelectedPlace(state, selectedPlace) {
-            state.flightThere.forEach((element) => {
-                if (element.id_trip === state.busTriptId) {
-                    state.selectedSeatThere.push(selectedPlace)
-                }
-            })
-            state.flightBack.forEach((element) => {
-                if (element.id_trip === state.busTriptId) {
-                    state.selectedSeatBack.push(selectedPlace)
-                }
-            })
-        },
-        removeSelectedPlace(state, selectedPlace) {
-            let selectedSeatThereIndex = state.selectedSeatThere.findIndex(seat => seat === selectedPlace);
-            let selectedSeatBackIndex = state.selectedSeatBack.findIndex(seat => seat === selectedPlace);
-            state.selectedSeatThere.splice(selectedSeatThereIndex, 1)
-            state.selectedSeatBack.splice(selectedSeatBackIndex, 1)
-                // debugger
-        },
-
         updateDefaultsSeat(state, passengers) {
 
-            const allFlightf = [
+            const allFlights = [
                 ...state.flightBack.filter(flight => (flight.count_available_seats_trip >= passengers.length)),
                 ...state.flightThere.filter(flight => (flight.count_available_seats_trip >= passengers.length))
             ]
 
-            state.selectedSeat = allFlightf.map(flight => {
+            state.selectedSeat = allFlights.map(flight => {
 
                 return {
                     id_trip: flight.id_trip,
@@ -195,17 +172,33 @@ export default {
 
             })
 
-        }
+        },
+
+        chengeSeatList(state, { busTriptId, seat, status, passengers }) {
+
+            let selectedFlight = state.selectedSeat.filter(reis => (reis.id_trip === busTriptId))[0]
+            if (status) {
+                selectedFlight.seats.splice(selectedFlight.seats.indexOf(seat), 1)
+            }
+
+            if (!status && passengers.length > selectedFlight.seats.length) {
+                selectedFlight.seats.splice(0, 0, seat)
+            }
+
+            if (!status && passengers.length === selectedFlight.seats.length) {
+                selectedFlight.seats.splice(0, 1, seat)
+            }
+
+        },
 
     },
     actions: {
         //обновить id рейса для которого нужно выводить Схему автобуса
         updatebBusTriptId(ctx, tripId) {
-            //TODO добавить trip_id для поездки туда и обратно по отдельности
             ctx.commit('updatebBusTriptId', tripId)
             ctx.commit('busMobile')
             ctx.commit('busDesktop')
-            ctx.dispatch('getDefaultPlace')
+
         },
         //Получаем список станций прибытия
         async getToStations(ctx, from = '') {
@@ -310,44 +303,38 @@ export default {
         //         ctx.commit('removeSelectedPlace', selectedPlace)
         //     }
         // },
-        getSelectedPlace(ctx, [strokaIndex, floor, place, seatIndex, classPlace]) {
+        chengeSelectedPlace(ctx, [busTriptId, seat, status]) {
 
             // selectedSeat: [
             //     {1:[1,2,3]}
             // ]
-            let selectedPlaceIndex = ctx.state.shemeDesktop[floor][strokaIndex].findIndex(seat => seat === place);
-            let selectedPlace = ctx.state.shemeDesktop[floor][strokaIndex].filter(seat => seat === place)[0].split('+')[3].replace('_', '')
-            if (classPlace === 'seat') {
-                let regexp = /seat/gi;
-                let value = place.replace(regexp, 'active-seat')
-                Vue.set(ctx.state.shemeDesktop[floor][strokaIndex], selectedPlaceIndex, value)
-                ctx.commit('setSelectedPlace', selectedPlace)
+            //Вызываем мутацию только если в seat переданн номер места
+            //Чистим seat от всего что не цифра и проверяем не осталась ли пустая строка если строка не пустая вызываем мутацию 
+            if (seat.replace(/[^\d]/g, '').trim() !== '') {
+                let passengers = ctx.rootGetters.getPassengers
+                ctx.commit('chengeSeatList', { busTriptId, seat, status, passengers })
             }
-            if (classPlace === 'active-seat') {
-                let regexp = /active-seat/gi;
-                let value = place.replace(regexp, 'seat')
-                Vue.set(ctx.state.shemeDesktop[floor][strokaIndex], selectedPlaceIndex, value)
-                ctx.commit('removeSelectedPlace', selectedPlace)
-            }
+
         },
         //TODO добавить места по умолчанию
         getDefaultPlace(ctx) {
-            let floors = Object.values(ctx.state.shemeDesktop)
-            let freeSeats = ''
-                ////debugger
-            floors.forEach((floor) => {
-                let strokes = Object.values(floor)
-                strokes.forEach((stroke) => {
-                    freeSeats = stroke.filter((seat) => {
-                        let classPlace = seat.split('+')[0]
-                        if (classPlace === 'seat') {
-                            console.log(seat)
-                            return seat
-                        }
-                    })
-                })
-            })
-            console.log(freeSeats)
+            // let floors = Object.values(ctx.state.shemeDesktop)
+            // let freeSeats = ''
+            //     ////debugger
+            // floors.forEach((floor) => {
+            //     let strokes = Object.values(floor)
+            //     strokes.forEach((stroke) => {
+            //         freeSeats = stroke.filter((seat) => {
+            //             let classPlace = seat.split('+')[0]
+            //             if (classPlace === 'seat') {
+            //                 console.log(seat)
+            //                 return seat
+            //             }
+            //         })
+            //     })
+            // })
+            // console.log(freeSeats)
+
         }
 
 

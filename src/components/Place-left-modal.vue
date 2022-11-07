@@ -50,29 +50,16 @@
 <!--                    TODO нет break-->
                     <tr v-for="(stroka,indexstr) in shemeDesktop[floor]" :key="indexstr">
                       <td
-                          @click="getSelectedPlace([indexstr ,floor, seat, index, seat.split('+')[0]])"
-                          v-for="(seat,index) in stroka.filter(seatt=> seatt.length >7)"
-                          :key="index"
+                        @click="chengeSelectedPlace([busTriptId,seat.split('+')[3].replace('_', ''),checkAktive(seat.split('+')[3].replace('_', ''))])"
+                        v-for="(seat,index) in stroka.filter(seatt=> seatt.length >7)"
+                        :key="index"
                         :rowspan="seat.split('+')[1]" 
                         :colspan="seat.split('+')[2]"
-                        align="center">
+                        align="center"
+                      >
                         <div
                             :data-index="index"
-                          :class="{
-                        'busy-seat': seat.split('+')[0] === 'busy-seat',
-                        'active-seat' : seat.split('+')[0] === 'active-seat'||
-                        checkAktive(seat.split('+')[3].replace('_', '')),
-                        'seat' : seat.split('+')[0] === 'seat',
-                        'prohod' : seat.split('+')[0] === 'prohod',
-                        'breakeseat' : seat.split('+')[0] === 'breakeseat',
-                        'voditel' : seat.split('+')[0] === 'voditel',
-                        'exit' : seat.split('+')[0] === 'exit',
-                        'stol' : seat.split('+')[0] === 'stol',
-                        'lest' : seat.split('+')[0] === 'lest',
-                        'lest_b' : seat.split('+')[0] === 'lest_b',
-                        'tualet' : seat.split('+')[0] === 'tualet',
-                        'text_floor' : seat.split('+')[0] === 'text_floor',
-                        }"
+                          :class="checkAktive(seat.split('+')[3].replace('_', '')) ? 'active-seat' : seat.split('+')[0]"
                           :id="'seat_'+seat.split('+')[3].replace('_', '')">
                             {{seat.split('+')[3].replace('_', '')}}
                         </div>
@@ -130,14 +117,13 @@ export default {
     methods: {
     ...mapActions([
       'updatebBusTriptId',
-        'getSelectedPlace',
+        'chengeSelectedPlace',
         
     ]),
     checkAktive(totalSeat){
-      let sealList=this.selectedSeat.find(reis=>(reis.id_trip===this.busTriptId))
-      let test=sealList.seats.includes(totalSeat)
-      return test
 
+      let seatList=this.selectedSeat.find(reis=>(reis.id_trip===this.busTriptId))
+      return seatList.seats.includes(totalSeat)
     },
     floorsQ(){
       if(this.mobile){

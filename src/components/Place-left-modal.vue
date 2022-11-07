@@ -123,7 +123,9 @@ export default {
     checkAktive(totalSeat){
 
       let seatList=this.selectedSeat.find(reis=>(reis.id_trip===this.busTriptId))
-      return seatList.seats.includes(totalSeat)
+      if(seatList){  
+        return seatList.seats.includes(totalSeat)
+      }
     },
     floorsQ(){
       if(this.mobile){

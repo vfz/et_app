@@ -305,12 +305,14 @@ export default {
         // },
         chengeSelectedPlace(ctx, [busTriptId, seat, status]) {
 
-            // selectedSeat: [
-            //     {1:[1,2,3]}
-            // ]
+            const allFlights = [
+                ...ctx.state.flightBack.filter(flight => (flight.seats_trip.split('^').includes(seat) && flight.id_trip === busTriptId)),
+                ...ctx.state.flightThere.filter(flight => (flight.seats_trip.split('^').includes(seat) && flight.id_trip === busTriptId))
+            ]
+
             //Вызываем мутацию только если в seat переданн номер места
             //Чистим seat от всего что не цифра и проверяем не осталась ли пустая строка если строка не пустая вызываем мутацию 
-            if (seat.replace(/[^\d]/g, '').trim() !== '') {
+            if (seat.replace(/[^\d]/g, '').trim() !== '' && allFlights.length > 0) {
                 let passengers = ctx.rootGetters.getPassengers
                 ctx.commit('chengeSeatList', { busTriptId, seat, status, passengers })
             }

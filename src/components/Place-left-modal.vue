@@ -59,7 +59,7 @@
                       >
                         <div
                             :data-index="index"
-                          :class="checkAktive(seat.split('+')[3].replace('_', '')) ? 'active-seat' : seat.split('+')[0]"
+                          :class="checkActive(seat.split('+')[3].replace('_', '')) ? 'active-seat' : seat.split('+')[0]"
                           :id="'seat_'+seat.split('+')[3].replace('_', '')">
                             {{seat.split('+')[3].replace('_', '')}}
                         </div>

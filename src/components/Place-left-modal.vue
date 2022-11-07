@@ -283,6 +283,7 @@ export default {
       font-size: 14px;
       line-height: 19px;
       color: $white;
+      cursor: pointer;
     }
     .prohod {
           margin-right: 0;//10px;

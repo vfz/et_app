@@ -44,11 +44,12 @@
               </tr>
               </thead>
               <tbody>
-                <!--              Добавить класс active-row для tr и будет выделение-->
+                <!--              Добавить класс active-row для tr и будет выделение вместо false условие что выбран рейс-->
               <tr
                   v-for="flight in (flightType=='there') ? flightThere:flightBack"
                   :key="flight.ticket_id_2+'_'+flight.id_trip"
-                  :class="{'active-row' : getActiveSeatStatusById(flight.id_trip)}"
+                  :class="{'active-row' : selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0] && 
+                      selectedSeat.filter(flightFiltr=>(flightFiltr.id_trip === flight.id_trip))[0].is_selected }"
               >
                 <td>
                   <div class="dispatch-time">
@@ -121,14 +122,14 @@
                   </div>
                 </td>
                 <td>
-                  <div v-if="!getActiveSeatStatusById(flight.id_trip)" class="places-left">
+                  <div v-if="true" class="places-left">
                     {{flight.count_available_seats_trip}}
                   </div>
                   <div
                       class="places-left table-link"
                       data-bs-toggle="modal"
                       data-bs-target="#place-left-modal"
-                      v-if="getActiveSeatStatusById(flight.id_trip)">
+                      v-if="true">
 <!--                    TODO отобразить выбранные места-->
                   </div>
                   <!-- При нажатии открывается модальное окно с автобусом-->
@@ -136,9 +137,9 @@
                     class="place-choice table-link" 
                     data-bs-toggle="modal" 
                     data-bs-target="#place-left-modal"
-                    v-on:click="updatebBusTriptId(flight.id_trip); selectBusTrip(flight.id_trip)"
-                    v-if="+flight.count_available_seats_trip>=getAdultsCount+getChildrensCount && !getActiveSeatStatusById(flight.id_trip)">
-                    Выбрать 
+                    @click="updatebBusTriptId(flight.id_trip)"
+                    v-if="+flight.count_available_seats_trip>=getAdultsCount+getChildrensCount">
+                    {{ selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0].seats.toString() }} изменить 
                     <span v-if="getChildrensCount+getAdultsCount===1">место</span>
                     <span v-if="getChildrensCount+getAdultsCount>1">места</span>
                   </div>
@@ -154,13 +155,23 @@
                   </div>
                 </td>
                 <td>
-                  <div class="place-choice-buy" v-if="+flight.count_available_seats_trip>=getAdultsCount+getChildrensCount && !getActiveSeatStatusById(flight.id_trip)">
+                  <div class="place-choice-buy table-link" 
+                    v-if="
+                      +flight.count_available_seats_trip>=getAdultsCount+getChildrensCount && 
+                      selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0] && 
+                      !selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0].is_selected"
+                    @click="chengeSelectTrip(flight.id_trip)">
                     Выбрать
                   </div>
-                  <div class="place-choice-buy" v-if="+flight.count_available_seats_trip<getAdultsCount+getChildrensCount || +flight.count_available_seats_trip===0">
+                  <div class="place-choice-buy" 
+                    v-if="+flight.count_available_seats_trip<getAdultsCount+getChildrensCount || +flight.count_available_seats_trip===0">
                     недостаточно мест :(
                   </div>
-                  <div class="place-choice-buy" v-if="getActiveSeatStatusById(flight.id_trip)">
+                  <div class="place-choice-buy table-link" 
+                    v-if="
+                      selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0] && 
+                      selectedSeat.filter(flightFiltr=>(flightFiltr.id_trip === flight.id_trip))[0].is_selected"
+                    @click="chengeSelectTrip(flight.id_trip)">
                     Убрать
                   </div>
                 </td>
@@ -189,7 +200,13 @@ export default {
         flights:[],
     }
   },
-  computed: mapGetters(['flightThere','flightBack','getChildrensCount','getAdultsCount', 'selectedSeat', 'getActiveSeatStatusById', 'getSelectedSeatsById']),
+  computed: mapGetters([
+    'flightThere',
+    'flightBack',
+    'getChildrensCount',
+    'getAdultsCount', 
+    'selectedSeat'
+  ]),
   mounted(){
     
   },
@@ -198,7 +215,7 @@ export default {
       'updatebBusTriptId',
       'updateCords',
       'updateIcon',
-        'selectBusTrip'
+      'chengeSelectTrip'
     ]),
   }
 }
@@ -271,6 +288,7 @@ export default {
             }
             .dispatch-city, .arrival-city, .places-left, .place-choice-buy {
               @include font($uni, $regular, 18px, 24.3px, $base);
+              
             }
             .dispatch-length-time-saw, .dispatch-place, .arrival-place, .place-choice {
               @include font($uni, $light, 14px, 18.9px, $blue-link);

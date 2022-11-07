@@ -191,10 +191,27 @@ export default {
             }
 
         },
-        setBusTripRow(state, busTripId) {
-            state.selectedSeat.filter((reis) => {
-                reis.is_selected = reis.id_trip === busTripId;
-            })
+        setTrip(state, busTripId) {
+
+            //если выбираемый рейс находится в ОБРАТНЫХ рейсах 
+            if (state.flightBack.filter(flight => (flight.id_trip === busTripId)).length > 0) {
+
+                state.selectedSeat.filter(
+                    flight1 => (state.flightBack.map(flight => { return flight.id_trip }).includes(flight1.id_trip))
+                ).filter((reis) => {
+                    reis.is_selected = reis.is_selected ? false : reis.id_trip === busTripId;
+                })
+            }
+
+            //если выбираемый рейс находится в ПРЯМЫХ рейсах
+            if (state.flightThere.filter(flight => (flight.id_trip === busTripId)).length > 0) {
+
+                state.selectedSeat.filter(
+                    flight1 => (state.flightThere.map(flight => { return flight.id_trip }).includes(flight1.id_trip))
+                ).filter((reis) => {
+                    reis.is_selected = reis.is_selected ? false : reis.id_trip === busTripId;
+                })
+            }
         }
 
     },
@@ -245,7 +262,6 @@ export default {
             ctx.commit('updateDefaultsSeat', ctx.rootGetters.getPassengers)
 
         },
-
         // Ракировка откуда куда
         castling(ctx) {
             ctx.commit('castlingPoint')
@@ -300,7 +316,7 @@ export default {
                 ...ctx.state.flightThere.filter(flight => (flight.seats_trip.split('^').includes(seat) && flight.id_trip === busTripId))
             ]
 
-            //Вызываем мутацию только если в seat переданн номер места
+            //Вызываем мутацию только если в seat переданн номер места и в выбраном рейсе выбранное место свободно
             //Чистим seat от всего что не цифра и проверяем не осталась ли пустая строка если строка не пустая вызываем мутацию 
             if (seat.replace(/[^\d]/g, '').trim() !== '' && allFlights.length > 0) {
                 let passengers = ctx.rootGetters.getPassengers
@@ -308,8 +324,8 @@ export default {
             }
 
         },
-        selectBusTrip(ctx, busTripId) {
-            ctx.commit('setBusTripRow', busTripId)
+        chengeSelectTrip(ctx, busTripId) {
+            ctx.commit('setTrip', busTripId)
         },
     },
     modules: {},
@@ -361,23 +377,7 @@ export default {
         selectDateBack(state) {
             return state.selectDateBack
         },
-        getActiveSeatStatusById: (state) => (id) => {
-            return state.selectedSeat.find((seat) => {
-                if (seat.id_trip === id && seat.is_selected === true) {
-                    return seat.is_selected === true
-                }
-                else {
-                    return false
-                }
-            })
-        },
-        getSelectedSeatsById: (state) => (id) => {
-            return state.selectedSeat.find((seat) => {
-                if (seat.id_trip === id) {
-                    return seat.seats
-                }
-            })
-        },
+
 
     }
 

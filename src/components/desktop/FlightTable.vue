@@ -79,20 +79,14 @@
                     <span v-if="flight.time_duration_trip.split(':')[0]>0">
                     {{flight.time_duration_trip.split(':')[0]}}
                     {{
-                        hours[
-                        (flight.time_duration_trip.split(':')[0] % 100 > 4 && flight.time_duration_trip.split(':')[0] % 100 < 20) 
-                        ? 2 : cases[(flight.time_duration_trip.split(':')[0] % 10 < 5) ? flight.time_duration_trip.split(':')[0] % 10 : 5]
-                        ]
+                        timeFormat(flight.time_duration_trip,'hours')
                     }} 
                     </span>
 
                     <span v-if="flight.time_duration_trip.split(':')[1]>0">
                     {{flight.time_duration_trip.split(':')[1]}} 
                     {{
-                        minutes[
-                        (flight.time_duration_trip.split(':')[1] % 100 > 4 && flight.time_duration_trip.split(':')[1] % 100 < 20) 
-                        ? 2 : cases[(flight.time_duration_trip.split(':')[1] % 10 < 5) ? flight.time_duration_trip.split(':')[1] % 10 : 5]
-                        ]
+                        timeFormat(flight.time_duration_trip,'minutes')
                     }} 
                     </span>
                   </div>
@@ -217,6 +211,27 @@ export default {
       'updateIcon',
       'chengeSelectTrip'
     ]),
+    timeFormat(time,target){
+      
+      if(target==='hours'){
+        return this.hours[
+                  (time.split(':')[0] % 100 > 4 && time.split(':')[0] % 100 < 20) 
+                  ? 2 
+                  : cases[(time.split(':')[0] % 10 < 5) 
+                    ? time.split(':')[0] % 10 
+                    : 5]
+                ]
+      }
+      if(target==='minutes'){
+        return this.minutes[
+                  (flight.time_duration_trip.split(':')[1] % 100 > 4 && flight.time_duration_trip.split(':')[1] % 100 < 20) 
+                  ? 2 
+                  : cases[(flight.time_duration_trip.split(':')[1] % 10 < 5) 
+                    ? flight.time_duration_trip.split(':')[1] % 10 
+                    : 5]
+                ]
+      }
+    }
   }
 }
 

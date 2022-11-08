@@ -31,7 +31,9 @@
                       <div class="dispatch-date">
                         <span class="dispatch-date-day">{{flight.date_trip.split('-')[2]}} </span>
                         <span class="dispatch-date-month">{{ monthes[--flight.date_trip.split('-')[1]]}}`</span>
-                        <span class="dispatch-date-year">{{flight.date_trip.split('-')[0].split('')[2]}}{{flight.date_trip.split('-')[0].split('')[3]}}</span>
+                        <span class="dispatch-date-year">
+                          {{flight.date_trip.split('-')[0].split('')[2]}}{{flight.date_trip.split('-')[0].split('')[3]}}
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -48,7 +50,9 @@
                       <div class="arrival-date">
                         <span class="arrival-date-day">{{flight.date_arrival_trip.split('-')[2]}} </span>
                         <span class="arrival-date-month">{{ monthes[--flight.date_arrival_trip.split('-')[1]]}}`</span> 
-                        <span class="arrival-date-year">{{flight.date_arrival_trip.split('-')[0].split('')[2]}}{{flight.date_arrival_trip.split('-')[0].split('')[3]}}</span>
+                        <span class="arrival-date-year">
+                          {{flight.date_arrival_trip.split('-')[0].split('')[2]}}{{flight.date_arrival_trip.split('-')[0].split('')[3]}}
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -61,7 +65,11 @@
                     <div class="table-item-part-left-city">
                        {{flight.from_name_point}}
                     </div>
-                    <div class="table-item-part-left-place table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal" v-on:click="updateCords(flight.from_yam),updateIcon(flight.from_name)">
+                    <div 
+                      class="table-item-part-left-place table-link" 
+                      data-bs-toggle="modal" 
+                      data-bs-target="#dispatch-modal" 
+                      v-on:click="updateCords(flight.from_yam),updateIcon(flight.from_name)">
                        {{flight.from_address_point}}
                     </div>
                   </div>
@@ -71,7 +79,11 @@
                     <div class="table-item-part-right-city">
                       {{flight.to_name_point}}
                     </div>
-                    <div class="table-item-part-right-place table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal" v-on:click="updateCords(flight.to_yam),updateIcon(flight.to_name)">
+                    <div 
+                      class="table-item-part-right-place table-link" 
+                      data-bs-toggle="modal" 
+                      data-bs-target="#dispatch-modal" 
+                      v-on:click="updateCords(flight.to_yam),updateIcon(flight.to_name)">
                        {{flight.to_address_point}}
                     </div>
                   </div>
@@ -90,20 +102,14 @@
                         <span v-if="flight.time_duration_trip.split(':')[0]>0">
                             {{flight.time_duration_trip.split(':')[0]}}
                             {{
-                                hours[
-                                (flight.time_duration_trip.split(':')[0] % 100 > 4 && flight.time_duration_trip.split(':')[0] % 100 < 20) 
-                                ? 2 : cases[(flight.time_duration_trip.split(':')[0] % 10 < 5) ? flight.time_duration_trip.split(':')[0] % 10 : 5]
-                                ]
+                                timeFormat(flight.time_duration_trip,'hours')
                             }} 
                             </span>
 
                             <span v-if="flight.time_duration_trip.split(':')[1]>0">
                             {{flight.time_duration_trip.split(':')[1]}} 
                             {{
-                                minutes[
-                                (flight.time_duration_trip.split(':')[1] % 100 > 4 && flight.time_duration_trip.split(':')[1] % 100 < 20) 
-                                ? 2 : cases[(flight.time_duration_trip.split(':')[1] % 10 < 5) ? flight.time_duration_trip.split(':')[1] % 10 : 5]
-                                ]
+                                timeFormat(flight.time_duration_trip,'minutes')
                             }} 
                         </span>
                       </div>
@@ -144,7 +150,8 @@
                 @click="chengeSelectTrip(flight.id_trip)">
                 {{(+flight.full_ticket_price*+getAdultsCount)+(+flight.child_ticket_price*+getChildrensCount)}}₽
               </button>
-              <button class="btn btn-primary price disabled" v-if="+flight.count_available_seats_trip<getAdultsCount+getChildrensCount || +flight.count_available_seats_trip===0">
+              <button class="btn btn-primary price disabled" 
+                v-if="+flight.count_available_seats_trip<getAdultsCount+getChildrensCount || +flight.count_available_seats_trip===0">
                     недостаточно мест :(
               </button>
               <!-- <button class="btn btn-success price">
@@ -189,6 +196,27 @@ export default {
       'updateIcon',
       'chengeSelectTrip'
     ]),
+    timeFormat(time,target){
+      
+      if(target==='hours'){
+        return this.hours[
+                  (time.split(':')[0] % 100 > 4 && time.split(':')[0] % 100 < 20) 
+                  ? 2 
+                  : cases[(time.split(':')[0] % 10 < 5) 
+                    ? time.split(':')[0] % 10 
+                    : 5]
+                ]
+      }
+      if(target==='minutes'){
+        return this.minutes[
+                  (flight.time_duration_trip.split(':')[1] % 100 > 4 && flight.time_duration_trip.split(':')[1] % 100 < 20) 
+                  ? 2 
+                  : cases[(flight.time_duration_trip.split(':')[1] % 10 < 5) 
+                    ? flight.time_duration_trip.split(':')[1] % 10 
+                    : 5]
+                ]
+      }
+    }
   }
 }
 </script>

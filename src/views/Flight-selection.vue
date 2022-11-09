@@ -15,7 +15,8 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-12 d-flex justify-content-center">
-          <button type="button" class="btn submit-flight btn-primary">
+          <button type="button" class="btn submit-flight btn-primary"
+            :class="{ disabled : !activeBookingButton1() }">
             Перейти к бронированию
           </button>
         </div>
@@ -89,18 +90,38 @@ export default {
     
     LoginModal,
     RegistrationModal,
-    ForgotPasswordModal,
+    ForgotPasswordModal
 
     // Populardirections,
     // Registrationhero,
 
   }, 
-  computed: mapGetters(['oneWay']),
+  computed: mapGetters([
+    'oneWay',
+    'getChildrensCount',
+    'getAdultsCount', 
+    'selectedSeat'
+  ]),
   methods: {
     ...mapActions([
       'setFrom',
       'setTo',
     ]),
+
+    
+    activeBookingButton1(){
+      let selectedFlight = this.selectedSeat.filter(flight => (flight.is_selected))
+
+      if (this.oneWay && selectedFlight.length === 1) {
+          return true
+      }
+
+      if (!this.oneWay && selectedFlight.length === 2) {
+          return true
+      }
+
+      return false
+    },
 
     isMobile() {
       return screen.width <= 991;

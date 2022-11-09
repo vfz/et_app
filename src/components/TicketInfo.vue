@@ -197,7 +197,7 @@
       </div>
     </div>
     <div v-if="!isMobile()" class="info-ticket-wrapper">
-      <h3 v-if="!isMobile()" class="title-card">
+      <h3 class="title-card">
         Информация о билете
       </h3>
       <div class="path-info-ticket">

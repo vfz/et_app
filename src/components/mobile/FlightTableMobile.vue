@@ -350,8 +350,8 @@ export default {
   .active-row {
           background-color: $blue-hover;
   }
-  .active-button{
-    background-color: $green;
+  .active-button:hover, .active-button {
+    background-color: $green !important;
   }
 }
 </style>

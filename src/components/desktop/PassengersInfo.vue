@@ -32,16 +32,16 @@
               <div class="col-12">
                 <div class="checkbox-form d-flex align-items-center w-100">
                   <MyDataButton :is-login="getIsLogin" :is-collapse="false" class="my-data-button"/>
-                  <div class="form-checks">
-                    <div class="form-check form-check-inline">
-                      <input @click="UpdateOneWay(true)" :checked="oneWay" :id="'checkbox1'+passenger.id" class="form-check-input" type="radio" :name="'inlineRadioOptions'+passenger.id">
-                      <label class="form-check-label" :for="'checkbox1'+passenger.id">В одну сторону</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input @click="UpdateOneWay(false)" :checked="!oneWay" :id="'checkbox2'+passenger.id" class="form-check-input" type="radio" :name="'inlineRadioOptions'+passenger.id">
-                      <label class="form-check-label" :for="'checkbox2'+passenger.id">Туда-обратно</label>
-                    </div>
-                  </div>
+<!--                  <div class="form-checks">-->
+<!--                    <div class="form-check form-check-inline">-->
+<!--                      <input @click="UpdateOneWay(true)" :checked="oneWay" :id="'checkbox1'+passenger.id" class="form-check-input" type="radio" :name="'inlineRadioOptions'+passenger.id">-->
+<!--                      <label class="form-check-label" :for="'checkbox1'+passenger.id">В одну сторону</label>-->
+<!--                    </div>-->
+<!--                    <div class="form-check form-check-inline">-->
+<!--                      <input @click="UpdateOneWay(false)" :checked="!oneWay" :id="'checkbox2'+passenger.id" class="form-check-input" type="radio" :name="'inlineRadioOptions'+passenger.id">-->
+<!--                      <label class="form-check-label" :for="'checkbox2'+passenger.id">Туда-обратно</label>-->
+<!--                    </div>-->
+<!--                  </div>-->
                   <div class="d-inline-block">
                     <!-- Button trigger modal -->
                     <button v-if="passenger.id !== 0" type="button" class="remove-button" data-bs-toggle="modal" :data-bs-target="'#removeModal'+passenger.id">

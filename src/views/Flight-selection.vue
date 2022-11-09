@@ -116,10 +116,19 @@ export default {
     
     activeBookingButton(){
       let selectedFlight = this.selectedSeat.filter(flight => (flight.is_selected))
-      if (this.oneWay && selectedFlight.length === 1 && selectedFlight[0].seats.length === this.getPassengers.length) {
+      if (
+          this.oneWay && 
+          selectedFlight.length === 1 && 
+          selectedFlight[0].seats.length === this.getPassengers.length
+      ) {
         return true
       }
-      if (!this.oneWay && selectedFlight.length === 2 && selectedFlight[0].seats.length === this.getPassengers.length && selectedFlight[1].seats.length === this.getPassengers.length ) {
+      if (
+          !this.oneWay && 
+          selectedFlight.length === 2 && 
+          selectedFlight[0].seats.length === this.getPassengers.length && 
+          selectedFlight[1].seats.length === this.getPassengers.length 
+      ) {
         return true
       }
       return false

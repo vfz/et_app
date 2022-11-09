@@ -204,7 +204,7 @@
                   </thead>
                   <tbody>
                   <tr
-                      v-for="flight in (flightType=='there') ? flightThere:flightBack"
+                      v-for="flight in flightBack"
                       :key="flight.ticket_id_2+'_'+flight.id_trip"
                       :class="{'active-row' : selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0] &&
                       selectedSeat.filter(flightFiltr=>(flightFiltr.id_trip === flight.id_trip))[0].is_selected }"

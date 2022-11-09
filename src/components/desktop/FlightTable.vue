@@ -217,17 +217,17 @@ export default {
         return this.hours[
                   (time.split(':')[0] % 100 > 4 && time.split(':')[0] % 100 < 20) 
                   ? 2 
-                  : cases[(time.split(':')[0] % 10 < 5) 
+                  : this.cases[(time.split(':')[0] % 10 < 5) 
                     ? time.split(':')[0] % 10 
                     : 5]
                 ]
       }
       if(target==='minutes'){
         return this.minutes[
-                  (flight.time_duration_trip.split(':')[1] % 100 > 4 && flight.time_duration_trip.split(':')[1] % 100 < 20) 
+                  (time.split(':')[1] % 100 > 4 && time.split(':')[1] % 100 < 20) 
                   ? 2 
-                  : cases[(flight.time_duration_trip.split(':')[1] % 10 < 5) 
-                    ? flight.time_duration_trip.split(':')[1] % 10 
+                  : this.cases[(time.split(':')[1] % 10 < 5) 
+                    ? time.split(':')[1] % 10 
                     : 5]
                 ]
       }

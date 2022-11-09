@@ -16,7 +16,7 @@
       <div class="row">
         <div class="col-12 d-flex justify-content-center">
           <button type="button" class="btn submit-flight btn-primary"
-            :class="{ disabled : !activeBookingButton1() }">
+            :class="{ disabled : !activeBookingButton() }">
             Перейти к бронированию
           </button>
         </div>
@@ -104,7 +104,8 @@ export default {
     'oneWay',
     'getChildrensCount',
     'getAdultsCount', 
-    'selectedSeat'
+    'selectedSeat',
+      'getPassengers'
   ]),
   methods: {
     ...mapActions([
@@ -113,17 +114,14 @@ export default {
     ]),
 
     
-    activeBookingButton1(){
+    activeBookingButton(){
       let selectedFlight = this.selectedSeat.filter(flight => (flight.is_selected))
-
-      if (this.oneWay && selectedFlight.length === 1) {
-          return true
+      if (this.oneWay && selectedFlight.length === 1 && selectedFlight[0].seats.length === this.getPassengers.length) {
+        return true
       }
-
-      if (!this.oneWay && selectedFlight.length === 2) {
-          return true
+      if (!this.oneWay && selectedFlight.length === 2 && selectedFlight[0].seats.length === this.getPassengers.length && selectedFlight[1].seats.length === this.getPassengers.length ) {
+        return true
       }
-
       return false
     },
 

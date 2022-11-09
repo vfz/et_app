@@ -44,9 +44,9 @@
                   <tbody>
                   <tr
                       v-for="flight in flightThere"
+                      v-if="selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0] &&
+                      selectedSeat.filter(flightFiltr=>(flightFiltr.id_trip === flight.id_trip))[0].is_selected"
                       :key="flight.ticket_id_2+'_'+flight.id_trip"
-                      :class="{'active-row' : selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0] &&
-                      selectedSeat.filter(flightFiltr=>(flightFiltr.id_trip === flight.id_trip))[0].is_selected }"
                   >
                     <td>
                       <div class="dispatch-time">
@@ -205,9 +205,9 @@
                   <tbody>
                   <tr
                       v-for="flight in flightBack"
+                      v-if="selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0] &&
+                      selectedSeat.filter(flightFiltr=>(flightFiltr.id_trip === flight.id_trip))[0].is_selected"
                       :key="flight.ticket_id_2+'_'+flight.id_trip"
-                      :class="{'active-row' : selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0] &&
-                      selectedSeat.filter(flightFiltr=>(flightFiltr.id_trip === flight.id_trip))[0].is_selected }"
                   >
                     <td>
                       <div class="dispatch-time">

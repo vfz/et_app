@@ -154,9 +154,6 @@
                 v-if="+flight.count_available_seats_trip<getAdultsCount+getChildrensCount || +flight.count_available_seats_trip===0">
                     недостаточно мест :(
               </button>
-              <!-- <button class="btn btn-success price">
-                Убрать
-              </button> -->
             </div>
           </div>
         </div>

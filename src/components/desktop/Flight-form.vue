@@ -117,7 +117,9 @@
               </div>
               <div class="row">
                 <div class="col d-flex justify-content-center align-items-center">
-                  <button id="submit-button" type="button" class="btn" v-on:click="alertPlace()">
+                  <button
+                      v-if="$route.name !== 'Ticket-booking'"
+                      id="submit-button" type="button" class="btn" v-on:click="alertPlace()">
                     Найти билеты
                   </button>
                 </div>
@@ -239,7 +241,7 @@
               </div>
               <div class="row">
                 <div class="col d-flex justify-content-center align-items-center">
-                  <button id="submit-button-twoWays" type="button" class="btn" v-on:click="alertPlace()">
+                  <button v-if="$route.name !== 'Ticket-booking'" id="submit-button-twoWays" type="button" class="btn" v-on:click="alertPlace()">
                     Найти билеты
                   </button>
                 </div>

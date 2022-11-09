@@ -340,6 +340,10 @@ export default {
       padding-bottom: 11px;
       border-radius: 0 0 8px 8px;
     }
+    .disabled {
+      background-color: $disabled;
+      box-shadow: none;
+    }
   }
   .active {
     background: #F3F7FF;

@@ -47,6 +47,10 @@
     margin-bottom: 72px;
     text-transform: none;
   }
+  .disabled {
+    background-color: $disabled;
+    box-shadow: none;
+  }
 }
 </style>
 <script>

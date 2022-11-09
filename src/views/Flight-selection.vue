@@ -15,8 +15,11 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-12 d-flex justify-content-center">
-          <button type="button" class="btn submit-flight btn-primary"
-            :class="{ disabled : !activeBookingButton() }">
+          <button
+              @click="$router.push('/ticket-booking')"
+              type="button"
+              class="btn submit-flight btn-primary"
+              :class="{ disabled : !activeBookingButton() }">
             Перейти к бронированию
           </button>
         </div>

@@ -260,7 +260,7 @@
           Места
         </h5>
         <div class="path-info-places">
-          <span v-for="(seat, index) in selectedSeat[0].seats"
+          <span v-for="(seat, index) in selectedThereFlightInfo.seats"
                 :key="index"
                 class="path-info-place-number">
             {{seat}}
@@ -338,7 +338,7 @@
         </h5>
         <div class="path-info-places">
               <span
-                  v-for="(seat, index) in selectedSeat[1].seats"
+                  v-for="(seat, index) in selectedBackFlightInfo.seats"
                   :key="index"
                   class="path-info-place-number">
                 {{seat}}

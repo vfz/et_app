@@ -208,9 +208,9 @@
           Маршрут:
         </h5>
         <div class="path-info-cities">
-          <span class="path-info-city-from">{{selectedThereFlightInfo.from_name_point}}</span>
+          <span class="path-info-city-from">{{selectedThereFlightTicket.from_name_point}}</span>
           <ArrowPathIcon class="arrow-path-icon"/>
-          <span class="path-info-city-to">{{selectedThereFlightInfo.to_name_point}}</span>
+          <span class="path-info-city-to">{{selectedThereFlightTicket.to_name_point}}</span>
         </div>
         <h5 class="path-info-ticket-title-paragraph">
           Отправление:
@@ -218,19 +218,19 @@
         <div class="path-info-from">
           <div class="path-info-from-datetime">
                 <span class="path-info-from-datetime-date">
-                  {{selectedThereFlightInfo.date_trip}}
+                  {{selectedThereFlightTicket.date_trip}}
                 </span>
             в
             <span class="path-info-from-datetime-time">
-                  {{selectedThereFlightInfo.time_trip}}
+                  {{selectedThereFlightTicket.time_trip}}
                 </span>
           </div>
           <div class="path-info-from-place d-flex flex-column">
                 <span class="path-info-from-place-name">
-                  {{selectedThereFlightInfo.from_name}}
+                  {{selectedThereFlightTicket.from_name}}
                 </span>
             <span class="path-info-from-datetime-address">
-                  {{selectedThereFlightInfo.from_address_point}}
+                  {{selectedThereFlightTicket.from_address_point}}
                 </span>
           </div>
         </div>
@@ -240,19 +240,19 @@
         <div class="path-info-to">
           <div class="path-info-to-datetime">
                 <span class="path-info-to-datetime-date">
-                  {{selectedThereFlightInfo.date_arrival_trip}}
+                  {{selectedThereFlightTicket.date_arrival_trip}}
                 </span>
             в
             <span class="path-info-to-datetime-time">
-                  {{selectedThereFlightInfo.time_arrival_trip}}
+                  {{selectedThereFlightTicket.time_arrival_trip}}
                 </span>
           </div>
           <div class="path-info-to-place d-flex flex-column">
                 <span class="path-info-from-place-name">
-                  {{selectedThereFlightInfo.to_name}}
+                  {{selectedThereFlightTicket.to_name}}
                 </span>
             <span class="path-info-from-datetime-address">
-                  {{selectedThereFlightInfo.to_address_point}}
+                  {{selectedThereFlightTicket.to_address_point}}
                 </span>
           </div>
         </div>
@@ -273,7 +273,7 @@
         </div>
       </div>
       <div class="cross-line"></div>
-      <div v-if="selectedSeat[1]" class="path-info-ticket">
+      <div v-if="!oneWay" class="path-info-ticket">
         <h4 class="path-info-ticket-title">
           Обратно
         </h4>
@@ -282,11 +282,11 @@
         </h5>
         <div class="path-info-cities">
           <span class="path-info-city-from">
-            {{selectedBackFlightInfo.from_name_point}}
+            {{selectedBackFlightTicket.from_name_point}}
           </span>
           <ArrowPathIcon class="arrow-path-icon"/>
           <span class="path-info-city-to">
-            {{selectedBackFlightInfo.to_name_point}}
+            {{selectedBackFlightTicket.to_name_point}}
           </span>
         </div>
         <h5 class="path-info-ticket-title-paragraph">
@@ -295,19 +295,19 @@
         <div class="path-info-from">
           <div class="path-info-from-datetime">
                 <span class="path-info-from-datetime-date">
-                  {{selectedBackFlightInfo.date_arrival_trip}}
+                  {{selectedBackFlightTicket.date_arrival_trip}}
                 </span>
             в
             <span class="path-info-from-datetime-time">
-                  {{selectedBackFlightInfo.time_arrival_trip}}
+                  {{selectedBackFlightTicket.time_arrival_trip}}
                 </span>
           </div>
           <div class="path-info-from-place d-flex flex-column">
                 <span class="path-info-from-place-name">
-                  {{selectedBackFlightInfo.to_name}}
+                  {{selectedBackFlightTicket.to_name}}
                 </span>
             <span class="path-info-from-datetime-address">
-                  {{selectedBackFlightInfo.to_address_point}}
+                  {{selectedBackFlightTicket.to_address_point}}
                 </span>
           </div>
         </div>
@@ -317,19 +317,19 @@
         <div class="path-info-to">
           <div class="path-info-to-datetime">
                 <span class="path-info-to-datetime-date">
-                  {{selectedBackFlightInfo.date_arrival_trip}}
+                  {{selectedBackFlightTicket.date_arrival_trip}}
                 </span>
             в
             <span class="path-info-to-datetime-time">
-                  {{selectedBackFlightInfo.time_arrival_trip}}
+                  {{selectedBackFlightTicket.time_arrival_trip}}
                 </span>
           </div>
           <div class="path-info-to-place d-flex flex-column">
                 <span class="path-info-from-place-name">
-                  {{selectedBackFlightInfo.to_name_point}}
+                  {{selectedBackFlightTicket.to_name_point}}
                 </span>
             <span class="path-info-from-datetime-address">
-                  {{selectedBackFlightInfo.to_address_point}}
+                  {{selectedBackFlightTicket.to_address_point}}
                 </span>
           </div>
         </div>
@@ -353,7 +353,8 @@
       </div>
       <div class="paths-final-amount d-inline-block position-relative">
         <div class="old-amount position-absolute d-none">14 000₽</div>
-        Итого <span>{{sumBack + sumThere}} ₽</span>
+        Итого <span v-if="selectedBackFlightTicket">{{sumBack + sumThere}} ₽</span>
+        <span v-if="selectedThereFlightTicket">{{sumThere}} ₽</span>
       </div>
     </div>
   </div>
@@ -378,13 +379,24 @@ export default {
         'selectedThereFlightInfo',
         'getChildrensCount',
         'getAdultsCount',
-        'selectedBackFlightInfo'
+        'selectedBackFlightInfo',
+        'oneWay'
     ]),
+    selectedThereFlightTicket() {
+      return this.flightThere.filter(flight => flight.id_trip === this.selectedThereFlightInfo.id_trip)[0]
+    },
+    selectedBackFlightTicket() {
+      if (!this.oneWay) {
+        return this.flightBack.filter(flight => flight.id_trip === this.selectedBackFlightInfo.id_trip)[0]
+      }
+    },
     sumThere() {
-      return this.selectedThereFlightInfo.child_ticket_price * this.getChildrensCount + this.selectedThereFlightInfo.total_full_ticket_price * this.getAdultsCount
+      return this.selectedThereFlightTicket.child_ticket_price * this.getChildrensCount + this.selectedThereFlightTicket.total_full_ticket_price * this.getAdultsCount
     },
     sumBack() {
-      return this.selectedBackFlightInfo.child_ticket_price * this.getChildrensCount + this.selectedBackFlightInfo.total_full_ticket_price * this.getAdultsCount
+      if (!this.oneWay) {
+        return this.selectedBackFlightTicket.child_ticket_price * this.getChildrensCount + this.selectedBackFlightTicket.total_full_ticket_price * this.getAdultsCount
+      }
     }
   }
 }

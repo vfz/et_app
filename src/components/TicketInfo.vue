@@ -208,9 +208,9 @@
           Маршрут:
         </h5>
         <div class="path-info-cities">
-          <span class="path-info-city-from">Ставрополь</span>
+          <span class="path-info-city-from">{{selectedThereFlightInfo.from_name_point}}</span>
           <ArrowPathIcon class="arrow-path-icon"/>
-          <span class="path-info-city-to">Москва</span>
+          <span class="path-info-city-to">{{selectedThereFlightInfo.to_name_point}}</span>
         </div>
         <h5 class="path-info-ticket-title-paragraph">
           Отправление:
@@ -218,19 +218,19 @@
         <div class="path-info-from">
           <div class="path-info-from-datetime">
                 <span class="path-info-from-datetime-date">
-                  30.01.2020
+                  {{selectedThereFlightInfo.date_trip}}
                 </span>
             в
             <span class="path-info-from-datetime-time">
-                  15:30
+                  {{selectedThereFlightInfo.time_trip}}
                 </span>
           </div>
           <div class="path-info-from-place d-flex flex-column">
                 <span class="path-info-from-place-name">
-                  Железнодорожный вокзал
+                  {{selectedThereFlightInfo.from_name}}
                 </span>
             <span class="path-info-from-datetime-address">
-                  ул. Вокзальная, 15
+                  {{selectedThereFlightInfo.from_address_point}}
                 </span>
           </div>
         </div>
@@ -240,19 +240,19 @@
         <div class="path-info-to">
           <div class="path-info-to-datetime">
                 <span class="path-info-to-datetime-date">
-                  30.01.2020
+                  {{selectedThereFlightInfo.date_arrival_trip}}
                 </span>
             в
             <span class="path-info-to-datetime-time">
-                  15:30
+                  {{selectedThereFlightInfo.time_arrival_trip}}
                 </span>
           </div>
           <div class="path-info-to-place d-flex flex-column">
                 <span class="path-info-from-place-name">
-                  Железнодорожный вокзал
+                  {{selectedThereFlightInfo.to_name}}
                 </span>
             <span class="path-info-from-datetime-address">
-                  ул. Вокзальная, 15
+                  {{selectedThereFlightInfo.to_address_point}}
                 </span>
           </div>
         </div>
@@ -260,25 +260,20 @@
           Места
         </h5>
         <div class="path-info-places">
-              <span class="path-info-place-number">
-                33,
-              </span>
-          <span class="path-info-place-number">
-                34,
-              </span>
-          <span class="path-info-place-number">
-                35,
-              </span>
-          <span class="path-info-place-number">
-                36,
-              </span>
+          <span v-for="(seat, index) in selectedSeat[0].seats"
+                :key="index"
+                class="path-info-place-number">
+            {{seat}}
+          </span>
         </div>
         <div class="path-info-sum">
-          Сумма заказа <span class="path-info-sum-number">7 000</span>₽
+          Сумма заказа <span class="path-info-sum-number">
+          {{sumThere}}
+        </span>₽
         </div>
       </div>
       <div class="cross-line"></div>
-      <div class="path-info-ticket">
+      <div v-if="selectedSeat[1]" class="path-info-ticket">
         <h4 class="path-info-ticket-title">
           Обратно
         </h4>
@@ -286,9 +281,13 @@
           Маршрут:
         </h5>
         <div class="path-info-cities">
-          <span class="path-info-city-from">Москва</span>
+          <span class="path-info-city-from">
+            {{selectedBackFlightInfo.from_name_point}}
+          </span>
           <ArrowPathIcon class="arrow-path-icon"/>
-          <span class="path-info-city-to">Ставрополь</span>
+          <span class="path-info-city-to">
+            {{selectedBackFlightInfo.to_name_point}}
+          </span>
         </div>
         <h5 class="path-info-ticket-title-paragraph">
           Отправление:
@@ -296,19 +295,19 @@
         <div class="path-info-from">
           <div class="path-info-from-datetime">
                 <span class="path-info-from-datetime-date">
-                  10.02.2020
+                  {{selectedBackFlightInfo.date_arrival_trip}}
                 </span>
             в
             <span class="path-info-from-datetime-time">
-                  20:45
+                  {{selectedBackFlightInfo.time_arrival_trip}}
                 </span>
           </div>
           <div class="path-info-from-place d-flex flex-column">
                 <span class="path-info-from-place-name">
-                  Автостанция “Орехово”
+                  {{selectedBackFlightInfo.to_name}}
                 </span>
             <span class="path-info-from-datetime-address">
-                  ул. Шипиловский проезд, 12
+                  {{selectedBackFlightInfo.to_address_point}}
                 </span>
           </div>
         </div>
@@ -318,19 +317,19 @@
         <div class="path-info-to">
           <div class="path-info-to-datetime">
                 <span class="path-info-to-datetime-date">
-                  11.02.2020
+                  {{selectedBackFlightInfo.date_arrival_trip}}
                 </span>
             в
             <span class="path-info-to-datetime-time">
-                  15:30
+                  {{selectedBackFlightInfo.time_arrival_trip}}
                 </span>
           </div>
           <div class="path-info-to-place d-flex flex-column">
                 <span class="path-info-from-place-name">
-                  Железнодорожный вокзал
+                  {{selectedBackFlightInfo.to_name_point}}
                 </span>
             <span class="path-info-from-datetime-address">
-                  ул. Вокзальная, 15
+                  {{selectedBackFlightInfo.to_address_point}}
                 </span>
           </div>
         </div>
@@ -338,21 +337,15 @@
           Места
         </h5>
         <div class="path-info-places">
-              <span class="path-info-place-number">
-                16,
-              </span>
-          <span class="path-info-place-number">
-                17,
-              </span>
-          <span class="path-info-place-number">
-                18,
-              </span>
-          <span class="path-info-place-number">
-                19,
+              <span
+                  v-for="(seat, index) in selectedSeat[1].seats"
+                  :key="index"
+                  class="path-info-place-number">
+                {{seat}}
               </span>
         </div>
         <div class="path-info-sum">
-          Сумма заказа <span class="path-info-sum-number">7 000</span>₽
+          Сумма заказа <span class="path-info-sum-number">{{sumBack}}</span>₽
         </div>
       </div>
       <div class="point-minus">
@@ -360,7 +353,7 @@
       </div>
       <div class="paths-final-amount d-inline-block position-relative">
         <div class="old-amount position-absolute d-none">14 000₽</div>
-        Итого <span>14 000 ₽</span>
+        Итого <span>{{sumBack + sumThere}} ₽</span>
       </div>
     </div>
   </div>
@@ -368,12 +361,30 @@
 
 <script>
 import ArrowPathIcon from "@/components/icons/ArrowPathIcon";
+import {mapGetters} from "vuex";
 export default {
   name: "TicketInfo",
   components: {ArrowPathIcon},
   methods: {
     isMobile() {
       return screen.width <= 991;
+    }
+  },
+  computed: {
+    ...mapGetters([
+       'selectedSeat',
+        'flightThere',
+        'flightBack',
+        'selectedThereFlightInfo',
+        'getChildrensCount',
+        'getAdultsCount',
+        'selectedBackFlightInfo'
+    ]),
+    sumThere() {
+      return this.selectedThereFlightInfo.child_ticket_price * this.getChildrensCount + this.selectedThereFlightInfo.total_full_ticket_price * this.getAdultsCount
+    },
+    sumBack() {
+      return this.selectedBackFlightInfo.child_ticket_price * this.getChildrensCount + this.selectedBackFlightInfo.total_full_ticket_price * this.getAdultsCount
     }
   }
 }

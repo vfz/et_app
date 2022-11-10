@@ -377,6 +377,12 @@ export default {
         selectDateBack(state) {
             return state.selectDateBack
         },
+        selectedThereFlightInfo(state) {
+            return state.flightThere.filter(flight => state.selectedSeat[0].id_trip === flight.id_trip && state.selectedSeat[0].is_selected === true )[0]
+        },
+        selectedBackFlightInfo(state) {
+            return state.flightThere.filter(flight => state.selectedSeat[1].id_trip === flight.id_trip && state.selectedSeat[1].is_selected === true)[0]
+        }
 
 
     }

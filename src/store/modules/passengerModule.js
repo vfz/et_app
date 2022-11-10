@@ -412,47 +412,67 @@ export default {
             }
         },
         validateBirthday(ctx, event) {
-            // TODO доделать валидацию на невозможность выбрать несуществующую дату
-            const value = event.target.value;
+            let value = event.target.value.split('-');
+            // value = String(value[2]+value[1]+value[0]);
             //исключить наименование и оставить только цифры в id при помощи replace
             const id = event.target.id.replace(/[^0-9]/g, "");
             const formField = 'birthday';
-            if (value === '') {
+            if (!value) {
                 ctx.commit('updateHaveErrors', true)
                     ///аргументы (mutation, [id, errorText, formField ])
                 ctx.commit('updateError', [id, 'заполните дату рождения', formField]);
             }
-            if (value.length > 10 && value !== '') {
-                ctx.commit('updateHaveErrors', true)
-                    ///аргументы (mutation, [id, errorText, formField ])
-                ctx.commit('updateError', [id, 'дата рождения указана неверно', formField]);
-            } else if (value.length <= 10 && value !== '') {
-                ctx.commit('updateHaveErrors', false)
-                    ///аргументы (mutation, [id, errorText, formField ])
-                ctx.commit('updateError', [id, '', formField])
-            }
-            if (value.length === 10) {
+            if (value) {
                 const currentDate = new Date(); //текущая дата
                 const currentDateWithoutTime = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()); //текущая дата без времени
-                const day = value.substr(0, 2); //день рождения
-                const month = value.substr(3, 2) - 1; // месяц рождения
-                const year = value.substr(6, 10); //год рождения
+                const day = value[2]; //день рождения
+                const month = value[1]; // месяц рождения
+                const year = value[0] //год рождения
+                if (day.length > 2 || month.length > 2 || year.length > 4) {
+                    debugger
+                    ctx.commit('updateHaveErrors', true)
+                    ///аргументы (mutation, [id, errorText, formField ])
+                    ctx.commit('updateError', [id, 'заполните дату рождения в формате 01.01.2001', formField]);
+                    return false
+                }
                 const birthDay = new Date(year, month, day); //день рождения в формате date
                 const birthDayCurrent = new Date(currentDateWithoutTime.getFullYear(), birthDay.getMonth(), birthDay.getDate()) //день рождения в этом году
                 let age = currentDateWithoutTime.getFullYear() - birthDay.getFullYear()
 
                 const document = ctx.state.passengers[id].document
                 if (currentDateWithoutTime < birthDayCurrent) {
-                    age = age - 1
+                    age = age + 1
                 }
-                if (age < 14 && document === 'Паспорт гражданина Российской Федерации') {
+                if (age < 0) {
                     ctx.commit('updateHaveErrors', true)
+                    ///аргументы (mutation, [id, errorText, formField ])
+                    ctx.commit('updateError', [id, 'Укажите корректно дату рождения', formField])
+                    return false
+                }
+                if (age < 14) {
+                    if (document === 'Паспорт гражданина Российской Федерации') {
+                        ctx.commit('updateHaveErrors', true)
                         ///аргументы (mutation, [id, errorText, formField ])
-                    ctx.commit('updateError', [id, 'До 14 лет, билеты оформляются по свидетельству о рождении', formField])
+                        ctx.commit('updateError', [id, 'До 14 лет, билеты оформляются по свидетельству о рождении', formField])
+                    }
+                    if (document === 'Свидетельство о рождении') {
+                        ctx.commit('updateHaveErrors', false)
+                        ///аргументы (mutation, [id, errorText, formField ])
+                        ctx.commit('updateError', [id, '', formField])
+                    }
+                    if (!document) {
+                        ctx.commit('updateHaveErrors', false)
+                        ///аргументы (mutation, [id, errorText, formField ])
+                        ctx.commit('updateError', [id, '', formField])
+                    }
                 }
                 if (age > 125) {
                     ctx.commit('updateHaveErrors', true)
                     ctx.commit('updateError', [id, 'Некорректная дата, вам больше 125 лет?', formField])
+                }
+                if (age > 14 && document !== 'Паспорт гражданина Российской Федерации' && age < 125) {
+                    ctx.commit('updateHaveErrors', false)
+                    ctx.commit('updateError', [id, '', formField])
                 }
             }
         },

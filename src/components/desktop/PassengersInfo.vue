@@ -93,10 +93,11 @@
                   <input
                       @input="updateBirthday($event);validateBirthday($event)"
                       :value="passenger.birthday"
-                      type="text"
+                      type="date"
                       class="form-control"
                       :class="{'is-ok': passenger.birthday, 'is-error' : passenger.errors.birthday}"
                       :id="'birthday'+passenger.id"
+                      pattern="\d{4}-\d{2}-\d{2}"
                       placeholder="дд.мм.гггг">
                   <div :class="{'d-none': !passenger.errors.birthday}" class="error-feedback">{{passenger.errors.birthday}}</div>
                 </div>
@@ -334,6 +335,11 @@ export default {
       @include font($uni,$regular,18px,24.3px,$base);
       padding-bottom: 0.5rem;
     }
+    input[type="date"]::-webkit-inner-spin-button,
+    input[type="date"]::-webkit-calendar-picker-indicator {
+      display: none;
+      -webkit-appearance: none;
+    }
     .form-select {
       padding-bottom: 0.4rem;
     }
@@ -491,7 +497,6 @@ export default {
       @media screen and (max-width: 767px) {
         z-index: 9999;
       }
-
     }
   }
 }

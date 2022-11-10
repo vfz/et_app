@@ -352,18 +352,20 @@ export default {
       flights:[],
     }
   },
-  computed: mapGetters([
-    'flightThere',
-    'flightBack',
-    'getChildrensCount',
-    'getAdultsCount',
-    'flightThere',
-    'flightBack',
-    'getChildrensCount',
-    'getAdultsCount',
-    'selectedSeat',
+  computed: {
+    ...mapGetters([
+      'flightThere',
+      'flightBack',
+      'getChildrensCount',
+      'getAdultsCount',
+      'flightThere',
+      'flightBack',
+      'getChildrensCount',
+      'getAdultsCount',
+      'selectedSeat',
       'oneWay'
-  ]),
+    ]),
+  },
   methods: {
     ...mapActions([
       'updatebBusTriptId',

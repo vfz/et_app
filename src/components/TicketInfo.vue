@@ -362,7 +362,7 @@
 
 <script>
 import ArrowPathIcon from "@/components/icons/ArrowPathIcon";
-import {mapGetters} from "vuex";
+import {mapGetters, mapState} from "vuex";
 export default {
   name: "TicketInfo",
   components: {ArrowPathIcon},
@@ -376,12 +376,23 @@ export default {
        'selectedSeat',
         'flightThere',
         'flightBack',
-        'selectedThereFlightInfo',
         'getChildrensCount',
         'getAdultsCount',
-        'selectedBackFlightInfo',
         'oneWay'
     ]),
+    selectedThereFlightInfo() {
+      if (this.oneWay) {
+        return this.selectedSeat.filter(flight => flight.is_selected)[0]
+      }
+      else {
+        return this.selectedSeat.filter(flight => flight.is_selected)[1]
+      }
+    },
+    selectedBackFlightInfo() {
+      if (!this.oneWay) {
+        return this.selectedSeat.filter(flight => flight.is_selected)[0]
+      }
+    },
     selectedThereFlightTicket() {
       return this.flightThere.filter(flight => flight.id_trip === this.selectedThereFlightInfo.id_trip)[0]
     },

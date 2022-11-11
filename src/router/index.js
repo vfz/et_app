@@ -36,7 +36,7 @@ const routes = [{
         component: Flightselection
     },
     {
-        path: '/ticket-booking/search/:from/:to',
+        path: '/ticket-booking',
         name: 'Ticket-booking',
         component: TicketBooking
     },

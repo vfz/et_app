@@ -16,7 +16,7 @@
       <div class="row">
         <div class="col-12 d-flex justify-content-center">
           <button
-              @click="alertPlace"
+              @click="$router.push('/ticket-booking')"
               type="button"
               class="btn submit-flight btn-primary"
               :class="{ disabled : !activeBookingButton() }">
@@ -117,12 +117,6 @@ export default {
       'setFrom',
       'setTo',
     ]),
-    alertPlace(){
-      // alert('Едем в '+this.toPlace+' Едем из '+this.fromPlace)
-      if(this.from === this.$route.params.from || this.to === this.$route.params.to){
-        this.$router.push('/ticket-booking/search/'+this.from+'/'+this.to)
-      }
-    },
     activeBookingButton(){
       let selectedFlight = this.selectedSeat.filter(flight => (flight.is_selected))
       if (

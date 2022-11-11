@@ -118,7 +118,6 @@
               <div class="row">
                 <div class="col d-flex justify-content-center align-items-center">
                   <button
-                      v-if="$route.name !== 'Ticket-booking'"
                       id="submit-button" type="button" class="btn" v-on:click="alertPlace()">
                     Найти билеты
                   </button>

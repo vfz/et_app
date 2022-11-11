@@ -3,7 +3,6 @@
     <Header/>
     <Timeline v-if="!isMobile()"/>
     <TimelineMobile class="timeline-mobile" title="Бронирование билета" description="Шаг 2" v-if="isMobile()"/>
-    <FlightForm v-if="!isMobile()"/>
     <ThereBackTabs v-if="!isMobile()"/>
 <!--    TODO добавить props для отображения контента внутри слайдер-->
     <section v-if="isMobile()" class="carousel-bootstrap">
@@ -84,8 +83,7 @@ export default {
     PassengersFormInfo,
     CurrentPoints,
     ThereBackTabs, 
-    Footer, 
-    FlightForm, 
+    Footer,
     Timeline, 
     Header, 
     LoginModal, 

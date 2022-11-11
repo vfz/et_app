@@ -15,7 +15,7 @@
               type="button" role="tab"
               :aria-controls="'passenger-'+index"
               :aria-selected="{true : index === 0}"
-          >Пассажир №{{index+1}}</button>
+          >{{passenger.isAdult ? "" : '&#128118'}} Пассажир №{{index+1}}</button>
         </div>
       </nav>
       <div class="tab-content position-relative" id="nav-tabContent">

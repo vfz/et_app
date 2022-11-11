@@ -38,7 +38,7 @@
     <LoginModal/>
     <RegistrationModal/>
     <ForgotPasswordModal/>
-    <RemoveModal v-for="passenger in getPassengers" :key="passenger.id" :passenger="passenger"/>
+    <RemoveModal v-for="(passenger,index) in getPassengers" :key="index" :passenger="passenger"/>
   </div>
 </template>
 

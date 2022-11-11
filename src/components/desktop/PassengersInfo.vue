@@ -5,28 +5,28 @@
       <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
           <button
-              v-for="passenger in getPassengers"
-              :key="passenger.id"
-              :class="{active: passenger.id === 0}"
+              v-for="(passenger,index) in getPassengers"
+              :key="index"
+              :class="{active: index === 0}"
               class="nav-link"
-              :id="'passenger-'+passenger.id+'-tab'"
+              :id="'passenger-'+index+'-tab'"
               data-bs-toggle="tab"
-              :data-bs-target="'#passenger-'+passenger.id"
+              :data-bs-target="'#passenger-'+index"
               type="button" role="tab"
-              :aria-controls="'passenger-'+passenger.id"
-              :aria-selected="{true : passenger.id === 0}"
-          >Пассажир №{{passenger.id+1}}</button>
+              :aria-controls="'passenger-'+index"
+              :aria-selected="{true : index === 0}"
+          >Пассажир №{{index+1}}</button>
         </div>
       </nav>
       <div class="tab-content position-relative" id="nav-tabContent">
         <div
-            v-for="passenger in getPassengers"
-            :key="passenger.id"
-            :class="{'show active': passenger.id === 0}"
+            v-for="(passenger,index) in getPassengers"
+            :key="index"
+            :class="{'show active': index === 0}"
             class="tab-pane fade"
-            :id="'passenger-'+passenger.id"
+            :id="'passenger-'+index"
             role="tabpanel"
-            :aria-labelledby="'passenger-'+passenger.id+'-tab'">
+            :aria-labelledby="'passenger-'+index+'-tab'">
           <div class="form-wrapper">
             <div class="row">
               <div class="col-12">
@@ -34,17 +34,17 @@
                   <MyDataButton :is-login="getIsLogin" :is-collapse="false" class="my-data-button"/>
 <!--                  <div class="form-checks">-->
 <!--                    <div class="form-check form-check-inline">-->
-<!--                      <input @click="UpdateOneWay(true)" :checked="oneWay" :id="'checkbox1'+passenger.id" class="form-check-input" type="radio" :name="'inlineRadioOptions'+passenger.id">-->
-<!--                      <label class="form-check-label" :for="'checkbox1'+passenger.id">В одну сторону</label>-->
+<!--                      <input @click="UpdateOneWay(true)" :checked="oneWay" :id="'checkbox1'+index" class="form-check-input" type="radio" :name="'inlineRadioOptions'+index">-->
+<!--                      <label class="form-check-label" :for="'checkbox1'+index">В одну сторону</label>-->
 <!--                    </div>-->
 <!--                    <div class="form-check form-check-inline">-->
-<!--                      <input @click="UpdateOneWay(false)" :checked="!oneWay" :id="'checkbox2'+passenger.id" class="form-check-input" type="radio" :name="'inlineRadioOptions'+passenger.id">-->
-<!--                      <label class="form-check-label" :for="'checkbox2'+passenger.id">Туда-обратно</label>-->
+<!--                      <input @click="UpdateOneWay(false)" :checked="!oneWay" :id="'checkbox2'+index" class="form-check-input" type="radio" :name="'inlineRadioOptions'+index">-->
+<!--                      <label class="form-check-label" :for="'checkbox2'+index">Туда-обратно</label>-->
 <!--                    </div>-->
 <!--                  </div>-->
                   <div class="d-inline-block">
                     <!-- Button trigger modal -->
-                    <button v-if="passenger.id !== 0" type="button" class="remove-button" data-bs-toggle="modal" :data-bs-target="'#removeModal'+passenger.id">
+                    <button v-if="index !== 0" type="button" class="remove-button" data-bs-toggle="modal" :data-bs-target="'#removeModal'+index">
                       Убрать
                       <CancelIcon color="#1399FF"/>
                     </button>
@@ -60,7 +60,7 @@
                       type="text"
                       class="form-control"
                       :class="{'is-ok': passenger.secondName, 'is-error' : passenger.errors.secondName}"
-                      :id="'secondName' + passenger.id"
+                      :id="'secondName' + index"
                       placeholder="Иванов">
                   <div :class="{'d-none': !passenger.errors.secondName}" class="error-feedback">{{passenger.errors.secondName}}</div>
                 </div>
@@ -72,7 +72,7 @@
                       type="text"
                       class="form-control"
                       :class="{'is-ok': passenger.firstName, 'is-error' : passenger.errors.firstName}"
-                      :id="'firstName'+ passenger.id"
+                      :id="'firstName'+ index"
                       placeholder="Иван">
                   <div :class="{'d-none': !passenger.errors.firstName}" class="error-feedback">{{passenger.errors.firstName}}</div>
                 </div>
@@ -84,7 +84,7 @@
                       type="text"
                       class="form-control"
                       :class="{'is-ok': passenger.middleName, 'is-error' : passenger.errors.middleName}"
-                      :id="'MiddleName' + passenger.id"
+                      :id="'MiddleName' + index"
                       placeholder="Иванович">
                   <div :class="{'d-none': !passenger.errors.middleName}" class="error-feedback">{{passenger.errors.middleName}}</div>
                 </div>
@@ -96,7 +96,7 @@
                       type="date"
                       class="form-control"
                       :class="{'is-ok': passenger.birthday, 'is-error' : passenger.errors.birthday}"
-                      :id="'birthday'+passenger.id"
+                      :id="'birthday'+index"
                       pattern="\d{4}-\d{2}-\d{2}"
                       placeholder="дд.мм.гггг">
                   <div :class="{'d-none': !passenger.errors.birthday}" class="error-feedback">{{passenger.errors.birthday}}</div>
@@ -112,19 +112,19 @@
                         @input="searchGender($event);validateGender($event)"
                         :value="passenger.genderSearchQuery"
                         class="form-control"
-                        :id="'gender'+passenger.id"
+                        :id="'gender'+index"
                         placeholder="Мужской"
                         :class="{'is-ok': passenger.gender, 'is-error' : passenger.errors.gender}">
                     <div :class="{'d-none': !passenger.errors.gender}" class="error-feedback">{{passenger.errors.gender}}</div>
                     <div v-if="passenger.dropdowns.isShowGender" class="find-gender">
                       <div
-                          @click="updateGender(['Мужской', passenger.id]);
-                          $store.commit('updateDropdown', [passenger.id, 'isShowGender'])"
+                          @click="updateGender(['Мужской', index]);
+                          $store.commit('updateDropdown', [index, 'isShowGender'])"
                           class="meta">
                         <div class="title">Мужской</div>
                       </div>
-                      <div @click="updateGender(['Женский', passenger.id]);
-                      $store.commit('updateDropdown', [passenger.id, 'isShowGender'])"
+                      <div @click="updateGender(['Женский', index]);
+                      $store.commit('updateDropdown', [index, 'isShowGender'])"
                            class="meta">
                         <div class="title">Женский</div>
                       </div>
@@ -142,17 +142,17 @@
                         :value="passenger.citizenShipSearchQuery"
                         :class="{'is-ok': passenger.citizenShipSearchQuery, 'is-error' : passenger.errors.citizenship}"
                         class="form-control"
-                        :id="'citizenship'+passenger.id"
+                        :id="'citizenship'+index"
                         placeholder="РОССИЯ"
                         type="text">
                     <div :class="{'d-none': !passenger.errors.citizenship}" class="error-feedback">{{passenger.errors.citizenship}}</div>
                     <div
                         v-if="passenger.dropdowns.isShowCitizenship" class="find-citizenship">
                       <div
-                          v-for="citizenship in getCitizenshipsById(passenger.id)"
+                          v-for="citizenship in getCitizenshipsById(index)"
                           :key="citizenship.code"
-                          @click="updateCitizenship([citizenship.name, passenger.id]);
-                          $store.commit('updateDropdown', [passenger.id, 'isShowCitizenship'])"
+                          @click="updateCitizenship([citizenship.name, index]);
+                          $store.commit('updateDropdown', [index, 'isShowCitizenship'])"
                           class="meta">
                         <div class="title">{{citizenship.name}}</div>
                       </div>
@@ -169,14 +169,14 @@
                         :value="passenger.documentSearchQuery"
                         :class="{'is-ok': passenger.document, 'is-error' : passenger.errors.document}"
                         class="form-control"
-                        :id="'document'+passenger.id"
+                        :id="'document'+index"
                         placeholder="Паспорт гражданина Российской Федерации"
                         type="text">
                     <div v-if="passenger.dropdowns.isShowDocument" class="find-document">
                       <div
-                          @click="updateDocument([documentType.name, passenger.id]);
-                          $store.commit('updateDropdown', [passenger.id, 'isShowDocument'])"
-                          v-for="documentType in getDocumentById(passenger.id)"
+                          @click="updateDocument([documentType.name, index]);
+                          $store.commit('updateDropdown', [index, 'isShowDocument'])"
+                          v-for="documentType in getDocumentById(index)"
                           :key="documentType.id"
                           class="meta">
                         <div class="title">{{documentType.name}}</div>
@@ -187,11 +187,11 @@
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="documentInfo" class="form-label">Серия и номер документа</label>
                   <input
-                      @input="updateDocumentInfo($event);validateDocumentInfo([$event, getPassengerDocumentById(passenger.id)])"
+                      @input="updateDocumentInfo($event);validateDocumentInfo([$event, getPassengerDocumentById(index)])"
                       type="text"
                       class="form-control"
                       :class="{'is-ok': passenger.documentInfo, 'is-error' : passenger.errors.documentInfo}"
-                      :id="'documentInfo'+passenger.id"
+                      :id="'documentInfo'+index"
                       placeholder="01 23 456789">
                   <div :class="{'d-none': !passenger.errors.documentInfo}" class="error-feedback">{{passenger.errors.documentInfo}}</div>
                 </div>

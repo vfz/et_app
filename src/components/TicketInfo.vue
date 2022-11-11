@@ -354,7 +354,7 @@
       <div class="paths-final-amount d-inline-block position-relative">
         <div class="old-amount position-absolute d-none">14 000₽</div>
         Итого <span v-if="selectedBackFlightTicket">{{sumBack + sumThere}} ₽</span>
-        <span v-if="selectedThereFlightTicket">{{sumThere}} ₽</span>
+        <span v-if="!selectedBackFlightTicket">{{sumThere}} ₽</span>
       </div>
     </div>
   </div>

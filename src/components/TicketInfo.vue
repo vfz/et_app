@@ -11,7 +11,7 @@
             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
               <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button v-if="selectedBackFlightInfo" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
               </div>
               <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -24,9 +24,9 @@
                         Маршрут:
                       </h5>
                       <div class="path-info-cities">
-                        <span class="path-info-city-from">Ставрополь</span>
+                        <span class="path-info-city-from">{{selectedThereFlightTicket.from_name_point}}</span>
                         <ArrowPathIcon class="arrow-path-icon"/>
-                        <span class="path-info-city-to">Москва</span>
+                        <span class="path-info-city-to">{{selectedThereFlightTicket.to_name_point}}</span>
                       </div>
                       <h5 class="path-info-ticket-title-paragraph">
                         Отправление:
@@ -34,19 +34,18 @@
                       <div class="path-info-from">
                         <div class="path-info-from-datetime">
                 <span class="path-info-from-datetime-date">
-                  30.01.2020
+                  {{selectedThereFlightTicket.date_trip}}
                 </span>
                           в
                           <span class="path-info-from-datetime-time">
-                  15:30
+                  {{selectedThereFlightTicket.time_trip}}
                 </span>
                         </div>
                         <div class="path-info-from-place d-flex flex-column">
                 <span class="path-info-from-place-name">
-                  Железнодорожный вокзал
                 </span>
                           <span class="path-info-from-datetime-address">
-                  ул. Вокзальная, 15
+                  {{selectedThereFlightTicket.from_address_point}}
                 </span>
                         </div>
                       </div>
@@ -56,19 +55,19 @@
                       <div class="path-info-to">
                         <div class="path-info-to-datetime">
                 <span class="path-info-to-datetime-date">
-                  30.01.2020
+                  {{selectedThereFlightTicket.date_arrival_trip}}
                 </span>
                           в
                           <span class="path-info-to-datetime-time">
-                  15:30
+                            {{selectedThereFlightTicket.time_arrival_trip}}
                 </span>
                         </div>
                         <div class="path-info-to-place d-flex flex-column">
                 <span class="path-info-from-place-name">
-                  Железнодорожный вокзал
+                  {{selectedThereFlightTicket.to_name}}
                 </span>
                           <span class="path-info-from-datetime-address">
-                  ул. Вокзальная, 15
+                  {{selectedThereFlightTicket.to_address_point}}
                 </span>
                         </div>
                       </div>
@@ -76,33 +75,26 @@
                         Места
                       </h5>
                       <div class="path-info-places">
-              <span class="path-info-place-number">
-                33,
-              </span>
-                        <span class="path-info-place-number">
-                34,
-              </span>
-                        <span class="path-info-place-number">
-                35,
-              </span>
-                        <span class="path-info-place-number">
-                36,
-              </span>
+                        <span v-for="(seat, index) in selectedThereFlightInfo.seats" :key="index" class="path-info-place-number">{{seat}}</span>
                       </div>
                       <div class="path-info-sum">
-                        Сумма заказа <span class="path-info-sum-number">7 000</span>₽
+                        Сумма заказа <span class="path-info-sum-number">{{sumThere}}</span>₽
                       </div>
                     </div>
                     <div class="point-minus">
                       - 3000₽ (Евробаллы)
                     </div>
-                    <div class="paths-final-amount d-inline-block position-relative">
+                    <div v-if="!selectedBackFlightTicket" class="paths-final-amount d-inline-block position-relative">
                       <div class="old-amount position-absolute d-none">14 000₽</div>
-                      Итого <span>14 000 ₽</span>
+                      Итого <span>{{sumThere}} ₽</span>
+                    </div>
+                    <div v-if="selectedBackFlightTicket" class="paths-final-amount d-inline-block position-relative">
+                      <div class="old-amount position-absolute d-none">14 000₽</div>
+                      Итого <span>{{sumThere + sumBack}} ₽</span>
                     </div>
                   </div>
                 </div>
-                <div class="carousel-item">
+                <div v-if="selectedBackFlightInfo" class="carousel-item">
                   <div class="info-ticket-wrapper">
                     <div class="path-info-ticket">
                       <h4 class="path-info-ticket-title">
@@ -112,9 +104,9 @@
                         Маршрут:
                       </h5>
                       <div class="path-info-cities">
-                        <span class="path-info-city-from">Москва</span>
+                        <span class="path-info-city-from">{{selectedBackFlightTicket.from_name_point}}</span>
                         <ArrowPathIcon class="arrow-path-icon"/>
-                        <span class="path-info-city-to">Ставрополь</span>
+                        <span class="path-info-city-to">{{selectedBackFlightTicket.to_name_point}}</span>
                       </div>
                       <h5 class="path-info-ticket-title-paragraph">
                         Отправление:
@@ -122,19 +114,19 @@
                       <div class="path-info-from">
                         <div class="path-info-from-datetime">
                 <span class="path-info-from-datetime-date">
-                  10.02.2020
+                  {{selectedBackFlightTicket.date_arrival_trip}}
                 </span>
                           в
                           <span class="path-info-from-datetime-time">
-                  20:45
+                  {{selectedBackFlightTicket.time_arrival_trip}}
                 </span>
                         </div>
                         <div class="path-info-from-place d-flex flex-column">
                 <span class="path-info-from-place-name">
-                  Автостанция “Орехово”
+                  {{selectedBackFlightTicket.to_name}}
                 </span>
                           <span class="path-info-from-datetime-address">
-                  ул. Шипиловский проезд, 12
+                  {{selectedBackFlightTicket.to_address_point}}
                 </span>
                         </div>
                       </div>
@@ -144,19 +136,19 @@
                       <div class="path-info-to">
                         <div class="path-info-to-datetime">
                 <span class="path-info-to-datetime-date">
-                  11.02.2020
+                  {{selectedBackFlightTicket.date_arrival_trip}}
                 </span>
                           в
                           <span class="path-info-to-datetime-time">
-                  15:30
+                  {{selectedBackFlightTicket.time_arrival_trip}}
                 </span>
                         </div>
                         <div class="path-info-to-place d-flex flex-column">
                 <span class="path-info-from-place-name">
-                  Железнодорожный вокзал
+                  {{selectedBackFlightTicket.to_name_point}}
                 </span>
                           <span class="path-info-from-datetime-address">
-                  ул. Вокзальная, 15
+                  {{selectedBackFlightTicket.to_address_point}}
                 </span>
                         </div>
                       </div>
@@ -164,21 +156,10 @@
                         Места
                       </h5>
                       <div class="path-info-places">
-              <span class="path-info-place-number">
-                16,
-              </span>
-                        <span class="path-info-place-number">
-                17,
-              </span>
-                        <span class="path-info-place-number">
-                18,
-              </span>
-                        <span class="path-info-place-number">
-                19,
-              </span>
+                        <span  v-for="(seat, index) in selectedBackFlightInfo.seats" :key="index" class="path-info-place-number">{{seat}}</span>
                       </div>
                       <div class="path-info-sum">
-                        Сумма заказа <span class="path-info-sum-number">7 000</span>₽
+                        Сумма заказа <span class="path-info-sum-number">{{sumBack}}</span>₽
                       </div>
                     </div>
                     <div class="point-minus">
@@ -186,7 +167,7 @@
                     </div>
                     <div class="paths-final-amount d-inline-block position-relative">
                       <div class="old-amount position-absolute d-none">14 000₽</div>
-                      Итого <span>14 000 ₽</span>
+                      Итого <span>{{sumThere + sumBack}} ₽</span>
                     </div>
                   </div>
                 </div>

@@ -165,16 +165,18 @@
                     <ArrowDownIcon v-if="!passenger.errors.document" class="arrow-down-icon position-absolute" color="#283256"/>
                     <input
                         @click="toggleDropdown($event)"
-                        @input="searchDocument($event);validateDocument($event)"
+                        @input="searchDocument($event);"
                         :value="passenger.documentSearchQuery"
                         :class="{'is-ok': passenger.document, 'is-error' : passenger.errors.document}"
                         class="form-control"
                         :id="'document'+index"
                         placeholder="Паспорт гражданина Российской Федерации"
                         type="text">
+                    <div :class="{'d-none': !passenger.errors.document}" class="error-feedback">{{passenger.errors.document}}</div>
                     <div v-if="passenger.dropdowns.isShowDocument" class="find-document">
                       <div
                           @click="updateDocument([documentType.name, index]);
+                          validateDocument([documentType.name, passenger.id])
                           $store.commit('updateDropdown', [index, 'isShowDocument'])"
                           v-for="documentType in getDocumentById(index)"
                           :key="documentType.id"

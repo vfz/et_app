@@ -33,6 +33,7 @@ export default {
                 isShowDocument: false,
             },
             isAdult: true,
+            age: 0,
         }],
         documentTypes: [],
         citizenShips: [],
@@ -124,6 +125,9 @@ export default {
         },
         updateHaveErrors(state, haveError) {
             state.haveErrors = haveError
+        },
+        updateAgePassenger(state, [age, id]) {
+            state.passengers[id].age = age
         }
     },
     actions: {
@@ -166,7 +170,8 @@ export default {
                         isShowGender: false,
                         isShowDocument: false,
                     },
-                    isAdult: isAdult
+                    isAdult: isAdult,
+                    age: 0
                 }
                 ctx.commit('addPassenger', passenger)
                 ctx.commit('updateDefaultsSeat', ctx.rootGetters.getPassengers)
@@ -395,21 +400,45 @@ export default {
                 ctx.commit('updateError', [id, '', formField])
             }
         },
-        validateDocument(ctx, event) {
-            const value = event.target.value;
-            //исключить наименование и оставить только цифры в id при помощи replace
-            const id = event.target.id.replace(/[^0-9]/g, "");
+        validateDocument(ctx, [value, id]) {
             const formField = 'document'
-            if (value === '') {
+            let agePassenger = ctx.getters.getAgePassengerById(id)
+            let isAdultPassenger = ctx.state.passengers[id].isAdult
+            if (!agePassenger) {
                 ctx.commit('updateHaveErrors', true)
-                    ///аргументы (mutation, [id, errorText, formField ])
+                ///аргументы (mutation, [id, errorText, formField ])
+                ctx.commit('updateError', [id, 'Укажите дату рождения пассажира', formField]);
+                ctx.commit('updateDocument', ['', id])
+                ct.commit('updateDocumentSearchQuery', ['', id])
+                return false
+            }
+            if (agePassenger < 14 && !isAdultPassenger && value !== 'Свидетельство о рождении') {
+                ctx.commit('updateHaveErrors', true)
+                ///аргументы (mutation, [id, errorText, formField ])
+                ctx.commit('updateError', [id, 'Если ребенку меньше 14 лет, укажите свидетельство о рождении', formField]);
+                return false
+            }
+            if (agePassenger < 14 && !isAdultPassenger && value === '') {
+                ctx.commit('updateHaveErrors', true)
+                ///аргументы (mutation, [id, errorText, formField ])
                 ctx.commit('updateError', [id, 'заполните документ', formField]);
+                return false
             }
-            if (value !== '') {
-                ctx.commit('updateHaveErrors', false)
-                    ///аргументы (mutation, [id, errorText, formField ])
-                ctx.commit('updateError', [id, '', formField])
+            if (agePassenger > 14 && !value) {
+                ctx.commit('updateHaveErrors', true)
+                ///аргументы (mutation, [id, errorText, formField ])
+                ctx.commit('updateError', [id, 'заполните документ', formField]);
+                return false
             }
+            if (agePassenger > 14 && value === 'Свидетельство о рождении') {
+                ctx.commit('updateHaveErrors', true)
+                ///аргументы (mutation, [id, errorText, formField ])
+                ctx.commit('updateError', [id, 'Вам больше 14. Укажите паспорт или другой иной документ', formField]);
+                return false
+            }
+            ctx.commit('updateHaveErrors', false)
+            ///аргументы (mutation, [id, errorText, formField ])fi
+            ctx.commit('updateError', [id, '', formField]);
         },
         validateBirthday(ctx, event) {
             let value = event.target.value.split('-');
@@ -417,36 +446,37 @@ export default {
             //исключить наименование и оставить только цифры в id при помощи replace
             const id = event.target.id.replace(/[^0-9]/g, "");
             const formField = 'birthday';
-            if (!value) {
-                ctx.commit('updateHaveErrors', true)
-                    ///аргументы (mutation, [id, errorText, formField ])
-                ctx.commit('updateError', [id, 'заполните дату рождения', formField]);
+            const currentDate = new Date(); //текущая дата
+            const currentDateWithoutTime = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()); //текущая дата без времени
+            const day = value[2]; //день рождения
+            const month = value[1]; // месяц рождения
+            const year = value[0] //год рождения
+            if (day.length === 2 || month.length === 2 || year.length === 4) {
+                ctx.commit('updateHaveErrors', false)
+                ///аргументы (mutation, [id, errorText, formField ])
+                ctx.commit('updateError', [id, '', formField])
             }
-            if (value) {
-                const currentDate = new Date(); //текущая дата
-                const currentDateWithoutTime = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()); //текущая дата без времени
-                const day = value[2]; //день рождения
-                const month = value[1]; // месяц рождения
-                const year = value[0] //год рождения
-                if (day.length > 2 || month.length > 2 || year.length > 4) {
-                    debugger
-                    ctx.commit('updateHaveErrors', true)
-                    ///аргументы (mutation, [id, errorText, formField ])
-                    ctx.commit('updateError', [id, 'заполните дату рождения в формате 01.01.2001', formField]);
-                    return false
-                }
-                const birthDay = new Date(year, month, day); //день рождения в формате date
-                const birthDayCurrent = new Date(currentDateWithoutTime.getFullYear(), birthDay.getMonth(), birthDay.getDate()) //день рождения в этом году
-                let age = currentDateWithoutTime.getFullYear() - birthDay.getFullYear()
+            else {
+                ctx.commit('updateHaveErrors', true)
+                ///аргументы (mutation, [id, errorText, formField ])
+                ctx.commit('updateError', [id, 'заполните дату рождения в формате 01.01.2001', formField]);
+            }
+            const birthDay = new Date(year, month, day); //день рождения в формате date
+            const birthDayCurrent = new Date(currentDateWithoutTime.getFullYear(), birthDay.getMonth(), birthDay.getDate()) //день рождения в этом году
+            let age = currentDateWithoutTime.getFullYear() - birthDay.getFullYear()
 
-                const document = ctx.state.passengers[id].document
-                if (currentDateWithoutTime < birthDayCurrent) {
-                    age = age + 1
-                }
-                if (age < 0) {
+            if (currentDateWithoutTime < birthDayCurrent) {
+                age = age + 1
+            }
+            ctx.commit('updateAgePassenger', [age, id])
+            let document = ctx.getters.getDocumentById(id)
+
+            //валидация для ребенка
+            if (ctx.state.passengers[id].isAdult === false) {
+                if (age > 18) {
                     ctx.commit('updateHaveErrors', true)
                     ///аргументы (mutation, [id, errorText, formField ])
-                    ctx.commit('updateError', [id, 'Укажите корректно дату рождения', formField])
+                    ctx.commit('updateError', [id, 'Пассажир не является ребенком', formField])
                     return false
                 }
                 if (age < 14) {
@@ -461,18 +491,38 @@ export default {
                         ctx.commit('updateError', [id, '', formField])
                     }
                     if (!document) {
-                        ctx.commit('updateHaveErrors', false)
+                        ctx.commit('updateHaveErrors', true)
                         ///аргументы (mutation, [id, errorText, formField ])
                         ctx.commit('updateError', [id, '', formField])
                     }
+                    ctx.commit('updateHaveErrors', false)
+                    ///аргументы (mutation, [id, errorText, formField ])
+                    ctx.commit('updateError', [id, '', formField])
+                }
+                if (age < 0) {
+                    ctx.commit('updateHaveErrors', true)
+                    ///аргументы (mutation, [id, errorText, formField ])
+                    ctx.commit('updateError', [id, 'Укажите корректно дату рождения', formField])
+                    return false
+                }
+            }
+            //валидация для взрослого
+            if (ctx.state.passengers[id].isAdult === true) {
+                if (age < 18 && age > 0) {
+                    ctx.commit('updateHaveErrors', true)
+                    ///аргументы (mutation, [id, errorText, formField ])
+                    ctx.commit('updateError', [id, 'Данный пассажир является ребенком', formField])
+                    return false
+                }
+                if (age < 0) {
+                    ctx.commit('updateHaveErrors', true)
+                    ///аргументы (mutation, [id, errorText, formField ])
+                    ctx.commit('updateError', [id, 'Укажите корректно дату рождения', formField])
+                    return false
                 }
                 if (age > 125) {
                     ctx.commit('updateHaveErrors', true)
                     ctx.commit('updateError', [id, 'Некорректная дата, вам больше 125 лет?', formField])
-                }
-                if (age > 14 && document !== 'Паспорт гражданина Российской Федерации' && age < 125) {
-                    ctx.commit('updateHaveErrors', false)
-                    ctx.commit('updateError', [id, '', formField])
                 }
             }
         },
@@ -651,6 +701,9 @@ export default {
         },
         getHaveErrors(state) {
             return state.haveErrors
-        }
+        },
+        getAgePassengerById: (state) => (id) => {
+            return state.passengers[id].age
+        },
     },
 }

@@ -7,14 +7,15 @@
           <button
               v-for="(passenger,index) in getPassengers"
               :key="index"
-              :class="{active: index === 0}"
+              @click="setActiveTab(index)"
+              :class="{active: index === getActiveTab}"
               class="nav-link"
               :id="'passenger-'+index+'-tab'"
               data-bs-toggle="tab"
               :data-bs-target="'#passenger-'+index"
               type="button" role="tab"
               :aria-controls="'passenger-'+index"
-              :aria-selected="{true : index === 0}"
+              :aria-selected="{true : index === getActiveTab}"
           >{{passenger.isAdult ? "" : '&#128118'}} Пассажир №{{index+1}}</button>
         </div>
       </nav>
@@ -22,7 +23,7 @@
         <div
             v-for="(passenger,index) in getPassengers"
             :key="index"
-            :class="{'show active': index === 0}"
+            :class="{'show active': index === getActiveTab}"
             class="tab-pane fade"
             :id="'passenger-'+index"
             role="tabpanel"
@@ -240,7 +241,8 @@ export default {
         'validateGender',
         'validateDocument',
         'addPassenger',
-        'toggleDropdown'
+        'toggleDropdown',
+        'setActiveTab'
     ]),
   },
   mounted() {
@@ -256,6 +258,7 @@ export default {
         'getPassengerDocumentById',
         'oneWay',
         'getIsLogin',
+        'getActiveTab'
     ]),
   },
 }

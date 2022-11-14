@@ -55,6 +55,7 @@ export default {
         },
         haveErrors: false,
         promoCode: '',
+        activeTab: 0,
     },
     mutations: {
         addPassenger(state, passenger) {
@@ -128,6 +129,9 @@ export default {
         },
         updateAgePassenger(state, [age, id]) {
             state.passengers[id].age = age
+        },
+        activeTab(state, id) {
+            state.activeTab = id
         }
     },
     actions: {
@@ -195,15 +199,13 @@ export default {
             ctx.commit('updateDefaultsSeat', ctx.rootGetters.getPassengers)
         },
         removePassengerById(ctx, id) {
-            function getIndex(passenger) {
-                if (passenger.id === id) {
-                    return passenger
-                }
-            }
-            const passenger = ctx.state.passengers.findIndex(getIndex)
             const modal = document.getElementById('btn-close' + id)
             modal.click()
-            ctx.commit('removePassenger', passenger)
+            ctx.commit('removePassenger', id)
+            ctx.commit('activeTab', id-1)
+        },
+        setActiveTab(ctx,id) {
+            ctx.commit('activeTab', id)
         },
         updateSecondName(ctx, event) {
             const value = event.target.value;
@@ -719,5 +721,8 @@ export default {
         getAgePassengerById: (state) => (id) => {
             return state.passengers[id].age
         },
+        getActiveTab(state) {
+            return state.activeTab
+        }
     },
 }

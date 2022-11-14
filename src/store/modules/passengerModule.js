@@ -449,14 +449,16 @@ export default {
                     ///аргументы (mutation, [id, errorText, formField ])
                 ctx.commit('updateError', [id, 'Укажите дату рождения пассажира', formField]);
                 ctx.commit('updateDocument', ['', id])
-                ct.commit('updateDocumentSearchQuery', ['', id])
+                ctx.commit('updateDocumentSearchQuery', ['', id])
                 return false
             }
-            if (agePassenger < 14 && !isAdultPassenger && value !== 'Свидетельство о рождении') {
-                ctx.commit('updateHaveErrors', true)
+            if (agePassenger < 14 && !isAdultPassenger) {
+                if (value !== 'Свидетельство о рождении' && value !== 'Заграничный паспорт гражданина Российской Федерации' && value !== 'Заграничный паспорт иностранного гражданина') {
+                    ctx.commit('updateHaveErrors', true)
                     ///аргументы (mutation, [id, errorText, formField ])
-                ctx.commit('updateError', [id, 'Если ребенку меньше 14 лет, укажите свидетельство о рождении', formField]);
-                return false
+                    ctx.commit('updateError', [id, 'Если ребенку меньше 14 лет, укажите свидетельство о рождении, или заграничный паспорт гражданина Российской Федерации, или заграничный паспорт иностранного гражданина ', formField]);
+                    return false
+                }
             }
             if (agePassenger < 14 && !isAdultPassenger && value === '') {
                 ctx.commit('updateHaveErrors', true)

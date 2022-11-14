@@ -91,7 +91,13 @@ export default {
     ForgotPasswordModal
     },
   computed: mapGetters(['oneWay', 'getPassengers']),
+  mounted() {
+    this.fetchSelectedSeat();
+  },
   methods: {
+    ...mapActions([
+       'fetchSelectedSeat'
+    ]),
     isMobile() {
       return screen.width <= 991;
     }

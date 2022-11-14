@@ -279,6 +279,21 @@ export default {
                 ctx.commit('updateDropdown', [id, dropdown])
             }
         },
+        fetchSelectedSeat(ctx) {
+            //selectedSeat у него есть seats
+            let selectedSeat = ctx.getters.selectedSeat
+            //get passengers
+            let passengers = ctx.getters.getPassengers
+            //seats совпадают с индексом пассажиров
+            //cоздать массив из рейсов где выбраны рейсы
+            let selectedTrips = selectedSeat.map(object => object.is_selected === true)
+            // selectedTrips[0].seats
+            //если индекс совпадает, то присвоить сидение пассажиру
+            //добавить в passenger[index].seat
+            //seat это массив
+            //seat[0] = туда
+            //seat[1] = обратно
+        },
         //Обновление данных покупателя
         updateSecondNameBuyer(ctx, event) {
             const value = event.target.value
@@ -295,21 +310,6 @@ export default {
         updateNumberBuyer(ctx, event) {
             const value = event.target.value
             ctx.commit('updateNumberBuyer', value)
-        },
-        fetchSelectedSeat(ctx) {
-            //selectedSeat у него есть seats
-            let selectedSeat = ctx.getters.selectedSeat
-            //get passengers
-            let passengers = ctx.getters.getPassengers
-            //seats совпадают с индексом пассажиров
-            //cоздать массив из рейсов где выбраны рейсы
-            let selectedTrips = selectedSeat.map(object => object.is_selected === true)
-            // selectedTrips[0].seats
-            //если индекс совпадает, то присвоить сидение пассажиру
-            //добавить в passenger[index].seat
-            //seat это массив
-            //seat[0] = туда
-            //seat[1] = обратно
         },
         //Загрузка с API
         async fetchDocumentType(ctx) {

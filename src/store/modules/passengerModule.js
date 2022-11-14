@@ -4,8 +4,13 @@ export default {
     state: {
         passengers: [{
             id: 0,
-            id_trip: 0,
-            seats: [],
+            selectedSeats: [
+                {
+                    id_ticket: 0,
+                    id_trip: 0,
+                    seat: 0
+                },
+            ],
             secondName: '',
             firstName: '',
             middleName: '',
@@ -132,6 +137,29 @@ export default {
         },
         activeTab(state, id) {
             state.activeTab = id
+        },
+        updateSelectedSeats(state, selectedSeats) {
+            state.passengers.map((passenger, index) => {
+                if (selectedSeats[1]) {
+                    passenger.selectedSeats[0] = {
+                        id_ticket: selectedSeats[1].id_ticket,
+                        id_trip: selectedSeats[1].id_trip,
+                        seat: selectedSeats[1].seats[index]
+                    }
+                    passenger.selectedSeats[1] = {
+                        id_ticket: selectedSeats[0].id_ticket,
+                        id_trip: selectedSeats[0].id_trip,
+                        seat: selectedSeats[0].seats[index]
+                    }
+                }
+                else {
+                    passenger.selectedSeats[0] = {
+                        id_ticket: selectedSeats[0].id_ticket,
+                        id_trip: selectedSeats[0].id_trip,
+                        seat: selectedSeats[0].seats[index]
+                    }
+                }
+            })
         }
     },
     actions: {
@@ -146,8 +174,13 @@ export default {
                 const id = ctx.state.passengers.length
                 const passenger = {
                     id: id,
-                    id_trip: 0,
-                    seats: [],
+                    selectedSeats: [
+                        {
+                            id_ticket: 0,
+                            id_trip: 0,
+                            seat: 0,
+                        },
+                    ],
                     secondName: '',
                     firstName: '',
                     middleName: '',
@@ -282,19 +315,9 @@ export default {
             }
         },
         fetchSelectedSeat(ctx) {
-            //selectedSeat у него есть seats
             let selectedSeat = ctx.getters.selectedSeat
-            //get passengers
-            let passengers = ctx.getters.getPassengers
-            //seats совпадают с индексом пассажиров
-            //cоздать массив из рейсов где выбраны рейсы
-            let selectedTrips = selectedSeat.map(object => object.is_selected === true)
-            // selectedTrips[0].seats
-            //если индекс совпадает, то присвоить сидение пассажиру
-            //добавить в passenger[index].seat
-            //seat это массив
-            //seat[0] = туда
-            //seat[1] = обратно
+            let selectedTrips = selectedSeat.filter(object => object.is_selected === true)
+            ctx.commit('updateSelectedSeats', selectedTrips)
         },
         //Обновление данных покупателя
         updateSecondNameBuyer(ctx, event) {

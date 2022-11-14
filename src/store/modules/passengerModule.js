@@ -5,7 +5,7 @@ export default {
         passengers: [{
             id: 0,
             id_trip: 0,
-            seat: 0,
+            seats: [],
             secondName: '',
             firstName: '',
             middleName: '',
@@ -143,7 +143,7 @@ export default {
                 const passenger = {
                     id: id,
                     id_trip: 0,
-                    seat: 0,
+                    seats: [],
                     secondName: '',
                     firstName: '',
                     middleName: '',
@@ -295,6 +295,21 @@ export default {
         updateNumberBuyer(ctx, event) {
             const value = event.target.value
             ctx.commit('updateNumberBuyer', value)
+        },
+        fetchSelectedSeat(ctx) {
+            //selectedSeat у него есть seats
+            let selectedSeat = ctx.getters.selectedSeat
+            //get passengers
+            let passengers = ctx.getters.getPassengers
+            //seats совпадают с индексом пассажиров
+            //cоздать массив из рейсов где выбраны рейсы
+            let selectedTrips = selectedSeat.map(object => object.is_selected === true)
+            // selectedTrips[0].seats
+            //если индекс совпадает, то присвоить сидение пассажиру
+            //добавить в passenger[index].seat
+            //seat это массив
+            //seat[0] = туда
+            //seat[1] = обратно
         },
         //Загрузка с API
         async fetchDocumentType(ctx) {

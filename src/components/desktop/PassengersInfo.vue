@@ -99,7 +99,8 @@
                       :class="{'is-ok': passenger.birthday, 'is-error' : passenger.errors.birthday}"
                       :id="'birthday'+index"
                       pattern="\d{4}-\d{2}-\d{2}"
-                      placeholder="дд.мм.гггг">
+                      placeholder="дд.мм.гггг"
+                      required>
                   <div :class="{'d-none': !passenger.errors.birthday}" class="error-feedback">{{passenger.errors.birthday}}</div>
                 </div>
               </div>

@@ -568,7 +568,6 @@ export default {
             }
         },
         validateDocumentInfo(ctx, event) {
-            debugger
             //Исключить пробелы в значении
             const value = event.target.value.replace(/\s/g, '');
             //исключить наименование и оставить только цифры в id при помощи replace
@@ -783,6 +782,14 @@ export default {
         },
         getActiveTab(state) {
             return state.activeTab
+        },
+        getEmptyFieldsFormPassengers(state) {
+            return state.passengers.find(passenger => {
+                return !passenger.firstName || !passenger.secondName || !passenger.middleName || !passenger.birthday || !passenger.gender ||  !passenger.document  || !passenger.citizenship || !passenger.documentInfo
+            })
+        },
+        getEmptyFieldsFormBuyer(state) {
+            return !state.buyerInfo.firstName || !state.buyerInfo.secondName || !state.buyerInfo.email || !state.buyerInfo.number
         }
     },
 }

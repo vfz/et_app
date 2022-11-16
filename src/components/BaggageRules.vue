@@ -66,7 +66,7 @@
           </div>
           <div class="row flex-column-reverse flex-md-row">
             <div class="col-12 col-md-6">
-            <button :class="{'disabled': getHaveErrors}" class="btn btn-lg btn-primary">
+            <button :class="{'disabled': getHaveErrors || getEmptyFieldsFormPassengers || getEmptyFieldsFormBuyer}" class="btn btn-lg btn-primary">
                 Перейти к оплате
               </button>
             </div>
@@ -153,7 +153,7 @@
         </div>
         <div class="row flex-column-reverse flex-md-row">
           <div class="col-12 col-md-6">
-            <button :class="{'disabled': getHaveErrors}" class="btn btn-lg btn-primary">
+            <button :class="{'disabled': getHaveErrors || getEmptyFieldsFormPassengers || getEmptyFieldsFormBuyer}" class="btn btn-lg btn-primary">
               Перейти к оплате
             </button>
           </div>
@@ -190,8 +190,10 @@ export default {
   },
   computed: {
     ...mapGetters([
-        'getHaveErrors'
-    ])
+        'getHaveErrors',
+        'getEmptyFieldsFormPassengers',
+        'getEmptyFieldsFormBuyer'
+    ]),
   },
   methods: {
     isMobile() {

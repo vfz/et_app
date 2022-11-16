@@ -568,6 +568,7 @@ export default {
             }
         },
         validateDocumentInfo(ctx, event) {
+            debugger
             //Исключить пробелы в значении
             const value = event.target.value.replace(/\s/g, '');
             //исключить наименование и оставить только цифры в id при помощи replace
@@ -595,7 +596,7 @@ export default {
                 ctx.commit('updateError', [id, 'Серия и номер паспорта указаны некорректно', formField])
                 return false
             }
-            if (documentType === 'Паспорт гражданина Российской Федерации' && value.length < 10 && value.match(regexpPassport) === null) {
+            if (documentType === 'Паспорт гражданина Российской Федерации' && value.length < 10) {
                 ctx.commit('updateHaveErrors', true)
                 ctx.commit('updateError', [id, 'Серия и номер паспорта указаны некорректно', formField])
             }
@@ -603,25 +604,35 @@ export default {
                 ctx.commit('updateHaveErrors', false)
                 ctx.commit('updateError', [id, '', formField])
             }
-            if (documentType === 'Паспорт гражданина Российской Федерации' && value.length === 10 && value.match(regexpPassport) !== null) {
-                ctx.commit('updateHaveErrors', false)
-                ctx.commit('updateError', [id, '', formField])
+            if (documentType === 'Паспорт гражданина Российской Федерации' && value.length === 10) {
+                if (value.match(regexpPassport) !== null) {
+                    ctx.commit('updateHaveErrors', false)
+                    ctx.commit('updateError', [id, '', formField])
+                }
+                else {
+                    ctx.commit('updateHaveErrors', true)
+                    ctx.commit('updateError', [id, 'Серия и номер паспорта указаны некорректно', formField])
+                }
             }
-            else {
-                ctx.commit('updateHaveErrors', true)
-                ctx.commit('updateError', [id, 'Серия и номер паспорта указаны некорректно', formField])
-            }
-            // TODO перепроверить остальные документы
             //Проверка паспорта Загранпаспорта
             if (documentType === 'Заграничный паспорт гражданина Российской Федерации' && value.length > 9) {
                 ctx.commit('updateHaveErrors', true)
                 ctx.commit('updateError', [id, 'Серия и номер паспорта указаны некорректно', formField])
-            } else if (documentType === 'Заграничный паспорт гражданина Российской Федерации' && value.length < 9) {
+                return false
+            }
+            if (documentType === 'Заграничный паспорт гражданина Российской Федерации' && value.length < 9) {
                 ctx.commit('updateHaveErrors', true)
                 ctx.commit('updateError', [id, 'Серия и номер паспорта указаны некорректно', formField])
-            } else if (documentType === 'Заграничный паспорт гражданина Российской Федерации' && value.length === 9) {
-                ctx.commit('updateHaveErrors', true)
-                ctx.commit('updateError', [id, '', formField])
+            }
+            if (documentType === 'Заграничный паспорт гражданина Российской Федерации' && value.length === 9) {
+                if (value.match(regexpPassport) !== null) {
+                    ctx.commit('updateHaveErrors', false)
+                    ctx.commit('updateError', [id, '', formField])
+                }
+                else {
+                    ctx.commit('updateHaveErrors', true)
+                    ctx.commit('updateError', [id, 'Серия и номер паспорта указаны некорректно', formField])
+                }
             }
             //Проверка военного билета
             if (documentType === 'Военный билет военнослужащего срочной службы' || documentType === 'Удостоверение личности военнослужащего действительной службы') {

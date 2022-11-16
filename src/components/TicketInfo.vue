@@ -509,6 +509,16 @@ export default {
       font-size: 14px;
       line-height: 18.9px;
     }
+    span {
+      @media screen and (max-width: 767px) {
+        margin-right: 5px;
+      }
+    }
+    span:last-child {
+      @media screen and (max-width: 767px) {
+        margin-right: 0
+      }
+    }
   }
   .path-info-sum {
     @include font($uni,$bold,20px,27px,$secondary);

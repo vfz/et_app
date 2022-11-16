@@ -188,7 +188,9 @@
                     <div class="d-block">
                       <label for="documentInfo1" class="form-label">Серия и номер документа</label>
                       <input
-                          @input="updateDocumentInfo($event);validateDocumentInfo([$event, getPassengerDocumentById(index)])"
+                          @focusout="validateDocumentInfo($event)"
+                          @input="updateDocumentInfo($event);"
+                          :value="passenger.documentInfo"
                           type="text"
                           class="form-control"
                           :class="{'is-ok': passenger.documentInfo, 'is-error' : passenger.errors.documentInfo}"

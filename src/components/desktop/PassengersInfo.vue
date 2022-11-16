@@ -191,7 +191,8 @@
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="documentInfo" class="form-label">Серия и номер документа</label>
                   <input
-                      @input="updateDocumentInfo($event);validateDocumentInfo([$event, getPassengerDocumentById(index)])"
+                      @focusout="validateDocumentInfo($event)"
+                      @input="updateDocumentInfo($event);"
                       type="text"
                       class="form-control"
                       :class="{'is-ok': passenger.documentInfo, 'is-error' : passenger.errors.documentInfo}"

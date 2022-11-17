@@ -656,8 +656,8 @@ export default {
                     ctx.commit('updateError', [id, 'Серия военного билета указана неверно', formField])
                 }
             }
-            //Проверка свидетельства о рождении
-            if (documentType === 'Свидетельство о рождении') {
+            //Проверка свидетельства о рождении и //Проверка паспорта гражданина СССР
+            if (documentType === 'Свидетельство о рождении' || documentType === 'Паспорт гражданина СССР') {
                 let regexpNumber = /[0-9]/g;
                 let regexpSerial = /[А-Я]/g;
                 let regexpRomeNumber = /[IVXLCDM]/g
@@ -667,21 +667,6 @@ export default {
                 else {
                     ctx.commit('updateHaveErrors', true)
                     ctx.commit('updateError', [id, 'Свидетельство о рождении указано неверно', formField])
-                }
-            }
-            //Проверка паспорта гражданина СССР
-            if (documentType === 'Паспорт гражданина СССР') {
-                let regexpNumber = /[0-9]/;
-                let regexpSerial = /[а-яё]/i;
-                let regexpRomeNumber = /[IVXLCDM]/
-                if (!regexpNumber.test(value)) {
-                    ctx.commit('updateError', [id, 'В паспорте гражданина СССР неверно указан номер', formField])
-                } else if (!regexpSerial.test(value)) {
-                    ctx.commit('updateError', [id, 'В паспорте гражданина СССР неверно указана серия', formField])
-                } else if (!regexpRomeNumber.test(value)) {
-                    ctx.commit('updateError', [id, 'Римские цифры в номере паспорта гражданина СССР указаны неверно', formField])
-                } else {
-                    ctx.commit('updateError', [id, '', formField])
                 }
             }
         },

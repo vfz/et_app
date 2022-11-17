@@ -655,7 +655,7 @@ export default {
                 }
                 else {
                     ctx.commit('updateHaveErrors', true)
-                    ctx.commit('updateError', [id, 'Свидетельство о рождении указано неверно', formField])
+                    ctx.commit('updateError', [id, documentType + 'указано неверно', formField])
                 }
             }
         },

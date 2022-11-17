@@ -635,25 +635,14 @@ export default {
             }
             //Проверка военного билета
             if (documentType === 'Военный билет военнослужащего срочной службы' || documentType === 'Удостоверение личности военнослужащего действительной службы') {
-                let regexp = /[а-яё]/i;
-                let serial = value.substr(0, 2)
-                let number = value.substr(2, 9)
-                if (regexp.test(serial)) {
-                    ctx.commit('updateHaveErrors', false)
+                let regexpSerial = /[А-Я]/g;
+                let regexpNumber = /[0-9]/g;
+                if (regexpNumber.test(value) && regexpSerial.test(value) && value.match(regexpSerial).length === 2 && value.match(regexpNumber).length === 7 && value.length === 9) {
                     ctx.commit('updateError', [id, '', formField])
-                    if (number.length > 7) {
-                        ctx.commit('updateHaveErrors', true)
-                        ctx.commit('updateError', [id, 'Номер военного билета указан неверно', formField])
-                    } else if (number.length < 7) {
-                        ctx.commit('updateHaveErrors', true)
-                        ctx.commit('updateError', [id, 'Номер военного билета указан неверно', formField])
-                    } else if (number.length === 7) {
-                        ctx.commit('updateHaveErrors', false)
-                        ctx.commit('updateError', [id, '', formField])
-                    }
-                } else {
+                }
+                else {
                     ctx.commit('updateHaveErrors', true)
-                    ctx.commit('updateError', [id, 'Серия военного билета указана неверно', formField])
+                    ctx.commit('updateError', [id, documentType + ' указан неверно', formField])
                 }
             }
             //Проверка свидетельства о рождении и //Проверка паспорта гражданина СССР

@@ -81,9 +81,9 @@
                         Сумма заказа <span class="path-info-sum-number">{{sumThere}}</span>₽
                       </div>
                     </div>
-                    <div class="point-minus">
+                    <!-- <div class="point-minus">
                       - 3000₽ (Евробаллы)
-                    </div>
+                    </div> -->
                     <div v-if="!selectedBackFlightTicket" class="paths-final-amount d-inline-block position-relative">
                       <div class="old-amount position-absolute d-none">14 000₽</div>
                       Итого <span>{{sumThere}} ₽</span>
@@ -162,9 +162,9 @@
                         Сумма заказа <span class="path-info-sum-number">{{sumBack}}</span>₽
                       </div>
                     </div>
-                    <div class="point-minus">
+                    <!-- <div class="point-minus">
                       - 3000₽ (Евробаллы)
-                    </div>
+                    </div> -->
                     <div class="paths-final-amount d-inline-block position-relative">
                       <div class="old-amount position-absolute d-none">14 000₽</div>
                       Итого <span>{{sumThere + sumBack}} ₽</span>
@@ -329,9 +329,9 @@
           Сумма заказа <span class="path-info-sum-number">{{sumBack}}</span>₽
         </div>
       </div>
-      <div class="point-minus">
+      <!-- <div class="point-minus">
         - 3000₽ (Евробаллы)
-      </div>
+      </div> -->
       <div class="paths-final-amount d-inline-block position-relative">
         <div class="old-amount position-absolute d-none">14 000₽</div>
         Итого <span v-if="selectedBackFlightTicket">{{sumBack + sumThere}} ₽</span>

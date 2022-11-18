@@ -56,14 +56,14 @@
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="secondName" class="form-label">Фамилия</label>
                   <input
-                      @input="updateSecondName($event);validateSecondName($event);"
-                      :value="passenger.secondName"
+                      @input="updateSecondName($event)"
+                      v-model="secondName"
                       type="text"
                       class="form-control"
-                      :class="{'is-ok': passenger.secondName, 'is-error' : passenger.errors.secondName}"
+                      :class="{'is-ok': !validatePassenger('secondName',secondName), 'is-error' : validatePassenger('secondName', secondName)}"
                       :id="'secondName' + index"
                       placeholder="Иванов">
-                  <div :class="{'d-none': !passenger.errors.secondName}" class="error-feedback">{{passenger.errors.secondName}}</div>
+                  <div :class="{'d-none': validatePassenger('secondName', secondName)}" class="error-feedback">{{validatePassenger('secondName', secondName)}}</div>
                 </div>
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="firstName" class="form-label">Имя</label>
@@ -218,6 +218,11 @@ import {mapState, mapActions, mapGetters} from 'vuex';
 export default {
   name: "PassengersInfo",
   components: {MyDataButton, ArrowDownIcon, CancelIcon},
+  data(){
+    return {
+      secondName: '',
+    }
+  },
   methods: {
     ...mapActions([
         'UpdateOneWay',
@@ -246,6 +251,40 @@ export default {
         'toggleDropdown',
         'setActiveTab'
     ]),
+    validatePassenger(fieldType, value) {
+      if (fieldType === 'secondName') {
+        if (value === '') {
+          return 'заполните фамилию'
+        }
+        else {
+          return false
+        }
+      }
+      if (fieldType === 'firstName') {
+        if (value === '') {
+          return 'заполните имя'
+        }
+        else {
+          return false
+        }
+      }
+      if (fieldType === 'middleName') {
+        if (value === '') {
+          return 'заполните отчество'
+        }
+        else {
+          return false
+        }
+      }
+      if (fieldType === 'citizenship') {
+        if (value === '') {
+          return 'заполните отчество'
+        }
+        else {
+          return false
+        }
+      }
+    }
   },
   mounted() {
     this.fetchDocumentType();

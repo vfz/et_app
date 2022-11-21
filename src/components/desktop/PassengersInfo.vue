@@ -92,32 +92,26 @@
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="birthday" class="form-label">Дата рождения</label>
                   <input
-                      @input="updateBirthday($event);validateBirthday($event)"
-                      :value="passenger.birthday"
                       type="date"
                       class="form-control"
-                      :class="{'is-ok': passenger.birthday, 'is-error' : passenger.errors.birthday}"
                       :id="'birthday'+index"
                       pattern="\d{4}-\d{2}-\d{2}"
                       placeholder="дд.мм.гггг"
                       required>
-                  <div :class="{'d-none': !passenger.errors.birthday}" class="error-feedback">{{passenger.errors.birthday}}</div>
                 </div>
               </div>
               <div class="row gy-2">
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="gender" class="form-label">Пол</label>
                   <div class="position-relative">
-                    <ArrowDownIcon v-if="!passenger.errors.gender" class="arrow-down-icon position-absolute" color="#283256"/>
+                    <ArrowDownIcon class="arrow-down-icon position-absolute" color="#283256"/>
                     <input
                         @click="toggleDropdown($event)"
                         @input="searchGender($event);validateGender($event)"
                         :value="passenger.genderSearchQuery"
                         class="form-control"
                         :id="'gender'+index"
-                        placeholder="Мужской"
-                        :class="{'is-ok': passenger.gender, 'is-error' : passenger.errors.gender}">
-                    <div :class="{'d-none': !passenger.errors.gender}" class="error-feedback">{{passenger.errors.gender}}</div>
+                        placeholder="Мужской">
                     <div v-if="passenger.dropdowns.isShowGender" class="find-gender">
                       <div
                           @click="updateGender(['Мужской', index]);
@@ -137,17 +131,14 @@
                   <label for="citizenship" class="form-label">Гражданство</label>
 <!--                  TODO при клике выводить список-->
                   <div class="position-relative">
-                    <ArrowDownIcon v-if="!passenger.errors.citizenship" class="arrow-down-icon position-absolute" color="#283256"/>
+                    <ArrowDownIcon class="arrow-down-icon position-absolute" color="#283256"/>
                     <input
                         @click="toggleDropdown($event)"
-                        @input="searchCitizenship($event);validateCitizenship($event)"
-                        :value="passenger.citizenShipSearchQuery"
-                        :class="{'is-ok': passenger.citizenShipSearchQuery, 'is-error' : passenger.errors.citizenship}"
+                        @input="searchCitizenship($event)"
                         class="form-control"
                         :id="'citizenship'+index"
                         placeholder="РОССИЯ"
                         type="text">
-                    <div :class="{'d-none': !passenger.errors.citizenship}" class="error-feedback">{{passenger.errors.citizenship}}</div>
                     <div
                         v-if="passenger.dropdowns.isShowCitizenship" class="find-citizenship">
                       <div
@@ -164,17 +155,15 @@
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="document" class="form-label">Документ</label>
                   <div class="position-relative">
-                    <ArrowDownIcon v-if="!passenger.errors.document" class="arrow-down-icon position-absolute" color="#283256"/>
+                    <ArrowDownIcon class="arrow-down-icon position-absolute" color="#283256"/>
                     <input
                         @click="toggleDropdown($event)"
                         @input="searchDocument($event);"
                         :value="passenger.documentSearchQuery"
-                        :class="{'is-ok': passenger.document, 'is-error' : passenger.errors.document}"
                         class="form-control"
                         :id="'document'+index"
                         placeholder="Паспорт гражданина Российской Федерации"
                         type="text">
-                    <div :class="{'d-none': !passenger.errors.document}" class="error-feedback">{{passenger.errors.document}}</div>
                     <div v-if="passenger.dropdowns.isShowDocument" class="find-document">
                       <div
                           @click="updateDocument([documentType.name, index]);
@@ -195,10 +184,8 @@
                       @input="updateDocumentInfo($event);"
                       type="text"
                       class="form-control"
-                      :class="{'is-ok': passenger.documentInfo, 'is-error' : passenger.errors.documentInfo}"
                       :id="'documentInfo'+index"
                       placeholder="01 23 456789">
-                  <div :class="{'d-none': !passenger.errors.documentInfo}" class="error-feedback">{{passenger.errors.documentInfo}}</div>
                 </div>
               </div>
             </div>

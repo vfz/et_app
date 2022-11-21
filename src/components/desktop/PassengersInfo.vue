@@ -92,6 +92,8 @@
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="birthday" class="form-label">Дата рождения</label>
                   <input
+                      @input="validatePassenger('birthday', birthday, index)"
+                      v-model="birthday"
                       type="date"
                       class="form-control"
                       :id="'birthday'+index"
@@ -211,10 +213,12 @@ export default {
       secondName: '',
       firstName: '',
       middleName: '',
+      birthday: '',
       error: {
         firstName : 'Заполните имя',
         secondName : 'Заполните фамилию',
         middleName : 'Заполните отчество',
+        birthday: 'Заполните дату рождения',
       },
     }
   },
@@ -272,6 +276,81 @@ export default {
         else {
           this.error.middleName = 'Заполните отчество'
           this.$store.commit('updateMiddleName', [value, id])
+        }
+      }
+      // TODO доделать валидацию для др
+      if (fieldType === 'birthday') {
+        value = value.split('-')
+        const currentDate = new Date(); //текущая дата
+        const currentDateWithoutTime = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()); //текущая дата без времени
+        const day = value[2]; //день рождения
+        const month = value[1]; // месяц рождения
+        const year = value[0] //год рождения
+        if (value.length > 1 && (day.length === 2 || month.length === 2 || year.length === 4)) {
+          this.error.birthday = ''
+          value = value.join()
+          this.$store.commit('updateBirthday', [value, id])
+        } else {
+          this.error.birthday = 'заполните дату рождения в формате 01.01.2001'
+          this.$store.commit('updateBirthday', ['', id])
+        }
+        const birthDay = new Date(year, month, day); //день рождения в формате date
+        const birthDayCurrent = new Date(currentDateWithoutTime.getFullYear(), birthDay.getMonth(), birthDay.getDate()) //день рождения в этом году
+        let age = currentDateWithoutTime.getFullYear() - birthDay.getFullYear()
+
+        if (currentDateWithoutTime < birthDayCurrent) {
+          age = age + 1
+        }
+        this.$store.commit('updateAgePassenger', [age, id])
+        let document = this.getDocumentById(id)
+        //Валидация взрослого
+        if (this.getPassengers[id].isAdult === true) {
+          if (age < 18 && age > 0) {
+            this.error.birthday = 'Пассажир является ребенком'
+            this.$store.commit('updateBirthday', ['', id])
+          }
+          else {
+            this.error.middleName = ''
+            this.$store.commit('updateMiddleName', [value, id])
+          }
+          if (age < 0) {
+            this.error.birthday = 'Укажите корректно дату рождения'
+            this.$store.commit('updateBirthday', ['', id])
+          }
+          else {
+            this.error.middleName = ''
+            this.$store.commit('updateMiddleName', [value, id])
+          }
+          if (age > 125) {
+            this.error.birthday = 'Некорректная дата, вам больше 125 лет?'
+            this.$store.commit('updateBirthday', ['', id])
+          }
+          else {
+            this.error.middleName = ''
+            this.$store.commit('updateMiddleName', [value, id])
+          }
+        }
+        //Валидация ребенка
+        else {
+          if (age > 18) {
+            this.error.birthday = 'Пассажир не является ребенком'
+            this.$store.commit('updateBirthday', ['', id])
+          }
+          if (age < 14) {
+            if (document === 'Паспорт гражданина Российской Федерации') {
+              this.error.birthday = 'До 14 лет, билеты оформляются по свидетельству о рождении или загран паспорту'
+              this.$store.commit('updateBirthday', ['', id])
+            }
+            // TODO поменять документы на код. Добавить в качестве валидацию загранник
+            if (document === 'Свидетельство о рождении') {
+              this.error.birthday = ''
+              this.$store.commit('updateBirthday', [value, id])
+            }
+          }
+          if (age < 0) {
+            this.error.birthday = 'Укажите корректно дату рождения'
+            this.$store.commit('updateBirthday', ['', id])
+          }
         }
       }
     },

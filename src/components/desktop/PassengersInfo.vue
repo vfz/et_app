@@ -102,6 +102,7 @@
               </div>
               <div class="row gy-2">
                 <div class="col-3 col-lg-6 col-xl-3">
+<!--                  TODO изменить валидацию-->
                   <label for="gender" class="form-label">Пол</label>
                   <div class="position-relative">
                     <ArrowDownIcon class="arrow-down-icon position-absolute" color="#283256"/>

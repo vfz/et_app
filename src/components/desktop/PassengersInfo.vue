@@ -56,38 +56,38 @@
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="secondName" class="form-label">Фамилия</label>
                   <input
-                      @input="updateSecondName($event)"
+                      @input="validatePassenger('secondName', secondName, index)"
                       v-model="secondName"
                       type="text"
                       class="form-control"
-                      :class="{'is-ok': !validatePassenger('secondName',secondName), 'is-error' : validatePassenger('secondName', secondName)}"
+                      :class="{'is-ok': secondName, 'is-error' : error.secondName}"
                       :id="'secondName' + index"
                       placeholder="Иванов">
-                  <div :class="{'d-none': validatePassenger('secondName', secondName)}" class="error-feedback">{{validatePassenger('secondName', secondName)}}</div>
+                  <div :class="{'d-none': secondName}" class="error-feedback">{{error.secondName}}</div>
                 </div>
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="firstName" class="form-label">Имя</label>
                   <input
-                      @input="updateFirstName($event);validateFirstName($event)"
-                      :value="passenger.firstName"
+                      @input="validatePassenger('firstName', firstName, index)"
+                      v-model="firstName"
                       type="text"
                       class="form-control"
-                      :class="{'is-ok': passenger.firstName, 'is-error' : passenger.errors.firstName}"
+                      :class="{'is-ok': firstName, 'is-error' : error.firstName}"
                       :id="'firstName'+ index"
                       placeholder="Иван">
-                  <div :class="{'d-none': !passenger.errors.firstName}" class="error-feedback">{{passenger.errors.firstName}}</div>
+                  <div :class="{'d-none': firstName}" class="error-feedback">{{error.firstName}}</div>
                 </div>
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="MiddleName" class="form-label">Отчество</label>
                   <input
-                      @input="updateMiddleName($event);validateMiddleName($event)"
-                      :value="passenger.middleName"
+                      @input="validatePassenger('middleName', middleName, index)"
+                      v-model="middleName"
                       type="text"
                       class="form-control"
-                      :class="{'is-ok': passenger.middleName, 'is-error' : passenger.errors.middleName}"
-                      :id="'MiddleName' + index"
+                      :class="{'is-ok': middleName, 'is-error' : error.middleName}"
+                      :id="'middleName' + index"
                       placeholder="Иванович">
-                  <div :class="{'d-none': !passenger.errors.middleName}" class="error-feedback">{{passenger.errors.middleName}}</div>
+                  <div :class="{'d-none': middleName}" class="error-feedback">{{error.middleName}}</div>
                 </div>
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="birthday" class="form-label">Дата рождения</label>
@@ -221,6 +221,13 @@ export default {
   data(){
     return {
       secondName: '',
+      firstName: '',
+      middleName: '',
+      error: {
+        firstName : 'Заполните имя',
+        secondName : 'Заполните фамилию',
+        middleName : 'Заполните отчество',
+      },
     }
   },
   methods: {
@@ -239,9 +246,6 @@ export default {
         'fetchDocumentType',
         'fetchCitizenShip',
         'searchCitizenship',
-        'validateSecondName',
-        'validateFirstName',
-        'validateMiddleName',
         'validateBirthday',
         'validateDocumentInfo',
         'validateCitizenship',
@@ -251,40 +255,38 @@ export default {
         'toggleDropdown',
         'setActiveTab'
     ]),
-    validatePassenger(fieldType, value) {
+    validatePassenger(fieldType, value, id) {
       if (fieldType === 'secondName') {
-        if (value === '') {
-          return 'заполните фамилию'
+        if (value) {
+          this.error.secondName = ''
+          this.$store.commit('updateSecondName', [value, id])
         }
         else {
-          return false
+          this.error.secondName = 'Заполните фамилию'
+          this.$store.commit('updateSecondName', [value, id])
         }
       }
       if (fieldType === 'firstName') {
-        if (value === '') {
-          return 'заполните имя'
+        if (value) {
+          this.error.firstName = ''
+          this.$store.commit('updateFirstName', [value, id])
         }
         else {
-          return false
+          this.error.firstName = 'Заполните имя'
+          this.$store.commit('updateFirstName', [value, id])
         }
       }
       if (fieldType === 'middleName') {
-        if (value === '') {
-          return 'заполните отчество'
+        if (value) {
+          this.error.middleName = ''
+          this.$store.commit('updateMiddleName', [value, id])
         }
         else {
-          return false
+          this.error.middleName = 'Заполните отчество'
+          this.$store.commit('updateMiddleName', [value, id])
         }
       }
-      if (fieldType === 'citizenship') {
-        if (value === '') {
-          return 'заполните отчество'
-        }
-        else {
-          return false
-        }
-      }
-    }
+    },
   },
   mounted() {
     this.fetchDocumentType();

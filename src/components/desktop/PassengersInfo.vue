@@ -133,7 +133,7 @@
                   <div class="position-relative">
                     <ArrowDownIcon v-if="passenger.gender" class="arrow-down-icon position-absolute" color="#283256"/>
                     <div v-if="!passenger.gender"
-                        @click="toggleDropdown"
+                        @click="toggleDropdownGender"
                         class="form-control form-control-gender"
                         :class="{'is-ok': !validatePassenger('gender',passenger.gender), 'is-error' : validatePassenger('gender',passenger.gender), 'form-control-placeholder' : !passenger.gender}"
                     >
@@ -141,7 +141,7 @@
                     </div>
                     <div
                         v-else
-                        @click="toggleDropdown"
+                        @click="toggleDropdownGender"
                         class="form-control form-control-gender"
                         :class="{'is-ok': !validatePassenger('gender',passenger.gender), 'is-error' : validatePassenger('gender',passenger.gender), 'form-control-placeholder' : !passenger.gender}"
                     >
@@ -152,11 +152,11 @@
                         Мужской
                       </span>
                     </div>
-                    <div :class="{'d-none' : !isShow}" class="find-gender">
-                      <div @click="toggleDropdown(); $store.commit('updateGender', ['1', index])" class="meta">
+                    <div :class="{'d-none' : !isShowGender}" class="find-gender">
+                      <div @click="toggleDropdownGender(); $store.commit('updateGender', ['1', index])" class="meta">
                         Мужской
                       </div>
-                      <div @click="toggleDropdown();$store.commit('updateGender', ['0', index])" class="meta">
+                      <div @click="toggleDropdownGender();$store.commit('updateGender', ['0', index])" class="meta">
                         Женский
                       </div>
                     </div>
@@ -168,20 +168,19 @@
                   <label for="citizenship" class="form-label">Гражданство</label>
 <!--                  TODO при клике выводить список-->
                   <div class="position-relative">
-                    <select
-                        @input="updateCitizenship($event);"
-                        :value="passenger.citizenship"
-                        :class="{
-                          'is-ok': !validatePassenger('citizenship',passenger.citizenship), 
-                          'is-error' : validatePassenger('citizenship',passenger.citizenship)}"
-                        class="form-control"
-                        :id="'citizenship'+index"
-                        >
-                      <option v-for="option in getCitizenships" 
-                      :key="option.code" :value="option.code"  
-                      class="form-option">{{option.name}}</option>
-                      </select>
-
+                    <ArrowDownIcon v-if="!passenger.citizenship" class="arrow-down-icon position-absolute" color="#283256"/>
+                    <div
+                         @click="toggleDropdownCitizenship"
+                         class="form-control form-control-citizenship"
+                         :class="{'is-ok': !validatePassenger('citizenship',passenger.citizenship), 'is-error' : validatePassenger('citizenship',passenger.citizenship), 'form-control-placeholder' : !passenger.citizenship}"
+                    >
+                      {{getCitizenshipByCode(passenger.citizenship)[0].name}}
+                    </div>
+                    <div :class="{'d-none' : !isShowCitizenship}" class="find-gender">
+                      <div @click="toggleDropdownCitizenship(); $store.commit('updateCitizenship', [citizenship.code, index])" v-for="citizenship in getCitizenships" :key="citizenship.code" class="meta">
+                        {{citizenship.name}}
+                      </div>
+                    </div>
                     <div :class="{'d-none': !validatePassenger('citizenship',passenger.citizenship)}" class="error-feedback">{{validatePassenger('citizenship',passenger.citizenship)}}</div>
                   </div>
                 </div>
@@ -242,7 +241,9 @@ export default {
   data(){
     return {
       secondName: '',
-      isShow: false,
+      citizenship: '',
+      isShowGender: false,
+      isShowCitizenship: false,
     }
   },
   methods: {
@@ -259,7 +260,6 @@ export default {
         'fetchDocumentType',
         'fetchCitizenShip',
         'addPassenger',
-        'toggleDropdown',
         'setActiveTab'
     ]),
     validatePassenger(fieldType, value, additional=true) {
@@ -342,8 +342,11 @@ export default {
 
       return false
     },
-    toggleDropdown() {
-      this.isShow = !this.isShow
+    toggleDropdownGender() {
+      this.isShowGender = !this.isShowGender
+    },
+    toggleDropdownCitizenship() {
+      this.isShowCitizenship = !this.isShowCitizenship
     }
   },
   mounted() {
@@ -358,7 +361,8 @@ export default {
         'getIsLogin',
         'getActiveTab',
         'getCitizenships',
-        'getDocumentTypes'
+        'getDocumentTypes',
+        'getCitizenshipByCode'
     ]),
   },
 }
@@ -550,7 +554,7 @@ export default {
       padding-left: 0;
       padding-right: 2.25rem;
     }
-    .form-control-gender {
+    .form-control-gender, .form-control-citizenship {
       cursor: pointer;
     }
     .form-control-placeholder {

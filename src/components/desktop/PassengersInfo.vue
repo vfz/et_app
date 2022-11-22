@@ -131,18 +131,36 @@
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="gender" class="form-label">Пол</label>
                   <div class="position-relative">
-                    <select
-                        @input="updateGender($event);"
-                        :value="passenger.gender"
-                        class="form-control"
-                        :id="'gender'+index"
-                        :class="{'is-ok': !validatePassenger('gender',passenger.gender), 'is-error' : validatePassenger('gender',passenger.gender)}">
-                        <option value=""></option>
-                        <option value="0">Женский</option>
-                        <option value="1">Мужской</option>
-                        </select>
+                    <ArrowDownIcon v-if="passenger.gender" class="arrow-down-icon position-absolute" color="#283256"/>
+                    <div v-if="!passenger.gender"
+                        @click="toggleDropdown"
+                        class="form-control form-control-gender"
+                        :class="{'is-ok': !validatePassenger('gender',passenger.gender), 'is-error' : validatePassenger('gender',passenger.gender), 'form-control-placeholder' : !passenger.gender}"
+                    >
+                      Мужской
+                    </div>
+                    <div
+                        v-else
+                        @click="toggleDropdown"
+                        class="form-control form-control-gender"
+                        :class="{'is-ok': !validatePassenger('gender',passenger.gender), 'is-error' : validatePassenger('gender',passenger.gender), 'form-control-placeholder' : !passenger.gender}"
+                    >
+                      <span v-if="passenger.gender === '0'">
+                        Женский
+                      </span>
+                      <span v-if="passenger.gender === '1'">
+                        Мужской
+                      </span>
+                    </div>
+                    <div :class="{'d-none' : !isShow}" class="find-gender">
+                      <div @click="toggleDropdown(); $store.commit('updateGender', ['1', index])" class="meta">
+                        Мужской
+                      </div>
+                      <div @click="toggleDropdown();$store.commit('updateGender', ['0', index])" class="meta">
+                        Женский
+                      </div>
+                    </div>
                     <div :class="{'d-none': !validatePassenger('gender',passenger.gender)}" class="error-feedback">{{validatePassenger('gender',passenger.gender)}}</div>
-                    
                   </div>
                 </div>
                 <!-- citizenship -->
@@ -216,7 +234,7 @@
 import CancelIcon from "@/components/icons/CancelIcon";
 import ArrowDownIcon from "@/components/icons/ArrowDownIcon";
 import MyDataButton from "@/components/MyDataButton";
-import {mapState, mapActions, mapGetters} from 'vuex';
+import {mapActions, mapGetters} from 'vuex';
 
 export default {
   name: "PassengersInfo",
@@ -224,6 +242,7 @@ export default {
   data(){
     return {
       secondName: '',
+      isShow: false,
     }
   },
   methods: {
@@ -247,8 +266,7 @@ export default {
 
       if (fieldType === 'secondName') {
         if (value === '') {
-          let str='заполните фамилию'
-          return str
+          return 'заполните фамилию'
         }
       }
       if (fieldType === 'firstName') {
@@ -290,6 +308,9 @@ export default {
             m--;
           }
         }
+        if (age < 0) {
+          return 'Укажиите дату рождения корректно'
+        }
 
         if(!additional && age>12){
           return 'Детский билет до 12 лет'
@@ -300,10 +321,8 @@ export default {
 
 
       }
+      // TODO доделать валидацию с документам
       if (fieldType === 'documentInfo') {
-        // if(isNumber(value)){
-        //   return 'Только цифры'
-        // }
         if ((value.length !== 10 && additional==='0')||value.length===0) {
           return 'Серий и номер паспорта 10 цифр'
         }
@@ -322,6 +341,9 @@ export default {
       }
 
       return false
+    },
+    toggleDropdown() {
+      this.isShow = !this.isShow
     }
   },
   mounted() {
@@ -527,6 +549,12 @@ export default {
       border-radius: 0;
       padding-left: 0;
       padding-right: 2.25rem;
+    }
+    .form-control-gender {
+      cursor: pointer;
+    }
+    .form-control-placeholder {
+      color: #B5BDDB; /* Цвет подсказывающего текста */
     }
     .form-control:focus {
       @include animation;

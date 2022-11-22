@@ -163,7 +163,6 @@ export default {
                     citizenship: '643',
                     document: isAdult ? '0' : '4',
                     documentInfo: '',
-
                     isAdult: isAdult,
                     age: 0
                 }
@@ -310,54 +309,6 @@ export default {
             }
         },
         //Валидация для пассажиров
-        validateSecondName(ctx, event) {
-            const value = event.target.value;
-            //исключить наименование и оставить только цифры в id при помощи replace
-            const id = event.target.id.replace(/[^0-9]/g, "");
-            const formField = 'secondName'
-            if (value === '') {
-                ctx.commit('updateHaveErrors', true)
-                    ///аргументы (mutation, [id, errorText, formField ])
-                ctx.commit('updateError', [id, 'заполните фамилию', formField]);
-            }
-            if (value !== '') {
-                ctx.commit('updateHaveErrors', false)
-                    ///аргументы (mutation, [id, errorText, formField ])
-                ctx.commit('updateError', [id, '', formField])
-            }
-        },
-        validateFirstName(ctx, event) {
-            const value = event.target.value;
-            //исключить наименование и оставить только цифры в id при помощи replace
-            const id = event.target.id.replace(/[^0-9]/g, "");
-            const formField = 'firstName'
-            if (value === '') {
-                ctx.commit('updateHaveErrors', true)
-                    ///аргументы (mutation, [id, errorText, formField ])
-                ctx.commit('updateError', [id, 'заполните имя', formField]);
-            }
-            if (value !== '') {
-                ctx.commit('updateHaveErrors', false)
-                    ///аргументы (mutation, [id, errorText, formField ])
-                ctx.commit('updateError', [id, '', formField])
-            }
-        },
-        validateMiddleName(ctx, event) {
-            const value = event.target.value;
-            //исключить наименование и оставить только цифры в id при помощи replace
-            const id = event.target.id.replace(/[^0-9]/g, "");
-            const formField = 'middleName'
-            if (value === '') {
-                ctx.commit('updateHaveErrors', true)
-                    ///аргументы (mutation, [id, errorText, formField ])
-                ctx.commit('updateError', [id, 'заполните отчество', formField]);
-            }
-            if (value !== '') {
-                ctx.commit('updateHaveErrors', false)
-                    ///аргументы (mutation, [id, errorText, formField ])
-                ctx.commit('updateError', [id, '', formField])
-            }
-        },
         validateCitizenship(ctx, event) {
             const value = event.target.value;
             //исключить наименование и оставить только цифры в id при помощи replace

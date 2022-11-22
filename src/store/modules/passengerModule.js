@@ -4,39 +4,19 @@ export default {
     state: {
         passengers: [{
             id: 0,
-            selectedSeats: [
-                {
-                    id_ticket: 0,
-                    id_trip: 0,
-                    seat: 0
-                },
-            ],
+            selectedSeats: [{
+                id_ticket: 0,
+                id_trip: 0,
+                seat: 0
+            }, ],
             secondName: '',
             firstName: '',
             middleName: '',
             birthday: '',
             gender: '',
-            genderSearchQuery: '',
-            citizenship: 'РОССИЯ',
-            citizenShipSearchQuery: 'РОССИЯ',
-            document: '',
-            documentSearchQuery: '',
+            citizenship: '643',
+            document: '0',
             documentInfo: '',
-            errors: {
-                secondName: '',
-                firstName: '',
-                middleName: '',
-                birthday: '',
-                gender: '',
-                citizenship: '',
-                document: '',
-                documentInfo: '',
-            },
-            dropdowns: {
-                isShowCitizenship: false,
-                isShowGender: false,
-                isShowDocument: false,
-            },
             isAdult: true,
             age: 0,
         }],
@@ -102,9 +82,6 @@ export default {
         updateDocument(state, [value, id]) {
             state.passengers[id].document = value
         },
-        updateDocumentSearchQuery(state, [value, id]) {
-            state.passengers[id].documentSearchQuery = value
-        },
         updateDocumentInfo(state, [value, id]) {
             state.passengers[id].documentInfo = value;
         },
@@ -151,8 +128,7 @@ export default {
                         id_trip: selectedSeats[0].id_trip,
                         seat: selectedSeats[0].seats[index]
                     }
-                }
-                else {
+                } else {
                     passenger.selectedSeats[0] = {
                         id_ticket: selectedSeats[0].id_ticket,
                         id_trip: selectedSeats[0].id_trip,
@@ -174,39 +150,20 @@ export default {
                 const id = ctx.state.passengers.length
                 const passenger = {
                     id: id,
-                    selectedSeats: [
-                        {
-                            id_ticket: 0,
-                            id_trip: 0,
-                            seat: 0,
-                        },
-                    ],
+                    selectedSeats: [{
+                        id_ticket: 0,
+                        id_trip: 0,
+                        seat: 0,
+                    }, ],
                     secondName: '',
                     firstName: '',
                     middleName: '',
                     birthday: '',
                     gender: '',
-                    genderSearchQuery: '',
-                    citizenship: 'РОССИЯ',
-                    citizenShipSearchQuery: 'РОССИЯ',
-                    document: '',
-                    documentSearchQuery: '',
+                    citizenship: '643',
+                    document: isAdult ? '0' : '4',
                     documentInfo: '',
-                    errors: {
-                        secondName: '',
-                        firstName: '',
-                        middleName: '',
-                        birthday: '',
-                        gender: '',
-                        citizenship: '',
-                        document: '',
-                        documentInfo: '',
-                    },
-                    dropdowns: {
-                        isShowCitizenship: false,
-                        isShowGender: false,
-                        isShowDocument: false,
-                    },
+
                     isAdult: isAdult,
                     age: 0
                 }
@@ -235,9 +192,9 @@ export default {
             const modal = document.getElementById('btn-close' + id)
             modal.click()
             ctx.commit('removePassenger', id)
-            ctx.commit('activeTab', id-1)
+            ctx.commit('activeTab', id - 1)
         },
-        setActiveTab(ctx,id) {
+        setActiveTab(ctx, id) {
             ctx.commit('activeTab', id)
         },
         updateSecondName(ctx, event) {
@@ -264,27 +221,20 @@ export default {
             const id = event.target.id.replace(/[^0-9]/g, "");
             ctx.commit('updateBirthday', [value, id]);
         },
-        updateGender(ctx, [value, id]) {
+        updateGender(ctx, event) {
+            const value = event.target.value;
+            const id = event.target.id.replace(/[^0-9]/g, "");
             ctx.commit('updateGender', [value, id])
-            ctx.commit('updateGenderSearchQuery', [value, id])
         },
-        searchGender(ctx, event) {
+        updateCitizenship(ctx, event) {
             const value = event.target.value;
             const id = event.target.id.replace(/[^0-9]/g, "");
-            ctx.commit('updateGenderSearchQuery', [value, id])
-        },
-        updateCitizenship(ctx, [value, id]) {
             ctx.commit('updateCitizenship', [value, id])
-            ctx.commit('updateCitizenshipSearchQuery', [value, id])
         },
-        searchCitizenship(ctx, event) {
+        updateDocument(ctx, event) {
             const value = event.target.value;
             const id = event.target.id.replace(/[^0-9]/g, "");
-            ctx.commit('updateCitizenshipSearchQuery', [value, id])
-        },
-        updateDocument(ctx, [value, id]) {
             ctx.commit('updateDocument', [value, id])
-            ctx.commit('updateDocumentSearchQuery', [value, id])
         },
         searchDocument(ctx, event) {
             const value = event.target.value;
@@ -455,7 +405,7 @@ export default {
             if (agePassenger < 14 && !isAdultPassenger) {
                 if (value !== 'Свидетельство о рождении' && value !== 'Заграничный паспорт гражданина Российской Федерации' && value !== 'Заграничный паспорт иностранного гражданина') {
                     ctx.commit('updateHaveErrors', true)
-                    ///аргументы (mutation, [id, errorText, formField ])
+                        ///аргументы (mutation, [id, errorText, formField ])
                     ctx.commit('updateError', [id, 'Если ребенку меньше 14 лет, укажите свидетельство о рождении, или заграничный паспорт гражданина Российской Федерации, или заграничный паспорт иностранного гражданина ', formField]);
                     return false
                 }
@@ -584,8 +534,7 @@ export default {
                 ctx.commit('updateError', [id, 'Выберите документ', formField]);
                 ctx.commit('updateDocumentInfo', ['', id])
                 return false
-            }
-            else {
+            } else {
                 ctx.commit('updateHaveErrors', false)
                 ctx.commit('updateError', [id, '', formField])
             }
@@ -598,8 +547,7 @@ export default {
             if (documentType === 'Паспорт гражданина Российской Федерации' && value.length < 10) {
                 ctx.commit('updateHaveErrors', true)
                 ctx.commit('updateError', [id, 'Серия и номер паспорта указаны некорректно', formField])
-            }
-            else {
+            } else {
                 ctx.commit('updateHaveErrors', false)
                 ctx.commit('updateError', [id, '', formField])
             }
@@ -607,8 +555,7 @@ export default {
                 if (value.match(regexpPassport) !== null) {
                     ctx.commit('updateHaveErrors', false)
                     ctx.commit('updateError', [id, '', formField])
-                }
-                else {
+                } else {
                     ctx.commit('updateHaveErrors', true)
                     ctx.commit('updateError', [id, 'Серия и номер паспорта указаны некорректно', formField])
                 }
@@ -627,8 +574,7 @@ export default {
                 if (value.match(regexpPassport) !== null) {
                     ctx.commit('updateHaveErrors', false)
                     ctx.commit('updateError', [id, '', formField])
-                }
-                else {
+                } else {
                     ctx.commit('updateHaveErrors', true)
                     ctx.commit('updateError', [id, 'Серия и номер паспорта указаны некорректно', formField])
                 }
@@ -639,8 +585,7 @@ export default {
                 let regexpNumber = /[0-9]/g;
                 if (regexpNumber.test(value) && regexpSerial.test(value) && value.match(regexpSerial).length === 2 && value.match(regexpNumber).length === 7 && value.length === 9) {
                     ctx.commit('updateError', [id, '', formField])
-                }
-                else {
+                } else {
                     ctx.commit('updateHaveErrors', true)
                     ctx.commit('updateError', [id, documentType + ' указан неверно', formField])
                 }
@@ -650,15 +595,15 @@ export default {
                 let regexpNumber = /[0-9]/g;
                 let regexpSerial = /[А-Я]/g;
                 let regexpRomeNumber = /[IVXLCDM]/g
-                if (regexpNumber.test(value) && regexpSerial.test(value) && value.match(regexpSerial).length === 2  && regexpRomeNumber.test(value) && value.match(regexpNumber).length === 6) {
+                if (regexpNumber.test(value) && regexpSerial.test(value) && value.match(regexpSerial).length === 2 && regexpRomeNumber.test(value) && value.match(regexpNumber).length === 6) {
                     ctx.commit('updateError', [id, '', formField])
-                }
-                else {
+                } else {
                     ctx.commit('updateHaveErrors', true)
                     ctx.commit('updateError', [id, documentType + 'указано неверно', formField])
                 }
             }
         },
+
         //Валидация для покупателя
         validateSecondNameBuyer(ctx, event) {
             const value = event.target.value;
@@ -734,6 +679,12 @@ export default {
         getCitizenshipsById: (state) => (id) => {
             return [...state.citizenShips].filter(citizenShip => citizenShip.name.toLowerCase().includes(state.passengers[id].citizenShipSearchQuery.toLowerCase()))
         },
+        getCitizenships(state) {
+            return state.citizenShips
+        },
+        getDocumentTypes(state) {
+            return state.documentTypes
+        },
         getDocumentById: (state) => (id) => {
             return [...state.documentTypes].filter(documentType => documentType.name.toLowerCase().includes(state.passengers[id].documentSearchQuery.toLowerCase()))
         },
@@ -757,7 +708,7 @@ export default {
         },
         getEmptyFieldsFormPassengers(state) {
             return state.passengers.find(passenger => {
-                return !passenger.firstName || !passenger.secondName || !passenger.middleName || !passenger.birthday || !passenger.gender ||  !passenger.document  || !passenger.citizenship || !passenger.documentInfo
+                return !passenger.firstName || !passenger.secondName || !passenger.middleName || !passenger.birthday || !passenger.gender || !passenger.document || !passenger.citizenship || !passenger.documentInfo
             })
         },
         getEmptyFieldsFormBuyer(state) {

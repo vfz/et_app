@@ -36,16 +36,16 @@
                       <MyDataButton :is-login="getIsLogin" :is-collapse="false"/>
                     </div>
                     <div class="checkbox-form d-flex flex-wrap align-items-center justify-content-between w-100">
-<!--                      <div class="checkbox-form d-block w-100">-->
-<!--                        <div class="form-check">-->
-<!--                          <input @click="UpdateOneWay(true)" :checked="oneWay" :id="'checkbox1'+index" class="form-check-input" type="radio" :name="'inlineRadioOptions'+index">-->
-<!--                          <label class="form-check-label" for="inlineRadio1">В одну сторону</label>-->
-<!--                        </div>-->
-<!--                        <div class="form-check">-->
-<!--                          <input @click="UpdateOneWay(false)" :checked="!oneWay" :id="'checkbox2'+index" class="form-check-input" type="radio" v-on:click="UpdateOneWay(false)"  :name="'inlineRadioOptions'+index">-->
-<!--                          <label class="form-check-label" for="inlineRadio2">Туда-обратно</label>-->
-<!--                        </div>-->
-<!--                      </div>-->
+                      <!--<div class="checkbox-form d-block w-100">-->
+                        <!--<div class="form-check">-->
+                          <!--<input @click="UpdateOneWay(true)" :checked="oneWay" :id="'checkbox1'+index" class="form-check-input" type="radio" :name="'inlineRadioOptions'+index">-->
+                          <!--<label class="form-check-label" for="inlineRadio1">В одну сторону</label>-->
+                        <!--</div>-->
+                        <!--<div class="form-check">-->
+                          <!--<input @click="UpdateOneWay(false)" :checked="!oneWay" :id="'checkbox2'+index" class="form-check-input" type="radio" v-on:click="UpdateOneWay(false)"  :name="'inlineRadioOptions'+index">-->
+                          <!--<label class="form-check-label" for="inlineRadio2">Туда-обратно</label>-->
+                        <!--</div>-->
+                      <!--</div>-->
                       <div class="d-inline-block">
                         <!-- Button trigger modal -->
                         <button v-if="index !== 0" type="button" class="remove-button" data-bs-toggle="modal" :data-bs-target="'#removeModal'+index">
@@ -54,149 +54,154 @@
                         </button>
                       </div>
                     </div>
+                    <!-- secondName -->
                     <div class="d-block">
-                      <label :for="'secondName1'+index"  class="form-label">Фамилия</label>
+                      <label :for="'secondName'+index"  class="form-label">Фамилия</label>
                       <input
-                          @input="updateSecondName($event);validateSecondName($event);"
-                          :value="passenger.secondName"
-                          :class="{'is-ok': passenger.secondName, 'is-error' : passenger.errors.secondName}"
-                          type="text"
-                          class="form-control"
-                          placeholder="Иванов"
-                          :id="'secondName' + index">
-                      <div :class="{'d-none': !passenger.errors.secondName}" class="error-feedback">{{passenger.errors.secondName}}</div>
+                      @input="updateSecondName($event);"
+                      :value="passenger.secondName"
+                      type="text"
+                      class="form-control"
+                      :class="{
+                        'is-ok': !validatePassenger('secondName',passenger.secondName), 
+                        'is-error' : validatePassenger('secondName', passenger.secondName)}"
+                      :id="'secondName' + index"
+                      placeholder="Иванов">
+                      <div :class="{
+                        'd-none': !validatePassenger('secondName', passenger.secondName)}" 
+                        class="error-feedback">
+                        {{validatePassenger('secondName', passenger.secondName)}}</div>
                     </div>
+                    <!-- firstName -->
                     <div class="d-block">
-                      <label for="firstName1" class="form-label">Имя</label>
                       <input
-                          @input="updateFirstName($event);validateFirstName($event)"
-                          :value="passenger.firstName"
-                          type="text"
-                          :class="{'is-ok': passenger.firstName, 'is-error' : passenger.errors.firstName}"
-                          class="form-control"
-                          :id="'firstName'+ index"
-                          placeholder="Иван">
-                      <div :class="{'d-none': !passenger.errors.firstName}" class="error-feedback">{{passenger.errors.firstName}}</div>
+                      @input="updateFirstName($event);"
+                      :value="passenger.firstName"
+                      type="text"
+                      class="form-control"
+                      :class="{
+                        'is-ok': !validatePassenger('firstName',passenger.firstName), 
+                        'is-error' : validatePassenger('firstName',passenger.firstName)}"
+                      :id="'firstName'+ index"
+                      placeholder="Иван">
+                      <div :class="{
+                        'd-none': !validatePassenger('firstName',passenger.firstName)}" 
+                        class="error-feedback">{{validatePassenger('firstName',passenger.firstName)}}</div>
                     </div>
+                    <!-- MiddleName -->
                     <div class="d-block">
-                      <label for="MiddleName1" class="form-label">Отчество</label>
+                      <label :for="'MiddleName'+index" class="form-label">Отчество</label>
                       <input
-                          @input="updateMiddleName($event);validateMiddleName($event)"
-                          :value="passenger.middleName"
-                          type="text"
-                          class="form-control"
-                          :class="{'is-ok': passenger.middleName, 'is-error' : passenger.errors.middleName}"
-                          :id="'MiddleName' + index"
-                          placeholder="Иванович">
-                      <div :class="{'d-none': !passenger.errors.middleName}" class="error-feedback">{{passenger.errors.middleName}}</div>
+                      @input="updateMiddleName($event);"
+                      :value="passenger.middleName"
+                      type="text"
+                      class="form-control"
+                      :class="{
+                        'is-ok': !validatePassenger('middleName',passenger.middleName), 
+                        'is-error' : validatePassenger('middleName',passenger.middleName)}"
+                      :id="'MiddleName' + index"
+                      placeholder="Иванович">
+                      <div 
+                        :class="{'d-none': !validatePassenger('middleName',passenger.middleName)}" 
+                        class="error-feedback">{{validatePassenger('middleName',passenger.middleName)}}</div>
                     </div>
+                    <!-- birthday -->
                     <div class="d-block">
-                      <label for="birthday1" class="form-label">Дата рождения</label>
+                      <label :for="'birthday'+index" class="form-label">Дата рождения</label>
                       <input
-                          @input="updateBirthday($event);validateBirthday($event)"
-                          :value="passenger.birthday"
-                          type="date"
-                          class="form-control"
-                          :class="{'is-ok': passenger.birthday, 'is-error' : passenger.errors.birthday}"
-                          :id="'birthday'+index"
-                          pattern="\d{4}-\d{2}-\d{2}"
-                          placeholder="дд.мм.гггг">
-                      <div :class="{'d-none': !passenger.errors.birthday}" class="error-feedback">{{passenger.errors.birthday}}</div>
+                      @input="updateBirthday($event);"
+                      :value="passenger.birthday"
+                      type="date"
+                      class="form-control"
+                      :class="{
+                        'is-ok': !validatePassenger('birthday',passenger.birthday), 
+                        'is-error' :validatePassenger('birthday',passenger.birthday)}"
+                      :id="'birthday'+index"
+                      pattern="\d{4}-\d{2}-\d{2}"
+                      placeholder="дд.мм.гггг"
+                      required>
+                      <div 
+                        :class="{'d-none': !validatePassenger('birthday',passenger.birthday)}" 
+                        class="error-feedback">{{validatePassenger('birthday',passenger.birthday)}}</div>
                     </div>
+                    <!-- gender -->
                     <div class="d-block">
-                      <label for="gender1" class="form-label">Пол</label>
+                      <label :for="'gender'+index" class="form-label">Пол</label>
                       <div class="position-relative">
-                        <ArrowDownIcon v-if="!passenger.errors.gender" class="arrow-down-icon position-absolute" color="#283256"/>
-                        <input
-                            @click="toggleDropdown($event)"
-                            @input="searchGender($event);validateGender($event)"
-                            :value="passenger.genderSearchQuery"
-                            class="form-control"
-                            :id="'gender'+index"
-                            placeholder="Мужской"
-                            :class="{'is-ok': passenger.gender, 'is-error' : passenger.errors.gender}">
-                        <div :class="{'d-none': !passenger.errors.gender}" class="error-feedback">{{passenger.errors.gender}}</div>
-                        <div v-if="passenger.dropdowns.isShowGender" class="find-gender">
-                          <div
-                              @click="updateGender(['Мужской', index]);
-                          $store.commit('updateDropdown', [index, 'isShowGender'])"
-                              class="meta">
-                            <div class="title">Мужской</div>
-                          </div>
-                          <div @click="updateGender(['Женский', index]);
-                      $store.commit('updateDropdown', [index, 'isShowGender'])"
-                               class="meta">
-                            <div class="title">Женский</div>
-                          </div>
-                        </div>
+                        <select
+                          @input="updateGender($event);"
+                          :value="passenger.gender"
+                          class="form-control"
+                          :id="'gender'+index"
+                          :class="{'is-ok': !validatePassenger('gender',passenger.gender), 'is-error' : validatePassenger('gender',passenger.gender)}">
+                          <option value=""></option>
+                          <option value="0">Женский</option>
+                          <option value="1">Мужской</option>
+                          </select>
+                        <div 
+                          :class="{'d-none': !validatePassenger('gender',passenger.gender)}" 
+                          class="error-feedback">{{validatePassenger('gender',passenger.gender)}}</div>
                       </div>
                     </div>
+                    <!-- citizenship -->
                     <div class="d-block">
-                      <label for="citizenship1" class="form-label">Гражданство</label>
+                      <label :for="'citizenship'+index" class="form-label">Гражданство</label>
                       <div class="position-relative">
-                        <ArrowDownIcon v-if="!passenger.errors.citizenship" class="arrow-down-icon position-absolute" color="#283256"/>
-                        <input
-                            @click="toggleDropdown($event)"
-                            @input="searchCitizenship($event);validateCitizenship($event)"
-                            :value="passenger.citizenShipSearchQuery"
-                            :class="{'is-ok': passenger.citizenShipSearchQuery, 'is-error' : passenger.errors.citizenship}"
-                            class="form-control"
-                            :id="'citizenship'+index"
-                            placeholder="РОССИЯ"
-                            type="text">
-                        <div :class="{'d-none': !passenger.errors.citizenship}" class="error-feedback">{{passenger.errors.citizenship}}</div>
-                        <div
-                            v-if="passenger.dropdowns.isShowCitizenship" class="find-citizenship">
-                          <div
-                              v-for="citizenship in getCitizenshipsById(index)"
-                              :key="citizenship.code"
-                              @click="updateCitizenship([citizenship.name, index]);
-                          $store.commit('updateDropdown', [index, 'isShowCitizenship'])"
-                              class="meta">
-                            <div class="title">{{citizenship.name}}</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="d-block">
-                      <label for="document1" class="form-label">Документ</label>
-                      <div class="position-relative">
-                        <ArrowDownIcon v-if="!passenger.errors.document" class="arrow-down-icon position-absolute" color="#283256"/>
-                        <input
-                            @click="toggleDropdown($event)"
-                            @input="searchDocument($event)"
-                            :value="passenger.documentSearchQuery"
-                            :class="{'is-ok': passenger.document, 'is-error' : passenger.errors.document}"
-                            class="form-control"
-                            :id="'document'+index"
-                            placeholder="Паспорт гражданина Российской Федерации"
-                            type="text">
-                        <div :class="{'d-none': !passenger.errors.document}" class="error-feedback">{{passenger.errors.document}}</div>
-                        <div v-if="passenger.dropdowns.isShowDocument" class="find-document">
-                          <div
-                              @click="updateDocument([documentType.name, index]);
-                              validateDocument([documentType.name, passenger.id])
-                              $store.commit('updateDropdown', [index, 'isShowDocument'])"
-                              v-for="documentType in getDocumentById(index)"
-                              :key="documentType.id"
-                              class="meta">
-                            <div class="title">{{documentType.name}}</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="d-block">
-                      <label for="documentInfo1" class="form-label">Серия и номер документа</label>
-                      <input
-                          @focusout="validateDocumentInfo($event)"
-                          @input="updateDocumentInfo($event);"
-                          :value="passenger.documentInfo"
-                          type="text"
+                        <select
+                          @input="updateCitizenship($event);"
+                          :value="passenger.citizenship"
+                          :class="{
+                            'is-ok': !validatePassenger('citizenship',passenger.citizenship), 
+                            'is-error' : validatePassenger('citizenship',passenger.citizenship)}"
                           class="form-control"
-                          :class="{'is-ok': passenger.documentInfo, 'is-error' : passenger.errors.documentInfo}"
-                          :id="'documentInfo'+index"
-                          placeholder="01 23 456789">
-                      <div :class="{'d-none': !passenger.errors.documentInfo}" class="error-feedback">{{passenger.errors.documentInfo}}</div>
+                          :id="'citizenship'+index"
+                          >
+                            <option v-for="option in getCitizenships" 
+                            :key="option.code" :value="option.code"  
+                            class="form-option">{{option.name}}</option>
+                          </select>
+
+                        <div 
+                          :class="{'d-none': !validatePassenger('citizenship',passenger.citizenship)}" 
+                          class="error-feedback">{{validatePassenger('citizenship',passenger.citizenship)}}</div>
+                      </div>
+                    </div>
+                    <!-- document -->
+                    <div class="d-block">
+                      <label :for="'document'+index" class="form-label">Документ</label>
+                      <div class="position-relative">
+                        <select
+                          @input="updateDocument($event);"
+                          :value="passenger.document"
+                          :class="{
+                            'is-ok': !validatePassenger('document',passenger.document), 
+                            'is-error' : validatePassenger('document',passenger.document)}"
+                          class="form-control"
+                          :id="'document'+index"
+                          >
+                            <option v-for="option in getDocumentTypes" 
+                            :key="option.id" :value="option.id"  >{{option.name}}</option>
+                          </select>
+                        <div 
+                          :class="{'d-none': !validatePassenger('document',passenger.document)}" 
+                          class="error-feedback">{{validatePassenger('document',passenger.document)}}</div>
+                      </div>
+                    </div>
+                    <!-- documentInfo -->
+                    <div class="d-block">
+                      <label :for="'documentInfo'+index" class="form-label">Серия и номер документа</label>
+                      <input
+                      @input="updateDocumentInfo($event);"
+                      type="text"
+                      class="form-control"
+                      :class="{
+                        'is-ok': !validatePassenger('document',passenger.documentInfo), 
+                        'is-error' : validatePassenger('document',passenger.documentInfo)}"
+                      :id="'documentInfo'+index"
+                      placeholder="01 23 456789">
+                      <div 
+                        :class="{'d-none': !validatePassenger('document',passenger.documentInfo)}" 
+                        class="error-feedback">{{validatePassenger('document',passenger.documentInfo)}}</div>
                     </div>
                   </div>
                 </div>
@@ -226,24 +231,12 @@ export default {
       'updateMiddleName',
       'updateBirthday',
       'updateGender',
-      'searchGender',
       'updateCitizenship',
       'updateDocument',
-      'searchDocument',
       'updateDocumentInfo',
       'fetchDocumentType',
       'fetchCitizenShip',
-      'searchCitizenship',
-      'validateSecondName',
-      'validateFirstName',
-      'validateMiddleName',
-      'validateBirthday',
-      'validateDocumentInfo',
-      'validateCitizenship',
-      'validateGender',
-      'validateDocument',
       'addPassenger',
-      'toggleDropdown'
     ]),
   },
   mounted() {
@@ -254,11 +247,10 @@ export default {
     ...mapGetters([
       'getPassengers',
       'getDocumentsTypes',
-      'getCitizenshipsById',
-      'getDocumentById',
-      'getPassengerDocumentById',
       'oneWay',
       'getIsLogin',
+      'getCitizenships',
+      'getDocumentTypes'
     ]),
   },
   data: () => {

@@ -53,152 +53,155 @@
                 </div>
               </div>
               <div class="row">
+                <!--secondName-->
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="secondName" class="form-label">Фамилия</label>
                   <input
-                      @input="updateSecondName($event)"
-                      v-model="secondName"
+                      @input="updateSecondName($event);"
+                      :value="passenger.secondName"
                       type="text"
                       class="form-control"
-                      :class="{'is-ok': !validatePassenger('secondName',secondName), 'is-error' : validatePassenger('secondName', secondName)}"
+                      :class="{
+                        'is-ok': !validatePassenger('secondName',passenger.secondName), 
+                        'is-error' : validatePassenger('secondName', passenger.secondName)}"
                       :id="'secondName' + index"
                       placeholder="Иванов">
-                  <div :class="{'d-none': validatePassenger('secondName', secondName)}" class="error-feedback">{{validatePassenger('secondName', secondName)}}</div>
+                  <div :class="{
+                    'd-none': !validatePassenger('secondName', passenger.secondName)}" 
+                    class="error-feedback">
+                    {{validatePassenger('secondName', passenger.secondName)}}
+                  </div>
                 </div>
+                <!-- firstName -->
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="firstName" class="form-label">Имя</label>
                   <input
-                      @input="updateFirstName($event);validateFirstName($event)"
+                      @input="updateFirstName($event);"
                       :value="passenger.firstName"
                       type="text"
                       class="form-control"
-                      :class="{'is-ok': passenger.firstName, 'is-error' : passenger.errors.firstName}"
+                      :class="{
+                        'is-ok': !validatePassenger('firstName',passenger.firstName), 
+                        'is-error' : validatePassenger('firstName',passenger.firstName)}"
                       :id="'firstName'+ index"
                       placeholder="Иван">
-                  <div :class="{'d-none': !passenger.errors.firstName}" class="error-feedback">{{passenger.errors.firstName}}</div>
+                  <div :class="{
+                    'd-none': !validatePassenger('firstName',passenger.firstName)}" 
+                    class="error-feedback">{{validatePassenger('firstName',passenger.firstName)}}</div>
                 </div>
+                <!-- MiddleName -->
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="MiddleName" class="form-label">Отчество</label>
                   <input
-                      @input="updateMiddleName($event);validateMiddleName($event)"
+                      @input="updateMiddleName($event);"
                       :value="passenger.middleName"
                       type="text"
                       class="form-control"
-                      :class="{'is-ok': passenger.middleName, 'is-error' : passenger.errors.middleName}"
+                      :class="{
+                        'is-ok': !validatePassenger('middleName',passenger.middleName), 
+                        'is-error' : validatePassenger('middleName',passenger.middleName)}"
                       :id="'MiddleName' + index"
                       placeholder="Иванович">
-                  <div :class="{'d-none': !passenger.errors.middleName}" class="error-feedback">{{passenger.errors.middleName}}</div>
+                  <div 
+                    :class="{'d-none': !validatePassenger('middleName',passenger.middleName)}" 
+                    class="error-feedback">{{validatePassenger('middleName',passenger.middleName)}}</div>
                 </div>
+                <!-- birthday -->
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="birthday" class="form-label">Дата рождения</label>
                   <input
-                      @input="updateBirthday($event);validateBirthday($event)"
+                      @input="updateBirthday($event);"
                       :value="passenger.birthday"
                       type="date"
                       class="form-control"
-                      :class="{'is-ok': passenger.birthday, 'is-error' : passenger.errors.birthday}"
+                      :class="{
+                        'is-ok': !validatePassenger('birthday',passenger.birthday,passenger.isAdult), 
+                        'is-error' :validatePassenger('birthday',passenger.birthday,passenger.isAdult)}"
                       :id="'birthday'+index"
                       pattern="\d{4}-\d{2}-\d{2}"
                       placeholder="дд.мм.гггг"
                       required>
-                  <div :class="{'d-none': !passenger.errors.birthday}" class="error-feedback">{{passenger.errors.birthday}}</div>
+                  <div 
+                    :class="{'d-none': !validatePassenger('birthday',passenger.birthday,passenger.isAdult)}" 
+                    class="error-feedback">{{validatePassenger('birthday',passenger.birthday,passenger.isAdult)}}</div>
                 </div>
               </div>
               <div class="row gy-2">
+                <!-- gender -->
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="gender" class="form-label">Пол</label>
                   <div class="position-relative">
-                    <ArrowDownIcon v-if="!passenger.errors.gender" class="arrow-down-icon position-absolute" color="#283256"/>
-                    <input
-                        @click="toggleDropdown($event)"
-                        @input="searchGender($event);validateGender($event)"
-                        :value="passenger.genderSearchQuery"
+                    <select
+                        @input="updateGender($event);"
+                        :value="passenger.gender"
                         class="form-control"
                         :id="'gender'+index"
-                        placeholder="Мужской"
-                        :class="{'is-ok': passenger.gender, 'is-error' : passenger.errors.gender}">
-                    <div :class="{'d-none': !passenger.errors.gender}" class="error-feedback">{{passenger.errors.gender}}</div>
-                    <div v-if="passenger.dropdowns.isShowGender" class="find-gender">
-                      <div
-                          @click="updateGender(['Мужской', index]);
-                          $store.commit('updateDropdown', [index, 'isShowGender'])"
-                          class="meta">
-                        <div class="title">Мужской</div>
-                      </div>
-                      <div @click="updateGender(['Женский', index]);
-                      $store.commit('updateDropdown', [index, 'isShowGender'])"
-                           class="meta">
-                        <div class="title">Женский</div>
-                      </div>
-                    </div>
+                        :class="{'is-ok': !validatePassenger('gender',passenger.gender), 'is-error' : validatePassenger('gender',passenger.gender)}">
+                        <option value=""></option>
+                        <option value="0">Женский</option>
+                        <option value="1">Мужской</option>
+                        </select>
+                    <div :class="{'d-none': !validatePassenger('gender',passenger.gender)}" class="error-feedback">{{validatePassenger('gender',passenger.gender)}}</div>
+                    
                   </div>
                 </div>
+                <!-- citizenship -->
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="citizenship" class="form-label">Гражданство</label>
 <!--                  TODO при клике выводить список-->
                   <div class="position-relative">
-                    <ArrowDownIcon v-if="!passenger.errors.citizenship" class="arrow-down-icon position-absolute" color="#283256"/>
-                    <input
-                        @click="toggleDropdown($event)"
-                        @input="searchCitizenship($event);validateCitizenship($event)"
-                        :value="passenger.citizenShipSearchQuery"
-                        :class="{'is-ok': passenger.citizenShipSearchQuery, 'is-error' : passenger.errors.citizenship}"
+                    <select
+                        @input="updateCitizenship($event);"
+                        :value="passenger.citizenship"
+                        :class="{
+                          'is-ok': !validatePassenger('citizenship',passenger.citizenship), 
+                          'is-error' : validatePassenger('citizenship',passenger.citizenship)}"
                         class="form-control"
                         :id="'citizenship'+index"
-                        placeholder="РОССИЯ"
-                        type="text">
-                    <div :class="{'d-none': !passenger.errors.citizenship}" class="error-feedback">{{passenger.errors.citizenship}}</div>
-                    <div
-                        v-if="passenger.dropdowns.isShowCitizenship" class="find-citizenship">
-                      <div
-                          v-for="citizenship in getCitizenshipsById(index)"
-                          :key="citizenship.code"
-                          @click="updateCitizenship([citizenship.name, index]);
-                          $store.commit('updateDropdown', [index, 'isShowCitizenship'])"
-                          class="meta">
-                        <div class="title">{{citizenship.name}}</div>
-                      </div>
-                    </div>
+                        >
+                      <option v-for="option in getCitizenships" 
+                      :key="option.code" :value="option.code"  
+                      class="form-option">{{option.name}}</option>
+                      </select>
+
+                    <div :class="{'d-none': !validatePassenger('citizenship',passenger.citizenship)}" class="error-feedback">{{validatePassenger('citizenship',passenger.citizenship)}}</div>
                   </div>
                 </div>
+                <!-- document -->
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="document" class="form-label">Документ</label>
                   <div class="position-relative">
-                    <ArrowDownIcon v-if="!passenger.errors.document" class="arrow-down-icon position-absolute" color="#283256"/>
-                    <input
-                        @click="toggleDropdown($event)"
-                        @input="searchDocument($event);"
-                        :value="passenger.documentSearchQuery"
-                        :class="{'is-ok': passenger.document, 'is-error' : passenger.errors.document}"
+                    <select
+                        @input="updateDocument($event);"
+                        :value="passenger.document"
+                        :class="{
+                          'is-ok': !validatePassenger('document',passenger.document), 
+                          'is-error' : validatePassenger('document',passenger.document)}"
                         class="form-control"
                         :id="'document'+index"
-                        placeholder="Паспорт гражданина Российской Федерации"
-                        type="text">
-                    <div :class="{'d-none': !passenger.errors.document}" class="error-feedback">{{passenger.errors.document}}</div>
-                    <div v-if="passenger.dropdowns.isShowDocument" class="find-document">
-                      <div
-                          @click="updateDocument([documentType.name, index]);
-                          validateDocument([documentType.name, passenger.id])
-                          $store.commit('updateDropdown', [index, 'isShowDocument'])"
-                          v-for="documentType in getDocumentById(index)"
-                          :key="documentType.id"
-                          class="meta">
-                        <div class="title">{{documentType.name}}</div>
-                      </div>
-                    </div>
+                        >
+                        <option v-for="option in passenger.isAdult ? getDocumentTypes : getDocumentTypes.filter(opt=>(['4','2','3'].includes(opt.id)))" 
+                        :key="option.id" :value="option.id"  >{{option.name}}</option>
+                      </select>
+                    <div :class="{'d-none': !validatePassenger('document',passenger.document)}" class="error-feedback">{{validatePassenger('document',passenger.document)}}</div>
                   </div>
                 </div>
+                <!-- documentInfo -->
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="documentInfo" class="form-label">Серия и номер документа</label>
                   <input
-                      @focusout="validateDocumentInfo($event)"
                       @input="updateDocumentInfo($event);"
                       type="text"
                       class="form-control"
-                      :class="{'is-ok': passenger.documentInfo, 'is-error' : passenger.errors.documentInfo}"
+                      
+                      :class="{
+                        'is-ok': !validatePassenger('documentInfo',passenger.documentInfo,passenger.document), 
+                        'is-error' : validatePassenger('documentInfo',passenger.documentInfo,passenger.document)}"
                       :id="'documentInfo'+index"
-                      placeholder="01 23 456789">
-                  <div :class="{'d-none': !passenger.errors.documentInfo}" class="error-feedback">{{passenger.errors.documentInfo}}</div>
+                      placeholder="">
+                  <div 
+                    :class="{'d-none': !validatePassenger('documentInfo',passenger.documentInfo,passenger.document)}" 
+                    class="error-feedback">{{validatePassenger('documentInfo',passenger.documentInfo,passenger.document)}}</div>
                 </div>
               </div>
             </div>
@@ -231,59 +234,94 @@ export default {
         'updateMiddleName',
         'updateBirthday',
         'updateGender',
-        'searchGender',
         'updateCitizenship',
         'updateDocument',
-        'searchDocument',
         'updateDocumentInfo',
         'fetchDocumentType',
         'fetchCitizenShip',
-        'searchCitizenship',
-        'validateSecondName',
-        'validateFirstName',
-        'validateMiddleName',
-        'validateBirthday',
-        'validateDocumentInfo',
-        'validateCitizenship',
-        'validateGender',
-        'validateDocument',
         'addPassenger',
         'toggleDropdown',
         'setActiveTab'
     ]),
-    validatePassenger(fieldType, value) {
+    validatePassenger(fieldType, value, additional=true) {
+
       if (fieldType === 'secondName') {
         if (value === '') {
-          return 'заполните фамилию'
-        }
-        else {
-          return false
+          let str='заполните фамилию'
+          return str
         }
       }
       if (fieldType === 'firstName') {
         if (value === '') {
           return 'заполните имя'
         }
-        else {
-          return false
-        }
       }
       if (fieldType === 'middleName') {
         if (value === '') {
           return 'заполните отчество'
         }
-        else {
-          return false
-        }
       }
       if (fieldType === 'citizenship') {
         if (value === '') {
-          return 'заполните отчество'
-        }
-        else {
-          return false
+          return 'заполните гражданство'
         }
       }
+      if (fieldType === 'gender') {
+        if (value !=='0' && value !=='1') {
+          return 'Выбирите пол'
+        }
+      }
+      if (fieldType === 'birthday') {
+        if (value === '') {
+          return 'Укажиите дату рождения'
+        }
+        let today = new Date();
+        let birthDate = new Date(value);
+        let age = today.getFullYear() - birthDate.getFullYear();
+        let m = today.getMonth() - birthDate.getMonth();
+        let d = today.getDay() - birthDate.getDay();
+
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+          age--;
+        }
+        if ( age === 0 ) {
+          m = 12 + m;
+          if (d < 0 || (d === 0 && today.getDate() < birthDate.getDate())) {
+            m--;
+          }
+        }
+
+        if(!additional && age>12){
+          return 'Детский билет до 12 лет'
+        }
+        if(additional && age>100){
+          return 'Вам больше 100 лет?' 
+        }
+
+
+      }
+      if (fieldType === 'documentInfo') {
+        // if(isNumber(value)){
+        //   return 'Только цифры'
+        // }
+        if ((value.length !== 10 && additional==='0')||value.length===0) {
+          return 'Серий и номер паспорта 10 цифр'
+        }
+
+        if(additional==='4'){
+          let regexpNumber = /[0-9]/g;
+          let regexpSerial = /[А-Я]/g;
+          let regexpRomeNumber = /[IVXLCDM]/g
+          if (regexpNumber.test(value) && regexpSerial.test(value) && value.match(regexpSerial).length === 2 && regexpRomeNumber.test(value) && value.match(regexpNumber).length === 6) {
+            return false
+          } else {
+              return 'Введите корректные данные (IIДН123456)'
+          }
+        }
+
+      }
+
+      return false
     }
   },
   mounted() {
@@ -292,14 +330,13 @@ export default {
   },
   computed: {
     ...mapGetters([
-       'getPassengers',
+        'getPassengers',
         'getDocumentsTypes',
-        'getCitizenshipsById',
-        'getDocumentById',
-        'getPassengerDocumentById',
         'oneWay',
         'getIsLogin',
-        'getActiveTab'
+        'getActiveTab',
+        'getCitizenships',
+        'getDocumentTypes'
     ]),
   },
 }
@@ -513,6 +550,10 @@ export default {
     }
     .form-select::selection {
       color: #B5BDDB;
+    }
+    .form-option { 
+      background-color:#F3F7FF;
+
     }
     .find-citizenship, .find-document, .find-gender{
       position: absolute;

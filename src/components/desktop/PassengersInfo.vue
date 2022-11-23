@@ -149,19 +149,23 @@
                   <label for="citizenship" class="form-label">Гражданство</label>
 <!--                  TODO при клике выводить список-->
                   <div class="position-relative">
-                    <ArrowDownIcon v-if="!passenger.citizenship" class="arrow-down-icon position-absolute" color="#283256"/>
-                    <div
-                         @click="toggleDropdownCitizenship"
-                         class="form-control form-control-citizenship"
-                         :class="{'is-ok': !validatePassenger('citizenship',passenger.citizenship), 'is-error' : validatePassenger('citizenship',passenger.citizenship), 'form-control-placeholder' : !passenger.citizenship}"
+                    <select
+                        @input="updateCitizenship($event);"
+                        :value="passenger.citizenship"
+                        :class="{
+                           'is-ok': !validatePassenger('citizenship',passenger.citizenship),
+                           'is-error' : validatePassenger('citizenship',passenger.citizenship)}"
+                        class="form-control"
+                        :id="'citizenship'+index"
                     >
-                      {{getCitizenshipByCode(passenger.citizenship)[0].name}}
-                    </div>
-                    <div :class="{'d-none' : !isShowCitizenship}" class="find-gender">
-                      <div @click="toggleDropdownCitizenship(); $store.commit('updateCitizenship', [citizenship.code, index])" v-for="citizenship in getCitizenships" :key="citizenship.code" class="meta">
-                        {{citizenship.name}}
-                      </div>
-                    </div>
+                      <option
+                          v-for="option in getCitizenships"
+                          :key="option.code"
+                          :value="option.code"
+                          class="form-option">
+                        {{option.name}}
+                      </option>
+                    </select>
                     <div :class="{'d-none': !validatePassenger('citizenship',passenger.citizenship)}" class="error-feedback">{{validatePassenger('citizenship',passenger.citizenship)}}</div>
                   </div>
                 </div>

@@ -131,35 +131,16 @@
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="gender" class="form-label">Пол</label>
                   <div class="position-relative">
-                    <ArrowDownIcon v-if="passenger.gender" class="arrow-down-icon position-absolute" color="#283256"/>
-                    <div v-if="!passenger.gender"
-                        @click="toggleDropdownGender"
-                        class="form-control form-control-gender"
-                        :class="{'is-ok': !validatePassenger('gender',passenger.gender), 'is-error' : validatePassenger('gender',passenger.gender), 'form-control-placeholder' : !passenger.gender}"
-                    >
-                      Мужской
-                    </div>
-                    <div
-                        v-else
-                        @click="toggleDropdownGender"
-                        class="form-control form-control-gender"
-                        :class="{'is-ok': !validatePassenger('gender',passenger.gender), 'is-error' : validatePassenger('gender',passenger.gender), 'form-control-placeholder' : !passenger.gender}"
-                    >
-                      <span v-if="passenger.gender === '0'">
-                        Женский
-                      </span>
-                      <span v-if="passenger.gender === '1'">
-                        Мужской
-                      </span>
-                    </div>
-                    <div :class="{'d-none' : !isShowGender}" class="find-gender">
-                      <div @click="toggleDropdownGender(); $store.commit('updateGender', ['1', index])" class="meta">
-                        Мужской
-                      </div>
-                      <div @click="toggleDropdownGender();$store.commit('updateGender', ['0', index])" class="meta">
-                        Женский
-                      </div>
-                    </div>
+                    <select
+                        @input="updateGender($event);"
+                        :value="passenger.gender"
+                        class="form-control"
+                        :id="'gender'+index"
+                        :class="{'is-ok': !validatePassenger('gender',passenger.gender), 'is-error' : validatePassenger('gender',passenger.gender)}">
+                      <option value="0">Женский</option>
+                      <option selected value="1">Мужской</option>
+                    </select>
+                    <div v-if="!passenger.gender" class="select-placeholder position-absolute">Мужской</div>
                     <div :class="{'d-none': !validatePassenger('gender',passenger.gender)}" class="error-feedback">{{validatePassenger('gender',passenger.gender)}}</div>
                   </div>
                 </div>
@@ -554,10 +535,10 @@ export default {
       padding-left: 0;
       padding-right: 2.25rem;
     }
-    .form-control-gender, .form-control-citizenship {
+    .select-placeholder {
+      top: 0;
+      @include font($uni,$regular,18px,24.3px,$base);
       cursor: pointer;
-    }
-    .form-control-placeholder {
       color: #B5BDDB; /* Цвет подсказывающего текста */
     }
     .form-control:focus {

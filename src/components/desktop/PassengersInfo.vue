@@ -162,6 +162,7 @@
                           v-for="option in getCitizenships"
                           :key="option.code"
                           :value="option.code"
+                          :selected="option.code === '643'"
                           class="form-option">
                         {{option.name}}
                       </option>

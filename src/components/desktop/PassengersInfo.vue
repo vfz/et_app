@@ -134,13 +134,13 @@
                     <select
                         @input="updateGender($event);"
                         :value="passenger.gender"
-                        class="form-control"
+                        class="form-control form-control-select"
                         :id="'gender'+index"
                         :class="{'is-ok': !validatePassenger('gender',passenger.gender), 'is-error' : validatePassenger('gender',passenger.gender)}">
                       <option value="0">Женский</option>
                       <option selected value="1">Мужской</option>
                     </select>
-                    <div v-if="!passenger.gender" class="select-placeholder position-absolute">Мужской</div>
+                    <div v-if="!passenger.gender" class="select-placeholder position-absolute pe-none">Мужской</div>
                     <div :class="{'d-none': !validatePassenger('gender',passenger.gender)}" class="error-feedback">{{validatePassenger('gender',passenger.gender)}}</div>
                   </div>
                 </div>
@@ -538,6 +538,9 @@ export default {
       border-radius: 0;
       padding-left: 0;
       padding-right: 2.25rem;
+    }
+    .form-control-select {
+      cursor: pointer;
     }
     .select-placeholder {
       top: 0;

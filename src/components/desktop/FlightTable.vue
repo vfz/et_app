@@ -133,9 +133,9 @@
                     data-bs-target="#place-left-modal"
                     @click="updatebBusTriptId(flight.id_trip)"
                     v-if="+flight.count_available_seats_trip>=getAdultsCount+getChildrensCount">
+                    <span v-if="getChildrensCount+getAdultsCount===1">место: </span>
+                    <span v-if="getChildrensCount+getAdultsCount>1">места: </span>
                     {{ selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0].seats.toString() }} изменить 
-                    <span v-if="getChildrensCount+getAdultsCount===1">место</span>
-                    <span v-if="getChildrensCount+getAdultsCount>1">места</span>
                   </div>
                 </td>
                 <td class="align-middle">

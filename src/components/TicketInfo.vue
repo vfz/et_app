@@ -75,7 +75,8 @@
                         Места
                       </h5>
                       <div class="path-info-places">
-                        <span v-for="(seat, index) in selectedThereFlightInfo.seats" :key="index" class="path-info-place-number">{{seat}}</span>
+                        <span class="path-info-place-number">
+                          {{selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0].seats.toString()}}</span>
                       </div>
                       <div class="path-info-sum">
                         Сумма заказа <span class="path-info-sum-number">{{sumThere}}</span>₽

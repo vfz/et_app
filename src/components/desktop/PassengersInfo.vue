@@ -196,12 +196,11 @@
                       @input="updateDocumentInfo($event);"
                       type="text"
                       class="form-control"
-                      
                       :class="{
                         'is-ok': !validatePassenger('documentInfo',passenger.documentInfo,passenger.document), 
                         'is-error' : validatePassenger('documentInfo',passenger.documentInfo,passenger.document)}"
                       :id="'documentInfo'+index"
-                      placeholder="">
+                      placeholder="01 23 456789">
                   <div 
                     :class="{'d-none': !validatePassenger('documentInfo',passenger.documentInfo,passenger.document)}" 
                     class="error-feedback">{{validatePassenger('documentInfo',passenger.documentInfo,passenger.document)}}</div>
@@ -249,7 +248,6 @@ export default {
         'setActiveTab'
     ]),
     validatePassenger(fieldType, value, additional=true) {
-
       if (fieldType === 'secondName') {
         if (value === '') {
           return 'заполните фамилию'
@@ -309,10 +307,16 @@ export default {
       }
       // TODO доделать валидацию с документам
       if (fieldType === 'documentInfo') {
-        if ((value.length !== 10 && additional==='0')||value.length===0) {
-          return 'Серий и номер паспорта 10 цифр'
+        const regexpPassport = /^\d+$/
+        // Проверка паспорта РФ
+        if (additional === '0' && value.length !== 10 || value.length === 0) {
+          return 'Серия и номер паспорта состоит из 10 цифр'
         }
-
+        if (additional === '0' && value.length === 10 && value.match(regexpPassport) === null) {
+          return 'Серия и номер паспорта состоит из 10 цифр'
+        }
+        // TODO добавить проверку по буквам (убрать буквы)
+        //Проверка свидетельства о рождении
         if(additional==='4'){
           let regexpNumber = /[0-9]/g;
           let regexpSerial = /[А-Я]/g;

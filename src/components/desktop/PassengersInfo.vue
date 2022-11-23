@@ -315,19 +315,21 @@ export default {
         if (additional === '0' && value.length === 10 && value.match(regexpPassport) === null) {
           return 'Серия и номер паспорта состоит из 10 цифр'
         }
-        // TODO добавить проверку по буквам (убрать буквы)
         //Проверка свидетельства о рождении
-        if(additional==='4'){
+        if(additional === '4'){
           let regexpNumber = /[0-9]/g;
+          let regexpNumberEndString = /[0-9]$/
           let regexpSerial = /[А-Я]/g;
-          let regexpRomeNumber = /[IVXLCDM]/g
-          if (regexpNumber.test(value) && regexpSerial.test(value) && value.match(regexpSerial).length === 2 && regexpRomeNumber.test(value) && value.match(regexpNumber).length === 6) {
+          let regexpRomeNumber = /^[IVXLCDM]/
+          if (regexpRomeNumber.test(value) && regexpSerial.test(value) && regexpNumberEndString.test(value) && value.match(regexpSerial).length === 2 && value.match(regexpNumber).length === 6 ) {
             return false
-          } else {
-              return 'Введите корректные данные (IIДН123456)'
           }
+          else {
+            return 'Введите корректные данные (IIДН123456)'
+          }
+          //IIДН123456 правильный
+          //ДН123456II неверный
         }
-
       }
 
       return false

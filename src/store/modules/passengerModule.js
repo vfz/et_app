@@ -627,8 +627,8 @@ export default {
         getDocumentsTypes(state) {
             return state.documentTypes
         },
-        getCitizenshipsById: (state) => (id) => {
-            return [...state.citizenShips].filter(citizenShip => citizenShip.name.toLowerCase().includes(state.passengers[id].citizenShipSearchQuery.toLowerCase()))
+        getCitizenshipByCode: (state) => (code) => {
+            return [...state.citizenShips].filter(citizenShip => citizenShip.code === code)
         },
         getCitizenships(state) {
             return state.citizenShips

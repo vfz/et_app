@@ -131,35 +131,16 @@
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="gender" class="form-label">Пол</label>
                   <div class="position-relative">
-                    <ArrowDownIcon v-if="passenger.gender" class="arrow-down-icon position-absolute" color="#283256"/>
-                    <div v-if="!passenger.gender"
-                        @click="toggleDropdown"
-                        class="form-control form-control-gender"
-                        :class="{'is-ok': !validatePassenger('gender',passenger.gender), 'is-error' : validatePassenger('gender',passenger.gender), 'form-control-placeholder' : !passenger.gender}"
-                    >
-                      Мужской
-                    </div>
-                    <div
-                        v-else
-                        @click="toggleDropdown"
-                        class="form-control form-control-gender"
-                        :class="{'is-ok': !validatePassenger('gender',passenger.gender), 'is-error' : validatePassenger('gender',passenger.gender), 'form-control-placeholder' : !passenger.gender}"
-                    >
-                      <span v-if="passenger.gender === '0'">
-                        Женский
-                      </span>
-                      <span v-if="passenger.gender === '1'">
-                        Мужской
-                      </span>
-                    </div>
-                    <div :class="{'d-none' : !isShow}" class="find-gender">
-                      <div @click="toggleDropdown(); $store.commit('updateGender', ['1', index])" class="meta">
-                        Мужской
-                      </div>
-                      <div @click="toggleDropdown();$store.commit('updateGender', ['0', index])" class="meta">
-                        Женский
-                      </div>
-                    </div>
+                    <select
+                        @input="updateGender($event);"
+                        :value="passenger.gender"
+                        class="form-control form-control-select"
+                        :id="'gender'+index"
+                        :class="{'is-ok': !validatePassenger('gender',passenger.gender), 'is-error' : validatePassenger('gender',passenger.gender)}">
+                      <option value="0">Женский</option>
+                      <option selected value="1">Мужской</option>
+                    </select>
+                    <div v-if="!passenger.gender" class="select-placeholder position-absolute pe-none">Мужской</div>
                     <div :class="{'d-none': !validatePassenger('gender',passenger.gender)}" class="error-feedback">{{validatePassenger('gender',passenger.gender)}}</div>
                   </div>
                 </div>
@@ -172,16 +153,20 @@
                         @input="updateCitizenship($event);"
                         :value="passenger.citizenship"
                         :class="{
-                          'is-ok': !validatePassenger('citizenship',passenger.citizenship), 
-                          'is-error' : validatePassenger('citizenship',passenger.citizenship)}"
+                           'is-ok': !validatePassenger('citizenship',passenger.citizenship),
+                           'is-error' : validatePassenger('citizenship',passenger.citizenship)}"
                         class="form-control"
                         :id="'citizenship'+index"
-                        >
-                      <option v-for="option in getCitizenships" 
-                      :key="option.code" :value="option.code"  
-                      class="form-option">{{option.name}}</option>
-                      </select>
-
+                    >
+                      <option
+                          v-for="option in getCitizenships"
+                          :key="option.code"
+                          :value="option.code"
+                          :selected="option.code === '643'"
+                          class="form-option">
+                        {{option.name}}
+                      </option>
+                    </select>
                     <div :class="{'d-none': !validatePassenger('citizenship',passenger.citizenship)}" class="error-feedback">{{validatePassenger('citizenship',passenger.citizenship)}}</div>
                   </div>
                 </div>
@@ -211,12 +196,11 @@
                       @input="updateDocumentInfo($event);"
                       type="text"
                       class="form-control"
-                      
                       :class="{
                         'is-ok': !validatePassenger('documentInfo',passenger.documentInfo,passenger.document), 
                         'is-error' : validatePassenger('documentInfo',passenger.documentInfo,passenger.document)}"
                       :id="'documentInfo'+index"
-                      placeholder="">
+                      placeholder="01 23 456789">
                   <div 
                     :class="{'d-none': !validatePassenger('documentInfo',passenger.documentInfo,passenger.document)}" 
                     class="error-feedback">{{validatePassenger('documentInfo',passenger.documentInfo,passenger.document)}}</div>
@@ -242,7 +226,9 @@ export default {
   data(){
     return {
       secondName: '',
-      isShow: false,
+      citizenship: '',
+      isShowGender: false,
+      isShowCitizenship: false,
     }
   },
   methods: {
@@ -259,11 +245,9 @@ export default {
         'fetchDocumentType',
         'fetchCitizenShip',
         'addPassenger',
-        'toggleDropdown',
         'setActiveTab'
     ]),
     validatePassenger(fieldType, value, additional=true) {
-
       if (fieldType === 'secondName') {
         if (value === '') {
           return 'заполните фамилию'
@@ -323,27 +307,38 @@ export default {
       }
       // TODO доделать валидацию с документам
       if (fieldType === 'documentInfo') {
-        if ((value.length !== 10 && additional==='0')||value.length===0) {
-          return 'Серий и номер паспорта 10 цифр'
+        const regexpPassport = /^\d+$/
+        // Проверка паспорта РФ
+        if (additional === '0' && value.length !== 10 || value.length === 0) {
+          return 'Серия и номер паспорта состоит из 10 цифр'
         }
-
-        if(additional==='4'){
+        if (additional === '0' && value.length === 10 && value.match(regexpPassport) === null) {
+          return 'Серия и номер паспорта состоит из 10 цифр'
+        }
+        //Проверка свидетельства о рождении
+        if(additional === '4'){
           let regexpNumber = /[0-9]/g;
+          let regexpNumberEndString = /[0-9]$/
           let regexpSerial = /[А-Я]/g;
-          let regexpRomeNumber = /[IVXLCDM]/g
-          if (regexpNumber.test(value) && regexpSerial.test(value) && value.match(regexpSerial).length === 2 && regexpRomeNumber.test(value) && value.match(regexpNumber).length === 6) {
+          let regexpRomeNumber = /^[IVXLCDM]/
+          if (regexpRomeNumber.test(value) && regexpSerial.test(value) && regexpNumberEndString.test(value) && value.match(regexpSerial).length === 2 && value.match(regexpNumber).length === 6 ) {
             return false
-          } else {
-              return 'Введите корректные данные (IIДН123456)'
           }
+          else {
+            return 'Введите корректные данные (IIДН123456)'
+          }
+          //IIДН123456 правильный
+          //ДН123456II неверный
         }
-
       }
 
       return false
     },
-    toggleDropdown() {
-      this.isShow = !this.isShow
+    toggleDropdownGender() {
+      this.isShowGender = !this.isShowGender
+    },
+    toggleDropdownCitizenship() {
+      this.isShowCitizenship = !this.isShowCitizenship
     }
   },
   mounted() {
@@ -358,7 +353,8 @@ export default {
         'getIsLogin',
         'getActiveTab',
         'getCitizenships',
-        'getDocumentTypes'
+        'getDocumentTypes',
+        'getCitizenshipByCode'
     ]),
   },
 }
@@ -550,10 +546,13 @@ export default {
       padding-left: 0;
       padding-right: 2.25rem;
     }
-    .form-control-gender {
+    .form-control-select {
       cursor: pointer;
     }
-    .form-control-placeholder {
+    .select-placeholder {
+      top: 0;
+      @include font($uni,$regular,18px,24.3px,$base);
+      cursor: pointer;
       color: #B5BDDB; /* Цвет подсказывающего текста */
     }
     .form-control:focus {

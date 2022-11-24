@@ -307,13 +307,13 @@ export default {
       }
       // TODO доделать валидацию с документам
       if (fieldType === 'documentInfo') {
-        const regexpPassport = /^\d+$/
+
         // Проверка паспорта РФ
-        if (additional === '0' && value.length !== 10 || value.length === 0) {
-          return 'Серия и номер паспорта состоит из 10 цифр'
-        }
-        if (additional === '0' && value.length === 10 && value.match(regexpPassport) === null) {
-          return 'Серия и номер паспорта состоит из 10 цифр'
+        if(additional === '0'){
+          const regexpPassport = /^\d{10}$/
+          if (!regexpPassport.test(value)) {
+            return 'Серия и номер паспорта состоит из 10 цифр'
+          }
         }
         //Проверка свидетельства о рождении
         if(additional === '4'){
@@ -338,22 +338,24 @@ export default {
           // let regexpRomeNumber = /[IVXLCDM]/
           // let regexpRomeNumberBegin = /^[IVXLCDM]/
           // let regexpSpecialSymbols = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/
-          let regexpDoc = /^[IVXLCDM]{1,3}[А-Я^]{2}[0-9]{6}/g
-          // console.log
-          // (
-          //     regexpRomeNumber.test(value),
-          //     regexpSerial.test(value),
-          //     value.match(regexpSerial).length === 2,
-          //     value.match(regexpNumber).length === 6,
-          //     !regexpSpecialSymbols.test(value),
-          //     value === valueWithoutSpace,
-          //     value === valueUppercase,
-          //     regexpRomeNumberBegin.test(value),
-          //     regexpNumberEndString.test(value),
-          //     value.match(regexpNumber).length + value.match(regexpSerial).length === 8
-          // )
+          let regexpDoc = /^[IVXLCDM]{1,3}[А-Я^]{2}[0-9]{6}$/g
+          console.log
+          (
+              // regexpRomeNumber.test(value),
+              // regexpSerial.test(value),
+              // value.match(regexpSerial).length === 2,
+              // value.match(regexpNumber).length === 6,
+              // !regexpSpecialSymbols.test(value),
+              // value === valueWithoutSpace,
+              // value === valueUppercase,
+              // regexpRomeNumberBegin.test(value),
+              // regexpNumberEndString.test(value),
+              // value.match(regexpNumber).length + value.match(regexpSerial).length === 8
+
+          )
           if (
-              regexpDoc.test(value)
+              regexpDoc.test(value) 
+              // value.match(regexpDoc).length===value.length
               // regexpRomeNumber.test(value) &&
               // regexpSerial.test(value) &&
               // value.match(regexpSerial).length === 2 &&
@@ -374,6 +376,8 @@ export default {
           //IIДН123456 правильный
           //ДН123456II неверный
         }
+
+        
       }
 
       return false

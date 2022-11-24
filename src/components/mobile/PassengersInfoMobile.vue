@@ -238,6 +238,130 @@ export default {
       'fetchCitizenShip',
       'addPassenger',
     ]),
+    validatePassenger(fieldType, value, additional=true) {
+      if (fieldType === 'secondName') {
+        if (value === '') {
+          return 'заполните фамилию'
+        }
+      }
+      if (fieldType === 'firstName') {
+        if (value === '') {
+          return 'заполните имя'
+        }
+      }
+      if (fieldType === 'middleName') {
+        if (value === '') {
+          return 'заполните отчество'
+        }
+      }
+      if (fieldType === 'citizenship') {
+        if (value === '') {
+          return 'заполните гражданство'
+        }
+      }
+      if (fieldType === 'gender') {
+        if (value !=='0' && value !=='1') {
+          return 'Выбирите пол'
+        }
+      }
+      if (fieldType === 'birthday') {
+        if (value === '') {
+          return 'Укажиите дату рождения'
+        }
+        let today = new Date();
+        let birthDate = new Date(value);
+        let age = today.getFullYear() - birthDate.getFullYear();
+        let m = today.getMonth() - birthDate.getMonth();
+        let d = today.getDay() - birthDate.getDay();
+
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+          age--;
+        }
+        if ( age === 0 ) {
+          m = 12 + m;
+          if (d < 0 || (d === 0 && today.getDate() < birthDate.getDate())) {
+            m--;
+          }
+        }
+        if (age < 0) {
+          return 'Укажиите дату рождения корректно'
+        }
+
+        if(!additional && age>12){
+          return 'Детский билет до 12 лет'
+        }
+        if(additional && age>100){
+          return 'Вам больше 100 лет?' 
+        }
+
+
+      }
+      // TODO доделать валидацию с документам
+      if (fieldType === 'documentInfo') {
+        const regexpPassport = /^\d+$/
+        // Проверка паспорта РФ
+        if (additional === '0' && value.length !== 10 || value.length === 0) {
+          return 'Серия и номер паспорта состоит из 10 цифр'
+        }
+        if (additional === '0' && value.length === 10 && value.match(regexpPassport) === null) {
+          return 'Серия и номер паспорта состоит из 10 цифр'
+        }
+        //Проверка свидетельства о рождении
+        if(additional === '4'){
+          /*
+          1 - Римские цифры заглавные !
+          2 - Серия заглавные !
+          3 - серия из 2 букв !
+          3 - цифр 6 !
+          4 - в строке не может быть спецсимволов !
+          5 - не может быть пробелов !
+          6 - Начало с римских цифр !
+          7 - Заканчивается номером !
+          8 - Серия и номер 8 символов вместе
+          */
+          let valueWithoutSpace = value.replace(/\s/g, '');
+          let regexpNumber = /[0-9]/g;
+          let regexpNumberEndString = /[0-9]$/
+          let regexpSerial = /[А-Я^]/g;
+          let regexpRomeNumber = /[IVXLCDM]/
+          let regexpRomeNumberBegin = /^[IVXLCDM]/
+          let regexpSpecialSymbols = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/
+          console.log
+          (
+              regexpRomeNumber.test(value),
+              regexpSerial.test(value),
+              value.match(regexpSerial).length === 2,
+              value.match(regexpNumber).length === 6,
+              !regexpSpecialSymbols.test(value),
+              value === valueWithoutSpace,
+              regexpRomeNumberBegin.test(value),
+              regexpNumberEndString.test(value),
+              value.match(regexpNumber).length + value.match(regexpSerial).length === 8
+          )
+          if (
+              regexpRomeNumber.test(value) &&
+              regexpSerial.test(value) &&
+              value.match(regexpSerial).length === 2 &&
+              value.match(regexpNumber).length === 6 &&
+              !regexpSpecialSymbols.test(value) &&
+              value === valueWithoutSpace &&
+              regexpRomeNumberBegin.test(value) &&
+              regexpNumberEndString.test(value) &&
+              value.match(regexpNumber).length + value.match(regexpSerial).length === 8
+          )
+          {
+            return false
+          }
+          else {
+            return 'Введите корректные данные (IIДН123456)'
+          }
+          //IIДН123456 правильный
+          //ДН123456II неверный
+        }
+      }
+
+      return false
+    },
   },
   mounted() {
     this.fetchDocumentType();

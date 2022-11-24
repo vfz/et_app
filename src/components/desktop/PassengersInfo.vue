@@ -326,9 +326,12 @@ export default {
           5 - не может быть пробелов !
           6 - Начало с римских цифр !
           7 - Заканчивается номером !
-          8 - Серия и номер 8 символов вместе
+          8 - Серия и номер 8 символов вместе !
+          9 - все заглавными буквами
           */
           let valueWithoutSpace = value.replace(/\s/g, '');
+          let valueUppercase = value.toUpperCase()
+          console.log(valueUppercase)
           let regexpNumber = /[0-9]/g;
           let regexpNumberEndString = /[0-9]$/
           let regexpSerial = /[А-Я^]/g;
@@ -343,6 +346,7 @@ export default {
               value.match(regexpNumber).length === 6,
               !regexpSpecialSymbols.test(value),
               value === valueWithoutSpace,
+              value === valueUppercase,
               regexpRomeNumberBegin.test(value),
               regexpNumberEndString.test(value),
               value.match(regexpNumber).length + value.match(regexpSerial).length === 8
@@ -354,6 +358,7 @@ export default {
               value.match(regexpNumber).length === 6 &&
               !regexpSpecialSymbols.test(value) &&
               value === valueWithoutSpace &&
+              value === valueUppercase &&
               regexpRomeNumberBegin.test(value) &&
               regexpNumberEndString.test(value) &&
               value.match(regexpNumber).length + value.match(regexpSerial).length === 8

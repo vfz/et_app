@@ -315,6 +315,13 @@ export default {
             return 'Серия и номер паспорта состоит из 10 цифр'
           }
         }
+        // Проверка загранпаспорта РФ
+        if (additional === '2') {
+          const regexpPassport = /^\d{9}$/
+          if (!regexpPassport.test(value)) {
+            return 'Серия и номер паспорта состоит из 9 цифр'
+          }
+        }
         //Проверка свидетельства о рождении
         if(additional === '4' || additional === '11'){
           let regexpDoc = /^[IVXLCDM]{1,3}[А-Я^]{2}[0-9]{6}$/g

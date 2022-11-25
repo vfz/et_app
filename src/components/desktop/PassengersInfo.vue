@@ -316,7 +316,7 @@ export default {
           }
         }
         //Проверка свидетельства о рождении
-        if(additional === '4'){
+        if(additional === '4' || additional === '11'){
           let regexpDoc = /^[IVXLCDM]{1,3}[А-Я^]{2}[0-9]{6}$/g
           if (regexpDoc.test(value)) {
             return false

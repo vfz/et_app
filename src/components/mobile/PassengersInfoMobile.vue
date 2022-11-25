@@ -306,8 +306,8 @@ export default {
         if (additional === '0' && value.length === 10 && value.match(regexpPassport) === null) {
           return 'Серия и номер паспорта состоит из 10 цифр'
         }
-        //Проверка свидетельства о рождении
-        if (additional === '4'){
+        //Проверка свидетельства о рождении и паспорт гражданина СССР
+        if (additional === '4' || additional === '11'){
           let regexpDoc = /^[IVXLCDM]{1,3}[А-Я^]{2}[0-9]{6}$/g
           if (regexpDoc.test(value)) {
             return false

@@ -138,6 +138,7 @@
                           <option value="0">Женский</option>
                           <option value="1">Мужской</option>
                           </select>
+                        <div v-if="!passenger.gender" class="select-placeholder position-absolute pe-none">Мужской</div>
                         <div 
                           :class="{'d-none': !validatePassenger('gender',passenger.gender)}" 
                           class="error-feedback">{{validatePassenger('gender',passenger.gender)}}</div>
@@ -534,6 +535,16 @@ export default {
         border-radius: 0;
         padding-left: 0;
         padding-right: 1rem;
+      }
+      .select-placeholder {
+        top: 0;
+        @include font($uni,$regular,18px,24.3px,$base);
+        cursor: pointer;
+        color: #B5BDDB; /* Цвет подсказывающего текста */
+        @media screen and (max-width: 767px) {
+          font-size: 14px;
+          line-height: 18.9px;
+        }
       }
       input[type="date"]::-webkit-inner-spin-button,
       input[type="date"]::-webkit-calendar-picker-indicator {

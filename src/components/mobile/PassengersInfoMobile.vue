@@ -322,6 +322,16 @@ export default {
             return 'Введите корректные данные (IIДН123456)'
           }
         }
+        //Проверка Военного билета военнослужащего или куранта военной образовательной организации
+        if (additional === '1' || additional === '5' || additional === '8') {
+          let regexpDoc = /[А-Я^]{2}[0-9]{7}$/g
+          if (regexpDoc.test(value)) {
+            return false
+          }
+          else {
+            return 'Введите корректные данные (AC9876543)'
+          }
+        }
       }
 
       return false

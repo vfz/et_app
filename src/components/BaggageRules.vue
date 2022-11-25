@@ -233,20 +233,21 @@ export default {
       }
     },
     transactionForVue() {
+
       const config = {
         method: 'post',
         url : 'https://api.evrotrans.net/APIet/transaction_for_vue.php',
-        data : {
-          reisy: this.selectedSeat,
-          passengers: this.getPassengers
-        }
+        data : [{
+          'reisy': this.selectedSeat.filter(reis=>(reis.is_selected)),
+          'passengers': this.getPassengers
+      }]
       }
       axios.request(config)
           .then(function (response) {
-            console.log(response);
+            //console.log(response);
           })
           .catch(function (error) {
-            console.log(error)
+           // console.log(error)
           })
     }
   }

@@ -33,20 +33,20 @@
                       </h5>
                       <div class="path-info-from">
                         <div class="path-info-from-datetime">
-                <span class="path-info-from-datetime-date">
-                  {{selectedThereFlightTicket.date_trip}}
-                </span>
-                          в
-                          <span class="path-info-from-datetime-time">
-                  {{selectedThereFlightTicket.time_trip}}
-                </span>
+                          <span class="path-info-from-datetime-date">
+                            {{selectedThereFlightTicket.date_trip}}
+                          </span>
+                                    в
+                                    <span class="path-info-from-datetime-time">
+                            {{selectedThereFlightTicket.time_trip}}
+                          </span>
                         </div>
                         <div class="path-info-from-place d-flex flex-column">
-                <span class="path-info-from-place-name">
-                </span>
-                          <span class="path-info-from-datetime-address">
-                  {{selectedThereFlightTicket.from_address_point}}
-                </span>
+                          <span class="path-info-from-place-name">
+                          </span>
+                                    <span class="path-info-from-datetime-address">
+                            {{selectedThereFlightTicket.from_address_point}}
+                          </span>
                         </div>
                       </div>
                       <h5 class="path-info-ticket-title-paragraph">
@@ -54,21 +54,21 @@
                       </h5>
                       <div class="path-info-to">
                         <div class="path-info-to-datetime">
-                <span class="path-info-to-datetime-date">
-                  {{selectedThereFlightTicket.date_arrival_trip}}
-                </span>
-                          в
-                          <span class="path-info-to-datetime-time">
-                            {{selectedThereFlightTicket.time_arrival_trip}}
-                </span>
-                        </div>
-                        <div class="path-info-to-place d-flex flex-column">
-                <span class="path-info-from-place-name">
-                  {{selectedThereFlightTicket.to_name}}
-                </span>
-                          <span class="path-info-from-datetime-address">
-                  {{selectedThereFlightTicket.to_address_point}}
-                </span>
+                          <span class="path-info-to-datetime-date">
+                            {{selectedThereFlightTicket.date_arrival_trip}}
+                          </span>
+                                    в
+                                    <span class="path-info-to-datetime-time">
+                                      {{selectedThereFlightTicket.time_arrival_trip}}
+                          </span>
+                                  </div>
+                                  <div class="path-info-to-place d-flex flex-column">
+                          <span class="path-info-from-place-name">
+                            {{selectedThereFlightTicket.to_name}}
+                          </span>
+                                    <span class="path-info-from-datetime-address">
+                            {{selectedThereFlightTicket.to_address_point}}
+                          </span>
                         </div>
                       </div>
                       <h5 class="path-info-ticket-title-paragraph">
@@ -76,7 +76,12 @@
                       </h5>
                       <div class="path-info-places">
                         <span class="path-info-place-number">
-                          {{selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0].seats.toString()}}</span>
+                          <span v-for="(seat, index) in selectedThereFlightInfo.seats"
+                            :key="index"
+                            class="path-info-place-number">
+                            {{seat}}
+                          </span>
+                        </span>
                       </div>
                       <div class="path-info-sum">
                         Сумма заказа <span class="path-info-sum-number">{{sumThere}}</span>₽

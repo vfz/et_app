@@ -298,14 +298,15 @@ export default {
       }
       // TODO доделать валидацию с документам
       if (fieldType === 'documentInfo') {
-        const regexpPassport = /^\d+$/
         // Проверка паспорта РФ
-        if (additional === '0' && value.length !== 10 || value.length === 0) {
-          return 'Серия и номер паспорта состоит из 10 цифр'
+        if(additional === '0'){
+          const regexpPassport = /^\d{10}$/
+          if (!regexpPassport.test(value)) {
+            return 'Серия и номер паспорта состоит из 10 цифр'
+          }
         }
-        if (additional === '0' && value.length === 10 && value.match(regexpPassport) === null) {
-          return 'Серия и номер паспорта состоит из 10 цифр'
-        }
+        // Проверка загранпаспорта РФ
+
         //Проверка свидетельства о рождении и паспорт гражданина СССР
         if (additional === '4' || additional === '11'){
           let regexpDoc = /^[IVXLCDM]{1,3}[А-Я^]{2}[0-9]{6}$/g

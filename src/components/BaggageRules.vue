@@ -236,7 +236,6 @@ export default {
       const config = {
         method: 'post',
         url : 'https://api.evrotrans.net/APIet/transaction_for_vue.php',
-        headers: {'X-Requested-With': 'XMLHttpRequest'},
         data : {
           reisy: this.selectedSeat,
           passengers: this.getPassengers

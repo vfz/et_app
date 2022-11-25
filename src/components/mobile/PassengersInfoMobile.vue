@@ -307,56 +307,14 @@ export default {
           return 'Серия и номер паспорта состоит из 10 цифр'
         }
         //Проверка свидетельства о рождении
-        if(additional === '4'){
-          /*
-          1 - Римские цифры заглавные !
-          2 - Серия заглавные !
-          3 - серия из 2 букв !
-          3 - цифр 6 !
-          4 - в строке не может быть спецсимволов !
-          5 - не может быть пробелов !
-          6 - Начало с римских цифр !
-          7 - Заканчивается номером !
-          8 - Серия и номер 8 символов вместе
-          */
-          let valueWithoutSpace = value.replace(/\s/g, '');
-          let regexpNumber = /[0-9]/g;
-          let regexpNumberEndString = /[0-9]$/
-          let regexpSerial = /[А-Я^]/g;
-          let regexpRomeNumber = /[IVXLCDM]/
-          let regexpRomeNumberBegin = /^[IVXLCDM]/
-          let regexpSpecialSymbols = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/
-          console.log
-          (
-              regexpRomeNumber.test(value),
-              regexpSerial.test(value),
-              value.match(regexpSerial).length === 2,
-              value.match(regexpNumber).length === 6,
-              !regexpSpecialSymbols.test(value),
-              value === valueWithoutSpace,
-              regexpRomeNumberBegin.test(value),
-              regexpNumberEndString.test(value),
-              value.match(regexpNumber).length + value.match(regexpSerial).length === 8
-          )
-          if (
-              regexpRomeNumber.test(value) &&
-              regexpSerial.test(value) &&
-              value.match(regexpSerial).length === 2 &&
-              value.match(regexpNumber).length === 6 &&
-              !regexpSpecialSymbols.test(value) &&
-              value === valueWithoutSpace &&
-              regexpRomeNumberBegin.test(value) &&
-              regexpNumberEndString.test(value) &&
-              value.match(regexpNumber).length + value.match(regexpSerial).length === 8
-          )
-          {
+        if (additional === '4'){
+          let regexpDoc = /^[IVXLCDM]{1,3}[А-Я^]{2}[0-9]{6}$/g
+          if (regexpDoc.test(value)) {
             return false
           }
           else {
             return 'Введите корректные данные (IIДН123456)'
           }
-          //IIДН123456 правильный
-          //ДН123456II неверный
         }
       }
 

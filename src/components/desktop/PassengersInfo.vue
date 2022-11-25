@@ -317,57 +317,8 @@ export default {
         }
         //Проверка свидетельства о рождении
         if(additional === '4'){
-          /*
-          1 - Римские цифры заглавные !
-          2 - Серия заглавные !
-          3 - серия из 2 букв !
-          3 - цифр 6 !
-          4 - в строке не может быть спецсимволов !
-          5 - не может быть пробелов !
-          6 - Начало с римских цифр !
-          7 - Заканчивается номером !
-          8 - Серия и номер 8 символов вместе !
-          9 - все заглавными буквами
-          */
-          // let valueWithoutSpace = value.replace(/\s/g, '');
-          // let valueUppercase = value.toUpperCase()
-          // console.log(valueUppercase)
-          // let regexpNumber = /[0-9]/g;
-          // let regexpNumberEndString = /[0-9]$/
-          // let regexpSerial = /[А-Я^]/g;
-          // let regexpRomeNumber = /[IVXLCDM]/
-          // let regexpRomeNumberBegin = /^[IVXLCDM]/
-          // let regexpSpecialSymbols = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/
           let regexpDoc = /^[IVXLCDM]{1,3}[А-Я^]{2}[0-9]{6}$/g
-          console.log
-          (
-              // regexpRomeNumber.test(value),
-              // regexpSerial.test(value),
-              // value.match(regexpSerial).length === 2,
-              // value.match(regexpNumber).length === 6,
-              // !regexpSpecialSymbols.test(value),
-              // value === valueWithoutSpace,
-              // value === valueUppercase,
-              // regexpRomeNumberBegin.test(value),
-              // regexpNumberEndString.test(value),
-              // value.match(regexpNumber).length + value.match(regexpSerial).length === 8
-
-          )
-          if (
-              regexpDoc.test(value) 
-              // value.match(regexpDoc).length===value.length
-              // regexpRomeNumber.test(value) &&
-              // regexpSerial.test(value) &&
-              // value.match(regexpSerial).length === 2 &&
-              // value.match(regexpNumber).length === 6 &&
-              // !regexpSpecialSymbols.test(value) &&
-              // value === valueWithoutSpace &&
-              // value === valueUppercase &&
-              // regexpRomeNumberBegin.test(value) &&
-              // regexpNumberEndString.test(value) &&
-              // value.match(regexpNumber).length + value.match(regexpSerial).length === 8
-          )
-          {
+          if (regexpDoc.test(value)) {
             return false
           }
           else {
@@ -382,12 +333,12 @@ export default {
 
       return false
     },
-    toggleDropdownGender() {
-      this.isShowGender = !this.isShowGender
-    },
-    toggleDropdownCitizenship() {
-      this.isShowCitizenship = !this.isShowCitizenship
-    }
+    // toggleDropdownGender() {
+    //   this.isShowGender = !this.isShowGender
+    // },
+    // toggleDropdownCitizenship() {
+    //   this.isShowCitizenship = !this.isShowCitizenship
+    // }
   },
   mounted() {
     this.fetchDocumentType();

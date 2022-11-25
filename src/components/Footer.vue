@@ -20,72 +20,74 @@
                         <div class="col-12 mt-4 mt-md-0 col-md" >
                             <h4 class="title-list-footer">Информация</h4>
                             <ul class="nav flex-column">
+<!--                                <li class="nav-item">-->
+<!--                                    <a class="nav-link" href="#">О нас</a>-->
+<!--                                </li>-->
+<!--                                <li class="nav-item">-->
+<!--                                    <a class="nav-link" href="#">Вакансии</a>-->
+<!--                                </li>-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">О нас</a>
+                                    <a class="nav-link" target="_blank" href="https://arenda.evrotrans.net">Аренда автобусов</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Вакансии</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Аренда автобусов</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Контакты</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-12 mt-4 mt-md-0 col-md">
-                            <h4 class="title-list-footer">Поддержка</h4>
-                            <ul class="nav flex-column">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#WriteUsModal">Написать вам</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Возврат билета</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Бюро находок</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Вопросы и ответы</a>
+                                  <router-link to="/contacts" class="nav-link">
+                                    Контакты
+                                  </router-link>
                                 </li>
                             </ul>
                         </div>
+<!--                        <div class="col-12 mt-4 mt-md-0 col-md">-->
+<!--                            <h4 class="title-list-footer">Поддержка</h4>-->
+<!--                            <ul class="nav flex-column">-->
+<!--                                <li class="nav-item">-->
+<!--                                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#WriteUsModal">Написать вам</a>-->
+<!--                                </li>-->
+<!--                                <li class="nav-item">-->
+<!--                                    <a class="nav-link" href="#">Возврат билета</a>-->
+<!--                                </li>-->
+<!--                                <li class="nav-item">-->
+<!--                                    <a class="nav-link" href="#">Бюро находок</a>-->
+<!--                                </li>-->
+<!--                                <li class="nav-item">-->
+<!--                                    <a class="nav-link" href="#">Вопросы и ответы</a>-->
+<!--                                </li>-->
+<!--                            </ul>-->
+<!--                        </div>-->
                         <div class="col-12 mt-4 mt-md-0 col-md">
                             <h4 class="title-list-footer">Остальное</h4>
                             <ul class="nav flex-column">
+<!--                                <li class="nav-item">-->
+<!--                                    <a class="nav-link" href="#">Агентам</a>-->
+<!--                                </li>-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Агентам</a>
+                                    <a class="nav-link" target="_blank" href="https://evrotrans.net/upload/offer.pdf">Договор оферты</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Договор оферты</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Политика конфиденциальности</a>
+                                    <a class="nav-link" target="_blank" href="https://evrotrans.net/upload/privacy%20policy.pdf">Политика конфиденциальности</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-xl-3 mt-4 mt-md-0">
-                    <h3 class="title-col-footer">
-                        Есть вопросы?
-                        <br>
-                        Мы вам перезвоним
-                    </h3>
-                    <div class="callback-form d-flex">
-                        <div class="form-floating">
-                            <input type="text" class="form-control shadow-none" id="floatingInput" placeholder="name@example.com">
-                            <label for="floatingInput">Введите ваше имя</label>
-                        </div>
-                        <div class="callback-form-next-step">
-                            <a href="#" class="next-step-link text-center">
-                                <img class="d-block" src="/img/footer/next-step.svg" alt="next-step">
-                                <span class="next-desc d-block">Далее</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+<!--                <div class="col-12 col-xl-3 mt-4 mt-md-0">-->
+<!--                    <h3 class="title-col-footer">-->
+<!--                        Есть вопросы?-->
+<!--                        <br>-->
+<!--                        Мы вам перезвоним-->
+<!--                    </h3>-->
+<!--                    <div class="callback-form d-flex">-->
+<!--                        <div class="form-floating">-->
+<!--                            <input type="text" class="form-control shadow-none" id="floatingInput" placeholder="name@example.com">-->
+<!--                            <label for="floatingInput">Введите ваше имя</label>-->
+<!--                        </div>-->
+<!--                        <div class="callback-form-next-step">-->
+<!--                            <a href="#" class="next-step-link text-center">-->
+<!--                                <img class="d-block" src="/img/footer/next-step.svg" alt="next-step">-->
+<!--                                <span class="next-desc d-block">Далее</span>-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
             <div class="row">
                 <div class="col-12">
@@ -100,13 +102,13 @@
                 </div>
                 <div class="col d-flex justify-content-end">
                     <ul class="socials d-flex flex-row">
+<!--                        <li class="socials-item">-->
+<!--                            <a href="#" class="socials-item-link">-->
+<!--                                <img alt="vk" src="/img/footer/vk.svg">-->
+<!--                            </a>-->
+<!--                        </li>-->
                         <li class="socials-item">
-                            <a href="#" class="socials-item-link">
-                                <img alt="vk" src="/img/footer/vk.svg">
-                            </a>
-                        </li>
-                        <li class="socials-item">
-                            <a href="#" class="socials-item-link">
+                            <a target="_blank" href="https://www.instagram.com/evro_trans/" class="socials-item-link">
                                 <img alt="instagram" src="/img/footer/instagram.svg">
                             </a>
                         </li>
@@ -114,159 +116,165 @@
                 </div>
             </div>
         </div>
-      <div v-else class="footer-mobile container-fluid">
-        <div class="row">
-          <div class="col-12">
-            <ul class="socials justify-content-center d-flex flex-row">
-              <li class="socials-item">
-                <a href="#" class="socials-item-link">
-                  <img alt="vk" src="/img/footer/vk.svg">
-                </a>
-              </li>
-              <li class="socials-item">
-                <a href="#" class="socials-item-link">
-                  <img alt="instagram" src="/img/footer/instagram.svg">
-                </a>
-              </li>
-            </ul>
-            <div class="logo-footer d-flex flex-column">
+        <div v-if="isMobile()" class="footer-mobile container-fluid">
+          <div class="row">
+            <div class="col-12">
+              <ul class="socials justify-content-center d-flex flex-row">
+<!--                <li class="socials-item">-->
+<!--                  <a href="#" class="socials-item-link">-->
+<!--                    <img alt="vk" src="/img/footer/vk.svg">-->
+<!--                  </a>-->
+<!--                </li>-->
+                <li class="socials-item">
+                  <a target="_blank" href="https://www.instagram.com/evro_trans/" class="socials-item-link">
+                    <img alt="instagram" src="/img/footer/instagram.svg">
+                  </a>
+                </li>
+              </ul>
+              <div class="logo-footer d-flex flex-column">
               <span class="call-free d-block w-100 text-center">
                             Звонок по России бесплатный
                         </span>
-              <a class="call-free-number d-block w-100 text-center" href="tel:88007002099">
-                8 (800) 700 - 20 - 99
-              </a>
+                <a class="call-free-number d-block w-100 text-center" href="tel:88007002099">
+                  8 (800) 700 - 20 - 99
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-12">
-            <nav>
-              <ul class="nav flex-column">
-                <li class="nav-item">
-                  <button v-on:click="rotateArrow" class="d-flex align-items-center justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInfo" aria-expanded="false" aria-controls="collapseInfo">
-                    Информация
-                    <ArrowDownIcon v-on:click="rotateArrow" class="arrow-down-collapse" color="#fff"/>
-                  </button>
-                  <div class="collapse" id="collapseInfo">
-                    <ul class="list-group">
-                      <li class="list-group-item">
-                        <a class="list-group-item-link" href="#">
-                          О нас
-                        </a>
-                      </li>
-                      <li class="list-group-item">
-                        <a class="list-group-item-link" href="#">
-                          Вакансии
-                        </a>
-                      </li>
-                      <li class="list-group-item">
-                        <a class="list-group-item-link" href="#">
-                          Аренда автобусов
-                        </a>
-                      </li>
-                      <li class="list-group-item">
-                        <a class="list-group-item-link" href="#">
-                          Контакты
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-                <li class="nav-item">
-                  <button v-on:click="rotateArrow" class="d-flex align-items-center justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSupport" aria-expanded="false" aria-controls="collapseSupport">
-                    Поддержка
-                    <ArrowDownIcon v-on:click="rotateArrow" class="arrow-down-collapse" color="#fff"/>
-                  </button>
-                  <!--                  TODO заполнить ссылками страницами-->
-                  <div class="collapse" id="collapseSupport">
-                    <ul class="list-group">
-                      <li class="list-group-item">
-                        <a class="list-group-item-link" href="#" data-bs-toggle="modal" data-bs-target="#WriteUsModal">
-                          Написать нам
-                        </a>
-                      </li>
-                      <li class="list-group-item">
-                        <a class="list-group-item-link" href="#">
-                          Возврат билета
-                        </a>
-                      </li>
-                      <li class="list-group-item">
-                        <a class="list-group-item-link" href="#">
-                          Бюро находок
-                        </a>
-                      </li>
-                      <li class="list-group-item">
-                        <a class="list-group-item-link" href="#">
-                          Вопросы и ответы
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-                <li class="nav-item">
-                  <button v-on:click="rotateArrow" class="d-flex align-items-center justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAnother" aria-expanded="false" aria-controls="collapseAnother">
-                    Остальное
-                    <ArrowDownIcon v-on:click="rotateArrow" class="arrow-down-collapse" color="#fff"/>
-                  </button>
-                  <!--                  TODO заполнить ссылками страницами-->
-                  <div class="collapse" id="collapseAnother">
-                    <ul class="list-group">
-                      <li class="list-group-item">
-                        <a class="list-group-item-link" href="#">
-                          Агентам
-                        </a>
-                      </li>
-                      <li class="list-group-item">
-                        <a class="list-group-item-link" href="#">
-                          Договор оферты
-                        </a>
-                      </li>
-                      <li class="list-group-item">
-                        <a class="list-group-item-link" href="#">
-                          Бюро находок
-                        </a>
-                      </li>
-                      <li class="list-group-item">
-                        <a class="list-group-item-link" href="#">
-                          Вопросы и ответы
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-                <li class="nav-item">
-                  <h3 class="title-col-footer">
-                    Есть вопросы?
-                    <br>
-                    Мы вам перезвоним
-                  </h3>
-                  <div class="callback-form d-flex justify-content-between align-items-end">
-                    <div class="form-floating">
-                      <input type="text" class="form-control shadow-none" id="floatingInput" placeholder="name@example.com">
-                      <label for="floatingInput">Введите ваше имя</label>
-                      <div class="callback-form-step d-flex justify-content-between">
-                        <span>Введите ваше имя</span>
-                        <span>Шаг 1</span>
-                      </div>
+          <div class="row">
+            <div class="col-12">
+              <nav>
+                <ul class="nav flex-column">
+                  <li class="nav-item">
+                    <button v-on:click="rotateArrow" class="d-flex align-items-center justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInfo" aria-expanded="false" aria-controls="collapseInfo">
+                      Информация
+                      <ArrowDownIcon v-on:click="rotateArrow" class="arrow-down-collapse" color="#fff"/>
+                    </button>
+                    <div class="collapse" id="collapseInfo">
+                      <ul class="list-group">
+<!--                        TODO доделать страницы-->
+<!--                        <li class="list-group-item">-->
+<!--                          <a class="list-group-item-link" href="#">-->
+<!--                            О нас-->
+<!--                          </a>-->
+<!--                        </li>-->
+<!--                        <li class="list-group-item">-->
+<!--                          <a class="list-group-item-link" href="#">-->
+<!--                            Вакансии-->
+<!--                          </a>-->
+<!--                        </li>-->
+                        <li class="list-group-item">
+                          <a class="list-group-item-link" target="_blank" href="https://arenda.evrotrans.net">
+                            Аренда автобусов
+                          </a>
+                        </li>
+                        <li class="list-group-item">
+                          <router-link to="/contacts" class="list-group-item-link">
+                            Контакты
+                          </router-link>
+                        </li>
+                      </ul>
                     </div>
-                    <div class="callback-form-next-step">
-                      <a href="#" class="next-step-link text-center">
-                        <img class="d-block" src="/img/footer/next-step.svg" alt="next-step">
-                        <span class="next-desc d-block">Далее</span>
-                      </a>
+                  </li>
+<!--                  <li class="nav-item">-->
+<!--                    <button v-on:click="rotateArrow" class="d-flex align-items-center justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSupport" aria-expanded="false" aria-controls="collapseSupport">-->
+<!--                      Поддержка-->
+<!--                      <ArrowDownIcon v-on:click="rotateArrow" class="arrow-down-collapse" color="#fff"/>-->
+<!--                    </button>-->
+<!--                    &lt;!&ndash;                  TODO заполнить ссылками страницами&ndash;&gt;-->
+<!--                    <div class="collapse" id="collapseSupport">-->
+<!--                      <ul class="list-group">-->
+<!--                        <li class="list-group-item">-->
+<!--                          <a class="list-group-item-link" href="#" data-bs-toggle="modal" data-bs-target="#WriteUsModal">-->
+<!--                            Написать нам-->
+<!--                          </a>-->
+<!--                        </li>-->
+<!--                        <li class="list-group-item">-->
+<!--                          <a class="list-group-item-link" href="#">-->
+<!--                            Возврат билета-->
+<!--                          </a>-->
+<!--                        </li>-->
+<!--                        <li class="list-group-item">-->
+<!--                          <a class="list-group-item-link" href="#">-->
+<!--                            Бюро находок-->
+<!--                          </a>-->
+<!--                        </li>-->
+<!--                        <li class="list-group-item">-->
+<!--                          <a class="list-group-item-link" href="#">-->
+<!--                            Вопросы и ответы-->
+<!--                          </a>-->
+<!--                        </li>-->
+<!--                      </ul>-->
+<!--                    </div>-->
+<!--                  </li>-->
+                  <li class="nav-item">
+                    <button v-on:click="rotateArrow" class="d-flex align-items-center justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAnother" aria-expanded="false" aria-controls="collapseAnother">
+                      Остальное
+                      <ArrowDownIcon v-on:click="rotateArrow" class="arrow-down-collapse" color="#fff"/>
+                    </button>
+                    <!--                  TODO заполнить ссылками страницами-->
+                    <div class="collapse" id="collapseAnother">
+                      <ul class="list-group">
+<!--                        <li class="list-group-item">-->
+<!--                          <a class="list-group-item-link" href="#">-->
+<!--                            Агентам-->
+<!--                          </a>-->
+<!--                        </li>-->
+                        <li class="list-group-item">
+                          <a class="list-group-item-link" target="_blank" href="https://evrotrans.net/upload/offer.pdf">
+                            Договор оферты
+                          </a>
+                        </li>
+                        <li class="list-group-item">
+                          <a class="list-group-item-link" target="_blank" href="https://evrotrans.net/upload/privacy%20policy.pdf">
+                            Политика конфиденциальности
+                          </a>
+                        </li>
+<!--                        <li class="list-group-item">-->
+<!--                          <a class="list-group-item-link" href="#">-->
+<!--                            Бюро находок-->
+<!--                          </a>-->
+<!--                        </li>-->
+<!--                        <li class="list-group-item">-->
+<!--                          <a class="list-group-item-link" href="#">-->
+<!--                            Вопросы и ответы-->
+<!--                          </a>-->
+<!--                        </li>-->
+                      </ul>
                     </div>
-                  </div>
-                </li>
-                <li class="nav-item">
+                  </li>
+<!--                  <li class="nav-item">-->
+<!--                    <h3 class="title-col-footer">-->
+<!--                      Есть вопросы?-->
+<!--                      <br>-->
+<!--                      Мы вам перезвоним-->
+<!--                    </h3>-->
+<!--                    <div class="callback-form d-flex justify-content-between align-items-end">-->
+<!--                      <div class="form-floating">-->
+<!--                        <input type="text" class="form-control shadow-none" id="floatingInput" placeholder="name@example.com">-->
+<!--                        <label for="floatingInput">Введите ваше имя</label>-->
+<!--                        <div class="callback-form-step d-flex justify-content-between">-->
+<!--                          <span>Введите ваше имя</span>-->
+<!--                          <span>Шаг 1</span>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                      <div class="callback-form-next-step">-->
+<!--                        <a href="#" class="next-step-link text-center">-->
+<!--                          <img class="d-block" src="/img/footer/next-step.svg" alt="next-step">-->
+<!--                          <span class="next-desc d-block">Далее</span>-->
+<!--                        </a>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </li>-->
+                  <li class="nav-item">
                   <span class="credits">
                         © 2022, ИП Яцунов С.П. Все права защищены.
                     </span>
-                </li>
-              </ul>
-            </nav>
+                  </li>
+                </ul>
+              </nav>
+            </div>
           </div>
-        </div>
       </div>
       <WriteUsModal/>
     </footer>

@@ -66,7 +66,10 @@
           </div>
           <div class="row flex-column-reverse flex-md-row">
             <div class="col-12 col-md-6">
-            <button :class="{'disabled': getHaveErrors || getEmptyFieldsFormPassengers || getEmptyFieldsFormBuyer}" class="btn btn-lg btn-primary">
+            <button
+                @click.prevent="transactionForVue"
+                :class="{'disabled': getHaveErrors || getEmptyFieldsFormPassengers || getEmptyFieldsFormBuyer}"
+                class="btn btn-lg btn-primary">
                 Перейти к оплате
               </button>
             </div>
@@ -153,7 +156,10 @@
         </div>
         <div class="row flex-column-reverse flex-md-row">
           <div class="col-12 col-md-6">
-            <button :class="{'disabled': getHaveErrors || getEmptyFieldsFormPassengers || getEmptyFieldsFormBuyer}" class="btn btn-lg btn-primary">
+            <button
+                @click.prevent="transactionForVue"
+                :class="{'disabled': getHaveErrors || getEmptyFieldsFormPassengers || getEmptyFieldsFormBuyer}"
+                class="btn btn-lg btn-primary">
               Перейти к оплате
             </button>
           </div>
@@ -179,6 +185,7 @@
 import CheckIcon from "@/components/icons/CheckIcon";
 import ArrowDownIcon from "@/components/icons/ArrowDownIcon";
 import {mapGetters} from "vuex";
+import axios from 'axios'
 export default {
   name: "BaggageRules",
   components: {ArrowDownIcon, CheckIcon},
@@ -192,7 +199,9 @@ export default {
     ...mapGetters([
         'getHaveErrors',
         'getEmptyFieldsFormPassengers',
-        'getEmptyFieldsFormBuyer'
+        'getEmptyFieldsFormBuyer',
+        'selectedSeat',
+        'getPassengers',
     ]),
   },
   methods: {
@@ -222,6 +231,24 @@ export default {
       else {
         arrow.classList.add('arrow-up')
       }
+    },
+    transactionForVue() {
+      const config = {
+        method: 'post',
+        url : 'https://api.evrotrans.net/APIet/transaction_for_vue.php',
+        headers: {'X-Requested-With': 'XMLHttpRequest'},
+        data : {
+          reisy: this.selectedSeat,
+          passengers: this.getPassengers
+        }
+      }
+      axios.request(config)
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
     }
   }
 }

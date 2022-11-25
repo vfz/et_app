@@ -195,13 +195,13 @@
                       type="text"
                       class="form-control"
                       :class="{
-                        'is-ok': !validatePassenger('document',passenger.documentInfo), 
-                        'is-error' : validatePassenger('document',passenger.documentInfo)}"
+                        'is-ok': !validatePassenger('documentInfo',passenger.documentInfo,passenger.document),
+                        'is-error' : validatePassenger('documentInfo',passenger.documentInfo,passenger.document)}"
                       :id="'documentInfo'+index"
                       placeholder="01 23 456789">
-                      <div 
-                        :class="{'d-none': !validatePassenger('document',passenger.documentInfo)}" 
-                        class="error-feedback">{{validatePassenger('document',passenger.documentInfo)}}</div>
+                      <div
+                          :class="{'d-none': !validatePassenger('documentInfo',passenger.documentInfo,passenger.document)}"
+                          class="error-feedback">{{validatePassenger('documentInfo',passenger.documentInfo,passenger.document)}}</div>
                     </div>
                   </div>
                 </div>

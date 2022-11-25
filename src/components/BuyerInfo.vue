@@ -133,10 +133,16 @@ export default {
         if (value === '') {
           return 'заполните фамилию'
         }
+        else {
+          return false
+        }
       }
       if (fieldType === 'firstName') {
         if (value === '') {
           return 'заполните имя'
+        }
+        else {
+          return false
         }
       }
       if (fieldType === 'email') {

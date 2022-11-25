@@ -31,12 +31,6 @@ export default {
             secondName: '',
             email: '',
             number: '',
-            errors: {
-                secondName: '',
-                firstName: '',
-                email: '',
-                number: ''
-            }
         },
         haveErrors: false,
         promoCode: '',

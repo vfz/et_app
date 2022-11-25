@@ -156,9 +156,14 @@
                           class="form-control"
                           :id="'citizenship'+index"
                           >
-                            <option v-for="option in getCitizenships" 
-                            :key="option.code" :value="option.code"  
-                            class="form-option">{{option.name}}</option>
+                            <option
+                                v-for="option in getCitizenships"
+                                :key="option.code"
+                                :value="option.code"
+                                :selected="option.code === '643'"
+                                class="form-option">
+                                {{option.name}}
+                            </option>
                           </select>
 
                         <div 

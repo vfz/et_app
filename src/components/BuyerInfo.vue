@@ -27,58 +27,80 @@
                 <div class="d-block">
                   <label for="secondNameBuyer" class="form-label">Фамилия</label>
                   <input
-                      @input="updateSecondNameBuyer($event); validateSecondNameBuyer($event)"
+                      @input="updateSecondNameBuyer($event)"
                       :value="getBuyerInfo.secondName"
                       type="text"
                       class="form-control"
-                      :class="{'is-ok': getBuyerInfo.secondName, 'is-error' : getBuyerInfo.errors.secondName}"
+                      :class="{
+                        'is-ok': !validateBuyer('secondName',getBuyerInfo.secondName),
+                        'is-error' : validateBuyer('secondName', getBuyerInfo.secondName)}"
                       id="secondNameBuyer"
                       placeholder="Иванов">
-                  <div :class="{'d-none': !getBuyerInfo.errors.secondName}" class="error-feedback">{{getBuyerInfo.errors.secondName}}</div>
+                  <div :class="{
+                        'd-none': !validateBuyer('secondName', getBuyerInfo.secondName)}"
+                       class="error-feedback">
+                    {{validateBuyer('secondName', getBuyerInfo.secondName)}}
+                  </div>
                 </div>
               </div>
               <div class="col-12 col-lg-6 col-xl mb-lg-4 mb-xl-0">
                 <div class="d-block">
                   <label for="firstNameBuyer" class="form-label">Имя</label>
                   <input
-                      @input="updateFirstNameBuyer($event); validateFirstNameBuyer($event)"
+                      @input="updateFirstNameBuyer($event)"
                       :value="getBuyerInfo.firstName"
                       type="text"
                       class="form-control"
-                      :class="{'is-ok': getBuyerInfo.firstName, 'is-error' : getBuyerInfo.errors.firstName}"
+                      :class="{
+                        'is-ok': !validateBuyer('firstName',getBuyerInfo.firstName),
+                        'is-error' : validateBuyer('firstName', getBuyerInfo.firstName)}"
                       id="firstNameBuyer"
                       placeholder="Иван">
-                  <div :class="{'d-none': !getBuyerInfo.errors.firstName}" class="error-feedback">{{getBuyerInfo.errors.firstName}}</div>
+                  <div :class="{
+                        'd-none': !validateBuyer('firstName', getBuyerInfo.secondName)}"
+                       class="error-feedback">
+                    {{validateBuyer('firstName', getBuyerInfo.firstName)}}
+                  </div>
                 </div>
               </div>
               <div class="col-12 col-lg-6 col-xl">
                 <div class="d-block">
                   <label for="mailBuyer" class="form-label">Электронная почта</label>
                   <input
-                      @focusout="validateEmailBuyer($event)"
                       @input="updateEmailBuyer($event);"
                       :value="getBuyerInfo.email"
                       type="text"
                       class="form-control"
-                      :class="{'is-ok': getBuyerInfo.email, 'is-error' : getBuyerInfo.errors.email}"
+                      :class="{
+                        'is-ok': !validateBuyer('email',getBuyerInfo.email),
+                        'is-error' : validateBuyer('email', getBuyerInfo.email)}"
                       id="mailBuyer"
                       placeholder="name@mail.ru">
-                  <div :class="{'d-none': !getBuyerInfo.errors.email}" class="error-feedback">{{getBuyerInfo.errors.email}}</div>
+                  <div :class="{
+                        'd-none': !validateBuyer('email', getBuyerInfo.email)}"
+                       class="error-feedback">
+                    {{validateBuyer('email', getBuyerInfo.email)}}
+                  </div>
                 </div>
               </div>
               <div class="col-12 col-lg-6 col-xl">
                 <div class="d-block">
                   <label for="numberBuyer" class="form-label">Телефон</label>
                   <input
-                      @focusout="validateNumberBuyer($event);"
                       @input="updateNumberBuyer($event);"
                       :value="getBuyerInfo.number"
                       type="text"
                       class="form-control"
-                      :class="{'is-ok': getBuyerInfo.number, 'is-error' : getBuyerInfo.errors.number}"
+                      :class="{
+                        'is-ok': !validateBuyer('number',getBuyerInfo.number),
+                        'is-error' : validateBuyer('number', getBuyerInfo.number)}"
                       id="numberBuyer"
                       placeholder="+7 (___)-___-__-__">
-                  <div :class="{'d-none': !getBuyerInfo.errors.number}" class="error-feedback">{{getBuyerInfo.errors.number}}</div>
+                  <div :class="{
+                        'd-none': !validateBuyer('number', getBuyerInfo.number)}"
+                       class="error-feedback">
+                    {{validateBuyer('number', getBuyerInfo.number)}}
+                  </div>
                 </div>
               </div>
             </div>
@@ -105,7 +127,37 @@ export default {
         'validateFirstNameBuyer',
         'validateEmailBuyer',
         'validateNumberBuyer'
-    ])
+    ]),
+    validateBuyer(fieldType, value) {
+      if (fieldType === 'secondName') {
+        if (value === '') {
+          return 'заполните фамилию'
+        }
+      }
+      if (fieldType === 'firstName') {
+        if (value === '') {
+          return 'заполните имя'
+        }
+      }
+      if (fieldType === 'email') {
+        let regexpEmail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+        if (regexpEmail.test(value)) {
+          return false
+        }
+        else {
+          return 'Введите корректно почту name@mail.ru'
+        }
+      }
+      if (fieldType === 'number') {
+        let regexpNumber =/(^8|7|\+7)((\d{10})|(\s\(\d{3}\)\s\d{3}\s\d{2}\s\d{2}))/
+        if (regexpNumber.test(value)) {
+          return false
+        }
+        else {
+          return 'Введите корретно номер +7 (___)-___-__-__ '
+        }
+      }
+    }
   },
   computed: {
     ...mapGetters([

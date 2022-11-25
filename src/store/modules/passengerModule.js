@@ -308,65 +308,6 @@ export default {
                 console.log(error, 'ошибка гражданство')
             }
         },
-
-        //Валидация для покупателя
-        validateSecondNameBuyer(ctx, event) {
-            const value = event.target.value;
-            const formField = 'secondName'
-            if (value === '') {
-                ctx.commit('updateHaveErrors', true)
-                ctx.commit('updateErrorBuyer', ['заполните фамилию', formField]);
-            }
-            if (value !== '') {
-                ctx.commit('updateHaveErrors', false)
-                ctx.commit('updateErrorBuyer', ['', formField])
-            }
-        },
-        validateFirstNameBuyer(ctx, event) {
-            const value = event.target.value;
-            const formField = 'firstName'
-            if (value === '') {
-                ctx.commit('updateHaveErrors', true)
-                ctx.commit('updateErrorBuyer', ['заполните имя', formField]);
-            }
-            if (value !== '') {
-                ctx.commit('updateHaveErrors', false)
-                ctx.commit('updateErrorBuyer', ['', formField])
-            }
-        },
-        validateEmailBuyer(ctx, event) {
-            const value = event.target.value;
-            const formField = 'email'
-            if (value === '') {
-                ctx.commit('updateHaveErrors', true)
-                ctx.commit('updateErrorBuyer', ['заполните почту', formField]);
-            }
-            if (value !== '') {
-                ctx.commit('updateHaveErrors', false)
-                ctx.commit('updateErrorBuyer', ['', formField])
-            }
-            if (!value.includes('@')) {
-                ctx.commit('updateHaveErrors', true)
-                ctx.commit('updateErrorBuyer', ['Почта указана неверно', formField]);
-            }
-        },
-        validateNumberBuyer(ctx, event) {
-            const value = event.target.value;
-            const formField = 'number'
-            const regex = /(^8|7|\+7)((\d{10})|(\s\(\d{3}\)\s\d{3}\s\d{2}\s\d{2}))/
-            if (value === '') {
-                ctx.commit('updateHaveErrors', true)
-                ctx.commit('updateErrorBuyer', ['заполните номер', formField]);
-            }
-            if (!regex.test(value)) {
-                ctx.commit('updateHaveErrors', true)
-                ctx.commit('updateErrorBuyer', ['Неверно заполнен номер', formField])
-            } else {
-                ctx.commit('updateHaveErrors', false)
-                ctx.commit('updateErrorBuyer', ['', formField])
-            }
-
-        },
     },
     getters: {
         getPassengers(state) {

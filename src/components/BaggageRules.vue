@@ -202,6 +202,7 @@ export default {
         'getEmptyFieldsFormBuyer',
         'selectedSeat',
         'getPassengers',
+        'getBuyerInfo'
     ]),
   },
   methods: {
@@ -237,10 +238,11 @@ export default {
       const config = {
         method: 'post',
         url : 'https://api.evrotrans.net/APIet/transaction_for_vue.php',
-        data : [{
+        data : {
           'reisy': this.selectedSeat.filter(reis=>(reis.is_selected)),
-          'passengers': this.getPassengers
-      }]
+          'passengers': this.getPassengers,
+          'buyer':this.getBuyerInfo
+      }
       }
       axios.request(config)
           .then(function (response) {

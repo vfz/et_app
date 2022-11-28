@@ -68,7 +68,7 @@
             <div class="col-12 col-md-6">
             <button
                 @click.prevent="transactionForVue"
-                :class="{'disabled': getHaveErrors || getEmptyFieldsFormPassengers || getEmptyFieldsFormBuyer}"
+                :class="{'disabled': !validateButton(selectedSeat, getPassengers, getBuyerInfo)}"
                 class="btn btn-lg btn-primary">
                 Перейти к оплате
               </button>
@@ -158,7 +158,7 @@
           <div class="col-12 col-md-6">
             <button
                 @click.prevent="transactionForVue"
-                :class="{'disabled': getHaveErrors || getEmptyFieldsFormPassengers || getEmptyFieldsFormBuyer}"
+                :class="{'disabled': !validateButton(selectedSeat, getPassengers, getBuyerInfo)}"
                 class="btn btn-lg btn-primary">
               Перейти к оплате
             </button>
@@ -233,12 +233,28 @@ export default {
         arrow.classList.add('arrow-up')
       }
     },
-    //рейсы больше нуля
-    //если проверки нет, то false
-    //passengers - пройтись по полям, если возвращает пустое поле, возвращает false
-    //buyer - пройтись по полям,
-    //если проверки прошли возвращает true
-
+    validateButton(reisy,passengers,buyer) {
+      if (reisy.length === 0) {
+        return false
+      }
+      if (passengers) {
+        if (this.getEmptyFieldsFormPassengers) {
+          return false
+        }
+      }
+      else {
+        return false
+      }
+      if (buyer) {
+        if (this.getEmptyFieldsFormBuyer) {
+          return false
+        }
+      }
+      else {
+        return false
+      }
+      return true
+    }
 
     // transactionForVue() {
     //

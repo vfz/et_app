@@ -233,25 +233,32 @@ export default {
         arrow.classList.add('arrow-up')
       }
     },
-    transactionForVue() {
+    //рейсы больше нуля
+    //если проверки нет, то false
+    //passengers - пройтись по полям, если возвращает пустое поле, возвращает false
+    //buyer - пройтись по полям,
+    //если проверки прошли возвращает true
 
-      const config = {
-        method: 'post',
-        url : 'https://api.evrotrans.net/APIet/transaction_for_vue.php',
-        data : {
-          'reisy': this.selectedSeat.filter(reis=>(reis.is_selected)),
-          'passengers': this.getPassengers,
-          'buyer':this.getBuyerInfo
-      }
-      }
-      axios.request(config)
-          .then(function (response) {
-            //console.log(response);
-          })
-          .catch(function (error) {
-           // console.log(error)
-          })
-    }
+
+    // transactionForVue() {
+    //
+    //   const config = {
+    //     method: 'post',
+    //     url : 'https://api.evrotrans.net/APIet/transaction_for_vue.php',
+    //     data : {
+    //       'reisy': this.selectedSeat.filter(reis=>(reis.is_selected)),
+    //       'passengers': this.getPassengers,
+    //       'buyer':this.getBuyerInfo
+    //   }
+    //   }
+    //   axios.request(config)
+    //       .then(function (response) {
+    //         //console.log(response);
+    //       })
+    //       .catch(function (error) {
+    //        // console.log(error)
+    //       })
+    // }
   }
 }
 </script>

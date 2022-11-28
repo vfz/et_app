@@ -302,7 +302,6 @@ export default {
 
 
       }
-      // TODO доделать валидацию с документам
       if (fieldType === 'documentInfo') {
         // Проверка паспорта РФ
         if(additional === '0'){

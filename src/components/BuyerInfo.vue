@@ -122,11 +122,7 @@ export default {
         'updateSecondNameBuyer',
         'updateFirstNameBuyer',
         'updateEmailBuyer',
-        'updateNumberBuyer',
-        'validateSecondNameBuyer',
-        'validateFirstNameBuyer',
-        'validateEmailBuyer',
-        'validateNumberBuyer'
+        'updateNumberBuyer'
     ]),
     validateBuyer(fieldType, value) {
       if (fieldType === 'secondName') {

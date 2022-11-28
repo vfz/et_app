@@ -62,12 +62,12 @@
                       type="text"
                       class="form-control"
                       :class="{
-                        'is-ok': !validatePassenger('secondName',passenger.secondName), 
+                        'is-ok': !validatePassenger('secondName',passenger.secondName),
                         'is-error' : validatePassenger('secondName', passenger.secondName)}"
                       :id="'secondName' + index"
                       placeholder="Иванов">
                   <div :class="{
-                    'd-none': !validatePassenger('secondName', passenger.secondName)}" 
+                    'd-none': !validatePassenger('secondName', passenger.secondName)}"
                     class="error-feedback">
                     {{validatePassenger('secondName', passenger.secondName)}}
                   </div>
@@ -81,12 +81,12 @@
                       type="text"
                       class="form-control"
                       :class="{
-                        'is-ok': !validatePassenger('firstName',passenger.firstName), 
+                        'is-ok': !validatePassenger('firstName',passenger.firstName),
                         'is-error' : validatePassenger('firstName',passenger.firstName)}"
                       :id="'firstName'+ index"
                       placeholder="Иван">
                   <div :class="{
-                    'd-none': !validatePassenger('firstName',passenger.firstName)}" 
+                    'd-none': !validatePassenger('firstName',passenger.firstName)}"
                     class="error-feedback">{{validatePassenger('firstName',passenger.firstName)}}</div>
                 </div>
                 <!-- MiddleName -->
@@ -98,12 +98,12 @@
                       type="text"
                       class="form-control"
                       :class="{
-                        'is-ok': !validatePassenger('middleName',passenger.middleName), 
+                        'is-ok': !validatePassenger('middleName',passenger.middleName),
                         'is-error' : validatePassenger('middleName',passenger.middleName)}"
                       :id="'MiddleName' + index"
                       placeholder="Иванович">
-                  <div 
-                    :class="{'d-none': !validatePassenger('middleName',passenger.middleName)}" 
+                  <div
+                    :class="{'d-none': !validatePassenger('middleName',passenger.middleName)}"
                     class="error-feedback">{{validatePassenger('middleName',passenger.middleName)}}</div>
                 </div>
                 <!-- birthday -->
@@ -115,14 +115,14 @@
                       type="date"
                       class="form-control"
                       :class="{
-                        'is-ok': !validatePassenger('birthday',passenger.birthday,passenger.isAdult), 
+                        'is-ok': !validatePassenger('birthday',passenger.birthday,passenger.isAdult),
                         'is-error' :validatePassenger('birthday',passenger.birthday,passenger.isAdult)}"
                       :id="'birthday'+index"
                       pattern="\d{4}-\d{2}-\d{2}"
                       placeholder="дд.мм.гггг"
                       required>
-                  <div 
-                    :class="{'d-none': !validatePassenger('birthday',passenger.birthday,passenger.isAdult)}" 
+                  <div
+                    :class="{'d-none': !validatePassenger('birthday',passenger.birthday,passenger.isAdult)}"
                     class="error-feedback">{{validatePassenger('birthday',passenger.birthday,passenger.isAdult)}}</div>
                 </div>
               </div>
@@ -178,12 +178,12 @@
                         @input="updateDocument($event);"
                         :value="passenger.document"
                         :class="{
-                          'is-ok': !validatePassenger('document',passenger.document), 
+                          'is-ok': !validatePassenger('document',passenger.document),
                           'is-error' : validatePassenger('document',passenger.document)}"
                         class="form-control"
                         :id="'document'+index"
                         >
-                        <option v-for="option in passenger.isAdult ? getDocumentTypes : getDocumentTypes.filter(opt=>(['4','2','3'].includes(opt.id)))" 
+                        <option v-for="option in passenger.isAdult ? getDocumentTypes : getDocumentTypes.filter(opt=>(['4','2','3'].includes(opt.id)))"
                         :key="option.id" :value="option.id"  >{{option.name}}</option>
                       </select>
                     <div :class="{'d-none': !validatePassenger('document',passenger.document)}" class="error-feedback">{{validatePassenger('document',passenger.document)}}</div>
@@ -197,12 +197,12 @@
                       type="text"
                       class="form-control"
                       :class="{
-                        'is-ok': !validatePassenger('documentInfo',passenger.documentInfo,passenger.document), 
+                        'is-ok': !validatePassenger('documentInfo',passenger.documentInfo,passenger.document),
                         'is-error' : validatePassenger('documentInfo',passenger.documentInfo,passenger.document)}"
                       :id="'documentInfo'+index"
                       placeholder="01 23 456789">
-                  <div 
-                    :class="{'d-none': !validatePassenger('documentInfo',passenger.documentInfo,passenger.document)}" 
+                  <div
+                    :class="{'d-none': !validatePassenger('documentInfo',passenger.documentInfo,passenger.document)}"
                     class="error-feedback">{{validatePassenger('documentInfo',passenger.documentInfo,passenger.document)}}</div>
                 </div>
               </div>
@@ -300,7 +300,7 @@ export default {
           return 'Детский билет до 12 лет'
         }
         if(additional && age>100){
-          return 'Вам больше 100 лет?' 
+          return 'Вам больше 100 лет?'
         }
 
 

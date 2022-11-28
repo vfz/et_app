@@ -19,6 +19,16 @@ export default {
             documentInfo: '',
             isAdult: true,
             age: 0,
+            errors: {
+                secondName: 'Заполните фамилию',
+                firstName: 'Заполните имя',
+                middleName: 'Заполните отчество',
+                birthday: 'Заполните дату рождения',
+                gender: 'Выберите пол',
+                citizenship: '',
+                document: '',
+                documentInfo: 'Серия и номер паспорта состоит из 10 цифр'
+            }
         }],
         documentTypes: [],
         citizenShips: [],
@@ -130,6 +140,9 @@ export default {
                     }
                 }
             })
+        },
+        updateValidateError(state, [id, fieldType, value]) {
+            state.passengers[id].errors[fieldType] = value
         }
     },
     actions: {
@@ -158,7 +171,17 @@ export default {
                     document: isAdult ? '0' : '4',
                     documentInfo: '',
                     isAdult: isAdult,
-                    age: 0
+                    age: 0,
+                    errors: {
+                        secondName: 'Заполните фамилию',
+                        firstName: 'Заполните имя',
+                        middleName: 'Заполните отчество',
+                        birthday: 'Заполните дату рождения',
+                        gender: 'Выберите пол',
+                        citizenship: '',
+                        document: '',
+                        documentInfo: 'Серия и номер паспорта состоит из 10 цифр'
+                    }
                 }
                 ctx.commit('addPassenger', passenger)
                 ctx.commit('updateDefaultsSeat', ctx.rootGetters.getPassengers)
@@ -189,6 +212,162 @@ export default {
         },
         setActiveTab(ctx, id) {
             ctx.commit('activeTab', id)
+        },
+        validateForm(ctx, [id ,fieldType, event, additional=true]){
+            const value = event.target.value
+            if (fieldType === 'secondName') {
+                if (value === '') {
+                    ctx.commit('updateSecondName', ['', id])
+                    ctx.commit('updateValidateError', [id, fieldType, 'Заполните фамилию'])
+                }
+                else {
+                    ctx.commit('updateSecondName', [value, id])
+                    ctx.commit('updateValidateError', [id, fieldType, ''])
+                }
+            }
+            if (fieldType === 'firstName') {
+                if (value === '') {
+                    ctx.commit('updateFirstName', ['', id])
+                    ctx.commit('updateValidateError', [id, fieldType, 'Заполните имя'])
+                }
+                else {
+                    ctx.commit('updateFirstName', [value, id])
+                    ctx.commit('updateValidateError', [id, fieldType, ''])
+                }
+            }
+            if (fieldType === 'middleName') {
+                if (value === '') {
+                    ctx.commit('updateMiddleName', ['', id])
+                    ctx.commit('updateValidateError', [id, fieldType, 'Заполните отчество'])
+                }
+                else {
+                    ctx.commit('updateMiddleName', [value, id])
+                    ctx.commit('updateValidateError', [id, fieldType, ''])
+                }
+            }
+            if (fieldType === 'birthday') {
+                if (value === '') {
+                    ctx.commit('updateBirthday', ['', id])
+                    ctx.commit('updateValidateError', [id, fieldType, 'Заполните дату рождения'])
+                    return false
+                }
+                let today = new Date();
+                let birthDate = new Date(value);
+                let age = today.getFullYear() - birthDate.getFullYear();
+                let m = today.getMonth() - birthDate.getMonth();
+                let d = today.getDay() - birthDate.getDay();
+
+                if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                    age--;
+                }
+                if ( age === 0 ) {
+                    m = 12 + m;
+                    if (d < 0 || (d === 0 && today.getDate() < birthDate.getDate())) {
+                        m--;
+                    }
+                }
+                if (age < 0) {
+                    ctx.commit('updateBirthday', [value, id])
+                    ctx.commit('updateValidateError', [id, fieldType, 'Укажиите дату рождения корректно'])
+                    return false
+                }
+
+                if(!additional && age>12){
+                    ctx.commit('updateBirthday', [value, id])
+                    ctx.commit('updateValidateError', [id, fieldType, 'Детский билет до 12 лет'])
+                    return false
+                }
+                if(additional && age>100){
+                    console.log('123')
+                    ctx.commit('updateBirthday', [value, id])
+                    ctx.commit('updateValidateError', [id, fieldType, 'Вам больше 100 лет?'])
+                    return false
+                }
+                ctx.commit('updateBirthday', [value, id])
+                ctx.commit('updateValidateError', [id, fieldType, ''])
+            }
+            if (fieldType === 'gender') {
+                if (value !=='0' && value !=='1') {
+                    ctx.commit('updateGender', ['', id])
+                    ctx.commit('updateValidateError', [id, fieldType, 'Выберите пол'])
+                }
+                else {
+                    ctx.commit('updateGender', [value, id])
+                    ctx.commit('updateValidateError', [id, fieldType, ''])
+                }
+            }
+            if (fieldType === 'citizenship') {
+                if (value === '') {
+                    ctx.commit('updateCitizenship', ['', id])
+                    ctx.commit('updateValidateError', [id, fieldType, 'Заполните гражданство'])
+                }
+                else {
+                    ctx.commit('updateCitizenship', [value, id])
+                    ctx.commit('updateValidateError', [id, fieldType, ''])
+                }
+            }
+            if (fieldType === 'document') {
+                let documentBefore = ctx.state.passengers[id].document
+                if (documentBefore !== value) {
+                    ctx.commit('updateDocumentInfo', ['', id])
+                    ctx.commit('updateValidateError', [id, 'documentInfo', 'Укажите новые данные'])
+                }
+                if (value === '') {
+                    ctx.commit('updateDocument', ['', id])
+                    ctx.commit('updateValidateError', [id, fieldType, 'Заполните документ'])
+                }
+                else {
+                    ctx.commit('updateDocument', [value, id])
+                    ctx.commit('updateValidateError', [id, fieldType, ''])
+                }
+            }
+            if (fieldType === 'documentInfo') {
+                // Проверка паспорта РФ
+                if(additional === '0'){
+                    const regexpPassport = /^\d{10}$/
+                    if (!regexpPassport.test(value)) {
+                        ctx.commit('updateDocumentInfo', ['', id])
+                        ctx.commit('updateValidateError', [id, fieldType, 'Серия и номер паспорта состоит из 10 цифр'])
+                    }
+                    else {
+                        ctx.commit('updateDocumentInfo', [value, id])
+                        ctx.commit('updateValidateError', [id, fieldType, ''])
+                    }
+                }
+                // Проверка загранпаспорта РФ
+                if (additional === '2') {
+                    const regexpPassport = /^\d{9}$/
+                    if (!regexpPassport.test(value)) {
+                        ctx.commit('updateDocumentInfo', ['', id])
+                        ctx.commit('updateValidateError', [id, fieldType, 'Серия и номер паспорта состоит из 9 цифр'])
+                    }
+                }
+                //Проверка свидетельства о рождении
+                if(additional === '4' || additional === '11'){
+                    let regexpDoc = /^[IVXLCDM]{1,3}[А-Я^]{2}[0-9]{6}$/g
+                    if (regexpDoc.test(value)) {
+                        ctx.commit('updateDocumentInfo', [value, id])
+                        ctx.commit('updateValidateError', [id, fieldType, ''])
+                    }
+                    else {
+                        ctx.commit('updateDocumentInfo', ['', id])
+                        ctx.commit('updateValidateError', [id, fieldType, 'Введите корректные данные (IIДН123456)'])
+                    }
+                }
+                //Проверка Военного билета военнослужащего или куранта военной образовательной организации
+                if (additional === '1' || additional === '5' || additional === '8') {
+                    let regexpDoc = /[А-Я^]{2}[0-9]{7}$/g
+                    if (regexpDoc.test(value)) {
+                        ctx.commit('updateDocumentInfo', [value, id])
+                        ctx.commit('updateValidateError', [id, fieldType, ''])
+                    }
+                    else {
+                        ctx.commit('updateDocumentInfo', ['', id])
+                        ctx.commit('updateValidateError', [id, fieldType, 'Введите корректные данные (AC9876543)'])
+                    }
+                }
+            }
+
         },
         updateSecondName(ctx, event) {
             const value = event.target.value;

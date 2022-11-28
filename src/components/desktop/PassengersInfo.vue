@@ -57,73 +57,73 @@
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="secondName" class="form-label">Фамилия</label>
                   <input
-                      @input="updateSecondName($event);"
+                      @input="validateForm([index, 'secondName', $event]);"
                       :value="passenger.secondName"
                       type="text"
                       class="form-control"
                       :class="{
-                        'is-ok': !validatePassenger('secondName',passenger.secondName),
-                        'is-error' : validatePassenger('secondName', passenger.secondName)}"
+                        'is-ok': !passenger.errors.secondName,
+                        'is-error' : passenger.errors.secondName}"
                       :id="'secondName' + index"
                       placeholder="Иванов">
                   <div :class="{
-                    'd-none': !validatePassenger('secondName', passenger.secondName)}"
+                    'd-none': !passenger.errors.secondName}"
                     class="error-feedback">
-                    {{validatePassenger('secondName', passenger.secondName)}}
+                    {{passenger.errors.secondName}}
                   </div>
                 </div>
                 <!-- firstName -->
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="firstName" class="form-label">Имя</label>
                   <input
-                      @input="updateFirstName($event);"
+                      @input="validateForm([index, 'firstName', $event]);"
                       :value="passenger.firstName"
                       type="text"
                       class="form-control"
                       :class="{
-                        'is-ok': !validatePassenger('firstName',passenger.firstName),
-                        'is-error' : validatePassenger('firstName',passenger.firstName)}"
+                        'is-ok': !passenger.errors.firstName,
+                        'is-error' : passenger.errors.firstName}"
                       :id="'firstName'+ index"
                       placeholder="Иван">
                   <div :class="{
-                    'd-none': !validatePassenger('firstName',passenger.firstName)}"
-                    class="error-feedback">{{validatePassenger('firstName',passenger.firstName)}}</div>
+                    'd-none': !passenger.errors.firstName}"
+                    class="error-feedback">{{passenger.errors.firstName}}</div>
                 </div>
                 <!-- MiddleName -->
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="MiddleName" class="form-label">Отчество</label>
                   <input
-                      @input="updateMiddleName($event);"
+                      @input="validateForm([index, 'middleName', $event]);"
                       :value="passenger.middleName"
                       type="text"
                       class="form-control"
                       :class="{
-                        'is-ok': !validatePassenger('middleName',passenger.middleName),
-                        'is-error' : validatePassenger('middleName',passenger.middleName)}"
+                        'is-ok': !passenger.errors.middleName,
+                        'is-error' : passenger.errors.middleName}"
                       :id="'MiddleName' + index"
                       placeholder="Иванович">
                   <div
-                    :class="{'d-none': !validatePassenger('middleName',passenger.middleName)}"
-                    class="error-feedback">{{validatePassenger('middleName',passenger.middleName)}}</div>
+                    :class="{'d-none': !passenger.errors.middleName}"
+                    class="error-feedback">{{passenger.errors.middleName}}</div>
                 </div>
                 <!-- birthday -->
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="birthday" class="form-label">Дата рождения</label>
                   <input
-                      @input="updateBirthday($event);"
+                      @input="validateForm([index, 'birthday', $event, passenger.isAdult])"
                       :value="passenger.birthday"
                       type="date"
                       class="form-control"
                       :class="{
-                        'is-ok': !validatePassenger('birthday',passenger.birthday,passenger.isAdult),
-                        'is-error' :validatePassenger('birthday',passenger.birthday,passenger.isAdult)}"
+                        'is-ok': !passenger.errors.birthday,
+                        'is-error' :passenger.errors.birthday}"
                       :id="'birthday'+index"
                       pattern="\d{4}-\d{2}-\d{2}"
                       placeholder="дд.мм.гггг"
                       required>
                   <div
-                    :class="{'d-none': !validatePassenger('birthday',passenger.birthday,passenger.isAdult)}"
-                    class="error-feedback">{{validatePassenger('birthday',passenger.birthday,passenger.isAdult)}}</div>
+                    :class="{'d-none': !passenger.errors.birthday}"
+                    class="error-feedback">{{passenger.errors.birthday}}</div>
                 </div>
               </div>
               <div class="row gy-2">
@@ -132,29 +132,29 @@
                   <label for="gender" class="form-label">Пол</label>
                   <div class="position-relative">
                     <select
-                        @input="updateGender($event);"
+                        @input="validateForm([index, 'gender', $event]);"
                         :value="passenger.gender"
                         class="form-control form-control-select"
                         :id="'gender'+index"
-                        :class="{'is-ok': !validatePassenger('gender',passenger.gender), 'is-error' : validatePassenger('gender',passenger.gender)}">
+                        :class="{'is-ok': !passenger.errors.gender,
+                        'is-error' : passenger.errors.gender}">
                       <option value="0">Женский</option>
                       <option selected value="1">Мужской</option>
                     </select>
                     <div v-if="!passenger.gender" class="select-placeholder position-absolute pe-none">Мужской</div>
-                    <div :class="{'d-none': !validatePassenger('gender',passenger.gender)}" class="error-feedback">{{validatePassenger('gender',passenger.gender)}}</div>
+                    <div :class="{'d-none': !passenger.errors.gender}" class="error-feedback">{{passenger.errors.gender}}</div>
                   </div>
                 </div>
                 <!-- citizenship -->
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="citizenship" class="form-label">Гражданство</label>
-<!--                  TODO при клике выводить список-->
                   <div class="position-relative">
                     <select
-                        @input="updateCitizenship($event);"
+                        @input="validateForm([index,'citizenship',$event]);"
                         :value="passenger.citizenship"
                         :class="{
-                           'is-ok': !validatePassenger('citizenship',passenger.citizenship),
-                           'is-error' : validatePassenger('citizenship',passenger.citizenship)}"
+                           'is-ok': !passenger.errors.citizenship,
+                           'is-error' : passenger.errors.citizenship}"
                         class="form-control"
                         :id="'citizenship'+index"
                     >
@@ -167,7 +167,7 @@
                         {{option.name}}
                       </option>
                     </select>
-                    <div :class="{'d-none': !validatePassenger('citizenship',passenger.citizenship)}" class="error-feedback">{{validatePassenger('citizenship',passenger.citizenship)}}</div>
+                    <div :class="{'d-none': !passenger.errors.citizenship}" class="error-feedback">{{passenger.errors.citizenship}}</div>
                   </div>
                 </div>
                 <!-- document -->
@@ -175,35 +175,36 @@
                   <label for="document" class="form-label">Документ</label>
                   <div class="position-relative">
                     <select
-                        @input="updateDocument($event);"
+                        @input="validateForm([index, 'document', $event])"
                         :value="passenger.document"
                         :class="{
-                          'is-ok': !validatePassenger('document',passenger.document),
-                          'is-error' : validatePassenger('document',passenger.document)}"
+                          'is-ok': !passenger.errors.document,
+                          'is-error' : passenger.errors.document}"
                         class="form-control"
                         :id="'document'+index"
                         >
                         <option v-for="option in passenger.isAdult ? getDocumentTypes : getDocumentTypes.filter(opt=>(['4','2','3'].includes(opt.id)))"
                         :key="option.id" :value="option.id"  >{{option.name}}</option>
                       </select>
-                    <div :class="{'d-none': !validatePassenger('document',passenger.document)}" class="error-feedback">{{validatePassenger('document',passenger.document)}}</div>
+                    <div :class="{'d-none': !passenger.errors.document}" class="error-feedback">{{passenger.errors.document}}</div>
                   </div>
                 </div>
                 <!-- documentInfo -->
                 <div class="col-3 col-lg-6 col-xl-3">
                   <label for="documentInfo" class="form-label">Серия и номер документа</label>
                   <input
-                      @input="updateDocumentInfo($event);"
+                      @input="validateForm([index,'documentInfo', $event, passenger.document])"
+                      :value="passenger.documentInfo"
                       type="text"
                       class="form-control"
                       :class="{
-                        'is-ok': !validatePassenger('documentInfo',passenger.documentInfo,passenger.document),
-                        'is-error' : validatePassenger('documentInfo',passenger.documentInfo,passenger.document)}"
+                        'is-ok': !passenger.errors.documentInfo,
+                        'is-error' : passenger.errors.documentInfo}"
                       :id="'documentInfo'+index"
                       placeholder="01 23 456789">
                   <div
-                    :class="{'d-none': !validatePassenger('documentInfo',passenger.documentInfo,passenger.document)}"
-                    class="error-feedback">{{validatePassenger('documentInfo',passenger.documentInfo,passenger.document)}}</div>
+                    :class="{'d-none': !passenger.errors.documentInfo}"
+                    class="error-feedback">{{passenger.errors.documentInfo}}</div>
                 </div>
               </div>
             </div>
@@ -245,109 +246,110 @@ export default {
         'fetchDocumentType',
         'fetchCitizenShip',
         'addPassenger',
-        'setActiveTab'
+        'setActiveTab',
+        'validateForm'
     ]),
-    validatePassenger(fieldType, value, additional=true) {
-      if (fieldType === 'secondName') {
-        if (value === '') {
-          return 'заполните фамилию'
-        }
-      }
-      if (fieldType === 'firstName') {
-        if (value === '') {
-          return 'заполните имя'
-        }
-      }
-      if (fieldType === 'middleName') {
-        if (value === '') {
-          return 'заполните отчество'
-        }
-      }
-      if (fieldType === 'citizenship') {
-        if (value === '') {
-          return 'заполните гражданство'
-        }
-      }
-      if (fieldType === 'gender') {
-        if (value !=='0' && value !=='1') {
-          return 'Выбирите пол'
-        }
-      }
-      if (fieldType === 'birthday') {
-        if (value === '') {
-          return 'Укажиите дату рождения'
-        }
-        let today = new Date();
-        let birthDate = new Date(value);
-        let age = today.getFullYear() - birthDate.getFullYear();
-        let m = today.getMonth() - birthDate.getMonth();
-        let d = today.getDay() - birthDate.getDay();
-
-        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-          age--;
-        }
-        if ( age === 0 ) {
-          m = 12 + m;
-          if (d < 0 || (d === 0 && today.getDate() < birthDate.getDate())) {
-            m--;
-          }
-        }
-        if (age < 0) {
-          return 'Укажиите дату рождения корректно'
-        }
-
-        if(!additional && age>12){
-          return 'Детский билет до 12 лет'
-        }
-        if(additional && age>100){
-          return 'Вам больше 100 лет?'
-        }
-
-
-      }
-      // TODO доделать валидацию с документам
-      if (fieldType === 'documentInfo') {
-
-        // Проверка паспорта РФ
-        if(additional === '0'){
-          const regexpPassport = /^\d{10}$/
-          if (!regexpPassport.test(value)) {
-            return 'Серия и номер паспорта состоит из 10 цифр'
-          }
-        }
-        // Проверка загранпаспорта РФ
-        if (additional === '2') {
-          const regexpPassport = /^\d{9}$/
-          if (!regexpPassport.test(value)) {
-            return 'Серия и номер паспорта состоит из 9 цифр'
-          }
-        }
-        //Проверка свидетельства о рождении
-        if(additional === '4' || additional === '11'){
-          let regexpDoc = /^[IVXLCDM]{1,3}[А-Я^]{2}[0-9]{6}$/g
-          if (regexpDoc.test(value)) {
-            return false
-          }
-          else {
-            return 'Введите корректные данные (IIДН123456)'
-          }
-          //IIДН123456 правильный
-          //ДН123456II неверный
-        }
-        //Проверка Военного билета военнослужащего или куранта военной образовательной организации
-        if (additional === '1' || additional === '5' || additional === '8') {
-          let regexpDoc = /[А-Я^]{2}[0-9]{7}$/g
-          if (regexpDoc.test(value)) {
-            return false
-          }
-          else {
-            return 'Введите корректные данные (AC9876543)'
-          }
-        }
-      }
-
-      return false
-    },
+    // validatePassenger(fieldType, value, additional=true) {
+    //   if (fieldType === 'secondName') {
+    //     if (value === '') {
+    //       return 'заполните фамилию'
+    //     }
+    //   }
+    //   if (fieldType === 'firstName') {
+    //     if (value === '') {
+    //       return 'заполните имя'
+    //     }
+    //   }
+    //   if (fieldType === 'middleName') {
+    //     if (value === '') {
+    //       return 'заполните отчество'
+    //     }
+    //   }
+    //   if (fieldType === 'citizenship') {
+    //     if (value === '') {
+    //       return 'заполните гражданство'
+    //     }
+    //   }
+    //   if (fieldType === 'gender') {
+    //     if (value !=='0' && value !=='1') {
+    //       return 'Выбирите пол'
+    //     }
+    //   }
+    //   if (fieldType === 'birthday') {
+    //     if (value === '') {
+    //       return 'Укажиите дату рождения'
+    //     }
+    //     let today = new Date();
+    //     let birthDate = new Date(value);
+    //     let age = today.getFullYear() - birthDate.getFullYear();
+    //     let m = today.getMonth() - birthDate.getMonth();
+    //     let d = today.getDay() - birthDate.getDay();
+    //
+    //     if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+    //       age--;
+    //     }
+    //     if ( age === 0 ) {
+    //       m = 12 + m;
+    //       if (d < 0 || (d === 0 && today.getDate() < birthDate.getDate())) {
+    //         m--;
+    //       }
+    //     }
+    //     if (age < 0) {
+    //       return 'Укажиите дату рождения корректно'
+    //     }
+    //
+    //     if(!additional && age>12){
+    //       return 'Детский билет до 12 лет'
+    //     }
+    //     if(additional && age>100){
+    //       return 'Вам больше 100 лет?'
+    //     }
+    //
+    //
+    //   }
+    //   // TODO доделать валидацию с документам
+    //   if (fieldType === 'documentInfo') {
+    //
+    //     // Проверка паспорта РФ
+    //     if(additional === '0'){
+    //       const regexpPassport = /^\d{10}$/
+    //       if (!regexpPassport.test(value)) {
+    //         return 'Серия и номер паспорта состоит из 10 цифр'
+    //       }
+    //     }
+    //     // Проверка загранпаспорта РФ
+    //     if (additional === '2') {
+    //       const regexpPassport = /^\d{9}$/
+    //       if (!regexpPassport.test(value)) {
+    //         return 'Серия и номер паспорта состоит из 9 цифр'
+    //       }
+    //     }
+    //     //Проверка свидетельства о рождении
+    //     if(additional === '4' || additional === '11'){
+    //       let regexpDoc = /^[IVXLCDM]{1,3}[А-Я^]{2}[0-9]{6}$/g
+    //       if (regexpDoc.test(value)) {
+    //         return false
+    //       }
+    //       else {
+    //         return 'Введите корректные данные (IIДН123456)'
+    //       }
+    //       //IIДН123456 правильный
+    //       //ДН123456II неверный
+    //     }
+    //     //Проверка Военного билета военнослужащего или куранта военной образовательной организации
+    //     if (additional === '1' || additional === '5' || additional === '8') {
+    //       let regexpDoc = /[А-Я^]{2}[0-9]{7}$/g
+    //       if (regexpDoc.test(value)) {
+    //         return false
+    //       }
+    //       else {
+    //         return 'Введите корректные данные (AC9876543)'
+    //       }
+    //     }
+    //   }
+    //
+    //   return false
+    // },
     // toggleDropdownGender() {
     //   this.isShowGender = !this.isShowGender
     // },

@@ -27,19 +27,19 @@
                 <div class="d-block">
                   <label for="secondNameBuyer" class="form-label">Фамилия</label>
                   <input
-                      @input="updateSecondNameBuyer($event)"
+                      @input="validateFormBuyer(['secondName',$event])"
                       :value="getBuyerInfo.secondName"
                       type="text"
                       class="form-control"
                       :class="{
-                        'is-ok': !validateBuyer('secondName',getBuyerInfo.secondName),
-                        'is-error' : validateBuyer('secondName', getBuyerInfo.secondName)}"
+                        'is-ok': !getBuyerInfo.errors.secondName,
+                        'is-error' : getBuyerInfo.errors.secondName}"
                       id="secondNameBuyer"
                       placeholder="Иванов">
                   <div :class="{
-                        'd-none': !validateBuyer('secondName', getBuyerInfo.secondName)}"
+                        'd-none': !getBuyerInfo.errors.secondName}"
                        class="error-feedback">
-                    {{validateBuyer('secondName', getBuyerInfo.secondName)}}
+                    {{getBuyerInfo.errors.secondName}}
                   </div>
                 </div>
               </div>
@@ -47,19 +47,19 @@
                 <div class="d-block">
                   <label for="firstNameBuyer" class="form-label">Имя</label>
                   <input
-                      @input="updateFirstNameBuyer($event)"
+                      @input="validateFormBuyer(['firstName',$event])"
                       :value="getBuyerInfo.firstName"
                       type="text"
                       class="form-control"
                       :class="{
-                        'is-ok': !validateBuyer('firstName',getBuyerInfo.firstName),
-                        'is-error' : validateBuyer('firstName', getBuyerInfo.firstName)}"
+                        'is-ok': !getBuyerInfo.errors.firstName,
+                        'is-error' : getBuyerInfo.errors.firstName}"
                       id="firstNameBuyer"
                       placeholder="Иван">
                   <div :class="{
-                        'd-none': !validateBuyer('firstName', getBuyerInfo.secondName)}"
+                        'd-none': !getBuyerInfo.errors.firstName}"
                        class="error-feedback">
-                    {{validateBuyer('firstName', getBuyerInfo.firstName)}}
+                    {{getBuyerInfo.errors.firstName}}
                   </div>
                 </div>
               </div>
@@ -67,19 +67,19 @@
                 <div class="d-block">
                   <label for="mailBuyer" class="form-label">Электронная почта</label>
                   <input
-                      @input="updateEmailBuyer($event);"
+                      @input="validateFormBuyer(['email', $event]);"
                       :value="getBuyerInfo.email"
                       type="text"
                       class="form-control"
                       :class="{
-                        'is-ok': !validateBuyer('email',getBuyerInfo.email),
-                        'is-error' : validateBuyer('email', getBuyerInfo.email)}"
+                        'is-ok': !getBuyerInfo.errors.email,
+                        'is-error' : getBuyerInfo.errors.email}"
                       id="mailBuyer"
                       placeholder="name@mail.ru">
                   <div :class="{
-                        'd-none': !validateBuyer('email', getBuyerInfo.email)}"
+                        'd-none': !getBuyerInfo.errors.email}"
                        class="error-feedback">
-                    {{validateBuyer('email', getBuyerInfo.email)}}
+                    {{getBuyerInfo.errors.email}}
                   </div>
                 </div>
               </div>
@@ -87,19 +87,19 @@
                 <div class="d-block">
                   <label for="numberBuyer" class="form-label">Телефон</label>
                   <input
-                      @input="updateNumberBuyer($event);"
+                      @input="validateFormBuyer(['number', $event]);"
                       :value="getBuyerInfo.number"
                       type="text"
                       class="form-control"
                       :class="{
-                        'is-ok': !validateBuyer('number',getBuyerInfo.number),
-                        'is-error' : validateBuyer('number', getBuyerInfo.number)}"
+                        'is-ok': !getBuyerInfo.errors.number,
+                        'is-error' : getBuyerInfo.errors.number}"
                       id="numberBuyer"
                       placeholder="+7 (___)-___-__-__">
                   <div :class="{
-                        'd-none': !validateBuyer('number', getBuyerInfo.number)}"
+                        'd-none': !getBuyerInfo.errors.number}"
                        class="error-feedback">
-                    {{validateBuyer('number', getBuyerInfo.number)}}
+                    {{getBuyerInfo.errors.number}}
                   </div>
                 </div>
               </div>
@@ -122,44 +122,45 @@ export default {
         'updateSecondNameBuyer',
         'updateFirstNameBuyer',
         'updateEmailBuyer',
-        'updateNumberBuyer'
+        'updateNumberBuyer',
+        'validateFormBuyer'
     ]),
-    validateBuyer(fieldType, value) {
-      if (fieldType === 'secondName') {
-        if (value === '') {
-          return 'заполните фамилию'
-        }
-        else {
-          return false
-        }
-      }
-      if (fieldType === 'firstName') {
-        if (value === '') {
-          return 'заполните имя'
-        }
-        else {
-          return false
-        }
-      }
-      if (fieldType === 'email') {
-        let regexpEmail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-        if (regexpEmail.test(value)) {
-          return false
-        }
-        else {
-          return 'Введите корректно почту name@mail.ru'
-        }
-      }
-      if (fieldType === 'number') {
-        let regexpNumber =/(^8|7|\+7)((\d{10})|(\s\(\d{3}\)\s\d{3}\s\d{2}\s\d{2}))/
-        if (regexpNumber.test(value)) {
-          return false
-        }
-        else {
-          return 'Введите корретно номер +7 (___)-___-__-__ '
-        }
-      }
-    }
+    // validateBuyer(fieldType, value) {
+    //   if (fieldType === 'secondName') {
+    //     if (value === '') {
+    //       return 'заполните фамилию'
+    //     }
+    //     else {
+    //       return false
+    //     }
+    //   }
+    //   if (fieldType === 'firstName') {
+    //     if (value === '') {
+    //       return 'заполните имя'
+    //     }
+    //     else {
+    //       return false
+    //     }
+    //   }
+    //   if (fieldType === 'email') {
+    //     let regexpEmail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    //     if (regexpEmail.test(value)) {
+    //       return false
+    //     }
+    //     else {
+    //       return 'Введите корректно почту name@mail.ru'
+    //     }
+    //   }
+    //   if (fieldType === 'number') {
+    //     let regexpNumber =/(^8|7|\+7)((\d{10})|(\s\(\d{3}\)\s\d{3}\s\d{2}\s\d{2}))/
+    //     if (regexpNumber.test(value)) {
+    //       return false
+    //     }
+    //     else {
+    //       return 'Введите корретно номер +7 (___)-___-__-__ '
+    //     }
+    //   }
+    // }
   },
   computed: {
     ...mapGetters([

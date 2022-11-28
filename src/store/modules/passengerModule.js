@@ -41,6 +41,12 @@ export default {
             secondName: '',
             email: '',
             number: '',
+            errors: {
+                secondName: 'Заполните фамилию',
+                firstName: 'Заполните имя',
+                email: 'Введите корректно почту name@mail.ru',
+                number: 'Введите корретно номер +7 (___)-___-__-__'
+            }
         },
         haveErrors: false,
         promoCode: '',
@@ -143,6 +149,9 @@ export default {
         },
         updateValidateError(state, [id, fieldType, value]) {
             state.passengers[id].errors[fieldType] = value
+        },
+        updateValidateErrorBuyer(state, [fieldType, value]){
+            state.buyerInfo.errors[fieldType] = value
         }
     },
     actions: {
@@ -212,6 +221,51 @@ export default {
         },
         setActiveTab(ctx, id) {
             ctx.commit('activeTab', id)
+        },
+        validateFormBuyer(ctx, [fieldType, event]) {
+            const value = event.target.value;
+            if (fieldType === 'secondName') {
+                if (value === '') {
+                    ctx.commit('updateSecondNameBuyer', '')
+                    ctx.commit('updateValidateErrorBuyer', [fieldType, 'Заполните фамилию'])
+                }
+                else {
+                    ctx.commit('updateSecondNameBuyer', value)
+                    ctx.commit('updateValidateErrorBuyer', [fieldType, ''])
+                }
+            }
+            if (fieldType === 'firstName') {
+                if (value === '') {
+                    ctx.commit('updateFirstNameBuyer', '')
+                    ctx.commit('updateValidateErrorBuyer', [fieldType, 'Заполните имя'])
+                }
+                else {
+                    ctx.commit('updateFirstNameBuyer', value)
+                    ctx.commit('updateValidateErrorBuyer', [fieldType, ''])
+                }
+            }
+            if (fieldType === 'email') {
+                let regexpEmail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+                if (regexpEmail.test(value)) {
+                    ctx.commit('updateEmailBuyer', value)
+                    ctx.commit('updateValidateErrorBuyer', [fieldType, ''])
+                }
+                else {
+                    ctx.commit('updateEmailBuyer', '')
+                    ctx.commit('updateValidateErrorBuyer', [fieldType, 'Введите корректно почту name@mail.ru'])
+                }
+            }
+            if (fieldType === 'number') {
+                let regexpNumber =/(^8|7|\+7)((\d{10})|(\s\(\d{3}\)\s\d{3}\s\d{2}\s\d{2}))/
+                if (regexpNumber.test(value)) {
+                    ctx.commit('updateNumberBuyer', value)
+                    ctx.commit('updateValidateErrorBuyer', [fieldType, ''])
+                }
+                else {
+                    ctx.commit('updateNumberBuyer', '')
+                    ctx.commit('updateValidateErrorBuyer', [fieldType, 'Введите корретно номер +7 (___)-___-__-__ '])
+                }
+            }
         },
         validateForm(ctx, [id ,fieldType, event, additional=true]){
             const value = event.target.value

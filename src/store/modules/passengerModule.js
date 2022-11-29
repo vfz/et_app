@@ -353,7 +353,6 @@ export default {
                     return false
                 }
                 if(additional && age>100){
-                    console.log('123')
                     ctx.commit('updateBirthday', [value, id])
                     ctx.commit('updateValidateError', [id, fieldType, 'Вам больше 100 лет?'])
                     return false

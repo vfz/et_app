@@ -125,42 +125,6 @@ export default {
         'updateNumberBuyer',
         'validateFormBuyer'
     ]),
-    // validateBuyer(fieldType, value) {
-    //   if (fieldType === 'secondName') {
-    //     if (value === '') {
-    //       return 'заполните фамилию'
-    //     }
-    //     else {
-    //       return false
-    //     }
-    //   }
-    //   if (fieldType === 'firstName') {
-    //     if (value === '') {
-    //       return 'заполните имя'
-    //     }
-    //     else {
-    //       return false
-    //     }
-    //   }
-    //   if (fieldType === 'email') {
-    //     let regexpEmail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-    //     if (regexpEmail.test(value)) {
-    //       return false
-    //     }
-    //     else {
-    //       return 'Введите корректно почту name@mail.ru'
-    //     }
-    //   }
-    //   if (fieldType === 'number') {
-    //     let regexpNumber =/(^8|7|\+7)((\d{10})|(\s\(\d{3}\)\s\d{3}\s\d{2}\s\d{2}))/
-    //     if (regexpNumber.test(value)) {
-    //       return false
-    //     }
-    //     else {
-    //       return 'Введите корретно номер +7 (___)-___-__-__ '
-    //     }
-    //   }
-    // }
   },
   computed: {
     ...mapGetters([

@@ -73,6 +73,7 @@
                     </div>
                     <!-- firstName -->
                     <div class="d-block">
+                      <label :for="'firstName'+index" class="form-label">Имя</label>
                       <input
                           @input="validateForm([index, 'firstName', $event]);"
                       :value="passenger.firstName"

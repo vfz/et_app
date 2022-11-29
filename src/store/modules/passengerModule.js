@@ -48,7 +48,7 @@ export default {
                 number: 'Введите корретно номер +7 (___)-___-__-__'
             }
         },
-        haveErrors: false,
+        haveErrors: true,
         promoCode: '',
         activeTab: 0,
     },
@@ -222,25 +222,36 @@ export default {
         setActiveTab(ctx, id) {
             ctx.commit('activeTab', id)
         },
+        addRussianNumberPrefix(ctx) {
+            let currentNumber = ctx.state.buyerInfo.number
+            if (!currentNumber) {
+                ctx.commit('updateHaveErrors', true)
+                ctx.commit('updateNumberBuyer','+7')
+            }
+        },
         validateFormBuyer(ctx, [fieldType, event]) {
             const value = event.target.value;
             if (fieldType === 'secondName') {
                 if (value === '') {
                     ctx.commit('updateSecondNameBuyer', '')
+                    ctx.commit('updateHaveErrors', true)
                     ctx.commit('updateValidateErrorBuyer', [fieldType, 'Заполните фамилию'])
                 }
                 else {
                     ctx.commit('updateSecondNameBuyer', value)
+                    ctx.commit('updateHaveErrors', false)
                     ctx.commit('updateValidateErrorBuyer', [fieldType, ''])
                 }
             }
             if (fieldType === 'firstName') {
                 if (value === '') {
                     ctx.commit('updateFirstNameBuyer', '')
+                    ctx.commit('updateHaveErrors', true)
                     ctx.commit('updateValidateErrorBuyer', [fieldType, 'Заполните имя'])
                 }
                 else {
                     ctx.commit('updateFirstNameBuyer', value)
+                    ctx.commit('updateHaveErrors', false)
                     ctx.commit('updateValidateErrorBuyer', [fieldType, ''])
                 }
             }
@@ -248,10 +259,12 @@ export default {
                 let regexpEmail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
                 if (regexpEmail.test(value)) {
                     ctx.commit('updateEmailBuyer', value)
+                    ctx.commit('updateHaveErrors', false)
                     ctx.commit('updateValidateErrorBuyer', [fieldType, ''])
                 }
                 else {
                     ctx.commit('updateEmailBuyer', '')
+                    ctx.commit('updateHaveErrors', true)
                     ctx.commit('updateValidateErrorBuyer', [fieldType, 'Введите корректно почту name@mail.ru'])
                 }
             }
@@ -259,10 +272,12 @@ export default {
                 let regexpNumber =/(^8|7|\+7)((\d{10})|(\s\(\d{3}\)\s\d{3}\s\d{2}\s\d{2}))/
                 if (regexpNumber.test(value)) {
                     ctx.commit('updateNumberBuyer', value)
+                    ctx.commit('updateHaveErrors', false)
                     ctx.commit('updateValidateErrorBuyer', [fieldType, ''])
                 }
                 else {
-                    ctx.commit('updateNumberBuyer', '')
+                    ctx.commit('updateNumberBuyer', value)
+                    ctx.commit('updateHaveErrors', true)
                     ctx.commit('updateValidateErrorBuyer', [fieldType, 'Введите корретно номер +7 (___)-___-__-__ '])
                 }
             }
@@ -272,30 +287,36 @@ export default {
             if (fieldType === 'secondName') {
                 if (value === '') {
                     ctx.commit('updateSecondName', ['', id])
+                    ctx.commit('updateHaveErrors', true)
                     ctx.commit('updateValidateError', [id, fieldType, 'Заполните фамилию'])
                 }
                 else {
                     ctx.commit('updateSecondName', [value, id])
+                    ctx.commit('updateHaveErrors', false)
                     ctx.commit('updateValidateError', [id, fieldType, ''])
                 }
             }
             if (fieldType === 'firstName') {
                 if (value === '') {
                     ctx.commit('updateFirstName', ['', id])
+                    ctx.commit('updateHaveErrors', true)
                     ctx.commit('updateValidateError', [id, fieldType, 'Заполните имя'])
                 }
                 else {
                     ctx.commit('updateFirstName', [value, id])
+                    ctx.commit('updateHaveErrors', false)
                     ctx.commit('updateValidateError', [id, fieldType, ''])
                 }
             }
             if (fieldType === 'middleName') {
                 if (value === '') {
                     ctx.commit('updateMiddleName', ['', id])
+                    ctx.commit('updateHaveErrors', true)
                     ctx.commit('updateValidateError', [id, fieldType, 'Заполните отчество'])
                 }
                 else {
                     ctx.commit('updateMiddleName', [value, id])
+                    ctx.commit('updateHaveErrors', false)
                     ctx.commit('updateValidateError', [id, fieldType, ''])
                 }
             }
@@ -338,6 +359,7 @@ export default {
                     return false
                 }
                 ctx.commit('updateBirthday', [value, id])
+                ctx.commit('updateHaveErrors', false)
                 ctx.commit('updateValidateError', [id, fieldType, ''])
             }
             if (fieldType === 'gender') {
@@ -347,16 +369,19 @@ export default {
                 }
                 else {
                     ctx.commit('updateGender', [value, id])
+                    ctx.commit('updateHaveErrors', false)
                     ctx.commit('updateValidateError', [id, fieldType, ''])
                 }
             }
             if (fieldType === 'citizenship') {
                 if (value === '') {
                     ctx.commit('updateCitizenship', ['', id])
+                    ctx.commit('updateHaveErrors', true)
                     ctx.commit('updateValidateError', [id, fieldType, 'Заполните гражданство'])
                 }
                 else {
                     ctx.commit('updateCitizenship', [value, id])
+                    ctx.commit('updateHaveErrors', false)
                     ctx.commit('updateValidateError', [id, fieldType, ''])
                 }
             }
@@ -370,6 +395,7 @@ export default {
                 }
                 if (value === '') {
                     ctx.commit('updateDocument', ['', id])
+                    ctx.commit('updateHaveErrors', true)
                     ctx.commit('updateValidateError', [id, fieldType, 'Заполните документ'])
                 }
                 else {

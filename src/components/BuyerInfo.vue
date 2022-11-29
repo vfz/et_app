@@ -87,9 +87,12 @@
                 <div class="d-block">
                   <label for="numberBuyer" class="form-label">Телефон</label>
                   <input
+                      @focus="addRussianNumberPrefix"
                       @input="validateFormBuyer(['number', $event]);"
                       :value="getBuyerInfo.number"
                       type="text"
+                      pattern="[0-9]*"
+                      inputmode="numeric"
                       class="form-control"
                       :class="{
                         'is-ok': !getBuyerInfo.errors.number,
@@ -123,7 +126,8 @@ export default {
         'updateFirstNameBuyer',
         'updateEmailBuyer',
         'updateNumberBuyer',
-        'validateFormBuyer'
+        'validateFormBuyer',
+        'addRussianNumberPrefix'
     ]),
   },
   computed: {

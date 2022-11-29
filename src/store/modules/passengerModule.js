@@ -365,6 +365,7 @@ export default {
                 let documentInfoBefore = ctx.state.passengers[id].documentInfo
                 if (documentBefore !== value) {
                     ctx.commit('updateDocumentInfo', [documentInfoBefore, id])
+                    ctx.commit('updateHaveErrors', true)
                     ctx.commit('updateValidateError', [id, 'documentInfo', 'Укажите новые данные'])
                 }
                 if (value === '') {
@@ -382,10 +383,12 @@ export default {
                     const regexpPassport = /^\d{10}$/
                     if (!regexpPassport.test(value)) {
                         ctx.commit('updateDocumentInfo', [value, id])
+                        ctx.commit('updateHaveErrors', true)
                         ctx.commit('updateValidateError', [id, fieldType, 'Серия и номер паспорта состоит из 10 цифр'])
                     }
                     else {
                         ctx.commit('updateDocumentInfo', [value, id])
+                        ctx.commit('updateHaveErrors', false)
                         ctx.commit('updateValidateError', [id, fieldType, ''])
                     }
                 }
@@ -394,6 +397,7 @@ export default {
                     const regexpPassport = /^\d{9}$/
                     if (!regexpPassport.test(value)) {
                         ctx.commit('updateDocumentInfo', [value, id])
+                        ctx.commit('updateHaveErrors', true)
                         ctx.commit('updateValidateError', [id, fieldType, 'Серия и номер паспорта состоит из 9 цифр'])
                     }
                 }
@@ -402,10 +406,12 @@ export default {
                     let regexpDoc = /^[IVXLCDM]{1,3}[А-Я^]{2}[0-9]{6}$/g
                     if (regexpDoc.test(value)) {
                         ctx.commit('updateDocumentInfo', [value, id])
+                        ctx.commit('updateHaveErrors', false)
                         ctx.commit('updateValidateError', [id, fieldType, ''])
                     }
                     else {
                         ctx.commit('updateDocumentInfo', [value, id])
+                        ctx.commit('updateHaveErrors', true)
                         ctx.commit('updateValidateError', [id, fieldType, 'Введите корректные данные (IIДН123456)'])
                     }
                 }
@@ -414,9 +420,11 @@ export default {
                     let regexpDoc = /[А-Я^]{2}[0-9]{7}$/g
                     if (regexpDoc.test(value)) {
                         ctx.commit('updateDocumentInfo', [value, id])
+                        ctx.commit('updateHaveErrors', false)
                         ctx.commit('updateValidateError', [id, fieldType, ''])
                     }
                     else {
+                        ctx.commit('updateHaveErrors', true)
                         ctx.commit('updateValidateError', [id, fieldType, 'Введите корректные данные (AC9876543)'])
                     }
                 }

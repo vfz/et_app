@@ -68,7 +68,7 @@
             <div class="col-12 col-md-6">
             <button
                 @click.prevent="transactionForVue"
-                :class="{'disabled': !validateButton(selectedSeat, getPassengers, getBuyerInfo)}"
+                :class="{'disabled': !validateButton(selectedSeat, getPassengers, getBuyerInfo, getHaveErrors)}"
                 class="btn btn-lg btn-primary">
                 Перейти к оплате
               </button>
@@ -158,7 +158,7 @@
           <div class="col-12 col-md-6">
             <button
                 @click.prevent="transactionForVue"
-                :class="{'disabled': !validateButton(selectedSeat, getPassengers, getBuyerInfo)}"
+                :class="{'disabled': !validateButton(selectedSeat, getPassengers, getBuyerInfo, getHaveErrors)}"
                 class="btn btn-lg btn-primary">
               Перейти к оплате
             </button>
@@ -202,7 +202,7 @@ export default {
         'getEmptyFieldsFormBuyer',
         'selectedSeat',
         'getPassengers',
-        'getBuyerInfo'
+        'getBuyerInfo',
     ]),
   },
   methods: {
@@ -233,7 +233,7 @@ export default {
         arrow.classList.add('arrow-up')
       }
     },
-    validateButton(reisy,passengers,buyer) {
+    validateButton(reisy,passengers,buyer, haveErrors) {
       if (reisy.length === 0) {
         return false
       }
@@ -251,6 +251,9 @@ export default {
         }
       }
       else {
+        return false
+      }
+      if (haveErrors === true) {
         return false
       }
       return true

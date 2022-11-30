@@ -97,7 +97,7 @@
             <div class="row">
                 <div class="col">
                     <span class="credits">
-                        © 2020, ИП Яцунов С.П. Все права защищены.
+                        © 2020, ИП Яцунов М.С Все права защищены.
                     </span>
                 </div>
                 <div class="col d-flex justify-content-end">
@@ -268,7 +268,7 @@
 <!--                  </li>-->
                   <li class="nav-item">
                   <span class="credits">
-                        © 2022, ИП Яцунов С.П. Все права защищены.
+                        © 2022, ИП Яцунов М.С Все права защищены.
                     </span>
                   </li>
                 </ul>

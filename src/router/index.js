@@ -36,6 +36,11 @@ const routes = [{
         component: Flightselection
     },
     {
+        path: '/flight-selection/search/:dateArrival',
+        name: 'Flight-selection-search',
+        component: Flightselection
+    },
+    {
         path: '/ticket-booking',
         name: 'Ticket-booking',
         component: TicketBooking
@@ -112,10 +117,10 @@ const routes = [{
         // name: '404',
         component: NotFound
     },
-    {
-        path: '/flight-selection',
-        redirect: '/flight-selection/1/190'
-    },
+    // {
+    //     path: '/flight-selection',
+    //     redirect: '/flight-selection/1/190'
+    // },
     {
         path: '*',
         redirect: '/404'

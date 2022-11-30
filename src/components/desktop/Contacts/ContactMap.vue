@@ -9,6 +9,25 @@
                 Контакты
               </h1>
               <div class="contact-map-info-block">
+                <h2 class="title-info">ИП ЯЦУНОВ МАКСИМ СЕРГЕЕВИЧ</h2>
+                <div class="address-info d-flex">
+                  <h3 class="title-address">
+                    ИНН:
+                  </h3>
+                  <p class="description-address">
+                    263410654670
+                  </p>
+                </div>
+                <div class="address-info d-flex">
+                  <h3 class="title-address">
+                    ОГРН ИП:
+                  </h3>
+                  <p class="description-address">
+                    316265100163732
+                  </p>
+                </div>
+              </div>
+              <div class="contact-map-info-block">
                 <h2 class="title-info">
                   Адрес:
                 </h2>
@@ -57,7 +76,7 @@
               </div>
             </div>
             <div id="map" class="map">
-              <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A925af31f9c09ee53d2bab03772075b968e64b2a235f466ab454485f53832734e&amp;source=constructor" width="100%" height="720" frameborder="0"></iframe>
+              <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A925af31f9c09ee53d2bab03772075b968e64b2a235f466ab454485f53832734e&amp;source=constructor" width="100%" height="920" frameborder="0"></iframe>
             </div>
           </div>
         </div>

@@ -9,6 +9,25 @@
               Контакты
             </h1>
             <div class="contact-map-info-block">
+              <h2 class="title-info">ИП ЯЦУНОВ МАКСИМ СЕРГЕЕВИЧ</h2>
+              <div class="address-info d-flex">
+                <h3 class="title-address">
+                  ИНН:
+                </h3>
+                <p class="description-address">
+                  263410654670
+                </p>
+              </div>
+              <div class="address-info d-flex">
+                <h3 class="title-address">
+                  ОГРН ИП:
+                </h3>
+                <p class="description-address">
+                  316265100163732
+                </p>
+              </div>
+            </div>
+            <div class="contact-map-info-block">
               <h2 class="title-info">
                 Адрес:
               </h2>

@@ -275,8 +275,26 @@ export default {
     this.fromPlace= this.fromStations.find(station => station.id_from === this.$route.params.from).name;
   },
   created(){
-    if (this.$route.params.dateArrival) {
-      this.$store.commit('setDateArrivalByQuery', this.$route.params.dateArrival)
+    let query = this.$route.params.dateArrival
+    let dateSplit = query.split('.')
+    let day = dateSplit[0]
+    let month = dateSplit[1]
+    let year = dateSplit[2]
+    let date = new Date (month + '.' + day + '.' + year)
+
+    let today = new Date()
+    let dayToday = String(today.getDate()).padStart(2, '0');
+    let monthToday = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    let yearToday = today.getFullYear();
+    today = dayToday + '.' + monthToday + '.' + yearToday
+
+    if (query) {
+      if (Object.prototype.toString.call(date) === '[object Date]' && !isNaN(date)) {
+        this.$store.commit('setDateArrivalByQuery', query)
+      }
+      else {
+        this.$router.push('/flight-selection/search/'+'1'+'/'+'190'+'/'+today)
+      }
     }
   }
 }

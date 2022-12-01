@@ -387,7 +387,7 @@ export default{
         },
        async alertPlace(){
             await this.getFlightThere()
-            this.$router.push('/flight-selection/search/'+this.from+'/'+this.to)
+            this.$router.push('/flight-selection/search/'+this.from+'/'+this.to+'/'+this.dateArival)
         },
 
     },

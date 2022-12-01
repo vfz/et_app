@@ -212,6 +212,9 @@ export default {
                     reis.is_selected = reis.is_selected ? false : reis.id_trip === busTripId;
                 })
             }
+        },
+        setDateArrivalByQuery(state, dateArrivalQuery) {
+            state.dateArival = dateArrivalQuery
         }
 
     },

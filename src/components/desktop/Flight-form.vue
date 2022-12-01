@@ -342,9 +342,11 @@ export default {
     this.toPlace= this.toStations.find(station => station.id_to === this.$route.params.to).name;
     this.fromPlace= this.fromStations.find(station => station.id_from === this.$route.params.from).name;
   },
-  // created(){
-  //     document.addEventListener('click', this.selectDateFalse.bind(this));
-  // }
+  created(){
+    if (this.$route.params.dateArrival) {
+      this.$store.commit('setDateArrivalByQuery', this.$route.params.dateArrival)
+    }
+  }
 }
 </script>
 

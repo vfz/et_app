@@ -257,6 +257,7 @@
 import DataPicker from '@/components/DataPicker'
 import PassengersCounter from "@/components/PassengersCounter"
 import {mapGetters,mapActions} from 'vuex'
+import moment from 'moment'
 export default {
   name: "Flight-form",
   components:{DataPicker,PassengersCounter},
@@ -344,12 +345,6 @@ export default {
   },
   created(){
     let query = this.$route.params.dateArrival
-    let dateSplit = query.split('.')
-    let day = dateSplit[0]
-    let month = dateSplit[1]
-    let year = dateSplit[2]
-    let date = new Date (month + '.' + day + '.' + year)
-
     let today = new Date()
     let dayToday = String(today.getDate()).padStart(2, '0');
     let monthToday = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -357,11 +352,11 @@ export default {
     today = dayToday + '.' + monthToday + '.' + yearToday
 
     if (query) {
-      if (Object.prototype.toString.call(date) === '[object Date]' && !isNaN(date)) {
+      if (moment(query, 'MM.DD.YYYY', true).isValid()) {
         this.$store.commit('setDateArrivalByQuery', query)
       }
       else {
-        this.$router.push('/flight-selection/search/'+'1'+'/'+'190'+'/'+today)
+        this.$router.push('/flight-selection/search/' + '1' + '/' + '190' + '/' + today)
       }
     }
   }

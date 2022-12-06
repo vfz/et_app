@@ -14,6 +14,7 @@
     <LoginModal/>
     <RegistrationModal/>
     <ForgotPasswordModal/>
+    <ProcessingPersonalDataModal/>
     <RemoveModal v-for="(passenger,index) in getPassengers" :key="index" :index="index"/>
   </div>
 </template>
@@ -41,10 +42,12 @@ import {mapGetters,mapActions} from 'vuex'
 import DispatchModal from "@/components/Dispatch-modal";
 import DispatchLengthTimeModal from "@/components/Dispatch-length-time-modal";
 import PlaceLeftModal from "@/components/Place-left-modal";
+import ProcessingPersonalDataModal from "@/components/ProcessingPersonalDataModal.vue";
 
 export default {
   name: "Ticket-booking",
   components: {
+    ProcessingPersonalDataModal,
     PlaceLeftModal,
     DispatchLengthTimeModal,
     DispatchModal,

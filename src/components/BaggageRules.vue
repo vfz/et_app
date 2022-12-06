@@ -84,11 +84,10 @@
             </div>
             <div class="col-12 col-md-6">
               <div class="payment-info d-flex align-items-center">
-<!--                TODO вставить ссылки на политику-->
                 <p>
-                  Нажимая на кнопку "перейти к оплате" я соглашаюсь с <a href="#">договором оферты</a>
-                  и <a href="#">политикой конфиденциальности</a> и даю
-                  <a href="#">согласие на обработку персональных данных.</a>
+                  Нажимая на кнопку "перейти к оплате" я соглашаюсь с <a target="_blank" href="https://evrotrans.net/upload/offer.pdf">договором оферты</a>
+                  и <a target="_blank" href="https://evrotrans.net/upload/offer.pdf">политикой конфиденциальности</a> и даю
+                  <a data-bs-toggle="modal" data-bs-target="#processingPersonalDataModal">согласие на обработку персональных данных.</a>
                 </p>
               </div>
             </div>
@@ -176,9 +175,9 @@
           <div class="col-12 col-md-6">
             <div class="payment-info d-flex align-items-center">
               <p>
-                Нажимая на кнопку "перейти к оплате" я соглашаюсь с <a href="#">договором оферты</a>
-                и <a href="#">политикой конфиденциальности</a> и даю
-                <a href="#">согласие на обработку персональных данных.</a>
+                Нажимая на кнопку "перейти к оплате" я соглашаюсь с <a target="_blank" href="https://evrotrans.net/upload/offer.pdf">договором оферты</a>
+                и <a target="_blank" href="https://evrotrans.net/upload/offer.pdf">политикой конфиденциальности</a> и даю
+                <a data-bs-toggle="modal" data-bs-target="#processingPersonalDataModal">согласие на обработку персональных данных.</a>
               </p>
             </div>
           </div>
@@ -456,6 +455,7 @@ p {
     margin-bottom: 24px;
     @include font($uni,$light,14px,18.9px,$base);
     a {
+      cursor: pointer;
       color: $blue-active;
     }
     a:hover {

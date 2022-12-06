@@ -45,20 +45,29 @@
             <div class="row">
               <div class="col-12 col-md-6">
                 <div class="input-group position-relative">
-                  <!--                TODO добавить класс is-ok-bordered или is-error-bordered для инпута-->
-                  <input type="text" class="form-control form-control-bordered" placeholder="Введите промокод">
-                  <!--                TODO изменить класс is-ok-icon на is-error-icon, если валидация неверная. Убрать d-none для отображения элемента -->
-                  <div class="d-none is-error-icon icon-bg position-absolute d-flex align-items-center">
+                  <input
+                      @input="validatePromocode($event)"
+                      :value="getPromoCode.value"
+                      type="text"
+                      class="form-control form-control-bordered"
+                      placeholder="Введите промокод">
+                  <div
+                      :class="{'is-error-icon' : getPromoCode.error, 'is-ok-icon' : !getPromoCode.error}"
+                      class="icon-bg position-absolute d-flex align-items-center">
                     <CheckIcon color="#fff"/>
                   </div>
                 </div>
-                <!--              TODO убрать d-none для отображения ответа неверной валидации-->
-                <div class="error-feedback-bordered d-none">
-                  Неверный промокод
+                <div
+                    v-if="getPromoCode.error"
+                    class="error-feedback-bordered">
+                  {{getPromoCode.error}}
                 </div>
               </div>
               <div class="col-12 col-md-6">
-                <button type="button" class="btn btn-primary btn-promo-code disabled">
+                <button type="button"
+                        @click="applyPromocode($event)"
+                        :class="{'disabled' : getPromoCode.error}"
+                        class="btn btn-primary btn-promo-code">
                   Применить
                 </button>
               </div>
@@ -75,6 +84,7 @@
             </div>
             <div class="col-12 col-md-6">
               <div class="payment-info d-flex align-items-center">
+<!--                TODO вставить ссылки на политику-->
                 <p>
                   Нажимая на кнопку "перейти к оплате" я соглашаюсь с <a href="#">договором оферты</a>
                   и <a href="#">политикой конфиденциальности</a> и даю
@@ -184,7 +194,7 @@
 <script>
 import CheckIcon from "@/components/icons/CheckIcon";
 import ArrowDownIcon from "@/components/icons/ArrowDownIcon";
-import {mapGetters} from "vuex";
+import {mapActions, mapGetters} from "vuex";
 import axios from 'axios'
 export default {
   name: "BaggageRules",
@@ -203,9 +213,14 @@ export default {
         'selectedSeat',
         'getPassengers',
         'getBuyerInfo',
-    ]),
+        'getPromoCode'
+    ])
   },
   methods: {
+    ...mapActions([
+       'validatePromocode',
+        'applyPromocode'
+    ]),
     isMobile() {
       return screen.width <= 991;
     },

@@ -1,4 +1,5 @@
 import { counter } from "@fortawesome/fontawesome-svg-core"
+import axios from 'axios'
 
 export default {
     state: {
@@ -49,7 +50,10 @@ export default {
             }
         },
         haveErrors: true,
-        promoCode: '',
+        promoCode: {
+          value: '',
+          error: '',
+        },
         activeTab: 0,
     },
     mutations: {
@@ -152,6 +156,13 @@ export default {
         },
         updateValidateErrorBuyer(state, [fieldType, value]){
             state.buyerInfo.errors[fieldType] = value
+        },
+        updatePromocodeValue(state, promoCodeValue) {
+            state.promoCode.value = promoCodeValue
+        },
+        updatePromocodeError(state, error) {
+            console.log(error)
+            state.promoCode.error = error
         }
     },
     actions: {
@@ -227,6 +238,39 @@ export default {
             if (!currentNumber) {
                 ctx.commit('updateHaveErrors', true)
                 ctx.commit('updateNumberBuyer','+7')
+            }
+        },
+        async applyPromocode(ctx) {
+            let value = ctx.state.promoCode.value
+            if (!value) {
+                ctx.commit('updatePromocodeError', 'Заполните промокод')
+                return false
+            }
+            const config = {
+                method: 'post',
+                url: 'https://api.evrotrans.net/APIet/promo.php',
+                data: value
+            }
+            await axios.request(config).then((response) => {
+                // boove1 промокод
+                console.log(response)
+                if (response.data.Error === 1) {
+                    ctx.commit('updatePromocodeError', response.data.Error_description)
+                }
+            })
+                .catch((error) => {
+                    console.log(error)
+                })
+        },
+        validatePromocode(ctx, event) {
+            let value = event.target.value
+            if (value === '') {
+                ctx.commit('updatePromocodeError', 'Заполните промокод')
+                ctx.commit('updatePromocodeValue', '')
+            }
+            if (value) {
+                ctx.commit('updatePromocodeValue', value)
+                ctx.commit('updatePromocodeError', '')
             }
         },
         validateFormBuyer(ctx, [fieldType, event]) {
@@ -619,6 +663,9 @@ export default {
         },
         getEmptyFieldsFormBuyer(state) {
             return !state.buyerInfo.firstName || !state.buyerInfo.secondName || !state.buyerInfo.email || !state.buyerInfo.number
+        },
+        getPromoCode(state) {
+            return state.promoCode
         }
     },
 }

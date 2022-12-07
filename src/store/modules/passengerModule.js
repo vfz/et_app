@@ -51,8 +51,12 @@ export default {
         },
         haveErrors: true,
         promoCode: {
-          value: '',
-          error: '',
+            value: '',
+            discount: '',
+            promoType: '',
+            orderOrPassenger: '',
+            countPassenger: '',
+            error: '',
         },
         activeTab: 0,
     },
@@ -161,8 +165,13 @@ export default {
             state.promoCode.value = promoCodeValue
         },
         updatePromocodeError(state, error) {
-            console.log(error)
             state.promoCode.error = error
+        },
+        updatePromocodeResult(state, result) {
+            state.promoCode.discount = result.discount
+            state.promoCode.promoType = result.promoType
+            state.promoCode.orderOrPassenger = result.orderOrPassenger
+            state.promoCode.countPassenger = result.countPassenger
         }
     },
     actions: {
@@ -249,13 +258,23 @@ export default {
             const config = {
                 method: 'post',
                 url: 'https://api.evrotrans.net/APIet/promo.php',
-                data: value
+                data: 'promo='+value
             }
             await axios.request(config).then((response) => {
-                // boove1 промокод
                 console.log(response)
-                if (response.data.Error === 1) {
+                let error = response.data.Error
+                let result = response.data.Result
+                if (error === '1') {
                     ctx.commit('updatePromocodeError', response.data.Error_description)
+                }
+                if (error === '0') {
+                    ctx.commit('updatePromocodeError', '')
+                    ctx.commit('updatePromocodeResult', result)
+                    // boove1
+                    //countPassenger
+                    // discount - 90%
+                    // orderOrPassenger - на одного пассажира или на заказ
+                    // promoType - процентная ставка
                 }
             })
                 .catch((error) => {

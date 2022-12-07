@@ -148,20 +148,36 @@
               <div class="row">
                 <div class="col-12 col-md-6">
                   <div class="input-group position-relative">
-                    <!--                TODO добавить класс is-ok-bordered или is-error-bordered для инпута-->
-                    <input type="text" class="form-control form-control-bordered" placeholder="Введите промокод">
-                    <!--                TODO изменить класс is-ok-icon на is-error-icon, если валидация неверная. Убрать d-none для отображения элемента -->
-                    <div class="d-none is-error-icon icon-bg position-absolute d-flex align-items-center">
+                    <input
+                        @input="validatePromocode($event)"
+                        :value="getPromoCode.value"
+                        :disabled="getPromoCode.promoType !== ''"
+                        type="text"
+                        class="form-control form-control-bordered"
+                        placeholder="Введите промокод">
+                    <div
+                        :class="{'is-error-icon' : getPromoCode.error, 'is-ok-icon' : getPromoCode.promoType}"
+                        class="is-error-icon icon-bg position-absolute d-flex align-items-center">
                       <CheckIcon color="#fff"/>
                     </div>
                   </div>
-                  <!--              TODO убрать d-none для отображения ответа неверной валидации-->
-                  <div class="error-feedback-bordered d-none">
-                    Неверный промокод
+                  <div
+                      v-if="getPromoCode.error"
+                      class="error-feedback-bordered">
+                    {{getPromoCode.error}}
+                  </div>
+                  <div
+                      v-if="getPromoCode.promoType"
+                      class="is-ok-feedback-bordered">
+                    Промокод успешно применен
                   </div>
                 </div>
                 <div class="col-12 col-md-6">
-                  <button type="button" class="btn btn-primary btn-promo-code disabled">
+                  <button
+                      @click="applyPromocode($event)"
+                      type="button"
+                      :class="{'disabled' : getPromoCode.error, 'disabled' : getPromoCode.promoType}"
+                      class="btn btn-primary btn-promo-code disabled">
                     Применить
                   </button>
                 </div>

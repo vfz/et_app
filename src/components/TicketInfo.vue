@@ -168,12 +168,15 @@
                         Сумма заказа <span class="path-info-sum-number">{{sumBack}}</span>₽
                       </div>
                     </div>
-                    <!-- <div class="point-minus">
-                      - 3000₽ (Евробаллы)
-                    </div> -->
+                    <div v-if="!selectedBackFlightTicket &&sumWithPromocode" class="point-minus">- {{sumThere-sumWithPromocode}}₽ (Евробаллы)</div>
+                    <div v-if="selectedBackFlightTicket &&sumWithPromocode" class="point-minus">- {{(sumThere+sumBack)-sumWithPromocode}}₽ (Евробаллы)</div>
                     <div class="paths-final-amount d-inline-block position-relative">
-                      <div class="old-amount position-absolute d-none">14 000₽</div>
-                      Итого <span>{{sumThere + sumBack}} ₽</span>
+                      <div v-if="!selectedBackFlightTicket && sumWithPromocode" class="old-amount position-absolute">{{sumThere}}₽</div>
+                      <div v-if="selectedBackFlightTicket && sumWithPromocode" class="old-amount position-absolute">{{sumThere+sumBack}}₽</div>
+                      Итого
+                      <span v-if="selectedBackFlightTicket && !sumWithPromocode">{{sumBack + sumThere}} ₽</span>
+                      <span v-if="!selectedBackFlightTicket && !sumWithPromocode">{{sumThere}} ₽</span>
+                      <span v-if="sumWithPromocode">{{sumWithPromocode}} ₽</span>
                     </div>
                   </div>
                 </div>

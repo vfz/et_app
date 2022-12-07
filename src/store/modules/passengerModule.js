@@ -270,11 +270,6 @@ export default {
                 if (error === '0') {
                     ctx.commit('updatePromocodeError', '')
                     ctx.commit('updatePromocodeResult', result)
-                    // boove1
-                    //countPassenger
-                    // discount - 90%
-                    // orderOrPassenger - на одного пассажира или на заказ
-                    // promoType - процентная ставка
                 }
             })
                 .catch((error) => {

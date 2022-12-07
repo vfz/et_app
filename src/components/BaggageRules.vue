@@ -48,11 +48,12 @@
                   <input
                       @input="validatePromocode($event)"
                       :value="getPromoCode.value"
+                      :disabled="getPromoCode.promoType !== ''"
                       type="text"
                       class="form-control form-control-bordered"
                       placeholder="Введите промокод">
                   <div
-                      :class="{'is-error-icon' : getPromoCode.error, 'is-ok-icon' : !getPromoCode.error}"
+                      :class="{'is-error-icon' : getPromoCode.error, 'is-ok-icon' : getPromoCode.promoType}"
                       class="icon-bg position-absolute d-flex align-items-center">
                     <CheckIcon color="#fff"/>
                   </div>
@@ -62,11 +63,16 @@
                     class="error-feedback-bordered">
                   {{getPromoCode.error}}
                 </div>
+                <div
+                    v-if="getPromoCode.promoType"
+                    class="is-ok-feedback-bordered">
+                  Промокод успешно применен
+                </div>
               </div>
               <div class="col-12 col-md-6">
                 <button type="button"
                         @click="applyPromocode($event)"
-                        :class="{'disabled' : getPromoCode.error}"
+                        :class="{'disabled' : getPromoCode.error, 'disabled' : getPromoCode.promoType}"
                         class="btn btn-primary btn-promo-code">
                   Применить
                 </button>

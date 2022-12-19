@@ -282,9 +282,8 @@ export default {
     let monthToday = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     let yearToday = today.getFullYear();
     today = dayToday + '.' + monthToday + '.' + yearToday
-
     if (query) {
-      if (moment(query, 'MM.DD.YYYY', true).isValid()) {
+      if (moment(query, 'DD.MM.YYYY').isValid()) {
         this.$store.commit('setDateArrivalByQuery', query)
       }
       else {

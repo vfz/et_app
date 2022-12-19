@@ -24,7 +24,7 @@
                   <div>
                   </div>
                     <div class="fix"></div><div class="date">{{ day.indexm }}</div>
-                    <div class="price" v-if="day.index">{{day.price}}</div>
+                    <div class="price" v-if="day.index">{{day.price ? day.price+"₽" : '-'}}</div>
                 </div>
             </div>
         </div>
@@ -34,7 +34,7 @@
 import {mapGetters,mapActions} from 'vuex'
 export default{
     name: 'DataPicker',
-    computed: mapGetters(['selectDate','selectDateBack','dateArival','dateBack', 'from', 'to']),
+    computed: mapGetters(['selectDate','selectDateBack','dateArival','dateBack', 'from', 'to','dateArivalPrices','dateBackPrices']),
     data(){
         return{
 
@@ -73,16 +73,38 @@ export default{
                         month: (printmonth.toString().length===1) ? '0'+printmonth : printmonth,
                         year: this.year
                     };
-                    a.price = '≈ 1700';
+                    if (this.selectDate){
+
+                        let searchDate = a.year+'-'+a.month+'-'+a.index;
+                        a.price = this.dateArivalPrices[searchDate];
+                    }else {
+                        let searchDate = a.year+'-'+a.month+'-'+a.index;
+                        a.price = this.dateBackPrices[searchDate];
+                    }
+                    
                     days[week].push(a);
                     if (i == new Date().getDate() && this.year == new Date().getFullYear() && this.month == new Date().getMonth()) {
                         a.current = '1';
-                        a.price = '≈ 1700';
+                        if (this.selectDate){
+                            let searchDate = a.year+'-'+a.month+'-'+a.index;
+                            a.price = this.dateArivalPrices[searchDate];
+                        }else {
+                            let searchDate = a.year+'-'+a.month+'-'+a.index;
+                            a.price = this.dateBackPrices[searchDate];
+                        }
                         a.selected = false;
                     };
                     if (new Date(this.year, this.month, i).getDay() == 6 || new Date(this.year, this.month, i).getDay() == 0) {
                         a.weekend = '1';
-                        a.price = '≈ 2500';
+                        if (this.selectDate){
+                            // 2022-12-25
+                            let searchDate = a.year+'-'+a.month+'-'+a.index;
+                            a.price = this.dateArivalPrices[searchDate];
+                            //'≈ 1700';
+                        }else {
+                            let searchDate = a.year+'-'+a.month+'-'+a.index;
+                            a.price = this.dateBackPrices[searchDate];
+                        }
                         a.selected = false;
                     };
                     
@@ -107,16 +129,40 @@ export default{
                         month: (printmonth.toString().length===1) ? '0'+printmonth : printmonth,
                         year: this.year
                     };
-                    a.price = '≈ 1700';
+                    if (this.selectDate){
+                        // 2022-12-25
+                        let searchDate = a.year+'-'+a.month+'-'+a.index;
+                        a.price = this.dateArivalPrices[searchDate];
+                        //'≈ 1700';
+                    }else {
+                        let searchDate = a.year+'-'+a.month+'-'+a.index;
+                        a.price = this.dateBackPrices[searchDate];
+                    }
                     days[week].push(a);
                     if ((i == new Date().getDate()) && (this.year == new Date().getFullYear()) && (this.month == new Date().getMonth())) {
                         a.current = '1';
-                        a.price = '≈ 1700';
+                        if (this.selectDate){
+                            // 2022-12-25
+                            let searchDate = a.year+'-'+a.month+'-'+a.index;
+                            a.price = this.dateArivalPrices[searchDate];
+                            //'≈ 1700';
+                        }else {
+                            let searchDate = a.year+'-'+a.month+'-'+a.index;
+                            a.price = this.dateBackPrices[searchDate];
+                        }
                         a.selected = false;
                     };
                     if (new Date(this.year, this.month, i).getDay() == 6 || new Date(this.year, this.month, i).getDay() == 0) {
                         a.weekend = '1';
-                        a.price = '≈ 2500';
+                        if (this.selectDate){
+                            // 2022-12-25
+                            let searchDate = a.year+'-'+a.month+'-'+a.index;
+                            a.price = this.dateArivalPrices[searchDate];
+                            //'≈ 1700';
+                        }else {
+                            let searchDate = a.year+'-'+a.month+'-'+a.index;
+                            a.price = this.dateBackPrices[searchDate];
+                        }
                         a.selected = false;
                     };
                      if ((i == selectDay 

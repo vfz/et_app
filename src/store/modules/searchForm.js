@@ -17,7 +17,8 @@ export default {
             month: '2-digit',
             day: '2-digit',
         }),
-
+        dateArivalPrices: { '2022-12-25': '1000', '2022-12-26': '1700' },
+        dateBackPrices: { '2022-12-01': '1000' },
         selectDate: false,
         selectDateBack: false,
         oneWay: true,
@@ -215,8 +216,13 @@ export default {
         },
         setDateArrivalByQuery(state, dateArrivalQuery) {
             state.dateArival = dateArrivalQuery
+        },
+        setDateArivalPrices(state, therePrices) {
+            state.dateArivalPrices = therePrices.result
+        },
+        setDateBackPrices(state, backPrices) {
+            state.dateBackPrices = backPrices.result
         }
-
     },
     actions: {
         //обновить id рейса для которого нужно выводить Схему автобуса
@@ -241,11 +247,20 @@ export default {
         },
         //Получаем список рейсов (туда)
         async getFlightThere(ctx) {
+            const validTherePrice = (!+ctx.state.from || !+ctx.state.to) ? false : true
+            if (validTherePrice) {
+                const from_okato = ctx.state.fromStations.find(station => station.id_from === ctx.state.from).okato
+                const to_okato = ctx.state.toStations.find(station => station.id_to === ctx.state.to).okato
+                const resTherePrices = await fetch(ctx.rootState.API_URL + "?command=prices_okato_trip&from_id=" + from_okato + "&to_id=" + to_okato);
+                const therePrices = await resTherePrices.json();
+                ctx.commit('setDateArivalPrices', therePrices)
+            }
+
             const validSearchThere = (!+ctx.state.from || !+ctx.state.to || !ctx.state.dateArival) ? false : true
             if (!validSearchThere) { return false }
+
             const from_okato = ctx.state.fromStations.find(station => station.id_from === ctx.state.from).okato
             const to_okato = ctx.state.toStations.find(station => station.id_to === ctx.state.to).okato
-
             const res = await fetch(ctx.rootState.API_URL + "?command=okato_trip&from_id=" + from_okato + "&to_id=" + to_okato + "&date_trip=" + ctx.state.dateArival);
             const FlightThere = await res.json();
             ctx.commit('updateFlightThere', FlightThere)
@@ -254,11 +269,21 @@ export default {
         },
         //Получаем список рейсов (обратно)
         async getFlightBack(ctx) {
+            const validBackPrice = (!+ctx.state.from || !+ctx.state.to || ctx.state.oneWay) ? false : true
+            if (validBackPrice) {
+                const from_okato = ctx.state.toStations.find(station => station.id_to === ctx.state.to).okato
+                const to_okato = ctx.state.fromStations.find(station => station.id_from === ctx.state.from).okato
+
+                const resBackPrices = await fetch(ctx.rootState.API_URL + "?command=prices_okato_trip&from_id=" + from_okato + "&to_id=" + to_okato);
+                const backPrices = await resBackPrices.json();
+                ctx.commit('setDateBackPrices', backPrices)
+            }
+
             const validSearchBack = (!+ctx.state.from || !+ctx.state.to || !ctx.state.dateBack || ctx.state.oneWay) ? false : true
             if (!validSearchBack) { return false }
+
             const from_okato = ctx.state.toStations.find(station => station.id_to === ctx.state.to).okato
             const to_okato = ctx.state.fromStations.find(station => station.id_from === ctx.state.from).okato
-
             const res = await fetch(ctx.rootState.API_URL + "?command=okato_trip&from_id=" + from_okato + "&to_id=" + to_okato + "&date_trip=" + ctx.state.dateBack);
             const FlightBack = await res.json();
             ctx.commit('updateFlightBack', FlightBack)
@@ -380,7 +405,12 @@ export default {
         selectDateBack(state) {
             return state.selectDateBack
         },
-
+        dateArivalPrices(state) {
+            return state.dateArivalPrices
+        },
+        dateBackPrices(state) {
+            return state.dateBackPrices
+        }
 
     }
 

@@ -20,7 +20,9 @@
             
             <div class="col datapicker day text-center" v-for="day in week"   :key="day.key"
            >
-                <div v-on:click="SetDate(day.index+'.'+day.month+'.'+day.year)"  :class="{ current : day.current,  selected:day.selected}" >
+                <div v-on:click="changeUrlByDate(day.index+'.'+day.month+'.'+day.year); SetDate(day.index+'.'+day.month+'.'+day.year);"  :class="{ current : day.current,  selected:day.selected}" >
+                  <div>
+                  </div>
                     <div class="fix"></div><div class="date">{{ day.indexm }}</div>
                     <div class="price" v-if="day.index">{{day.price}}</div>
                 </div>
@@ -32,7 +34,7 @@
 import {mapGetters,mapActions} from 'vuex'
 export default{
     name: 'DataPicker',
-    computed: mapGetters(['selectDate','selectDateBack','dateArival','dateBack']),
+    computed: mapGetters(['selectDate','selectDateBack','dateArival','dateBack', 'from', 'to']),
     data(){
         return{
 
@@ -46,7 +48,9 @@ export default{
     },
     methods: {
         ...mapActions(['SetDate']),
-        
+        changeUrlByDate(date) {
+          this.$router.push('/flight-selection/search/'+ this.from + '/' + this.to + '/' + date)
+        },
         calendar: function() {
             var a={};
             var days = [];
@@ -161,8 +165,6 @@ export default{
             }
         },
     }
-    
-
 }
 
 </script>

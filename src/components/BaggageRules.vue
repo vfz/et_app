@@ -157,7 +157,7 @@
                         placeholder="Введите промокод">
                     <div
                         :class="{'is-error-icon' : getPromoCode.error, 'is-ok-icon' : getPromoCode.promoType}"
-                        class="is-error-icon icon-bg position-absolute d-flex align-items-center">
+                        class="icon-bg position-absolute d-flex align-items-center">
                       <CheckIcon color="#fff"/>
                     </div>
                   </div>
@@ -177,7 +177,7 @@
                       @click="applyPromocode($event)"
                       type="button"
                       :class="{'disabled' : getPromoCode.error, 'disabled' : getPromoCode.promoType}"
-                      class="btn btn-primary btn-promo-code disabled">
+                      class="btn btn-primary btn-promo-code">
                     Применить
                   </button>
                 </div>

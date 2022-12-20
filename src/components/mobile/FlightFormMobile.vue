@@ -619,6 +619,7 @@ export default {
           position: absolute;
           display: block;
           z-index: 1051;
+          top: 0;
           right:0;
           width: 507px;
           //max-height: 364px;

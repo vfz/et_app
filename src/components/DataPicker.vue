@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container p-1">
         <div class="row ">
             <div class="col-4 col-sm-4 text-end" v-on:click="decrease">
                 <span>&LT;</span>

@@ -5,7 +5,7 @@
                 <span>&LT;</span>
             </div>
             <div class="col-4 col-sm-4 text-center">
-                {{monthes[month]}} <br> {{year}} 
+                <nobr>{{monthes[month]}}</nobr> <br> {{year}} 
             </div>
             <div class="col-4 col-sm-4 text-start" v-on:click="increase">
                 <span>&GT;</span>

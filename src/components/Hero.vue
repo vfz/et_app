@@ -387,7 +387,12 @@ export default{
         },
        async alertPlace(){
             await this.getFlightThere()
-            this.$router.push('/flight-selection/search/'+this.from+'/'+this.to+'/'+this.dateArival)
+         if (this.oneWay) {
+           this.$router.push('/flight-selection/search/'+this.from+'/'+this.to+'/'+this.dateArival+'/'+this.oneWay)
+         }
+         else {
+           this.$router.push('/flight-selection/search/'+this.from+'/'+this.to+'/'+this.dateArival+'/'+this.dateBack+'/'+this.oneWay)
+         }
         },
 
     },

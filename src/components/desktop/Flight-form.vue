@@ -6,11 +6,11 @@
           <form id="hero-form" class="search-form d-flex flex-wrap justify-content-center">
             <div class="checkbox-form d-block w-100">
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(true)" name="inlineRadioOptions" id="inlineRadio1" value="option1" :checked="oneWay">
+                <input class="form-check-input" type="radio" v-on:click="changeUrlByWay(true);UpdateOneWay(true)" name="inlineRadioOptions" id="inlineRadio1" value="option1" :checked="oneWay">
                 <label class="form-check-label" for="inlineRadio1">В одну сторону</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(false)"  name="inlineRadioOptions" id="inlineRadio2" value="option2" :checked="!oneWay">
+                <input class="form-check-input" type="radio" v-on:click="changeUrlByWay(false);UpdateOneWay(false)"  name="inlineRadioOptions" id="inlineRadio2" value="option2" :checked="!oneWay">
                 <label class="form-check-label" for="inlineRadio2">Туда-обратно</label>
               </div>
             </div>
@@ -201,7 +201,7 @@
                         <span class="input-group-text calendar-span" v-on:click="UpdateselectDate()" ><img class="calendar-icon" alt="calendar" src="/img/hero/calendar.svg"></span>
                       </div>
                       <div class="select-date" v-if="selectDate">
-                        <DataPicker/>
+                        <DataPicker which-way="from"/>
                       </div>
                       <span class="card-example d-block w-100">
                                                 <span id="today-date-toggle" class="card-example-date today-date-toggle text-decoration-underline"
@@ -225,7 +225,7 @@
                         <span class="input-group-text calendar-span" v-on:click="UpdateselectDateBack()" ><img class="calendar-icon" alt="calendar" src="/img/hero/calendar.svg"></span>
                       </div>
                       <div class="select-date" v-if="selectDateBack">
-                        <DataPicker/>
+                        <DataPicker which-way="to"/>
                       </div>
                       <span class="card-example d-block w-100">
                                                 <span id="today-date-toggle" class="card-example-date today-date-toggle text-decoration-underline"
@@ -330,9 +330,10 @@ export default {
         this.$router.push('/flight-selection/search/'+this.from+'/'+this.to)
         }
     },
-
-
-
+    changeUrlByWay(oneWay) {
+      this.$store.commit('updateOneWay', oneWay)
+      this.$router.push('/flight-selection/search/'+this.from+'/'+this.to+'/'+this.dateArival+'/'+oneWay)
+    }
   },
   async mounted(){
     await this.getFromStations();
@@ -342,17 +343,29 @@ export default {
     this.setTo(this.$route.params.to);
     this.toPlace= this.toStations.find(station => station.id_to === this.$route.params.to).name;
     this.fromPlace= this.fromStations.find(station => station.id_from === this.$route.params.from).name;
+    let oneWay = (this.$route.params.oneWay === 'true')
+    this.$store.commit('updateOneWay', oneWay)
   },
   created(){
-    let query = this.$route.params.dateArrival
+    let queryDateArrival = this.$route.params.dateArrival
+    let queryDateBack = this.$route.params.dateBack
     let today = new Date()
     let dayToday = String(today.getDate()).padStart(2, '0');
     let monthToday = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     let yearToday = today.getFullYear();
     today = dayToday + '.' + monthToday + '.' + yearToday
-    if (query) {
-      if (moment(query, 'DD.MM.YYYY').isValid()) {
-        this.$store.commit('setDateArrivalByQuery', query)
+    if (queryDateArrival) {
+      if (moment(queryDateArrival, 'DD.MM.YYYY').isValid()) {
+        this.$store.commit('setDateArrivalByQuery', queryDateArrival)
+      }
+      else {
+        this.$router.push('/flight-selection/search/' + '1' + '/' + '190' + '/' + today)
+      }
+    }
+    if (queryDateArrival && queryDateBack) {
+      if (moment(queryDateArrival, 'DD.MM.YYYY').isValid() && moment(queryDateBack, 'DD.MM.YYYY').isValid()) {
+        this.$store.commit('setDateArrivalByQuery', queryDateArrival)
+        this.$store.commit('setDateBackByQuery', queryDateBack)
       }
       else {
         this.$router.push('/flight-selection/search/' + '1' + '/' + '190' + '/' + today)

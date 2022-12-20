@@ -34,7 +34,7 @@
 import {mapGetters,mapActions} from 'vuex'
 export default{
     name: 'DataPicker',
-    computed: mapGetters(['selectDate','selectDateBack','dateArival','dateBack', 'from', 'to','dateArivalPrices','dateBackPrices']),
+    computed: mapGetters(['selectDate','selectDateBack','dateArival','dateBack', 'from', 'to','dateArivalPrices','dateBackPrices', 'oneWay']),
     data(){
         return{
 
@@ -46,10 +46,23 @@ export default{
             date: new Date(),
         }
     },
+  props: {
+    whichWay: {
+      type: String
+    }
+  },
     methods: {
         ...mapActions(['SetDate']),
         changeUrlByDate(date) {
-          this.$router.push('/flight-selection/search/'+ this.from + '/' + this.to + '/' + date)
+          if (this.oneWay) {
+            this.$router.push('/flight-selection/search/'+ this.from + '/' + this.to + '/' + date + '/' + this.oneWay)
+          }
+          if (this.whichWay === 'from') {
+            this.$router.push('/flight-selection/search/'+ this.from + '/' + this.to + '/' + date + '/' + this.dateBack + '/' + this.oneWay)
+          }
+          if (this.whichWay === 'to') {
+            this.$router.push('/flight-selection/search/'+ this.from + '/' + this.to + '/' + this.dateArival + '/' + date + '/' + this.oneWay)
+          }
         },
         calendar: function() {
             var a={};

@@ -217,6 +217,9 @@ export default {
         setDateArrivalByQuery(state, dateArrivalQuery) {
             state.dateArival = dateArrivalQuery
         },
+        setDateBackByQuery(state, dateBackQuery) {
+            state.dateBack = dateBackQuery
+        },
         setDateArivalPrices(state, therePrices) {
             state.dateArivalPrices = therePrices.result
         },

@@ -3,14 +3,17 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-12">
-      <h1 class="title-section text-center">
+      <h1 v-if="error===0" class="title-section text-center">
         Оплата успешно завершена
+      </h1>
+      <h1 v-else class="title-section text-center">
+        {{ errorDescriptions }}
       </h1>
     </div>
   </div>
   <div class="row">
     <div class="col-12">
-      <p class="description-section text-center">
+      <p v-if="error===0"  class="description-section text-center">
         Чек за покупку и билет, будут отправлены на указанную вами почту. Желаем Вам счастливого пути!
       </p>
       
@@ -22,11 +25,23 @@
                               <span v-if="tickets.length===1" >Ссылка на ваш билет:</span>
                               <span v-else >Ссылки на ваши билеты:</span>
                               <br>
-                              <a v-for="(tic, index) in tickets"  :key="index" target="_blank" :href="tic.url">Билет {{tic.ticket}}</a><br></p>
+                              <span v-for="(tic, index) in tickets"  :key="index"><a target="_blank" :href="tic.url">Билет {{tic.ticket}}</a><br></span></p>
 
                         </div>           
                         
     </div>
+    <div class="col-lg-7" v-else>
+                        <h1 class="title-h1"></h1>
+                        <div class="return-tickets__info lost-found__info">
+                            <p >
+                              <br>
+                              <span v-for="(tic, index) in tickets"  :key="index"><a target="_blank" :href="tic.url">{{tic.ticket}}</a><br></span></p>
+
+                        </div>           
+                        
+    </div>
+
+
   </div>
   <div class="row">
     <div class="col-12 d-flex justify-content-center">
@@ -44,7 +59,9 @@ export default {
   data() {
     return {
       orderId: 0,
-      tickets:[]
+      tickets:[],
+      error:1,
+      errorDescriptions:''
     };
   },
   async mounted() {
@@ -52,6 +69,7 @@ export default {
     const config = {
         method: 'post',
         url : 'https://api.evrotrans.net/APIet/check_transaction.php',
+        url_payment:'https://securepayments.sberbank.ru/payment/merchants/sbersafe_sberid/payment_ru.html?mdOrder=',
         data : {
           'orderId': order
       }
@@ -62,6 +80,8 @@ export default {
             const mydata= response.data
             this.tickets=mydata.passengers
             this.orderId=mydata.orderId
+            this.error=+mydata.Erorr
+            this.errorDescriptions=mydata.Error_description
             console.log(mydata.orderId)
           })
           .catch((error) =>{

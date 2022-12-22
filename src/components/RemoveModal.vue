@@ -1,6 +1,11 @@
 <template>
   <!-- Modal -->
-  <div class="modal fade" id="removeModal" tabindex="-1" aria-labelledby="removeModalLabel" aria-hidden="true">
+  <div
+      class="modal fade"
+      :id="'removeModal'+index"
+      tabindex="-1"
+      aria-labelledby="removeModalLabel"
+      aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
@@ -10,7 +15,7 @@
 <!--          сообщение с пассажиром-->
           <p class="modal-body-text text-center passenger-message">
             Вы уверены, что хотите убрать
-            билет <span>пассажира № 1?</span>
+            билет <span>пассажира № {{index + 1}}?</span>
           </p>
 <!--          сообщение с маршрутом-->
           <p class="modal-body-text text-center there-message d-none">
@@ -19,10 +24,10 @@
           </p>
         </div>
         <div class="modal-footer justify-content-center">
-          <button class="btn-yes">
+          <button @click="removePassengerById(index)" class="btn-yes">
             Да
           </button>
-          <button class="btn-close" data-bs-dismiss="modal">
+          <button class="btn-close" data-bs-dismiss="modal" :id="'btn-close'+index">
             Нет
           </button>
         </div>
@@ -32,8 +37,21 @@
 </template>
 
 <script>
+import {mapActions} from "vuex";
+
 export default {
-  name: "RemoveModal"
+  name: "RemoveModal",
+  props: {
+    index: {
+      type: Number,
+      required: true
+    }
+  },
+  methods: {
+    ...mapActions([
+        'removePassengerById'
+    ]),
+  },
 }
 </script>
 

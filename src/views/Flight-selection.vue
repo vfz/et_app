@@ -15,7 +15,11 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-12 d-flex justify-content-center">
-          <button type="button" class="btn submit-flight btn-primary">
+          <button
+              @click="$router.push('/ticket-booking')"
+              type="button"
+              class="btn submit-flight btn-primary"
+              :class="{ disabled : !activeBookingButton() }">
             Перейти к бронированию
           </button>
         </div>
@@ -45,6 +49,10 @@
     background-color: $blue-active;
     margin-bottom: 72px;
     text-transform: none;
+  }
+  .disabled {
+    background-color: $disabled;
+    box-shadow: none;
   }
 }
 </style>
@@ -89,18 +97,45 @@ export default {
     
     LoginModal,
     RegistrationModal,
-    ForgotPasswordModal,
+    ForgotPasswordModal
 
     // Populardirections,
     // Registrationhero,
 
   }, 
-  computed: mapGetters(['oneWay']),
+  computed: mapGetters([
+    'oneWay',
+    'getChildrensCount',
+    'getAdultsCount', 
+    'selectedSeat',
+      'getPassengers',
+    'from',
+    'to',
+  ]),
   methods: {
     ...mapActions([
       'setFrom',
       'setTo',
     ]),
+    activeBookingButton(){
+      let selectedFlight = this.selectedSeat.filter(flight => (flight.is_selected))
+      if (
+          this.oneWay && 
+          selectedFlight.length === 1 && 
+          selectedFlight[0].seats.length === this.getPassengers.length
+      ) {
+        return true
+      }
+      if (
+          !this.oneWay && 
+          selectedFlight.length === 2 && 
+          selectedFlight[0].seats.length === this.getPassengers.length && 
+          selectedFlight[1].seats.length === this.getPassengers.length 
+      ) {
+        return true
+      }
+      return false
+    },
 
     isMobile() {
       return screen.width <= 991;

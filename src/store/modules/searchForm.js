@@ -1,17 +1,24 @@
+import Vue from 'vue'
+import { element } from "mdb-ui-kit/src/js/mdb/util";
+
 export default {
     state: {
         fromStations: [],
         toStations: [],
         from: '',
         to: '',
-        adults: 1,
-        childrens: 0,
         dateArival: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()).toLocaleDateString('ru-RU', {
             year: 'numeric',
             month: '2-digit',
             day: '2-digit',
         }),
-        dateBack: '',
+        dateBack: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()).toLocaleDateString('ru-RU', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+        }),
+        dateArivalPrices: { '2000-12-25': '-' },
+        dateBackPrices: { '2000-12-01': '-' },
         selectDate: false,
         selectDateBack: false,
         oneWay: true,
@@ -19,7 +26,8 @@ export default {
         flightBack: [],
         busTriptId: "7",
         shemeMobile: [],
-        shemeDesktop: []
+        shemeDesktop: [],
+        selectedSeat: []
 
     },
     mutations: {
@@ -64,7 +72,6 @@ export default {
             state.shemeDesktop = floors
 
         },
-
         //обновить id рейса для которого нужно выводить Схему автобуса
         updatebBusTriptId(state, tripId) {
             state.busTriptId = tripId
@@ -146,29 +153,78 @@ export default {
         castlingPoint(state) {
             [state.from, state.to] = [state.to, state.from]
         },
-        plusAdult(state) {
-            state.adults += 1;
-            if (state.adults > 7) {
-                state.adults = 7;
+        updateDefaultsSeat(state, passengers) {
+
+            const allFlights = [
+                ...state.flightBack.filter(flight => (flight.count_available_seats_trip >= passengers.length)),
+                ...state.flightThere.filter(flight => (flight.count_available_seats_trip >= passengers.length))
+            ]
+
+            state.selectedSeat = allFlights.map(flight => {
+
+                return {
+                    id_ticket: flight.ticket_id_2,
+                    id_trip: flight.id_trip,
+                    is_selected: false,
+                    seats: [
+                        //Берем первые N мест из рейса с достаточным кол-вом мест где N кол-во пассажиров
+                        ...flight.seats_trip.split('^').slice(0, passengers.length)
+                    ]
+                }
+
+
+            })
+
+        },
+
+        changeSeatList(state, { busTripId, seat, status, passengers }) {
+            let selectedFlight = state.selectedSeat.filter(reis => (reis.id_trip === busTripId))[0]
+            if (status) {
+                selectedFlight.seats.splice(selectedFlight.seats.indexOf(seat), 1)
+            }
+
+            if (!status && passengers.length > selectedFlight.seats.length) {
+                selectedFlight.seats.splice(0, 0, seat)
+            }
+
+            if (!status && passengers.length === selectedFlight.seats.length) {
+                selectedFlight.seats.splice(0, 1, seat)
+            }
+
+        },
+        setTrip(state, busTripId) {
+
+            //если выбираемый рейс находится в ОБРАТНЫХ рейсах 
+            if (state.flightBack.filter(flight => (flight.id_trip === busTripId)).length > 0) {
+
+                state.selectedSeat.filter(
+                    flight1 => (state.flightBack.map(flight => { return flight.id_trip }).includes(flight1.id_trip))
+                ).filter((reis) => {
+                    reis.is_selected = reis.is_selected ? false : reis.id_trip === busTripId;
+                })
+            }
+
+            //если выбираемый рейс находится в ПРЯМЫХ рейсах
+            if (state.flightThere.filter(flight => (flight.id_trip === busTripId)).length > 0) {
+
+                state.selectedSeat.filter(
+                    flight1 => (state.flightThere.map(flight => { return flight.id_trip }).includes(flight1.id_trip))
+                ).filter((reis) => {
+                    reis.is_selected = reis.is_selected ? false : reis.id_trip === busTripId;
+                })
             }
         },
-        minusAdult(state) {
-            state.adults -= 1;
-            if (state.adults < 1) {
-                state.adults = 1;
-            }
+        setDateArrivalByQuery(state, dateArrivalQuery) {
+            state.dateArival = dateArrivalQuery
         },
-        plusChild(state) {
-            state.childrens += 1;
-            if (state.childrens > 5) {
-                state.childrens = 5;
-            }
+        setDateBackByQuery(state, dateBackQuery) {
+            state.dateBack = dateBackQuery
         },
-        minusChild(state) {
-            state.childrens -= 1;
-            if (state.childrens < 0) {
-                state.childrens = 0;
-            }
+        setDateArivalPrices(state, therePrices) {
+            state.dateArivalPrices = therePrices.result
+        },
+        setDateBackPrices(state, backPrices) {
+            state.dateBackPrices = backPrices.result
         }
     },
     actions: {
@@ -177,6 +233,7 @@ export default {
             ctx.commit('updatebBusTriptId', tripId)
             ctx.commit('busMobile')
             ctx.commit('busDesktop')
+
         },
         //Получаем список станций прибытия
         async getToStations(ctx, from = '') {
@@ -193,31 +250,49 @@ export default {
         },
         //Получаем список рейсов (туда)
         async getFlightThere(ctx) {
+            const validTherePrice = (!+ctx.state.from || !+ctx.state.to) ? false : true
+            if (validTherePrice) {
+                const from_okato = ctx.state.fromStations.find(station => station.id_from === ctx.state.from).okato
+                const to_okato = ctx.state.toStations.find(station => station.id_to === ctx.state.to).okato
+                const resTherePrices = await fetch(ctx.rootState.API_URL + "?command=prices_okato_trip&from_id=" + from_okato + "&to_id=" + to_okato);
+                const therePrices = await resTherePrices.json();
+                ctx.commit('setDateArivalPrices', therePrices)
+            }
 
             const validSearchThere = (!+ctx.state.from || !+ctx.state.to || !ctx.state.dateArival) ? false : true
             if (!validSearchThere) { return false }
+
             const from_okato = ctx.state.fromStations.find(station => station.id_from === ctx.state.from).okato
             const to_okato = ctx.state.toStations.find(station => station.id_to === ctx.state.to).okato
-
             const res = await fetch(ctx.rootState.API_URL + "?command=okato_trip&from_id=" + from_okato + "&to_id=" + to_okato + "&date_trip=" + ctx.state.dateArival);
             const FlightThere = await res.json();
             ctx.commit('updateFlightThere', FlightThere)
-
+            ctx.commit('updateDefaultsSeat', ctx.rootGetters.getPassengers)
 
         },
         //Получаем список рейсов (обратно)
         async getFlightBack(ctx) {
+            const validBackPrice = (!+ctx.state.from || !+ctx.state.to || ctx.state.oneWay) ? false : true
+            if (validBackPrice) {
+                const from_okato = ctx.state.toStations.find(station => station.id_to === ctx.state.to).okato
+                const to_okato = ctx.state.fromStations.find(station => station.id_from === ctx.state.from).okato
+
+                const resBackPrices = await fetch(ctx.rootState.API_URL + "?command=prices_okato_trip&from_id=" + from_okato + "&to_id=" + to_okato);
+                const backPrices = await resBackPrices.json();
+                ctx.commit('setDateBackPrices', backPrices)
+            }
+
             const validSearchBack = (!+ctx.state.from || !+ctx.state.to || !ctx.state.dateBack || ctx.state.oneWay) ? false : true
             if (!validSearchBack) { return false }
+
             const from_okato = ctx.state.toStations.find(station => station.id_to === ctx.state.to).okato
             const to_okato = ctx.state.fromStations.find(station => station.id_from === ctx.state.from).okato
-
             const res = await fetch(ctx.rootState.API_URL + "?command=okato_trip&from_id=" + from_okato + "&to_id=" + to_okato + "&date_trip=" + ctx.state.dateBack);
             const FlightBack = await res.json();
             ctx.commit('updateFlightBack', FlightBack)
+            ctx.commit('updateDefaultsSeat', ctx.rootGetters.getPassengers)
 
         },
-
         // Ракировка откуда куда
         castling(ctx) {
             ctx.commit('castlingPoint')
@@ -265,12 +340,24 @@ export default {
             ctx.dispatch('getFlightThere')
             ctx.dispatch('getFlightBack')
         },
-        PlusAdult(ctx) { ctx.commit('plusAdult') },
-        MinusAdult(ctx) { ctx.commit('minusAdult') },
-        PlusChild(ctx) { ctx.commit('plusChild') },
-        MinusChild(ctx) { ctx.commit('minusChild') }
+        changeSelectedPlace(ctx, [busTripId, seat, status]) {
 
+            const allFlights = [
+                ...ctx.state.flightBack.filter(flight => (flight.seats_trip.split('^').includes(seat) && flight.id_trip === busTripId)),
+                ...ctx.state.flightThere.filter(flight => (flight.seats_trip.split('^').includes(seat) && flight.id_trip === busTripId))
+            ]
 
+            //Вызываем мутацию только если в seat переданн номер места и в выбраном рейсе выбранное место свободно
+            //Чистим seat от всего что не цифра и проверяем не осталась ли пустая строка если строка не пустая вызываем мутацию 
+            if (seat.replace(/[^\d]/g, '').trim() !== '' && allFlights.length > 0) {
+                let passengers = ctx.rootGetters.getPassengers
+                ctx.commit('changeSeatList', { busTripId, seat, status, passengers })
+            }
+
+        },
+        chengeSelectTrip(ctx, busTripId) {
+            ctx.commit('setTrip', busTripId)
+        },
     },
     modules: {},
     getters: {
@@ -280,11 +367,9 @@ export default {
         shemeDesktop(state) {
             return state.shemeDesktop
         },
-
-        // mergeFlights(state) {
-        //     let flights = state.flightThere.concat(state.flightBack);
-        //     return flights
-        // },
+        selectedSeat(state) {
+            return state.selectedSeat
+        },
         busTriptId(state) {
             return state.busTriptId
         },
@@ -311,12 +396,6 @@ export default {
         oneWay(state) {
             return state.oneWay
         },
-        childrens(state) {
-            return state.childrens
-        },
-        adults(state) {
-            return state.adults
-        },
         dateArival(state) {
             return state.dateArival
         },
@@ -328,6 +407,12 @@ export default {
         },
         selectDateBack(state) {
             return state.selectDateBack
+        },
+        dateArivalPrices(state) {
+            return state.dateArivalPrices
+        },
+        dateBackPrices(state) {
+            return state.dateBackPrices
         }
 
     }

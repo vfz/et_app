@@ -20,40 +20,90 @@
     <div class="col-12">
       <div class="form-wrapper">
         <div class="row my-data-button-row">
-          <MyDataButton class="my-data-button-component" :is-login="false" :is-collapse="true"/>
-          <div class="collapse" id="collapseData">
+          <MyDataButton class="my-data-button-component" :is-login="getIsLogin" :is-collapse="false"/>
+          <div :class="{show : !getIsLogin}" class="collapse" id="collapseData">
             <div class="row">
-              <!--                        TODO сделать валидацию по классам .is-ok и .is-error к классу form-control -->
               <div class="col-12 col-lg-6 col-xl mb-lg-4 mb-xl-0">
                 <div class="d-block">
                   <label for="secondNameBuyer" class="form-label">Фамилия</label>
-                  <input type="text" class="form-control" id="secondNameBuyer" placeholder="Иванов">
-                  <!--                          TODO убрать d-none когда валидация неверная-->
-                  <div class="error-feedback d-none">Укажите фамилию</div>
+                  <input
+                      @input="validateFormBuyer(['secondName',$event])"
+                      :value="getBuyerInfo.secondName"
+                      type="text"
+                      class="form-control"
+                      :class="{
+                        'is-ok': !getBuyerInfo.errors.secondName,
+                        'is-error' : getBuyerInfo.errors.secondName}"
+                      id="secondNameBuyer"
+                      placeholder="Иванов">
+                  <div :class="{
+                        'd-none': !getBuyerInfo.errors.secondName}"
+                       class="error-feedback">
+                    {{getBuyerInfo.errors.secondName}}
+                  </div>
                 </div>
               </div>
               <div class="col-12 col-lg-6 col-xl mb-lg-4 mb-xl-0">
                 <div class="d-block">
                   <label for="firstNameBuyer" class="form-label">Имя</label>
-                  <input type="text" class="form-control" id="firstNameBuyer" placeholder="Иван">
-                  <!--                          TODO убрать d-none когда валидация неверная-->
-                  <div class="error-feedback d-none">Укажите имя</div>
+                  <input
+                      @input="validateFormBuyer(['firstName',$event])"
+                      :value="getBuyerInfo.firstName"
+                      type="text"
+                      class="form-control"
+                      :class="{
+                        'is-ok': !getBuyerInfo.errors.firstName,
+                        'is-error' : getBuyerInfo.errors.firstName}"
+                      id="firstNameBuyer"
+                      placeholder="Иван">
+                  <div :class="{
+                        'd-none': !getBuyerInfo.errors.firstName}"
+                       class="error-feedback">
+                    {{getBuyerInfo.errors.firstName}}
+                  </div>
                 </div>
               </div>
               <div class="col-12 col-lg-6 col-xl">
                 <div class="d-block">
                   <label for="mailBuyer" class="form-label">Электронная почта</label>
-                  <input type="text" class="form-control" id="mailBuyer" placeholder="name@mail.ru">
-                  <!--                          TODO убрать d-none когда валидация неверная-->
-                  <div class="error-feedback d-none">Электронная почта в неправильном формате</div>
+                  <input
+                      @input="validateFormBuyer(['email', $event]);"
+                      :value="getBuyerInfo.email"
+                      type="text"
+                      class="form-control"
+                      :class="{
+                        'is-ok': !getBuyerInfo.errors.email,
+                        'is-error' : getBuyerInfo.errors.email}"
+                      id="mailBuyer"
+                      placeholder="name@mail.ru">
+                  <div :class="{
+                        'd-none': !getBuyerInfo.errors.email}"
+                       class="error-feedback">
+                    {{getBuyerInfo.errors.email}}
+                  </div>
                 </div>
               </div>
               <div class="col-12 col-lg-6 col-xl">
                 <div class="d-block">
                   <label for="numberBuyer" class="form-label">Телефон</label>
-                  <input type="text" class="form-control" id="numberBuyer" placeholder="+7 (___)-___-__-__">
-                  <!--                          TODO убрать d-none когда валидация неверная-->
-                  <div class="error-feedback d-none">Номер телефона в неправильном формате</div>
+                  <input
+                      @focus="addRussianNumberPrefix"
+                      @input="validateFormBuyer(['number', $event]);"
+                      :value="getBuyerInfo.number"
+                      type="text"
+                      pattern="[0-9]*"
+                      inputmode="numeric"
+                      class="form-control"
+                      :class="{
+                        'is-ok': !getBuyerInfo.errors.number,
+                        'is-error' : getBuyerInfo.errors.number}"
+                      id="numberBuyer"
+                      placeholder="+7 (___)-___-__-__">
+                  <div :class="{
+                        'd-none': !getBuyerInfo.errors.number}"
+                       class="error-feedback">
+                    {{getBuyerInfo.errors.number}}
+                  </div>
                 </div>
               </div>
             </div>
@@ -66,9 +116,26 @@
 
 <script>
 import MyDataButton from "@/components/MyDataButton";
+import {mapActions, mapGetters} from "vuex";
 export default {
   name: "BuyerInfo",
-  components: {MyDataButton}
+  components: {MyDataButton},
+  methods: {
+    ...mapActions([
+        'updateSecondNameBuyer',
+        'updateFirstNameBuyer',
+        'updateEmailBuyer',
+        'updateNumberBuyer',
+        'validateFormBuyer',
+        'addRussianNumberPrefix'
+    ]),
+  },
+  computed: {
+    ...mapGetters([
+      'getIsLogin',
+      'getBuyerInfo'
+    ]),
+  },
 }
 </script>
 

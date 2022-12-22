@@ -8,346 +8,201 @@
             <div class="info-passengers-mobile">
               <nav>
                 <div class="nav overflow-x-scroll nav-tabs flex-nowrap" id="nav-tab" role="tablist">
-                  <button class="nav-link active" id="passenger-1-tab" data-bs-toggle="tab" data-bs-target="#passenger-1" type="button" role="tab" aria-controls="passenger-1" aria-selected="true">Пассажир №1</button>
-                  <button class="nav-link" id="passenger-2-tab" data-bs-toggle="tab" data-bs-target="#passenger-2" type="button" role="tab" aria-controls="passenger-2" aria-selected="true">Пассажир №2</button>
-                  <button class="nav-link" id="passenger-3-tab" data-bs-toggle="tab" data-bs-target="#passenger-3" type="button" role="tab" aria-controls="passenger-3" aria-selected="true">Пассажир №3</button>
-                  <button class="nav-link" id="passenger-4-tab" data-bs-toggle="tab" data-bs-target="#passenger-4" type="button" role="tab" aria-controls="passenger-4" aria-selected="true">Пассажир №4</button>
+                  <button
+                      v-for="(passenger,index) in getPassengers"
+                      :key="index"
+                      :class="{active: index === 0}"
+                      class="nav-link"
+                      :id="'passenger-'+index+'-tab'"
+                      data-bs-toggle="tab"
+                      :data-bs-target="'#passenger-'+index"
+                      type="button"
+                      role="tab"
+                      :aria-controls="'passenger-'+index"
+                      :aria-selected="{true : index === 0}">{{passenger.isAdult ? "" : '&#128118'}} Пассажир №{{index+1}}</button>
                 </div>
               </nav>
               <div class="tab-content position-relative" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="passenger-1" ref="tabpanel" aria-labelledby="passenger-1-tab">
+                <div
+                    v-for="(passenger,index) in getPassengers"
+                    :key="index"
+                    :class="{'show active': index === 0}"
+                    class="tab-pane fade"
+                    :id="'passenger-'+index"
+                    role="tabpanel"
+                    :aria-labelledby="'passenger-'+index+'-tab'">
                   <div class="form-wrapper">
                     <div class="row my-data-button-row">
-                      <MyDataButton :is-collapse="false" :isLogin="isLogin"/>
+                      <MyDataButton :is-login="getIsLogin" :is-collapse="false"/>
                     </div>
                     <div class="checkbox-form d-flex flex-wrap align-items-center justify-content-between w-100">
-                      <div class="checkbox-form d-block w-100">
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(true)" name="inlineRadioOptions" id="inlineRadio1" value="option1" :checked="oneWay">
-                          <label class="form-check-label" for="inlineRadio1">В одну сторону</label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(false)"  name="inlineRadioOptions" id="inlineRadio2" value="option2" :checked="!oneWay">
-                          <label class="form-check-label" for="inlineRadio2">Туда-обратно</label>
-                        </div>
-                      </div>
+                      <!--<div class="checkbox-form d-block w-100">-->
+                        <!--<div class="form-check">-->
+                          <!--<input @click="UpdateOneWay(true)" :checked="oneWay" :id="'checkbox1'+index" class="form-check-input" type="radio" :name="'inlineRadioOptions'+index">-->
+                          <!--<label class="form-check-label" for="inlineRadio1">В одну сторону</label>-->
+                        <!--</div>-->
+                        <!--<div class="form-check">-->
+                          <!--<input @click="UpdateOneWay(false)" :checked="!oneWay" :id="'checkbox2'+index" class="form-check-input" type="radio" v-on:click="UpdateOneWay(false)"  :name="'inlineRadioOptions'+index">-->
+                          <!--<label class="form-check-label" for="inlineRadio2">Туда-обратно</label>-->
+                        <!--</div>-->
+                      <!--</div>-->
                       <div class="d-inline-block">
                         <!-- Button trigger modal -->
-                        <button type="button" class="remove-button" data-bs-toggle="modal" data-bs-target="#removeModal">
+                        <button v-if="index !== 0" type="button" class="remove-button" data-bs-toggle="modal" :data-bs-target="'#removeModal'+index">
                           Убрать
                           <CancelIcon color="#196EFFFF"/>
                         </button>
                       </div>
                     </div>
-                    <!--                        TODO сделать валидацию по классам .is-ok и .is-error-->
+                    <!-- secondName -->
                     <div class="d-block">
-                      <label for="secondName1" class="form-label">Фамилия</label>
-                      <input type="text" class="form-control is-ok" id="secondName1" placeholder="Иванов" required>
-                      <!--                          TODO убрать d-none когда валидация неверная-->
-                      <div class="error-feedback d-none">Укажите фамилию</div>
-                    </div>
-                    <div class="d-block">
-                      <label for="firstName1" class="form-label">Имя</label>
-                      <input type="text" class="form-control" id="firstName1" placeholder="Иван" required>
-                      <!--                          TODO убрать d-none когда валидация неверная-->
-                      <div class="error-feedback d-none">Укажите имя</div>
-                    </div>
-                    <div class="d-block">
-                      <label for="MiddleName1" class="form-label">Отчество</label>
-                      <input type="text" class="form-control" id="MiddleName1" placeholder="Иванович" required>
-                      <!--                          TODO убрать d-none когда валидация неверная-->
-                      <div class="error-feedback d-none">Укажите отчество</div>
-                    </div>
-                    <div class="d-block">
-                      <label for="birthday1" class="form-label">Дата рождения</label>
-                      <input type="text" class="form-control" id="birthday1" placeholder="дд.мм.гггг" required>
-                      <!--                          TODO убрать d-none когда валидация неверная-->
-                      <div class="error-feedback d-none">Некорректная дата, вам больше 125 лет?</div>
-                    </div>
-                    <div class="d-block">
-                      <label for="gender1" class="form-label">Пол</label>
-                      <select id="gender1" class="form-select">
-                        <option selected>Мужской</option>
-                        <option>Женский</option>
-                      </select>
-                      <!--                          TODO убрать d-none когда валидация неверная-->
-                      <div class="error-feedback d-none">Выберите пол</div>
-                    </div>
-                    <div class="d-block">
-                      <label for="citizenship1" class="form-label">Гражданство</label>
-                      <select id="citizenship1" class="form-select">
-                        <option selected>Российская Федерация</option>
-                        <option>...</option>
-                      </select>
-                      <!--                          TODO убрать d-none когда валидация неверная-->
-                      <div class="error-feedback d-none">Выберите гражданство</div>
-                    </div>
-                    <div class="d-block">
-                      <label for="document1" class="form-label">Документ</label>
-                      <select id="document1" class="form-select">
-                        <option selected>Паспорт РФ</option>
-                        <option>...</option>
-                      </select>
-                      <!--                          TODO убрать d-none когда валидация неверная-->
-                      <div class="error-feedback d-none">Выберите документ</div>
-                    </div>
-                    <div class="d-block">
-                      <label for="documentInfo1" class="form-label">Серия и номер документа</label>
-                      <input type="text" class="form-control" id="documentInfo1" placeholder="01 23 456789" required>
-                      <!--                          TODO убрать d-none когда валидация неверная-->
-                      <div class="error-feedback d-none">Некорректные серия и номер документа</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="tab-pane fade" id="passenger-2" role="tabpanel" aria-labelledby="passenger-2-tab">
-                  <div class="form-wrapper">
-                    <div class="row my-data-button-row">
-                      <MyDataButton :is-collapse="false" :isLogin="isLogin"/>
-                    </div>
-                    <div class="checkbox-form d-flex flex-wrap align-items-center justify-content-between w-100">
-                      <div class="checkbox-form d-block w-100">
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(true)" name="inlineRadioOptions" id="inlineRadio1" value="option1" :checked="oneWay">
-                          <label class="form-check-label" for="inlineRadio1">В одну сторону</label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(false)"  name="inlineRadioOptions" id="inlineRadio2" value="option2" :checked="!oneWay">
-                          <label class="form-check-label" for="inlineRadio2">Туда-обратно</label>
-                        </div>
-                      </div>
-                      <div class="d-inline-block">
-                        <!-- Button trigger modal -->
-                        <button type="button" class="remove-button" data-bs-toggle="modal" data-bs-target="#removeModal">
-                          Убрать
-                          <CancelIcon color="#196EFFFF"/>
-                        </button>
+                      <label :for="'secondName'+index"  class="form-label">Фамилия</label>
+                      <input
+                          @input="validateForm([index, 'secondName', $event]);"
+                      :value="passenger.secondName"
+                      type="text"
+                      class="form-control"
+                          :class="{'is-ok': !passenger.errors.secondName,'is-error' : passenger.errors.secondName}"
+                      :id="'secondName' + index"
+                      placeholder="Иванов">
+                      <div :class="{
+                    'd-none': !passenger.errors.secondName}"
+                           class="error-feedback">
+                        {{passenger.errors.secondName}}
                       </div>
                     </div>
-                    <!--                        TODO сделать валидацию по классам .is-ok и .is-error-->
+                    <!-- firstName -->
                     <div class="d-block">
-                      <label for="secondName1" class="form-label">Фамилия</label>
-                      <input type="text" class="form-control is-ok" id="secondName1" placeholder="Иванов" required>
-                      <!--                          TODO убрать d-none когда валидация неверная-->
-                      <div class="error-feedback d-none">Укажите фамилию</div>
+                      <label :for="'firstName'+index" class="form-label">Имя</label>
+                      <input
+                          @input="validateForm([index, 'firstName', $event]);"
+                      :value="passenger.firstName"
+                      type="text"
+                      class="form-control"
+                      :class="{
+                        'is-ok': !passenger.errors.firstName,
+                        'is-error' : passenger.errors.firstName}"
+                      :id="'firstName'+ index"
+                      placeholder="Иван">
+                      <div :class="{
+                    'd-none': !passenger.errors.firstName}"
+                           class="error-feedback">{{passenger.errors.firstName}}</div>
                     </div>
+                    <!-- MiddleName -->
                     <div class="d-block">
-                      <label for="firstName1" class="form-label">Имя</label>
-                      <input type="text" class="form-control" id="firstName1" placeholder="Иван" required>
-                      <!--                          TODO убрать d-none когда валидация неверная-->
-                      <div class="error-feedback d-none">Укажите имя</div>
+                      <label :for="'MiddleName'+index" class="form-label">Отчество</label>
+                      <input
+                          @input="validateForm([index, 'middleName', $event]);"
+                      :value="passenger.middleName"
+                      type="text"
+                      class="form-control"
+                      :class="{
+                        'is-ok': !passenger.errors.middleName,
+                        'is-error' : passenger.errors.middleName}"
+                      :id="'MiddleName' + index"
+                      placeholder="Иванович">
+                      <div
+                          :class="{'d-none': !passenger.errors.middleName}"
+                          class="error-feedback">{{passenger.errors.middleName}}</div>
                     </div>
+                    <!-- birthday -->
                     <div class="d-block">
-                      <label for="MiddleName1" class="form-label">Отчество</label>
-                      <input type="text" class="form-control" id="MiddleName1" placeholder="Иванович" required>
-                      <!--                          TODO убрать d-none когда валидация неверная-->
-                      <div class="error-feedback d-none">Укажите отчество</div>
+                      <label :for="'birthday'+index" class="form-label">Дата рождения</label>
+                      <input
+                          @input="validateForm([index, 'birthday', $event, passenger.isAdult])"
+                      :value="passenger.birthday"
+                      type="date"
+                      class="form-control"
+                      :class="{
+                        'is-ok': !passenger.errors.birthday,
+                        'is-error' :passenger.errors.birthday}"
+                      :id="'birthday'+index"
+                      pattern="\d{4}-\d{2}-\d{2}"
+                      placeholder="дд.мм.гггг"
+                      required>
+                      <div
+                          :class="{'d-none': !passenger.errors.birthday}"
+                          class="error-feedback">{{passenger.errors.birthday}}</div>
                     </div>
+                    <!-- gender -->
                     <div class="d-block">
-                      <label for="birthday1" class="form-label">Дата рождения</label>
-                      <input type="text" class="form-control" id="birthday1" placeholder="дд.мм.гггг" required>
-                      <!--                          TODO убрать d-none когда валидация неверная-->
-                      <div class="error-feedback d-none">Некорректная дата, вам больше 125 лет?</div>
-                    </div>
-                    <div class="d-block">
-                      <label for="gender1" class="form-label">Пол</label>
-                      <select id="gender1" class="form-select">
-                        <option selected>Мужской</option>
-                        <option>Женский</option>
-                      </select>
-                      <!--                          TODO убрать d-none когда валидация неверная-->
-                      <div class="error-feedback d-none">Выберите пол</div>
-                    </div>
-                    <div class="d-block">
-                      <label for="citizenship1" class="form-label">Гражданство</label>
-                      <select id="citizenship1" class="form-select">
-                        <option selected>Российская Федерация</option>
-                        <option>...</option>
-                      </select>
-                      <!--                          TODO убрать d-none когда валидация неверная-->
-                      <div class="error-feedback d-none">Выберите гражданство</div>
-                    </div>
-                    <div class="d-block">
-                      <label for="document1" class="form-label">Документ</label>
-                      <select id="document1" class="form-select">
-                        <option selected>Паспорт РФ</option>
-                        <option>...</option>
-                      </select>
-                      <!--                          TODO убрать d-none когда валидация неверная-->
-                      <div class="error-feedback d-none">Выберите документ</div>
-                    </div>
-                    <div class="d-block">
-                      <label for="documentInfo1" class="form-label">Серия и номер документа</label>
-                      <input type="text" class="form-control" id="documentInfo1" placeholder="01 23 456789" required>
-                      <!--                          TODO убрать d-none когда валидация неверная-->
-                      <div class="error-feedback d-none">Некорректные серия и номер документа</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="tab-pane fade" id="passenger-3" role="tabpanel" aria-labelledby="passenger-3-tab">
-                  <div class="form-wrapper">
-                    <div class="row my-data-button-row">
-                      <MyDataButton :is-collapse="false" :isLogin="isLogin"/>
-                    </div>
-                    <div class="checkbox-form d-flex flex-wrap align-items-center justify-content-between w-100">
-                      <div class="checkbox-form d-block w-100">
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(true)" name="inlineRadioOptions" id="inlineRadio1" value="option1" :checked="oneWay">
-                          <label class="form-check-label" for="inlineRadio1">В одну сторону</label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(false)"  name="inlineRadioOptions" id="inlineRadio2" value="option2" :checked="!oneWay">
-                          <label class="form-check-label" for="inlineRadio2">Туда-обратно</label>
-                        </div>
-                      </div>
-                      <div class="d-inline-block">
-                        <!-- Button trigger modal -->
-                        <button type="button" class="remove-button" data-bs-toggle="modal" data-bs-target="#removeModal">
-                          Убрать
-                          <CancelIcon color="#196EFFFF"/>
-                        </button>
+                      <label :for="'gender'+index" class="form-label">Пол</label>
+                      <div class="position-relative">
+                        <select
+                            @input="validateForm([index, 'gender', $event]);"
+                          :value="passenger.gender"
+                          class="form-control"
+                          :id="'gender'+index"
+                          :class="{'is-ok': !passenger.errors.gender,
+                        'is-error' : passenger.errors.gender}">
+                          <option value="0">Женский</option>
+                          <option selected value="1">Мужской</option>
+                          </select>
+                        <div v-if="!passenger.gender" class="select-placeholder position-absolute pe-none">Мужской</div>
+                        <div :class="{'d-none': !passenger.errors.gender}" class="error-feedback">{{passenger.errors.gender}}</div>
                       </div>
                     </div>
-                    <!--                        TODO сделать валидацию по классам .is-ok и .is-error-->
+                    <!-- citizenship -->
                     <div class="d-block">
-                      <label for="secondName1" class="form-label">Фамилия</label>
-                      <input type="text" class="form-control is-ok" id="secondName1" placeholder="Иванов" required>
-                      <!--                          TODO убрать d-none когда валидация неверная-->
-                      <div class="error-feedback d-none">Укажите фамилию</div>
-                    </div>
-                    <div class="d-block">
-                      <label for="firstName1" class="form-label">Имя</label>
-                      <input type="text" class="form-control" id="firstName1" placeholder="Иван" required>
-                      <!--                          TODO убрать d-none когда валидация неверная-->
-                      <div class="error-feedback d-none">Укажите имя</div>
-                    </div>
-                    <div class="d-block">
-                      <label for="MiddleName1" class="form-label">Отчество</label>
-                      <input type="text" class="form-control" id="MiddleName1" placeholder="Иванович" required>
-                      <!--                          TODO убрать d-none когда валидация неверная-->
-                      <div class="error-feedback d-none">Укажите отчество</div>
-                    </div>
-                    <div class="d-block">
-                      <label for="birthday1" class="form-label">Дата рождения</label>
-                      <input type="text" class="form-control" id="birthday1" placeholder="дд.мм.гггг" required>
-                      <!--                          TODO убрать d-none когда валидация неверная-->
-                      <div class="error-feedback d-none">Некорректная дата, вам больше 125 лет?</div>
-                    </div>
-                    <div class="d-block">
-                      <label for="gender1" class="form-label">Пол</label>
-                      <select id="gender1" class="form-select">
-                        <option selected>Мужской</option>
-                        <option>Женский</option>
-                      </select>
-                      <!--                          TODO убрать d-none когда валидация неверная-->
-                      <div class="error-feedback d-none">Выберите пол</div>
-                    </div>
-                    <div class="d-block">
-                      <label for="citizenship1" class="form-label">Гражданство</label>
-                      <select id="citizenship1" class="form-select">
-                        <option selected>Российская Федерация</option>
-                        <option>...</option>
-                      </select>
-                      <!--                          TODO убрать d-none когда валидация неверная-->
-                      <div class="error-feedback d-none">Выберите гражданство</div>
-                    </div>
-                    <div class="d-block">
-                      <label for="document1" class="form-label">Документ</label>
-                      <select id="document1" class="form-select">
-                        <option selected>Паспорт РФ</option>
-                        <option>...</option>
-                      </select>
-                      <!--                          TODO убрать d-none когда валидация неверная-->
-                      <div class="error-feedback d-none">Выберите документ</div>
-                    </div>
-                    <div class="d-block">
-                      <label for="documentInfo1" class="form-label">Серия и номер документа</label>
-                      <input type="text" class="form-control" id="documentInfo1" placeholder="01 23 456789" required>
-                      <!--                          TODO убрать d-none когда валидация неверная-->
-                      <div class="error-feedback d-none">Некорректные серия и номер документа</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="tab-pane fade" id="passenger-4" role="tabpanel" aria-labelledby="passenger-24-tab">
-                  <div class="form-wrapper">
-                    <div class="row my-data-button-row">
-                      <MyDataButton :isLogin="isLogin"/>
-                    </div>
-                    <div class="checkbox-form d-flex flex-wrap align-items-center justify-content-between w-100">
-                      <div class="checkbox-form d-block w-100">
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(true)" name="inlineRadioOptions" id="inlineRadio1" value="option1" :checked="oneWay">
-                          <label class="form-check-label" for="inlineRadio1">В одну сторону</label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(false)"  name="inlineRadioOptions" id="inlineRadio2" value="option2" :checked="!oneWay">
-                          <label class="form-check-label" for="inlineRadio2">Туда-обратно</label>
-                        </div>
-                      </div>
-                      <div class="d-inline-block">
-                        <!-- Button trigger modal -->
-                        <button type="button" class="remove-button" data-bs-toggle="modal" data-bs-target="#removeModal">
-                          Убрать
-                          <CancelIcon color="#196EFFFF"/>
-                        </button>
+                      <label :for="'citizenship'+index" class="form-label">Гражданство</label>
+                      <div class="position-relative">
+                        <select
+                            @input="validateForm([index,'citizenship',$event]);"
+                          :value="passenger.citizenship"
+                            :class="{
+                           'is-ok': !passenger.errors.citizenship,
+                           'is-error' : passenger.errors.citizenship}"
+                          class="form-control"
+                          :id="'citizenship'+index"
+                          >
+                            <option
+                                v-for="option in getCitizenships"
+                                :key="option.code"
+                                :value="option.code"
+                                :selected="option.code === '643'"
+                                class="form-option">
+                                {{option.name}}
+                            </option>
+                          </select>
+
+                        <div :class="{'d-none': !passenger.errors.citizenship}" class="error-feedback">{{passenger.errors.citizenship}}</div>
                       </div>
                     </div>
-                    <!--                        TODO сделать валидацию по классам .is-ok и .is-error-->
+                    <!-- document -->
                     <div class="d-block">
-                      <label for="secondName1" class="form-label">Фамилия</label>
-                      <input type="text" class="form-control is-ok" id="secondName1" placeholder="Иванов" required>
-                      <!--                          TODO убрать d-none когда валидация неверная-->
-                      <div class="error-feedback d-none">Укажите фамилию</div>
+                      <label :for="'document'+index" class="form-label">Документ</label>
+                      <div class="position-relative">
+                        <select
+                            @input="validateForm([index, 'document', $event])"
+                          :value="passenger.document"
+                          :class="{
+                          'is-ok': !passenger.errors.document,
+                          'is-error' : passenger.errors.document}"
+                          class="form-control"
+                          :id="'document'+index"
+                          >
+                            <option v-for="option in getDocumentTypes" 
+                            :key="option.id" :value="option.id"  >{{option.name}}</option>
+                          </select>
+                        <div :class="{'d-none': !passenger.errors.document}" class="error-feedback">{{passenger.errors.document}}</div>
+                      </div>
                     </div>
+                    <!-- documentInfo -->
                     <div class="d-block">
-                      <label for="firstName1" class="form-label">Имя</label>
-                      <input type="text" class="form-control" id="firstName1" placeholder="Иван" required>
-                      <!--                          TODO убрать d-none когда валидация неверная-->
-                      <div class="error-feedback d-none">Укажите имя</div>
-                    </div>
-                    <div class="d-block">
-                      <label for="MiddleName1" class="form-label">Отчество</label>
-                      <input type="text" class="form-control" id="MiddleName1" placeholder="Иванович" required>
-                      <!--                          TODO убрать d-none когда валидация неверная-->
-                      <div class="error-feedback d-none">Укажите отчество</div>
-                    </div>
-                    <div class="d-block">
-                      <label for="birthday1" class="form-label">Дата рождения</label>
-                      <input type="text" class="form-control" id="birthday1" placeholder="дд.мм.гггг" required>
-                      <!--                          TODO убрать d-none когда валидация неверная-->
-                      <div class="error-feedback d-none">Некорректная дата, вам больше 125 лет?</div>
-                    </div>
-                    <div class="d-block">
-                      <label for="gender1" class="form-label">Пол</label>
-                      <select id="gender1" class="form-select">
-                        <option selected>Мужской</option>
-                        <option>Женский</option>
-                      </select>
-                      <!--                          TODO убрать d-none когда валидация неверная-->
-                      <div class="error-feedback d-none">Выберите пол</div>
-                    </div>
-                    <div class="d-block">
-                      <label for="citizenship1" class="form-label">Гражданство</label>
-                      <select id="citizenship1" class="form-select">
-                        <option selected>Российская Федерация</option>
-                        <option>...</option>
-                      </select>
-                      <!--                          TODO убрать d-none когда валидация неверная-->
-                      <div class="error-feedback d-none">Выберите гражданство</div>
-                    </div>
-                    <div class="d-block">
-                      <label for="document1" class="form-label">Документ</label>
-                      <select id="document1" class="form-select">
-                        <option selected>Паспорт РФ</option>
-                        <option>...</option>
-                      </select>
-                      <!--                          TODO убрать d-none когда валидация неверная-->
-                      <div class="error-feedback d-none">Выберите документ</div>
-                    </div>
-                    <div class="d-block">
-                      <label for="documentInfo1" class="form-label">Серия и номер документа</label>
-                      <input type="text" class="form-control" id="documentInfo1" placeholder="01 23 456789" required>
-                      <!--                          TODO убрать d-none когда валидация неверная-->
-                      <div class="error-feedback d-none">Некорректные серия и номер документа</div>
+                      <label :for="'documentInfo'+index" class="form-label">Серия и номер документа</label>
+                      <input
+                          @input="validateForm([index,'documentInfo', $event, passenger.document])"
+                          :value="passenger.documentInfo"
+                      type="text"
+                      class="form-control"
+                      :class="{
+                        'is-ok': !passenger.errors.documentInfo,
+                        'is-error' : passenger.errors.documentInfo}"
+                      :id="'documentInfo'+index"
+                      placeholder="01 23 456789">
+                      <div
+                          :class="{'d-none': !passenger.errors.documentInfo}"
+                          class="error-feedback">{{passenger.errors.documentInfo}}</div>
                     </div>
                   </div>
                 </div>
@@ -364,10 +219,143 @@
 import MyDataButton from "@/components/MyDataButton";
 import ArrowDownIcon from "@/components/icons/ArrowDownIcon";
 import CancelIcon from "@/components/icons/CancelIcon";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
   name: "PassengersInfoMobile",
   components: {MyDataButton, ArrowDownIcon, CancelIcon},
+  methods: {
+    ...mapActions([
+      'UpdateOneWay',
+      'updateSecondName',
+      'updateFirstName',
+      'updateMiddleName',
+      'updateBirthday',
+      'updateGender',
+      'updateCitizenship',
+      'updateDocument',
+      'updateDocumentInfo',
+      'fetchDocumentType',
+      'fetchCitizenShip',
+      'addPassenger',
+        'validateForm'
+    ]),
+    // validatePassenger(fieldType, value, additional=true) {
+    //   if (fieldType === 'secondName') {
+    //     if (value === '') {
+    //       return 'заполните фамилию'
+    //     }
+    //   }
+    //   if (fieldType === 'firstName') {
+    //     if (value === '') {
+    //       return 'заполните имя'
+    //     }
+    //   }
+    //   if (fieldType === 'middleName') {
+    //     if (value === '') {
+    //       return 'заполните отчество'
+    //     }
+    //   }
+    //   if (fieldType === 'citizenship') {
+    //     if (value === '') {
+    //       return 'заполните гражданство'
+    //     }
+    //   }
+    //   if (fieldType === 'gender') {
+    //     if (value !=='0' && value !=='1') {
+    //       return 'Выбирите пол'
+    //     }
+    //   }
+    //   if (fieldType === 'birthday') {
+    //     if (value === '') {
+    //       return 'Укажиите дату рождения'
+    //     }
+    //     let today = new Date();
+    //     let birthDate = new Date(value);
+    //     let age = today.getFullYear() - birthDate.getFullYear();
+    //     let m = today.getMonth() - birthDate.getMonth();
+    //     let d = today.getDay() - birthDate.getDay();
+    //
+    //     if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+    //       age--;
+    //     }
+    //     if ( age === 0 ) {
+    //       m = 12 + m;
+    //       if (d < 0 || (d === 0 && today.getDate() < birthDate.getDate())) {
+    //         m--;
+    //       }
+    //     }
+    //     if (age < 0) {
+    //       return 'Укажиите дату рождения корректно'
+    //     }
+    //
+    //     if(!additional && age>12){
+    //       return 'Детский билет до 12 лет'
+    //     }
+    //     if(additional && age>100){
+    //       return 'Вам больше 100 лет?'
+    //     }
+    //
+    //
+    //   }
+    //   // TODO доделать валидацию с документам
+    //   if (fieldType === 'documentInfo') {
+    //
+    //     // Проверка паспорта РФ
+    //     if(additional === '0'){
+    //       const regexpPassport = /^\d{10}$/
+    //       if (!regexpPassport.test(value)) {
+    //         return 'Серия и номер паспорта состоит из 10 цифр'
+    //       }
+    //     }
+    //     // Проверка загранпаспорта РФ
+    //     if (additional === '2') {
+    //       const regexpPassport = /^\d{9}$/
+    //       if (!regexpPassport.test(value)) {
+    //         return 'Серия и номер паспорта состоит из 9 цифр'
+    //       }
+    //     }
+    //     //Проверка свидетельства о рождении
+    //     if(additional === '4' || additional === '11'){
+    //       let regexpDoc = /^[IVXLCDM]{1,3}[А-Я^]{2}[0-9]{6}$/g
+    //       if (regexpDoc.test(value)) {
+    //         return false
+    //       }
+    //       else {
+    //         return 'Введите корректные данные (IIДН123456)'
+    //       }
+    //       //IIДН123456 правильный
+    //       //ДН123456II неверный
+    //     }
+    //     //Проверка Военного билета военнослужащего или куранта военной образовательной организации
+    //     if (additional === '1' || additional === '5' || additional === '8') {
+    //       let regexpDoc = /[А-Я^]{2}[0-9]{7}$/g
+    //       if (regexpDoc.test(value)) {
+    //         return false
+    //       }
+    //       else {
+    //         return 'Введите корректные данные (AC9876543)'
+    //       }
+    //     }
+    //   }
+    //
+    //   return false
+    // },
+  },
+  mounted() {
+    this.fetchDocumentType();
+    this.fetchCitizenShip();
+  },
+  computed: {
+    ...mapGetters([
+      'getPassengers',
+      'getDocumentsTypes',
+      'oneWay',
+      'getIsLogin',
+      'getCitizenships',
+      'getDocumentTypes'
+    ]),
+  },
   data: () => {
     return {
       isLogin: false,
@@ -545,6 +533,22 @@ export default {
         border-bottom: 1px solid #8F8C8C;
         border-radius: 0;
         padding-left: 0;
+        padding-right: 1rem;
+      }
+      .select-placeholder {
+        top: 0;
+        @include font($uni,$regular,18px,24.3px,$base);
+        cursor: pointer;
+        color: #B5BDDB; /* Цвет подсказывающего текста */
+        @media screen and (max-width: 767px) {
+          font-size: 14px;
+          line-height: 18.9px;
+        }
+      }
+      input[type="date"]::-webkit-inner-spin-button,
+      input[type="date"]::-webkit-calendar-picker-indicator {
+        display: none;
+        -webkit-appearance: none;
       }
       .form-control::-moz-placeholder {
         color: #B5BDDB; /* Цвет подсказывающего текста */
@@ -553,6 +557,12 @@ export default {
       .form-control:-ms-input-placeholder { color: #B5BDDB; }
       .form-control::-ms-input-placeholder { color: #B5BDDB; }
       .form-control::placeholder { color: #B5BDDB; }
+      .arrow-down-icon {
+        right: 0;
+        bottom: 50%;
+        cursor: pointer;
+        pointer-events: none;
+      }
       .form-select {
         border: none;
         border-bottom: 1px solid #8F8C8C;
@@ -566,6 +576,37 @@ export default {
     .d-block:last-child {
       margin-bottom: 0;
     }
+  }
+  .find-citizenship, .find-document, .find-gender{
+    position: absolute;
+    display: block;
+    z-index: 998;
+    left:0;
+    width:100%;
+    max-height: 160px;
+    margin: 0;
+    overflow-y: auto;
+    //overflow-y: hidden;
+    background: #F3F7FF;
+    cursor: pointer;
+
+    /* Shadow / Hover */
+    :hover{
+      background: #1399FF;
+    }
+    box-shadow: 0px 2px 4px rgba(161, 159, 255, 0.1);
+    border-radius: 0px 0px 16px 16px;
+    .meta{
+      padding: 0 .7rem .4rem .7rem ;
+    }
+    .meta-end{
+      padding: 0 .7rem .4rem .7rem ;
+      border-radius: 0px 0px 16px 16px;
+    }
+    @media screen and (max-width: 767px) {
+      z-index: 9999;
+    }
+
   }
 }
 </style>

@@ -44,8 +44,13 @@
               </tr>
               </thead>
               <tbody>
-                <!--              Добавить класс active-row для tr и будет выделение-->
-              <tr v-for="flight in (flightType=='there') ? flightThere:flightBack" :key="flight.ticket_id_2+'_'+flight.id_trip">
+                <!--              Добавить класс active-row для tr и будет выделение вместо false условие что выбран рейс-->
+              <tr
+                  v-for="flight in (flightType=='there') ? flightThere:flightBack"
+                  :key="flight.ticket_id_2+'_'+flight.id_trip"
+                  :class="{'active-row' : selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0] && 
+                      selectedSeat.filter(flightFiltr=>(flightFiltr.id_trip === flight.id_trip))[0].is_selected }"
+              >
                 <td>
                   <div class="dispatch-time">
                     <!-- время отправления -->
@@ -74,20 +79,14 @@
                     <span v-if="flight.time_duration_trip.split(':')[0]>0">
                     {{flight.time_duration_trip.split(':')[0]}}
                     {{
-                        hours[
-                        (flight.time_duration_trip.split(':')[0] % 100 > 4 && flight.time_duration_trip.split(':')[0] % 100 < 20) 
-                        ? 2 : cases[(flight.time_duration_trip.split(':')[0] % 10 < 5) ? flight.time_duration_trip.split(':')[0] % 10 : 5]
-                        ]
+                        timeFormat(flight.time_duration_trip,'hours')
                     }} 
                     </span>
 
                     <span v-if="flight.time_duration_trip.split(':')[1]>0">
                     {{flight.time_duration_trip.split(':')[1]}} 
                     {{
-                        minutes[
-                        (flight.time_duration_trip.split(':')[1] % 100 > 4 && flight.time_duration_trip.split(':')[1] % 100 < 20) 
-                        ? 2 : cases[(flight.time_duration_trip.split(':')[1] % 10 < 5) ? flight.time_duration_trip.split(':')[1] % 10 : 5]
-                        ]
+                        timeFormat(flight.time_duration_trip,'minutes')
                     }} 
                     </span>
                   </div>
@@ -117,25 +116,32 @@
                   </div>
                 </td>
                 <td>
-                  <div class="places-left">
+                  <div v-if="true" class="places-left">
                     {{flight.count_available_seats_trip}}
                   </div>
-                  <!-- При нажатии открывается модальное окно с-->
-                  <div 
+                  <div
+                      class="places-left table-link"
+                      data-bs-toggle="modal"
+                      data-bs-target="#place-left-modal"
+                      v-if="true">
+<!--                    TODO отобразить выбранные места-->
+                  </div>
+                  <!-- При нажатии открывается модальное окно с автобусом-->
+                  <div
                     class="place-choice table-link" 
                     data-bs-toggle="modal" 
                     data-bs-target="#place-left-modal"
-                    v-on:click="updatebBusTriptId(flight.id_trip)"
-                    v-if="+flight.count_available_seats_trip>=adults+childrens">
-                    Выбрать 
-                    <span v-if="childrens+adults===1">место</span>
-                    <span v-if="childrens+adults>1">места</span>
+                    @click="updatebBusTriptId(flight.id_trip)"
+                    v-if="+flight.count_available_seats_trip>=getAdultsCount+getChildrensCount">
+                    <span v-if="getChildrensCount+getAdultsCount===1">место: </span>
+                    <span v-if="getChildrensCount+getAdultsCount>1">места: </span>
+                    {{ selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0].seats.toString() }} изменить 
                   </div>
                 </td>
                 <td class="align-middle">
                   <div class="d-flex align-content-center">
                     <div class="price d-inline-block">
-                      {{(+flight.full_ticket_price*+adults)+(+flight.child_ticket_price*+childrens)}}₽
+                      {{(+flight.full_ticket_price*+getAdultsCount)+(+flight.child_ticket_price*+getChildrensCount)}}₽
                     </div>
                     <div class="d-inline-block">
                       <img class="help-icon" alt="help" src="/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" :title="'Взрослый - '+flight.full_ticket_price+'₽\n'+'Детский - '+flight.child_ticket_price+'₽'" >
@@ -143,11 +149,24 @@
                   </div>
                 </td>
                 <td>
-                  <div class="place-choice-buy" v-if="+flight.count_available_seats_trip>=adults+childrens">
+                  <div class="place-choice-buy table-link" 
+                    v-if="
+                      +flight.count_available_seats_trip>=getAdultsCount+getChildrensCount && 
+                      selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0] && 
+                      !selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0].is_selected"
+                    @click="chengeSelectTrip(flight.id_trip)">
                     Выбрать
                   </div>
-                  <div class="place-choice-buy" v-if="+flight.count_available_seats_trip<adults+childrens || +flight.count_available_seats_trip===0">
+                  <div class="place-choice-buy" 
+                    v-if="+flight.count_available_seats_trip<getAdultsCount+getChildrensCount || +flight.count_available_seats_trip===0">
                     недостаточно мест :(
+                  </div>
+                  <div class="place-choice-buy table-link" 
+                    v-if="
+                      selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0] && 
+                      selectedSeat.filter(flightFiltr=>(flightFiltr.id_trip === flight.id_trip))[0].is_selected"
+                    @click="chengeSelectTrip(flight.id_trip)">
+                    Убрать
                   </div>
                 </td>
               </tr>
@@ -162,7 +181,7 @@
 </template>
 
 <script>
-import {mapGetters,mapActions} from 'vuex'
+import {mapGetters, mapActions, mapState} from 'vuex'
 export default {
   name: "ThereTable",
   props: ['flightType'],
@@ -175,7 +194,13 @@ export default {
         flights:[],
     }
   },
-  computed: mapGetters(['flightThere','flightBack','childrens','adults',]),
+  computed: mapGetters([
+    'flightThere',
+    'flightBack',
+    'getChildrensCount',
+    'getAdultsCount', 
+    'selectedSeat'
+  ]),
   mounted(){
     
   },
@@ -183,8 +208,30 @@ export default {
     ...mapActions([
       'updatebBusTriptId',
       'updateCords',
-      'updateIcon'
+      'updateIcon',
+      'chengeSelectTrip'
     ]),
+    timeFormat(time,target){
+      
+      if(target==='hours'){
+        return this.hours[
+                  (time.split(':')[0] % 100 > 4 && time.split(':')[0] % 100 < 20) 
+                  ? 2 
+                  : this.cases[(time.split(':')[0] % 10 < 5) 
+                    ? time.split(':')[0] % 10 
+                    : 5]
+                ]
+      }
+      if(target==='minutes'){
+        return this.minutes[
+                  (time.split(':')[1] % 100 > 4 && time.split(':')[1] % 100 < 20) 
+                  ? 2 
+                  : this.cases[(time.split(':')[1] % 10 < 5) 
+                    ? time.split(':')[1] % 10 
+                    : 5]
+                ]
+      }
+    }
   }
 }
 
@@ -256,6 +303,7 @@ export default {
             }
             .dispatch-city, .arrival-city, .places-left, .place-choice-buy {
               @include font($uni, $regular, 18px, 24.3px, $base);
+              
             }
             .dispatch-length-time-saw, .dispatch-place, .arrival-place, .place-choice {
               @include font($uni, $light, 14px, 18.9px, $blue-link);

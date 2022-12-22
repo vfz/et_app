@@ -3,40 +3,19 @@
     <Header/>
     <Timeline v-if="!isMobile()"/>
     <TimelineMobile class="timeline-mobile" title="Бронирование билета" description="Шаг 2" v-if="isMobile()"/>
-    <FlightForm v-if="!isMobile()"/>
-    <ThereBackTabs v-if="!isMobile()"/>
-<!--    TODO добавить props для отображения контента внутри слайдер-->
-    <section v-if="isMobile()" class="carousel-bootstrap">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12 p-0">
-            <div id="carouselPath" class="carousel slide" data-bs-ride="carousel">
-              <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button v-if="!oneWay" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-              </div>
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <FlightTableMobile class="slider-table" flight-type="there" v-if="isMobile()"/>
-                </div>
-                <div v-if="!oneWay" class="carousel-item">
-                  <FlightTableMobile class="slider-table" flight-type="back" v-if="isMobile() && !oneWay"/>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
     <EuroPointsOffer/>
     <CurrentPoints class="d-none"/>
     <PassengersFormInfo v-if="!isMobile()"/>
     <PassengersFormInfoMobile v-if="isMobile()"/>
     <Footer/>
+    <DispatchModal/>
+    <DispatchLengthTimeModal/>
+    <PlaceLeftModal :mobile="isMobile()"/>
     <LoginModal/>
     <RegistrationModal/>
     <ForgotPasswordModal/>
-    <RemoveModal/>
+    <ProcessingPersonalDataModal/>
+    <RemoveModal v-for="(passenger,index) in getPassengers" :key="index" :index="index"/>
   </div>
 </template>
 
@@ -60,10 +39,18 @@ import EuroPointsOffer from "@/components/EuroPointsOffer";
 import FlightTable from "@/components/desktop/FlightTable";
 import FlightTableMobile from "@/components/mobile/FlightTableMobile";
 import {mapGetters,mapActions} from 'vuex'
+import DispatchModal from "@/components/Dispatch-modal";
+import DispatchLengthTimeModal from "@/components/Dispatch-length-time-modal";
+import PlaceLeftModal from "@/components/Place-left-modal";
+import ProcessingPersonalDataModal from "@/components/ProcessingPersonalDataModal.vue";
 
 export default {
   name: "Ticket-booking",
   components: {
+    ProcessingPersonalDataModal,
+    PlaceLeftModal,
+    DispatchLengthTimeModal,
+    DispatchModal,
     EuroPointsOffer,
     PassengersFormInfoMobile,
     FlightTable,
@@ -75,16 +62,21 @@ export default {
     PassengersFormInfo,
     CurrentPoints,
     ThereBackTabs, 
-    Footer, 
-    FlightForm, 
+    Footer,
     Timeline, 
     Header, 
     LoginModal, 
     RegistrationModal, 
     ForgotPasswordModal
     },
-  computed: mapGetters(['oneWay']),
+  computed: mapGetters(['oneWay', 'getPassengers']),
+  mounted() {
+    this.fetchSelectedSeat();
+  },
   methods: {
+    ...mapActions([
+       'fetchSelectedSeat'
+    ]),
     isMobile() {
       return screen.width <= 991;
     }

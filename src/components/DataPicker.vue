@@ -1,11 +1,11 @@
 <template>
-    <div class="container">
+    <div class="container p-1">
         <div class="row ">
             <div class="col-4 col-sm-4 text-end" v-on:click="decrease">
                 <span>&LT;</span>
             </div>
             <div class="col-4 col-sm-4 text-center">
-                {{monthes[month]}} <br> {{year}} 
+                <nobr>{{monthes[month]}}</nobr> <br> {{year}} 
             </div>
             <div class="col-4 col-sm-4 text-start" v-on:click="increase">
                 <span>&GT;</span>
@@ -20,9 +20,11 @@
             
             <div class="col datapicker day text-center" v-for="day in week"   :key="day.key"
            >
-                <div v-on:click="SetDate(day.index+'.'+day.month+'.'+day.year)"  :class="{ current : day.current,  selected:day.selected}" >
+                <div v-on:click="changeUrlByDate(day.index+'.'+day.month+'.'+day.year); SetDate(day.index+'.'+day.month+'.'+day.year);"  :class="{ current : day.current,  selected:day.selected}" >
+                  <div>
+                  </div>
                     <div class="fix"></div><div class="date">{{ day.indexm }}</div>
-                    <div class="price" v-if="day.index">{{day.price}}</div>
+                    <div class="price" v-if="day.index">{{day.price ? day.price+"₽" : '-'}}</div>
                 </div>
             </div>
         </div>
@@ -32,7 +34,7 @@
 import {mapGetters,mapActions} from 'vuex'
 export default{
     name: 'DataPicker',
-    computed: mapGetters(['selectDate','selectDateBack','dateArival','dateBack']),
+    computed: mapGetters(['selectDate','selectDateBack','dateArival','dateBack', 'from', 'to','dateArivalPrices','dateBackPrices', 'oneWay']),
     data(){
         return{
 
@@ -44,9 +46,24 @@ export default{
             date: new Date(),
         }
     },
+  props: {
+    whichWay: {
+      type: String
+    }
+  },
     methods: {
         ...mapActions(['SetDate']),
-        
+        changeUrlByDate(date) {
+          if (this.oneWay) {
+            this.$router.push('/flight-selection/search/'+ this.from + '/' + this.to + '/' + date + '/' + this.oneWay)
+          }
+          if (this.whichWay === 'from') {
+            this.$router.push('/flight-selection/search/'+ this.from + '/' + this.to + '/' + date + '/' + this.dateBack + '/' + this.oneWay)
+          }
+          if (this.whichWay === 'to') {
+            this.$router.push('/flight-selection/search/'+ this.from + '/' + this.to + '/' + this.dateArival + '/' + date + '/' + this.oneWay)
+          }
+        },
         calendar: function() {
             var a={};
             var days = [];
@@ -69,16 +86,38 @@ export default{
                         month: (printmonth.toString().length===1) ? '0'+printmonth : printmonth,
                         year: this.year
                     };
-                    a.price = '≈ 1700';
+                    if (this.selectDate){
+
+                        let searchDate = a.year+'-'+a.month+'-'+a.index;
+                        a.price = this.dateArivalPrices[searchDate];
+                    }else {
+                        let searchDate = a.year+'-'+a.month+'-'+a.index;
+                        a.price = this.dateBackPrices[searchDate];
+                    }
+                    
                     days[week].push(a);
                     if (i == new Date().getDate() && this.year == new Date().getFullYear() && this.month == new Date().getMonth()) {
                         a.current = '1';
-                        a.price = '≈ 1700';
+                        if (this.selectDate){
+                            let searchDate = a.year+'-'+a.month+'-'+a.index;
+                            a.price = this.dateArivalPrices[searchDate];
+                        }else {
+                            let searchDate = a.year+'-'+a.month+'-'+a.index;
+                            a.price = this.dateBackPrices[searchDate];
+                        }
                         a.selected = false;
                     };
                     if (new Date(this.year, this.month, i).getDay() == 6 || new Date(this.year, this.month, i).getDay() == 0) {
                         a.weekend = '1';
-                        a.price = '≈ 2500';
+                        if (this.selectDate){
+                            // 2022-12-25
+                            let searchDate = a.year+'-'+a.month+'-'+a.index;
+                            a.price = this.dateArivalPrices[searchDate];
+                            //'≈ 1700';
+                        }else {
+                            let searchDate = a.year+'-'+a.month+'-'+a.index;
+                            a.price = this.dateBackPrices[searchDate];
+                        }
                         a.selected = false;
                     };
                     
@@ -103,16 +142,40 @@ export default{
                         month: (printmonth.toString().length===1) ? '0'+printmonth : printmonth,
                         year: this.year
                     };
-                    a.price = '≈ 1700';
+                    if (this.selectDate){
+                        // 2022-12-25
+                        let searchDate = a.year+'-'+a.month+'-'+a.index;
+                        a.price = this.dateArivalPrices[searchDate];
+                        //'≈ 1700';
+                    }else {
+                        let searchDate = a.year+'-'+a.month+'-'+a.index;
+                        a.price = this.dateBackPrices[searchDate];
+                    }
                     days[week].push(a);
                     if ((i == new Date().getDate()) && (this.year == new Date().getFullYear()) && (this.month == new Date().getMonth())) {
                         a.current = '1';
-                        a.price = '≈ 1700';
+                        if (this.selectDate){
+                            // 2022-12-25
+                            let searchDate = a.year+'-'+a.month+'-'+a.index;
+                            a.price = this.dateArivalPrices[searchDate];
+                            //'≈ 1700';
+                        }else {
+                            let searchDate = a.year+'-'+a.month+'-'+a.index;
+                            a.price = this.dateBackPrices[searchDate];
+                        }
                         a.selected = false;
                     };
                     if (new Date(this.year, this.month, i).getDay() == 6 || new Date(this.year, this.month, i).getDay() == 0) {
                         a.weekend = '1';
-                        a.price = '≈ 2500';
+                        if (this.selectDate){
+                            // 2022-12-25
+                            let searchDate = a.year+'-'+a.month+'-'+a.index;
+                            a.price = this.dateArivalPrices[searchDate];
+                            //'≈ 1700';
+                        }else {
+                            let searchDate = a.year+'-'+a.month+'-'+a.index;
+                            a.price = this.dateBackPrices[searchDate];
+                        }
                         a.selected = false;
                     };
                      if ((i == selectDay 
@@ -161,8 +224,6 @@ export default{
             }
         },
     }
-    
-
 }
 
 </script>

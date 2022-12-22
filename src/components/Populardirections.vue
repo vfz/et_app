@@ -152,10 +152,12 @@
   padding-top: 72px;
   margin-right: 88px;
   margin-left: 88px;
+  padding-bottom: 72px;
   @media screen and (max-width: 768px) {
     padding-top: 40px;
     margin-left: 8px;
     margin-right: 8px;
+    padding-bottom: 40px;
   }
   .card-city-direction {
     border: 1px solid rgba(0, 0, 0, 0.1);

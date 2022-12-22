@@ -6,7 +6,7 @@
           <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
               <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Туда</button>
-              <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Обратно</button>
+              <button v-if="!oneWay" class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Обратно</button>
             </div>
           </nav>
           <div class="tab-content position-relative" id="nav-tabContent">
@@ -42,74 +42,127 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <!--              Добавить класс active-row и будет выделение-->
-                  <tr>
+                  <tr
+                      v-for="flight in flightThere"
+                      v-if="selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0] &&
+                      selectedSeat.filter(flightFiltr=>(flightFiltr.id_trip === flight.id_trip))[0].is_selected"
+                      :key="flight.ticket_id_2+'_'+flight.id_trip"
+                  >
                     <td>
                       <div class="dispatch-time">
-                        09:30
+                        <!-- время отправления -->
+                        {{flight.time_trip}}
                       </div>
                       <div class="dispatch-date">
-                        <span class="dispatch-date-day">30</span>
-                        <span class="dispatch-date-month">Янв'</span>'
-                        <span class="dispatch-date-year">20</span>
+                        <span class="dispatch-date-day">{{flight.date_trip.split('-')[2]}} </span>
+                        <span class="dispatch-date-month">{{ monthes[--flight.date_trip.split('-')[1]]}}</span>
+                        <span class="dispatch-date-year">`{{flight.date_trip.split('-')[0].split('')[2]+flight.date_trip.split('-')[0].split('')[2]}}</span>
+
                       </div>
                     </td>
                     <td>
                       <div class="dispatch-city">
-                        Ставрополь
+                        {{flight.from_name_point}}
                       </div>
-                      <!--                  для вызова модального окна нужно добавить атрибуты data-bs-toggle со значением modal и data-bs-target со значением id модального окна-->
-                      <div class="dispatch-place table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
-                        ж/д вокзал
+                      <!--                  для вызова модального окна нужно добавить атрибуты data-bs-toggle со значением modal и data-bs-target со значением id модального окна
+                     data-bs-target="#dispatch-modal" :data-bs-target="flight.id_from_point"-->
+
+                      <div class="dispatch-place table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal" v-on:click="updateCords(flight.from_yam),updateIcon(flight.from_name)">
+                        {{flight.from_address_point}}
                       </div>
                     </td>
                     <td>
                       <div class="dispatch-length-time">
-                        20 часов
+                    <span v-if="flight.time_duration_trip.split(':')[0]>0">
+                    {{flight.time_duration_trip.split(':')[0]}}
+                    {{
+                        timeFormat(flight.time_duration_trip,'hours')
+                      }}
+                    </span>
+
+                        <span v-if="flight.time_duration_trip.split(':')[1]>0">
+                    {{flight.time_duration_trip.split(':')[1]}}
+                    {{
+                            timeFormat(flight.time_duration_trip,'minutes')
+                          }}
+                    </span>
                       </div>
                       <!--                  для вызова модального окна нужно добавить атрибуты data-bs-toggle со значением modal и data-bs-target со значением id модального окна-->
-                      <div class="dispatch-length-time-saw table-link" data-bs-toggle="modal" data-bs-target="#dispatch-length-time-modal">
+                      <!-- <div class="dispatch-length-time-saw table-link" data-bs-toggle="modal" data-bs-target="#dispatch-length-time-modal">
                         Посмотреть
-                      </div>
+                      </div> -->
                     </td>
                     <td>
                       <div class="arrival-time">
-                        05:30
+                        {{flight.time_arrival_trip}}
                       </div>
                       <div class="arrival-date">
-                        <span class="arrival-date-day">31</span>
-                        <span class="arrival-date-month">Янв</span>'
-                        <span class="arrival-date-year">20</span>
+                        <span class="arrival-date-day">{{flight.date_arrival_trip.split('-')[2]}} </span>
+                        <span class="arrival-date-month">{{ monthes[--flight.date_arrival_trip.split('-')[1]]}}</span>
+                        <span class="arrival-date-year">`{{flight.date_arrival_trip.split('-')[0].split('')[2]+flight.date_arrival_trip.split('-')[0].split('')[3]}}</span>
                       </div>
                     </td>
                     <td>
                       <div class="arrival-city">
-                        Ставрополь
+                        {{flight.to_name_point}}
                       </div>
-                      <div class="arrival-place">
-                        ж/д вокзал
+                      <!--                  для вызова модального окна нужно добавить атрибуты data-bs-toggle со значением modal и data-bs-target со значением id модального окна
+                     data-bs-target="#dispatch-modal" :data-bs-target="flight.id_to_point"-->
+                      <div class="arrival-place  table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal" v-on:click="updateIcon(flight.to_name),updateCords(flight.to_yam)">
+                        {{flight.to_address_point}}
                       </div>
                     </td>
                     <td>
-                      <div class="places-left">
-                        33,34,35,36
+                      <div v-if="true" class="places-left">
+                        {{flight.count_available_seats_trip}}
                       </div>
-                      <div class="place-choice">
-                        Выбрать
+                      <div
+                          class="places-left table-link"
+                          data-bs-toggle="modal"
+                          data-bs-target="#place-left-modal"
+                          v-if="true">
+                        <!--                    TODO отобразить выбранные места-->
+                      </div>
+                      <!-- При нажатии открывается модальное окно с автобусом-->
+                      <div
+                          class="place-choice table-link"
+                          data-bs-toggle="modal"
+                          data-bs-target="#place-left-modal"
+                          @click="updatebBusTriptId(flight.id_trip)"
+                          v-if="+flight.count_available_seats_trip>=getAdultsCount+getChildrensCount">
+                        {{ selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0].seats.toString() }} изменить
+                        <span v-if="getChildrensCount+getAdultsCount===1">место</span>
+                        <span v-if="getChildrensCount+getAdultsCount>1">места</span>
                       </div>
                     </td>
                     <td class="align-middle">
                       <div class="d-flex align-content-center">
                         <div class="price d-inline-block">
-                          7000₽
+                          {{(+flight.full_ticket_price*+getAdultsCount)+(+flight.child_ticket_price*+getChildrensCount)}}₽
                         </div>
                         <div class="d-inline-block">
-                          <img class="help-icon" alt="help" src="/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
+                          <img class="help-icon" alt="help" src="/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" :title="'Взрослый - '+flight.full_ticket_price+'₽\n'+'Детский - '+flight.child_ticket_price+'₽'" >
                         </div>
                       </div>
                     </td>
                     <td>
-                      <div class="place-choice-buy">
+                      <div class="place-choice-buy table-link"
+                           v-if="
+                      +flight.count_available_seats_trip>=getAdultsCount+getChildrensCount &&
+                      selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0] &&
+                      !selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0].is_selected"
+                           @click="chengeSelectTrip(flight.id_trip)">
+                        Выбрать
+                      </div>
+                      <div class="place-choice-buy"
+                           v-if="+flight.count_available_seats_trip<getAdultsCount+getChildrensCount || +flight.count_available_seats_trip===0">
+                        недостаточно мест :(
+                      </div>
+                      <div class="place-choice-buy table-link"
+                           v-if="
+                      selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0] &&
+                      selectedSeat.filter(flightFiltr=>(flightFiltr.id_trip === flight.id_trip))[0].is_selected"
+                           @click="chengeSelectTrip(flight.id_trip)">
                         Убрать
                       </div>
                     </td>
@@ -118,7 +171,7 @@
                 </table>
               </div>
             </div>
-            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <div v-if="!oneWay" class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
               <div class="table-wrapper table-responsive">
                 <table class="table align-middle">
                   <thead>
@@ -150,74 +203,127 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <!--              Добавить класс active-row и будет выделение-->
-                  <tr>
+                  <tr
+                      v-for="flight in flightBack"
+                      v-if="selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0] &&
+                      selectedSeat.filter(flightFiltr=>(flightFiltr.id_trip === flight.id_trip))[0].is_selected"
+                      :key="flight.ticket_id_2+'_'+flight.id_trip"
+                  >
                     <td>
                       <div class="dispatch-time">
-                        09:30
+                        <!-- время отправления -->
+                        {{flight.time_trip}}
                       </div>
                       <div class="dispatch-date">
-                        <span class="dispatch-date-day">30</span>
-                        <span class="dispatch-date-month">Янв'</span>'
-                        <span class="dispatch-date-year">20</span>
+                        <span class="dispatch-date-day">{{flight.date_trip.split('-')[2]}} </span>
+                        <span class="dispatch-date-month">{{ monthes[--flight.date_trip.split('-')[1]]}}</span>
+                        <span class="dispatch-date-year">`{{flight.date_trip.split('-')[0].split('')[2]+flight.date_trip.split('-')[0].split('')[2]}}</span>
+
                       </div>
                     </td>
                     <td>
                       <div class="dispatch-city">
-                        Ставрополь
+                        {{flight.from_name_point}}
                       </div>
-                      <!--                  для вызова модального окна нужно добавить атрибуты data-bs-toggle со значением modal и data-bs-target со значением id модального окна-->
-                      <div class="dispatch-place table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
-                        ж/д вокзал
+                      <!--                  для вызова модального окна нужно добавить атрибуты data-bs-toggle со значением modal и data-bs-target со значением id модального окна
+                     data-bs-target="#dispatch-modal" :data-bs-target="flight.id_from_point"-->
+
+                      <div class="dispatch-place table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal" v-on:click="updateCords(flight.from_yam),updateIcon(flight.from_name)">
+                        {{flight.from_address_point}}
                       </div>
                     </td>
                     <td>
                       <div class="dispatch-length-time">
-                        20 часов
+                    <span v-if="flight.time_duration_trip.split(':')[0]>0">
+                    {{flight.time_duration_trip.split(':')[0]}}
+                    {{
+                        timeFormat(flight.time_duration_trip,'hours')
+                      }}
+                    </span>
+
+                        <span v-if="flight.time_duration_trip.split(':')[1]>0">
+                    {{flight.time_duration_trip.split(':')[1]}}
+                    {{
+                            timeFormat(flight.time_duration_trip,'minutes')
+                          }}
+                    </span>
                       </div>
                       <!--                  для вызова модального окна нужно добавить атрибуты data-bs-toggle со значением modal и data-bs-target со значением id модального окна-->
-                      <div class="dispatch-length-time-saw table-link" data-bs-toggle="modal" data-bs-target="#dispatch-length-time-modal">
+                      <!-- <div class="dispatch-length-time-saw table-link" data-bs-toggle="modal" data-bs-target="#dispatch-length-time-modal">
                         Посмотреть
-                      </div>
+                      </div> -->
                     </td>
                     <td>
                       <div class="arrival-time">
-                        05:30
+                        {{flight.time_arrival_trip}}
                       </div>
                       <div class="arrival-date">
-                        <span class="arrival-date-day">31</span>
-                        <span class="arrival-date-month">Янв</span>'
-                        <span class="arrival-date-year">20</span>
+                        <span class="arrival-date-day">{{flight.date_arrival_trip.split('-')[2]}} </span>
+                        <span class="arrival-date-month">{{ monthes[--flight.date_arrival_trip.split('-')[1]]}}</span>
+                        <span class="arrival-date-year">`{{flight.date_arrival_trip.split('-')[0].split('')[2]+flight.date_arrival_trip.split('-')[0].split('')[3]}}</span>
                       </div>
                     </td>
                     <td>
                       <div class="arrival-city">
-                        Ставрополь
+                        {{flight.to_name_point}}
                       </div>
-                      <div class="arrival-place">
-                        ж/д вокзал
+                      <!--                  для вызова модального окна нужно добавить атрибуты data-bs-toggle со значением modal и data-bs-target со значением id модального окна
+                     data-bs-target="#dispatch-modal" :data-bs-target="flight.id_to_point"-->
+                      <div class="arrival-place  table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal" v-on:click="updateIcon(flight.to_name),updateCords(flight.to_yam)">
+                        {{flight.to_address_point}}
                       </div>
                     </td>
                     <td>
-                      <div class="places-left">
-                        33,34,35,36
+                      <div v-if="true" class="places-left">
+                        {{flight.count_available_seats_trip}}
                       </div>
-                      <div class="place-choice">
-                        Выбрать
+                      <div
+                          class="places-left table-link"
+                          data-bs-toggle="modal"
+                          data-bs-target="#place-left-modal"
+                          v-if="true">
+                        <!--                    TODO отобразить выбранные места-->
+                      </div>
+                      <!-- При нажатии открывается модальное окно с автобусом-->
+                      <div
+                          class="place-choice table-link"
+                          data-bs-toggle="modal"
+                          data-bs-target="#place-left-modal"
+                          @click="updatebBusTriptId(flight.id_trip)"
+                          v-if="+flight.count_available_seats_trip>=getAdultsCount+getChildrensCount">
+                        {{ selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0].seats.toString() }} изменить
+                        <span v-if="getChildrensCount+getAdultsCount===1">место</span>
+                        <span v-if="getChildrensCount+getAdultsCount>1">места</span>
                       </div>
                     </td>
                     <td class="align-middle">
                       <div class="d-flex align-content-center">
                         <div class="price d-inline-block">
-                          7000₽
+                          {{(+flight.full_ticket_price*+getAdultsCount)+(+flight.child_ticket_price*+getChildrensCount)}}₽
                         </div>
                         <div class="d-inline-block">
-                          <img class="help-icon" alt="help" src="/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
+                          <img class="help-icon" alt="help" src="/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" :title="'Взрослый - '+flight.full_ticket_price+'₽\n'+'Детский - '+flight.child_ticket_price+'₽'" >
                         </div>
                       </div>
                     </td>
                     <td>
-                      <div class="place-choice-buy">
+                      <div class="place-choice-buy table-link"
+                           v-if="
+                      +flight.count_available_seats_trip>=getAdultsCount+getChildrensCount &&
+                      selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0] &&
+                      !selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0].is_selected"
+                           @click="chengeSelectTrip(flight.id_trip)">
+                        Выбрать
+                      </div>
+                      <div class="place-choice-buy"
+                           v-if="+flight.count_available_seats_trip<getAdultsCount+getChildrensCount || +flight.count_available_seats_trip===0">
+                        недостаточно мест :(
+                      </div>
+                      <div class="place-choice-buy table-link"
+                           v-if="
+                      selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0] &&
+                      selectedSeat.filter(flightFiltr=>(flightFiltr.id_trip === flight.id_trip))[0].is_selected"
+                           @click="chengeSelectTrip(flight.id_trip)">
                         Убрать
                       </div>
                     </td>
@@ -234,8 +340,61 @@
 </template>
 
 <script>
+import {mapGetters,mapActions} from 'vuex'
 export default {
-  name: "ThereBackTabs"
+  name: "ThereBackTabs",
+  data(){
+    return{
+      hours: ['час', 'часа', 'часов'],
+      minutes: ['минута', 'минуты', 'минут'],
+      cases: [2, 0, 1, 1, 1, 2],
+      monthes: ["Янв", "Фев", "Мар", "Апр", "Мая", "Июн", "Июл", "Авг", "Сен", "Окт", "Ноя", "Дек"],
+      flights:[],
+    }
+  },
+  computed: {
+    ...mapGetters([
+      'flightThere',
+      'flightBack',
+      'getChildrensCount',
+      'getAdultsCount',
+      'flightThere',
+      'flightBack',
+      'getChildrensCount',
+      'getAdultsCount',
+      'selectedSeat',
+      'oneWay'
+    ]),
+  },
+  methods: {
+    ...mapActions([
+      'updatebBusTriptId',
+      'updateCords',
+      'updateIcon',
+      'chengeSelectTrip'
+    ]),
+    timeFormat(time,target){
+
+      if(target==='hours'){
+        return this.hours[
+            (time.split(':')[0] % 100 > 4 && time.split(':')[0] % 100 < 20)
+                ? 2
+                : this.cases[(time.split(':')[0] % 10 < 5)
+                    ? time.split(':')[0] % 10
+                    : 5]
+            ]
+      }
+      if(target==='minutes'){
+        return this.minutes[
+            (time.split(':')[1] % 100 > 4 && time.split(':')[1] % 100 < 20)
+                ? 2
+                : this.cases[(time.split(':')[1] % 10 < 5)
+                    ? time.split(':')[1] % 10
+                    : 5]
+            ]
+      }
+    }
+  }
 }
 </script>
 

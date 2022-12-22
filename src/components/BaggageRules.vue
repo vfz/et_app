@@ -45,20 +45,35 @@
             <div class="row">
               <div class="col-12 col-md-6">
                 <div class="input-group position-relative">
-                  <!--                TODO добавить класс is-ok-bordered или is-error-bordered для инпута-->
-                  <input type="text" class="form-control form-control-bordered" placeholder="Введите промокод">
-                  <!--                TODO изменить класс is-ok-icon на is-error-icon, если валидация неверная. Убрать d-none для отображения элемента -->
-                  <div class="d-none is-error-icon icon-bg position-absolute d-flex align-items-center">
+                  <input
+                      @input="validatePromocode($event)"
+                      :value="getPromoCode.value"
+                      :disabled="getPromoCode.promoType !== ''"
+                      type="text"
+                      class="form-control form-control-bordered"
+                      placeholder="Введите промокод">
+                  <div
+                      :class="{'is-error-icon' : getPromoCode.error, 'is-ok-icon' : getPromoCode.promoType}"
+                      class="icon-bg position-absolute d-flex align-items-center">
                     <CheckIcon color="#fff"/>
                   </div>
                 </div>
-                <!--              TODO убрать d-none для отображения ответа неверной валидации-->
-                <div class="error-feedback-bordered d-none">
-                  Неверный промокод
+                <div
+                    v-if="getPromoCode.error"
+                    class="error-feedback-bordered">
+                  {{getPromoCode.error}}
+                </div>
+                <div
+                    v-if="getPromoCode.promoType"
+                    class="is-ok-feedback-bordered">
+                  Промокод успешно применен
                 </div>
               </div>
               <div class="col-12 col-md-6">
-                <button type="button" class="btn btn-primary btn-promo-code disabled">
+                <button type="button"
+                        @click="applyPromocode($event)"
+                        :class="{'disabled' : getPromoCode.error, 'disabled' : getPromoCode.promoType}"
+                        class="btn btn-primary btn-promo-code">
                   Применить
                 </button>
               </div>
@@ -66,16 +81,19 @@
           </div>
           <div class="row flex-column-reverse flex-md-row">
             <div class="col-12 col-md-6">
-              <button class="btn btn-lg btn-primary">
+            <button
+                @click.prevent="transactionForVue"
+                :class="{'disabled': !validateButton(selectedSeat, getPassengers, getBuyerInfo, getHaveErrors)}"
+                class="btn btn-lg btn-primary">
                 Перейти к оплате
               </button>
             </div>
             <div class="col-12 col-md-6">
               <div class="payment-info d-flex align-items-center">
                 <p>
-                  Нажимая на кнопку "перейти к оплате" я соглашаюсь с <a href="#">договором оферты</a>
-                  и <a href="#">политикой конфиденциальности</a> и даю
-                  <a href="#">согласие на обработку персональных данных.</a>
+                  Нажимая на кнопку "перейти к оплате" я соглашаюсь с <a target="_blank" href="https://evrotrans.net/upload/offer.pdf">договором оферты</a>
+                  и <a target="_blank" href="https://evrotrans.net/upload/offer.pdf">политикой конфиденциальности</a> и даю
+                  <a data-bs-toggle="modal" data-bs-target="#processingPersonalDataModal">согласие на обработку персональных данных.</a>
                 </p>
               </div>
             </div>
@@ -130,20 +148,36 @@
               <div class="row">
                 <div class="col-12 col-md-6">
                   <div class="input-group position-relative">
-                    <!--                TODO добавить класс is-ok-bordered или is-error-bordered для инпута-->
-                    <input type="text" class="form-control form-control-bordered" placeholder="Введите промокод">
-                    <!--                TODO изменить класс is-ok-icon на is-error-icon, если валидация неверная. Убрать d-none для отображения элемента -->
-                    <div class="d-none is-error-icon icon-bg position-absolute d-flex align-items-center">
+                    <input
+                        @input="validatePromocode($event)"
+                        :value="getPromoCode.value"
+                        :disabled="getPromoCode.promoType !== ''"
+                        type="text"
+                        class="form-control form-control-bordered"
+                        placeholder="Введите промокод">
+                    <div
+                        :class="{'is-error-icon' : getPromoCode.error, 'is-ok-icon' : getPromoCode.promoType}"
+                        class="icon-bg position-absolute d-flex align-items-center">
                       <CheckIcon color="#fff"/>
                     </div>
                   </div>
-                  <!--              TODO убрать d-none для отображения ответа неверной валидации-->
-                  <div class="error-feedback-bordered d-none">
-                    Неверный промокод
+                  <div
+                      v-if="getPromoCode.error"
+                      class="error-feedback-bordered">
+                    {{getPromoCode.error}}
+                  </div>
+                  <div
+                      v-if="getPromoCode.promoType"
+                      class="is-ok-feedback-bordered">
+                    Промокод успешно применен
                   </div>
                 </div>
                 <div class="col-12 col-md-6">
-                  <button type="button" class="btn btn-primary btn-promo-code disabled">
+                  <button
+                      @click="applyPromocode($event)"
+                      type="button"
+                      :class="{'disabled' : getPromoCode.error, 'disabled' : getPromoCode.promoType}"
+                      class="btn btn-primary btn-promo-code">
                     Применить
                   </button>
                 </div>
@@ -153,16 +187,19 @@
         </div>
         <div class="row flex-column-reverse flex-md-row">
           <div class="col-12 col-md-6">
-            <button class="btn btn-lg btn-primary">
+            <button
+                @click.prevent="transactionForVue"
+                :class="{'disabled': !validateButton(selectedSeat, getPassengers, getBuyerInfo, getHaveErrors)}"
+                class="btn btn-lg btn-primary">
               Перейти к оплате
             </button>
           </div>
           <div class="col-12 col-md-6">
             <div class="payment-info d-flex align-items-center">
               <p>
-                Нажимая на кнопку "перейти к оплате" я соглашаюсь с <a href="#">договором оферты</a>
-                и <a href="#">политикой конфиденциальности</a> и даю
-                <a href="#">согласие на обработку персональных данных.</a>
+                Нажимая на кнопку "перейти к оплате" я соглашаюсь с <a target="_blank" href="https://evrotrans.net/upload/offer.pdf">договором оферты</a>
+                и <a target="_blank" href="https://evrotrans.net/upload/offer.pdf">политикой конфиденциальности</a> и даю
+                <a data-bs-toggle="modal" data-bs-target="#processingPersonalDataModal">согласие на обработку персональных данных.</a>
               </p>
             </div>
           </div>
@@ -178,6 +215,8 @@
 <script>
 import CheckIcon from "@/components/icons/CheckIcon";
 import ArrowDownIcon from "@/components/icons/ArrowDownIcon";
+import {mapActions, mapGetters} from "vuex";
+import axios from 'axios'
 export default {
   name: "BaggageRules",
   components: {ArrowDownIcon, CheckIcon},
@@ -187,7 +226,22 @@ export default {
       isShowPromocode: false,
     }
   },
+  computed: {
+    ...mapGetters([
+        'getHaveErrors',
+        'getEmptyFieldsFormPassengers',
+        'getEmptyFieldsFormBuyer',
+        'selectedSeat',
+        'getPassengers',
+        'getBuyerInfo',
+        'getPromoCode'
+    ])
+  },
   methods: {
+    ...mapActions([
+       'validatePromocode',
+        'applyPromocode'
+    ]),
     isMobile() {
       return screen.width <= 991;
     },
@@ -214,6 +268,64 @@ export default {
       else {
         arrow.classList.add('arrow-up')
       }
+    },
+    validateButton(reisy,passengers,buyer, haveErrors) {
+      if (reisy.length === 0) {
+        return false
+      }
+      if (passengers) {
+        if (this.getEmptyFieldsFormPassengers) {
+          return false
+        }
+      }
+      else {
+        return false
+      }
+      if (buyer) {
+        if (this.getEmptyFieldsFormBuyer) {
+          return false
+        }
+      }
+      else {
+        return false
+      }
+      if (haveErrors === true) {
+        return false
+      }
+      return true
+    },
+
+    async transactionForVue() {
+      const config = {
+        method: 'post',
+        url : 'https://api.evrotrans.net/APIet/transaction_for_vue.php',
+        data : {
+          'reisy': this.selectedSeat.filter(reis=>(reis.is_selected)),
+          'passengers': this.getPassengers,
+          'buyer':this.getBuyerInfo
+      }
+      }
+      await axios.request(config)
+          .then((response) =>{
+           
+            const mydata= response.data
+            
+            if(+mydata.Erorr>0){
+
+              alert(mydata.Error_description)
+            }
+            
+            if(response.data.formUrl){
+              
+              window.location.href = response.data.formUrl;
+            }
+          })
+          .catch((error) =>{
+            
+           //console.log(error)
+          })
+      
+      
     }
   }
 }
@@ -365,6 +477,7 @@ p {
     margin-bottom: 24px;
     @include font($uni,$light,14px,18.9px,$base);
     a {
+      cursor: pointer;
       color: $blue-active;
     }
     a:hover {

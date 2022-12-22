@@ -579,7 +579,7 @@ export default{
             z-index: 998;
             left:0;
             width:100%;
-            max-height: 100%;
+            max-height: 360px;
             margin: 0;
             overflow-y: auto;
             //overflow-y: hidden;

@@ -47,12 +47,22 @@
                 <div :class="!mobile ? 'bus-scheme' :  'bus-scheme-mobile'">
                   <table v-if="!mobile">
                     <!--TODO: подсветка выбранных мест-->
+<!--                    TODO нет break-->
                     <tr v-for="(stroka,indexstr) in shemeDesktop[floor]" :key="indexstr">
-                      <td v-for="(seat,index) in stroka.filter(seatt=> seatt.length >7)" :key="index"
+                      <td
+                        @click="changeSelectedPlace([busTriptId,seat.split('+')[3].replace('_', ''),checkActive(seat.split('+')[3].replace('_', ''))])"
+                        v-for="(seat,index) in stroka.filter(seatt=> seatt.length >7)"
+                        :key="index"
                         :rowspan="seat.split('+')[1]" 
                         :colspan="seat.split('+')[2]"
-                        align="center">
-                        <div :class="seat.split('+')[0]" :id="'seat_'+seat.split('+')[3].replace('_', '')">{{seat.split('+')[3].replace('_', '')}}</div>
+                        align="center"
+                      >
+                        <div
+                          :data-index="index"
+                          :class="checkActive(seat.split('+')[3].replace('_', '')) ? 'active-seat' : seat.split('+')[0]"
+                          :id="'seat_'+seat.split('+')[3].replace('_', '')">
+                            {{seat.split('+')[3].replace('_', '')}}
+                        </div>
                       </td>
                     </tr>
                   </table>
@@ -60,11 +70,17 @@
                   <table v-else>
                     <!--TODO: подсветка выбранных мест-->
                     <tr v-for="(stroka,indexstrm) in shemeMobile[floor]" :key="indexstrm">
-                      <td v-for="(seat,indexm) in stroka.filter(seatt=> seatt.length >7)" :key="indexm"
+                      <td
+                        @click="changeSelectedPlace([busTriptId,seat.split('+')[3].replace('_', ''),checkActive(seat.split('+')[3].replace('_', ''))])"
+                        v-for="(seat,indexm) in stroka.filter(seatt=> seatt.length >7)" :key="indexm"
                         :colspan="seat.split('+')[1]" 
                         :rowspan="seat.split('+')[2]"
                         align="center">
-                        <div :class="seat.split('+')[0]" :id="'seat_'+seat.split('+')[3].replace('_', '')">{{seat.split('+')[3].replace('_', '')}}</div>
+                        <div 
+                          :class="checkActive(seat.split('+')[3].replace('_', '')) ? 'active-seat' : seat.split('+')[0]"
+                          :id="'seat_'+seat.split('+')[3].replace('_', '')">
+                            {{seat.split('+')[3].replace('_', '')}}
+                        </div>
 
                       </td>
                     </tr>
@@ -91,14 +107,28 @@ export default {
       testFl:[]
     }
   },
-  computed: mapGetters(['busTriptId','shemeMobile','shemeDesktop']),
+  computed: mapGetters([
+    'busTriptId',
+    'shemeMobile',
+    'shemeDesktop',
+    'selectedSeat'
+  ]),
   mounted(){
 
   },
     methods: {
     ...mapActions([
       'updatebBusTriptId',
+        'changeSelectedPlace',
+        
     ]),
+    checkActive(totalSeat){
+
+      let seatList=this.selectedSeat.find(reis=>(reis.id_trip===this.busTriptId))
+      if(seatList){  
+        return seatList.seats.includes(totalSeat)
+      }
+    },
     floorsQ(){
       if(this.mobile){
         //TODO: Добавить проверку есть ли второй этаж в текущем автобусе
@@ -236,6 +266,27 @@ export default {
         color: #ffffff;
         cursor: pointer;
     }
+    .active-seat {
+      width: 32px;
+      height: 32px;
+      margin-right: 10px;
+      margin-bottom: 6px;
+      padding-top: 6px;
+      background: $blue-active;
+      /* Button / Inactive */
+      border: 1px solid $blue-active;
+      box-sizing: border-box;
+      /* Shadow / Normal */
+      box-shadow: 0 8px 12px rgba(161, 159, 255, 0.2);
+      border-radius: 4px;
+      font-family: $uni;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 19px;
+      color: $white;
+      cursor: pointer;
+    }
     .prohod {
           margin-right: 0;//10px;
           margin-bottom: 0;//6px;
@@ -284,6 +335,7 @@ export default {
         font-weight: 500;
         font-size: 14px;
         line-height: 19px;
+      pointer-events: none;
     }
     .text_floor {
         font-family: $uni;

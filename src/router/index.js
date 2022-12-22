@@ -31,7 +31,12 @@ const routes = [{
         component: Flightselection
     },
     {
-        path: '/flight-selection/search/:from/:to',
+        path: '/flight-selection/search/:from/:to/:dateArrival/:oneWay',
+        name: 'Flight-selection-search',
+        component: Flightselection
+    },
+    {
+        path: '/flight-selection/search/:from/:to/:dateArrival/:dateBack/:oneWay',
         name: 'Flight-selection-search',
         component: Flightselection
     },
@@ -112,10 +117,10 @@ const routes = [{
         // name: '404',
         component: NotFound
     },
-    {
-        path: '/flight-selection',
-        redirect: '/flight-selection/1/190'
-    },
+    // {
+    //     path: '/flight-selection',
+    //     redirect: '/flight-selection/1/190'
+    // },
     {
         path: '*',
         redirect: '/404'

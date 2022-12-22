@@ -69,6 +69,11 @@
     $error);
 }
 
+.is-ok-feedback-bordered {
+    margin-top: 8px;
+    @include font($uni,$regular,11px,14.85px,$ok);
+}
+
 .is-ok-icon {
     background-color: $ok;
 }

@@ -2,7 +2,8 @@
   <div>
   <Hero/>
   <Populardirections/>
-  <Registrationhero/>
+<!--    TODO добавить регистрацию-->
+  <Registrationhero class="d-none"/>
   <Footer/>
   <LoginModal/>
   <RegistrationModal/>

@@ -6,16 +6,16 @@
           <form id="hero-form" class="search-form d-flex flex-wrap justify-content-center">
             <div class="checkbox-form d-block w-100">
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(true)" name="inlineRadioOptions" id="inlineRadio1" value="option1" :checked="oneWay">
+                <input class="form-check-input" type="radio" v-on:click="changeUrlByWay(true);UpdateOneWay(true)" name="inlineRadioOptions" id="inlineRadio1" value="option1" :checked="oneWay">
                 <label class="form-check-label" for="inlineRadio1">В одну сторону</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" v-on:click="UpdateOneWay(false)"  name="inlineRadioOptions" id="inlineRadio2" value="option2" :checked="!oneWay">
+                <input class="form-check-input" type="radio" v-on:click="changeUrlByWay(false);UpdateOneWay(false)"  name="inlineRadioOptions" id="inlineRadio2" value="option2" :checked="!oneWay">
                 <label class="form-check-label" for="inlineRadio2">Туда-обратно</label>
               </div>
             </div>
             <!--one-way-input-->
-            <div class="one-way-inputs w-100 form-header" v-if="oneWay">
+            <div class="one-way-inputs w-100" v-if="oneWay">
               <div class="row">
                 <div class="col-md-12 col-lg-6 col-xl-6 col-xxl-3 mb-lg-4 mb-xxl-0">
                   <div class="card h-100">
@@ -88,32 +88,7 @@
                   </div>
                 </div>
                 <div class="col-md-12 col-lg-6 col-xl-6 col-xxl-3">
-                  <div class="card h-100">
-                    <div class="card-body">
-                      <div class="d-flex justify-content-between align-items-center">
-                        <label class="form-label">Пассажиры</label>
-                        <img class="help-icon" alt="help" src="/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
-                      </div>
-                      <div class="row">
-                        <div class="col">
-                          <div class="count-passenger d-flex align-items-center flex-wrap">
-                            <div id="minus-button-adult" class="minus-button count-button" :class=" { disabled : !mba } " v-on:click="MinusAdult();changeClass()">-</div>
-                            <input value="1" min="1" max="7" name="adults" v-model="adults" type="number" class="form-control one-way-inputs-input shadow-none"  placeholder="0">
-                            <div id="plus-button-adult" class="plus-button count-button" :class=" { disabled : !pba } " v-on:click="PlusAdult();changeClass()">+</div>
-                            <span class="card-desc d-block w-100">Взрослых</span>
-                          </div>
-                        </div>
-                        <div class="col">
-                          <div class="count-passenger d-flex align-items-center flex-wrap">
-                            <div id="minus-button-childeren" class="minus-button count-button" :class=" { disabled : !mbc } " v-on:click="MinusChild();changeClass()">-</div>
-                            <input value="0" min="0" max="5" name="childrens" v-model="childrens" type="number" class="form-control one-way-inputs-input shadow-none" placeholder="0">
-                            <div id="plus-button-childeren" class="plus-button count-button" :class=" { disabled : !pbc } " v-on:click="PlusChild();changeClass()">+</div>
-                            <span class="card-desc d-block w-100">Детских</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <PassengersCounter/>
                 </div>
                 <div class="col-md-12 col-lg-6 col-xl-6 col-xxl-3">
                   <div class="card h-100">
@@ -142,14 +117,15 @@
               </div>
               <div class="row">
                 <div class="col d-flex justify-content-center align-items-center">
-                  <button id="submit-button" type="button" class="btn" v-on:click="alertPlace()">
+                  <button
+                      id="submit-button" type="button" class="btn" v-on:click="alertPlace()">
                     Найти билеты
                   </button>
                 </div>
               </div>
             </div>
             <!-- two-way-input-->
-            <div class="two-ways-inputs w-100 form-header" v-else>
+            <div class="two-ways-inputs w-100" v-else>
               <div class="row">
                 <div class="col-lg-6 col-xl-6 col-xxl mb-lg-4 mb-xxl-0 mw-300 min-w-300">
                   <div class="card h-100">
@@ -211,32 +187,7 @@
                   </div>
                 </div>
                 <div class="col-lg-6 col-xl-6 col-xxl mb-lg-4 mb-xxl-0 mw-300 min-w-300">
-                  <div class="card h-100">
-                    <div class="card-body">
-                      <div class="d-flex justify-content-between align-items-center">
-                        <label class="form-label">Пассажиры</label>
-                        <img class="help-icon" alt="help" src="/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" >
-                      </div>
-                      <div class="row">
-                        <div class="col">
-                          <div class="count-passenger d-flex align-items-center flex-wrap">
-                            <div id="minus-button-adult" class="minus-button count-button" :class=" { disabled : !mba } " v-on:click="MinusAdult();changeClass()">-</div>
-                            <input value="1" min="1" max="7" name="adults" v-model="adults" type="number" class="form-control text-center one-way-inputs-input shadow-none"  placeholder="0">
-                            <div id="plus-button-adult" class="plus-button count-button" :class=" { disabled : !pba } " v-on:click="PlusAdult();changeClass()">+</div>
-                            <span class="card-desc d-block w-100">Взрослых</span>
-                          </div>
-                        </div>
-                        <div class="col">
-                          <div class="count-passenger d-flex align-items-center flex-wrap">
-                            <div id="minus-button-childeren" class="minus-button count-button" :class=" { disabled : !mbc } " v-on:click="MinusChild();changeClass()">-</div>
-                            <input value="0" min="0" max="5" name="childrens" v-model="childrens" type="number" class="form-control text-center one-way-inputs-input shadow-none" placeholder="0">
-                            <div id="plus-button-childeren" class="plus-button count-button" :class=" { disabled : !pbc } " v-on:click="PlusChild();changeClass()">+</div>
-                            <span class="card-desc d-block w-100">Детских</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <PassengersCounter/>
                 </div>
                 <div class="col-lg-6 col-xl-6 col-xxl mb-lg-4 mb-xxl-0 mw-300 min-w-300">
                   <div class="card h-100">
@@ -250,7 +201,7 @@
                         <span class="input-group-text calendar-span" v-on:click="UpdateselectDate()" ><img class="calendar-icon" alt="calendar" src="/img/hero/calendar.svg"></span>
                       </div>
                       <div class="select-date" v-if="selectDate">
-                        <DataPicker/>
+                        <DataPicker which-way="from"/>
                       </div>
                       <span class="card-example d-block w-100">
                                                 <span id="today-date-toggle" class="card-example-date today-date-toggle text-decoration-underline"
@@ -274,7 +225,7 @@
                         <span class="input-group-text calendar-span" v-on:click="UpdateselectDateBack()" ><img class="calendar-icon" alt="calendar" src="/img/hero/calendar.svg"></span>
                       </div>
                       <div class="select-date" v-if="selectDateBack">
-                        <DataPicker/>
+                        <DataPicker which-way="to"/>
                       </div>
                       <span class="card-example d-block w-100">
                                                 <span id="today-date-toggle" class="card-example-date today-date-toggle text-decoration-underline"
@@ -289,7 +240,7 @@
               </div>
               <div class="row">
                 <div class="col d-flex justify-content-center align-items-center">
-                  <button id="submit-button-twoWays" type="button" class="btn" v-on:click="alertPlace()">
+                  <button v-if="$route.name !== 'Ticket-booking'" id="submit-button-twoWays" type="button" class="btn" v-on:click="alertPlace()">
                     Найти билеты
                   </button>
                 </div>
@@ -304,17 +255,26 @@
 
 <script>
 import DataPicker from '@/components/DataPicker'
+import PassengersCounter from "@/components/PassengersCounter"
 import {mapGetters,mapActions} from 'vuex'
+import moment from 'moment'
 export default {
   name: "Flight-form",
-  components:{DataPicker,},
-  computed: mapGetters(['fromStations','toStations','from','to','childrens','adults','dateArival','dateBack','selectDate','selectDateBack','oneWay']),
+  components:{DataPicker,PassengersCounter},
+  computed: mapGetters(
+    [
+      'fromStations',
+      'toStations',
+      'from',
+      'to',
+      'dateArival',
+      'dateBack',
+      'selectDate',
+      'selectDateBack',
+      'oneWay'
+    ]),
   data(){
     return{
-      pba: true,
-      pbc: true,
-      mba: false,
-      mbc: false,
       toPlace:'',
       fromPlace:'',
       fromPlaceV:false,
@@ -351,7 +311,9 @@ export default {
       'PlusAdult',
       'MinusAdult',
       'PlusChild',
-      'MinusChild'
+      'MinusChild',
+      'addPassenger',
+      'removePassenger'
     ]),
 
     search(str,target){
@@ -368,32 +330,10 @@ export default {
         this.$router.push('/flight-selection/search/'+this.from+'/'+this.to)
         }
     },
-    //Переключение кнопок в полях кол-ва пассажиров в Desabled Enabled
-    changeClass() {
-      if (this.adults >= 7) {
-        this.pba = false;
-      } else {
-        this.pba = true;
-      }
-      if (this.childrens >= 5) {
-        this.pbc = false;
-      } else {
-        this.pbc = true;
-      }
-
-      if (this.adults > 1) {
-        this.mba = true;
-      } else {
-        this.mba = false;
-      }
-      if (this.childrens > 0) {
-        this.mbc = true;
-      } else {
-        this.mbc = false;
-      }
+    changeUrlByWay(oneWay) {
+      this.$store.commit('updateOneWay', oneWay)
+      this.$router.push('/flight-selection/search/'+this.from+'/'+this.to+'/'+this.dateArival+'/'+oneWay)
     }
-
-
   },
   async mounted(){
     await this.getFromStations();
@@ -403,14 +343,39 @@ export default {
     this.setTo(this.$route.params.to);
     this.toPlace= this.toStations.find(station => station.id_to === this.$route.params.to).name;
     this.fromPlace= this.fromStations.find(station => station.id_from === this.$route.params.from).name;
+    let oneWay = (this.$route.params.oneWay === 'true')
+    this.$store.commit('updateOneWay', oneWay)
   },
-  // created(){
-  //     document.addEventListener('click', this.selectDateFalse.bind(this));
-  // }
+  created(){
+    let queryDateArrival = this.$route.params.dateArrival
+    let queryDateBack = this.$route.params.dateBack
+    let today = new Date()
+    let dayToday = String(today.getDate()).padStart(2, '0');
+    let monthToday = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    let yearToday = today.getFullYear();
+    today = dayToday + '.' + monthToday + '.' + yearToday
+    if (queryDateArrival) {
+      if (moment(queryDateArrival, 'DD.MM.YYYY').isValid()) {
+        this.$store.commit('setDateArrivalByQuery', queryDateArrival)
+      }
+      else {
+        this.$router.push('/flight-selection/search/' + '1' + '/' + '190' + '/' + today)
+      }
+    }
+    if (queryDateArrival && queryDateBack) {
+      if (moment(queryDateArrival, 'DD.MM.YYYY').isValid() && moment(queryDateBack, 'DD.MM.YYYY').isValid()) {
+        this.$store.commit('setDateArrivalByQuery', queryDateArrival)
+        this.$store.commit('setDateBackByQuery', queryDateBack)
+      }
+      else {
+        this.$router.push('/flight-selection/search/' + '1' + '/' + '190' + '/' + today)
+      }
+    }
+  }
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped lang="scss">
 @import "../../assets/variables";
 @import "../../assets/font";
 
@@ -484,7 +449,7 @@ export default {
           }
           .form-check-input:checked + .form-check-label {
             font-weight: $light;
-            color: $base;
+            color: $base !important;
           }
           .form-check-label {
             font-family: $uni;
@@ -641,7 +606,7 @@ export default {
           z-index: 998;
           left:0;
           width:100%;
-          max-height: 100%;
+          max-height: 360px;
           margin: 0;
           overflow-y: auto;
           //overflow-y: hidden;

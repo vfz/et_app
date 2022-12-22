@@ -1,6 +1,8 @@
 .DS_Store
 node_modules
 /dist
+/public/upload
+/public/mailru-domainykloqulR4AyNxT1j.html
 deploy.sh
 
 

@@ -175,7 +175,8 @@
               </div>
               <div class="row">
                 <div class="col d-flex justify-content-center align-items-center">
-                  <button id="submit-button-twoWays" type="button" class="btn" v-on:click="alertPlace()">
+                  <button :disabled="isFlightsLoading" id="submit-button-twoWays" type="button" class="btn" >
+                    <span v-if="isFlightsLoading === true" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     Найти билеты
                   </button>
                 </div>
@@ -206,7 +207,8 @@ export default {
     'selectDate',
     'selectDateBack',
     'oneWay',
-    'getPassengers'
+    'getPassengers',
+      'isFlightsLoading'
   ]),
   data(){
     return{
@@ -255,14 +257,6 @@ export default {
       //return str.indexOf(target)+1
       //Вариант поиска НЕзависимый от регистра
       return str.toLowerCase().indexOf(target.toLowerCase())+1
-    },
-    alertPlace(){
-      // alert('Едем в '+this.toPlace+' Едем из '+this.fromPlace)
-      
-     if(this.from !== this.$route.params.from || this.to !== this.$route.params.to){
-        
-        this.$router.push('/flight-selection/search/'+this.from+'/'+this.to)
-        }
     },
     changeUrlByWay(oneWay) {
       this.$store.commit('updateOneWay', oneWay)

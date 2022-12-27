@@ -27,7 +27,8 @@ export default {
         busTriptId: "7",
         shemeMobile: [],
         shemeDesktop: [],
-        selectedSeat: []
+        selectedSeat: [],
+        isFlightsLoading: false,
 
     },
     mutations: {
@@ -225,6 +226,9 @@ export default {
         },
         setDateBackPrices(state, backPrices) {
             state.dateBackPrices = backPrices.result
+        },
+        setFlightsLoading(state, isFlightsLoading) {
+            state.isFlightsLoading = isFlightsLoading
         }
     },
     actions: {
@@ -250,6 +254,7 @@ export default {
         },
         //Получаем список рейсов (туда)
         async getFlightThere(ctx) {
+            ctx.commit('setFlightsLoading', true)
             const validTherePrice = (!+ctx.state.from || !+ctx.state.to) ? false : true
             if (validTherePrice) {
                 const from_okato = ctx.state.fromStations.find(station => station.id_from === ctx.state.from).okato
@@ -268,10 +273,11 @@ export default {
             const FlightThere = await res.json();
             ctx.commit('updateFlightThere', FlightThere)
             ctx.commit('updateDefaultsSeat', ctx.rootGetters.getPassengers)
-
+            ctx.commit('setFlightsLoading', false)
         },
         //Получаем список рейсов (обратно)
         async getFlightBack(ctx) {
+            ctx.commit('setFlightsLoading', true)
             const validBackPrice = (!+ctx.state.from || !+ctx.state.to || ctx.state.oneWay) ? false : true
             if (validBackPrice) {
                 const from_okato = ctx.state.toStations.find(station => station.id_to === ctx.state.to).okato
@@ -281,7 +287,6 @@ export default {
                 const backPrices = await resBackPrices.json();
                 ctx.commit('setDateBackPrices', backPrices)
             }
-
             const validSearchBack = (!+ctx.state.from || !+ctx.state.to || !ctx.state.dateBack || ctx.state.oneWay) ? false : true
             if (!validSearchBack) { return false }
 
@@ -291,6 +296,7 @@ export default {
             const FlightBack = await res.json();
             ctx.commit('updateFlightBack', FlightBack)
             ctx.commit('updateDefaultsSeat', ctx.rootGetters.getPassengers)
+            ctx.commit('setFlightsLoading', false)
 
         },
         // Ракировка откуда куда
@@ -301,8 +307,13 @@ export default {
         },
         UpdateOneWay(ctx, oneWay) {
             ctx.commit('updateOneWay', oneWay)
-            ctx.dispatch('getFlightThere')
-            ctx.dispatch('getFlightBack')
+            ctx.commit('setFlightsLoading', true)
+            function loadingFlights() {
+                ctx.dispatch('getFlightThere')
+                ctx.dispatch('getFlightBack')
+                ctx.commit('setFlightsLoading', false)
+            }
+            setTimeout(loadingFlights, 4000)
         },
         UpdateselectDate(ctx) {
             ctx.commit('newselectDate')
@@ -413,6 +424,9 @@ export default {
         },
         dateBackPrices(state) {
             return state.dateBackPrices
+        },
+        isFlightsLoading(state) {
+            return state.isFlightsLoading
         }
 
     }

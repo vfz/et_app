@@ -11,9 +11,11 @@
           </h2>
         </div>
       </div>
-      <div :class="{'gy-4': $route.name !== 'Ticket-booking'}" class="row">
+      <div v-if="!isFlightsLoading" :class="{'gy-4': $route.name !== 'Ticket-booking'}" class="row">
         <div
-            class="col-12 col-sm-6" v-for="flight in (flightType=='there') ? flightThere:flightBack" :key="flight.ticket_id_2+'_'+flight.id_trip">
+            class="col-12 col-sm-6"
+            v-for="flight in (flightType=='there') ? flightThere:flightBack"
+            :key="flight.ticket_id_2+'_'+flight.id_trip">
           <div v-if="$route.name !== 'Ticket-booking'" class="table-item"
             :class="{'active-row' : selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0] &&
                       selectedSeat.filter(flightFiltr=>(flightFiltr.id_trip === flight.id_trip))[0].is_selected }">
@@ -302,6 +304,13 @@
           </div>
         </div>
       </div>
+      <div v-if="isFlightsLoading" :class="{'gy-4': $route.name !== 'Ticket-booking'}" class="row">
+        <div class="col-12">
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </template>
@@ -320,24 +329,26 @@ export default {
       flights:[],
     }
   },
-  computed: mapGetters([
-    'flightThere',
-    'flightBack',
-    'getChildrensCount',
-    'getAdultsCount',
-    'selectedSeat'
-  ]),
-  mounted(){
-    
+  mounted() {
   },
-    methods: {
+  computed: {
+    ...mapGetters([
+      'flightThere',
+      'flightBack',
+      'getChildrensCount',
+      'getAdultsCount',
+      'selectedSeat',
+        'isFlightsLoading'
+    ])
+  },
+  methods: {
     ...mapActions([
       'updatebBusTriptId',
       'updateCords',
       'updateIcon',
-      'chengeSelectTrip'
+      'chengeSelectTrip',
     ]),
-    timeFormat(time,target){
+      timeFormat(time,target){
 
       if(target==='hours'){
         return this.hours[

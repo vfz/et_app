@@ -118,7 +118,8 @@
               <div class="row">
                 <div class="col d-flex justify-content-center align-items-center">
                   <button
-                      id="submit-button" type="button" class="btn" v-on:click="alertPlace()">
+                      :disabled="isFlightsLoading" id="submit-button" type="button" class="btn" v-on:click="alertPlace()">
+                    <span v-if="isFlightsLoading === true" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     Найти билеты
                   </button>
                 </div>
@@ -240,7 +241,8 @@
               </div>
               <div class="row">
                 <div class="col d-flex justify-content-center align-items-center">
-                  <button v-if="$route.name !== 'Ticket-booking'" id="submit-button-twoWays" type="button" class="btn" v-on:click="alertPlace()">
+                  <button :disabled="isFlightsLoading" v-if="$route.name !== 'Ticket-booking'" id="submit-button-twoWays" type="button" class="btn" v-on:click="alertPlace()">
+                    <span v-if="isFlightsLoading === true" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     Найти билеты
                   </button>
                 </div>
@@ -271,7 +273,8 @@ export default {
       'dateBack',
       'selectDate',
       'selectDateBack',
-      'oneWay'
+      'oneWay',
+        'isFlightsLoading'
     ]),
   data(){
     return{

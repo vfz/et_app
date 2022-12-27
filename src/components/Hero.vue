@@ -158,7 +158,7 @@
                   </div>
                 </div>
                 <!-- two-way-input-->
-                <div class="two-ways-inputs w-100 form-header" v-else>
+                <div class="two-ways-inputs w-100 form-header" v-else >
                   <div class="row gy-md-4 gy-2 gy-lg-0 d-xxl-flex justify-content-xxl-center">
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xxl mb-lg-4 mb-xxl-0 col-xl-6 min-w-300">
                       <div class="card h-100">
@@ -386,7 +386,6 @@ export default{
             return str.toLowerCase().indexOf(target.toLowerCase())+1
         },
        async alertPlace(){
-            await this.getFlightThere()
          if (this.oneWay) {
            this.$router.push('/flight-selection/search/'+this.from+'/'+this.to+'/'+this.dateArival+'/'+this.oneWay)
          }

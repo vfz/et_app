@@ -13,7 +13,7 @@
       </div>
       <div class="row">
         <div class="col-12">
-          <div class="table-wrapper table-responsive">
+          <div v-if="!isFlightsLoading" class="table-wrapper table-responsive">
             <table class="table align-middle">
               <thead>
               <tr>
@@ -174,6 +174,11 @@
               </tbody>
             </table>
           </div>
+          <div v-if="isFlightsLoading" class="text-center">
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -199,7 +204,8 @@ export default {
     'flightBack',
     'getChildrensCount',
     'getAdultsCount', 
-    'selectedSeat'
+    'selectedSeat',
+      'isFlightsLoading'
   ]),
   mounted(){
     

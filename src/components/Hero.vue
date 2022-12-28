@@ -550,9 +550,6 @@ export default{
           @media screen and (max-width: 768px) {
             padding: 8px 12px;
           }
-          @media (min-width: 1400px) and (max-width: 1416px) {
-            padding: 12px 14px;
-          }
           .form-label {
             font-family: $uni;
             font-weight: $regular;

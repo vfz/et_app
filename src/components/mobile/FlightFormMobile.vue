@@ -429,7 +429,6 @@ export default {
       .card {
         border-radius: 8px;
         &-body {
-          padding: 8px 12px;
           &-section {
             .form-label {
               font-family: $uni;

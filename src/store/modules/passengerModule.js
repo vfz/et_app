@@ -237,6 +237,7 @@ export default {
             const modal = document.getElementById('btn-close' + id)
             modal.click()
             ctx.commit('removePassenger', id)
+            ctx.commit('removeSeatById', id)
             ctx.commit('activeTab', id - 1)
         },
         setActiveTab(ctx, id) {

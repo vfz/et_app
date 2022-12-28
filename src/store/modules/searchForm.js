@@ -229,6 +229,13 @@ export default {
         },
         setFlightsLoading(state, isFlightsLoading) {
             state.isFlightsLoading = isFlightsLoading
+        },
+        removeSeatById(state, id) {
+            state.selectedSeat.filter(flight => {
+                if (flight.is_selected) {
+                    flight.seats.splice(id, 1)
+                }
+            })
         }
     },
     actions: {

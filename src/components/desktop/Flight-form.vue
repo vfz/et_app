@@ -483,6 +483,7 @@ export default {
       .card {
         border-radius: .85rem;
         &-body {
+          padding: 2rem;
           .form-label {
             @include font($uni,$regular,18px,24.3px,$base);
             margin-bottom: 19px;

@@ -547,6 +547,7 @@ export default{
           border-radius: 8px;
         }
         &-body {
+          padding: 2rem;
           @media screen and (max-width: 768px) {
             padding: 8px 12px;
           }

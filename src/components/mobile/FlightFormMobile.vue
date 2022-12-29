@@ -324,6 +324,12 @@ export default {
       margin-left: 8px;
       margin-right: 8px;
     }
+    .form-header {
+      @media screen and (max-width: 991px) {
+        margin-right: 0;
+        margin-left: 0;
+      }
+    }
     .search-form {
       .checkbox-form {
         margin-bottom: 16px;
@@ -497,6 +503,11 @@ export default {
               -moz-box-shadow: 12px 0px 0px -4px rgba(255, 255, 255, 1);
               box-shadow: 12px 0px 0px -4px rgba(255, 255, 255, 1);
               transform: rotate(180deg);
+              .swiper-inputs-icon {
+                @media screen and (max-width: 991px) {
+                  background: none;
+                }
+              }
             }
           }
           //TODO deleted form control

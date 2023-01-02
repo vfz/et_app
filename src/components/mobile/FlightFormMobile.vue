@@ -26,9 +26,9 @@
                 Билеты на автобус
               </h3>
               <div class="path-content">
-                <span class="path-content-start">Ставрополь</span>
+                <span class="path-content-start">{{ fromPlace }}</span>
                 –
-                <span class="path-content-end">Москва</span>
+                <span class="path-content-end">{{ toPlace }}</span>
               </div>
             </div>
             <!-- Form-input-->

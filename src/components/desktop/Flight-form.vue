@@ -21,23 +21,23 @@
                   <div class="card h-100">
                     <div class="card-body">
                       <label for="dataListFrom" class="form-label">Откуда</label>
-                      <input class="form-control one-way-inputs-input shadow-none"
+                      <input class="form-control one-way-inputs-input shadow-none place"
                              @focus="fromPlaceV=true"
                              v-mmodel="fromPlace"
                              v-model="fromPlace"
                              placeholder="Введите название населенного пункта"
-                             style="padding-left: 7pt;">
+                             >
                       <div class="find-place" v-if="fromPlace  && !from || fromPlaceV">
                         <div class="meta"
                              v-for="pointFrom in fromStations" :key="pointFrom.id_from"
                              v-show="search(pointFrom.name,fromPlace)"
                              v-on:click="setFrom(pointFrom.id_from);fromPlaceV=false;fromPlace=pointFrom.name"
                         >
-                          <div class="title">{{pointFrom.name}}</div>
-                          <div class="description" style="color:#ec0000;font-size:12px;font:bold">{{pointFrom.address}}</div>
+                          <div class="title place">{{pointFrom.name}}</div>
+                          <div class="description place" style="color:#ec0000;font-size:12px;font:bold">{{pointFrom.address}}</div>
                         </div>
                       </div>
-                      <span class="card-example">
+                      <span class="card-example place">
                                                 Например:
                                                 <span id="city-example-from" class="card-example-date city-example-from text-decoration-underline"
                                                       v-on:click="setFrom('1');fromPlaceV=false;fromPlace='Ставрополь'"
@@ -59,21 +59,21 @@
                   <div class="card h-100">
                     <div class="card-body">
                       <label for="datalistTo" class="form-label">Куда</label>
-                      <input class="form-control one-way-inputs-input shadow-none"
+                      <input class="form-control one-way-inputs-input shadow-none place"
                              @focus="toPlaceV=true"
                              v-model="toPlace"
                              v-mmodel="toPlace"
-                             placeholder="Введите название населенного пункта" style="padding-left: 7pt;">
+                             placeholder="Введите название населенного пункта" >
                       <div class="find-place" v-if="toPlace && !to || toPlaceV ">
                         <div class="meta"
                              v-for="pointTo in toStations" :key="pointTo.id_to"
                              v-show="search(pointTo.name,toPlace)"
                              v-on:click="setTo(pointTo.id_to);toPlaceV=false;toPlace=pointTo.name">
-                          <div class="title">{{pointTo.name}}</div>
-                          <div class="description" style="color:#ec0000;font-size:12px;font:bold">{{pointTo.address}}</div>
+                          <div class="title place">{{pointTo.name}}</div>
+                          <div class="description place" style="color:#ec0000;font-size:12px;font:bold">{{pointTo.address}}</div>
                         </div>
                       </div>
-                      <span class="card-example">
+                      <span class="card-example place">
                                                 Например:
                                                 <span id="city-example-to" class="card-example-date city-example-to text-decoration-underline"
                                                       v-on:click="setTo('190');toPlaceV=false;toPlace='Москва'">Москва</span>
@@ -132,23 +132,23 @@
                   <div class="card h-100">
                     <div class="card-body">
                       <label for="dataListFrom" class="form-label">Откуда</label>
-                      <input class="form-control one-way-inputs-input shadow-none"
+                      <input class="form-control one-way-inputs-input shadow-none place"
                              @focus="fromPlaceV=true"
                              v-mmodel="fromPlace"
                              v-model="fromPlace"
                              placeholder="Введите название населенного пункта"
-                             style="padding-left: 7pt;">
+                             >
                       <div class="find-place" v-if="fromPlace  && !from || fromPlaceV">
                         <div class="meta"
                              v-for="pointFrom in fromStations" :key="pointFrom.id_from"
                              v-show="search(pointFrom.name,fromPlace)"
                              v-on:click="setFrom(pointFrom.id_from);fromPlaceV=false;fromPlace=pointFrom.name"
                         >
-                          <div class="title">{{pointFrom.name}}</div>
-                          <div class="description" style="color:#ec0000;font-size:12px;font:bold">{{pointFrom.address}}</div>
+                          <div class="title place">{{pointFrom.name}}</div>
+                          <div class="description place" style="color:#ec0000;font-size:12px;font:bold">{{pointFrom.address}}</div>
                         </div>
                       </div>
-                      <span class="card-example">
+                      <span class="card-example place">
                                                 Например:
                                                 <span id="city-example-from" class="card-example-date city-example-from text-decoration-underline"
                                                       v-on:click="setFrom('1');fromPlaceV=false;fromPlace='Ставрополь'"
@@ -165,21 +165,21 @@
                   <div class="card h-100">
                     <div class="card-body">
                       <label for="datalistTo" class="form-label">Куда</label>
-                      <input class="form-control one-way-inputs-input shadow-none"
+                      <input class="form-control one-way-inputs-input shadow-none place"
                              @focus="toPlaceV=true"
                              v-model="toPlace"
                              v-mmodel="toPlace"
-                             placeholder="Введите название населенного пункта" style="padding-left: 7pt;">
+                             placeholder="Введите название населенного пункта" >
                       <div class="find-place" v-if="toPlace && !to || toPlaceV ">
                         <div class="meta"
                              v-for="pointTo in toStations" :key="pointTo.id_to"
                              v-show="search(pointTo.name,toPlace)"
                              v-on:click="setTo(pointTo.id_to);toPlaceV=false;toPlace=pointTo.name">
-                          <div class="title">{{pointTo.name}}</div>
-                          <div class="description" style="color:#ec0000;font-size:12px;font:bold">{{pointTo.address}}</div>
+                          <div class="title place">{{pointTo.name}}</div>
+                          <div class="description place" style="color:#ec0000;font-size:12px;font:bold">{{pointTo.address}}</div>
                         </div>
                       </div>
-                      <span class="card-example">
+                      <span class="card-example place">
                                                 Например:
                                                 <span id="city-example-to" class="card-example-date city-example-to text-decoration-underline"
                                                       v-on:click="setTo('190');toPlaceV=false;toPlace='Москва'">Москва</span>
@@ -483,7 +483,7 @@ export default {
       .card {
         border-radius: .85rem;
         &-body {
-          padding: 2.5rem;
+          // padding: 2rem 1rem 2rem 2.2rem;
           .form-label {
             @include font($uni,$regular,18px,24.3px,$base);
             margin-bottom: 19px;
@@ -566,6 +566,10 @@ export default {
           .card-example-date {
             cursor: pointer;
           }
+          .place{
+            padding-left: 1rem !important;
+          }
+        
         }
         .swiper-inputs {
           background-color: $blue-active;

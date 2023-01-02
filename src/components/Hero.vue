@@ -37,23 +37,23 @@
                       <div class="card h-100">
                         <div class="card-body">
                           <label for="dataListFrom" class="form-label">Откуда</label>
-                          <input class="form-control one-way-inputs-input shadow-none"
+                          <input class="form-control one-way-inputs-input shadow-none place"
                                  @focus="fromPlaceV=true"
                                  v-mmodel="fromPlace"
                                  v-model="fromPlace"
                                  placeholder="Введите название населенного пункта"
-                                 style="padding-left: 7pt;">
+                                 >
                           <div class="find-place" v-if="fromPlace  && !from || fromPlaceV">
                             <div class="meta"
                                  v-for="pointFrom in fromStations" :key="pointFrom.id_from"
                                  v-show="search(pointFrom.name,fromPlace)"
                                  v-on:click="setFrom(pointFrom.id_from);fromPlaceV=false;fromPlace=pointFrom.name"
                             >
-                              <div class="title">{{pointFrom.name}}</div>
-                              <div class="description" style="color:#ec0000;font-size:12px;font:bold">{{pointFrom.address}}</div>
+                              <div class="title place">{{pointFrom.name}}</div>
+                              <div class="description place" style="color:#ec0000;font-size:12px;font:bold">{{pointFrom.address}}</div>
                             </div>
                           </div>
-                          <span class="card-example" v-if="!+from">
+                          <span class="card-example place" v-if="!+from">
 
                             Например:
                             <span 
@@ -63,8 +63,8 @@
                               Ставрополь
                               </span>
                           </span>
-                          <span class="card-example" v-else>
-                            {{ fromStations.find(station => station.id_from === from).address }}
+                          <span class="card-example place" v-else>
+                          <nobr>{{ fromStations.find(station => station.id_from === from).address }}</nobr>
                           </span>
                           <!--                          TODO добавить вывод станции отправления. Убрать d-none для отображения-->
                           <a href="#" class="card-place-link d-none" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
@@ -83,21 +83,21 @@
                       <div class="card h-100">
                         <div class="card-body">
                           <label for="datalistTo" class="form-label">Куда</label>
-                          <input class="form-control one-way-inputs-input shadow-none"
+                          <input class="form-control one-way-inputs-input shadow-none place"
                                  @focus="toPlaceV=true"
                                  v-model="toPlace"
                                  v-mmodel="toPlace"
-                                 placeholder="Введите название населенного пункта" style="padding-left: 7pt;">
+                                 placeholder="Введите название населенного пункта">
                           <div class="find-place" v-if="toPlace && !to || toPlaceV ">
                             <div class="meta"
                                  v-for="pointTo in toStations" :key="pointTo.id_to"
                                  v-show="search(pointTo.name,toPlace)"
                                  v-on:click="setTo(pointTo.id_to);toPlaceV=false;toPlace=pointTo.name">
-                              <div class="title">{{pointTo.name}}</div>
-                              <div class="description" style="color:#ec0000;font-size:12px;font:bold">{{pointTo.address}}</div>
+                              <div class="title place place">{{pointTo.name}}</div>
+                              <div class="description place" style="color:#ec0000;font-size:12px;font:bold">{{pointTo.address}}</div>
                             </div>
                           </div>
-                          <span class="card-example" v-if="!+to">
+                          <span class="card-example place" v-if="!+to">
 
                             Например:
                             <span 
@@ -107,9 +107,9 @@
                               Москва
                             </span>
                           </span>
-                          <span class="card-example" v-else>
+                          <span class="card-example place" v-else>
 
-                            {{ toStations.find(station => station.id_to === to).address }}
+                          <nobr>{{ toStations.find(station => station.id_to === to).address }}</nobr>
                           </span>
                           <!--                          TODO добавить вывод станции отправления. Убрать d-none для отображения-->
                           <a href="#" class="card-place-link d-none" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
@@ -164,32 +164,32 @@
                       <div class="card h-100">
                         <div class="card-body">
                           <label for="dataListFrom" class="form-label">Откуда</label>
-                          <input class="form-control one-way-inputs-input shadow-none"
+                          <input class="form-control one-way-inputs-input shadow-none place"
                                  @focus="fromPlaceV=true"
                                  v-mmodel="fromPlace"
                                  v-model="fromPlace"
                                  placeholder="Введите название населенного пункта"
-                                 style="padding-left: 7pt;">
+                                 >
                           <div class="find-place" v-if="fromPlace  && !from || fromPlaceV">
                             <div class="meta"
                                  v-for="pointFrom in fromStations" :key="pointFrom.id_from"
                                  v-show="search(pointFrom.name,fromPlace)"
                                  v-on:click="setFrom(pointFrom.id_from);fromPlaceV=false;fromPlace=pointFrom.name"
                             >
-                              <div class="title">{{pointFrom.name}}</div>
-                              <div class="description" style="color:#ec0000;font-size:12px;font:bold">{{pointFrom.address}}</div>
+                              <div class="title place">{{pointFrom.name}}</div>
+                              <div class="description place" style="color:#ec0000;font-size:12px;font:bold">{{pointFrom.address}}</div>
                             </div>
                           </div>
-                          <span class="card-example" v-if="!+from">
+                          <span class="card-example place" v-if="!+from">
 
                                                 Например:
                                                 <span id="city-example-from" class="card-example-date city-example-from"
                                                       v-on:click="setFrom('1');fromPlaceV=false;fromPlace='Ставрополь'"
                                                 >Ставрополь</span>
                                             </span>
-                          <span class="card-example" v-else>
+                          <span class="card-example place" v-else>
 
-                            {{ fromStations.find(station => station.id_from === from).address }}
+                          <nobr>{{ fromStations.find(station => station.id_from === from).address }}</nobr>
                           </span>
                           <!--                          TODO добавить вывод станции отправления. Убрать d-none для отображения-->
                           <a href="#" class="card-place-link d-none" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
@@ -208,21 +208,21 @@
                       <div class="card h-100">
                         <div class="card-body">
                           <label for="datalistTo" class="form-label">Куда</label>
-                          <input class="form-control one-way-inputs-input shadow-none"
+                          <input class="form-control one-way-inputs-input shadow-none place"
                                  @focus="toPlaceV=true"
                                  v-model="toPlace"
                                  v-mmodel="toPlace"
-                                 placeholder="Введите название населенного пункта" style="padding-left: 7pt;">
+                                 placeholder="Введите название населенного пункта">
                           <div class="find-place" v-if="toPlace && !to || toPlaceV ">
                             <div class="meta"
                                  v-for="pointTo in toStations" :key="pointTo.id_to"
                                  v-show="search(pointTo.name,toPlace)"
                                  v-on:click="setTo(pointTo.id_to);toPlaceV=false;toPlace=pointTo.name">
-                              <div class="title">{{pointTo.name}}</div>
-                              <div class="description" style="color:#ec0000;font-size:12px;font:bold">{{pointTo.address}}</div>
+                              <div class="title place">{{pointTo.name}}</div>
+                              <div class="description place" style="color:#ec0000;font-size:12px;font:bold">{{pointTo.address}}</div>
                             </div>
                           </div>
-                          <span class="card-example" v-if="!+to">
+                          <span class="card-example place" v-if="!+to">
 
                             Например:
                             <span 
@@ -232,9 +232,9 @@
                               Москва
                             </span>
                           </span>
-                          <span class="card-example" v-else>
+                          <span class="card-example place" v-else>
 
-                            {{ toStations.find(station => station.id_to === to).address }}
+                            <nobr>{{ toStations.find(station => station.id_to === to).address }}</nobr>
                           </span>
 
 
@@ -422,13 +422,16 @@ export default{
 @import "src/assets/font.scss";
 
 .hero {
+  
   background: url("../../public/img/header/bg.jpg") no-repeat center center ;
   background-size: cover;
   padding-bottom: 99px;
   @media screen and (max-width: 768px) {
     padding-bottom: 48px;
   }
+
   &-content {
+
     .title-section {
       @media screen and (max-width: 767px) {
         line-height: 27px;
@@ -445,8 +448,11 @@ export default{
         margin-left: 8px;
         margin-right: 8px;
       }
+  
+      
     }
     .search-form {
+      
       .checkbox-form {
         margin-bottom: 32px;
         @media screen and (max-width: 768px) {
@@ -509,6 +515,8 @@ export default{
               height: auto;
             }
           }
+         
+        
         }
         .form-check-inline:last-child {
           @media screen and (max-width: 768px) {
@@ -547,7 +555,7 @@ export default{
           border-radius: 8px;
         }
         &-body {
-          padding: 2.5rem;
+          // padding: 2rem 1rem 2rem 2.2rem;
           @media screen and (max-width: 768px) {
             padding: 8px 12px;
           }
@@ -666,6 +674,7 @@ export default{
             }
             
           }
+          
         }
         &-desc {
           margin-top: 8px;
@@ -759,6 +768,7 @@ export default{
             @include animation;
             color: $blue-active;
           }
+          
         }
         &-place-link {
           div {
@@ -792,6 +802,9 @@ export default{
             }
             
         }
+        .place{
+            padding-left: 1rem !important;
+          }
       }
       .btn {
         font-family: $uni;

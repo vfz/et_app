@@ -20,7 +20,8 @@
             
             <div class="col datapicker day text-center" v-for="day in week"   :key="day.key"
            >
-                <div v-on:click="changeUrlByDate(day.index+'.'+day.month+'.'+day.year); SetDate(day.index+'.'+day.month+'.'+day.year);"  :class="{ current : day.current,  selected:day.selected}" >
+<!--              TODO найти использование проверки даты и вставить ее для not-active-->
+                <div v-on:click="changeUrlByDate(day.index+'.'+day.month+'.'+day.year); SetDate(day.index+'.'+day.month+'.'+day.year);"  :class="{ current : day.current,  selected:day.selected, 'not-active' : getToday() > day.index}" >
                   <div>
                   </div>
                     <div class="fix"></div><div class="date">{{ day.indexm }}</div>
@@ -53,6 +54,11 @@ export default{
   },
     methods: {
         ...mapActions(['SetDate']),
+      getToday() {
+        let date = new Date();
+        let currentDate = date.getDate();
+        return currentDate
+      },
         changeUrlByDate(date) {
           if (this.oneWay) {
             this.$router.push('/flight-selection/search/'+ this.from + '/' + this.to + '/' + date + '/' + this.oneWay)
@@ -306,6 +312,17 @@ export default{
     .price{
       color: $white;
     }
+}
+.not-active {
+  .date {
+    color: $deactivate;
+  }
+  .fix {
+
+  }
+  .price {
+    color: $deactivate;
+  }
 }
 
 </style>

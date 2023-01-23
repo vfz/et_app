@@ -255,7 +255,7 @@ export default{
     .price{
         font-family: $uni;
         font-style: normal;
-        font-weight: normal;
+        font-weight: $light;
         font-size: 12px;
         line-height: 16px;
         margin: 0;
@@ -286,8 +286,14 @@ export default{
     color: #FFFFFF;
 }
 .selected{
-     // Уголок в вехней части ячейки   
+     // Уголок в вехней части ячейки
+  background-color: #196EFF;
+  border-radius: 4px;
+  .date {
+    color: $white;
+  }
     .fix{
+      color: $white;
         position:absolute;
         left: 0;
         width: 7px !important;
@@ -298,7 +304,7 @@ export default{
         border-radius: 4px 0 0 0;
     }
     .price{
-        color: #196EFF;
+      color: $white;
     }
 }
 

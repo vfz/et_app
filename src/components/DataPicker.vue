@@ -21,7 +21,7 @@
             <div class="col datapicker day text-center" v-for="day in week"   :key="day.key"
            >
 <!--              TODO найти использование проверки даты и вставить ее для not-active-->
-                <div v-on:click="changeUrlByDate(day.index+'.'+day.month+'.'+day.year); SetDate(day.index+'.'+day.month+'.'+day.year);"  :class="{ current : day.current,  selected:day.selected, 'not-active' : getToday() > day.index}" >
+                <div class="datapicker-cell" v-on:click="changeUrlByDate(day.index+'.'+day.month+'.'+day.year); SetDate(day.index+'.'+day.month+'.'+day.year);"  :class="{ current : day.current,  selected:day.selected, 'not-active' : filterPastDays(getToday(), day.index+'-'+day.month+'-'+day.year)}" >
                   <div>
                   </div>
                     <div class="fix"></div><div class="date">{{ day.indexm }}</div>
@@ -33,6 +33,7 @@
 </template>
 <script>
 import {mapGetters,mapActions} from 'vuex'
+import moment from 'moment'
 export default{
     name: 'DataPicker',
     computed: mapGetters(['selectDate','selectDateBack','dateArival','dateBack', 'from', 'to','dateArivalPrices','dateBackPrices', 'oneWay']),
@@ -54,10 +55,21 @@ export default{
   },
     methods: {
         ...mapActions(['SetDate']),
+      filterPastDays(today, dayForCheck) {
+          if (!dayForCheck) {
+            return false
+          }
+          else {
+            return moment(dayForCheck, 'DD-MM-YYYY').isBefore(moment(today, 'DD-MM-YYYY'))
+          }
+      },
       getToday() {
-        let date = new Date();
-        let currentDate = date.getDate();
-        return currentDate
+        const today = new Date();
+        const day = today.getDate().toString().padStart(2, "0");
+        const month = (today.getMonth() + 1).toString().padStart(2, "0");
+        const year = today.getFullYear().toString()
+        const formattedDate = `${day}-${month}-${year}`;
+        return formattedDate
       },
         changeUrlByDate(date) {
           if (this.oneWay) {
@@ -255,9 +267,11 @@ export default{
         color: #FFFFFF;
         border-radius: 4px;
     }  
-}    
+}
+.datapicker-cell {
+  cursor: pointer;
+}
 .day{
-    cursor: pointer;
     .price{
         font-family: $uni;
         font-style: normal;
@@ -314,6 +328,8 @@ export default{
     }
 }
 .not-active {
+  cursor: default !important;
+  pointer-events: none;
   .date {
     color: $deactivate;
   }

@@ -1,8 +1,6 @@
 <template>
   <div
-      class="col-12 col-sm-6"
-      v-for="flight in (flightType=='there') ? flightThere:flightBack"
-      :key="flight.ticket_id_2+'_'+flight.id_trip">
+      class="col-12 col-sm-6">
     <div v-if="$route.name !== 'Ticket-booking'" class="table-item"
          :class="{'active-row' : selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0] &&
                       selectedSeat.filter(flightFiltr=>(flightFiltr.id_trip === flight.id_trip))[0].is_selected }">
@@ -293,11 +291,171 @@
 </template>
 
 <script>
+import {mapActions, mapGetters} from "vuex";
+
 export default {
-  name: "FlightTableItemOldMobile"
+  name: "FlightTableItemOldMobile",
+  props: ['flightType'],
+  data(){
+    return{
+      hours: ['час', 'часа', 'часов'],
+      minutes: ['минута', 'минуты', 'минут'],
+      cases: [2, 0, 1, 1, 1, 2],
+      monthes: ["Янв", "Фев", "Мар", "Апр", "Мая", "Июн", "Июл", "Авг", "Сен", "Окт", "Ноя", "Дек"],
+      flights:[],
+    }
+  },
+  computed: {
+    ...mapGetters([
+      'flightThere',
+      'flightBack',
+      'getChildrensCount',
+      'getAdultsCount',
+      'selectedSeat',
+      'isFlightsLoading'
+    ])
+  },
+  methods: {
+    ...mapActions([
+      'updatebBusTriptId',
+      'updateCords',
+      'updateIcon',
+      'chengeSelectTrip',
+    ]),
+    timeFormat(time,target){
+
+      if(target==='hours'){
+        return this.hours[
+            (time.split(':')[0] % 100 > 4 && time.split(':')[0] % 100 < 20)
+                ? 2
+                : this.cases[(time.split(':')[0] % 10 < 5)
+                    ? time.split(':')[0] % 10
+                    : 5]
+            ]
+      }
+      if(target==='minutes'){
+        return this.minutes[
+            (time.split(':')[1] % 100 > 4 && time.split(':')[1] % 100 < 20)
+                ? 2
+                : this.cases[(time.split(':')[1] % 10 < 5)
+                    ? time.split(':')[1] % 10
+                    : 5]
+            ]
+      }
+    }
+  }
 }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+@import "src/assets/variables.scss";
+@import "src/assets/font.scss";
+.table-item {
+  max-width: unset;
+  box-shadow: $regular-shadow;
+  border-radius: 8px;
+  &-content-wrapper {
+    padding-top: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-bottom: 16px;
+  }
+  &-part {
+    .table-link {
+      cursor: pointer;
+    }
+    &-left {
+      &-title {
+        @include font($uni,$regular,11px,14.85px,$base);
+        margin-bottom: 4px;
+      }
+      &-date {
+        .dispatch-time {
+          @include font($uni,$bold,18px,24.3px,$base);
+          margin-right: 8px;
+        }
+        .dispatch-time:hover {
+          @include animation;
+          color: $blue-link;
+        }
+        .dispatch-date {
+          &-day, &-month, &-year {
+            @include font($uni,$regular,12px,21.94px,$secondary)
+          }
+          &-month {
+            font-size: 12px;
+            line-height: 16.2px;
+          }
+          &-month, &-year {
+            font-size: 10px;
+            line-height: 13.5px;
+          }
+        }
+        .time-length-trip {
+          @include font($uni,$bold,13px,17.55px,$base);
+        }
+        .time-length-trip:hover {
+          @include animation;
+          color: $blue-active;
+        }
+      }
+      &-city {
+        @include font($uni,$bold,14px,18.9px,$base);
+        margin-bottom: 3px;
+      }
+      &-place {
+        @include font($uni, $light, 11px, 14.85px, $blue-active);
+      }
+    }
+    &-right {
+      &-title {
+        @include font($uni,$regular,11px,14.85px,$base);
+        margin-bottom: 4px;
+      }
+      &-date {
+        .arrival-time {
+          @include font($uni,$bold,18px,24.3px,$base);
+          margin-right: 8px;
+        }
+        .arrival-time:hover {
+          @include animation;
+          color: $blue-link;
+        }
+        .arrival-date {
+          &-day, &-month, &-year {
+            @include font($uni,$regular,12px,21.94px,$secondary)
+          }
+          &-month {
+            font-size: 12px;
+            line-height: 16.2px;
+          }
+          &-month, &-year {
+            font-size: 10px;
+            line-height: 13.5px;
+          }
+        }
+        .place-left-count {
+          @include font($uni,$bold,13px,17.55px,$base);
+        }
+      }
+      &-city {
+        @include font($uni,$bold,14px,18.9px,$base);
+        margin-bottom: 3px;
+      }
+      &-place {
+        @include font($uni, $light, 11px, 14.85px, $blue-active);
+      }
+    }
+  }
+  .btn {
+    @include font($uni,$bold,16px,21.6px,$white);
+    padding-top: 11px;
+    padding-bottom: 11px;
+    border-radius: 0 0 8px 8px;
+  }
+  .disabled {
+    background-color: $disabled;
+    box-shadow: none;
+  }
+}
 </style>

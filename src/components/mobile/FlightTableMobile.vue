@@ -11,14 +11,16 @@
           </h2>
         </div>
       </div>
-<!--      новая версия-->
-<!--      TODO добавить расстояние между айтемами-->
-      <FlightTableItemMobile
-          v-for="flight in (flightType=='there') ? flightThere:flightBack"
-          :key="flight.ticket_id_2+'_'+flight.id_trip"
-          :flightType="flightType"
-          :flight="flight"
-      />
+      <div class="row gy-4">
+        <!--      новая версия-->
+        <!--      TODO добавить расстояние между айтемами-->
+        <FlightTableItemMobile
+            v-for="flight in (flightType=='there') ? flightThere:flightBack"
+            :key="flight.ticket_id_2+'_'+flight.id_trip"
+            :flightType="flightType"
+            :flight="flight"
+        />
+      </div>
       <div v-if="isFlightsLoading" :class="{'gy-4': $route.name !== 'Ticket-booking'}" class="row">
         <div class="col-12">
           <div class="spinner-border" role="status">

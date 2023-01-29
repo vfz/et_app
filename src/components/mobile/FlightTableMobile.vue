@@ -13,7 +13,6 @@
       </div>
       <div class="row gy-4">
         <!--      новая версия-->
-        <!--      TODO добавить расстояние между айтемами-->
         <FlightTableItemMobile
             v-for="flight in (flightType=='there') ? flightThere:flightBack"
             :key="flight.ticket_id_2+'_'+flight.id_trip"

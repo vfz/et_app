@@ -170,7 +170,99 @@
                   </div>
                 </td>
               </tr>
-
+              <tr class="another-flights-title">
+                <td colspan="8">
+                  <h3 class="text-center title-table">Другие рейсы</h3>
+                </td>
+              </tr>
+              <tr class="another-flights-items">
+                <td>
+                  <div class="dispatch-time">
+                    <!-- время отправления -->
+                    05:45
+                  </div>
+                  <div class="dispatch-date">
+                    <span class="dispatch-date-day">10</span>
+                    <span class="dispatch-date-month">фев</span>
+                    <span class="dispatch-date-year">23</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="dispatch-city">
+                    Москва
+                  </div>
+                  <!--                  для вызова модального окна нужно добавить атрибуты data-bs-toggle со значением modal и data-bs-target со значением id модального окна
+                 data-bs-target="#dispatch-modal" :data-bs-target="flight.id_from_point"-->
+                  <div class="dispatch-place table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal" v-on:click="updateCords(flight.from_yam),updateIcon(flight.from_name)">
+                    Станция
+                  </div>
+                </td>
+                <td>
+                  <div class="dispatch-length-time">
+                    <span>20 часов</span>
+                  </div>
+                  <!--                  для вызова модального окна нужно добавить атрибуты data-bs-toggle со значением modal и data-bs-target со значением id модального окна-->
+                </td>
+                <td>
+                  <div class="arrival-time">
+                    20:45
+                  </div>
+                  <div class="arrival-date">
+                    <span class="arrival-date-day">10</span>
+                    <span class="arrival-date-month">фев</span>
+                    <span class="arrival-date-year">23</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="arrival-city">
+                    Ставрополь
+                  </div>
+                  <!--                  для вызова модального окна нужно добавить атрибуты data-bs-toggle со значением modal и data-bs-target со значением id модального окна
+                 data-bs-target="#dispatch-modal" :data-bs-target="flight.id_to_point"-->
+                  <div class="arrival-place  table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
+                    ж/д вокзал
+                  </div>
+                </td>
+                <td>
+                  <div v-if="true" class="places-left">20 мест</div>
+                  <div
+                      class="places-left table-link"
+                      data-bs-toggle="modal"
+                      data-bs-target="#place-left-modal">
+                    <!--                    TODO отобразить выбранные места-->
+                  </div>
+                  <!-- При нажатии открывается модальное окно с автобусом-->
+                  <div
+                      class="place-choice table-link"
+                      data-bs-toggle="modal"
+                      data-bs-target="#place-left-modal">
+                    <span v-if="getChildrensCount+getAdultsCount===1">место: </span>
+                    <span v-if="getChildrensCount+getAdultsCount>1">места: </span>
+                    изменить
+                  </div>
+                </td>
+                <td class="align-middle">
+                  <div class="d-flex align-content-center">
+                    <div class="price d-inline-block">
+                      3000 ₽
+                    </div>
+                    <div class="d-inline-block">
+                      <img class="help-icon" alt="help" src="/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" :title="'Взрослый - 1000'+'₽\n'+'Детский - 2000'+'₽'" >
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="place-choice-buy table-link">
+                    Выбрать
+                  </div>
+                  <div class="place-choice-buy d-none">
+                    недостаточно мест :(
+                  </div>
+                  <div class="place-choice-buy table-link">
+                    Убрать
+                  </div>
+                </td>
+              </tr>
               </tbody>
             </table>
           </div>
@@ -264,11 +356,12 @@ export default {
     background-color: $white;
     border-radius: 16px;
     box-shadow: $regular-shadow;
-    padding: 12px 0;
+    padding: 12px 0 0;
     .table>:not(:first-child) {
       border-top: unset;
     }
     .table {
+      margin-bottom: 0;
       td {
         padding: 1rem 1rem;
       }
@@ -323,11 +416,28 @@ export default {
           }
         }
         .active-row {
-          background-color: $blue-hover;
+          //background-color: $blue-hover;
+          background-color: $blue-active;
+          .dispatch-date, .arrival-date, .dispatch-city, .arrival-city, .places-left, .place-choice-buy, .dispatch-time, .arrival-time, .price, .dispatch-length-time {
+            color: $white;
+          }
+        }
+        .active-row:hover {
+          @include animation;
+          background-color: $btn-hover;
         }
         tr:hover{
           @include animation;
           background-color: $blue-hover;
+        }
+        .another-flights-title, .another-flights-items {
+          background-color: #e9f0ff;
+        }
+        tr.another-flights-items.active-row {
+          background-color: $blue-active;
+          .dispatch-date, .arrival-date, .dispatch-city, .arrival-city, .places-left, .place-choice-buy, .dispatch-time, .arrival-time, .price, .dispatch-length-time {
+            color: $white;
+          }
         }
       }
     }

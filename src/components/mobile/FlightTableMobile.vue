@@ -19,6 +19,7 @@
             :flightType="flightType"
             :flight="flight"
         />
+        <FlightTableAnotherItemMobile/>
       </div>
       <div v-if="isFlightsLoading" :class="{'gy-4': $route.name !== 'Ticket-booking'}" class="row">
         <div class="col-12">
@@ -35,9 +36,10 @@
 import {mapGetters} from 'vuex'
 import FlightTableItemOldMobile from "@/components/mobile/FlightTableItemOldMobile.vue";
 import FlightTableItemMobile from "@/components/mobile/FlightTableItemMobile.vue";
+import FlightTableAnotherItemMobile from "@/components/mobile/FlightTableAnotherItemMobile.vue";
 export default {
   name: "ThereTableMobile",
-  components: {FlightTableItemMobile, FlightTableItemOldMobile},
+  components: {FlightTableAnotherItemMobile, FlightTableItemMobile, FlightTableItemOldMobile},
   props: ['flightType'],
   computed: {
     ...mapGetters([

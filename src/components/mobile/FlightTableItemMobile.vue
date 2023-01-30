@@ -8,9 +8,19 @@
         <div class="row">
           <div class="col-6">
             <div class="table-item-part-left">
-              <h3 class="table-item-part-right-title">
-                Отправление
-              </h3>
+<!--              <h3 class="table-item-part-right-title">-->
+<!--                Отправление-->
+<!--              </h3>-->
+              <div class="table-item-part-left-city">
+                {{flight.from_name_point}}
+              </div>
+              <div
+                  class="table-item-part-left-place table-link"
+                  data-bs-toggle="modal"
+                  data-bs-target="#dispatch-modal"
+                  v-on:click="updateCords(flight.from_yam),updateIcon(flight.from_name)">
+                {{flight.from_address_point}}
+              </div>
               <div class="table-item-part-left-date d-flex">
                 <div class="dispatch-time">
                   {{flight.time_trip}}
@@ -23,23 +33,23 @@
                         </span>
                 </div>
               </div>
-              <div class="table-item-part-left-city">
-                {{flight.from_name_point}}
-              </div>
-              <div
-                  class="table-item-part-left-place table-link"
-                  data-bs-toggle="modal"
-                  data-bs-target="#dispatch-modal"
-                  v-on:click="updateCords(flight.from_yam),updateIcon(flight.from_name)">
-                {{flight.from_address_point}}
-              </div>
             </div>
           </div>
           <div class="col-6">
             <div class="table-item-part-right">
-              <h3 class="table-item-part-right-title">
-                Прибытие
-              </h3>
+<!--              <h3 class="table-item-part-right-title">-->
+<!--                Прибытие-->
+<!--              </h3>-->
+              <div class="table-item-part-right-city">
+                {{flight.to_name_point}}
+              </div>
+              <div
+                  class="table-item-part-right-place table-link"
+                  data-bs-toggle="modal"
+                  data-bs-target="#dispatch-modal"
+                  v-on:click="updateCords(flight.to_yam),updateIcon(flight.to_name)">
+                {{flight.to_address_point}}
+              </div>
               <div class="table-item-part-right-date d-flex">
                 <div class="arrival-time">
                   {{flight.time_arrival_trip}}
@@ -52,47 +62,32 @@
                         </span>
                 </div>
               </div>
-              <div class="table-item-part-right-city">
-                {{flight.to_name_point}}
-              </div>
-              <div
-                  class="table-item-part-right-place table-link"
-                  data-bs-toggle="modal"
-                  data-bs-target="#dispatch-modal"
-                  v-on:click="updateCords(flight.to_yam),updateIcon(flight.to_name)">
-                {{flight.to_address_point}}
-              </div>
             </div>
           </div>
         </div>
-        <hr>
+        <hr class="cross-line first-line">
         <div class="row">
-          <div class="col-6">
-            <div class="table-item-part-left">
+          <div class="col-12">
+            <div class="table-item-part-left time-length-trip-block d-flex justify-content-center align-content-center">
               <h3 class="table-item-part-left-title">
                 Время в пути
               </h3>
-              <div class="table-item-part-left-date">
-                <div class="time-length-trip" >
-                        <span v-if="flight.time_duration_trip.split(':')[0]>0">
-                            {{flight.time_duration_trip.split(':')[0]}}
-                            {{
-                            timeFormat(flight.time_duration_trip,'hours')
-                          }}
-                            </span>
-
-                  <span v-if="flight.time_duration_trip.split(':')[1]>0">
-                            {{flight.time_duration_trip.split(':')[1]}}
-                            {{
-                      timeFormat(flight.time_duration_trip,'minutes')
-                    }}
-                        </span>
-                </div>
+              <div class="time-length-trip">
+                <span
+                    v-if="flight.time_duration_trip.split(':')[0]>0">
+                  {{ flight.time_duration_trip.split(':')[0] }}
+                  {{timeFormat(flight.time_duration_trip, 'hours') }}
+                </span>
+                <span
+                    v-if="flight.time_duration_trip.split(':')[1]>0">
+                  {{flight.time_duration_trip.split(':')[1]}}
+                  {{timeFormat(flight.time_duration_trip,'minutes') }}
+                </span>
               </div>
             </div>
           </div>
         </div>
-        <hr>
+        <hr class="cross-line second-line">
         <div class="row">
           <div class="col-6">
             <div class="table-item-part-left">
@@ -208,6 +203,12 @@ export default {
   max-width: unset;
   box-shadow: $regular-shadow;
   border-radius: 8px;
+  .first-line {
+    margin-bottom: 0.3rem;
+  }
+  .second-line {
+    margin-top: 0.3rem;
+  }
   &-content-wrapper {
     padding: 16px;
   }
@@ -216,9 +217,17 @@ export default {
       cursor: pointer;
     }
     &-left {
+      .time-length-trip {
+        @include font($uni,$bold,13px,17.55px,$base);
+      }
+      .time-length-trip:hover {
+        @include animation;
+        color: $blue-active;
+      }
       &-title {
         @include font($uni,$regular,11px,14.85px,$base);
-        margin-bottom: 4px;
+        margin-bottom: 0;
+        margin-right: 20px;
       }
       &-date {
         .dispatch-time {
@@ -241,13 +250,6 @@ export default {
             font-size: 10px;
             line-height: 13.5px;
           }
-        }
-        .time-length-trip {
-          @include font($uni,$bold,13px,17.55px,$base);
-        }
-        .time-length-trip:hover {
-          @include animation;
-          color: $blue-active;
         }
       }
       &-city {

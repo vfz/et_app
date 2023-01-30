@@ -59,12 +59,12 @@
         </div>
         <hr class="cross-line first-line">
         <div class="row">
-          <div class="col-6">
+          <div class="col-12">
             <div class="table-item-part-left time-length-trip-block d-flex justify-content-center align-content-center">
               <h3 class="table-item-part-left-title">
                 Время в пути
               </h3>
-              <div class="time-lenght-trip">
+              <div class="time-length-trip">
                 <span>20 часов</span>
                 <span>30 минут</span>
               </div>

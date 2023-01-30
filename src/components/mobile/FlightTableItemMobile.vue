@@ -312,4 +312,7 @@ export default {
     @include font($uni, $light, 11px, 14.85px, $blue-active);
   }
 }
+.active-row {
+  background-color: $blue-hover;
+}
 </style>

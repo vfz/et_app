@@ -19,6 +19,16 @@
             :flightType="flightType"
             :flight="flight"
         />
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h2 class="title-table another-flights-title">
+            Другие рейсы
+          </h2>
+        </div>
+      </div>
+      <div class="row gy-4">
+<!--        Остальные рейсы-->
         <FlightTableAnotherItemMobile/>
       </div>
       <div v-if="isFlightsLoading" :class="{'gy-4': $route.name !== 'Ticket-booking'}" class="row">
@@ -54,6 +64,9 @@ export default {
 <style lang="scss" scoped>
 @import "src/assets/variables.scss";
 @import "src/assets/font.scss";
+.another-flights-title {
+  margin-top: 24px;
+}
 .thereTable-section-mobile {
   margin: 41px 88px;
   @media screen and (max-width: 767px) {

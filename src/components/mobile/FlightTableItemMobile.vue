@@ -203,6 +203,7 @@ export default {
   max-width: unset;
   box-shadow: $regular-shadow;
   border-radius: 8px;
+  border: 1px solid #196EFF;
   .first-line {
     margin-bottom: 0.3rem;
   }

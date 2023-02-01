@@ -202,6 +202,7 @@ export default {
                     flight1 => (state.flightBack.map(flight => { return flight.id_trip }).includes(flight1.id_trip))
                 ).filter((reis) => {
                     reis.is_selected = reis.is_selected ? false : reis.id_trip === busTripId;
+                    reis.one_way = false
                 })
             }
 
@@ -212,6 +213,7 @@ export default {
                     flight1 => (state.flightThere.map(flight => { return flight.id_trip }).includes(flight1.id_trip))
                 ).filter((reis) => {
                     reis.is_selected = reis.is_selected ? false : reis.id_trip === busTripId;
+                    reis.one_way = true
                 })
             }
         },

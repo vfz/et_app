@@ -48,8 +48,15 @@
               <tr
                   v-for="flight in (flightType=='there') ? flightThere:flightBack"
                   :key="flight.ticket_id_2+'_'+flight.id_trip"
-                  :class="{'active-row' : selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0] && 
-                      selectedSeat.filter(flightFiltr=>(flightFiltr.id_trip === flight.id_trip))[0].is_selected }"
+                  :class="{'active-row' : selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0] &&
+                      selectedSeat.filter(flightFiltr=>(flightFiltr.id_trip === flight.id_trip))[0].is_selected,
+                      'd-none' : selectedSeat.filter(flightFiltr=>(flightFiltr.id_trip === flight.id_trip))[0].is_selected === false
+                      && selectedSeat.filter(flightFiltr=>(flightFiltr.id_trip === flight.id_trip))[0].one_way
+                      && isSelectedFlight(true)
+                      || selectedSeat.filter(flightFiltr=>(flightFiltr.id_trip === flight.id_trip))[0].is_selected === false
+                      && selectedSeat.filter(flightFiltr=>(flightFiltr.id_trip === flight.id_trip))[0].one_way === false && isSelectedFlight(false)
+                      || flight.count_available_seats_trip === 0 && selectedSeat.filter(flightFiltr=>(flightFiltr.id_trip === flight.id_trip))[0].is_selected === true
+                  }"
               >
                 <td>
                   <div class="dispatch-time">
@@ -291,14 +298,16 @@ export default {
         flights:[],
     }
   },
-  computed: mapGetters([
-    'flightThere',
-    'flightBack',
-    'getChildrensCount',
-    'getAdultsCount', 
-    'selectedSeat',
-      'isFlightsLoading'
-  ]),
+  computed: {
+    ...mapGetters([
+      'flightThere',
+      'flightBack',
+      'getChildrensCount',
+      'getAdultsCount',
+      'selectedSeat',
+      'isFlightsLoading',
+    ]),
+  },
   mounted(){
     
   },
@@ -309,6 +318,9 @@ export default {
       'updateIcon',
       'chengeSelectTrip'
     ]),
+      isSelectedFlight(oneWay) {
+        return this.selectedSeat.find(flight => flight.is_selected === true && flight.one_way === oneWay)
+      },
     timeFormat(time,target){
       
       if(target==='hours'){
@@ -416,15 +428,7 @@ export default {
           }
         }
         .active-row {
-          //background-color: $blue-hover;
-          background-color: $blue-active;
-          .dispatch-date, .arrival-date, .dispatch-city, .arrival-city, .places-left, .place-choice-buy, .dispatch-time, .arrival-time, .price, .dispatch-length-time {
-            color: $white;
-          }
-        }
-        .active-row:hover {
-          @include animation;
-          background-color: $btn-hover;
+          background-color: $blue-hover;
         }
         tr:hover{
           @include animation;

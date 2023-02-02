@@ -50,13 +50,7 @@
                   :key="flight.ticket_id_2+'_'+flight.id_trip"
                   :class="{'active-row' : selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0] &&
                       selectedSeat.filter(flightFiltr=>(flightFiltr.id_trip === flight.id_trip))[0].is_selected,
-                      'd-none' : selectedSeat.filter(flightFiltr=>(flightFiltr.id_trip === flight.id_trip))[0].is_selected === false
-                      && selectedSeat.filter(flightFiltr=>(flightFiltr.id_trip === flight.id_trip))[0].one_way
-                      && isSelectedFlight(true)
-                      || selectedSeat.filter(flightFiltr=>(flightFiltr.id_trip === flight.id_trip))[0].is_selected === false
-                      && selectedSeat.filter(flightFiltr=>(flightFiltr.id_trip === flight.id_trip))[0].one_way === false && isSelectedFlight(false)
-                      || flight.count_available_seats_trip === 0 && selectedSeat.filter(flightFiltr=>(flightFiltr.id_trip === flight.id_trip))[0].is_selected === true
-                  }"
+                      'd-none' : notSelectedFlights(flight)}"
               >
                 <td>
                   <div class="dispatch-time">
@@ -306,6 +300,7 @@ export default {
       'getAdultsCount',
       'selectedSeat',
       'isFlightsLoading',
+        'oneWay'
     ]),
   },
   mounted(){
@@ -318,8 +313,15 @@ export default {
       'updateIcon',
       'chengeSelectTrip'
     ]),
-      isSelectedFlight(oneWay) {
-        return this.selectedSeat.find(flight => flight.is_selected === true && flight.one_way === oneWay)
+      notSelectedFlights(flight) {
+        const selectedFlights = this.selectedSeat.filter((flightFilter) => flightFilter.id_trip !== flight.id_trip && flightFilter.is_selected === true)
+        if (selectedFlights.length === 1 && this.oneWay) {
+          return true
+        }
+        if (selectedFlights.length === 2 && !this.oneWay ) {
+          return true
+        }
+        return false
       },
     timeFormat(time,target){
       

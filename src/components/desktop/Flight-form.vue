@@ -43,7 +43,6 @@
                                                       v-on:click="setFrom('1');fromPlaceV=false;fromPlace='Ставрополь'"
                                                 >Ставрополь</span>
                                             </span>
-                      <!--                          TODO добавить вывод станции отправления. Убрать d-none для отображения-->
                       <a href="#" class="card-place-link d-none" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
                         <div>
                           Ставрополь, ж/д
@@ -106,10 +105,10 @@
                       </div>
                       <span class="card-example d-block w-100">
                                                 <span id="today-date-toggle" class="card-example-date today-date-toggle text-decoration-underline"
-                                                      v-on:click="UpdateselectDate();SetDateArival(false);UpdateselectDate()">Сегодня</span>
+                                                      v-on:click="UpdateselectDate();SetDateArival(false);UpdateselectDate(); changeUrlByWay(true)">Сегодня</span>
                                                 /
                                                 <span id="tomorrow-date-toggle" class="card-example-date tomorrow-date-toggle text-decoration-underline"
-                                                      v-on:click="UpdateselectDate();SetDateArival(true);UpdateselectDate()">Завтра</span>
+                                                      v-on:click="UpdateselectDate();SetDateArival(true);UpdateselectDate(); changeUrlByWay(true)">Завтра</span>
                                             </span>
                     </div>
                   </div>
@@ -206,10 +205,10 @@
                       </div>
                       <span class="card-example d-block w-100">
                                                 <span id="today-date-toggle" class="card-example-date today-date-toggle text-decoration-underline"
-                                                      v-on:click="UpdateselectDate();SetDateArival(false);UpdateselectDate()">Сегодня</span>
+                                                      v-on:click="UpdateselectDate();SetDateArival(false);UpdateselectDate();changeUrlByWay(false)">Сегодня</span>
                                                 /
                                                 <span id="tomorrow-date-toggle" class="card-example-date tomorrow-date-toggle text-decoration-underline"
-                                                      v-on:click="UpdateselectDate();SetDateArival(true);UpdateselectDate()">Завтра</span>
+                                                      v-on:click="UpdateselectDate();SetDateArival(true);UpdateselectDate();changeUrlByWay(false)">Завтра</span>
                                             </span>
                     </div>
                   </div>
@@ -230,10 +229,10 @@
                       </div>
                       <span class="card-example d-block w-100">
                                                 <span id="today-date-toggle" class="card-example-date today-date-toggle text-decoration-underline"
-                                                      v-on:click="UpdateselectDateBack();SetDateBack(false);UpdateselectDateBack()">Сегодня</span>
+                                                      v-on:click="UpdateselectDateBack();SetDateBack(false);UpdateselectDateBack();changeUrlByWay(false)">Сегодня</span>
                                                 /
                                                 <span id="tomorrow-date-toggle" class="card-example-date tomorrow-date-toggle text-decoration-underline"
-                                                      v-on:click="UpdateselectDateBack();SetDateBack(true);UpdateselectDateBack()">Завтра</span>
+                                                      v-on:click="UpdateselectDateBack();SetDateBack(true);UpdateselectDateBack();changeUrlByWay(false)">Завтра</span>
                                             </span>
                     </div>
                   </div>
@@ -329,8 +328,14 @@ export default {
       this.$router.push('/flight-selection/search/'+this.from+'/'+this.to)
     },
     changeUrlByWay(oneWay) {
-      this.$store.commit('updateOneWay', oneWay)
-      this.$router.push('/flight-selection/search/'+this.from+'/'+this.to+'/'+this.dateArival+'/'+oneWay)
+      if (oneWay) {
+        this.$store.commit('updateOneWay', oneWay)
+        this.$router.push('/flight-selection/search/'+this.from+'/'+this.to+'/'+this.dateArival+'/'+oneWay)
+      }
+      else {
+        this.$store.commit('updateOneWay', oneWay)
+        this.$router.push('/flight-selection/search/'+this.from+'/'+this.to+'/'+this.dateArival+'/'+this.dateBack+'/'+oneWay)
+      }
     }
   },
   async mounted(){

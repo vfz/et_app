@@ -1,6 +1,8 @@
 <template>
   <div
-      class="col-12 col-sm-6">
+      class="col-12 col-sm-6"
+      :class="{'d-none' : notSelectedFlights(flight)}"
+  >
     <div v-if="$route.name !== 'Ticket-booking'" class="table-item"
          :class="{'active-row' : selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0] &&
                       selectedSeat.filter(flightFiltr=>(flightFiltr.id_trip === flight.id_trip))[0].is_selected }">
@@ -171,6 +173,16 @@ export default {
       'updateIcon',
       'chengeSelectTrip',
     ]),
+    notSelectedFlights(flight) {
+      const selectedFlights = this.selectedSeat.filter((flightFilter) => flightFilter.id_trip !== flight.id_trip && flightFilter.is_selected === true)
+      if (selectedFlights.length === 1 && this.oneWay) {
+        return true
+      }
+      if (selectedFlights.length === 2 && !this.oneWay ) {
+        return true
+      }
+      return false
+    },
     timeFormat(time,target){
 
       if(target==='hours'){

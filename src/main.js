@@ -21,7 +21,14 @@ Vue.component('fa', FontAwesomeIcon);
 Vue.use(VueYandexMetrika, {
     id: 92334863,
     router: router,
-    env: process.env.NODE_ENV
+    env: process.env.NODE_ENV,
+    options: {
+        defer: true,
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        webvisor: true
+    }
 });
 
 // Vue.config.productionTip = false

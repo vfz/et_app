@@ -343,6 +343,7 @@ export default {
         },
         validateForm(ctx, [id ,fieldType, event, additional=true]){
             const value = event.target.value
+            //проверка фамилии
             if (fieldType === 'secondName') {
                 if (value === '') {
                     ctx.commit('updateSecondName', ['', id])
@@ -355,6 +356,7 @@ export default {
                     ctx.commit('updateValidateError', [id, fieldType, ''])
                 }
             }
+            //проверка имени
             if (fieldType === 'firstName') {
                 if (value === '') {
                     ctx.commit('updateFirstName', ['', id])
@@ -367,6 +369,7 @@ export default {
                     ctx.commit('updateValidateError', [id, fieldType, ''])
                 }
             }
+            //проверка отчества
             if (fieldType === 'middleName') {
                 if (value === '') {
                     ctx.commit('updateMiddleName', ['', id])
@@ -379,6 +382,7 @@ export default {
                     ctx.commit('updateValidateError', [id, fieldType, ''])
                 }
             }
+            //проверка дня рождения
             if (fieldType === 'birthday') {
                 if (value === '') {
                     ctx.commit('updateBirthday', ['', id])
@@ -420,6 +424,7 @@ export default {
                 ctx.commit('updateHaveErrors', false)
                 ctx.commit('updateValidateError', [id, fieldType, ''])
             }
+            //проверка пола
             if (fieldType === 'gender') {
                 if (value !=='0' && value !=='1') {
                     ctx.commit('updateGender', ['', id])
@@ -431,6 +436,7 @@ export default {
                     ctx.commit('updateValidateError', [id, fieldType, ''])
                 }
             }
+            //проверка гражданства
             if (fieldType === 'citizenship') {
                 if (value === '') {
                     ctx.commit('updateCitizenship', ['', id])
@@ -443,6 +449,7 @@ export default {
                     ctx.commit('updateValidateError', [id, fieldType, ''])
                 }
             }
+            // проверка типа документа
             if (fieldType === 'document') {
                 let documentBefore = ctx.state.passengers[id].document
                 let documentInfoBefore = ctx.state.passengers[id].documentInfo
@@ -461,6 +468,7 @@ export default {
                     ctx.commit('updateValidateError', [id, fieldType, ''])
                 }
             }
+            // проверка серии и номмера документа
             if (fieldType === 'documentInfo') {
                 // Проверка паспорта РФ
                 if(additional === '0'){
@@ -484,6 +492,11 @@ export default {
                         ctx.commit('updateHaveErrors', true)
                         ctx.commit('updateValidateError', [id, fieldType, 'Серия и номер паспорта состоит из 9 цифр'])
                     }
+                    else {
+                        ctx.commit('updateDocumentInfo', [value, id])
+                        ctx.commit('updateHaveErrors', false)
+                        ctx.commit('updateValidateError', [id, fieldType, ''])
+                    }
                 }
                 //Проверка свидетельства о рождении
                 if(additional === '4' || additional === '11'){
@@ -499,7 +512,7 @@ export default {
                         ctx.commit('updateValidateError', [id, fieldType, 'Введите корректные данные (IIДН123456)'])
                     }
                 }
-                //Проверка Военного билета военнослужащего или куранта военной образовательной организации
+                //Проверка Военного билета военнослужащего или курсанта военной образовательной организации
                 if (additional === '1' || additional === '5' || additional === '8') {
                     let regexpDoc = /[А-Я^]{2}[0-9]{7}$/g
                     if (regexpDoc.test(value)) {
@@ -509,8 +522,14 @@ export default {
                     }
                     else {
                         ctx.commit('updateHaveErrors', true)
-                        ctx.commit('updateValidateError', [id, fieldType, 'Введите корректные данные (AC9876543)'])
+                        ctx.commit('updateValidateError', [id, fieldType, 'Введите корректные данные (АС9876543)'])
                     }
+                }
+                //прочие документы
+                if (additional === '3' || additional === '6' || additional === '7' || additional === '9' || additional === '10' || additional === '12' || additional === '13' || additional === '6' || additional === '14' || additional === '15') {
+                    ctx.commit('updateDocumentInfo', [value, id])
+                    ctx.commit('updateHaveErrors', false)
+                    ctx.commit('updateValidateError', [id, fieldType, ''])
                 }
             }
 

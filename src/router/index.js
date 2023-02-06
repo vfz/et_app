@@ -31,6 +31,11 @@ const routes = [{
         component: Flightselection
     },
     {
+        path: '/flight-selection/search/:from/:to',
+        name: 'Flight-selection-search',
+        component: Flightselection
+    },
+    {
         path: '/flight-selection/search/:from/:to/:dateArrival/:oneWay',
         name: 'Flight-selection-search',
         component: Flightselection

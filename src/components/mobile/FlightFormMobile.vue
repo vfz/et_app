@@ -51,7 +51,7 @@
                             <div class="meta"
                                  v-for="pointFrom in fromStations" :key="pointFrom.id_from"
                                  v-show="search(pointFrom.name,fromPlace)"
-                                 v-on:click="setFrom(pointFrom.id_from);fromPlaceV=false;fromPlace=pointFrom.name"
+                                 v-on:click="setFrom(pointFrom.id_from);fromPlaceV=false;fromPlace=pointFrom.name;changeUrlByStation()"
                             >
                               <div class="title">{{pointFrom.name}}</div>
                               <div class="description" style="color:#ec0000;font-size:12px;font:bold">{{pointFrom.address}}</div>
@@ -77,7 +77,7 @@
                             <div class="meta"
                                  v-for="pointTo in toStations" :key="pointTo.id_to"
                                  v-show="search(pointTo.name,toPlace)"
-                                 v-on:click="setTo(pointTo.id_to);toPlaceV=false;toPlace=pointTo.name">
+                                 v-on:click="setTo(pointTo.id_to);toPlaceV=false;toPlace=pointTo.name;changeUrlByStation()">
                               <div class="title">{{pointTo.name}}</div>
                               <div class="description" style="color:#ec0000;font-size:12px;font:bold">{{pointTo.address}}</div>
                             </div>
@@ -258,6 +258,9 @@ export default {
       //Вариант поиска НЕзависимый от регистра
       return str.toLowerCase().indexOf(target.toLowerCase())+1
     },
+    changeUrlByStation() {
+      this.$router.push('/flight-selection/search/'+this.from+'/'+this.to)
+    },
     changeUrlByWay(oneWay) {
       this.$store.commit('updateOneWay', oneWay)
       this.$router.push('/flight-selection/search/'+this.from+'/'+this.to+'/'+this.dateArival+'/'+oneWay)
@@ -270,7 +273,13 @@ export default {
     this.setTo(this.$route.params.to);
     this.toPlace= this.toStations.find(station => station.id_to === this.$route.params.to).name;
     this.fromPlace= this.fromStations.find(station => station.id_from === this.$route.params.from).name;
-    let oneWay = (this.$route.params.oneWay === 'true')
+    let oneWay = true
+    if (this.$route.params.oneWay) {
+      oneWay = (this.$route.params.oneWay === 'true')
+    }
+    else {
+      oneWay = true
+    }
     this.$store.commit('updateOneWay', oneWay)
   },
   created() {

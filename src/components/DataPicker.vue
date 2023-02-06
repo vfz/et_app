@@ -20,7 +20,8 @@
             
             <div class="col datapicker day text-center" v-for="day in week"   :key="day.key"
            >
-                <div v-on:click="changeUrlByDate(day.index+'.'+day.month+'.'+day.year); SetDate(day.index+'.'+day.month+'.'+day.year);"  :class="{ current : day.current,  selected:day.selected}" >
+<!--              TODO найти использование проверки даты и вставить ее для not-active-->
+                <div class="datapicker-cell" v-on:click="changeUrlByDate(day.index+'.'+day.month+'.'+day.year); SetDate(day.index+'.'+day.month+'.'+day.year);"  :class="{ current : day.current,  selected:day.selected, 'not-active' : filterPastDays(getToday(), day.index+'-'+day.month+'-'+day.year)}" >
                   <div>
                   </div>
                     <div class="fix"></div><div class="date">{{ day.indexm }}</div>
@@ -32,6 +33,7 @@
 </template>
 <script>
 import {mapGetters,mapActions} from 'vuex'
+import moment from 'moment'
 export default{
     name: 'DataPicker',
     computed: mapGetters(['selectDate','selectDateBack','dateArival','dateBack', 'from', 'to','dateArivalPrices','dateBackPrices', 'oneWay']),
@@ -53,6 +55,22 @@ export default{
   },
     methods: {
         ...mapActions(['SetDate']),
+      filterPastDays(today, dayForCheck) {
+          if (!dayForCheck) {
+            return false
+          }
+          else {
+            return moment(dayForCheck, 'DD-MM-YYYY').isBefore(moment(today, 'DD-MM-YYYY'))
+          }
+      },
+      getToday() {
+        const today = new Date();
+        const day = today.getDate().toString().padStart(2, "0");
+        const month = (today.getMonth() + 1).toString().padStart(2, "0");
+        const year = today.getFullYear().toString()
+        const formattedDate = `${day}-${month}-${year}`;
+        return formattedDate
+      },
         changeUrlByDate(date) {
           if (this.oneWay) {
             this.$router.push('/flight-selection/search/'+ this.from + '/' + this.to + '/' + date + '/' + this.oneWay)
@@ -249,13 +267,15 @@ export default{
         color: #FFFFFF;
         border-radius: 4px;
     }  
-}    
+}
+.datapicker-cell {
+  cursor: pointer;
+}
 .day{
-    cursor: pointer;
     .price{
         font-family: $uni;
         font-style: normal;
-        font-weight: normal;
+        font-weight: $light;
         font-size: 12px;
         line-height: 16px;
         margin: 0;
@@ -286,8 +306,14 @@ export default{
     color: #FFFFFF;
 }
 .selected{
-     // Уголок в вехней части ячейки   
+     // Уголок в вехней части ячейки
+  background-color: #196EFF;
+  border-radius: 4px;
+  .date {
+    color: $white;
+  }
     .fix{
+      color: $white;
         position:absolute;
         left: 0;
         width: 7px !important;
@@ -298,8 +324,21 @@ export default{
         border-radius: 4px 0 0 0;
     }
     .price{
-        color: #196EFF;
+      color: $white;
     }
+}
+.not-active {
+  cursor: default !important;
+  pointer-events: none;
+  .date {
+    color: $deactivate;
+  }
+  .fix {
+
+  }
+  .price {
+    color: $deactivate;
+  }
 }
 
 </style>

@@ -9,7 +9,7 @@ export default {
                 id_ticket: 0,
                 id_trip: 0,
                 seat: 0
-            }, ],
+            },],
             secondName: '',
             firstName: '',
             middleName: '',
@@ -158,7 +158,7 @@ export default {
         updateValidateError(state, [id, fieldType, value]) {
             state.passengers[id].errors[fieldType] = value
         },
-        updateValidateErrorBuyer(state, [fieldType, value]){
+        updateValidateErrorBuyer(state, [fieldType, value]) {
             state.buyerInfo.errors[fieldType] = value
         },
         updatePromocodeValue(state, promoCodeValue) {
@@ -190,7 +190,7 @@ export default {
                         id_ticket: 0,
                         id_trip: 0,
                         seat: 0,
-                    }, ],
+                    },],
                     secondName: '',
                     firstName: '',
                     middleName: '',
@@ -223,7 +223,6 @@ export default {
             ) {
                 return false;
             }
-            // TODO доделать удаление пользователя
             function getIndex(passenger) {
                 if (passenger.isAdult === isAdult) {
                     return passenger
@@ -247,7 +246,7 @@ export default {
             let currentNumber = ctx.state.buyerInfo.number
             if (!currentNumber) {
                 ctx.commit('updateHaveErrors', true)
-                ctx.commit('updateNumberBuyer','+7')
+                ctx.commit('updateNumberBuyer', '+7')
             }
         },
         async applyPromocode(ctx) {
@@ -259,7 +258,7 @@ export default {
             const config = {
                 method: 'post',
                 url: 'https://api.evrotrans.net/APIet/promo.php',
-                data: 'promo='+value
+                data: 'promo=' + value
             }
             await axios.request(config).then((response) => {
                 console.log(response)
@@ -328,7 +327,7 @@ export default {
                 }
             }
             if (fieldType === 'number') {
-                let regexpNumber =/(^8|7|\+7)((\d{10})|(\s\(\d{3}\)\s\d{3}\s\d{2}\s\d{2}))/
+                let regexpNumber = /(^8|7|\+7)((\d{10})|(\s\(\d{3}\)\s\d{3}\s\d{2}\s\d{2}))/
                 if (regexpNumber.test(value)) {
                     ctx.commit('updateNumberBuyer', value)
                     ctx.commit('updateHaveErrors', false)
@@ -341,7 +340,7 @@ export default {
                 }
             }
         },
-        validateForm(ctx, [id ,fieldType, event, additional=true]){
+        validateForm(ctx, [id, fieldType, event, additional = true]) {
             const value = event.target.value
             //проверка фамилии
             if (fieldType === 'secondName') {
@@ -398,7 +397,7 @@ export default {
                 if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
                     age--;
                 }
-                if ( age === 0 ) {
+                if (age === 0) {
                     m = 12 + m;
                     if (d < 0 || (d === 0 && today.getDate() < birthDate.getDate())) {
                         m--;
@@ -410,12 +409,12 @@ export default {
                     return false
                 }
 
-                if(!additional && age>12){
+                if (!additional && age > 12) {
                     ctx.commit('updateBirthday', [value, id])
                     ctx.commit('updateValidateError', [id, fieldType, 'Детский билет до 12 лет'])
                     return false
                 }
-                if(additional && age>100){
+                if (additional && age > 100) {
                     ctx.commit('updateBirthday', [value, id])
                     ctx.commit('updateValidateError', [id, fieldType, 'Вам больше 100 лет?'])
                     return false
@@ -426,7 +425,7 @@ export default {
             }
             //проверка пола
             if (fieldType === 'gender') {
-                if (value !=='0' && value !=='1') {
+                if (value !== '0' && value !== '1') {
                     ctx.commit('updateGender', ['', id])
                     ctx.commit('updateValidateError', [id, fieldType, 'Выберите пол'])
                 }
@@ -471,7 +470,7 @@ export default {
             // проверка серии и номмера документа
             if (fieldType === 'documentInfo') {
                 // Проверка паспорта РФ
-                if(additional === '0'){
+                if (additional === '0') {
                     const regexpPassport = /^\d{10}$/
                     if (!regexpPassport.test(value)) {
                         ctx.commit('updateDocumentInfo', [value, id])
@@ -499,7 +498,7 @@ export default {
                     }
                 }
                 //Проверка свидетельства о рождении
-                if(additional === '4' || additional === '11'){
+                if (additional === '4' || additional === '11') {
                     let regexpDoc = /^[IVXLCDM]{1,3}[А-Я^]{2}[0-9]{6}$/g
                     if (regexpDoc.test(value)) {
                         ctx.commit('updateDocumentInfo', [value, id])
@@ -629,7 +628,7 @@ export default {
                 const response = await fetch(ctx.rootState.API_URL + '?command=type_doc')
                 const documentTypes = await response.json();
                 //Очистить строку от &nbsp;
-                documentTypes.result.forEach(function(documentType, index) {
+                documentTypes.result.forEach(function (documentType, index) {
                     documentType.name = documentType.name.replaceAll('&nbsp;', ' ')
                 });
                 ctx.commit('setDocumentTypes', documentTypes.result)

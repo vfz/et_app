@@ -13,7 +13,7 @@
       </div>
       <div class="row">
         <div class="col-12 col-lg-8 col-xl-9">
-          <form class="needs-validation" novalidate>
+          <form class="needs-validation" novalidate @keydown.enter.prevent>
             <PassengersInfoMobile/>
             <BuyerInfo/>
             <TicketInfo/>

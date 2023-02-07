@@ -525,11 +525,9 @@ export default {
                     }
                 }
                 //прочие документы
-                if (additional === '3' || additional === '6' || additional === '7' || additional === '9' || additional === '10' || additional === '12' || additional === '13' || additional === '6' || additional === '14' || additional === '15') {
-                    ctx.commit('updateDocumentInfo', [value, id])
-                    ctx.commit('updateHaveErrors', false)
-                    ctx.commit('updateValidateError', [id, fieldType, ''])
-                }
+                ctx.commit('updateDocumentInfo', [value, id])
+                ctx.commit('updateHaveErrors', false)
+                ctx.commit('updateValidateError', [id, fieldType, ''])
             }
 
         },

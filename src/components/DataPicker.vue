@@ -19,10 +19,13 @@
         <div class="row justify-content-end" v-for="week in calendar()" :key="week.key">
 
             <div class="col datapicker day text-center" v-for="day in week" :key="day.key">
-                <!--              TODO найти использование проверки даты и вставить ее для not-active-->
                 <div class="datapicker-cell"
                     v-on:click="changeUrlByDate(day.index + '.' + day.month + '.' + day.year); SetDate(day.index + '.' + day.month + '.' + day.year);"
-                    :class="{ current: day.current, selected: day.selected, 'not-active': filterPastDays(getToday(), day.index + '-' + day.month + '-' + day.year) }">
+                    :class="{ current: day.current, 
+                        selected: day.selected, 
+                        'not-active': filterPastDays(getToday(), day.index + '-' + day.month + '-' + day.year),
+                        min: getMinimalPrice(day.price)
+                        }">
                     <div>
                     </div>
                     <div class="fix"></div>
@@ -35,7 +38,7 @@
 </template>
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import moment from 'moment'
+import moment, { min } from 'moment'
 export default {
     name: 'DataPicker',
     computed: mapGetters(['selectDate', 'selectDateBack', 'dateArival', 'dateBack', 'from', 'to', 'dateArivalPrices', 'dateBackPrices', 'oneWay']),
@@ -57,6 +60,18 @@ export default {
     },
     methods: {
         ...mapActions(['SetDate']),
+        getMinimalPrice(dayPrice) {
+            let allPricesCalendar = this.calendar().map(week => week.filter(day => day.price !== undefined))
+            let arraysWeeksPrices = allPricesCalendar.map(week => week.map(day => day.price))
+            let prices = [...new Set([].concat(...arraysWeeksPrices))]
+            let numericPrices = prices.map(price => parseFloat(price))
+            let minPrice = Math.min(...numericPrices)
+            console.log(dayPrice)
+            console.log(minPrice)
+            if (parseFloat(dayPrice) === minPrice) {
+                return true
+            }
+        },
         filterPastDays(today, dayForCheck) {
             if (!dayForCheck) {
                 return false
@@ -316,15 +331,7 @@ export default {
     color: #FFFFFF;
 }
 
-.selected {
-    // Уголок в вехней части ячейки
-    background-color: #196EFF;
-    border-radius: 4px;
-
-    .date {
-        color: $white;
-    }
-
+.min {
     .fix {
         color: $white;
         position: absolute;
@@ -335,6 +342,16 @@ export default {
         border-left: 1px solid #196EFF;
         box-sizing: border-box;
         border-radius: 4px 0 0 0;
+    }
+}
+
+.selected {
+    // Уголок в вехней части ячейки
+    background-color: #196EFF;
+    border-radius: 4px;
+
+    .date {
+        color: $white;
     }
 
     .price {

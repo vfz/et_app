@@ -66,8 +66,6 @@ export default {
             let prices = [...new Set([].concat(...arraysWeeksPrices))]
             let numericPrices = prices.map(price => parseFloat(price))
             let minPrice = Math.min(...numericPrices)
-            console.log(dayPrice)
-            console.log(minPrice)
             if (parseFloat(dayPrice) === minPrice) {
                 return true
             }

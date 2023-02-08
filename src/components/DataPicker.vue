@@ -21,11 +21,12 @@
             <div class="col datapicker day text-center" v-for="day in week" :key="day.key">
                 <div class="datapicker-cell"
                     v-on:click="changeUrlByDate(day.index + '.' + day.month + '.' + day.year); SetDate(day.index + '.' + day.month + '.' + day.year);"
-                    :class="{ current: day.current, 
-                        selected: day.selected, 
+                    :class="{
+                        current: day.current,
+                        selected: day.selected,
                         'not-active': filterPastDays(getToday(), day.index + '-' + day.month + '-' + day.year),
                         min: getMinimalPrice(day.price)
-                        }">
+                    }">
                     <div>
                     </div>
                     <div class="fix"></div>
@@ -267,10 +268,12 @@ export default {
 .arrow-datapicker {
     cursor: pointer;
 }
+
 .arrow-datapicker:hover {
     @include animation;
     color: $blue-active;
 }
+
 .datapicker {
     width: 61px !important;
     position: relative;
@@ -371,8 +374,6 @@ export default {
     .date {
         color: $deactivate;
     }
-
-    .fix {}
 
     .price {
         color: $deactivate;

@@ -1,13 +1,13 @@
 <template>
     <div class="container p-1">
         <div class="row ">
-            <div class="col-4 col-sm-4 text-end" v-on:click="decrease">
+            <div class="col-4 col-sm-4 text-end arrow-datapicker" v-on:click="decrease">
                 <span>&LT;</span>
             </div>
             <div class="col-4 col-sm-4 text-center">
                 <nobr>{{ monthes[month]}}</nobr> <br> {{ year }}
             </div>
-            <div class="col-4 col-sm-4 text-start" v-on:click="increase">
+            <div class="col-4 col-sm-4 text-start arrow-datapicker" v-on:click="increase">
                 <span>&GT;</span>
             </div>
         </div>
@@ -264,6 +264,13 @@ export default {
 @import "src/assets/variables.scss";
 @import "src/assets/font.scss";
 
+.arrow-datapicker {
+    cursor: pointer;
+}
+.arrow-datapicker:hover {
+    @include animation;
+    color: $blue-active;
+}
 .datapicker {
     width: 61px !important;
     position: relative;

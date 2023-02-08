@@ -432,6 +432,10 @@ export default{
 
   &-content {
 
+    .calendar-icon {
+      cursor: pointer;
+    }
+
     .title-section {
       @media screen and (max-width: 767px) {
         line-height: 27px;

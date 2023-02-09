@@ -340,6 +340,10 @@ export default {
 }
 
 .min {
+    // background-color: $green;
+    // TODO если что фон поменять
+    //#00ea7a21
+    border-radius: 4px;
     .fix {
         color: $white;
         position: absolute;
@@ -350,6 +354,9 @@ export default {
         border-left: 1px solid #196EFF;
         box-sizing: border-box;
         border-radius: 4px 0 0 0;
+    }
+    .price {
+        color: $blue-active;
     }
 }
 

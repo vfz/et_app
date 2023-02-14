@@ -67,7 +67,7 @@ export default {
             let prices = [...new Set([].concat(...arraysWeeksPrices))]
             let numericPrices = prices.map(price => parseFloat(price))
             let minPrice = Math.min(...numericPrices)
-            if (parseFloat(dayPrice) === minPrice) {
+            if (numericPrices.length !== 1 && parseFloat(dayPrice) === minPrice) {
                 return true
             }
         },
@@ -344,6 +344,7 @@ export default {
     // TODO если что фон поменять
     //#00ea7a21
     border-radius: 4px;
+
     .fix {
         color: $white;
         position: absolute;
@@ -355,6 +356,7 @@ export default {
         box-sizing: border-box;
         border-radius: 4px 0 0 0;
     }
+
     .price {
         color: $blue-active;
     }

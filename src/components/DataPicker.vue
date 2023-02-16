@@ -1,13 +1,13 @@
 <template>
     <div class="container p-1">
         <div class="row ">
-            <div class="col-4 col-sm-4 text-end" v-on:click="decrease">
+            <div class="col-4 col-sm-4 text-end arrow-datapicker" v-on:click="decrease">
                 <span>&LT;</span>
             </div>
             <div class="col-4 col-sm-4 text-center">
                 <nobr>{{ monthes[month]}}</nobr> <br> {{ year }}
             </div>
-            <div class="col-4 col-sm-4 text-start" v-on:click="increase">
+            <div class="col-4 col-sm-4 text-start arrow-datapicker" v-on:click="increase">
                 <span>&GT;</span>
             </div>
         </div>
@@ -19,10 +19,14 @@
         <div class="row justify-content-end" v-for="week in calendar()" :key="week.key">
 
             <div class="col datapicker day text-center" v-for="day in week" :key="day.key">
-                <!--              TODO найти использование проверки даты и вставить ее для not-active-->
                 <div class="datapicker-cell"
-                    v-on:click="changeUrlByDate(day.index + '.' + day.month + '.' + day.year, day.price); SetDate(day.index + '.' + day.month + '.' + day.year);"
-                    :class="{ current: day.current, selected: day.selected, 'not-active': filterPastDays(getToday(), day.index + '-' + day.month + '-' + day.year) }">
+                    v-on:click="changeUrlByDate(day.index + '.' + day.month + '.' + day.year); SetDate(day.index + '.' + day.month + '.' + day.year);"
+                    :class="{
+                        current: day.current,
+                        selected: day.selected,
+                        'not-active': filterPastDays(getToday(), day.index + '-' + day.month + '-' + day.year),
+                        min: getMinimalPrice(day.price)
+                    }">
                     <div>
                     </div>
                     <div class="fix"></div>
@@ -35,7 +39,7 @@
 </template>
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import moment from 'moment'
+import moment, { min } from 'moment'
 export default {
     name: 'DataPicker',
     computed: mapGetters(['selectDate', 'selectDateBack', 'dateArival', 'dateBack', 'from', 'to', 'dateArivalPrices', 'dateBackPrices', 'oneWay']),
@@ -57,6 +61,16 @@ export default {
     },
     methods: {
         ...mapActions(['SetDate']),
+        getMinimalPrice(dayPrice) {
+            let allPricesCalendar = this.calendar().map(week => week.filter(day => day.price !== undefined))
+            let arraysWeeksPrices = allPricesCalendar.map(week => week.map(day => day.price))
+            let prices = [...new Set([].concat(...arraysWeeksPrices))]
+            let numericPrices = prices.map(price => parseFloat(price))
+            let minPrice = Math.min(...numericPrices)
+            if (numericPrices.length !== 1 && parseFloat(dayPrice) === minPrice) {
+                return true
+            }
+        },
         filterPastDays(today, dayForCheck) {
             if (!dayForCheck) {
                 return false
@@ -73,17 +87,15 @@ export default {
             const formattedDate = `${day}-${month}-${year}`;
             return formattedDate
         },
-        changeUrlByDate(date, price) {
-            if (price) {
-                if (this.oneWay) {
-                    this.$router.push('/flight-selection/search/' + this.from + '/' + this.to + '/' + date + '/' + this.oneWay)
-                }
-                if (this.whichWay === 'from') {
-                    this.$router.push('/flight-selection/search/' + this.from + '/' + this.to + '/' + date + '/' + this.dateBack + '/' + this.oneWay)
-                }
-                if (this.whichWay === 'to') {
-                    this.$router.push('/flight-selection/search/' + this.from + '/' + this.to + '/' + this.dateArival + '/' + date + '/' + this.oneWay)
-                }
+        changeUrlByDate(date) {
+            if (this.oneWay) {
+                this.$router.push('/flight-selection/search/' + this.from + '/' + this.to + '/' + date + '/' + this.oneWay)
+            }
+            if (this.whichWay === 'from') {
+                this.$router.push('/flight-selection/search/' + this.from + '/' + this.to + '/' + date + '/' + this.dateBack + '/' + this.oneWay)
+            }
+            if (this.whichWay === 'to') {
+                this.$router.push('/flight-selection/search/' + this.from + '/' + this.to + '/' + this.dateArival + '/' + date + '/' + this.oneWay)
             }
         },
         calendar: function () {
@@ -253,6 +265,17 @@ export default {
 @import "src/assets/variables.scss";
 @import "src/assets/font.scss";
 
+
+.arrow-datapicker {
+    cursor: pointer;
+}
+
+.arrow-datapicker:hover {
+    @include animation;
+    color: $blue-active;
+}
+
+
 .datapicker {
     width: 61px !important;
     position: relative;
@@ -318,14 +341,13 @@ export default {
     color: #FFFFFF;
 }
 
-.selected {
-    // Уголок в вехней части ячейки
-    background-color: #196EFF;
+
+.min {
+    // background-color: $green;
+    // TODO если что фон поменять
+    //#00ea7a21
     border-radius: 4px;
 
-    .date {
-        color: $white;
-    }
 
     .fix {
         color: $white;
@@ -340,6 +362,21 @@ export default {
     }
 
     .price {
+
+        color: $blue-active;
+    }
+}
+
+.selected {
+    // Уголок в вехней части ячейки
+    background-color: #196EFF;
+    border-radius: 4px;
+
+    .date {
+        color: $white;
+    }
+
+    .price {
         color: $white;
     }
 }
@@ -348,11 +385,12 @@ export default {
     cursor: default !important;
     pointer-events: none;
 
+
     .date {
         color: $deactivate;
     }
 
-    .fix {}
+
 
     .price {
         color: $deactivate;

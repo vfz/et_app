@@ -396,6 +396,10 @@ export default {
       margin-left: 80px;
       margin-right: 80px;
     }
+
+    .calendar-icon {
+      cursor: pointer;
+    }
     .search-form {
       .checkbox-form {
         margin-bottom: 32px;

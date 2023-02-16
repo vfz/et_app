@@ -265,6 +265,7 @@ export default {
 @import "src/assets/variables.scss";
 @import "src/assets/font.scss";
 
+
 .arrow-datapicker {
     cursor: pointer;
 }
@@ -273,6 +274,7 @@ export default {
     @include animation;
     color: $blue-active;
 }
+
 
 .datapicker {
     width: 61px !important;
@@ -339,11 +341,13 @@ export default {
     color: #FFFFFF;
 }
 
+
 .min {
     // background-color: $green;
     // TODO если что фон поменять
     //#00ea7a21
     border-radius: 4px;
+
 
     .fix {
         color: $white;
@@ -358,6 +362,7 @@ export default {
     }
 
     .price {
+
         color: $blue-active;
     }
 }
@@ -380,9 +385,12 @@ export default {
     cursor: default !important;
     pointer-events: none;
 
+
     .date {
         color: $deactivate;
     }
+
+
 
     .price {
         color: $deactivate;

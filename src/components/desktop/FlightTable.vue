@@ -166,8 +166,6 @@
                       selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip && flightFilter.id_ticket === flight.ticket_id_2))[0] && 
                       selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip && flightFilter.id_ticket === flight.ticket_id_2))[0].is_selected"
                     @click="chengeSelectTrip([flight.id_trip, flight.ticket_id_2])">
-                    {{ flight.id_trip }}
-                    {{ flight.ticket_id_2 }}
                     Убрать
                   </div>
                 </td>

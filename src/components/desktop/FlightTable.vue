@@ -48,8 +48,8 @@
               <tr
                   v-for="flight in (flightType=='there') ? flightThere:flightBack"
                   :key="flight.ticket_id_2+'_'+flight.id_trip"
-                  :class="{'active-row' : selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip && flightFilter.id_ticket === flight.id_ticket))[0] && 
-                      selectedSeat.filter(flightFiltr=>(flightFiltr.id_trip === flight.id_trip))[0].is_selected }"
+                  :class="{'active-row' : selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip && flightFilter.id_ticket === flight.ticket_id_2))[0] && 
+                      selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip && flightFilter.id_ticket === flight.ticket_id_2))[0].is_selected }"
               >
                 <td>
                   <div class="dispatch-time">
@@ -149,7 +149,6 @@
                   </div>
                 </td>
                 <td>
-                  {{ flight.id_ticket }}
                   <div class="place-choice-buy table-link" 
                     v-if="
                       +flight.count_available_seats_trip>=getAdultsCount+getChildrensCount && 
@@ -166,7 +165,9 @@
                     v-if="
                       selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip && flightFilter.id_ticket === flight.ticket_id_2))[0] && 
                       selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip && flightFilter.id_ticket === flight.ticket_id_2))[0].is_selected"
-                    @click="chengeSelectTrip(flight.id_trip)">
+                    @click="chengeSelectTrip([flight.id_trip, flight.ticket_id_2])">
+                    {{ flight.id_trip }}
+                    {{ flight.ticket_id_2 }}
                     Убрать
                   </div>
                 </td>

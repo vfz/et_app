@@ -17,8 +17,8 @@
             v-for="flight in (flightType=='there') ? flightThere:flightBack"
             :key="flight.ticket_id_2+'_'+flight.id_trip">
           <div v-if="$route.name !== 'Ticket-booking'" class="table-item"
-            :class="{'active-row' : selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0] &&
-                      selectedSeat.filter(flightFiltr=>(flightFiltr.id_trip === flight.id_trip))[0].is_selected }">
+            :class="{'active-row' : selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip && flightFilter.id_ticket === flight.ticket_id_2))[0] &&
+                      selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip && flightFilter.id_ticket === flight.ticket_id_2))[0].is_selected }">
             <div class="table-item-content-wrapper">
               <div class="row">
                 <div class="col-6">
@@ -147,10 +147,10 @@
             <div class="d-grid">
               <button 
                 class="btn btn-primary price"
-                :class="{'active-button' : selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0] && 
-                      selectedSeat.filter(flightFiltr=>(flightFiltr.id_trip === flight.id_trip))[0].is_selected }"
+                :class="{'active-button' : selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip && flightFilter.id_ticket === flight.ticket_id_2))[0] && 
+                      selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip && flightFilter.id_ticket === flight.ticket_id_2))[0].is_selected }"
                 v-if="+flight.count_available_seats_trip>=getAdultsCount+getChildrensCount"
-                @click="chengeSelectTrip(flight.id_trip)">
+                @click="chengeSelectTrip([flight.id_trip, flight.ticket_id_2])">
                 {{(+flight.full_ticket_price*+getAdultsCount)+(+flight.child_ticket_price*+getChildrensCount)}}₽
               </button>
               <button class="btn btn-primary price disabled" 
@@ -159,8 +159,8 @@
               </button>
             </div>
           </div>
-          <div v-if="$route.name === 'Ticket-booking' && selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0] &&
-                      selectedSeat.filter(flightFiltr=>(flightFiltr.id_trip === flight.id_trip))[0].is_selected"
+          <div v-if="$route.name === 'Ticket-booking' && selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip && flightFilter.id_ticket === flight.ticket_id_2))[0] &&
+                      selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip && flightFilter.id_ticket === flight.ticket_id_2))[0].is_selected"
                class="table-item active-row">
             <div class="table-item-content-wrapper">
               <div class="row">
@@ -290,10 +290,10 @@
             <div class="d-grid">
               <button
                   class="btn btn-primary price"
-                  :class="{'active-button' : selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0] &&
-                      selectedSeat.filter(flightFiltr=>(flightFiltr.id_trip === flight.id_trip))[0].is_selected }"
+                  :class="{'active-button' : selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip && flightFilter.id_ticket === flight.ticket_id_2))[0] &&
+                      selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip && flightFilter.id_ticket === flight.ticket_id_2))[0].is_selected }"
                   v-if="+flight.count_available_seats_trip>=getAdultsCount+getChildrensCount"
-                  @click="chengeSelectTrip(flight.id_trip)">
+                  @click="chengeSelectTrip([flight.id_trip, flight.ticket_id_2])">
                 {{(+flight.full_ticket_price*+getAdultsCount)+(+flight.child_ticket_price*+getChildrensCount)}}₽
               </button>
               <button class="btn btn-primary price disabled"

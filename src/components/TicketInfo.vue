@@ -448,11 +448,11 @@ export default {
       }
     },
     selectedThereFlightTicket() {
-      return this.flightThere.filter(flight => flight.id_trip === this.selectedThereFlightInfo.id_trip)[0]
+      return this.flightThere.filter(flight => flight.id_trip === this.selectedThereFlightInfo.id_trip && flight.ticket_id_2 === this.selectedThereFlightInfo.id_ticket)[0]
     },
     selectedBackFlightTicket() {
       if (!this.oneWay) {
-        return this.flightBack.filter(flight => flight.id_trip === this.selectedBackFlightInfo.id_trip)[0]
+        return this.flightBack.filter(flight => flight.id_trip === this.selectedBackFlightInfo.id_trip && flight.ticket_id_2 === this.selectedBackFlightInfo.id_ticket)[0]
       }
     },
     sumThere() {

@@ -11,9 +11,9 @@
           </h2>
         </div>
       </div>
-      <div v-if="!isFlightsLoading" :class="{'gy-4': $route.name !== 'Ticket-booking'}" class="row">
-        <div
-            class="col-12 col-sm-6"
+      <div class="row gy-4">
+        <!--      новая версия-->
+        <FlightTableItemMobile
             v-for="flight in (flightType=='there') ? flightThere:flightBack"
             :key="flight.ticket_id_2+'_'+flight.id_trip">
           <div v-if="$route.name !== 'Ticket-booking'" class="table-item"
@@ -304,10 +304,14 @@
           </div>
         </div>
       </div>
+      <div class="row gy-4">
+<!--        Остальные рейсы-->
+        <FlightTableAnotherItemMobile/>
+      </div>
       <div v-if="isFlightsLoading" :class="{'gy-4': $route.name !== 'Ticket-booking'}" class="row">
         <div class="col-12">
           <div class="spinner-border" role="status">
-            <span class="visually-hidden">Loading...</span>
+            <span class="visually-hidden">Загрузка...</span>
           </div>
         </div>
       </div>
@@ -316,66 +320,30 @@
 </template>
 
 <script>
-import {mapGetters,mapActions} from 'vuex'
+import {mapGetters} from 'vuex'
+import FlightTableItemOldMobile from "@/components/mobile/FlightTableItemOldMobile.vue";
+import FlightTableItemMobile from "@/components/mobile/FlightTableItemMobile.vue";
+import FlightTableAnotherItemMobile from "@/components/mobile/FlightTableAnotherItemMobile.vue";
 export default {
   name: "ThereTableMobile",
+  components: {FlightTableAnotherItemMobile, FlightTableItemMobile, FlightTableItemOldMobile},
   props: ['flightType'],
-  data(){
-    return{
-      hours: ['час', 'часа', 'часов'],
-      minutes: ['минута', 'минуты', 'минут'],
-      cases: [2, 0, 1, 1, 1, 2],
-      monthes: ["Янв", "Фев", "Мар", "Апр", "Мая", "Июн", "Июл", "Авг", "Сен", "Окт", "Ноя", "Дек"],
-      flights:[],
-    }
-  },
-  mounted() {
-  },
   computed: {
     ...mapGetters([
       'flightThere',
       'flightBack',
-      'getChildrensCount',
-      'getAdultsCount',
-      'selectedSeat',
-        'isFlightsLoading'
+      'isFlightsLoading'
     ])
   },
-  methods: {
-    ...mapActions([
-      'updatebBusTriptId',
-      'updateCords',
-      'updateIcon',
-      'chengeSelectTrip',
-    ]),
-      timeFormat(time,target){
-
-      if(target==='hours'){
-        return this.hours[
-                  (time.split(':')[0] % 100 > 4 && time.split(':')[0] % 100 < 20) 
-                  ? 2 
-                  : this.cases[(time.split(':')[0] % 10 < 5) 
-                    ? time.split(':')[0] % 10 
-                    : 5]
-                ]
-      }
-      if(target==='minutes'){
-        return this.minutes[
-                  (time.split(':')[1] % 100 > 4 && time.split(':')[1] % 100 < 20) 
-                  ? 2 
-                  : this.cases[(time.split(':')[1] % 10 < 5) 
-                    ? time.split(':')[1] % 10 
-                    : 5]
-                ]
-      }
-    }
-  }
 }
 </script>
 
 <style lang="scss" scoped>
 @import "src/assets/variables.scss";
 @import "src/assets/font.scss";
+.another-flights-title {
+  margin-top: 24px;
+}
 .thereTable-section-mobile {
   margin: 41px 88px;
   @media screen and (max-width: 767px) {
@@ -390,114 +358,6 @@ export default {
       font-size: 14px;
       line-height: 18.9px;
       color: $secondary;
-    }
-  }
-  .table-item {
-    max-width: unset;
-    box-shadow: $regular-shadow;
-    border-radius: 8px;
-    &-content-wrapper {
-      padding-top: 16px;
-      padding-left: 16px;
-      padding-right: 16px;
-      margin-bottom: 16px;
-    }
-    &-part {
-      .table-link {
-        cursor: pointer;
-      }
-      &-left {
-        &-title {
-          @include font($uni,$regular,11px,14.85px,$base);
-          margin-bottom: 4px;
-        }
-        &-date {
-          .dispatch-time {
-            @include font($uni,$bold,18px,24.3px,$base);
-            margin-right: 8px;
-          }
-          .dispatch-time:hover {
-            @include animation;
-            color: $blue-link;
-          }
-          .dispatch-date {
-            &-day, &-month, &-year {
-              @include font($uni,$regular,12px,21.94px,$secondary)
-            }
-            &-month {
-              font-size: 12px;
-              line-height: 16.2px;
-            }
-            &-month, &-year {
-              font-size: 10px;
-              line-height: 13.5px;
-            }
-          }
-          .time-length-trip {
-            @include font($uni,$bold,13px,17.55px,$base);
-          }
-          .time-length-trip:hover {
-            @include animation;
-            color: $blue-active;
-          }
-        }
-        &-city {
-          @include font($uni,$bold,14px,18.9px,$base);
-          margin-bottom: 3px;
-        }
-        &-place {
-          @include font($uni, $light, 11px, 14.85px, $blue-active);
-        }
-      }
-      &-right {
-        &-title {
-          @include font($uni,$regular,11px,14.85px,$base);
-          margin-bottom: 4px;
-        }
-        &-date {
-          .arrival-time {
-            @include font($uni,$bold,18px,24.3px,$base);
-            margin-right: 8px;
-          }
-          .arrival-time:hover {
-            @include animation;
-            color: $blue-link;
-          }
-          .arrival-date {
-            &-day, &-month, &-year {
-              @include font($uni,$regular,12px,21.94px,$secondary)
-            }
-            &-month {
-              font-size: 12px;
-              line-height: 16.2px;
-            }
-            &-month, &-year {
-              font-size: 10px;
-              line-height: 13.5px;
-            }
-          }
-          .place-left-count {
-            @include font($uni,$bold,13px,17.55px,$base);
-          }
-        }
-        &-city {
-          @include font($uni,$bold,14px,18.9px,$base);
-          margin-bottom: 3px;
-        }
-        &-place {
-          @include font($uni, $light, 11px, 14.85px, $blue-active);
-        }
-      }
-    }
-    .btn {
-      @include font($uni,$bold,16px,21.6px,$white);
-      padding-top: 11px;
-      padding-bottom: 11px;
-      border-radius: 0 0 8px 8px;
-    }
-    .disabled {
-      background-color: $disabled;
-      box-shadow: none;
     }
   }
   .active {

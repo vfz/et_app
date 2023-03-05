@@ -193,25 +193,25 @@ export default {
             }
 
         },
-        setTrip(state, busTripId) {
+        setTrip(state, [busTripId, busTicketId]) {
 
             //если выбираемый рейс находится в ОБРАТНЫХ рейсах 
-            if (state.flightBack.filter(flight => (flight.id_trip === busTripId)).length > 0) {
+            if (state.flightBack.filter(flight => (flight.id_trip === busTripId && flight.ticket_id_2 === busTicketId)).length > 0) {
 
                 state.selectedSeat.filter(
                     flight1 => (state.flightBack.map(flight => { return flight.id_trip }).includes(flight1.id_trip))
                 ).filter((reis) => {
-                    reis.is_selected = reis.is_selected ? false : reis.id_trip === busTripId;
+                    reis.is_selected = reis.is_selected ? false : reis.id_trip === busTripId && reis.id_ticket === busTicketId;
                 })
             }
 
             //если выбираемый рейс находится в ПРЯМЫХ рейсах
-            if (state.flightThere.filter(flight => (flight.id_trip === busTripId)).length > 0) {
+            if (state.flightThere.filter(flight => (flight.id_trip === busTripId && flight.ticket_id_2 === busTicketId)).length > 0) {
 
                 state.selectedSeat.filter(
                     flight1 => (state.flightThere.map(flight => { return flight.id_trip }).includes(flight1.id_trip))
                 ).filter((reis) => {
-                    reis.is_selected = reis.is_selected ? false : reis.id_trip === busTripId;
+                    reis.is_selected = reis.is_selected ? false : reis.id_trip === busTripId && reis.id_ticket === busTicketId;
                 })
             }
         },
@@ -373,8 +373,8 @@ export default {
             }
 
         },
-        chengeSelectTrip(ctx, busTripId) {
-            ctx.commit('setTrip', busTripId)
+        chengeSelectTrip(ctx, [busTripId, busTicketId]) {
+            ctx.commit('setTrip', [busTripId, busTicketId])
         },
     },
     modules: {},

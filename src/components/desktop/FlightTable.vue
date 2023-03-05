@@ -48,6 +48,7 @@
               <tr
                   v-for="flight in (flightType=='there') ? flightThere:flightBack"
                   :key="flight.ticket_id_2+'_'+flight.id_trip"
+
                   :class="{'active-row' : selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0] &&
                       selectedSeat.filter(flightFiltr=>(flightFiltr.id_trip === flight.id_trip))[0].is_selected,
                       'd-none' : notSelectedFlights(flight)}"
@@ -153,9 +154,9 @@
                   <div class="place-choice-buy table-link" 
                     v-if="
                       +flight.count_available_seats_trip>=getAdultsCount+getChildrensCount && 
-                      selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0] && 
-                      !selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0].is_selected"
-                    @click="chengeSelectTrip(flight.id_trip)">
+                      selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip && flightFilter.id_ticket === flight.ticket_id_2))[0] && 
+                      !selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip && flightFilter.id_ticket === flight.ticket_id_2))[0].is_selected"
+                    @click="chengeSelectTrip([flight.id_trip, flight.ticket_id_2])">
                     Выбрать
                   </div>
                   <div class="place-choice-buy" 
@@ -164,9 +165,9 @@
                   </div>
                   <div class="place-choice-buy table-link" 
                     v-if="
-                      selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0] && 
-                      selectedSeat.filter(flightFiltr=>(flightFiltr.id_trip === flight.id_trip))[0].is_selected"
-                    @click="chengeSelectTrip(flight.id_trip)">
+                      selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip && flightFilter.id_ticket === flight.ticket_id_2))[0] && 
+                      selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip && flightFilter.id_ticket === flight.ticket_id_2))[0].is_selected"
+                    @click="chengeSelectTrip([flight.id_trip, flight.ticket_id_2])">
                     Убрать
                   </div>
                 </td>

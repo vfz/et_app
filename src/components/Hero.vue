@@ -92,7 +92,7 @@
                             <div class="meta"
                                  v-for="pointTo in toStations" :key="pointTo.id_to"
                                  v-show="search(pointTo.name,toPlace)"
-                                 v-on:click="setTo(pointTo.id_to);toPlaceV=false;toPlace=pointTo.name">
+                                 v-on:click="setTo([pointTo.id_to, pointTo.id_to_rosbilet]);toPlaceV=false;toPlace=pointTo.name">
                               <div class="title place place">{{pointTo.name}}</div>
                               <div class="description place" style="color:#ec0000;font-size:12px;font:bold">{{pointTo.address}}</div>
                             </div>
@@ -103,7 +103,7 @@
                             <span 
                               id="city-example-to" 
                               class="card-example-date city-example-to"
-                              v-on:click="setTo('190');toPlaceV=false;toPlace='Москва'">
+                              v-on:click="setTo(['1178','6058']);toPlaceV=false;toPlace='Москва'">
                               Москва
                             </span>
                           </span>
@@ -217,7 +217,7 @@
                             <div class="meta"
                                  v-for="pointTo in toStations" :key="pointTo.id_to"
                                  v-show="search(pointTo.name,toPlace)"
-                                 v-on:click="setTo(pointTo.id_to);toPlaceV=false;toPlace=pointTo.name">
+                                 v-on:click="setTo([pointTo.id_to, pointTo.id_to_rosbilet]);toPlaceV=false;toPlace=pointTo.name">
                               <div class="title place">{{pointTo.name}}</div>
                               <div class="description place" style="color:#ec0000;font-size:12px;font:bold">{{pointTo.address}}</div>
                             </div>
@@ -228,7 +228,7 @@
                             <span 
                               id="city-example-to" 
                               class="card-example-date city-example-to"
-                              v-on:click="setTo('190');toPlaceV=false;toPlace='Москва'">
+                              v-on:click="setTo(['1178', '6058']);toPlaceV=false;toPlace='Москва'">
                               Москва
                             </span>
                           </span>

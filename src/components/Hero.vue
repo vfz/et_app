@@ -47,7 +47,7 @@
                             <div class="meta"
                                  v-for="pointFrom in fromStations" :key="pointFrom.id_from"
                                  v-show="search(pointFrom.name,fromPlace)"
-                                 v-on:click="setFrom(pointFrom.id_from);fromPlaceV=false;fromPlace=pointFrom.name"
+                                 v-on:click="setFrom([pointFrom.id_from, pointFrom.id_from_rosbilet]);fromPlaceV=false;fromPlace=pointFrom.name"
                             >
                               <div class="title place">{{pointFrom.name}}</div>
                               <div class="description place" style="color:#ec0000;font-size:12px;font:bold">{{pointFrom.address}}</div>
@@ -59,7 +59,7 @@
                             <span 
                               id="city-example-from" 
                               class="card-example-date city-example-from"
-                              v-on:click="setFrom('1');fromPlaceV=false;fromPlace='Ставрополь'">
+                              v-on:click="setFrom(['1685', '24']);fromPlaceV=false;fromPlace='Ставрополь'">
                               Ставрополь
                               </span>
                           </span>
@@ -174,7 +174,7 @@
                             <div class="meta"
                                  v-for="pointFrom in fromStations" :key="pointFrom.id_from"
                                  v-show="search(pointFrom.name,fromPlace)"
-                                 v-on:click="setFrom(pointFrom.id_from);fromPlaceV=false;fromPlace=pointFrom.name"
+                                 v-on:click="setFrom([pointFrom.id_from, pointFrom.id_from_rosbilet]);fromPlaceV=false;fromPlace=pointFrom.name"
                             >
                               <div class="title place">{{pointFrom.name}}</div>
                               <div class="description place" style="color:#ec0000;font-size:12px;font:bold">{{pointFrom.address}}</div>
@@ -184,7 +184,7 @@
 
                                                 Например:
                                                 <span id="city-example-from" class="card-example-date city-example-from"
-                                                      v-on:click="setFrom('1');fromPlaceV=false;fromPlace='Ставрополь'"
+                                                      v-on:click="setFrom(['1685', '24']);fromPlaceV=false;fromPlace='Ставрополь'"
                                                 >Ставрополь</span>
                                             </span>
                           <span class="card-example place" v-else>

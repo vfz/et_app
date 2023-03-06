@@ -6,7 +6,9 @@ export default {
         fromStations: [],
         toStations: [],
         from: '',
+        from_rosbilet: '',
         to: '',
+        to_rosbilet: '',
         dateArival: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()).toLocaleDateString('ru-RU', {
             year: 'numeric',
             month: '2-digit',
@@ -145,11 +147,13 @@ export default {
         DateFalse(state) {
             state.selectDate = false
         },
-        updateFrom(state, id) {
+        updateFrom(state, [id, id_rosbilet]) {
             state.from = id
+            state.from_rosbilet = id_rosbilet
         },
-        updateTo(state, id) {
+        updateTo(state, [id, id_rosbilet]) {
             state.to = id
+            state.to_rosbilet = id_rosbilet
         },
         castlingPoint(state) {
             [state.from, state.to] = [state.to, state.from]
@@ -248,18 +252,29 @@ export default {
         },
         //Получаем список станций прибытия
         async getToStations(ctx, from = '') {
-            const res = await fetch(ctx.rootState.API_URL + "?command=to&from_id=" + from);
+            const res = await fetch(ctx.rootState.API_URL + "?command=all_to&from_id=" + from);
             const toStations = await res.json();
             ctx.commit('updateToStations', toStations)
 
         },
         //Получаем список станций отправления
         async getFromStations(ctx) {
-            const res = await fetch(ctx.rootState.API_URL + "?command=from");
+            const res = await fetch(ctx.rootState.API_URL + "?command=all_from");
             const fromStations = await res.json();
             ctx.commit('updateFromStations', fromStations)
         },
-        //Получаем список рейсов (туда)
+        async getAllStationsTo(ctx) {
+            let fromName = ''
+            let toName = ''
+            let stationFrom = ctx.state.fromStations.find(station => station.id_from === ctx.state.from)
+            let stationTo = ctx.state.toStations.find(station => station.id_to === ctx.state.to)
+            fromName = stationFrom.name
+            toName = stationTo.name
+            const res = await fetch(ctx.rootState.API_URL + 'rosbiletClient.php?command=trip&from_id=' + fromName + '&to_id=' + toName + '&date_trip=' + ctx.state.dateArival)  
+            const allStations = await res.json();
+            ctx.commit()
+        },
+        //Получаем список рейсов (туда)÷
         async getFlightThere(ctx) {
             ctx.commit('setFlightsLoading', true)
             const validTherePrice = (!+ctx.state.from || !+ctx.state.to) ? false : true
@@ -348,13 +363,17 @@ export default {
             ctx.dispatch('getFlightThere')
             ctx.dispatch('getFlightBack')
         },
-        setFrom(ctx, id) {
-            ctx.commit('updateFrom', id)
+        setFrom(ctx, [id, id_rosbilet]) {
+            console.log(id, id_rosbilet)
+            ctx.commit('updateFrom', [id, id_rosbilet])
+            // ctx.dispatch('getAllStations')
             ctx.dispatch('getFlightThere')
             ctx.dispatch('getFlightBack')
         },
-        setTo(ctx, id) {
-            ctx.commit('updateTo', id)
+        setTo(ctx, [id, id_rosbilet]) {
+            console.log(id, id_rosbilet)
+            ctx.commit('updateTo', [id, id_rosbilet])
+            // ctx.dispatch('getAllStations')
             ctx.dispatch('getFlightThere')
             ctx.dispatch('getFlightBack')
         },

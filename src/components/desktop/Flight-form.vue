@@ -23,7 +23,6 @@
                       <label for="dataListFrom" class="form-label">Откуда</label>
                       <input class="form-control one-way-inputs-input shadow-none place"
                              @focus="fromPlaceV=true"
-                             v-mmodel="fromPlace"
                              v-model="fromPlace"
                              placeholder="Введите название населенного пункта"
                              >
@@ -31,7 +30,7 @@
                         <div class="meta"
                              v-for="pointFrom in fromStations" :key="pointFrom.id_from"
                              v-show="search(pointFrom.name,fromPlace)"
-                             v-on:click="setFrom(pointFrom.id_from);fromPlaceV=false;fromPlace=pointFrom.name;changeUrlByStation()"
+                             v-on:click="setFrom([pointFrom.id_from, pointFrom.id_from_rosbilet]);fromPlaceV=false;fromPlace=pointFrom.name;changeUrlByStation()"
                         >
                           <div class="title place">{{pointFrom.name}}</div>
                           <div class="description place" style="color:#ec0000;font-size:12px;font:bold">{{pointFrom.address}}</div>
@@ -40,7 +39,7 @@
                       <span class="card-example place">
                                                 Например:
                                                 <span id="city-example-from" class="card-example-date city-example-from text-decoration-underline"
-                                                      v-on:click="setFrom('1');fromPlaceV=false;fromPlace='Ставрополь'"
+                                                      v-on:click="setFrom(['1685', '24']);fromPlaceV=false;fromPlace='Ставрополь'"
                                                 >Ставрополь</span>
                                             </span>
                       <a href="#" class="card-place-link d-none" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
@@ -67,7 +66,7 @@
                         <div class="meta"
                              v-for="pointTo in toStations" :key="pointTo.id_to"
                              v-show="search(pointTo.name,toPlace)"
-                             v-on:click="setTo(pointTo.id_to);toPlaceV=false;toPlace=pointTo.name;changeUrlByStation()">
+                             v-on:click="setTo([pointTo.id_to, pointTo.id_to_rosbilet]);toPlaceV=false;toPlace=pointTo.name;changeUrlByStation()">
                           <div class="title place">{{pointTo.name}}</div>
                           <div class="description place" style="color:#ec0000;font-size:12px;font:bold">{{pointTo.address}}</div>
                         </div>
@@ -75,7 +74,7 @@
                       <span class="card-example place">
                                                 Например:
                                                 <span id="city-example-to" class="card-example-date city-example-to text-decoration-underline"
-                                                      v-on:click="setTo('190');toPlaceV=false;toPlace='Москва'">Москва</span>
+                                                      v-on:click="setTo(['1178','6058']);toPlaceV=false;toPlace='Москва'">Москва</span>
                                             </span>
                       <!--                          TODO добавить вывод станции отправления. Убрать d-none для отображения-->
                       <a href="#" class="card-place-link d-none" data-bs-toggle="modal" data-bs-target="#dispatch-modal">
@@ -141,7 +140,7 @@
                         <div class="meta"
                              v-for="pointFrom in fromStations" :key="pointFrom.id_from"
                              v-show="search(pointFrom.name,fromPlace)"
-                             v-on:click="setFrom(pointFrom.id_from);fromPlaceV=false;fromPlace=pointFrom.name"
+                             v-on:click="setFrom([pointFrom.id_from, pointFrom.id_from_rosbilet]);fromPlaceV=false;fromPlace=pointFrom.name"
                         >
                           <div class="title place">{{pointFrom.name}}</div>
                           <div class="description place" style="color:#ec0000;font-size:12px;font:bold">{{pointFrom.address}}</div>
@@ -150,7 +149,7 @@
                       <span class="card-example place">
                                                 Например:
                                                 <span id="city-example-from" class="card-example-date city-example-from text-decoration-underline"
-                                                      v-on:click="setFrom('1');fromPlaceV=false;fromPlace='Ставрополь'"
+                                                      v-on:click="setFrom(['1685', '24']);fromPlaceV=false;fromPlace='Ставрополь'"
                                                 >Ставрополь</span>
                                             </span>
 
@@ -173,7 +172,7 @@
                         <div class="meta"
                              v-for="pointTo in toStations" :key="pointTo.id_to"
                              v-show="search(pointTo.name,toPlace)"
-                             v-on:click="setTo(pointTo.id_to);toPlaceV=false;toPlace=pointTo.name">
+                             v-on:click="setTo([pointTo.id_to, pointTo.id_to_rosbilet]);toPlaceV=false;toPlace=pointTo.name">
                           <div class="title place">{{pointTo.name}}</div>
                           <div class="description place" style="color:#ec0000;font-size:12px;font:bold">{{pointTo.address}}</div>
                         </div>
@@ -181,7 +180,7 @@
                       <span class="card-example place">
                                                 Например:
                                                 <span id="city-example-to" class="card-example-date city-example-to text-decoration-underline"
-                                                      v-on:click="setTo('190');toPlaceV=false;toPlace='Москва'">Москва</span>
+                                                      v-on:click="setTo(['1178', '6058']);toPlaceV=false;toPlace='Москва'">Москва</span>
                                             </span>
                     </div>
                   </div>
@@ -339,13 +338,19 @@ export default {
     }
   },
   async mounted(){
+    const paramsFrom = this.$route.params.from
+    const paramsTo = this.$route.params.to
+
     await this.getFromStations();
     await this.getToStations();
 
-    this.setFrom(this.$route.params.from);
-    this.setTo(this.$route.params.to);
-    this.toPlace= this.toStations.find(station => station.id_to === this.$route.params.to).name;
-    this.fromPlace= this.fromStations.find(station => station.id_from === this.$route.params.from).name;
+    let stationFrom = this.fromStations.find(station => station.id_from === paramsFrom )
+    let stationTo = this.toStations.find(station => station.id_to === paramsTo )
+    this.setFrom([paramsFrom, stationFrom.id_from_rosbilet]);
+    this.setTo([paramsTo, stationTo.id_to_rosbilet]);
+
+    this.toPlace= this.toStations.find(station => station.id_to === paramsTo).name;
+    this.fromPlace= this.fromStations.find(station => station.id_from === paramsFrom).name;
     let oneWay = true
     if (this.$route.params.oneWay) {
       oneWay = (this.$route.params.oneWay === 'true')
@@ -354,6 +359,13 @@ export default {
      oneWay = true
     }
     this.$store.commit('updateOneWay', oneWay)
+
+    if (+this.to){
+          this.toPlace= this.toStations.find(station => station.id_to === this.to).name;
+        }
+        if (+this.from){
+          this.fromPlace= this.fromStations.find(station => station.id_from === this.from).name;
+        }
   },
   created(){
     let queryDateArrival = this.$route.params.dateArrival

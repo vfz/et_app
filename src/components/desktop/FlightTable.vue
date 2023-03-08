@@ -46,7 +46,7 @@
               <tbody>
                 <!--              Добавить класс active-row для tr и будет выделение вместо false условие что выбран рейс-->
               <tr
-                  v-for="flight in (flightType=='there') ? flightThere:flightBack"
+                  v-for="flight in (flightType=='there') ? getOnlyEvrotransFlightThere:getOnlyEvrotransFlightBack"
                   :key="flight.ticket_id_2+'_'+flight.id_trip"
 
                   :class="{'active-row' : selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0] &&
@@ -301,6 +301,8 @@ export default {
       'getAdultsCount',
       'selectedSeat',
       'isFlightsLoading',
+      'getOnlyEvrotransFlightThere',
+      'getOnlyEvrotransFlightBack',
         'oneWay'
     ]),
   },

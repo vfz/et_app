@@ -375,8 +375,9 @@ export default{
           'setTo',
           'castling',
           'getFlightThere',
+          'getAllStationThere',
           'getFlightBack',
-
+          
             ]),
             
         search(str,target){

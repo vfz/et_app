@@ -148,12 +148,13 @@
                 </td>
                 <td class="align-middle">
                   <div class="d-flex align-content-center">
-                    <div class="price d-inline-block">
-                      {{(+flight.full_ticket_price*+getAdultsCount)+(+flight.child_ticket_price*+getChildrensCount)}}₽
+                    <div class="d-flex flex-column">
+                      <div class="price mb-1 d-inline-block">{{(+flight.full_ticket_price*+getAdultsCount)+(+flight.child_ticket_price*+getChildrensCount)}}₽</div>
+                      <span class="badge rounded-pill text-bg-primary">{{ getNameBage(flight.source) }}</span>
                     </div>
-                    <div class="d-inline-block">
+                    <!-- <div class="d-inline-block">
                       <img class="help-icon" alt="help" src="/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" :title="'Взрослый - '+flight.full_ticket_price+'₽\n'+'Детский - '+flight.child_ticket_price+'₽'" >
-                    </div>
+                    </div> -->
                   </div>
                 </td>
                 <td>
@@ -229,6 +230,14 @@ export default {
       'updateIcon',
       'chengeSelectTrip'
     ]),
+    getNameBage(name) {
+      if (name === 'evrotrans') {
+        return 'Евротранс'
+      }
+      if (name === 'rosbilet') {
+        return 'Росбилет'
+      }
+    },
     getFlightType() {
       if (this.flightType === 'there') {
         return this.flightThere
@@ -352,7 +361,12 @@ export default {
               @include font($uni, $light, 14px, 18.9px, $blue-link);
             }
             .price {
-              margin-right: 24px;
+              margin-bottom: 4px;
+            }
+            .badge {
+              font-family: $uni;
+              font-weight: $regular;
+              color: $base
             }
             .table-link {
               cursor: pointer;

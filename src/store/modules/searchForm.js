@@ -279,6 +279,8 @@ export default {
         },
         //получение рейсов остальных провайдеров туда
         async getAllStationsThere(ctx) {
+            const validSearchThere = (!+ctx.state.from || !+ctx.state.to || !ctx.state.dateArival) ? false : true
+            if (!validSearchThere) { return false }
             ctx.commit('setFlightsLoading', true)
             let fromId = ''
             let toId = ''
@@ -296,6 +298,7 @@ export default {
             let allFlights = await res.json();
             if (allFlights.error === '0' && allFlights.result !== null) {
                 ctx.commit('updateAllFlightThere', allFlights.result)
+                ctx.commit('updateDefaultsSeat', ctx.rootGetters.getPassengers)
                 ctx.commit('setFlightsLoading', false)   
             }
             else {
@@ -305,6 +308,8 @@ export default {
         },
         //получение рейсов остальных провайдеров обратно
         async getAllStationsBack(ctx) {
+            const validSearchBack = (!+ctx.state.from || !+ctx.state.to || !ctx.state.dateBack || ctx.state.oneWay) ? false : true
+            if (!validSearchBack) { return false }
             ctx.commit('setFlightsLoading', true)
             let fromId = ''
             let toId = ''
@@ -323,6 +328,7 @@ export default {
             if (allFlights.error === '0' && allFlights.result !== null) {
                 console.log(allFlights.result)
                 ctx.commit('updateAllFlightBack', allFlights.result)
+                ctx.commit('updateDefaultsSeat', ctx.rootGetters.getPassengers)
                 ctx.commit('setFlightsLoading', false)   
             }
             else {

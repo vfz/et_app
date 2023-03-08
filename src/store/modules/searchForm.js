@@ -293,7 +293,6 @@ export default {
             const res = await fetch(ctx.rootState.API_URL + 'rosbiletClient.php?command=trip&from_id=' + fromId + '&to_id=' + toId + '&date_trip=' + ctx.state.dateArival)  
             let allFlights = await res.json();
             if (allFlights.error === '0' && allFlights.result !== null) {
-                console.log(allFlights.result)
                 ctx.commit('updateAllFlightThere', allFlights.result)
                 ctx.commit('setFlightsLoading', false)   
             }
@@ -304,7 +303,6 @@ export default {
         },
         //получение рейсов остальных провайдеров обратно
         async getAllStationsBack(ctx) {
-            debugger
             ctx.commit('setFlightsLoading', true)
             let fromId = ''
             let toId = ''
@@ -515,6 +513,12 @@ export default {
         },
         getOnlyEvrotransFlightBack(state) {
             return state.flightBack.filter(flight => flight.source === 'evrotrans')
+        },
+        flightThereAnother(state) {
+            return state.flightThereAnother
+        },
+        flightBackAnother(state) {
+            return state.flightBackAnother
         }
 
     }

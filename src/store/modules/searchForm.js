@@ -174,6 +174,7 @@ export default {
                 return {
                     id_ticket: flight.ticket_id_2,
                     id_trip: flight.id_trip,
+                    source: flight.source,
                     is_selected: false,
                     seats: [
                         //Берем первые N мест из рейса с достаточным кол-вом мест где N кол-во пассажиров
@@ -246,7 +247,7 @@ export default {
             })
         },
         updateAllFlightThere(state, allFlights) {
-             allFlights.forEach((item) => {
+            allFlights.forEach((item) => {
                 state.flightThereAnother.push(item)
             })
         },
@@ -286,23 +287,21 @@ export default {
             let toId = ''
             let stationFrom = ctx.state.fromStations.find(station => station.id_from_rosbilet === ctx.state.from_rosbilet)
             let stationTo = ctx.state.toStations.find(station => station.id_to_rosbilet === ctx.state.to_rosbilet)
-            if (!stationFrom.id_from_rosbilet || !stationTo.id_to_rosbilet ) {
+            if (!stationFrom.id_from_rosbilet || !stationTo.id_to_rosbilet) {
                 fromId = ctx.state.from_rosbilet
                 toId = ctx.state.to_rosbilet
-            }
-            else {
+            } else {
                 fromId = stationFrom.id_from_rosbilet
                 toId = stationTo.id_to_rosbilet
             }
-            const res = await fetch(ctx.rootState.API_URL + 'rosbiletClient.php?command=trip&from_id=' + fromId + '&to_id=' + toId + '&date_trip=' + ctx.state.dateArival)  
+            const res = await fetch(ctx.rootState.API_URL + 'rosbiletClient.php?command=trip&from_id=' + fromId + '&to_id=' + toId + '&date_trip=' + ctx.state.dateArival)
             let allFlights = await res.json();
             if (allFlights.error === '0' && allFlights.result !== null) {
                 ctx.commit('updateAllFlightThere', allFlights.result)
                 ctx.commit('updateDefaultsSeat', ctx.rootGetters.getPassengers)
-                ctx.commit('setFlightsLoading', false)   
-            }
-            else {
-                ctx.commit('setFlightsLoading', false)   
+                ctx.commit('setFlightsLoading', false)
+            } else {
+                ctx.commit('setFlightsLoading', false)
                 return false
             }
         },
@@ -315,24 +314,22 @@ export default {
             let toId = ''
             let stationFrom = ctx.state.fromStations.find(station => station.id_from_rosbilet === ctx.state.from_rosbilet)
             let stationTo = ctx.state.toStations.find(station => station.id_to_rosbilet === ctx.state.to_rosbilet)
-            if (!stationFrom.id_from_rosbilet || !stationTo.id_to_rosbilet ) {
+            if (!stationFrom.id_from_rosbilet || !stationTo.id_to_rosbilet) {
                 fromId = ctx.state.from_rosbilet
                 toId = ctx.state.to_rosbilet
-            }
-            else {
+            } else {
                 fromId = stationFrom.id_from_rosbilet
                 toId = stationTo.id_to_rosbilet
             }
-            const res = await fetch(ctx.rootState.API_URL + 'rosbiletClient.php?command=trip&from_id=' + fromId + '&to_id=' + toId + '&date_trip=' + ctx.state.dateBack)  
+            const res = await fetch(ctx.rootState.API_URL + 'rosbiletClient.php?command=trip&from_id=' + fromId + '&to_id=' + toId + '&date_trip=' + ctx.state.dateBack)
             let allFlights = await res.json();
             if (allFlights.error === '0' && allFlights.result !== null) {
                 console.log(allFlights.result)
                 ctx.commit('updateAllFlightBack', allFlights.result)
                 ctx.commit('updateDefaultsSeat', ctx.rootGetters.getPassengers)
-                ctx.commit('setFlightsLoading', false)   
-            }
-            else {
-                ctx.commit('setFlightsLoading', false)   
+                ctx.commit('setFlightsLoading', false)
+            } else {
+                ctx.commit('setFlightsLoading', false)
                 return false
             }
         },
@@ -392,6 +389,7 @@ export default {
         UpdateOneWay(ctx, oneWay) {
             ctx.commit('updateOneWay', oneWay)
             ctx.commit('setFlightsLoading', true)
+
             function loadingFlights() {
                 ctx.dispatch('getFlightThere')
                 ctx.dispatch('getFlightBack')

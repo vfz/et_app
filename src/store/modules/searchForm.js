@@ -244,7 +244,14 @@ export default {
             })
         },
         updateAllFlightThere(state, allFlights) {
-            state.flightThereAnother.push(allFlights)
+             allFlights.forEach((item) => {
+                state.flightThereAnother.push(item)
+            })
+        },
+        updateAllFlightBack(state, allFlights) {
+            allFlights.forEach((item) => {
+                state.flightBackAnother.push(item)
+            })
         }
     },
     actions: {
@@ -268,6 +275,7 @@ export default {
             const fromStations = await res.json();
             ctx.commit('updateFromStations', fromStations)
         },
+        //получение рейсов остальных провайдеров туда
         async getAllStationsThere(ctx) {
             ctx.commit('setFlightsLoading', true)
             let fromId = ''
@@ -287,6 +295,34 @@ export default {
             if (allFlights.error === '0' && allFlights.result !== null) {
                 console.log(allFlights.result)
                 ctx.commit('updateAllFlightThere', allFlights.result)
+                ctx.commit('setFlightsLoading', false)   
+            }
+            else {
+                ctx.commit('setFlightsLoading', false)   
+                return false
+            }
+        },
+        //получение рейсов остальных провайдеров обратно
+        async getAllStationsBack(ctx) {
+            debugger
+            ctx.commit('setFlightsLoading', true)
+            let fromId = ''
+            let toId = ''
+            let stationFrom = ctx.state.fromStations.find(station => station.id_from_rosbilet === ctx.state.from_rosbilet)
+            let stationTo = ctx.state.toStations.find(station => station.id_to_rosbilet === ctx.state.to_rosbilet)
+            if (!stationFrom.id_from_rosbilet || !stationTo.id_to_rosbilet ) {
+                fromId = ctx.state.from_rosbilet
+                toId = ctx.state.to_rosbilet
+            }
+            else {
+                fromId = stationFrom.id_from_rosbilet
+                toId = stationTo.id_to_rosbilet
+            }
+            const res = await fetch(ctx.rootState.API_URL + 'rosbiletClient.php?command=trip&from_id=' + fromId + '&to_id=' + toId + '&date_trip=' + ctx.state.dateBack)  
+            let allFlights = await res.json();
+            if (allFlights.error === '0' && allFlights.result !== null) {
+                console.log(allFlights.result)
+                ctx.commit('updateAllFlightBack', allFlights.result)
                 ctx.commit('setFlightsLoading', false)   
             }
             else {
@@ -388,12 +424,14 @@ export default {
             ctx.dispatch('getFlightThere')
             ctx.dispatch('getFlightBack')
             ctx.dispatch('getAllStationsThere')
+            ctx.dispatch('getAllStationsBack')
         },
         setTo(ctx, [id, id_rosbilet]) {
             ctx.commit('updateTo', [id, id_rosbilet])
             ctx.dispatch('getFlightThere')
             ctx.dispatch('getFlightBack')
             ctx.dispatch('getAllStationsThere')
+            ctx.dispatch('getAllStationsBack')
         },
         changeSelectedPlace(ctx, [busTripId, seat, status]) {
 

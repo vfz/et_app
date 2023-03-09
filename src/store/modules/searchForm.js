@@ -38,7 +38,7 @@ export default {
     mutations: {
         // функция для перестройки схемы автобуса в мобильную
         busMobile(state) {
-            const flights = [].concat(state.flightThere, state.flightBack)
+            const flights = [].concat(state.flightThere, state.flightThereAnother , state.flightBack, state.flightBackAnother)
                 // console.log(flights)
             const floors = flights.find(trip => trip.id_trip === state.busTriptId).bus_config
 
@@ -71,7 +71,7 @@ export default {
         },
         // функция для схемы автобуса на дексктопе
         busDesktop(state) {
-            const flights = [].concat(state.flightThere, state.flightBack)
+            const flights = [].concat(state.flightThere, state.flightThereAnother , state.flightBack, state.flightBackAnother)
                 // console.log(flights)
             const floors = flights.find(trip => trip.id_trip === state.busTriptId).bus_config
             state.shemeDesktop = floors

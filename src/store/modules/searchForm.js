@@ -203,7 +203,6 @@ export default {
 
         },
         setTrip(state, [busTripId, busTicketId]) {
-
             //если выбираемый рейс находится в ОБРАТНЫХ рейсах 
             if (state.flightBack.filter(flight => (flight.id_trip === busTripId && flight.ticket_id_2 === busTicketId)).length > 0) {
 
@@ -219,6 +218,23 @@ export default {
 
                 state.selectedSeat.filter(
                     flight1 => (state.flightThere.map(flight => { return flight.id_trip }).includes(flight1.id_trip))
+                ).filter((reis) => {
+                    reis.is_selected = reis.is_selected ? false : reis.id_trip === busTripId && reis.id_ticket === busTicketId;
+                })
+            }
+            //если выбираемый рейс находится в ПРЯМЫХ рейсах, но это другие рейсы
+            if (state.flightThereAnother.filter(flight => (flight.id_trip === busTripId && flight.ticket_id_2 === busTicketId)).length > 0) {
+                state.selectedSeat.filter(
+                    flight1 => (state.flightThereAnother.map(flight => { return flight.id_trip }).includes(flight1.id_trip))
+                ).filter((reis) => {
+                    reis.is_selected = reis.is_selected ? false : reis.id_trip === busTripId && reis.id_ticket === busTicketId;
+                })
+            }
+
+            //если выбираемый рейс находится в ПРЯМЫХ рейсах, но это другие рейсы
+            if (state.flightBackAnother.filter(flight => (flight.id_trip === busTripId && flight.ticket_id_2 === busTicketId)).length > 0) {
+                state.selectedSeat.filter(
+                    flight1 => (state.flightBackAnother.map(flight => { return flight.id_trip }).includes(flight1.id_trip))
                 ).filter((reis) => {
                     reis.is_selected = reis.is_selected ? false : reis.id_trip === busTripId && reis.id_ticket === busTicketId;
                 })

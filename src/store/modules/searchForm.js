@@ -266,9 +266,7 @@ export default {
             state.flightThereAnother = allFlights
         },
         updateAllFlightBack(state, allFlights) {
-            allFlights.forEach((item) => {
-                state.flightBackAnother.push(item)
-            })
+            state.flightBackAnother = allFlights
         }
     },
     actions: {
@@ -320,33 +318,33 @@ export default {
             }
         },
         //получение рейсов остальных провайдеров обратно
-        async getAllStationsBack(ctx) {
-            const validSearchBack = (!+ctx.state.from || !+ctx.state.to || !ctx.state.dateBack || ctx.state.oneWay) ? false : true
-            if (!validSearchBack) { return false }
-            ctx.commit('setFlightsLoading', true)
-            let fromId = ''
-            let toId = ''
-            let stationFrom = ctx.state.fromStations.find(station => station.id_from_rosbilet === ctx.state.from_rosbilet)
-            let stationTo = ctx.state.toStations.find(station => station.id_to_rosbilet === ctx.state.to_rosbilet)
-            if (!stationFrom.id_from_rosbilet || !stationTo.id_to_rosbilet) {
-                fromId = ctx.state.from_rosbilet
-                toId = ctx.state.to_rosbilet
-            } else {
-                fromId = stationFrom.id_from_rosbilet
-                toId = stationTo.id_to_rosbilet
-            }
-            const res = await fetch(ctx.rootState.API_URL + 'rosbiletClient.php?command=trip&from_id=' + fromId + '&to_id=' + toId + '&date_trip=' + ctx.state.dateBack)
-            console.log(res, 'респонс')
-            let allFlights = await res.json();
-            if (allFlights.error === '0' && allFlights.result !== null) {
-                ctx.commit('updateAllFlightBack', allFlights.result)
-                ctx.commit('updateDefaultsSeat', ctx.rootGetters.getPassengers)
-                ctx.commit('setFlightsLoading', false)
-            } else {
-                ctx.commit('setFlightsLoading', false)
-                return false
-            }
-        },
+        // async getAllStationsBack(ctx) {
+        //     const validSearchBack = (!+ctx.state.from || !+ctx.state.to || !ctx.state.dateBack || ctx.state.oneWay) ? false : true
+        //     if (!validSearchBack) { return false }
+        //     ctx.commit('setFlightsLoading', true)
+        //     let fromId = ''
+        //     let toId = ''
+        //     let stationFrom = ctx.state.fromStations.find(station => station.id_from_rosbilet === ctx.state.from_rosbilet)
+        //     let stationTo = ctx.state.toStations.find(station => station.id_to_rosbilet === ctx.state.to_rosbilet)
+        //     if (!stationFrom.id_from_rosbilet || !stationTo.id_to_rosbilet) {
+        //         fromId = ctx.state.from_rosbilet
+        //         toId = ctx.state.to_rosbilet
+        //     } else {
+        //         fromId = stationFrom.id_from_rosbilet
+        //         toId = stationTo.id_to_rosbilet
+        //     }
+        //     const res = await fetch(ctx.rootState.API_URL + 'rosbiletClient.php?command=trip&from_id=' + toId + '&to_id=' + fromId + '&date_trip=' + ctx.state.dateBack)
+        //     let allFlights = await res.json();
+        //     console.log(allFlights, 'респонс')
+        //     if (allFlights.error === '0' && allFlights.result !== null) {
+        //         ctx.commit('updateAllFlightBack', allFlights.result)
+        //         ctx.commit('updateDefaultsSeat', ctx.rootGetters.getPassengers)
+        //         ctx.commit('setFlightsLoading', false)
+        //     } else {
+        //         ctx.commit('setFlightsLoading', false)
+        //         return false
+        //     }
+        // },
         //Получаем список рейсов (туда)÷
         async getFlightThere(ctx) {
             ctx.commit('setFlightsLoading', true)
@@ -400,7 +398,7 @@ export default {
             ctx.dispatch('getFlightThere')
             ctx.dispatch('getFlightBack')
             ctx.dispatch('getAllStationsThere')
-            ctx.dispatch('getAllStationsBack')
+            // ctx.dispatch('getAllStationsBack')
         },
         UpdateOneWay(ctx, oneWay) {
             ctx.commit('updateOneWay', oneWay)
@@ -410,7 +408,7 @@ export default {
                 ctx.dispatch('getFlightThere')
                 ctx.dispatch('getFlightBack')
                 ctx.dispatch('getAllStationsThere')
-                ctx.dispatch('getAllStationsBack')
+                // ctx.dispatch('getAllStationsBack')
                 ctx.commit('setFlightsLoading', false)
             }
             setTimeout(loadingFlights, 4000)
@@ -420,14 +418,14 @@ export default {
             ctx.dispatch('getFlightThere')
             ctx.dispatch('getFlightBack')
             ctx.dispatch('getAllStationsThere')
-            ctx.dispatch('getAllStationsBack')
+            // ctx.dispatch('getAllStationsBack')
         },
         UpdateselectDateBack(ctx) {
             ctx.commit('newselectDateBack')
             ctx.dispatch('getFlightThere')
             ctx.dispatch('getFlightBack')
             ctx.dispatch('getAllStationsThere')
-            ctx.dispatch('getAllStationsBack')
+            // ctx.dispatch('getAllStationsBack')
         },
         selectDateFalse(ctx) {
             ctx.commit('DateFalse')
@@ -445,21 +443,21 @@ export default {
             ctx.dispatch('getFlightThere')
             ctx.dispatch('getFlightBack')
             ctx.dispatch('getAllStationsThere')
-            ctx.dispatch('getAllStationsBack')
+            // ctx.dispatch('getAllStationsBack')
         },
         setFrom(ctx, [id, id_rosbilet]) {
             ctx.commit('updateFrom', [id, id_rosbilet])
             ctx.dispatch('getFlightThere')
             ctx.dispatch('getFlightBack')
             ctx.dispatch('getAllStationsThere')
-            ctx.dispatch('getAllStationsBack')
+            // ctx.dispatch('getAllStationsBack')
         },
         setTo(ctx, [id, id_rosbilet]) {
             ctx.commit('updateTo', [id, id_rosbilet])
             ctx.dispatch('getFlightThere')
             ctx.dispatch('getFlightBack')
             ctx.dispatch('getAllStationsThere')
-            ctx.dispatch('getAllStationsBack')
+            // ctx.dispatch('getAllStationsBack')
         },
         changeSelectedPlace(ctx, [busTripId, seat, status]) {
 

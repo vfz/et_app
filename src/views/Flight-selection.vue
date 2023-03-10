@@ -9,12 +9,12 @@
     <FlightTable flight-type="there" v-if="!isMobile()"/>
     <FlightTableMobile flight-type="there" v-if="isMobile()"/>
 
-    <FlightTable flight-type="allThere" v-if="!isMobile()"/>
+    <!-- <FlightTable flight-type="allThere" v-if="!isMobile()"/> -->
 
     <FlightTable flight-type="back" v-if="!isMobile() && !oneWay"/>
     <FlightTableMobile flight-type="back" v-if="isMobile() && !oneWay"/>
 
-    <FlightTable flight-type="allBack" v-if="!isMobile() && !oneWay"/>
+    <!-- <FlightTable flight-type="allBack" v-if="!isMobile() && !oneWay"/> -->
 
     <div class="container-fluid">
       <div class="row">

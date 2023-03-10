@@ -161,7 +161,6 @@ export default {
             [state.from, state.to] = [state.to, state.from]
         },
         updateDefaultsSeat(state, passengers) {
-
             const allFlights = [
                 ...state.flightBack.filter(flight => (flight.count_available_seats_trip >= passengers.length)),
                 ...state.flightThere.filter(flight => (flight.count_available_seats_trip >= passengers.length)),
@@ -397,7 +396,7 @@ export default {
             ctx.commit('castlingPoint')
             ctx.dispatch('getFlightThere')
             ctx.dispatch('getFlightBack')
-            ctx.dispatch('getAllStationsThere')
+            // ctx.dispatch('getAllStationsThere')
             // ctx.dispatch('getAllStationsBack')
         },
         UpdateOneWay(ctx, oneWay) {
@@ -407,7 +406,7 @@ export default {
             function loadingFlights() {
                 ctx.dispatch('getFlightThere')
                 ctx.dispatch('getFlightBack')
-                ctx.dispatch('getAllStationsThere')
+                // ctx.dispatch('getAllStationsThere')
                 // ctx.dispatch('getAllStationsBack')
                 ctx.commit('setFlightsLoading', false)
             }
@@ -417,14 +416,14 @@ export default {
             ctx.commit('newselectDate')
             ctx.dispatch('getFlightThere')
             ctx.dispatch('getFlightBack')
-            ctx.dispatch('getAllStationsThere')
+            // ctx.dispatch('getAllStationsThere')
             // ctx.dispatch('getAllStationsBack')
         },
         UpdateselectDateBack(ctx) {
             ctx.commit('newselectDateBack')
             ctx.dispatch('getFlightThere')
             ctx.dispatch('getFlightBack')
-            ctx.dispatch('getAllStationsThere')
+            // ctx.dispatch('getAllStationsThere')
             // ctx.dispatch('getAllStationsBack')
         },
         selectDateFalse(ctx) {
@@ -449,14 +448,14 @@ export default {
             ctx.commit('updateFrom', [id, id_rosbilet])
             ctx.dispatch('getFlightThere')
             ctx.dispatch('getFlightBack')
-            ctx.dispatch('getAllStationsThere')
+            // ctx.dispatch('getAllStationsThere')
             // ctx.dispatch('getAllStationsBack')
         },
         setTo(ctx, [id, id_rosbilet]) {
             ctx.commit('updateTo', [id, id_rosbilet])
             ctx.dispatch('getFlightThere')
             ctx.dispatch('getFlightBack')
-            ctx.dispatch('getAllStationsThere')
+            // ctx.dispatch('getAllStationsThere')
             // ctx.dispatch('getAllStationsBack')
         },
         changeSelectedPlace(ctx, [busTripId, seat, status]) {

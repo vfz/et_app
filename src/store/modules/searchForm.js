@@ -263,9 +263,7 @@ export default {
             })
         },
         updateAllFlightThere(state, allFlights) {
-            allFlights.forEach((item) => {
-                state.flightThereAnother.push(item)
-            })
+            state.flightThereAnother = allFlights
         },
         updateAllFlightBack(state, allFlights) {
             allFlights.forEach((item) => {
@@ -338,6 +336,7 @@ export default {
                 toId = stationTo.id_to_rosbilet
             }
             const res = await fetch(ctx.rootState.API_URL + 'rosbiletClient.php?command=trip&from_id=' + fromId + '&to_id=' + toId + '&date_trip=' + ctx.state.dateBack)
+            console.log(res, 'респонс')
             let allFlights = await res.json();
             if (allFlights.error === '0' && allFlights.result !== null) {
                 ctx.commit('updateAllFlightBack', allFlights.result)
@@ -400,6 +399,8 @@ export default {
             ctx.commit('castlingPoint')
             ctx.dispatch('getFlightThere')
             ctx.dispatch('getFlightBack')
+            ctx.dispatch('getAllStationsThere')
+            ctx.dispatch('getAllStationsBack')
         },
         UpdateOneWay(ctx, oneWay) {
             ctx.commit('updateOneWay', oneWay)
@@ -408,6 +409,8 @@ export default {
             function loadingFlights() {
                 ctx.dispatch('getFlightThere')
                 ctx.dispatch('getFlightBack')
+                ctx.dispatch('getAllStationsThere')
+                ctx.dispatch('getAllStationsBack')
                 ctx.commit('setFlightsLoading', false)
             }
             setTimeout(loadingFlights, 4000)
@@ -416,11 +419,15 @@ export default {
             ctx.commit('newselectDate')
             ctx.dispatch('getFlightThere')
             ctx.dispatch('getFlightBack')
+            ctx.dispatch('getAllStationsThere')
+            ctx.dispatch('getAllStationsBack')
         },
         UpdateselectDateBack(ctx) {
             ctx.commit('newselectDateBack')
             ctx.dispatch('getFlightThere')
             ctx.dispatch('getFlightBack')
+            ctx.dispatch('getAllStationsThere')
+            ctx.dispatch('getAllStationsBack')
         },
         selectDateFalse(ctx) {
             ctx.commit('DateFalse')
@@ -437,6 +444,8 @@ export default {
             ctx.commit('updateDateC', newDate)
             ctx.dispatch('getFlightThere')
             ctx.dispatch('getFlightBack')
+            ctx.dispatch('getAllStationsThere')
+            ctx.dispatch('getAllStationsBack')
         },
         setFrom(ctx, [id, id_rosbilet]) {
             ctx.commit('updateFrom', [id, id_rosbilet])

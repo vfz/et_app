@@ -307,21 +307,11 @@ export default {
         },
         //получение рейсов остальных провайдеров обратно
         async getAllStationsBack(ctx) {
-            // const validSearchBack = (!+ctx.state.from || !+ctx.state.to || !ctx.state.dateBack || ctx.state.oneWay) ? false : true
-            // if (!validSearchBack) { return false }
             ctx.commit('setFlightsLoading', true)
             let fromId = ''
             let toId = ''
-                // let stationFrom = ctx.state.fromStations.find(station => station.id_from_rosbilet === ctx.state.from_rosbilet)
-                // let stationTo = ctx.state.toStations.find(station => station.id_to_rosbilet === ctx.state.to_rosbilet)
-                // if (!stationFrom.id_from_rosbilet || !stationTo.id_to_rosbilet) {
-                //     fromId = ctx.state.from_rosbilet
-                //     toId = ctx.state.to_rosbilet
-                // } else {
             fromId = ctx.state.toStations.find(toStation => toStation.name === ctx.state.fromStations.find(fromStation => fromStation.id_from_rosbilet === ctx.state.from_rosbilet).name).id_to_rosbilet //stationFrom.id_from_rosbilet
             toId = ctx.state.fromStations.find(fromStation => fromStation.name === ctx.state.toStations.find(toStation => toStation.id_to_rosbilet === ctx.state.to_rosbilet).name).id_from_rosbilet //stationTo.id_to_rosbilet
-                // }
-                //
             const res = await fetch(ctx.rootState.API_URL + 'rosbiletClient.php?command=trip&from_id=' + toId + '&to_id=' + fromId + '&date_trip=' + ctx.state.dateBack)
             let allFlights = await res.json();
             if (allFlights.error === '0' && allFlights.result !== null) {

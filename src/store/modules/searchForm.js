@@ -321,7 +321,8 @@ export default {
                 fromId = stationFrom.id_from_rosbilet
                 toId = stationTo.id_to_rosbilet
             }
-            const res = await fetch(ctx.rootState.API_URL + 'rosbiletClient.php?command=trip&from_id=' + fromId + '&to_id=' + toId + '&date_trip=' + ctx.state.dateBack)
+            //
+            const res = await fetch(ctx.rootState.API_URL + 'rosbiletClient.php?command=trip&from_id=' + toId + '&to_id=' + fromId + '&date_trip=' + ctx.state.dateBack)
             let allFlights = await res.json();
             if (allFlights.error === '0' && allFlights.result !== null) {
                 console.log(allFlights.result)

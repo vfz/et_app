@@ -220,14 +220,15 @@ export default {
     ]),
   },
   mounted(){
-    
+    this.getFlightBack()
   },
     methods: {
     ...mapActions([
       'updatebBusTriptId',
       'updateCords',
       'updateIcon',
-      'chengeSelectTrip'
+      'chengeSelectTrip',
+      'getFlightBack'
     ]),
     getFlightType() {
       if (this.flightType == 'there') {

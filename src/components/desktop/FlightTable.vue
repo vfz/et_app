@@ -239,6 +239,9 @@ export default {
       if (this.flightType == 'backAnother') {
         return this.flightBackAnother
       }
+      if (this.flightType == 'thereAnother') {
+        return this.flightThereAnother
+      }
     },
       notSelectedFlights(flight) {
         const selectedFlights = this.selectedSeat.filter((flightFilter) => flightFilter.id_trip !== flight.id_trip && flightFilter.is_selected === true)

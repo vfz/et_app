@@ -49,7 +49,7 @@
               <tbody>
                 <!--              Добавить класс active-row для tr и будет выделение вместо false условие что выбран рейс-->
               <tr
-                  v-for="flight in (flightType=='there') ? flightThere:flightBack"
+                  v-for="flight in getFlightType()"
                   :key="flight.ticket_id_2+'_'+flight.id_trip"
 
                   :class="{'active-row' : selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0] &&
@@ -226,6 +226,17 @@ export default {
       'updateIcon',
       'chengeSelectTrip'
     ]),
+    getFlightType() {
+      if (this.flightType == 'there') {
+        return this.flightThere
+      }
+      if (this.flightType == 'back') {
+        return this.flightBack
+      }
+      if (this.flightType == 'backAnother') {
+        return this.flightBackAnother
+      }
+    },
       notSelectedFlights(flight) {
         const selectedFlights = this.selectedSeat.filter((flightFilter) => flightFilter.id_trip !== flight.id_trip && flightFilter.is_selected === true)
         if (selectedFlights.length === 1 && this.oneWay) {

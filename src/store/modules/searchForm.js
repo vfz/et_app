@@ -33,6 +33,7 @@ export default {
         shemeDesktop: [],
         selectedSeat: [],
         isFlightsLoading: false,
+        selectedFlightType: ''
 
     },
     mutations: {
@@ -273,6 +274,9 @@ export default {
             allFlights.forEach((item) => {
                 state.flightBackAnother.push(item)
             })
+        },
+        updateSelectedFlightType(state, selectedFlightType) {
+            state.selectedFlightType = selectedFlightType
         }
     },
     actions: {
@@ -463,6 +467,9 @@ export default {
         chengeSelectTrip(ctx, [busTripId, busTicketId]) {
             ctx.commit('setTrip', [busTripId, busTicketId])
         },
+        getSelectedFlightType(ctx, flightType) {
+            ctx.commit('updateSelectedFlightType', flightType)
+        }
     },
     modules: {},
     getters: {

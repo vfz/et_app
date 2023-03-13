@@ -165,7 +165,7 @@
                       +flight.count_available_seats_trip>=getAdultsCount+getChildrensCount && 
                       selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip && flightFilter.id_ticket === flight.ticket_id_2))[0] && 
                       !selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip && flightFilter.id_ticket === flight.ticket_id_2))[0].is_selected"
-                    @click="chengeSelectTrip([flight.id_trip, flight.ticket_id_2])">
+                    @click="chengeSelectTrip([flight.id_trip, flight.ticket_id_2]), isSelectedFlightTable()">
                     Выбрать
                   </div>
                   <div class="place-choice-buy" 
@@ -176,7 +176,7 @@
                     v-if="
                       selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip && flightFilter.id_ticket === flight.ticket_id_2))[0] && 
                       selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip && flightFilter.id_ticket === flight.ticket_id_2))[0].is_selected"
-                    @click="chengeSelectTrip([flight.id_trip, flight.ticket_id_2])">
+                    @click="chengeSelectTrip([flight.id_trip, flight.ticket_id_2]), isSelectedFlightTable()">
                     Убрать
                   </div>
                 </td>
@@ -231,7 +231,8 @@ export default {
       'updateCords',
       'updateIcon',
       'chengeSelectTrip',
-      'getFlightBack'
+      'getFlightBack',
+      'getSelectedFlightType'
     ]),
     getNameBage(name) {
        if (name === 'evrotrans') {
@@ -260,7 +261,7 @@ export default {
         if (selectedFlights.length === 1 && this.oneWay) {
           return true
         }
-        if (selectedFlights.length === 2 && !this.oneWay ) {
+        if (selectedFlights.length === 1 && !this.oneWay ) {
           return true
         }
         return false

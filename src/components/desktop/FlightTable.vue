@@ -9,6 +9,9 @@
           <h2 class="title-table" v-if="flightType=='back'">
              Обратно <span class="title-table-counter">({{flightBack.length}})</span>
           </h2>
+          <h2 class="title-table" v-if="flightType=='backAnother'">
+            Обратно другие рейсы <span class="title-table-counter">({{flightBackAnother.length}})</span>
+          </h2>
         </div>
       </div>
       <div class="row">

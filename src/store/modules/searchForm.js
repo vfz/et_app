@@ -315,7 +315,6 @@ export default {
             const res = await fetch(ctx.rootState.API_URL + 'rosbiletClient.php?command=trip&from_id=' + toId + '&to_id=' + fromId + '&date_trip=' + ctx.state.dateBack)
             let allFlights = await res.json();
             if (allFlights.error === '0' && allFlights.result !== null) {
-                console.log(allFlights.result)
                 ctx.commit('updateAllFlightBack', allFlights.result)
                 ctx.commit('updateDefaultsSeat', ctx.rootGetters.getPassengers)
                 ctx.commit('setFlightsLoading', false)

@@ -33,8 +33,6 @@ export default {
         shemeDesktop: [],
         selectedSeat: [],
         isFlightsLoading: false,
-        selectedFlightType: ''
-
     },
     mutations: {
         // функция для перестройки схемы автобуса в мобильную
@@ -275,9 +273,6 @@ export default {
                 state.flightBackAnother.push(item)
             })
         },
-        updateSelectedFlightType(state, selectedFlightType) {
-            state.selectedFlightType = selectedFlightType
-        }
     },
     actions: {
         //обновить id рейса для которого нужно выводить Схему автобуса
@@ -467,9 +462,6 @@ export default {
         chengeSelectTrip(ctx, [busTripId, busTicketId]) {
             ctx.commit('setTrip', [busTripId, busTicketId])
         },
-        getSelectedFlightType(ctx, flightType) {
-            ctx.commit('updateSelectedFlightType', flightType)
-        }
     },
     modules: {},
     getters: {

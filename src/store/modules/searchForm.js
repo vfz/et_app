@@ -175,6 +175,7 @@ export default {
                     id_trip: flight.id_trip,
                     source: flight.source,
                     is_selected: false,
+                    flight_type: flight.flightType,
                     seats: [
                         //Берем первые N мест из рейса с достаточным кол-вом мест где N кол-во пассажиров
                         ...flight.seats_trip.split('^').slice(0, passengers.length)
@@ -273,6 +274,32 @@ export default {
                 state.flightBackAnother.push(item)
             })
         },
+        updateFlightType(state, flightType) {
+            if (flightType === 'there') {
+                state.flightThere.forEach((item) => {
+                    item.flightType = 'there'
+                })
+            }
+
+            if (flightType === 'back') {
+                state.flightBack.forEach((item) => {
+                    item.flightType = 'back'
+                })
+            }
+
+            if (flightType === 'thereAnother') {
+                state.flightThereAnother.forEach((item) => {
+                    item.flightType = 'thereAnother'
+                })
+            }
+
+
+            if (flightType === 'backAnother') {
+                state.flightBackAnother.forEach((item) => {
+                    item.flightType = 'backAnother'
+                })
+            }
+        }
     },
     actions: {
         //обновить id рейса для которого нужно выводить Схему автобуса
@@ -315,6 +342,7 @@ export default {
             let allFlights = await res.json();
             if (allFlights.error === '0' && allFlights.result !== null) {
                 ctx.commit('updateAllFlightThere', allFlights.result)
+                ctx.commit('updateFlightType', 'thereAnother')
                 ctx.commit('updateDefaultsSeat', ctx.rootGetters.getPassengers)
                 ctx.commit('setFlightsLoading', false)
             } else {
@@ -333,6 +361,7 @@ export default {
             let allFlights = await res.json();
             if (allFlights.error === '0' && allFlights.result !== null) {
                 ctx.commit('updateAllFlightBack', allFlights.result)
+                ctx.commit('updateFlightType', 'backAnother')
                 ctx.commit('updateDefaultsSeat', ctx.rootGetters.getPassengers)
                 ctx.commit('setFlightsLoading', false)
             } else {
@@ -360,6 +389,7 @@ export default {
             const res = await fetch(ctx.rootState.API_URL + "?command=okato_trip&from_id=" + from_okato + "&to_id=" + to_okato + "&date_trip=" + ctx.state.dateArival);
             const FlightThere = await res.json();
             ctx.commit('updateFlightThere', FlightThere)
+            ctx.commit('updateFlightType', 'there')
             ctx.commit('updateDefaultsSeat', ctx.rootGetters.getPassengers)
             ctx.commit('setFlightsLoading', false)
         },
@@ -383,6 +413,7 @@ export default {
             const res = await fetch(ctx.rootState.API_URL + "?command=okato_trip&from_id=" + from_okato + "&to_id=" + to_okato + "&date_trip=" + ctx.state.dateBack);
             const FlightBack = await res.json();
             ctx.commit('updateFlightBack', FlightBack)
+            ctx.commit('updateFlightType', 'back')
             ctx.commit('updateDefaultsSeat', ctx.rootGetters.getPassengers)
             ctx.commit('setFlightsLoading', false)
 

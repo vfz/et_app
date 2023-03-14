@@ -165,7 +165,7 @@
                       +flight.count_available_seats_trip>=getAdultsCount+getChildrensCount && 
                       selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip && flightFilter.id_ticket === flight.ticket_id_2))[0] && 
                       !selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip && flightFilter.id_ticket === flight.ticket_id_2))[0].is_selected"
-                    @click="chengeSelectTrip([flight.id_trip, flight.ticket_id_2]), isSelectedFlightTable()">
+                    @click="chengeSelectTrip([flight.id_trip, flight.ticket_id_2])">
                     Выбрать
                   </div>
                   <div class="place-choice-buy" 
@@ -176,7 +176,7 @@
                     v-if="
                       selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip && flightFilter.id_ticket === flight.ticket_id_2))[0] && 
                       selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip && flightFilter.id_ticket === flight.ticket_id_2))[0].is_selected"
-                    @click="chengeSelectTrip([flight.id_trip, flight.ticket_id_2]), isSelectedFlightTable()">
+                    @click="chengeSelectTrip([flight.id_trip, flight.ticket_id_2])">
                     Убрать
                   </div>
                 </td>
@@ -258,11 +258,19 @@ export default {
     },
       notSelectedFlights(flight) {
         const selectedFlights = this.selectedSeat.filter((flightFilter) => flightFilter.id_trip !== flight.id_trip && flightFilter.is_selected === true)
+        if (selectedFlights.length > 0) {
+          let sameSourceSelectedFlightsThere = this.selectedSeat.filter((flightFilter) => flightFilter.source !== selectedFlights[0].source)
+        }
         if (selectedFlights.length === 1 && this.oneWay) {
           return true
         }
-        if (selectedFlights.length === 1 && !this.oneWay ) {
-          return true
+        if (selectedFlights.length === 2 && !this.oneWay ) {
+          if (selectedFlights[0].source !== selectedFlights[1].source) {
+            return false
+          }
+          else {
+            return true
+          }
         }
         return false
       },

@@ -33,6 +33,12 @@ export default {
         shemeDesktop: [],
         selectedSeat: [],
         isFlightsLoading: false,
+        selectedFlightType: {
+            there: false,
+            thereAnother: false,
+            back: false,
+            backAnother: false,
+        }
     },
     mutations: {
         // функция для перестройки схемы автобуса в мобильную
@@ -240,6 +246,52 @@ export default {
                 ).filter((reis) => {
                     reis.is_selected = reis.is_selected ? false : reis.id_trip === busTripId && reis.id_ticket === busTicketId;
                 })
+            }
+        },
+        setSelectedFlightType(state) {
+            const backFlights = state.selectedSeat.filter((flight) => flight.flight_type === 'back')
+            const backAnotherFlights = state.selectedSeat.filter((flight) => flight.flight_type === 'backAnother')
+            const thereFlights = state.selectedSeat.filter((flight) => flight.flight_type === 'there')
+            const thereAnotherFlights = state.selectedSeat.filter((flight) => flight.flight_type === 'thereAnother')
+
+            if (backFlights.some(flight => flight.is_selected)){
+                state.selectedFlightType.back = true
+                state.selectedFlightType.backAnother = null
+                return true
+            }
+            else {
+                state.selectedFlightType.back = false
+                state.selectedFlightType.backAnother = false
+            }
+
+            if (backAnotherFlights.some(flight => flight.is_selected)){
+                state.selectedFlightType.backAnother = true
+                state.selectedFlightType.back = null
+                return true
+            }
+            else {
+                state.selectedFlightType.backAnother = false
+                state.selectedFlightType.back = false
+            }
+
+            if (thereFlights.some(flight => flight.is_selected)){
+                state.selectedFlightType.there = true
+                state.selectedFlightType.thereAnother = null
+                return true
+            }
+            else {
+                state.selectedFlightType.there = false
+                state.selectedFlightType.thereAnother = false
+            }
+
+            if (thereAnotherFlights.some(flight => flight.is_selected)){
+                state.selectedFlightType.thereAnother = true
+                state.selectedFlightType.there = null
+                return true
+            }
+            else {
+                state.selectedFlightType.thereAnother = false
+                state.selectedFlightType.there = false
             }
         },
         setDateArrivalByQuery(state, dateArrivalQuery) {
@@ -492,6 +544,7 @@ export default {
         },
         chengeSelectTrip(ctx, [busTripId, busTicketId]) {
             ctx.commit('setTrip', [busTripId, busTicketId])
+            ctx.commit('setSelectedFlightType')
         },
     },
     modules: {},
@@ -563,6 +616,9 @@ export default {
         },
         flightBackAnother(state) {
             return state.flightBackAnother
+        },
+        selectedFlightType(state) {
+            return state.selectedFlightType
         }
 
     }

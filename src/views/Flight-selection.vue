@@ -6,15 +6,13 @@
     <FlightFormMobile v-if="isMobile()"/>
     <TimelineMobile title="Выбор рейса" description="Шаг 1" v-if="isMobile()"/>
 
-    <FlightTable flight-type="there" v-if="!isMobile()"/>
-    <FlightTableMobile flight-type="there" v-if="isMobile()"/>
-
-    <FlightTable flight-type="thereAnother" v-if="!isMobile()"/>
-
-    <FlightTable flight-type="back" v-if="!isMobile() && !oneWay"/>
-    <FlightTableMobile flight-type="back" v-if="isMobile() && !oneWay"/>
-
-    <FlightTable flight-type="backAnother" v-if="!isMobile() && !oneWay"/>
+    <FlightTable flight-type="there" v-if="!isMobile() && selectedFlightType.there !== null"/>
+    <FlightTableMobile flight-type="there" v-if="isMobile() && selectedFlightType.there !== null"/>
+<!-- TODO разобраться почему не переключается тип -->
+    <FlightTable flight-type="thereAnother" v-if="!isMobile() && selectedFlightType.thereAnother !== null"/>
+    <FlightTable flight-type="back" v-if="!isMobile() && !oneWay && selectedFlightType.back !== null"/>
+    <FlightTableMobile flight-type="back" v-if="isMobile() && !oneWay && selectedFlightType.back !== null"/>
+    <FlightTable flight-type="backAnother" v-if="!isMobile() && !oneWay && selectedFlightType.backAnother !== null"/>
 
     <div class="container-fluid">
       <div class="row">
@@ -115,6 +113,7 @@ export default {
       'getPassengers',
     'from',
     'to',
+    'selectedFlightType'
   ]),
   methods: {
     ...mapActions([

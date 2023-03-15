@@ -258,19 +258,12 @@ export default {
     },
       notSelectedFlights(flight) {
         const selectedFlights = this.selectedSeat.filter((flightFilter) => flightFilter.id_trip !== flight.id_trip && flightFilter.is_selected === true)
-        if (selectedFlights.length > 0) {
-          let sameSourceSelectedFlightsThere = this.selectedSeat.filter((flightFilter) => flightFilter.source !== selectedFlights[0].source)
-        }
+        const notSelectedFlights = this.selectedSeat.filter((flightFilter) => flightFilter.is_selected === false)
         if (selectedFlights.length === 1 && this.oneWay) {
           return true
         }
         if (selectedFlights.length === 2 && !this.oneWay ) {
-          if (selectedFlights[0].source !== selectedFlights[1].source) {
-            return false
-          }
-          else {
-            return true
-          }
+          return true
         }
         return false
       },

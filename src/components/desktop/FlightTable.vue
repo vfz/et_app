@@ -57,7 +57,7 @@
 
                   :class="{'active-row' : selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip && flightFilter.id_ticket === flight.ticket_id_2))[0] && 
                       selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip && flightFilter.id_ticket === flight.ticket_id_2))[0].is_selected,
-                      'd-none' : notSelectedFlights(flight)}"
+                      'd-none' : notSelectedFlights(flight) || selectedSeat.some(flightFilter => (flightFilter.id_trip === flight.id_trip && flightFilter.id_ticket === flight.ticket_id_2 && flightFilter.is_dublicated_by_id_trip))}"
               >
                 <td>
                   <div class="dispatch-time">
@@ -258,11 +258,10 @@ export default {
     },
       notSelectedFlights(flight) {
         const selectedFlights = this.selectedSeat.filter((flightFilter) => flightFilter.id_trip !== flight.id_trip && flightFilter.is_selected === true)
-        const notSelectedFlights = this.selectedSeat.filter((flightFilter) => flightFilter.is_selected === false)
         if (selectedFlights.length === 1 && this.oneWay) {
           return true
         }
-        if (selectedFlights.length === 2 && !this.oneWay ) {
+        if (selectedFlights.length === 2 && !this.oneWay) {
           return true
         }
         return false

@@ -192,6 +192,20 @@ export default {
             })
 
         },
+        setDublicatedIdFlight(state, [busTripId, busTicketId]) {
+            let allSelectedFlights = state.selectedSeat.filter((flight) => flight.is_selected)
+            //находим дубликат по flight_id_trip
+            let dublicatedIdFlight = state.selectedSeat.find((flight) => flight.id_trip === busTripId && flight.is_selected === false)
+            if (dublicatedIdFlight) {
+                //добавляем парамент is_dublicated_by_id_trip
+                if (dublicatedIdFlight.is_dublicated_by_id_trip) {
+                    dublicatedIdFlight.is_dublicated_by_id_trip = !dublicatedIdFlight.is_dublicated_by_id_trip 
+                }
+                else {
+                    dublicatedIdFlight.is_dublicated_by_id_trip = true
+                }
+            }
+        },
 
         changeSeatList(state, { busTripId, seat, status, passengers }) {
             let selectedFlight = state.selectedSeat.filter(reis => (reis.id_trip === busTripId))[0]
@@ -545,6 +559,7 @@ export default {
         chengeSelectTrip(ctx, [busTripId, busTicketId]) {
             ctx.commit('setTrip', [busTripId, busTicketId])
             ctx.commit('setSelectedFlightType')
+            ctx.commit('setDublicatedIdFlight', [busTripId, busTicketId])
         },
     },
     modules: {},

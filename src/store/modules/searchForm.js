@@ -418,7 +418,9 @@ export default {
         },
         //получение рейсов остальных провайдеров обратно
         async getAllStationsBack(ctx) {
+            const validSearchBack = (!+ctx.state.from || !+ctx.state.to || !ctx.state.dateBack || ctx.state.oneWay) ? false : true
             ctx.commit('setFlightsLoading', true)
+            if (!validSearchBack) { return false }
             let fromId = ''
             let toId = ''
             fromId = ctx.state.toStations.find(toStation => toStation.name === ctx.state.fromStations.find(fromStation => fromStation.id_from_rosbilet === ctx.state.from_rosbilet).name).id_to_rosbilet //stationFrom.id_from_rosbilet

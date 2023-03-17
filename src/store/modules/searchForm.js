@@ -331,14 +331,10 @@ export default {
             })
         },
         updateAllFlightThere(state, allFlights) {
-            allFlights.forEach((item) => {
-                state.flightThereAnother.push(item)
-            })
+            state.flightThereAnother = allFlights
         },
         updateAllFlightBack(state, allFlights) {
-            allFlights.forEach((item) => {
-                state.flightBackAnother.push(item)
-            })
+            state.flightBackAnother = allFlights
         },
         updateFlightType(state, flightType) {
             if (flightType === 'there') {

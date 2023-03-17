@@ -151,8 +151,11 @@
                     <div class="d-flex flex-column">
                       <div class="price mb-1 d-inline-block">
                         {{(+flight.full_ticket_price*+getAdultsCount)+(+flight.child_ticket_price*+getChildrensCount)}}₽
-                      </div> 
-                      <span class="badge rounded-pill text-bg-primary">{{ getNameBage(flight.source) }}</span>
+                      </div>
+                      <span 
+                      data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" 
+                      :class="{'show-full-name' : showFullName}" 
+                      class="badge rounded-pill text-bg-primary">{{ getNameBage(flight.carriers) }}</span>
                     </div>
                     <!-- <div class="d-inline-block">
                       <img class="help-icon" alt="help" src="/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" :title="'Взрослый - '+flight.full_ticket_price+'₽\n'+'Детский - '+flight.child_ticket_price+'₽'" >
@@ -207,6 +210,7 @@ export default {
         cases: [2, 0, 1, 1, 1, 2],
         monthes: ["Янв", "Фев", "Мар", "Апр", "Мая", "Июн", "Июл", "Авг", "Сен", "Окт", "Ноя", "Дек"],
         flights:[],
+        showFullName: false,
     }
   },
   computed: {
@@ -235,12 +239,17 @@ export default {
       'getSelectedFlightType'
     ]),
     getNameBage(name) {
-       if (name === 'evrotrans') {
-         return 'Евротранс'
+      if (!this.showFullName) {
+        if (name.length > 15) {
+        return name.substring(0, 12) + "...";
        }
-       if (name === 'rosbilet') {
-         return 'Росбилет'
+       else {
+        return name
        }
+      }
+      else {
+        return name
+      }
      },
     getFlightType() {
       if (this.flightType == 'there') {
@@ -368,6 +377,8 @@ export default {
               margin-bottom: 4px;
             }
             .badge {
+              cursor: pointer;
+              transition: all 0.3s ease-out;
                font-family: $uni;
                font-weight: $regular;
                color: $base

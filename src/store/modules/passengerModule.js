@@ -8,7 +8,9 @@ export default {
             selectedSeats: [{
                 id_ticket: 0,
                 id_trip: 0,
-                seat: 0
+                seat: 0,
+                source: null,
+                flight_type: null,
             },],
             secondName: '',
             firstName: '',
@@ -139,18 +141,24 @@ export default {
                     passenger.selectedSeats[0] = {
                         id_ticket: selectedSeats[1].id_ticket,
                         id_trip: selectedSeats[1].id_trip,
-                        seat: selectedSeats[1].seats[index]
+                        seat: selectedSeats[1].seats[index],
+                        sourse: selectedSeats[1].source,
+                        flight_type: selectedSeats[1].flight_type
                     }
                     passenger.selectedSeats[1] = {
                         id_ticket: selectedSeats[0].id_ticket,
                         id_trip: selectedSeats[0].id_trip,
-                        seat: selectedSeats[0].seats[index]
+                        seat: selectedSeats[0].seats[index],
+                        sourse: selectedSeats[1].source,
+                        flight_type: selectedSeats[1].flight_type
                     }
                 } else {
                     passenger.selectedSeats[0] = {
                         id_ticket: selectedSeats[0].id_ticket,
                         id_trip: selectedSeats[0].id_trip,
-                        seat: selectedSeats[0].seats[index]
+                        seat: selectedSeats[0].seats[index],
+                        sourse: selectedSeats[0].source,
+                        flight_type: selectedSeats[0].flight_type
                     }
                 }
             })
@@ -190,6 +198,8 @@ export default {
                         id_ticket: 0,
                         id_trip: 0,
                         seat: 0,
+                        sourse: null,
+                        flight_type: null,
                     },],
                     secondName: '',
                     firstName: '',

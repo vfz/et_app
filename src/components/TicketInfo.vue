@@ -189,6 +189,7 @@
       <h3 class="title-card">
         Информация о билете
       </h3>
+      <!-- ПУТЬ ТУДА -->
       <div class="path-info-ticket">
         <h4 class="path-info-ticket-title">
           Туда
@@ -245,10 +246,10 @@
                 </span>
           </div>
         </div>
-        <h5 class="path-info-ticket-title-paragraph">
+        <h5 v-if="selectedThereFlightInfo.flight_type === 'there'" class="path-info-ticket-title-paragraph">
           Места
         </h5>
-        <div class="path-info-places">
+        <div v-if="selectedThereFlightInfo.flight_type === 'there'" class="path-info-places">
           <span v-for="(seat, index) in selectedThereFlightInfo.seats"
                 :key="index"
                 class="path-info-place-number">
@@ -262,6 +263,7 @@
         </div>
       </div>
       <div class="cross-line"></div>
+      <!-- ПУТЬ ОБРАТНО -->
       <div v-if="!oneWay" class="path-info-ticket">
         <h4 class="path-info-ticket-title">
           Обратно
@@ -366,6 +368,8 @@ export default {
     ...mapGetters([
        'selectedSeat',
         'flightThere',
+        'flightThereAnother',
+        'flightBackAnother',
         'flightBack',
         'getChildrensCount',
         'getAdultsCount',
@@ -436,7 +440,7 @@ export default {
     },
     selectedThereFlightInfo() {
       if (this.oneWay) {
-        return this.selectedSeat.filter(flight => flight.is_selected)[0]
+        return this.selectedSeat.filter(flight => flight.is_selected && flight.flight_type === 'there' || flight.flight_type === 'thereAnother')[0]
       }
       else {
         return this.selectedSeat.filter(flight => flight.is_selected)[1]
@@ -448,7 +452,12 @@ export default {
       }
     },
     selectedThereFlightTicket() {
-      return this.flightThere.filter(flight => flight.id_trip === this.selectedThereFlightInfo.id_trip && flight.ticket_id_2 === this.selectedThereFlightInfo.id_ticket)[0]
+      if (this.selectedThereFlightInfo.flight_type === 'there') {
+        return this.flightThere.filter(flight => flight.id_trip === this.selectedThereFlightInfo.id_trip && flight.ticket_id_2 === this.selectedThereFlightInfo.id_ticket)[0]
+      }
+      else {
+        return this.flightThereAnother.filter(flight => flight.id_trip === this.selectedThereFlightInfo.id_trip && flight.ticket_id_2 === this.selectedThereFlightInfo.id_ticket)[0]
+      }
     },
     selectedBackFlightTicket() {
       if (!this.oneWay) {

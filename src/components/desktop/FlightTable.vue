@@ -153,9 +153,8 @@
                         {{(+flight.full_ticket_price*+getAdultsCount)+(+flight.child_ticket_price*+getChildrensCount)}}₽
                       </div>
                       <span 
-                      data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" 
-                      :class="{'show-full-name' : showFullName}" 
-                      class="badge rounded-pill text-bg-primary">{{ getNameBage(flight.carriers) }}</span>
+                      data-bs-toggle="tooltip" data-bs-placement="bottom" :title="flight.carriers"  
+                      class="badge rounded-pill text-bg-primary ">{{ getNameBage(flight.carriers) }}</span>
                     </div>
                     <!-- <div class="d-inline-block">
                       <img class="help-icon" alt="help" src="/img/hero/help.svg" data-bs-toggle="tooltip" data-bs-placement="top" :title="'Взрослый - '+flight.full_ticket_price+'₽\n'+'Детский - '+flight.child_ticket_price+'₽'" >

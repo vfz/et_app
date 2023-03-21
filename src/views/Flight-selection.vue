@@ -8,10 +8,13 @@
 
     <FlightTable flight-type="there" v-if="!isMobile() && selectedFlightType.there !== null"/>
     <FlightTableMobile flight-type="there" v-if="isMobile() && selectedFlightType.there !== null"/>
-<!-- TODO разобраться почему не переключается тип -->
+    
     <FlightTable flight-type="thereAnother" v-if="!isMobile() && selectedFlightType.thereAnother !== null"/>
+    <FlightTableMobile flight-type="thereAnother" v-if="isMobile() && selectedFlightType.thereAnother !== null"/>
+
     <FlightTable flight-type="back" v-if="!isMobile() && !oneWay && selectedFlightType.back !== null"/>
     <FlightTableMobile flight-type="back" v-if="isMobile() && !oneWay && selectedFlightType.back !== null"/>
+
     <FlightTable flight-type="backAnother" v-if="!isMobile() && !oneWay && selectedFlightType.backAnother !== null"/>
 
     <div class="container-fluid">

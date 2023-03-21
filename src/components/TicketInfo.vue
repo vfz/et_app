@@ -324,7 +324,7 @@
                 </span>
           </div>
         </div>
-        <h5 class="path-info-ticket-title-paragraph">
+        <h5 v-if="selectedBackFlightInfo.flight_type === 'back' " class="path-info-ticket-title-paragraph">
           Места
         </h5>
         <div class="path-info-places">
@@ -443,12 +443,12 @@ export default {
         return this.selectedSeat.filter(flight => flight.is_selected && flight.flight_type === 'there' || flight.flight_type === 'thereAnother')[0]
       }
       else {
-        return this.selectedSeat.filter(flight => flight.is_selected)[1]
+        return this.selectedSeat.filter(flight => flight.is_selected && flight.flight_type === 'back' || flight_flight_type === 'backAnother')[1]
       }
     },
     selectedBackFlightInfo() {
       if (!this.oneWay) {
-        return this.selectedSeat.filter(flight => flight.is_selected)[0]
+        return this.selectedSeat.filter(flight => flight.is_selected && flight.flight_type === 'back' || flight_flight_type === 'backAnother')[0]
       }
     },
     selectedThereFlightTicket() {

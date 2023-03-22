@@ -10,19 +10,18 @@
         <div class="row">
           <div class="col-6">
             <div class="table-item-part-left">
-<!--              <h3 class="table-item-part-right-title">-->
-<!--                Отправление-->
-<!--              </h3>-->
               <div class="table-item-part-left-city">
                 {{flight.from_name_point}}
               </div>
               <div
+                  v-if="flightType === 'there' || flightType === 'back'"
                   class="table-item-part-left-place table-link"
                   data-bs-toggle="modal"
                   data-bs-target="#dispatch-modal"
                   v-on:click="updateCords(flight.from_yam),updateIcon(flight.from_name)">
                 {{flight.from_address_point}}
               </div>
+              <div v-else class="table-item-part-left-place">{{flight.from_address_point}}</div>
               <div class="table-item-part-left-date d-flex">
                 <div class="dispatch-time">
                   {{flight.time_trip}}
@@ -39,19 +38,18 @@
           </div>
           <div class="col-6">
             <div class="table-item-part-right">
-<!--              <h3 class="table-item-part-right-title">-->
-<!--                Прибытие-->
-<!--              </h3>-->
               <div class="table-item-part-right-city">
                 {{flight.to_name_point}}
               </div>
               <div
+              v-if="flightType === 'there' || flightType === 'back'"
                   class="table-item-part-right-place table-link"
                   data-bs-toggle="modal"
                   data-bs-target="#dispatch-modal"
                   v-on:click="updateCords(flight.to_yam),updateIcon(flight.to_name)">
                 {{flight.to_address_point}}
               </div>
+              <div v-else class="table-item-part-right-place">{{flight.to_address_point}}</div>
               <div class="table-item-part-right-date d-flex">
                 <div class="arrival-time">
                   {{flight.time_arrival_trip}}

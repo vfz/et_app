@@ -91,14 +91,14 @@
         </div>
         <hr class="cross-line second-line">
         <div class="row">
-          <div class="col-6">
+          <div :class="{'col-6' : flight.count_available_seats_trip !== 0, 'col-12' : flight.count_available_seats_trip === 0}">
             <div class="table-item-part-left">
               <button
                   class="btn btn-primary btn-price"
                   :class="{'active-button' : selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0] &&
                       selectedSeat.filter(flightFiltr=>(flightFiltr.id_trip === flight.id_trip))[0].is_selected }"
                   v-if="+flight.count_available_seats_trip>=getAdultsCount+getChildrensCount"
-                  @click="chengeSelectTrip(flight.id_trip)"
+                  @click="chengeSelectTrip([flight.id_trip, flight.ticket_id_2])"
               >
                 {{(+flight.full_ticket_price*+getAdultsCount)+(+flight.child_ticket_price*+getChildrensCount)}}₽
               </button>
@@ -108,13 +108,13 @@
               </button>
             </div>
           </div>
-          <div class="col-6">
+          <div v-if="flight.count_available_seats_trip !== 0" class="col-6">
             <div class="table-item-part-right">
               <h3 class="table-item-part-right-title">
                 Осталось мест ({{flight.count_available_seats_trip}})
               </h3>
               <div class="table-item-part-right-date">
-                <div class="arrival-time table-link"
+                <div v-if="selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip || flightFilter.id_ticket === flight.ticket_id_2)).length > 0" class="arrival-time table-link"
                      @click="updatebBusTriptId(flight.id_trip)"
                      data-bs-toggle="modal"
                      data-bs-target="#place-left-modal"
@@ -122,16 +122,13 @@
                   <span v-if="getChildrensCount+getAdultsCount===1">место</span>
                   <span v-if="getChildrensCount+getAdultsCount>1">места</span>
                   <span>
-                    {{ selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0].seats.toString() }}
+                    {{ selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip || flightFilter.id_ticket === flight.ticket_id_2))[0].seats.toString() }}
                   </span>
                 </div>
                 <div
                     v-if="+flight.count_available_seats_trip>=getAdultsCount+getChildrensCount"
                     class="table-link change-place">
                   изменить
-                </div>
-                <div class="place-left-count table-link" v-else>
-                  недостаточно мест :(
                 </div>
               </div>
             </div>

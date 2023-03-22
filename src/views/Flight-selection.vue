@@ -16,6 +16,7 @@
     <FlightTableMobile flight-type="back" v-if="isMobile() && !oneWay && selectedFlightType.back !== null"/>
 
     <FlightTable flight-type="backAnother" v-if="!isMobile() && !oneWay && selectedFlightType.backAnother !== null"/>
+    <FlightTableMobile flight-type="backAnother" v-if="isMobile() && !oneWay && selectedFlightType.backAnother !== null"/>
 
     <div class="container-fluid">
       <div class="row">

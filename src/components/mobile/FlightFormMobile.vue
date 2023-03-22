@@ -262,7 +262,12 @@ export default {
     },
     changeUrlByWay(oneWay) {
       this.$store.commit('updateOneWay', oneWay)
-      this.$router.push('/flight-selection/search/'+this.from+'/'+this.to+'/'+this.dateArival+'/'+oneWay)
+      if (oneWay && this.dateArival === this.dateBack || oneWay) {
+        this.$router.push('/flight-selection/search/'+this.from+'/'+this.to+'/'+this.dateArival+'/'+oneWay)
+      }
+      if (!oneWay && this.dateArival === this.dateBack || !oneWay) {
+        this.$router.push('/flight-selection/search/'+this.from+'/'+this.to+'/'+this.dateArival+'/'+this.dateBack+'/'+oneWay)
+      }
     }
   },
   async mounted(){

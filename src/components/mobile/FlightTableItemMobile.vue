@@ -74,18 +74,20 @@
               <h3 class="table-item-part-left-title">
                 Время в пути
               </h3>
-              <div class="time-length-trip">
-                <span
-                    v-if="flight.time_duration_trip.split(':')[0]>0">
+              <span 
+              v-if="flight.time_duration_trip.split(':')[0]>0"
+              class="time-length-trip">
                   {{ flight.time_duration_trip.split(':')[0] }}
                   {{timeFormat(flight.time_duration_trip, 'hours') }}
-                </span>
-                <span
-                    v-if="flight.time_duration_trip.split(':')[1]>0">
+                  &nbsp;
+              </span>
+              <span
+              v-if="flight.time_duration_trip.split(':')[1]>0"
+              class="time-length-trip"
+              >
                   {{flight.time_duration_trip.split(':')[1]}}
                   {{timeFormat(flight.time_duration_trip,'minutes') }}
-                </span>
-              </div>
+              </span>
             </div>
           </div>
         </div>
@@ -235,7 +237,7 @@ export default {
         color: $blue-active;
       }
       &-title {
-        @include font($uni,$regular,11px,14.85px,$base);
+        @include font($uni,$regular,13px,17.55px,$base);
         margin-bottom: 0;
         margin-right: 20px;
       }
@@ -268,6 +270,7 @@ export default {
       }
       &-place {
         @include font($uni, $light, 11px, 14.85px, $blue-active);
+        margin-bottom: 4px;
       }
     }
     &-right {
@@ -307,6 +310,7 @@ export default {
       }
       &-place {
         @include font($uni, $light, 11px, 14.85px, $blue-active);
+        margin-bottom: 4px;
       }
     }
   }

@@ -20,9 +20,14 @@
           </h2>
         </div>
       </div>
-      <div v-if="isFlightsLoading" class="row gy-4">
+      <div v-if="!isFlightsLoading" class="row gy-4">
         <!--      новая версия-->
-        <FlightTableItemMobile v-for="flight in getFlightType()" :key="index+'_'+flight.ticket_id_2 + '_' + flight.id_trip" />
+        <FlightTableItemMobile 
+        v-for="(flight, index) in getFlightType()" 
+        :key="index+'_'+flight.ticket_id_2 + '_' + flight.id_trip" 
+        :flightType="flightType"
+        :flight="flight"
+        />
       </div>
     </div>
     <div v-if="isFlightsLoading" :class="{ 'gy-4': $route.name !== 'Ticket-booking' }" class="row">
@@ -31,7 +36,6 @@
           <span class="visually-hidden">Загрузка...</span>
         </div>
       </div>
-    </div>
     </div>
   </section>
 </template>

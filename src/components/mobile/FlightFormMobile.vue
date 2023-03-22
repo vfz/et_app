@@ -43,7 +43,6 @@
                         <div class="city-name city-name-from">
                           <input class="form-control one-way-inputs-input shadow-none"
                                  @focus="fromPlaceV=true"
-                                 v-mmodel="fromPlace"
                                  v-model="fromPlace"
                                  placeholder="Введите название населенного пункта"
                                  style="padding-left: 7pt;">
@@ -51,7 +50,7 @@
                             <div class="meta"
                                  v-for="pointFrom in fromStations" :key="pointFrom.id_from"
                                  v-show="search(pointFrom.name,fromPlace)"
-                                 v-on:click="setFrom(pointFrom.id_from);fromPlaceV=false;fromPlace=pointFrom.name;changeUrlByStation()"
+                                 v-on:click="setFrom([pointFrom.id_from, pointFrom.id_from_rosbilet]);fromPlaceV=false;fromPlace=pointFrom.name;changeUrlByStation()"
                             >
                               <div class="title">{{pointFrom.name}}</div>
                               <div class="description" style="color:#ec0000;font-size:12px;font:bold">{{pointFrom.address}}</div>
@@ -77,7 +76,7 @@
                             <div class="meta"
                                  v-for="pointTo in toStations" :key="pointTo.id_to"
                                  v-show="search(pointTo.name,toPlace)"
-                                 v-on:click="setTo(pointTo.id_to);toPlaceV=false;toPlace=pointTo.name;changeUrlByStation()">
+                                 v-on:click="setTo([pointTo.id_to, pointTo.id_to_rosbilet]);toPlaceV=false;toPlace=pointTo.name;changeUrlByStation()">
                               <div class="title">{{pointTo.name}}</div>
                               <div class="description" style="color:#ec0000;font-size:12px;font:bold">{{pointTo.address}}</div>
                             </div>
@@ -267,10 +266,16 @@ export default {
     }
   },
   async mounted(){
+    const paramsFrom = this.$route.params.from
+    const paramsTo = this.$route.params.to
+
     await this.getFromStations();
     await this.getToStations();
-    this.setFrom(this.$route.params.from);
-    this.setTo(this.$route.params.to);
+
+    let stationFrom = this.fromStations.find(station => station.id_from === paramsFrom )
+    let stationTo = this.toStations.find(station => station.id_to === paramsTo )
+    this.setFrom([paramsFrom, stationFrom.id_from_rosbilet]);
+    this.setTo([paramsTo, stationTo.id_to_rosbilet]);
     this.toPlace= this.toStations.find(station => station.id_to === this.$route.params.to).name;
     this.fromPlace= this.fromStations.find(station => station.id_from === this.$route.params.from).name;
     let oneWay = true
@@ -281,6 +286,12 @@ export default {
       oneWay = true
     }
     this.$store.commit('updateOneWay', oneWay)
+    if (+this.to){
+          this.toPlace= this.toStations.find(station => station.id_to === this.to).name;
+        }
+    if (+this.from){
+          this.fromPlace= this.fromStations.find(station => station.id_from === this.from).name;
+        }
   },
   created() {
     let queryDateArrival = this.$route.params.dateArrival

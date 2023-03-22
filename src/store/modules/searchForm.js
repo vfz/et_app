@@ -524,6 +524,8 @@ export default {
             ctx.commit('updateDateC', newDate)
             ctx.dispatch('getFlightThere')
             ctx.dispatch('getFlightBack')
+            ctx.dispatch('getAllStationsThere')
+            ctx.dispatch('getAllStationsBack')
         },
         setFrom(ctx, [id, id_rosbilet]) {
             ctx.commit('updateFrom', [id, id_rosbilet])

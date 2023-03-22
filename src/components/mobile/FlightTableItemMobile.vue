@@ -109,11 +109,13 @@
             </div>
           </div>
           <div v-if="flight.count_available_seats_trip !== 0" class="col-6">
-            <div class="table-item-part-right">
+            <div class="table-item-part-right d-flex justify-content-center flex-column h-100">
               <h3 class="table-item-part-right-title">
                 Осталось мест ({{flight.count_available_seats_trip}})
               </h3>
-              <div class="table-item-part-right-date">
+              <div 
+              v-if="flightType === 'there' || flightType === 'back'"
+              class="table-item-part-right-date">
                 <div v-if="selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip || flightFilter.id_ticket === flight.ticket_id_2)).length > 0" class="arrival-time table-link"
                      @click="updatebBusTriptId(flight.id_trip)"
                      data-bs-toggle="modal"

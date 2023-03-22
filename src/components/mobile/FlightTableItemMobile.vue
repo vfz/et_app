@@ -319,6 +319,8 @@ export default {
   .disabled {
     background-color: $disabled;
     box-shadow: none;
+    width: 100%;
+    border-radius: 8px;
   }
   .change-place {
     @include font($uni, $light, 11px, 14.85px, $blue-active);

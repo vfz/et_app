@@ -363,7 +363,7 @@ export default {
     if (+this.to){
           this.toPlace= this.toStations.find(station => station.id_to === this.to).name;
         }
-        if (+this.from){
+    if (+this.from){
           this.fromPlace= this.fromStations.find(station => station.id_from === this.from).name;
         }
   },

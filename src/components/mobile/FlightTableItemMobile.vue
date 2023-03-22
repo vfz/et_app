@@ -1,11 +1,11 @@
 <template>
-  <div
-      class="col-12 col-sm-6"
-      :class="{'d-none' : notSelectedFlights(flight)}"
-  >
+  <div 
+  :class="{'mt-0' : notSelectedFlights(flight)}"
+  class="col-12 col-sm-6">
     <div v-if="$route.name !== 'Ticket-booking'" class="table-item"
          :class="{'active-row' : selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0] &&
-                      selectedSeat.filter(flightFiltr=>(flightFiltr.id_trip === flight.id_trip))[0].is_selected }">
+                      selectedSeat.filter(flightFiltr=>(flightFiltr.id_trip === flight.id_trip))[0].is_selected,
+                      'd-none' : notSelectedFlights(flight)}">
       <div class="table-item-content-wrapper">
         <div class="row">
           <div class="col-6">
@@ -160,7 +160,8 @@ export default {
       'getChildrensCount',
       'getAdultsCount',
       'selectedSeat',
-      'isFlightsLoading'
+      'isFlightsLoading',
+      'oneWay'
     ])
   },
   methods: {

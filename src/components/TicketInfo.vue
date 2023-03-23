@@ -14,6 +14,7 @@
                 <button v-if="selectedBackFlightInfo" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
               </div>
               <div class="carousel-inner">
+                <!-- ПУТЬ ТУДА -->
                 <div class="carousel-item active">
                   <div class="info-ticket-wrapper">
                     <div class="path-info-ticket">
@@ -71,10 +72,10 @@
                           </span>
                         </div>
                       </div>
-                      <h5 class="path-info-ticket-title-paragraph">
+                      <h5 v-if="selectedThereFlightInfo.flight_type === 'there'" class="path-info-ticket-title-paragraph">
                         Места
                       </h5>
-                      <div class="path-info-places">
+                      <div v-if="selectedThereFlightInfo.flight_type === 'there'" class="path-info-places">
                         <span class="path-info-place-number">
                           <span v-for="(seat, index) in selectedThereFlightInfo.seats"
                             :key="index"
@@ -99,6 +100,7 @@
                     </div>
                   </div>
                 </div>
+                <!-- ПУТЬ ОБРАТНО -->
                 <div v-if="selectedBackFlightInfo" class="carousel-item">
                   <div class="info-ticket-wrapper">
                     <div class="path-info-ticket">
@@ -157,10 +159,10 @@
                 </span>
                         </div>
                       </div>
-                      <h5 class="path-info-ticket-title-paragraph">
+                      <h5 v-if="selectedThereFlightInfo.flight_type === 'back'" class="path-info-ticket-title-paragraph">
                         Места
                       </h5>
-                      <div class="path-info-places">
+                      <div v-if="selectedThereFlightInfo.flight_type === 'back'" class="path-info-places">
                         <span  v-for="(seat, index) in selectedBackFlightInfo.seats" :key="index" class="path-info-place-number">{{seat}}</span>
                       </div>
                       <div class="path-info-sum">

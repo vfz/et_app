@@ -441,18 +441,12 @@ export default {
       }
     },
     selectedThereFlightInfo() {
-      if (this.oneWay) {
-        return this.selectedSeat.filter(flight => flight.is_selected && flight.flight_type === 'there' || flight.flight_type === 'thereAnother')[0]
-      }
-      else {
-        return this.selectedSeat.filter(flight => flight.is_selected && flight.flight_type === 'back' || flight_flight_type === 'backAnother')[1]
-      }
+      return this.selectedSeat.filter(flight => flight.is_selected && flight.flight_type === 'there' || flight.flight_type === 'thereAnother')[0]
     },
     selectedBackFlightInfo() {
-      if (!this.oneWay) {
-        return this.selectedSeat.filter(flight => flight.is_selected && flight.flight_type === 'back' || flight_flight_type === 'backAnother')[0]
-      }
+      return this.selectedSeat.filter(flight => flight.is_selected && flight.flight_type === 'back' || flight.flight_type === 'backAnother')[0]
     },
+
     selectedThereFlightTicket() {
       if (this.selectedThereFlightInfo.flight_type === 'there') {
         return this.flightThere.filter(flight => flight.id_trip === this.selectedThereFlightInfo.id_trip && flight.ticket_id_2 === this.selectedThereFlightInfo.id_ticket)[0]
@@ -462,10 +456,14 @@ export default {
       }
     },
     selectedBackFlightTicket() {
-      if (!this.oneWay) {
+      if (this.selectedBackFlightInfo.flight_type === 'back') {
         return this.flightBack.filter(flight => flight.id_trip === this.selectedBackFlightInfo.id_trip && flight.ticket_id_2 === this.selectedBackFlightInfo.id_ticket)[0]
       }
+      if (this.selectedBackFlightInfo.flight_type === 'backAnother') {
+        return this.flightBackAnother.filter(flight => flight.id_trip === this.selectedBackFlightInfo.id_trip && flight.ticket_id_2 === this.selectedBackFlightInfo.id_ticket)[0]
+      }
     },
+
     sumThere() {
       return this.selectedThereFlightTicket.child_ticket_price * this.getChildrensCount + this.selectedThereFlightTicket.total_full_ticket_price * this.getAdultsCount
     },

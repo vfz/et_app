@@ -456,11 +456,16 @@ export default {
       }
     },
     selectedBackFlightTicket() {
-      if (this.selectedBackFlightInfo.flight_type === 'back') {
+      if (this.selectedBackFlightInfo) {
+        if (this.selectedBackFlightInfo.flight_type === 'back') {
         return this.flightBack.filter(flight => flight.id_trip === this.selectedBackFlightInfo.id_trip && flight.ticket_id_2 === this.selectedBackFlightInfo.id_ticket)[0]
       }
-      if (this.selectedBackFlightInfo.flight_type === 'backAnother') {
-        return this.flightBackAnother.filter(flight => flight.id_trip === this.selectedBackFlightInfo.id_trip && flight.ticket_id_2 === this.selectedBackFlightInfo.id_ticket)[0]
+        if (this.selectedBackFlightInfo.flight_type === 'backAnother') {
+          return this.flightBackAnother.filter(flight => flight.id_trip === this.selectedBackFlightInfo.id_trip && flight.ticket_id_2 === this.selectedBackFlightInfo.id_ticket)[0]
+        }
+      }
+      else {
+        return false
       }
     },
 

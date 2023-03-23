@@ -326,10 +326,10 @@
                 </span>
           </div>
         </div>
-        <h5 v-if="selectedBackFlightInfo.flight_type === 'back' " class="path-info-ticket-title-paragraph">
+        <h5 v-if="selectedBackFlightInfo.flight_type === 'back'" class="path-info-ticket-title-paragraph">
           Места
         </h5>
-        <div class="path-info-places">
+        <div v-if="selectedBackFlightInfo.flight_type === 'back'" class="path-info-places">
               <span
                   v-for="(seat, index) in selectedBackFlightInfo.seats"
                   :key="index"

@@ -226,7 +226,7 @@ export default {
     ]),
   },
   mounted(){
-    this.getFlightBack()
+    
   },
     methods: {
     ...mapActions([

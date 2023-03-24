@@ -195,7 +195,7 @@ export default {
         setDublicatedIdFlight(state, [busTripId, busTicketId]) {
             let allSelectedFlights = state.selectedSeat.filter((flight) => flight.is_selected)
             //находим дубликат по flight_id_trip
-            let dublicatedIdFlight = state.selectedSeat.find((flight) => flight.id_trip === busTripId && flight.is_selected === false)
+            let dublicatedIdFlight = state.selectedSeat.find((flight) => flight.id_trip === busTripId && flight.id_ticket !== busTicketId && flight.is_selected === false)
             if (dublicatedIdFlight) {
                 //добавляем парамент is_dublicated_by_id_trip
                 if (dublicatedIdFlight.is_dublicated_by_id_trip) {

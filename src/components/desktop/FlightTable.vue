@@ -79,7 +79,7 @@
                  data-bs-target="#dispatch-modal" :data-bs-target="flight.id_from_point"-->
                   
                   <div class="dispatch-place table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal" v-on:click="updateCords(flight.from_yam),updateIcon(flight.from_name)">
-                     {{flight.from_address_point}}
+                     {{ flight.from_name }}
                   </div>
                 </td>
                 <td>
@@ -120,7 +120,7 @@
                   <!--                  для вызова модального окна нужно добавить атрибуты data-bs-toggle со значением modal и data-bs-target со значением id модального окна
                  data-bs-target="#dispatch-modal" :data-bs-target="flight.id_to_point"-->
                   <div class="arrival-place  table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal" v-on:click="updateIcon(flight.to_name),updateCords(flight.to_yam)">
-                   {{flight.to_address_point}}
+                   {{ flight.to_name }}
                   </div>
                 </td>
                 <td>

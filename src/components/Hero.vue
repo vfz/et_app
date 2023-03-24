@@ -4,21 +4,21 @@
       <div class="hero-content">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-12">
+            <div class="col-12 p-0">
               <h1 class="title-page text-center">
                 {{title}}
               </h1>
             </div>
           </div>
           <div class="row">
-            <div class="col-12">
+            <div class="col-12 p-0">
               <h2 class="title-section text-center">
                 Куда поедем?
               </h2>
             </div>
           </div>
           <div class="row">
-            <div class="col-12">
+            <div class="col-12 p-0">
               <form id="hero-form" class="search-form d-flex flex-wrap justify-content-center">
                 <div class="checkbox-form d-block w-100 text-center">
                   <div class="form-check form-check-inline">

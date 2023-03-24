@@ -7,8 +7,10 @@ export default {
         toStations: [],
         from: '',
         from_rosbilet: '',
+        from_evrotrans: '',
         to: '',
         to_rosbilet: '',
+        to_evrotrans: '',
         dateArival: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()).toLocaleDateString('ru-RU', {
             year: 'numeric',
             month: '2-digit',
@@ -154,16 +156,25 @@ export default {
         DateFalse(state) {
             state.selectDate = false
         },
-        updateFrom(state, [id, id_rosbilet]) {
+        updateFrom(state, id) {
+
+            state.from_evrotrans = state.fromStations.find(station => station.id_from === id).id_from_evrotrans
             state.from = id
-            state.from_rosbilet = id_rosbilet
+            state.from_rosbilet = state.fromStations.find(station => station.id_from === id).id_from_rosbilet
         },
-        updateTo(state, [id, id_rosbilet]) {
+        updateTo(state, id) {
+
+            state.to_evrotrans = state.toStations.find(station => station.id_to === id).id_to_evrotrans
             state.to = id
-            state.to_rosbilet = id_rosbilet
+            state.to_rosbilet = state.toStations.find(station => station.id_to === id).id_to_rosbilet
         },
         castlingPoint(state) {
-            [state.from, state.to] = [state.to, state.from]
+            [state.from, state.to] = [
+                state.fromStations.find(station =>
+                    station.name === state.toStations.find(station => station.id_to === state.to).name).id_from,
+                state.toStations.find(station =>
+                    station.name === state.fromStations.find(station => station.id_from === state.from).name).id_to,
+            ]
         },
         updateDefaultsSeat(state, passengers) {
 
@@ -194,14 +205,13 @@ export default {
         },
         setDublicatedIdFlight(state, [busTripId, busTicketId]) {
             let allSelectedFlights = state.selectedSeat.filter((flight) => flight.is_selected)
-            //находим дубликат по flight_id_trip
+                //находим дубликат по flight_id_trip
             let dublicatedIdFlight = state.selectedSeat.find((flight) => flight.id_trip === busTripId && flight.id_ticket !== busTicketId && flight.is_selected === false)
             if (dublicatedIdFlight) {
                 //добавляем парамент is_dublicated_by_id_trip
                 if (dublicatedIdFlight.is_dublicated_by_id_trip) {
-                    dublicatedIdFlight.is_dublicated_by_id_trip = !dublicatedIdFlight.is_dublicated_by_id_trip 
-                }
-                else {
+                    dublicatedIdFlight.is_dublicated_by_id_trip = !dublicatedIdFlight.is_dublicated_by_id_trip
+                } else {
                     dublicatedIdFlight.is_dublicated_by_id_trip = true
                 }
             }
@@ -268,42 +278,38 @@ export default {
             const thereFlights = state.selectedSeat.filter((flight) => flight.flight_type === 'there')
             const thereAnotherFlights = state.selectedSeat.filter((flight) => flight.flight_type === 'thereAnother')
 
-            if (backFlights.some(flight => flight.is_selected)){
+            if (backFlights.some(flight => flight.is_selected)) {
                 state.selectedFlightType.back = true
                 state.selectedFlightType.backAnother = null
                 return true
-            }
-            else {
+            } else {
                 state.selectedFlightType.back = false
                 state.selectedFlightType.backAnother = false
             }
 
-            if (backAnotherFlights.some(flight => flight.is_selected)){
+            if (backAnotherFlights.some(flight => flight.is_selected)) {
                 state.selectedFlightType.backAnother = true
                 state.selectedFlightType.back = null
                 return true
-            }
-            else {
+            } else {
                 state.selectedFlightType.backAnother = false
                 state.selectedFlightType.back = false
             }
 
-            if (thereFlights.some(flight => flight.is_selected)){
+            if (thereFlights.some(flight => flight.is_selected)) {
                 state.selectedFlightType.there = true
                 state.selectedFlightType.thereAnother = null
                 return true
-            }
-            else {
+            } else {
                 state.selectedFlightType.there = false
                 state.selectedFlightType.thereAnother = false
             }
 
-            if (thereAnotherFlights.some(flight => flight.is_selected)){
+            if (thereAnotherFlights.some(flight => flight.is_selected)) {
                 state.selectedFlightType.thereAnother = true
                 state.selectedFlightType.there = null
                 return true
-            }
-            else {
+            } else {
                 state.selectedFlightType.thereAnother = false
                 state.selectedFlightType.there = false
             }
@@ -385,51 +391,45 @@ export default {
             ctx.commit('updateFromStations', fromStations)
         },
         //получение рейсов остальных провайдеров туда
-        async getAllStationsThere(ctx) {
+        async getAllFlightThere(ctx) {
             const validSearchThere = (!+ctx.state.from || !+ctx.state.to || !ctx.state.dateArival) ? false : true
             if (!validSearchThere) { return false }
             ctx.commit('setFlightsLoading', true)
-            let fromId = ''
-            let toId = ''
-            let stationFrom = ctx.state.fromStations.find(station => station.id_from_rosbilet === ctx.state.from_rosbilet)
-            let stationTo = ctx.state.toStations.find(station => station.id_to_rosbilet === ctx.state.to_rosbilet)
-            if (!stationFrom.id_from_rosbilet || !stationTo.id_to_rosbilet) {
-                fromId = ctx.state.from_rosbilet
-                toId = ctx.state.to_rosbilet
-            } else {
-                fromId = stationFrom.id_from_rosbilet
-                toId = stationTo.id_to_rosbilet
-            }
+
+            let fromId = ctx.state.fromStations.find(station => station.id_from === ctx.state.from).id_from_rosbilet
+            let toId = ctx.state.toStations.find(station => station.id_to === ctx.state.to).id_to_rosbilet
+
             const res = await fetch(ctx.rootState.API_URL + 'rosbiletClient.php?command=trip&from_id=' + fromId + '&to_id=' + toId + '&date_trip=' + ctx.state.dateArival)
+                .then(ctx.commit('setFlightsLoading', false))
             let allFlights = await res.json();
             if (allFlights.error === '0' && allFlights.result !== null) {
                 ctx.commit('updateAllFlightThere', allFlights.result)
                 ctx.commit('updateFlightType', 'thereAnother')
                 ctx.commit('updateDefaultsSeat', ctx.rootGetters.getPassengers)
-                ctx.commit('setFlightsLoading', false)
+
             } else {
-                ctx.commit('setFlightsLoading', false)
+
                 return false
             }
         },
         //получение рейсов остальных провайдеров обратно
-        async getAllStationsBack(ctx) {
+        async getAllFlightBack(ctx) {
             const validSearchBack = (!+ctx.state.from || !+ctx.state.to || !ctx.state.dateBack || ctx.state.oneWay) ? false : true
             ctx.commit('setFlightsLoading', true)
             if (!validSearchBack) { return false }
-            let fromId = ''
-            let toId = ''
-            fromId = ctx.state.toStations.find(toStation => toStation.name === ctx.state.fromStations.find(fromStation => fromStation.id_from_rosbilet === ctx.state.from_rosbilet).name).id_to_rosbilet //stationFrom.id_from_rosbilet
-            toId = ctx.state.fromStations.find(fromStation => fromStation.name === ctx.state.toStations.find(toStation => toStation.id_to_rosbilet === ctx.state.to_rosbilet).name).id_from_rosbilet //stationTo.id_to_rosbilet
+
+            let fromId = ctx.state.toStations.find(toStation => toStation.name === ctx.state.fromStations.find(fromStation => fromStation.id_from_rosbilet === ctx.state.from_rosbilet).name).id_to_rosbilet //stationFrom.id_from_rosbilet
+            let toId = ctx.state.fromStations.find(fromStation => fromStation.name === ctx.state.toStations.find(toStation => toStation.id_to_rosbilet === ctx.state.to_rosbilet).name).id_from_rosbilet //stationTo.id_to_rosbilet
             const res = await fetch(ctx.rootState.API_URL + 'rosbiletClient.php?command=trip&from_id=' + toId + '&to_id=' + fromId + '&date_trip=' + ctx.state.dateBack)
+                .then(ctx.commit('setFlightsLoading', false))
             let allFlights = await res.json();
             if (allFlights.error === '0' && allFlights.result !== null) {
                 ctx.commit('updateAllFlightBack', allFlights.result)
                 ctx.commit('updateFlightType', 'backAnother')
                 ctx.commit('updateDefaultsSeat', ctx.rootGetters.getPassengers)
-                ctx.commit('setFlightsLoading', false)
+
             } else {
-                ctx.commit('setFlightsLoading', false)
+                // ctx.commit('setFlightsLoading', false)
                 return false
             }
         },
@@ -440,7 +440,7 @@ export default {
             if (validTherePrice) {
                 const from_okato = ctx.state.fromStations.find(station => station.id_from === ctx.state.from).okato
                 const to_okato = ctx.state.toStations.find(station => station.id_to === ctx.state.to).okato
-                const resTherePrices = await fetch(ctx.rootState.API_URL + "?command=prices_okato_trip&from_id=" + from_okato + "&to_id=" + to_okato);
+                const resTherePrices = await fetch(ctx.rootState.API_URL + "?command=prices_okato_trip&from_id=" + from_okato + "&to_id=" + to_okato)
                 const therePrices = await resTherePrices.json();
                 ctx.commit('setDateArivalPrices', therePrices)
             }
@@ -450,12 +450,13 @@ export default {
 
             const from_okato = ctx.state.fromStations.find(station => station.id_from === ctx.state.from).okato
             const to_okato = ctx.state.toStations.find(station => station.id_to === ctx.state.to).okato
-            const res = await fetch(ctx.rootState.API_URL + "?command=okato_trip&from_id=" + from_okato + "&to_id=" + to_okato + "&date_trip=" + ctx.state.dateArival);
+            const res = await fetch(ctx.rootState.API_URL + "?command=okato_trip&from_id=" + from_okato + "&to_id=" + to_okato + "&date_trip=" + ctx.state.dateArival)
+                .then(ctx.commit('setFlightsLoading', false));
             const FlightThere = await res.json();
             ctx.commit('updateFlightThere', FlightThere)
             ctx.commit('updateFlightType', 'there')
             ctx.commit('updateDefaultsSeat', ctx.rootGetters.getPassengers)
-            ctx.commit('setFlightsLoading', false)
+
         },
         //Получаем список рейсов (обратно)
         async getFlightBack(ctx) {
@@ -474,12 +475,13 @@ export default {
 
             const from_okato = ctx.state.toStations.find(station => station.id_to === ctx.state.to).okato
             const to_okato = ctx.state.fromStations.find(station => station.id_from === ctx.state.from).okato
-            const res = await fetch(ctx.rootState.API_URL + "?command=okato_trip&from_id=" + from_okato + "&to_id=" + to_okato + "&date_trip=" + ctx.state.dateBack);
+            const res = await fetch(ctx.rootState.API_URL + "?command=okato_trip&from_id=" + from_okato + "&to_id=" + to_okato + "&date_trip=" + ctx.state.dateBack)
+                .then(ctx.commit('setFlightsLoading', false));
             const FlightBack = await res.json();
             ctx.commit('updateFlightBack', FlightBack)
             ctx.commit('updateFlightType', 'back')
             ctx.commit('updateDefaultsSeat', ctx.rootGetters.getPassengers)
-            ctx.commit('setFlightsLoading', false)
+                // ctx.commit('setFlightsLoading', false)
 
         },
         // Ракировка откуда куда
@@ -487,6 +489,8 @@ export default {
             ctx.commit('castlingPoint')
             ctx.dispatch('getFlightThere')
             ctx.dispatch('getFlightBack')
+            ctx.dispatch('getAllFlightThere')
+            ctx.dispatch('getAllFlightBack')
         },
         UpdateOneWay(ctx, oneWay) {
             ctx.commit('updateOneWay', oneWay)
@@ -495,7 +499,9 @@ export default {
             function loadingFlights() {
                 ctx.dispatch('getFlightThere')
                 ctx.dispatch('getFlightBack')
-                ctx.commit('setFlightsLoading', false)
+                ctx.dispatch('getAllFlightThere')
+                ctx.dispatch('getAllFlightBack')
+                    // ctx.commit('setFlightsLoading', false)
             }
             setTimeout(loadingFlights, 4000)
         },
@@ -503,11 +509,15 @@ export default {
             ctx.commit('newselectDate')
             ctx.dispatch('getFlightThere')
             ctx.dispatch('getFlightBack')
+            ctx.dispatch('getAllFlightThere')
+            ctx.dispatch('getAllFlightBack')
         },
         UpdateselectDateBack(ctx) {
             ctx.commit('newselectDateBack')
             ctx.dispatch('getFlightThere')
             ctx.dispatch('getFlightBack')
+            ctx.dispatch('getAllFlightThere')
+            ctx.dispatch('getAllFlightBack')
         },
         selectDateFalse(ctx) {
             ctx.commit('DateFalse')
@@ -524,22 +534,22 @@ export default {
             ctx.commit('updateDateC', newDate)
             ctx.dispatch('getFlightThere')
             ctx.dispatch('getFlightBack')
-            ctx.dispatch('getAllStationsThere')
-            ctx.dispatch('getAllStationsBack')
+            ctx.dispatch('getAllFlightThere')
+            ctx.dispatch('getAllFlightBack')
         },
-        setFrom(ctx, [id, id_rosbilet]) {
-            ctx.commit('updateFrom', [id, id_rosbilet])
+        setFrom(ctx, id) {
+            ctx.commit('updateFrom', id)
             ctx.dispatch('getFlightThere')
             ctx.dispatch('getFlightBack')
-            ctx.dispatch('getAllStationsThere')
-            ctx.dispatch('getAllStationsBack')
+            ctx.dispatch('getAllFlightThere')
+            ctx.dispatch('getAllFlightBack')
         },
-        setTo(ctx, [id, id_rosbilet]) {
-            ctx.commit('updateTo', [id, id_rosbilet])
+        setTo(ctx, id) {
+            ctx.commit('updateTo', id)
             ctx.dispatch('getFlightThere')
             ctx.dispatch('getFlightBack')
-            ctx.dispatch('getAllStationsThere')
-            ctx.dispatch('getAllStationsBack')
+            ctx.dispatch('getAllFlightThere')
+            ctx.dispatch('getAllFlightBack')
         },
         changeSelectedPlace(ctx, [busTripId, seat, status]) {
 

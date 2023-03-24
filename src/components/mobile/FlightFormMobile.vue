@@ -50,7 +50,7 @@
                             <div class="meta"
                                  v-for="pointFrom in fromStations" :key="pointFrom.id_from"
                                  v-show="search(pointFrom.name,fromPlace)"
-                                 v-on:click="setFrom([pointFrom.id_from, pointFrom.id_from_rosbilet]);fromPlaceV=false;fromPlace=pointFrom.name;changeUrlByStation()"
+                                 v-on:click="setFrom(pointFrom.id_from);fromPlaceV=false;fromPlace=pointFrom.name;changeUrlByStation()"
                             >
                               <div class="title">{{pointFrom.name}}</div>
                               <div class="description" style="color:#ec0000;font-size:12px;font:bold">{{pointFrom.address}}</div>
@@ -76,7 +76,7 @@
                             <div class="meta"
                                  v-for="pointTo in toStations" :key="pointTo.id_to"
                                  v-show="search(pointTo.name,toPlace)"
-                                 v-on:click="setTo([pointTo.id_to, pointTo.id_to_rosbilet]);toPlaceV=false;toPlace=pointTo.name;changeUrlByStation()">
+                                 v-on:click="setTo(pointTo.id_to);toPlaceV=false;toPlace=pointTo.name;changeUrlByStation()">
                               <div class="title">{{pointTo.name}}</div>
                               <div class="description" style="color:#ec0000;font-size:12px;font:bold">{{pointTo.address}}</div>
                             </div>
@@ -277,10 +277,8 @@ export default {
     await this.getFromStations();
     await this.getToStations();
 
-    let stationFrom = this.fromStations.find(station => station.id_from === paramsFrom )
-    let stationTo = this.toStations.find(station => station.id_to === paramsTo )
-    this.setFrom([paramsFrom, stationFrom.id_from_rosbilet]);
-    this.setTo([paramsTo, stationTo.id_to_rosbilet]);
+    this.setFrom(paramsFrom);
+    this.setTo(paramsTo);
     this.toPlace= this.toStations.find(station => station.id_to === this.$route.params.to).name;
     this.fromPlace= this.fromStations.find(station => station.id_from === this.$route.params.from).name;
     let oneWay = true

@@ -51,7 +51,7 @@ export default {
         },
 
         updateModalTitle(ctx, modalTitle) {
-            ctx.commit('newModalTitle', modalTitle )
+            ctx.commit('newModalTitle', modalTitle)
         },
 
         updateFlightType(ctx, flightType) {

@@ -76,12 +76,28 @@
                     {{flight.from_name_point}}
                   </div>
                   <div 
-                  v-on:click="updateCords(flight.from_yam),updateIcon(flight.from_name), updateModalTitle(flight.from_address_point), updateFlightType(flightType)"
-                  class="dispatch-place table-link" 
-                  data-bs-toggle="modal" 
-                  data-bs-target="#dispatch-modal" >
-                     {{ flight.from_name }}
+                    v-if="flightType==='there' || flightType==='back'"
+                    v-on:click="
+                    updateCords(flight.from_yam),
+                    updateIcon(flight.from_name), 
+                    updateModalTitle(flight.from_address_point), 
+                    updateFlightType(flightType)"
+                    class="dispatch-place table-link" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#dispatch-modal" >
+                      {{ flight.from_name }}
                   </div>
+                  <div 
+                    v-else
+                    v-on:click="
+                    updateModalTitle(flight.from_address_point), 
+                    updateFlightType(flightType)"
+                    class="dispatch-place table-link" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#dispatch-modal" >
+                      {{ flight.from_name }}
+                  </div>
+
                 </td>
                 <td>
                   <div class="dispatch-length-time">
@@ -114,13 +130,27 @@
                   <div class="arrival-city">
                      {{flight.to_name_point}}
                   </div>
-                  <div 
-                  v-on:click="updateIcon(flight.to_name),updateCords(flight.to_yam), updateModalTitle(flight.to_address_point), updateFlightType(flightType)"
-                  class="arrival-place table-link" 
-                  data-bs-toggle="modal" 
-                  data-bs-target="#dispatch-modal">
-                   {{ flight.to_name }}
+                  <div v-if="flightType==='there' || flightType==='back'"
+                    v-on:click="
+                      updateIcon(flight.to_name),
+                      updateCords(flight.to_yam), 
+                      updateModalTitle(flight.to_address_point), 
+                      updateFlightType(flightType)"
+                    class="arrival-place table-link" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#dispatch-modal">
+                    {{ flight.to_name }}
                   </div>
+                  <div v-else
+                    v-on:click="
+                      updateModalTitle(flight.to_address_point), 
+                      updateFlightType(flightType)"
+                    class="arrival-place table-link" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#dispatch-modal">
+                    {{ flight.to_name }}
+                  </div>
+
                 </td>
                 <td>
                   <div v-if="true" class="places-left">
@@ -139,7 +169,7 @@
                     data-bs-toggle="modal" 
                     data-bs-target="#place-left-modal"
                     @click="updatebBusTriptId(flight.id_trip)"
-                    v-if="+flight.count_available_seats_trip>=getAdultsCount+getChildrensCount">
+                    v-if="+flight.count_available_seats_trip>=getAdultsCount+getChildrensCount &&(flightType=='back' || flightType=='there')">
                     <span v-if="getChildrensCount+getAdultsCount===1">место: </span>
                     <span v-if="getChildrensCount+getAdultsCount>1">места: </span>
                     {{ selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0].seats.toString() }} изменить 

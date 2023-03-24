@@ -149,10 +149,11 @@ export default {
                         id_ticket: selectedSeats[0].id_ticket,
                         id_trip: selectedSeats[0].id_trip,
                         seat: selectedSeats[0].seats[index],
-                        sourse: selectedSeats[1].source,
-                        flight_type: selectedSeats[1].flight_type
+                        sourse: selectedSeats[0].source,
+                        flight_type: selectedSeats[0].flight_type
                     }
-                } else {
+                } 
+                else {
                     passenger.selectedSeats[0] = {
                         id_ticket: selectedSeats[0].id_ticket,
                         id_trip: selectedSeats[0].id_trip,

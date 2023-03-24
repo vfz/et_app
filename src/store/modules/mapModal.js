@@ -8,7 +8,9 @@ export default {
         icon: {
             content: 'Данные загружаются',
             color: 'red'
-        }
+        },
+        modalTitle: '',
+        flightType: '',
     },
     mutations: {
         newCords(state, coords) {
@@ -23,6 +25,12 @@ export default {
                 'content': icon,
                 color: 'red'
             }
+        },
+        newModalTitle(state, modalTitle) {
+            state.modalTitle = modalTitle
+        },
+        newFlightType(state, flightType) {
+            state.flightType = flightType
         }
     },
     actions: {
@@ -40,6 +48,14 @@ export default {
         updateMap(ctx, coords, icon) {
             ctx.commit('newCords', coords)
             ctx.commit('newIcon', icon)
+        },
+
+        updateModalTitle(ctx, modalTitle) {
+            ctx.commit('newModalTitle', modalTitle )
+        },
+
+        updateFlightType(ctx, flightType) {
+            ctx.commit('newFlightType', flightType)
         }
 
     },
@@ -50,6 +66,12 @@ export default {
         },
         getIcon(state) {
             return state.icon
+        },
+        getModalTitle(state) {
+            return state.modalTitle
+        },
+        getFlightType(state) {
+            return state.flightType
         }
     }
 

@@ -2,12 +2,14 @@
   <div class="modal fade dispatch-modal" id="dispatch-modal" tabindex="-1" aria-labelledby="dispatch-modal-label" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
-        <div class="modal-header justify-content-between justify-content-md-end">
-          <!-- <a class="modal-link" href="#">Проложить маршрут</a> -->
+        <div class="modal-header justify-content-between">
+          <h3 class="modal-title">{{ getModalTitle }}</h3>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-          <yandex-map 
+        <div
+        v-show="getFlightType === 'there'|| getFlightType === 'back' " 
+        class="modal-body">
+          <yandex-map
             :coords="getCord"
             :zoom="16"
           >
@@ -30,15 +32,7 @@ import {mapGetters} from 'vuex'
 export default {
   name: "Dispatch-modal",
   components: { yandexMap, ymapMarker },
-  computed: mapGetters(['getCord','getIcon']),
-  
-  data(){
-    return{
-      
-    }
-  }
-
-  
+  computed: mapGetters(['getCord','getIcon', 'getModalTitle', 'getFlightType'])
 }
 </script>
 
@@ -50,6 +44,14 @@ export default {
   width: 100%;
   height: 50vh;
 }
+
+.modal-title {
+    @include font($uni,$bold, 24px, 32.4px, $black);
+    &-counter {
+      font-size: 18px;
+      color: $secondary;
+    }
+  }
 
   .ymap-container {
   height: 100%;

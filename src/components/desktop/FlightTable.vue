@@ -75,10 +75,11 @@
                   <div class="dispatch-city">
                     {{flight.from_name_point}}
                   </div>
-                  <!--                  для вызова модального окна нужно добавить атрибуты data-bs-toggle со значением modal и data-bs-target со значением id модального окна
-                 data-bs-target="#dispatch-modal" :data-bs-target="flight.id_from_point"-->
-                  
-                  <div class="dispatch-place table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal" v-on:click="updateCords(flight.from_yam),updateIcon(flight.from_name)">
+                  <div 
+                  v-on:click="updateCords(flight.from_yam),updateIcon(flight.from_name), updateModalTitle(flight.from_address_point), updateFlightType(flightType)"
+                  class="dispatch-place table-link" 
+                  data-bs-toggle="modal" 
+                  data-bs-target="#dispatch-modal" >
                      {{ flight.from_name }}
                   </div>
                 </td>
@@ -98,10 +99,6 @@
                     }} 
                     </span>
                   </div>
-                  <!--                  для вызова модального окна нужно добавить атрибуты data-bs-toggle со значением modal и data-bs-target со значением id модального окна-->
-                  <!-- <div class="dispatch-length-time-saw table-link" data-bs-toggle="modal" data-bs-target="#dispatch-length-time-modal">
-                    Посмотреть
-                  </div> -->
                 </td>
                 <td>
                   <div class="arrival-time">
@@ -117,9 +114,11 @@
                   <div class="arrival-city">
                      {{flight.to_name_point}}
                   </div>
-                  <!--                  для вызова модального окна нужно добавить атрибуты data-bs-toggle со значением modal и data-bs-target со значением id модального окна
-                 data-bs-target="#dispatch-modal" :data-bs-target="flight.id_to_point"-->
-                  <div class="arrival-place  table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal" v-on:click="updateIcon(flight.to_name),updateCords(flight.to_yam)">
+                  <div 
+                  v-on:click="updateIcon(flight.to_name),updateCords(flight.to_yam), updateModalTitle(flight.to_address_point), updateFlightType(flightType)"
+                  class="arrival-place table-link" 
+                  data-bs-toggle="modal" 
+                  data-bs-target="#dispatch-modal">
                    {{ flight.to_name }}
                   </div>
                 </td>
@@ -233,6 +232,8 @@ export default {
       'updatebBusTriptId',
       'updateCords',
       'updateIcon',
+      'updateModalTitle',
+      'updateFlightType',
       'chengeSelectTrip',
       'getFlightBack',
       'getSelectedFlightType'

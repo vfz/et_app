@@ -14,14 +14,12 @@
                 {{flight.from_name_point}}
               </div>
               <div
-                  v-if="flightType === 'there' || flightType === 'back'"
                   class="table-item-part-left-place table-link"
                   data-bs-toggle="modal"
                   data-bs-target="#dispatch-modal"
-                  v-on:click="updateCords(flight.from_yam),updateIcon(flight.from_name)">
-                {{flight.from_address_point}}
+                  v-on:click="updateCords(flight.from_yam),updateIcon(flight.from_name),updateModalTitle(flight.from_address_point), updateFlightType(flightType)">
+                  {{ flight.from_name }}
               </div>
-              <div v-else class="table-item-part-left-place">{{flight.from_address_point}}</div>
               <div class="table-item-part-left-date d-flex">
                 <div class="dispatch-time">
                   {{flight.time_trip}}
@@ -42,14 +40,12 @@
                 {{flight.to_name_point}}
               </div>
               <div
-              v-if="flightType === 'there' || flightType === 'back'"
                   class="table-item-part-right-place table-link"
                   data-bs-toggle="modal"
                   data-bs-target="#dispatch-modal"
-                  v-on:click="updateCords(flight.to_yam),updateIcon(flight.to_name)">
-                {{flight.to_address_point}}
+                  v-on:click="updateCords(flight.to_yam),updateIcon(flight.to_name),updateModalTitle(flight.to_address_point), updateFlightType(flightType)">
+                  {{ flight.to_name }}
               </div>
-              <div v-else class="table-item-part-right-place">{{flight.to_address_point}}</div>
               <div class="table-item-part-right-date d-flex">
                 <div class="arrival-time">
                   {{flight.time_arrival_trip}}
@@ -172,6 +168,8 @@ export default {
       'updateCords',
       'updateIcon',
       'chengeSelectTrip',
+      'updateModalTitle',
+      'updateFlightType',
     ]),
     notSelectedFlights(flight) {
       const selectedFlights = this.selectedSeat.filter((flightFilter) => flightFilter.id_trip !== flight.id_trip && flightFilter.is_selected === true)

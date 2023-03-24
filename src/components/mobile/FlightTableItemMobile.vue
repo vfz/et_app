@@ -2,10 +2,17 @@
   <div 
   :class="{'mt-0' : notSelectedFlights(flight)}"
   class="col-12 col-sm-6">
-    <div v-if="$route.name !== 'Ticket-booking'" class="table-item"
+    <div v-if="$route.name !== 'Ticket-booking'" class="table-item position-relative"
          :class="{'active-row' : selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip))[0] &&
                       selectedSeat.filter(flightFiltr=>(flightFiltr.id_trip === flight.id_trip))[0].is_selected,
                       'd-none' : notSelectedFlights(flight)}">
+      <span 
+      @click="showFullName = !showFullName"
+          data-bs-toggle="tooltip" data-bs-placement="bottom" :title="flight.carriers"
+          :class="{'full-name' : showFullName}"  
+          class="badge text-bg-primary position-absolute">
+          {{ getNameBage(flight.carriers) }}
+      </span>
       <div class="table-item-content-wrapper">
         <div class="row">
           <div class="col-6">
@@ -149,6 +156,7 @@ export default {
       cases: [2, 0, 1, 1, 1, 2],
       monthes: ["Янв", "Фев", "Мар", "Апр", "Мая", "Июн", "Июл", "Авг", "Сен", "Окт", "Ноя", "Дек"],
       flights:[],
+      showFullName: false,
     }
   },
   computed: {
@@ -171,6 +179,19 @@ export default {
       'updateModalTitle',
       'updateFlightType',
     ]),
+    getNameBage(name) {
+      if (!this.showFullName) {
+        if (name.length > 15) {
+        return name.substring(0, 12) + "...";
+       }
+       else {
+        return name
+       }
+      }
+      else {
+        return name
+      }
+     },
     notSelectedFlights(flight) {
       const selectedFlights = this.selectedSeat.filter((flightFilter) => flightFilter.id_trip !== flight.id_trip && flightFilter.is_selected === true)
       if (selectedFlights.length === 1 && this.oneWay) {
@@ -214,6 +235,19 @@ export default {
   box-shadow: $regular-shadow;
   border-radius: 8px;
   border: 1px solid #196EFF;
+  .badge {
+              cursor: pointer;
+               font-family: $uni;
+               font-weight: $regular;
+               color: $base;
+               right: -1px;
+               top: -1px;
+               border-radius: 4px;
+             }
+             .badge:hover {
+              @include animation;
+              background-color: $blue-color;
+             }             
   .first-line {
     margin-bottom: 0.3rem;
   }
@@ -221,7 +255,7 @@ export default {
     margin-top: 0.3rem;
   }
   &-content-wrapper {
-    padding: 16px;
+    padding: 26px 16px 16px 16px;
   }
   &-part {
     .table-link {

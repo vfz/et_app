@@ -8,6 +8,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         API_URL: 'https://api.evrotrans.net/APIet/',
+        API_PARTNERS_URL: 'https://partnerstickets.evrotrans.net/',
     },
     mutations: {},
     actions: {},

@@ -379,14 +379,21 @@ export default {
         },
         //Получаем список станций прибытия
         async getToStations(ctx, from = '') {
-            const res = await fetch(ctx.rootState.API_URL + "?command=all_to&from_id=" + from);
+            const res = await fetch(ctx.rootState.API_PARTNERS_URL + "data/allto");
             const toStations = await res.json();
             ctx.commit('updateToStations', toStations)
 
         },
         //Получаем список станций отправления
         async getFromStations(ctx) {
-            const res = await fetch(ctx.rootState.API_URL + "?command=all_from");
+            const res = await fetch(ctx.rootState.API_PARTNERS_URL + "data/allfrom", {
+                mode: 'cors',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json'
+                        // 'Cookie': 'Cookie (en-US)',
+                },
+            });
             const fromStations = await res.json();
             ctx.commit('updateFromStations', fromStations)
         },
@@ -399,7 +406,14 @@ export default {
             let fromId = ctx.state.fromStations.find(station => station.id_from === ctx.state.from).id_from_rosbilet
             let toId = ctx.state.toStations.find(station => station.id_to === ctx.state.to).id_to_rosbilet
 
-            const res = await fetch(ctx.rootState.API_URL + 'rosbiletClient.php?command=trip&from_id=' + fromId + '&to_id=' + toId + '&date_trip=' + ctx.state.dateArival)
+            const res = await fetch(ctx.rootState.API_PARTNERS_URL + 'search?from=' + ctx.state.from + '&to=' + ctx.state.to + '&date=' + ctx.state.dateArival, {
+                    mode: 'cors',
+                    // credentials: 'include',
+                    headers: {
+                        'Content-Type': 'application/json'
+                            // 'Cookie': 'Cookie (en-US)',
+                    },
+                })
                 .then(ctx.commit('setFlightsLoading', false))
             let allFlights = await res.json();
             if (allFlights.error === '0' && allFlights.result !== null) {

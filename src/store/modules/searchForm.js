@@ -397,7 +397,6 @@ export default {
             ctx.commit('setFlightsLoading', true)
             let fromId = ctx.state.fromStations.find(station => station.id_from === ctx.state.from).id_from_rosbilet
             let toId = ctx.state.toStations.find(station => station.id_to === ctx.state.to).id_to_rosbilet
-
             const res = await fetch(ctx.rootState.API_URL + 'rosbiletClient.php?command=trip&from_id=' + fromId + '&to_id=' + toId + '&date_trip=' + ctx.state.dateArival)
                 .then(async (result) => {
                     let allFlights = await result.json()
@@ -406,8 +405,12 @@ export default {
                         ctx.commit('updateFlightType', 'thereAnother')
                         ctx.commit('updateDefaultsSeat', ctx.rootGetters.getPassengers)
                         ctx.commit('setFlightsLoading', false)
+                        return true
                     }
                     else {
+                        ctx.commit('updateAllFlightThere', [])
+                        ctx.commit('updateFlightType', 'thereAnother')
+                        ctx.commit('setFlightsLoading', false)
                         return false
                     }
                 })
@@ -424,17 +427,25 @@ export default {
             let fromId = ctx.state.toStations.find(toStation => toStation.name === ctx.state.fromStations.find(fromStation => fromStation.id_from_rosbilet === ctx.state.from_rosbilet).name).id_to_rosbilet //stationFrom.id_from_rosbilet
             let toId = ctx.state.fromStations.find(fromStation => fromStation.name === ctx.state.toStations.find(toStation => toStation.id_to_rosbilet === ctx.state.to_rosbilet).name).id_from_rosbilet //stationTo.id_to_rosbilet
             const res = await fetch(ctx.rootState.API_URL + 'rosbiletClient.php?command=trip&from_id=' + toId + '&to_id=' + fromId + '&date_trip=' + ctx.state.dateBack)
-                .then(ctx.commit('setFlightsLoading', false))
-            let allFlights = await res.json();
-            if (allFlights.error === '0' && allFlights.result !== null) {
-                ctx.commit('updateAllFlightBack', allFlights.result)
-                ctx.commit('updateFlightType', 'backAnother')
-                ctx.commit('updateDefaultsSeat', ctx.rootGetters.getPassengers)
-
-            } else {
-                // ctx.commit('setFlightsLoading', false)
-                return false
-            }
+                .then(async (result) => {
+                    let allFlights = await result.json()
+                    if (allFlights.error === '0' && allFlights.result !== null) {
+                        ctx.commit('updateAllFlightBack', allFlights.result)
+                        ctx.commit('updateFlightType', 'backAnother')
+                        ctx.commit('updateDefaultsSeat', ctx.rootGetters.getPassengers)        
+                        ctx.commit('setFlightsLoading', false)
+                        return true
+                    }
+                    else {
+                        ctx.commit('updateAllFlightBack', [])
+                        ctx.commit('updateFlightType', 'backAnother')
+                        ctx.commit('setFlightsLoading', false)
+                        return false
+                    }
+                })
+                .catch((error) => {
+                    throw error
+                })
         },
         //Получаем список рейсов (туда)÷
         async getFlightThere(ctx) {

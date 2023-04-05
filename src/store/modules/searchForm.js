@@ -176,6 +176,11 @@ export default {
                 state.toStations.find(station =>
                     station.name === state.fromStations.find(station => station.id_from === state.from).name).id_to,
             ]
+            state.from_evrotrans = state.fromStations.find(station => station.id_from === state.from).id_from_evrotrans
+            state.from_rosbilet = state.fromStations.find(station => station.id_from === state.from).id_from_rosbilet
+
+            state.to_evrotrans = state.toStations.find(station => station.id_to === state.to).id_to_evrotrans
+            state.to_rosbilet = state.toStations.find(station => station.id_to === state.to).id_to_rosbilet
         },
         updateDefaultsSeat(state, passengers) {
 

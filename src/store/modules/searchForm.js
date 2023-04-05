@@ -101,6 +101,7 @@ export default {
             state.flightBack = flights.result;
         },
         updateOneWay(state, oneWay) {
+            console.log(oneWay, 'мутация one ways')
             state.oneWay = oneWay;
         },
         updateDateC(state, newDate) {
@@ -393,6 +394,7 @@ export default {
         //получение рейсов остальных провайдеров туда
         async getAllFlightThere(ctx) {
             const validSearchThere = (!+ctx.state.from || !+ctx.state.to || !ctx.state.dateArival) ? false : true
+            console.log(!+ctx.state.from , !+ctx.state.to , !ctx.state.dateArival , 'getAllFlightThere')
             if (!validSearchThere) { return false }
             ctx.commit('setFlightsLoading', true)
             let fromId = ctx.state.fromStations.find(station => station.id_from === ctx.state.from).id_from_rosbilet
@@ -400,6 +402,7 @@ export default {
             const res = await fetch(ctx.rootState.API_URL + 'rosbiletClient.php?command=trip&from_id=' + fromId + '&to_id=' + toId + '&date_trip=' + ctx.state.dateArival)
                 .then(async (result) => {
                     let allFlights = await result.json()
+                    console.log(allFlights, 'рейсы туда все')
                     if (allFlights.error === '0' && allFlights.result !== null) {
                         ctx.commit('updateAllFlightThere', allFlights.result)
                         ctx.commit('updateFlightType', 'thereAnother')
@@ -420,15 +423,18 @@ export default {
         },
         //получение рейсов остальных провайдеров обратно
         async getAllFlightBack(ctx) {
-            const validSearchBack = (!+ctx.state.from || !+ctx.state.to || !ctx.state.dateBack || !+ctx.state.oneWay) ? false : true
+            const validSearchBack = (!+ctx.state.from || !+ctx.state.to || !ctx.state.dateBack || ctx.state.oneWay) ? false : true
+            // console.log(!+ctx.state.from , !+ctx.state.to , !ctx.state.dateBack , ctx.state.oneWay, 'getAllFlightBack')
             ctx.commit('setFlightsLoading', true)
             if (!validSearchBack) { return false }
-
+            // console.log('1324')
             let fromId = ctx.state.toStations.find(toStation => toStation.name === ctx.state.fromStations.find(fromStation => fromStation.id_from_rosbilet === ctx.state.from_rosbilet).name).id_to_rosbilet //stationFrom.id_from_rosbilet
             let toId = ctx.state.fromStations.find(fromStation => fromStation.name === ctx.state.toStations.find(toStation => toStation.id_to_rosbilet === ctx.state.to_rosbilet).name).id_from_rosbilet //stationTo.id_to_rosbilet
             const res = await fetch(ctx.rootState.API_URL + 'rosbiletClient.php?command=trip&from_id=' + toId + '&to_id=' + fromId + '&date_trip=' + ctx.state.dateBack)
                 .then(async (result) => {
                     let allFlights = await result.json()
+                    console.log(allFlights, 'рейсы обратно все')
+                    // console.log(allFlights)
                     if (allFlights.error === '0' && allFlights.result !== null) {
                         ctx.commit('updateAllFlightBack', allFlights.result)
                         ctx.commit('updateFlightType', 'backAnother')
@@ -464,12 +470,17 @@ export default {
             const from_okato = ctx.state.fromStations.find(station => station.id_from === ctx.state.from).okato
             const to_okato = ctx.state.toStations.find(station => station.id_to === ctx.state.to).okato
             const res = await fetch(ctx.rootState.API_URL + "?command=okato_trip&from_id=" + from_okato + "&to_id=" + to_okato + "&date_trip=" + ctx.state.dateArival)
-                .then(ctx.commit('setFlightsLoading', false));
-            const FlightThere = await res.json();
-            ctx.commit('updateFlightThere', FlightThere)
-            ctx.commit('updateFlightType', 'there')
-            ctx.commit('updateDefaultsSeat', ctx.rootGetters.getPassengers)
-
+                .then(async (result) => {
+                    let flightThere = await result.json();
+                    ctx.commit('updateFlightThere', flightThere)
+                    ctx.commit('updateFlightType', 'there')
+                    ctx.commit('updateDefaultsSeat', ctx.rootGetters.getPassengers)
+                    ctx.commit('setFlightsLoading', false)
+                    return true
+                })
+                .catch((error) => {
+                    throw error
+                });
         },
         //Получаем список рейсов (обратно)
         async getFlightBack(ctx) {
@@ -489,12 +500,18 @@ export default {
             const from_okato = ctx.state.toStations.find(station => station.id_to === ctx.state.to).okato
             const to_okato = ctx.state.fromStations.find(station => station.id_from === ctx.state.from).okato
             const res = await fetch(ctx.rootState.API_URL + "?command=okato_trip&from_id=" + from_okato + "&to_id=" + to_okato + "&date_trip=" + ctx.state.dateBack)
-                .then(ctx.commit('setFlightsLoading', false));
-            const FlightBack = await res.json();
-            ctx.commit('updateFlightBack', FlightBack)
-            ctx.commit('updateFlightType', 'back')
-            ctx.commit('updateDefaultsSeat', ctx.rootGetters.getPassengers)
-                // ctx.commit('setFlightsLoading', false)
+                .then(async (result) => {
+                    let flightBack = await result.json();
+                    console.log(flightBack, 'рейсы обратно')
+                    ctx.commit('updateFlightBack', flightBack)
+                    ctx.commit('updateFlightType', 'back')
+                    ctx.commit('updateDefaultsSeat', ctx.rootGetters.getPassengers)
+                    ctx.commit('setFlightsLoading', false)
+                    return true
+                })
+                .catch((error) => {
+                    throw error
+                });
 
         },
         // Ракировка откуда куда

@@ -101,7 +101,6 @@ export default {
             state.flightBack = flights.result;
         },
         updateOneWay(state, oneWay) {
-            console.log(oneWay, 'мутация one ways')
             state.oneWay = oneWay;
         },
         updateDateC(state, newDate) {

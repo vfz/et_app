@@ -344,19 +344,19 @@ export default {
     await this.getFromStations();
     await this.getToStations();
 
-    this.setFrom(paramsFrom);
-    this.setTo(paramsTo);
-
     this.toPlace= this.toStations.find(station => station.id_to === paramsTo).name;
     this.fromPlace= this.fromStations.find(station => station.id_from === paramsFrom).name;
-    let oneWay = true
-    if (this.$route.params.oneWay) {
-      oneWay = (this.$route.params.oneWay === 'true')
+    let oneWay = ''
+    if (this.$route.params.oneWay === 'true') {
+      oneWay = true
     }
     else {
-     oneWay = true
+      oneWay = false
     }
     this.$store.commit('updateOneWay', oneWay)
+
+    this.setFrom(paramsFrom);
+    this.setTo(paramsTo);
 
     if (+this.to){
           this.toPlace= this.toStations.find(station => station.id_to === this.to).name;

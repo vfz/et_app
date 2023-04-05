@@ -403,14 +403,9 @@ export default {
             ctx.commit('setFlightsLoading', true)
             let fromId = ctx.state.fromStations.find(station => station.id_from === ctx.state.from).id_from_rosbilet
             let toId = ctx.state.toStations.find(station => station.id_to === ctx.state.to).id_to_rosbilet
-            console.log('flightThere')
-            console.log(fromId, ctx.state.fromStations.find(station => station.id_from === ctx.state.from))
-            console.log(toId, ctx.state.toStations.find(station => station.id_to === ctx.state.to))
             const res = await fetch(ctx.rootState.API_URL + 'rosbiletClient.php?command=trip&from_id=' + fromId + '&to_id=' + toId + '&date_trip=' + ctx.state.dateArival)
                 .then(async (result) => {
                     let allFlights = await result.json()
-                    console.log(allFlights, 'рейсы туда все')
-                    console.log(result.url, 'рейсы туда все url')
                     if (allFlights.error === '0' && allFlights.result !== null) {
                         ctx.commit('updateAllFlightThere', allFlights.result)
                         ctx.commit('updateFlightType', 'thereAnother')
@@ -436,14 +431,9 @@ export default {
             if (!validSearchBack) { return false }
             let fromId = ctx.state.toStations.find(toStation => toStation.name === ctx.state.fromStations.find(fromStation => fromStation.id_from_rosbilet === ctx.state.from_rosbilet).name).id_to_rosbilet //stationFrom.id_from_rosbilet
             let toId = ctx.state.fromStations.find(fromStation => fromStation.name === ctx.state.toStations.find(toStation => toStation.id_to_rosbilet === ctx.state.to_rosbilet).name).id_from_rosbilet //stationTo.id_to_rosbilet
-            console.log('flightBack')
-            console.log(fromId)
-            console.log(toId)
             const res = await fetch(ctx.rootState.API_URL + 'rosbiletClient.php?command=trip&from_id=' + toId + '&to_id=' + fromId + '&date_trip=' + ctx.state.dateBack)
                 .then(async (result) => {
                     let allFlights = await result.json()
-                    console.log(result.url, 'рейсы обратно все url')
-                    console.log(allFlights, 'рейсы обратно все')
                     if (allFlights.error === '0' && allFlights.result !== null) {
                         ctx.commit('updateAllFlightBack', allFlights.result)
                         ctx.commit('updateFlightType', 'backAnother')

@@ -528,7 +528,7 @@ export default {
                 ctx.dispatch('getFlightBack')
                 ctx.dispatch('getAllFlightThere')
                 ctx.dispatch('getAllFlightBack')
-                    // ctx.commit('setFlightsLoading', false)
+                ctx.commit('setFlightsLoading', false)
             }
             setTimeout(loadingFlights, 4000)
         },

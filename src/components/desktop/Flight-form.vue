@@ -115,8 +115,7 @@
               </div>
               <div class="row">
                 <div class="col d-flex justify-content-center align-items-center">
-                  <button
-                      :disabled="isFlightsLoading" id="submit-button" type="button" class="btn">
+                  <button @click="alertPlace()" :disabled="isFlightsLoading" id="submit-button" type="button" class="btn">
                     <span v-if="isFlightsLoading === true" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     Найти билеты
                   </button>
@@ -239,7 +238,7 @@
               </div>
               <div class="row">
                 <div class="col d-flex justify-content-center align-items-center">
-                  <button :disabled="isFlightsLoading" v-if="$route.name !== 'Ticket-booking'" id="submit-button-twoWays" type="button" class="btn" >
+                  <button @click="alertPlace()" :disabled="isFlightsLoading" v-if="$route.name !== 'Ticket-booking'" id="submit-button-twoWays" type="button" class="btn" >
                     <span v-if="isFlightsLoading === true" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     Найти билеты
                   </button>
@@ -314,9 +313,18 @@ export default {
       'PlusChild',
       'MinusChild',
       'addPassenger',
-      'removePassenger'
+      'removePassenger',
+      'UpdateOneWay'
     ]),
-
+    alertPlace () {
+      this.UpdateOneWay(this.oneWay)
+      if (this.oneWay) {
+          this.$router.push('/flight-selection/search/'+this.from+'/'+this.to+'/'+this.dateArival+'/'+this.oneWay)
+      }
+      else {
+          this.$router.push('/flight-selection/search/'+this.from+'/'+this.to+'/'+this.dateArival+'/'+this.dateBack+'/'+this.oneWay)
+      }
+    },
     search(str,target){
       //Вариант поиска ЗАВИСИМЫЙ от регистра
       //return str.indexOf(target)+1

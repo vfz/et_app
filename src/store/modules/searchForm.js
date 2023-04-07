@@ -379,7 +379,14 @@ export default {
         },
         //Получаем список станций прибытия
         async getToStations(ctx, from = '') {
-            const res = await fetch(ctx.rootState.API_PARTNERS_URL + "data/allto");
+            const res = await fetch(ctx.rootState.API_PARTNERS_URL + "data/allto", {
+                mode: 'cors',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json'
+                        // 'Cookie': 'Cookie (en-US)',
+                },
+            });
             const toStations = await res.json();
             ctx.commit('updateToStations', toStations)
 
@@ -408,7 +415,7 @@ export default {
 
             const res = await fetch(ctx.rootState.API_PARTNERS_URL + 'search?from=' + ctx.state.from + '&to=' + ctx.state.to + '&date=' + ctx.state.dateArival, {
                     mode: 'cors',
-                    // credentials: 'include',
+                    credentials: 'include',
                     headers: {
                         'Content-Type': 'application/json'
                             // 'Cookie': 'Cookie (en-US)',
@@ -434,7 +441,14 @@ export default {
 
             let fromId = ctx.state.toStations.find(toStation => toStation.name === ctx.state.fromStations.find(fromStation => fromStation.id_from_rosbilet === ctx.state.from_rosbilet).name).id_to_rosbilet //stationFrom.id_from_rosbilet
             let toId = ctx.state.fromStations.find(fromStation => fromStation.name === ctx.state.toStations.find(toStation => toStation.id_to_rosbilet === ctx.state.to_rosbilet).name).id_from_rosbilet //stationTo.id_to_rosbilet
-            const res = await fetch(ctx.rootState.API_URL + 'rosbiletClient.php?command=trip&from_id=' + toId + '&to_id=' + fromId + '&date_trip=' + ctx.state.dateBack)
+            const res = await fetch(ctx.rootState.API_PARTNERS_URL + 'search?from=' + toId + '&to=' + fromId + '&date=' + ctx.state.dateBack, {
+                    mode: 'cors',
+                    credentials: 'include',
+                    headers: {
+                        'Content-Type': 'application/json'
+                            // 'Cookie': 'Cookie (en-US)',
+                    },
+                })
                 .then(ctx.commit('setFlightsLoading', false))
             let allFlights = await res.json();
             if (allFlights.error === '0' && allFlights.result !== null) {

@@ -317,7 +317,7 @@ export default {
             
             if(response.data.formUrl){
               
-              window.location.href = response.data.formUrl;
+              // window.location.href = response.data.formUrl;
             }
           })
           .catch((error) =>{

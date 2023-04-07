@@ -384,14 +384,21 @@ export default {
         },
         //Получаем список станций прибытия
         async getToStations(ctx, from = '') {
-            const res = await fetch(ctx.rootState.API_URL + "?command=all_to&from_id=" + from);
+            const res = await fetch(ctx.rootState.API_PARTNERS_URL + "data/allto");
             const toStations = await res.json();
             ctx.commit('updateToStations', toStations)
 
         },
         //Получаем список станций отправления
         async getFromStations(ctx) {
-            const res = await fetch(ctx.rootState.API_URL + "?command=all_from");
+            const res = await fetch(ctx.rootState.API_PARTNERS_URL + "data/allfrom", {
+                mode: 'cors',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json'
+                        // 'Cookie': 'Cookie (en-US)',
+                },
+            });
             const fromStations = await res.json();
             ctx.commit('updateFromStations', fromStations)
         },
@@ -422,6 +429,7 @@ export default {
                 .catch((error) => {
                     throw error
                 })
+
         },
         //получение рейсов остальных провайдеров обратно
         async getAllFlightBack(ctx) {

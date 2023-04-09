@@ -298,7 +298,7 @@ export default {
     async transactionForVue() {
       const config = {
         method: 'post',
-        url : 'https://api.evrotrans.net/APIet/transaction_for_vue.php',
+        url : 'https://api.evrotrans.net/APIet/transaction_for_vue2.php',
         data : {
           'reisy': this.selectedSeat.filter(reis=>(reis.is_selected)),
           'passengers': this.getPassengers,

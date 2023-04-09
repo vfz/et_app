@@ -418,17 +418,17 @@ export default {
             let toId = ctx.state.toStations.find(station => station.id_to === ctx.state.to).id_to_rosbilet
 
 
-            // const res = await fetch(ctx.rootState.API_PARTNERS_URL + 'search?from=' + ctx.state.from + '&to=' + ctx.state.to + '&date=' + ctx.state.dateArival, {
-            //         mode: 'cors',
-            //         credentials: 'include',
-            //         headers: {
-            //             'Content-Type': 'application/json'
-            //                 // 'Cookie': 'Cookie (en-US)',
-            //         },
-            const res = await fetch(ctx.rootState.API_URL + 'rosbiletClient.php?command=trip&from_id=' + fromId + '&to_id=' + toId + '&date_trip=' + ctx.state.dateArival)
+            const res = await fetch(ctx.rootState.API_PARTNERS_URL + 'search?from=' + ctx.state.from + '&to=' + ctx.state.to + '&date=' + ctx.state.dateArival, {
+                    mode: 'cors',
+                    credentials: 'include',
+                    headers: {
+                        'Content-Type': 'application/json'
+                            // 'Cookie': 'Cookie (en-US)',
+                    },
+                })
                 .then(async(result) => {
                     let allFlights = await result.json()
-                    if (allFlights.error === '0' && allFlights.result !== null) {
+                    if ((allFlights.error === '0' || allFlights.error === '1') && allFlights.result !== null) {
                         ctx.commit('updateAllFlightThere', allFlights.result)
                         ctx.commit('updateFlightType', 'thereAnother')
                         ctx.commit('updateDefaultsSeat', ctx.rootGetters.getPassengers)

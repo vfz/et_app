@@ -234,7 +234,8 @@ export default {
         'selectedSeat',
         'getPassengers',
         'getBuyerInfo',
-        'getPromoCode'
+        'getPromoCode',
+        'getUTM'
     ])
   },
   methods: {
@@ -302,7 +303,8 @@ export default {
         data : {
           'reisy': this.selectedSeat.filter(reis=>(reis.is_selected)),
           'passengers': this.getPassengers,
-          'buyer':this.getBuyerInfo
+          'buyer':this.getBuyerInfo,
+          'utm':this.getUTM
       }
       }
       await axios.request(config)

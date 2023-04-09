@@ -29,6 +29,7 @@ export default {
         shemeDesktop: [],
         selectedSeat: [],
         isFlightsLoading: false,
+        UTM: "",
 
     },
     mutations: {
@@ -236,9 +237,18 @@ export default {
                     flight.seats.splice(id, 1)
                 }
             })
+        },
+        updateUTM(state, utm) {
+            state.UTM = utm
         }
     },
     actions: {
+
+        //Запись UTM метки
+        setUTM(ctx, utm) {
+            ctx.commit('updateUTM', utm)
+        },
+
         //обновить id рейса для которого нужно выводить Схему автобуса
         updatebBusTriptId(ctx, tripId) {
             ctx.commit('updatebBusTriptId', tripId)
@@ -315,6 +325,7 @@ export default {
         UpdateOneWay(ctx, oneWay) {
             ctx.commit('updateOneWay', oneWay)
             ctx.commit('setFlightsLoading', true)
+
             function loadingFlights() {
                 ctx.dispatch('getFlightThere')
                 ctx.dispatch('getFlightBack')
@@ -379,6 +390,9 @@ export default {
     },
     modules: {},
     getters: {
+        getUTM(state) {
+            return state.UTM
+        },
         shemeMobile(state) {
             return state.shemeMobile
         },

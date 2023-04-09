@@ -207,16 +207,16 @@ export default {
     'selectedSeat',
       'isFlightsLoading'
   ]),
-  mounted(){
-    
-  },
-    methods: {
+  
+  methods: {
     ...mapActions([
       'updatebBusTriptId',
       'updateCords',
       'updateIcon',
-      'chengeSelectTrip'
+      'chengeSelectTrip',
+      'setUTM'
     ]),
+
     timeFormat(time,target){
       
       if(target==='hours'){
@@ -238,6 +238,12 @@ export default {
                 ]
       }
     }
+
+  },
+  
+  mounted(){
+    // console.log(this.$route.query)
+    this.setUTM(this.$route.query)
   }
 }
 

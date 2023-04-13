@@ -29,7 +29,7 @@ export default {
         shemeDesktop: [],
         selectedSeat: [],
         isFlightsLoading: false,
-        UTM: "",
+        UTM: { utm_source: "ТЕСТ", }
 
     },
     mutations: {

@@ -243,7 +243,7 @@ export default {
   
   mounted(){
     // console.log(this.$route.query)
-    this.setUTM(this.$route.query)
+    this.setUTM(this.$route.query)//this.$route.query)
   }
 }
 

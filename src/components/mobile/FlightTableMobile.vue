@@ -347,6 +347,7 @@ export default {
       'updateCords',
       'updateIcon',
       'chengeSelectTrip',
+      'setUTM'
     ]),
       timeFormat(time,target){
 
@@ -369,6 +370,11 @@ export default {
                 ]
       }
     }
+  },
+    
+  mounted(){
+    // console.log(this.$route.query)
+    this.setUTM(this.$route.query)//this.$route.query)
   }
 }
 </script>

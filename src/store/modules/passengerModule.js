@@ -9,7 +9,7 @@ export default {
                 id_ticket: 0,
                 id_trip: 0,
                 seat: 0
-            },],
+            }, ],
             secondName: '',
             firstName: '',
             middleName: '',
@@ -42,6 +42,7 @@ export default {
             secondName: '',
             email: '',
             number: '',
+            utm: '',
             errors: {
                 secondName: 'Заполните фамилию',
                 firstName: 'Заполните имя',
@@ -61,6 +62,9 @@ export default {
         activeTab: 0,
     },
     mutations: {
+        updateUTMBuyer(state, utm) {
+            state.buyerInfo.utm = utm
+        },
         addPassenger(state, passenger) {
             state.passengers.push(passenger)
         },
@@ -175,6 +179,9 @@ export default {
         }
     },
     actions: {
+        updateUTMBuyer(ctx, utm) {
+            ctx.commit('updateUTMBuyer', utm)
+        },
         //Обновление данных пассажиров
         addPassenger(ctx, isAdult) {
             if (
@@ -190,7 +197,7 @@ export default {
                         id_ticket: 0,
                         id_trip: 0,
                         seat: 0,
-                    },],
+                    }, ],
                     secondName: '',
                     firstName: '',
                     middleName: '',
@@ -223,6 +230,7 @@ export default {
             ) {
                 return false;
             }
+
             function getIndex(passenger) {
                 if (passenger.isAdult === isAdult) {
                     return passenger
@@ -261,17 +269,17 @@ export default {
                 data: 'promo=' + value
             }
             await axios.request(config).then((response) => {
-                console.log(response)
-                let error = response.data.Error
-                let result = response.data.Result
-                if (error === '1') {
-                    ctx.commit('updatePromocodeError', response.data.Error_description)
-                }
-                if (error === '0') {
-                    ctx.commit('updatePromocodeError', '')
-                    ctx.commit('updatePromocodeResult', result)
-                }
-            })
+                    console.log(response)
+                    let error = response.data.Error
+                    let result = response.data.Result
+                    if (error === '1') {
+                        ctx.commit('updatePromocodeError', response.data.Error_description)
+                    }
+                    if (error === '0') {
+                        ctx.commit('updatePromocodeError', '')
+                        ctx.commit('updatePromocodeResult', result)
+                    }
+                })
                 .catch((error) => {
                     console.log(error)
                 })
@@ -294,8 +302,7 @@ export default {
                     ctx.commit('updateSecondNameBuyer', '')
                     ctx.commit('updateHaveErrors', true)
                     ctx.commit('updateValidateErrorBuyer', [fieldType, 'Заполните фамилию'])
-                }
-                else {
+                } else {
                     ctx.commit('updateSecondNameBuyer', value)
                     ctx.commit('updateHaveErrors', false)
                     ctx.commit('updateValidateErrorBuyer', [fieldType, ''])
@@ -306,8 +313,7 @@ export default {
                     ctx.commit('updateFirstNameBuyer', '')
                     ctx.commit('updateHaveErrors', true)
                     ctx.commit('updateValidateErrorBuyer', [fieldType, 'Заполните имя'])
-                }
-                else {
+                } else {
                     ctx.commit('updateFirstNameBuyer', value)
                     ctx.commit('updateHaveErrors', false)
                     ctx.commit('updateValidateErrorBuyer', [fieldType, ''])
@@ -319,8 +325,7 @@ export default {
                     ctx.commit('updateEmailBuyer', value)
                     ctx.commit('updateHaveErrors', false)
                     ctx.commit('updateValidateErrorBuyer', [fieldType, ''])
-                }
-                else {
+                } else {
                     ctx.commit('updateEmailBuyer', '')
                     ctx.commit('updateHaveErrors', true)
                     ctx.commit('updateValidateErrorBuyer', [fieldType, 'Введите корректно почту name@mail.ru'])
@@ -332,8 +337,7 @@ export default {
                     ctx.commit('updateNumberBuyer', value)
                     ctx.commit('updateHaveErrors', false)
                     ctx.commit('updateValidateErrorBuyer', [fieldType, ''])
-                }
-                else {
+                } else {
                     ctx.commit('updateNumberBuyer', value)
                     ctx.commit('updateHaveErrors', true)
                     ctx.commit('updateValidateErrorBuyer', [fieldType, 'Введите корретно номер +7 (___)-___-__-__ '])
@@ -342,14 +346,13 @@ export default {
         },
         validateForm(ctx, [id, fieldType, event, additional = true]) {
             const value = event.target.value
-            //проверка фамилии
+                //проверка фамилии
             if (fieldType === 'secondName') {
                 if (value === '') {
                     ctx.commit('updateSecondName', ['', id])
                     ctx.commit('updateHaveErrors', true)
                     ctx.commit('updateValidateError', [id, fieldType, 'Заполните фамилию'])
-                }
-                else {
+                } else {
                     ctx.commit('updateSecondName', [value, id])
                     ctx.commit('updateHaveErrors', false)
                     ctx.commit('updateValidateError', [id, fieldType, ''])
@@ -361,8 +364,7 @@ export default {
                     ctx.commit('updateFirstName', ['', id])
                     ctx.commit('updateHaveErrors', true)
                     ctx.commit('updateValidateError', [id, fieldType, 'Заполните имя'])
-                }
-                else {
+                } else {
                     ctx.commit('updateFirstName', [value, id])
                     ctx.commit('updateHaveErrors', false)
                     ctx.commit('updateValidateError', [id, fieldType, ''])
@@ -374,8 +376,7 @@ export default {
                     ctx.commit('updateMiddleName', ['', id])
                     ctx.commit('updateHaveErrors', true)
                     ctx.commit('updateValidateError', [id, fieldType, 'Заполните отчество'])
-                }
-                else {
+                } else {
                     ctx.commit('updateMiddleName', [value, id])
                     ctx.commit('updateHaveErrors', false)
                     ctx.commit('updateValidateError', [id, fieldType, ''])
@@ -428,8 +429,7 @@ export default {
                 if (value !== '0' && value !== '1') {
                     ctx.commit('updateGender', ['', id])
                     ctx.commit('updateValidateError', [id, fieldType, 'Выберите пол'])
-                }
-                else {
+                } else {
                     ctx.commit('updateGender', [value, id])
                     ctx.commit('updateHaveErrors', false)
                     ctx.commit('updateValidateError', [id, fieldType, ''])
@@ -441,8 +441,7 @@ export default {
                     ctx.commit('updateCitizenship', ['', id])
                     ctx.commit('updateHaveErrors', true)
                     ctx.commit('updateValidateError', [id, fieldType, 'Заполните гражданство'])
-                }
-                else {
+                } else {
                     ctx.commit('updateCitizenship', [value, id])
                     ctx.commit('updateHaveErrors', false)
                     ctx.commit('updateValidateError', [id, fieldType, ''])
@@ -461,8 +460,7 @@ export default {
                     ctx.commit('updateDocument', ['', id])
                     ctx.commit('updateHaveErrors', true)
                     ctx.commit('updateValidateError', [id, fieldType, 'Заполните документ'])
-                }
-                else {
+                } else {
                     ctx.commit('updateDocument', [value, id])
                     ctx.commit('updateValidateError', [id, fieldType, ''])
                 }
@@ -476,8 +474,7 @@ export default {
                         ctx.commit('updateDocumentInfo', [value, id])
                         ctx.commit('updateHaveErrors', true)
                         ctx.commit('updateValidateError', [id, fieldType, 'Серия и номер паспорта состоит из 10 цифр'])
-                    }
-                    else {
+                    } else {
                         ctx.commit('updateDocumentInfo', [value, id])
                         ctx.commit('updateHaveErrors', false)
                         ctx.commit('updateValidateError', [id, fieldType, ''])
@@ -490,8 +487,7 @@ export default {
                         ctx.commit('updateDocumentInfo', [value, id])
                         ctx.commit('updateHaveErrors', true)
                         ctx.commit('updateValidateError', [id, fieldType, 'Серия и номер паспорта состоит из 9 цифр'])
-                    }
-                    else {
+                    } else {
                         ctx.commit('updateDocumentInfo', [value, id])
                         ctx.commit('updateHaveErrors', false)
                         ctx.commit('updateValidateError', [id, fieldType, ''])
@@ -504,8 +500,7 @@ export default {
                         ctx.commit('updateDocumentInfo', [value, id])
                         ctx.commit('updateHaveErrors', false)
                         ctx.commit('updateValidateError', [id, fieldType, ''])
-                    }
-                    else {
+                    } else {
                         ctx.commit('updateDocumentInfo', [value, id])
                         ctx.commit('updateHaveErrors', true)
                         ctx.commit('updateValidateError', [id, fieldType, 'Введите корректные данные (IIДН123456)'])
@@ -518,8 +513,7 @@ export default {
                         ctx.commit('updateDocumentInfo', [value, id])
                         ctx.commit('updateHaveErrors', false)
                         ctx.commit('updateValidateError', [id, fieldType, ''])
-                    }
-                    else {
+                    } else {
                         ctx.commit('updateHaveErrors', true)
                         ctx.commit('updateValidateError', [id, fieldType, 'Введите корректные данные (АС9876543)'])
                     }
@@ -628,7 +622,7 @@ export default {
                 const response = await fetch(ctx.rootState.API_URL + '?command=type_doc')
                 const documentTypes = await response.json();
                 //Очистить строку от &nbsp;
-                documentTypes.result.forEach(function (documentType, index) {
+                documentTypes.result.forEach(function(documentType, index) {
                     documentType.name = documentType.name.replaceAll('&nbsp;', ' ')
                 });
                 ctx.commit('setDocumentTypes', documentTypes.result)

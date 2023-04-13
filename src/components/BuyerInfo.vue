@@ -127,7 +127,9 @@ export default {
         'updateEmailBuyer',
         'updateNumberBuyer',
         'validateFormBuyer',
-        'addRussianNumberPrefix'
+        'addRussianNumberPrefix',
+        'getUTM',
+        'updateUTMBuyer'
     ]),
   },
   computed: {
@@ -136,6 +138,10 @@ export default {
       'getBuyerInfo'
     ]),
   },
+  mounted(){
+    // console.log(this.$route.query)
+    this.updateUTMBuyer(JSON.stringify(this.getUTM))
+  }
 }
 </script>
 

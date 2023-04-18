@@ -307,25 +307,26 @@ export default {
           'utm':this.getUTM
       }
       }
-      await axios.request(config)
-          .then((response) =>{
+      console.log(config)
+      // await axios.request(config)
+      //     .then((response) =>{
            
-            const mydata= response.data
+      //       const mydata= response.data
             
-            if(+mydata.Erorr>0){
+      //       if(+mydata.Erorr>0){
 
-              alert(mydata.Error_description)
-            }
+      //         alert(mydata.Error_description)
+      //       }
             
-            if(response.data.formUrl){
+      //       if(response.data.formUrl){
               
-              window.location.href = response.data.formUrl;
-            }
-          })
-          .catch((error) =>{
+      //         window.location.href = response.data.formUrl;
+      //       }
+      //     })
+      //     .catch((error) =>{
             
-           //console.log(error)
-          })
+      //      //console.log(error)
+      //     })
       
       
     }

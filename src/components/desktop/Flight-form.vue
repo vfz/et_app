@@ -483,19 +483,19 @@ export default {
         }
       }
       .card:first-child {
-        &-body {
+        .card-body {
           position: relative;
         }
       }
       .card:nth-child(2) {
-        &-body {
+        .card-body {
           position: relative;
           z-index: 9998;
         }
       }
       .card {
         border-radius: .85rem;
-        &-body {
+        .card-body {
           // padding: 2rem 1rem 2rem 2.2rem;
           .form-label {
             @include font($uni,$regular,18px,24.3px,$base);

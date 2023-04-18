@@ -431,19 +431,19 @@ export default {
         }
       }
       .card:first-child {
-        &-body {
+        .card-body {
           position: relative;
         }
       }
       .card:nth-child(2) {
-        &-body {
+        .card-body {
           position: relative;
           z-index: 9998;
         }
       }
       .card {
         border-radius: 8px;
-        &-body {
+        .card-body {
           &-section {
             .form-label {
               font-family: $uni;

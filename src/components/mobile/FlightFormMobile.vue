@@ -269,8 +269,8 @@ export default {
   async mounted(){
     await this.getFromStations();
     await this.getToStations();
-    this.setFrom(this.$route.params.from);
-    this.setTo(this.$route.params.to);
+    this.$store.commit('updateFrom', this.$route.params.from);
+    this.$store.commit('updateTo', this.$route.params.to);
     this.toPlace= this.toStations.find(station => station.id_to === this.$route.params.to).name;
     this.fromPlace= this.fromStations.find(station => station.id_from === this.$route.params.from).name;
     let oneWay = true

@@ -3,21 +3,26 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-12">
-          <h2 class="title-table" v-if="flightType=='there'">
+          <h2 class="title-table" v-if="flightThere && flightType=='there'">
              Туда <span class="title-table-counter">({{flightThere.length}})</span>
           </h2>
-          <h2 class="title-table" v-if="flightType=='back'">
+          <h2 class="title-table" v-if="flightBack && flightType=='back'">
              Обратно <span class="title-table-counter">({{flightBack.length}})</span>
           </h2>
-          <h2 class="title-table" v-if="flightType=='backAnother'">
+          <h2 class="title-table" v-if="flightBackAnother && flightType=='backAnother'">
             Обратно другие рейсы <span class="title-table-counter">({{flightBackAnother.length}})</span>
           </h2>
-          <h2 class="title-table" v-if="flightType=='thereAnother'">
+          <h2 class="title-table" v-if="flightThereAnother && flightType=='thereAnother'">
             Туда другие рейсы <span class="title-table-counter">({{flightThereAnother.length}})</span>
           </h2>
         </div>
       </div>
-      <div class="row">
+      <div 
+      v-if="flightThere && flightType=='there' ||
+      flightBack && flightType=='back' ||
+      flightBackAnother && flightType=='backAnother' ||
+      flightThereAnother && flightType=='thereAnother'" 
+      class="row">
         <div class="col-12">
           <div v-if="!isFlightsLoading" class="table-wrapper table-responsive">
             <table class="table align-middle">

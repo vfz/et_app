@@ -542,12 +542,12 @@ export default{
         }
       }
       .card:first-child {
-        &-body {
+        .card-body {
           position: relative;
         }
       }
       .card:nth-child(2) {
-        &-body {
+        .card-body {
           position: relative;
           z-index: 9998;
         }
@@ -557,7 +557,7 @@ export default{
         @media screen and (max-width: 768px) {
           border-radius: 8px;
         }
-        &-body {
+        .card-body {
           // padding: 2rem 1rem 2rem 2.2rem;
           @media screen and (max-width: 768px) {
             padding: 8px 12px;

@@ -361,9 +361,11 @@ export default {
             }
 
             if (flightType === 'thereAnother') {
-                state.flightThereAnother.forEach((item) => {
-                    item.flightType = 'thereAnother'
-                })
+                if (state.flightThereAnother) {
+                    state.flightThereAnother.forEach((item) => {
+                        item.flightType = 'thereAnother'
+                    })
+                }
             }
 
 
@@ -417,7 +419,6 @@ export default {
             let fromId = ctx.state.fromStations.find(station => station.id_from === ctx.state.from).id_from_rosbilet
             let toId = ctx.state.toStations.find(station => station.id_to === ctx.state.to).id_to_rosbilet
 
-
             const res = await fetch(ctx.rootState.API_PARTNERS_URL + 'search?from=' + ctx.state.from + '&to=' + ctx.state.to + '&date=' + ctx.state.dateArival, {
                     mode: 'cors',
                     credentials: 'include',
@@ -442,6 +443,9 @@ export default {
                     }
                 })
                 .catch((error) => {
+                    ctx.commit('updateAllFlightThere', [])
+                    ctx.commit('updateFlightType', 'thereAnother')
+                    ctx.commit('setFlightsLoading', false)
                     throw error
                 })
 

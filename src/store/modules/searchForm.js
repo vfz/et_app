@@ -183,12 +183,16 @@ export default {
         },
         updateDefaultsSeat(state, passengers) {
 
-            const allFlights = [
-                ...state.flightBack.filter(flight => (flight.count_available_seats_trip >= passengers.length)),
-                ...state.flightThere.filter(flight => (flight.count_available_seats_trip >= passengers.length)),
-                ...state.flightBackAnother.filter(flight => (flight.count_available_seats_trip >= passengers.length)),
-                ...state.flightThereAnother.filter(flight => (flight.count_available_seats_trip >= passengers.length))
-            ]
+            let allFlights = []
+
+            if (state.flightBack || state.flightThere || state.flightBackAnother || state.flightThereAnother) {
+                allFlights = [
+                    ...(state.flightBack || []).filter(flight => (flight.count_available_seats_trip >= passengers.length)),
+                    ...(state.flightThere || []).filter(flight => (flight.count_available_seats_trip >= passengers.length)),
+                    ...(state.flightBackAnother || []).filter(flight => (flight.count_available_seats_trip >= passengers.length)),
+                    ...(state.flightThereAnother || []).filter(flight => (flight.count_available_seats_trip >= passengers.length))
+                ];
+            } 
 
             state.selectedSeat = allFlights.map(flight => {
 

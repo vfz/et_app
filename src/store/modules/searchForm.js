@@ -455,22 +455,31 @@ export default {
         },
         //получение рейсов остальных провайдеров обратно
         async getAllFlightBack(ctx) {
+            console.log('Invoking getAllFlightBack function...')
+            console.log(ctx.state.oneWay)
             const validSearchBack = (!+ctx.state.from || !+ctx.state.to || !ctx.state.dateBack || ctx.state.oneWay) ? false : true
+            console.log('Invoking getAllFlightBack function...')
             ctx.commit('setFlightsLoading', true)
-            if (!validSearchBack) { return false }
+            if (!validSearchBack) {console.log('Invalid search back. Exiting function...');  return false }
             let fromId = ctx.state.toStations.find(toStation => toStation.name === ctx.state.fromStations.find(fromStation => fromStation.id_from_rosbilet === ctx.state.from_rosbilet).name).id_to_rosbilet //stationFrom.id_from_rosbilet
             let toId = ctx.state.fromStations.find(fromStation => fromStation.name === ctx.state.toStations.find(toStation => toStation.id_to_rosbilet === ctx.state.to_rosbilet).name).id_from_rosbilet //stationTo.id_to_rosbilet
+            console.log('From ID:', fromId)
+            console.log('To ID:', toId)
 
             const res = await fetch(ctx.rootState.API_URL + 'rosbiletClient.php?command=trip&from_id=' + toId + '&to_id=' + fromId + '&date_trip=' + ctx.state.dateBack)
                 .then(async(result) => {
+                    console.log('Fetching all flights...')
                     let allFlights = await result.json()
                     if (allFlights.error === '0' && allFlights.result !== null) {
+                        console.log('All flights:', allFlights.result)
                         ctx.commit('updateAllFlightBack', allFlights.result)
                         ctx.commit('updateFlightType', 'backAnother')
                         ctx.commit('updateDefaultsSeat', ctx.rootGetters.getPassengers)
                         ctx.commit('setFlightsLoading', false)
+                        console.log('Exiting function...')
                         return true
                     } else {
+                        console.log('No flights found. Exiting function...')
                         ctx.commit('updateAllFlightBack', [])
                         ctx.commit('updateFlightType', 'backAnother')
                         ctx.commit('setFlightsLoading', false)
@@ -478,6 +487,7 @@ export default {
                     }
                 })
                 .catch((error) => {
+                    console.error('Error:', error)
                     throw error
                 })
         },

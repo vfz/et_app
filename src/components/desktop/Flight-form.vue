@@ -314,7 +314,11 @@ export default {
       'MinusChild',
       'addPassenger',
       'removePassenger',
-      'UpdateOneWay'
+      'UpdateOneWay',
+      'getFlightThere',
+      'getFlightBack',
+      'getAllFlightThere',
+      'getAllFlightBack',
     ]),
     alertPlace () {
       this.UpdateOneWay(this.oneWay)
@@ -346,14 +350,10 @@ export default {
     }
   },
   async mounted(){
-    const paramsFrom = this.$route.params.from
-    const paramsTo = this.$route.params.to
-
     await this.getFromStations();
     await this.getToStations();
-
-    this.toPlace= this.toStations.find(station => station.id_to === paramsTo).name;
-    this.fromPlace= this.fromStations.find(station => station.id_from === paramsFrom).name;
+    const paramsFrom = parseFloat(this.$route.params.from)
+    const paramsTo = parseFloat(this.$route.params.to)
     let oneWay = ''
     if (this.$route.params.oneWay === 'true') {
       oneWay = true
@@ -362,9 +362,11 @@ export default {
       oneWay = false
     }
     this.$store.commit('updateOneWay', oneWay)
-
+    
     this.setFrom(paramsFrom);
     this.setTo(paramsTo);
+    this.$store.commit('updateFrom', paramsFrom)
+    this.$store.commit('updateTo', paramsTo)
 
     if (+this.to){
           this.toPlace= this.toStations.find(station => station.id_to === this.to).name;

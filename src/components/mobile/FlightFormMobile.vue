@@ -279,24 +279,24 @@ export default {
     }
   },
   async mounted(){
-    const paramsFrom = this.$route.params.from
-    const paramsTo = this.$route.params.to
-
     await this.getFromStations();
     await this.getToStations();
-
-    this.setFrom(paramsFrom);
-    this.setTo(paramsTo);
-    this.toPlace= this.toStations.find(station => station.id_to === this.$route.params.to).name;
-    this.fromPlace= this.fromStations.find(station => station.id_from === this.$route.params.from).name;
-    let oneWay = true
-    if (this.$route.params.oneWay) {
-      oneWay = (this.$route.params.oneWay === 'true')
-    }
-    else {
+    const paramsFrom = parseFloat(this.$route.params.from)
+    const paramsTo = parseFloat(this.$route.params.to)
+    let oneWay = ''
+    if (this.$route.params.oneWay === 'true') {
       oneWay = true
     }
+    else {
+      oneWay = false
+    }
     this.$store.commit('updateOneWay', oneWay)
+    
+    this.setFrom(paramsFrom);
+    this.setTo(paramsTo);
+    this.$store.commit('updateFrom', paramsFrom)
+    this.$store.commit('updateTo', paramsTo)
+
     if (+this.to){
           this.toPlace= this.toStations.find(station => station.id_to === this.to).name;
         }

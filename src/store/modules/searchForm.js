@@ -201,6 +201,13 @@ export default {
                     source: flight.source,
                     is_selected: false,
                     flight_type: flight.flightType,
+                    id_from_point: flight.id_from_point,
+                    id_to_point: flight.id_to_point,
+                    id_from_city: flight.id_from_city,
+                    id_to_city: flight.id_to_city,
+                    date_trip: flight.date_trip,
+                    time_trip: flight.time_trip,
+                    flight_type: flight.flightType,
                     seats: [
                         //Берем первые N мест из рейса с достаточным кол-вом мест где N кол-во пассажиров
                         ...flight.seats_trip.split('^').slice(0, passengers.length)

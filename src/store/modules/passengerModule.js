@@ -10,6 +10,12 @@ export default {
                 id_trip: 0,
                 seat: 0,
                 source: null,
+                id_from_point: null,
+                id_to_point: null,
+                id_from_city: null,
+                id_to_city: null,
+                date_trip: null,
+                time_trip: null,
                 flight_type: null,
             },],
             secondName: '',
@@ -143,14 +149,28 @@ export default {
                         id_trip: selectedSeats[1].id_trip,
                         seat: selectedSeats[1].seats[index],
                         sourse: selectedSeats[1].source,
-                        flight_type: selectedSeats[1].flight_type
+                        flight_type: selectedSeats[1].flight_type,
+                        is_selected: selectedSeats[1].is_selected,
+                        flight_type: selectedSeats[1].flight_type,
+                        id_from_point: selectedSeats[1].id_from_point,
+                        id_to_point: selectedSeats[1].id_to_point,
+                        id_to_city: selectedSeats[1].id_to_city,
+                        date_trip: selectedSeats[1].date_trip,
+                        time_trip: selectedSeats[1].time_trip,
                     }
                     passenger.selectedSeats[1] = {
                         id_ticket: selectedSeats[0].id_ticket,
                         id_trip: selectedSeats[0].id_trip,
                         seat: selectedSeats[0].seats[index],
                         sourse: selectedSeats[0].source,
-                        flight_type: selectedSeats[0].flight_type
+                        flight_type: selectedSeats[0].flight_type,
+                        is_selected: selectedSeats[0].is_selected,
+                        flight_type: selectedSeats[0].flight_type,
+                        id_from_point: selectedSeats[0].id_from_point,
+                        id_to_point: selectedSeats[0].id_to_point,
+                        id_to_city: selectedSeats[0].id_to_city,
+                        date_trip: selectedSeats[0].date_trip,
+                        time_trip: selectedSeats[0].time_trip,
                     }
                 } 
                 else {
@@ -159,7 +179,14 @@ export default {
                         id_trip: selectedSeats[0].id_trip,
                         seat: selectedSeats[0].seats[index],
                         sourse: selectedSeats[0].source,
-                        flight_type: selectedSeats[0].flight_type
+                        flight_type: selectedSeats[0].flight_type,
+                        is_selected: selectedSeats[0].is_selected,
+                        flight_type: selectedSeats[0].flight_type,
+                        id_from_point: selectedSeats[0].id_from_point,
+                        id_to_point: selectedSeats[0].id_to_point,
+                        id_to_city: selectedSeats[0].id_to_city,
+                        date_trip: selectedSeats[0].date_trip,
+                        time_trip: selectedSeats[0].time_trip,
                     }
                 }
             })

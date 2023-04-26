@@ -5,8 +5,8 @@
         selectedSeat.filter(flightFiltr => (flightFiltr.id_trip === flight.id_trip))[0].is_selected,
       'd-none': notSelectedFlights(flight)
     }">
-      <span @click="showFullName = !showFullName" data-bs-toggle="tooltip" data-bs-placement="bottom"
-        :title="flight.carriers" :class="{ 'full-name': showFullName }" class="badge text-bg-primary position-absolute">
+      <span v-if="getNameBage(flight.carriers)"  @click="showFullName = !showFullName" data-bs-toggle="tooltip" data-bs-placement="bottom"
+      :title="flight.carriers" :class="{ 'full-name': showFullName }" class="badge text-bg-primary position-absolute">
         {{ getNameBage(flight.carriers) }}
       </span>
       <div class="table-item-content-wrapper">
@@ -162,6 +162,9 @@ export default {
       'updateFlightType',
     ]),
     getNameBage(name) {
+      if (!name) {
+        return false
+      }
       if (!this.showFullName) {
         if (name.length > 15) {
           return name.substring(0, 12) + "...";

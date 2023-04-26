@@ -186,7 +186,8 @@
                       <div class="price mb-1 d-inline-block">
                         {{(+flight.full_ticket_price*+getAdultsCount)+(+flight.child_ticket_price*+getChildrensCount)}}₽
                       </div>
-                      <span 
+                      <span
+                      v-if="getNameBage(flight.carriers)" 
                       data-bs-toggle="tooltip" data-bs-placement="bottom" :title="flight.carriers"  
                       class="badge rounded-pill text-bg-primary ">{{ getNameBage(flight.carriers) }}</span>
                     </div>
@@ -274,6 +275,9 @@ export default {
       'getSelectedFlightType'
     ]),
     getNameBage(name) {
+      if (!name) {
+        return false
+      }
       if (!this.showFullName) {
         if (name.length > 15) {
         return name.substring(0, 12) + "...";

@@ -191,7 +191,7 @@ export default {
                     ...(state.flightBackAnother || []).filter(flight => (flight.count_available_seats_trip >= passengers.length)),
                     ...(state.flightThereAnother || []).filter(flight => (flight.count_available_seats_trip >= passengers.length))
                 ];
-            } 
+            }
 
             state.selectedSeat = allFlights.map(flight => {
 
@@ -467,13 +467,13 @@ export default {
             const validSearchBack = (!+ctx.state.from || !+ctx.state.to || !ctx.state.dateBack || ctx.state.oneWay) ? false : true
             console.log('Invoking getAllFlightBack function...')
             ctx.commit('setFlightsLoading', true)
-            if (!validSearchBack) {console.log('Invalid search back. Exiting function...');  return false }
-            let fromId = ctx.state.toStations.find(toStation => toStation.name === ctx.state.fromStations.find(fromStation => fromStation.id_from_rosbilet === ctx.state.from_rosbilet).name).id_to_rosbilet //stationFrom.id_from_rosbilet
-            let toId = ctx.state.fromStations.find(fromStation => fromStation.name === ctx.state.toStations.find(toStation => toStation.id_to_rosbilet === ctx.state.to_rosbilet).name).id_from_rosbilet //stationTo.id_to_rosbilet
+            if (!validSearchBack) { console.log('Invalid search back. Exiting function...'); return false }
+            let fromId = ctx.state.toStations.find(toStation => toStation.name === ctx.state.fromStations.find(fromStation => fromStation.id_from_rosbilet === ctx.state.from_rosbilet).name).id_to //stationFrom.id_from_rosbilet
+            let toId = ctx.state.fromStations.find(fromStation => fromStation.name === ctx.state.toStations.find(toStation => toStation.id_to_rosbilet === ctx.state.to_rosbilet).name).id_from //stationTo.id_to_rosbilet
             console.log('From ID:', fromId)
             console.log('To ID:', toId)
 
-            const res = await fetch(ctx.rootState.API_URL + 'rosbiletClient.php?command=trip&from_id=' + toId + '&to_id=' + fromId + '&date_trip=' + ctx.state.dateBack)
+            const res = await fetch(ctx.rootState.API_PARTNERS_URL + 'search?from=' + toId + '&to=' + fromId + '&date=' + ctx.state.dateBack)
                 .then(async(result) => {
                     console.log('Fetching all flights...')
                     let allFlights = await result.json()

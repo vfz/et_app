@@ -231,7 +231,6 @@ export default {
                 }
             }
         },
-
         changeSeatList(state, { busTripId, seat, status, passengers }) {
             let selectedFlight = state.selectedSeat.filter(reis => (reis.id_trip === busTripId))[0]
             if (status) {
@@ -377,7 +376,14 @@ export default {
                     item.flightType = 'backAnother'
                 })
             }
+        },
+        removeFlights(state){
+            state.flightThere=[]
+            state.flightThereAnother= []
+            state.flightBack= []
+            state.flightBackAnother= []
         }
+
     },
     actions: {
         //обновить id рейса для которого нужно выводить Схему автобуса
@@ -433,7 +439,7 @@ export default {
                 })
                 .then(async(result) => {
                     let allFlights = await result.json()
-                    if ((allFlights.error === '0' || allFlights.error === '1') && allFlights.result !== null) {
+                    if ((allFlights.error === '0' ) && allFlights.result !== null) {
                         ctx.commit('updateAllFlightThere', allFlights.result)
                         ctx.commit('updateFlightType', 'thereAnother')
                         ctx.commit('updateDefaultsSeat', ctx.rootGetters.getPassengers)
@@ -492,6 +498,7 @@ export default {
                     throw error
                 })
         },
+        
         //Получаем список рейсов (туда)÷
         async getFlightThere(ctx) {
             // ctx.commit('setFlightsLoading', true)
@@ -514,6 +521,7 @@ export default {
                     throw error
                 });
         },
+
         //Получаем список рейсов (обратно)
         async getFlightBack(ctx) {
             ctx.commit('setFlightsLoading', true)
@@ -539,16 +547,19 @@ export default {
         },
 
         async getPrice(ctx){
+
             const validTherePrice = (!+ctx.state.from || !+ctx.state.to) ? false : true
             if (validTherePrice) {
+                
                 const from_okato = ctx.state.fromStations.find(station => station.id_from === ctx.state.from).okato
                 const to_okato = ctx.state.toStations.find(station => station.id_to === ctx.state.to).okato
                 const resTherePrices = await fetch(ctx.rootState.API_URL + "?command=prices_okato_trip&from_id=" + from_okato + "&to_id=" + to_okato)
                 const therePrices = await resTherePrices.json();
                 ctx.commit('setDateArivalPrices', therePrices)
             }
-            const validBackPrice = (!+ctx.state.from || !+ctx.state.to || !+ctx.state.oneWay) ? false : true
+            const validBackPrice = (!+ctx.state.from || !+ctx.state.to || +ctx.state.oneWay) ? false : true
             if (validBackPrice) {
+                
                 const from_okato = ctx.state.toStations.find(station => station.id_to === ctx.state.to).okato
                 const to_okato = ctx.state.fromStations.find(station => station.id_from === ctx.state.from).okato
 
@@ -557,6 +568,7 @@ export default {
                 ctx.commit('setDateBackPrices', backPrices)
             }
         },
+
         async loadingFlights(ctx){
             const validSearchThere = (!+ctx.state.from || !+ctx.state.to || !ctx.state.dateArival) ? false : true
             if (!validSearchThere) { return false }
@@ -568,99 +580,61 @@ export default {
                 .then(await ctx.dispatch('getAllFlightBack'))
 
             ctx.commit('setSelectedFlightType')
-            // ctx.dispatch('getFlightThere')
-            // ctx.dispatch('getFlightBack')
-            // ctx.dispatch('getAllFlightThere')
-            // ctx.dispatch('getAllFlightBack')
-
             ctx.commit('setFlightsLoading', false)
         },
         // Ракировка откуда куда
         castling(ctx) {
-            // ctx.dispatch('getFlightThere')
             ctx.dispatch('getPrice')
             ctx.dispatch('loadingFlights')
-
-            // ctx.dispatch('getFlightThere')
-            // ctx.dispatch('getFlightBack')
-            // ctx.dispatch('getAllFlightThere')
-            // ctx.dispatch('getAllFlightBack')
         },
         UpdateOneWay(ctx, oneWay) {
             ctx.commit('updateOneWay', oneWay)
-            // ctx.commit('setFlightsLoading', true)
             ctx.dispatch('getPrice')
-            ctx.dispatch('loadingFlights')
 
-            // function loadingFlights() {
-            //     ctx.dispatch('getFlightThere')
-            //     ctx.dispatch('getFlightBack')
-            //     ctx.dispatch('getAllFlightThere')
-            //     ctx.dispatch('getAllFlightBack')
-            //     ctx.commit('setFlightsLoading', false)
-            // }
-            // setTimeout(loadingFlights, 4000)
         },
         UpdateselectDate(ctx) {
+            ctx.commit('removeFlights')
             ctx.commit('newselectDate')
-            // ctx.dispatch('loadingFlights')
-
-            // ctx.dispatch('getFlightThere')
-            // ctx.dispatch('getFlightBack')
-            // ctx.dispatch('getAllFlightThere')
-            // ctx.dispatch('getAllFlightBack')
         },
+
         UpdateselectDateBack(ctx) {
+            ctx.commit('removeFlights')
             ctx.commit('newselectDateBack')
-            // ctx.dispatch('loadingFlights')
-
-            // ctx.dispatch('getFlightThere')
-            // ctx.dispatch('getFlightBack')
-            // ctx.dispatch('getAllFlightThere')
-            // ctx.dispatch('getAllFlightBack')
         },
+
         selectDateFalse(ctx) {
             ctx.commit('DateFalse')
         },
+
         SetDateArival(ctx, f) {
+            ctx.commit('removeFlights')
             ctx.commit('updateDate', f)
 
         },
+
         SetDateBack(ctx, f) {
+            ctx.commit('removeFlights')
             ctx.commit('updateDateBack', f)
 
         },
-        SetDate(ctx, newDate) {
-            ctx.commit('updateDateC', newDate)
-            // ctx.dispatch('loadingFlights')
 
-            // ctx.dispatch('getFlightThere')
-            // ctx.dispatch('getFlightBack')
-            // ctx.dispatch('getAllFlightThere')
-            // ctx.dispatch('getAllFlightBack')
+        SetDate(ctx, newDate) {
+            ctx.commit('removeFlights')
+            ctx.commit('updateDateC', newDate)
         },
+
         setFrom(ctx, id) {
+            ctx.commit('removeFlights')
             ctx.commit('updateFrom', id)
             ctx.dispatch('getPrice')
-
-            // ctx.dispatch('loadingFlights')
-
-            // ctx.dispatch('getFlightThere')
-            // ctx.dispatch('getFlightBack')
-            // ctx.dispatch('getAllFlightThere')
-            // ctx.dispatch('getAllFlightBack')
         },
+
         setTo(ctx, id) {
+            ctx.commit('removeFlights')
             ctx.commit('updateTo', id)
             ctx.dispatch('getPrice')
-
-            // ctx.dispatch('loadingFlights')
-
-            // ctx.dispatch('getFlightThere')
-            // ctx.dispatch('getFlightBack')
-            // ctx.dispatch('getAllFlightThere')
-            // ctx.dispatch('getAllFlightBack')
         },
+
         changeSelectedPlace(ctx, [busTripId, seat, status]) {
 
             const allFlights = [

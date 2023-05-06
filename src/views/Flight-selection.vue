@@ -117,7 +117,8 @@ export default {
       'getPassengers',
     'from',
     'to',
-    'selectedFlightType'
+    'selectedFlightType',
+    
   ]),
   methods: {
     ...mapActions([
@@ -148,7 +149,7 @@ export default {
       return screen.width <= 991;
     },
   },
-  mounted(){
+   mounted(){
   }
 }
 </script>

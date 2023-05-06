@@ -248,15 +248,22 @@ export default {
       'setTo',
       'castling',
         'addPassenger',
-        'removePassenger'
+        'removePassenger',
+        'loadingFlights',
+
     ]),
     alertPlace () {
       this.UpdateOneWay(this.oneWay)
+      this.loadingFlights()
       if (this.oneWay) {
-          this.$router.push('/flight-selection/search/'+this.from+'/'+this.to+'/'+this.dateArival+'/'+this.oneWay)
+          if(this.$router.history.current.fullPath!=='/flight-selection/search/'+this.from+'/'+this.to+'/'+this.dateArival+'/'+this.oneWay){
+            this.$router.push('/flight-selection/search/'+this.from+'/'+this.to+'/'+this.dateArival+'/'+this.oneWay)
+          }
       }
       else {
+        if(this.$router.history.current.fullPath!=='/flight-selection/search/'+this.from+'/'+this.to+'/'+this.dateArival+'/'+this.dateBack+'/'+this.oneWay){
           this.$router.push('/flight-selection/search/'+this.from+'/'+this.to+'/'+this.dateArival+'/'+this.dateBack+'/'+this.oneWay)
+        }
       }
     },
     search(str,target){
@@ -303,6 +310,7 @@ export default {
     if (+this.from){
           this.fromPlace= this.fromStations.find(station => station.id_from === this.from).name;
         }
+    this.loadingFlights()
   },
   created() {
     let queryDateArrival = this.$route.params.dateArrival

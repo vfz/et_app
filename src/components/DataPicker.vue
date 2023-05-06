@@ -89,13 +89,13 @@ export default {
         },
         changeUrlByDate(date) {
             if (this.oneWay) {
-                this.$router.push('/flight-selection/search/' + this.from + '/' + this.to + '/' + date + '/' + this.oneWay)
+                // this.$router.push('/flight-selection/search/' + this.from + '/' + this.to + '/' + date + '/' + this.oneWay)
             }
             if (this.whichWay === 'from') {
-                this.$router.push('/flight-selection/search/' + this.from + '/' + this.to + '/' + date + '/' + this.dateBack + '/' + this.oneWay)
+                // this.$router.push('/flight-selection/search/' + this.from + '/' + this.to + '/' + date + '/' + this.dateBack + '/' + this.oneWay)
             }
             if (this.whichWay === 'to') {
-                this.$router.push('/flight-selection/search/' + this.from + '/' + this.to + '/' + this.dateArival + '/' + date + '/' + this.oneWay)
+                // this.$router.push('/flight-selection/search/' + this.from + '/' + this.to + '/' + this.dateArival + '/' + date + '/' + this.oneWay)
             }
         },
         calendar: function () {

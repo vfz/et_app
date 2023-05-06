@@ -374,8 +374,7 @@ export default{
           'setFrom',
           'setTo',
           'castling',
-          'getFlightThere',
-          'getFlightBack',
+          'loadingFlights',
             ]),
             
         search(str,target){
@@ -385,6 +384,7 @@ export default{
             return str.toLowerCase().indexOf(target.toLowerCase())+1
         },
        async alertPlace(){
+        // this.loadingFlights()
          if (this.oneWay) {
            this.$router.push('/flight-selection/search/'+this.from+'/'+this.to+'/'+this.dateArival+'/'+this.oneWay)
          }

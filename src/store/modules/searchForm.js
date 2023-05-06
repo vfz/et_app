@@ -36,10 +36,10 @@ export default {
         selectedSeat: [],
         isFlightsLoading: false,
         selectedFlightType: {
-            there: false,
-            thereAnother: false,
-            back: false,
-            backAnother: false,
+            there: true,
+            thereAnother: true,
+            back: true,
+            backAnother: true,
         }
     },
     mutations: {
@@ -292,42 +292,35 @@ export default {
             const backAnotherFlights = state.selectedSeat.filter((flight) => flight.flight_type === 'backAnother')
             const thereFlights = state.selectedSeat.filter((flight) => flight.flight_type === 'there')
             const thereAnotherFlights = state.selectedSeat.filter((flight) => flight.flight_type === 'thereAnother')
+            state.selectedFlightType.there = true
+            state.selectedFlightType.thereAnother = true
+            state.selectedFlightType.backAnother = true
+            state.selectedFlightType.back = true
 
             if (backFlights.some(flight => flight.is_selected)) {
                 state.selectedFlightType.back = true
-                state.selectedFlightType.backAnother = null
-                return true
-            } else {
-                state.selectedFlightType.back = false
                 state.selectedFlightType.backAnother = false
-            }
+                // return true
+            } 
 
             if (backAnotherFlights.some(flight => flight.is_selected)) {
                 state.selectedFlightType.backAnother = true
-                state.selectedFlightType.back = null
-                return true
-            } else {
-                state.selectedFlightType.backAnother = false
                 state.selectedFlightType.back = false
-            }
+                // return true
+            } 
 
             if (thereFlights.some(flight => flight.is_selected)) {
                 state.selectedFlightType.there = true
-                state.selectedFlightType.thereAnother = null
-                return true
-            } else {
-                state.selectedFlightType.there = false
                 state.selectedFlightType.thereAnother = false
+                // return true
             }
 
             if (thereAnotherFlights.some(flight => flight.is_selected)) {
                 state.selectedFlightType.thereAnother = true
-                state.selectedFlightType.there = null
-                return true
-            } else {
-                state.selectedFlightType.thereAnother = false
                 state.selectedFlightType.there = false
-            }
+                // return true
+            } 
+            return true
         },
         setDateArrivalByQuery(state, dateArrivalQuery) {
             state.dateArival = dateArrivalQuery
@@ -421,11 +414,12 @@ export default {
             const fromStations = await res.json();
             ctx.commit('updateFromStations', fromStations)
         },
+
         //получение рейсов остальных провайдеров туда
         async getAllFlightThere(ctx) {
             const validSearchThere = (!+ctx.state.from || !+ctx.state.to || !ctx.state.dateArival) ? false : true
             if (!validSearchThere) { return false }
-            ctx.commit('setFlightsLoading', true)
+            // ctx.commit('setFlightsLoading', true)
             let fromId = ctx.state.fromStations.find(station => station.id_from === ctx.state.from).id_from_rosbilet
             let toId = ctx.state.toStations.find(station => station.id_to === ctx.state.to).id_to_rosbilet
 
@@ -443,19 +437,19 @@ export default {
                         ctx.commit('updateAllFlightThere', allFlights.result)
                         ctx.commit('updateFlightType', 'thereAnother')
                         ctx.commit('updateDefaultsSeat', ctx.rootGetters.getPassengers)
-                        ctx.commit('setFlightsLoading', false)
+                        // ctx.commit('setFlightsLoading', false)
                         return true
                     } else {
                         ctx.commit('updateAllFlightThere', [])
                         ctx.commit('updateFlightType', 'thereAnother')
-                        ctx.commit('setFlightsLoading', false)
+                        // ctx.commit('setFlightsLoading', false)
                         return false
                     }
                 })
                 .catch((error) => {
                     ctx.commit('updateAllFlightThere', [])
                     ctx.commit('updateFlightType', 'thereAnother')
-                    ctx.commit('setFlightsLoading', false)
+                    // ctx.commit('setFlightsLoading', false)
                     throw error
                 })
 
@@ -466,7 +460,7 @@ export default {
             console.log(ctx.state.oneWay)
             const validSearchBack = (!+ctx.state.from || !+ctx.state.to || !ctx.state.dateBack || ctx.state.oneWay) ? false : true
             console.log('Invoking getAllFlightBack function...')
-            ctx.commit('setFlightsLoading', true)
+            // ctx.commit('setFlightsLoading', true)
             if (!validSearchBack) { console.log('Invalid search back. Exiting function...'); return false }
             let fromId = ctx.state.toStations.find(toStation => toStation.name === ctx.state.fromStations.find(fromStation => fromStation.id_from_rosbilet === ctx.state.from_rosbilet).name).id_to //stationFrom.id_from_rosbilet
             let toId = ctx.state.fromStations.find(fromStation => fromStation.name === ctx.state.toStations.find(toStation => toStation.id_to_rosbilet === ctx.state.to_rosbilet).name).id_from //stationTo.id_to_rosbilet
@@ -482,14 +476,14 @@ export default {
                         ctx.commit('updateAllFlightBack', allFlights.result)
                         ctx.commit('updateFlightType', 'backAnother')
                         ctx.commit('updateDefaultsSeat', ctx.rootGetters.getPassengers)
-                        ctx.commit('setFlightsLoading', false)
+                        // ctx.commit('setFlightsLoading', false)
                         console.log('Exiting function...')
                         return true
                     } else {
                         console.log('No flights found. Exiting function...')
                         ctx.commit('updateAllFlightBack', [])
                         ctx.commit('updateFlightType', 'backAnother')
-                        ctx.commit('setFlightsLoading', false)
+                        // ctx.commit('setFlightsLoading', false)
                         return false
                     }
                 })
@@ -500,7 +494,7 @@ export default {
         },
         //Получаем список рейсов (туда)÷
         async getFlightThere(ctx) {
-            ctx.commit('setFlightsLoading', true)
+            // ctx.commit('setFlightsLoading', true)
             const validTherePrice = (!+ctx.state.from || !+ctx.state.to) ? false : true
             if (validTherePrice) {
                 const from_okato = ctx.state.fromStations.find(station => station.id_from === ctx.state.from).okato
@@ -520,7 +514,7 @@ export default {
                     ctx.commit('updateFlightThere', flightThere)
                     ctx.commit('updateFlightType', 'there')
                     ctx.commit('updateDefaultsSeat', ctx.rootGetters.getPassengers)
-                    ctx.commit('setFlightsLoading', false)
+                    // ctx.commit('setFlightsLoading', false)
                     return true
                 })
                 .catch((error) => {
@@ -550,7 +544,7 @@ export default {
                     ctx.commit('updateFlightBack', flightBack)
                     ctx.commit('updateFlightType', 'back')
                     ctx.commit('updateDefaultsSeat', ctx.rootGetters.getPassengers)
-                    ctx.commit('setFlightsLoading', false)
+                    // ctx.commit('setFlightsLoading', false)
                     return true
                 })
                 .catch((error) => {
@@ -558,40 +552,66 @@ export default {
                 });
 
         },
+
+        async loadingFlights(ctx){
+            const validSearchThere = (!+ctx.state.from || !+ctx.state.to || !ctx.state.dateArival) ? false : true
+            if (!validSearchThere) { return false }
+
+            ctx.commit('setFlightsLoading', true)
+            await ctx.dispatch('getFlightThere')
+                .then(await ctx.dispatch('getFlightBack'))
+                .then(await ctx.dispatch('getAllFlightThere'))
+                .then(await ctx.dispatch('getAllFlightBack'))
+
+            ctx.commit('setSelectedFlightType')
+            // ctx.dispatch('getFlightThere')
+            // ctx.dispatch('getFlightBack')
+            // ctx.dispatch('getAllFlightThere')
+            // ctx.dispatch('getAllFlightBack')
+
+            ctx.commit('setFlightsLoading', false)
+        },
         // Ракировка откуда куда
         castling(ctx) {
-            ctx.commit('castlingPoint')
-            ctx.dispatch('getFlightThere')
-            ctx.dispatch('getFlightBack')
-            ctx.dispatch('getAllFlightThere')
-            ctx.dispatch('getAllFlightBack')
+            // ctx.dispatch('getFlightThere')
+            ctx.dispatch('loadingFlights')
+
+            // ctx.dispatch('getFlightThere')
+            // ctx.dispatch('getFlightBack')
+            // ctx.dispatch('getAllFlightThere')
+            // ctx.dispatch('getAllFlightBack')
         },
         UpdateOneWay(ctx, oneWay) {
             ctx.commit('updateOneWay', oneWay)
-            ctx.commit('setFlightsLoading', true)
+            // ctx.commit('setFlightsLoading', true)
+            ctx.dispatch('loadingFlights')
 
-            function loadingFlights() {
-                ctx.dispatch('getFlightThere')
-                ctx.dispatch('getFlightBack')
-                ctx.dispatch('getAllFlightThere')
-                ctx.dispatch('getAllFlightBack')
-                ctx.commit('setFlightsLoading', false)
-            }
-            setTimeout(loadingFlights, 4000)
+            // function loadingFlights() {
+            //     ctx.dispatch('getFlightThere')
+            //     ctx.dispatch('getFlightBack')
+            //     ctx.dispatch('getAllFlightThere')
+            //     ctx.dispatch('getAllFlightBack')
+            //     ctx.commit('setFlightsLoading', false)
+            // }
+            // setTimeout(loadingFlights, 4000)
         },
         UpdateselectDate(ctx) {
             ctx.commit('newselectDate')
-            ctx.dispatch('getFlightThere')
-            ctx.dispatch('getFlightBack')
-            ctx.dispatch('getAllFlightThere')
-            ctx.dispatch('getAllFlightBack')
+            ctx.dispatch('loadingFlights')
+
+            // ctx.dispatch('getFlightThere')
+            // ctx.dispatch('getFlightBack')
+            // ctx.dispatch('getAllFlightThere')
+            // ctx.dispatch('getAllFlightBack')
         },
         UpdateselectDateBack(ctx) {
             ctx.commit('newselectDateBack')
-            ctx.dispatch('getFlightThere')
-            ctx.dispatch('getFlightBack')
-            ctx.dispatch('getAllFlightThere')
-            ctx.dispatch('getAllFlightBack')
+            ctx.dispatch('loadingFlights')
+
+            // ctx.dispatch('getFlightThere')
+            // ctx.dispatch('getFlightBack')
+            // ctx.dispatch('getAllFlightThere')
+            // ctx.dispatch('getAllFlightBack')
         },
         selectDateFalse(ctx) {
             ctx.commit('DateFalse')
@@ -606,24 +626,30 @@ export default {
         },
         SetDate(ctx, newDate) {
             ctx.commit('updateDateC', newDate)
-            ctx.dispatch('getFlightThere')
-            ctx.dispatch('getFlightBack')
-            ctx.dispatch('getAllFlightThere')
-            ctx.dispatch('getAllFlightBack')
+            ctx.dispatch('loadingFlights')
+
+            // ctx.dispatch('getFlightThere')
+            // ctx.dispatch('getFlightBack')
+            // ctx.dispatch('getAllFlightThere')
+            // ctx.dispatch('getAllFlightBack')
         },
         setFrom(ctx, id) {
             ctx.commit('updateFrom', id)
-            ctx.dispatch('getFlightThere')
-            ctx.dispatch('getFlightBack')
-            ctx.dispatch('getAllFlightThere')
-            ctx.dispatch('getAllFlightBack')
+            ctx.dispatch('loadingFlights')
+
+            // ctx.dispatch('getFlightThere')
+            // ctx.dispatch('getFlightBack')
+            // ctx.dispatch('getAllFlightThere')
+            // ctx.dispatch('getAllFlightBack')
         },
         setTo(ctx, id) {
             ctx.commit('updateTo', id)
-            ctx.dispatch('getFlightThere')
-            ctx.dispatch('getFlightBack')
-            ctx.dispatch('getAllFlightThere')
-            ctx.dispatch('getAllFlightBack')
+            ctx.dispatch('loadingFlights')
+
+            // ctx.dispatch('getFlightThere')
+            // ctx.dispatch('getFlightBack')
+            // ctx.dispatch('getAllFlightThere')
+            // ctx.dispatch('getAllFlightBack')
         },
         changeSelectedPlace(ctx, [busTripId, seat, status]) {
 
@@ -660,11 +686,9 @@ export default {
         busTriptId(state) {
             return state.busTriptId
         },
-
         flightBack(state) {
             return state.flightBack
         },
-
         flightThere(state) {
             return state.flightThere
         },

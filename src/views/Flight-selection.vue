@@ -6,17 +6,17 @@
     <FlightFormMobile v-if="isMobile()"/>
     <TimelineMobile title="Выбор рейса" description="Шаг 1" v-if="isMobile()"/>
 
-    <FlightTable flight-type="there" v-if="!isMobile() && selectedFlightType.there !== null"/>
-    <FlightTableMobile flight-type="there" v-if="isMobile() && selectedFlightType.there !== null"/>
+    <FlightTable flight-type="there" v-if="!isMobile() && selectedFlightType.there"/>
+    <FlightTableMobile flight-type="there" v-if="isMobile() && selectedFlightType.there"/>
     
-    <FlightTable flight-type="thereAnother" v-if="!isMobile() && selectedFlightType.thereAnother !== null"/>
-    <FlightTableMobile flight-type="thereAnother" v-if="isMobile() && selectedFlightType.thereAnother !== null"/>
+    <FlightTable flight-type="thereAnother" v-if="!isMobile() && selectedFlightType.thereAnother"/>
+    <FlightTableMobile flight-type="thereAnother" v-if="isMobile() && selectedFlightType.thereAnother"/>
 
-    <FlightTable flight-type="back" v-if="!isMobile() && !oneWay && selectedFlightType.back !== null"/>
-    <FlightTableMobile flight-type="back" v-if="isMobile() && !oneWay && selectedFlightType.back !== null"/>
+    <FlightTable flight-type="back" v-if="!isMobile() && !oneWay && selectedFlightType.back"/>
+    <FlightTableMobile flight-type="back" v-if="isMobile() && !oneWay && selectedFlightType.back"/>
 
-    <FlightTable flight-type="backAnother" v-if="!isMobile() && !oneWay && selectedFlightType.backAnother !== null"/>
-    <FlightTableMobile flight-type="backAnother" v-if="isMobile() && !oneWay && selectedFlightType.backAnother !== null"/>
+    <FlightTable flight-type="backAnother" v-if="!isMobile() && !oneWay && selectedFlightType.backAnother"/>
+    <FlightTableMobile flight-type="backAnother" v-if="isMobile() && !oneWay && selectedFlightType.backAnother"/>
 
     <div class="container-fluid">
       <div class="row">

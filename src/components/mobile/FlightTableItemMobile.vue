@@ -1,9 +1,9 @@
 <template>
-  <div :class="{ 'mt-0': notSelectedFlights(flight) }" class="col-12 col-sm-6">
+  <div :class="{ 'mt-0': notSelectedFlights(flight,flightType) }" class="col-12 col-sm-6">
     <div v-if="$route.name !== 'Ticket-booking'" class="table-item position-relative" :class="{
       'active-row': selectedSeat.filter(flightFilter => (flightFilter.id_trip === flight.id_trip))[0] &&
         selectedSeat.filter(flightFiltr => (flightFiltr.id_trip === flight.id_trip))[0].is_selected,
-      'd-none': notSelectedFlights(flight)
+      'd-none': notSelectedFlights(flight,flightType)
     }">
       <span v-if="getNameBage(flight.carriers)"  @click="showFullName = !showFullName" data-bs-toggle="tooltip" data-bs-placement="bottom"
       :title="flight.carriers" :class="{ 'full-name': showFullName }" class="badge text-bg-primary position-absolute">
@@ -177,15 +177,31 @@ export default {
         return name
       }
     },
-    notSelectedFlights(flight) {
-      const selectedFlights = this.selectedSeat.filter((flightFilter) => flightFilter.id_trip !== flight.id_trip && flightFilter.is_selected === true)
-      if (selectedFlights.length === 1 && this.oneWay) {
-        return true
+    notSelectedFlights(flight,flightType) {
+
+      const selectedFlights = this.selectedSeat.filter(
+        (flightFilter) => 
+          flightFilter.flight_type === flightType && 
+          // flightFilter.id_trip !== flight.id_trip && 
+          flightFilter.is_selected === true
+        )
+        if (selectedFlights.length ===0)
+        {
+          return false
+        }
+        if (
+            selectedFlights.length > 0 &&
+            this.selectedSeat.filter(
+            (flightFilter) => 
+              flightFilter.flight_type === flightType && 
+              flightFilter.id_trip !== flight.id_trip && 
+              flightFilter.is_selected === true
+            ).length === 0
+          ) {
+
+        return false
       }
-      if (selectedFlights.length === 2 && !this.oneWay) {
-        return true
-      }
-      return false
+      return true
     },
     timeFormat(time, target) {
 

@@ -60,9 +60,15 @@
                   v-for="(flight, index) in getFlightType()"
                   :key="index+'_'+flight.ticket_id_2+'_'+flight.id_trip"
 
-                  :class="{'active-row' : selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip && flightFilter.id_ticket === flight.ticket_id_2))[0] && 
-                      selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip && flightFilter.id_ticket === flight.ticket_id_2))[0].is_selected,
-                      'd-none' : notSelectedFlights(flight) || selectedSeat.some(flightFilter => (flightFilter.id_trip === flight.id_trip && flightFilter.id_ticket === flight.ticket_id_2 && flightFilter.is_dublicated_by_id_trip))}"
+                  :class="{'active-row' : 
+                  selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip && flightFilter.id_ticket === flight.ticket_id_2))[0] && 
+                  selectedSeat.filter(flightFilter=>(flightFilter.id_trip === flight.id_trip && flightFilter.id_ticket === flight.ticket_id_2))[0].is_selected,
+                      'd-none' : 
+                  notSelectedFlights(flight,flightType) || 
+                  selectedSeat.some(flightFilter => (
+                    flightFilter.id_trip === flight.id_trip && 
+                    flightFilter.id_ticket === flight.ticket_id_2 && 
+                    flightFilter.is_dublicated_by_id_trip))}"
               >
                 <td>
                   <div class="dispatch-time">
@@ -304,16 +310,33 @@ export default {
         return this.flightThereAnother
       }
     },
-      notSelectedFlights(flight) {
-        const selectedFlights = this.selectedSeat.filter((flightFilter) => flightFilter.id_trip !== flight.id_trip && flightFilter.is_selected === true)
-        if (selectedFlights.length === 1 && this.oneWay) {
-          return true
-        }
-        if (selectedFlights.length === 2 && !this.oneWay) {
-          return true
-        }
+    notSelectedFlights(flight,flightType) {
+
+      const selectedFlights = this.selectedSeat.filter(
+      (flightFilter) => 
+        flightFilter.flight_type === flightType && 
+        // flightFilter.id_trip !== flight.id_trip && 
+        flightFilter.is_selected === true
+      )
+      if (selectedFlights.length ===0)
+      {
         return false
-      },
+      }
+      if (
+          selectedFlights.length > 0 &&
+          this.selectedSeat.filter(
+          (flightFilter) => 
+            flightFilter.flight_type === flightType && 
+            flightFilter.id_trip !== flight.id_trip && 
+            flightFilter.is_selected === true
+          ).length === 0
+        ) {
+
+      return false
+    }
+    return true
+    },
+
     timeFormat(time,target){
       
       if(target==='hours'){

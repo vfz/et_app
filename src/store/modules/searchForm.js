@@ -495,14 +495,7 @@ export default {
         //Получаем список рейсов (туда)÷
         async getFlightThere(ctx) {
             // ctx.commit('setFlightsLoading', true)
-            const validTherePrice = (!+ctx.state.from || !+ctx.state.to) ? false : true
-            if (validTherePrice) {
-                const from_okato = ctx.state.fromStations.find(station => station.id_from === ctx.state.from).okato
-                const to_okato = ctx.state.toStations.find(station => station.id_to === ctx.state.to).okato
-                const resTherePrices = await fetch(ctx.rootState.API_URL + "?command=prices_okato_trip&from_id=" + from_okato + "&to_id=" + to_okato)
-                const therePrices = await resTherePrices.json();
-                ctx.commit('setDateArivalPrices', therePrices)
-            }
+            
             const validSearchThere = (!+ctx.state.from || !+ctx.state.to || !ctx.state.dateArival) ? false : true
             if (!validSearchThere) { return false }
 
@@ -524,15 +517,7 @@ export default {
         //Получаем список рейсов (обратно)
         async getFlightBack(ctx) {
             ctx.commit('setFlightsLoading', true)
-            const validBackPrice = (!+ctx.state.from || !+ctx.state.to || !+ctx.state.oneWay) ? false : true
-            if (validBackPrice) {
-                const from_okato = ctx.state.toStations.find(station => station.id_to === ctx.state.to).okato
-                const to_okato = ctx.state.fromStations.find(station => station.id_from === ctx.state.from).okato
-
-                const resBackPrices = await fetch(ctx.rootState.API_URL + "?command=prices_okato_trip&from_id=" + from_okato + "&to_id=" + to_okato);
-                const backPrices = await resBackPrices.json();
-                ctx.commit('setDateBackPrices', backPrices)
-            }
+            
             const validSearchBack = (!+ctx.state.from || !+ctx.state.to || !ctx.state.dateBack || ctx.state.oneWay) ? false : true
             if (!validSearchBack) { return false }
 
@@ -553,6 +538,25 @@ export default {
 
         },
 
+        async getPrice(ctx){
+            const validTherePrice = (!+ctx.state.from || !+ctx.state.to) ? false : true
+            if (validTherePrice) {
+                const from_okato = ctx.state.fromStations.find(station => station.id_from === ctx.state.from).okato
+                const to_okato = ctx.state.toStations.find(station => station.id_to === ctx.state.to).okato
+                const resTherePrices = await fetch(ctx.rootState.API_URL + "?command=prices_okato_trip&from_id=" + from_okato + "&to_id=" + to_okato)
+                const therePrices = await resTherePrices.json();
+                ctx.commit('setDateArivalPrices', therePrices)
+            }
+            const validBackPrice = (!+ctx.state.from || !+ctx.state.to || !+ctx.state.oneWay) ? false : true
+            if (validBackPrice) {
+                const from_okato = ctx.state.toStations.find(station => station.id_to === ctx.state.to).okato
+                const to_okato = ctx.state.fromStations.find(station => station.id_from === ctx.state.from).okato
+
+                const resBackPrices = await fetch(ctx.rootState.API_URL + "?command=prices_okato_trip&from_id=" + from_okato + "&to_id=" + to_okato);
+                const backPrices = await resBackPrices.json();
+                ctx.commit('setDateBackPrices', backPrices)
+            }
+        },
         async loadingFlights(ctx){
             const validSearchThere = (!+ctx.state.from || !+ctx.state.to || !ctx.state.dateArival) ? false : true
             if (!validSearchThere) { return false }
@@ -574,6 +578,7 @@ export default {
         // Ракировка откуда куда
         castling(ctx) {
             // ctx.dispatch('getFlightThere')
+            ctx.dispatch('getPrice')
             ctx.dispatch('loadingFlights')
 
             // ctx.dispatch('getFlightThere')
@@ -584,6 +589,7 @@ export default {
         UpdateOneWay(ctx, oneWay) {
             ctx.commit('updateOneWay', oneWay)
             // ctx.commit('setFlightsLoading', true)
+            ctx.dispatch('getPrice')
             ctx.dispatch('loadingFlights')
 
             // function loadingFlights() {
@@ -597,7 +603,7 @@ export default {
         },
         UpdateselectDate(ctx) {
             ctx.commit('newselectDate')
-            ctx.dispatch('loadingFlights')
+            // ctx.dispatch('loadingFlights')
 
             // ctx.dispatch('getFlightThere')
             // ctx.dispatch('getFlightBack')
@@ -606,7 +612,7 @@ export default {
         },
         UpdateselectDateBack(ctx) {
             ctx.commit('newselectDateBack')
-            ctx.dispatch('loadingFlights')
+            // ctx.dispatch('loadingFlights')
 
             // ctx.dispatch('getFlightThere')
             // ctx.dispatch('getFlightBack')
@@ -626,7 +632,7 @@ export default {
         },
         SetDate(ctx, newDate) {
             ctx.commit('updateDateC', newDate)
-            ctx.dispatch('loadingFlights')
+            // ctx.dispatch('loadingFlights')
 
             // ctx.dispatch('getFlightThere')
             // ctx.dispatch('getFlightBack')
@@ -635,7 +641,9 @@ export default {
         },
         setFrom(ctx, id) {
             ctx.commit('updateFrom', id)
-            ctx.dispatch('loadingFlights')
+            ctx.dispatch('getPrice')
+
+            // ctx.dispatch('loadingFlights')
 
             // ctx.dispatch('getFlightThere')
             // ctx.dispatch('getFlightBack')
@@ -644,7 +652,9 @@ export default {
         },
         setTo(ctx, id) {
             ctx.commit('updateTo', id)
-            ctx.dispatch('loadingFlights')
+            ctx.dispatch('getPrice')
+
+            // ctx.dispatch('loadingFlights')
 
             // ctx.dispatch('getFlightThere')
             // ctx.dispatch('getFlightBack')

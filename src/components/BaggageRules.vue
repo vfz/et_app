@@ -271,7 +271,7 @@ export default {
       }
     },
     validateButton(reisy,passengers,buyer, haveErrors) {
-      if (this.awaitTransaction === 0) {
+      if (this.awaitTransaction === true) {
         return false
       }
 
@@ -311,27 +311,22 @@ export default {
           'buyer':this.getBuyerInfo
       }
       }
-      await axios.request(config)
-          .then((response) =>{
-           
-            const mydata= response.data
-            
-            if(+mydata.Erorr>0){
+      try {
+        const response = await axios.request(config);
+        const mydata = response.data;
 
-              alert(mydata.Error_description)
-            }
-            
-            if(response.data.formUrl){
-              
-              // window.location.href = response.data.formUrl;
-            }
-          })
-          .catch((error) =>{
-            
-           //console.log(error)
-          })
-      
-      
+        if (+mydata.Erorr > 0) {
+            alert(mydata.Error_description);
+        }
+
+        if (response.data.formUrl) {
+            // window.location.href = response.data.formUrl;
+        }
+    } catch (error) {
+        console.log(error);
+    } finally {
+        this.awaitTransaction = false;
+    }
     }
   }
 }

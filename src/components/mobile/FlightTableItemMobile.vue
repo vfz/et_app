@@ -1,5 +1,5 @@
 <template>
-  <div :class="{ 'mt-0': notSelectedFlights(flight,flightType) }" class="col-12 col-sm-6">
+  <div :id="flight.id_trip" :class="{ 'mt-0': notSelectedFlights(flight,flightType) }" class="col-12 col-sm-6">
     <div v-if="$route.name !== 'Ticket-booking'" class="table-item position-relative" :class="{
       'active-row': selectedSeat.filter(flightFilter => (flightFilter.id_trip === flight.id_trip))[0] &&
         selectedSeat.filter(flightFiltr => (flightFiltr.id_trip === flight.id_trip))[0].is_selected,
@@ -82,7 +82,8 @@
           <div
             :class="{ 'col-6': flight.count_available_seats_trip !== 0, 'col-12': flight.count_available_seats_trip === 0 }">
             <div class="table-item-part-left">
-              <button class="btn btn-primary btn-price" :class="{
+              <a :href="'#'+flight.id_trip">
+                <button class="btn btn-primary btn-price" :class="{
                 'active-button': selectedSeat.filter(flightFilter => (flightFilter.id_trip === flight.id_trip))[0] &&
                   selectedSeat.filter(flightFiltr => (flightFiltr.id_trip === flight.id_trip))[0].is_selected
               }"
@@ -94,6 +95,7 @@
                 v-if="+flight.count_available_seats_trip < getAdultsCount + getChildrensCount || +flight.count_available_seats_trip === 0">
                 недостаточно мест :(
               </button>
+              </a>
             </div>
           </div>
           <div v-if="flight.count_available_seats_trip !== 0" class="col-6">

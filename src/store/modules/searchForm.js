@@ -524,7 +524,7 @@ export default {
 
         //Получаем список рейсов (обратно)
         async getFlightBack(ctx) {
-            ctx.commit('setFlightsLoading', true)
+            // ctx.commit('setFlightsLoading', true)
             
             const validSearchBack = (!+ctx.state.from || !+ctx.state.to || !ctx.state.dateBack || ctx.state.oneWay) ? false : true
             if (!validSearchBack) { return false }
@@ -584,8 +584,10 @@ export default {
         },
         // Ракировка откуда куда
         castling(ctx) {
+            ctx.commit('removeFlights')
+            ctx.commit('castlingPoint')
             ctx.dispatch('getPrice')
-            ctx.dispatch('loadingFlights')
+            // ctx.dispatch('loadingFlights')
         },
         UpdateOneWay(ctx, oneWay) {
             ctx.commit('updateOneWay', oneWay)

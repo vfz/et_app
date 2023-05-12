@@ -224,6 +224,7 @@ export default {
     return {
       isShowBaggage: false,
       isShowPromocode: false,
+      awaitTransaction: false,
     }
   },
   computed: {
@@ -270,6 +271,10 @@ export default {
       }
     },
     validateButton(reisy,passengers,buyer, haveErrors) {
+      if (this.awaitTransaction === 0) {
+        return false
+      }
+
       if (reisy.length === 0) {
         return false
       }
@@ -296,6 +301,7 @@ export default {
     },
 
     async transactionForVue() {
+      this.awaitTransaction=true
       const config = {
         method: 'post',
         url : 'https://api.evrotrans.net/APIet/transaction_for_vue3.php',

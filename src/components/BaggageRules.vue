@@ -323,6 +323,7 @@ export default {
             // window.location.href = response.data.formUrl;
         }
     } catch (error) {
+      this.awaitTransaction=true
         console.log(error);
     } finally {
         this.awaitTransaction = false;

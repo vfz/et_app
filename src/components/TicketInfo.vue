@@ -121,11 +121,11 @@
                       <div class="path-info-from">
                         <div class="path-info-from-datetime">
                 <span class="path-info-from-datetime-date">
-                  {{selectedBackFlightTicket.date_arrival_trip}}
+                  {{selectedBackFlightTicket.date_trip}}
                 </span>
                           в
                           <span class="path-info-from-datetime-time">
-                  {{selectedBackFlightTicket.time_arrival_trip}}
+                  {{selectedBackFlightTicket.time_trip}}
                 </span>
                         </div>
                         <div class="path-info-from-place d-flex flex-column">

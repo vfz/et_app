@@ -288,19 +288,19 @@
         <div class="path-info-from">
           <div class="path-info-from-datetime">
                 <span class="path-info-from-datetime-date">
-                  {{selectedBackFlightTicket.date_arrival_trip}}
+                  {{selectedBackFlightTicket.date_trip}}
                 </span>
             в
             <span class="path-info-from-datetime-time">
-                  {{selectedBackFlightTicket.time_arrival_trip}}
+                  {{selectedBackFlightTicket.time_trip}}
                 </span>
           </div>
           <div class="path-info-from-place d-flex flex-column">
                 <span class="path-info-from-place-name">
-                  {{selectedBackFlightTicket.to_name}}
+                  {{selectedBackFlightTicket.from_name}}
                 </span>
             <span class="path-info-from-datetime-address">
-                  {{selectedBackFlightTicket.to_address_point}}
+                  {{selectedBackFlightTicket.from_address_point}}
                 </span>
           </div>
         </div>
@@ -458,8 +458,8 @@ export default {
     selectedBackFlightTicket() {
       if (this.selectedBackFlightInfo) {
         if (this.selectedBackFlightInfo.flight_type === 'back') {
-        return this.flightBack.filter(flight => flight.id_trip === this.selectedBackFlightInfo.id_trip && flight.ticket_id_2 === this.selectedBackFlightInfo.id_ticket)[0]
-      }
+          return this.flightBack.filter(flight => flight.id_trip === this.selectedBackFlightInfo.id_trip && flight.ticket_id_2 === this.selectedBackFlightInfo.id_ticket)[0]
+        }
         if (this.selectedBackFlightInfo.flight_type === 'backAnother') {
           return this.flightBackAnother.filter(flight => flight.id_trip === this.selectedBackFlightInfo.id_trip && flight.ticket_id_2 === this.selectedBackFlightInfo.id_ticket)[0]
         }

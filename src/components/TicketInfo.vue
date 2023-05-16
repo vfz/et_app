@@ -441,10 +441,10 @@ export default {
       }
     },
     selectedThereFlightInfo() {
-      return this.selectedSeat.filter(flight => flight.is_selected && flight.flight_type === 'there' || flight.flight_type === 'thereAnother')[0]
+      return this.selectedSeat.filter(flight => flight.is_selected && flight.flight_type === 'there' || flight.flight_type === 'thereAnother' && flight.is_selected)[0]
     },
     selectedBackFlightInfo() {
-      return this.selectedSeat.filter(flight => flight.is_selected && flight.flight_type === 'back' || flight.flight_type === 'backAnother')[0]
+      return this.selectedSeat.filter(flight => flight.is_selected && flight.flight_type === 'back' || flight.flight_type === 'backAnother' && flight.is_selected)[0]
     },
 
     selectedThereFlightTicket() {

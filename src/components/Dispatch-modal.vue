@@ -7,7 +7,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div
-        v-show="getFlightType === 'there'|| getFlightType === 'back' " 
+         
         class="modal-body">
           <yandex-map
             :coords="getCord"

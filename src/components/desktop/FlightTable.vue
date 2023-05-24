@@ -87,7 +87,7 @@
                     {{flight.from_name_point}}
                   </div>
                   <div 
-                    v-if="flightType==='there' || flightType==='back'"
+                    v-if="flight.from_yam"
                     v-on:click="
                     updateCords(flight.from_yam),
                     updateIcon(flight.from_name), 
@@ -141,7 +141,7 @@
                   <div class="arrival-city">
                      {{flight.to_name_point}}
                   </div>
-                  <div v-if="flightType==='there' || flightType==='back'"
+                  <div v-if="flight.to_yam"
                     v-on:click="
                       updateIcon(flight.to_name),
                       updateCords(flight.to_yam), 

@@ -31,13 +31,17 @@
                     </div>
                     <div class="fix"></div>
                     <div class="date">{{ day.indexm }}</div>
-                    <div class="price" v-if="day.index">{{ day.price ? day.price + "₽" : '-' }}</div>
+                    <div class="price" v-if="day.index && day.price">{{ day.price + "₽" }}</div>
+                    <div class="price" v-if="day.index && !day.price && !filterPastDays(getToday(), day.index + '-' + day.month + '-' + day.year)">
+                        <fa class="toggler-icon-open" icon="magnifying-glass" />
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </template>
 <script>
+
 import { mapGetters, mapActions } from 'vuex'
 import moment, { min } from 'moment'
 export default {

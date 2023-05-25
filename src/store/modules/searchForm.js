@@ -157,7 +157,7 @@ export default {
             state.selectDate = false
         },
         updateFrom(state, id) {
-            state.from_evrotrans = state.fromStations.find(station => station.id_from === id && station.id_from_evrotrans).id_from_evrotrans
+            state.from_evrotrans = state.fromStations.find(station => station.id_from === id && station.id_from_evrotrans)
             state.from = id
             state.from_rosbilet = state.fromStations.find(station => station.id_from === id).id_from_rosbilet
         },

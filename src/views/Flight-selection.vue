@@ -4,6 +4,7 @@
     <Timeline page="flight-selection" v-if="!isMobile()"/>
     <FlightForm v-if="!isMobile()"/>
     <FlightFormMobile v-if="isMobile()"/>
+    <FlightsNotFound/>
     <TimelineMobile title="Выбор рейса" description="Шаг 1" v-if="isMobile()"/>
 
     <FlightTable flight-type="there" v-if="!isMobile() && selectedFlightType.there"/>
@@ -17,7 +18,6 @@
 
     <FlightTable flight-type="backAnother" v-if="!isMobile() && !oneWay && selectedFlightType.backAnother"/>
     <FlightTableMobile flight-type="backAnother" v-if="isMobile() && !oneWay && selectedFlightType.backAnother"/>
-
     <div class="container-fluid">
       <div class="row">
         <div class="col-12 d-flex justify-content-center">
@@ -81,6 +81,8 @@ import PlaceLeftModal from "@/components/Place-left-modal"
 import LoginModal from '@/components/LoginModal'
 import RegistrationModal from '@/components/RegistrationModal'
 import ForgotPasswordModal from '@/components/ForgotPasswordModal'
+import FlightsNotFound from "../components/FlightsNotFound.vue"
+
 import {mapGetters,mapActions} from 'vuex'
 
 export default {
@@ -89,26 +91,22 @@ export default {
     Header,
     Timeline,
     TimelineMobile,
-
     FlightForm,
     FlightFormMobile,
-
     FlightTable,
     FlightTableMobile,
-
     Footer,
     DispatchModal,
     DispatchLengthTimeModal,
     PlaceLeftModal,
-    
     LoginModal,
     RegistrationModal,
     ForgotPasswordModal
-
     // Populardirections,
     // Registrationhero,
-
-  }, 
+    ,
+    FlightsNotFound
+}, 
   computed: mapGetters([
     'oneWay',
     'getChildrensCount',

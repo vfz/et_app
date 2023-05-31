@@ -4,21 +4,21 @@
     <Timeline page="flight-selection" v-if="!isMobile()"/>
     <FlightForm v-if="!isMobile()"/>
     <FlightFormMobile v-if="isMobile()"/>
-    <FlightsNotFound/>
-    <TimelineMobile title="Выбор рейса" description="Шаг 1" v-if="isMobile()"/>
+    <FlightsNotFound v-if="isFlightsEmpty === true"/>
+    <TimelineMobile title="Выбор рейса" description="Шаг 1" v-if="isMobile() && isFlightsEmpty === false"/>
 
-    <FlightTable flight-type="there" v-if="!isMobile() && selectedFlightType.there"/>
-    <FlightTableMobile flight-type="there" v-if="isMobile() && selectedFlightType.there"/>
+    <FlightTable flight-type="there" v-if="!isMobile() && selectedFlightType.there && isFlightsEmpty === false"/>
+    <FlightTableMobile flight-type="there" v-if="isMobile() && selectedFlightType.there && isFlightsEmpty === false"/>
     
-    <FlightTable flight-type="thereAnother" v-if="!isMobile() && selectedFlightType.thereAnother"/>
-    <FlightTableMobile flight-type="thereAnother" v-if="isMobile() && selectedFlightType.thereAnother"/>
+    <FlightTable flight-type="thereAnother" v-if="!isMobile() && selectedFlightType.thereAnother & isFlightsEmpty === false"/>
+    <FlightTableMobile flight-type="thereAnother" v-if="isMobile() && selectedFlightType.thereAnother & isFlightsEmpty === false"/>
 
-    <FlightTable flight-type="back" v-if="!isMobile() && !oneWay && selectedFlightType.back"/>
-    <FlightTableMobile flight-type="back" v-if="isMobile() && !oneWay && selectedFlightType.back"/>
+    <FlightTable flight-type="back" v-if="!isMobile() && !oneWay && selectedFlightType.back && isFlightsEmpty === false"/>
+    <FlightTableMobile flight-type="back" v-if="isMobile() && !oneWay && selectedFlightType.back & isFlightsEmpty === false"/>
 
-    <FlightTable flight-type="backAnother" v-if="!isMobile() && !oneWay && selectedFlightType.backAnother"/>
-    <FlightTableMobile flight-type="backAnother" v-if="isMobile() && !oneWay && selectedFlightType.backAnother"/>
-    <div class="container-fluid">
+    <FlightTable flight-type="backAnother" v-if="!isMobile() && !oneWay && selectedFlightType.backAnother & isFlightsEmpty === false"/>
+    <FlightTableMobile flight-type="backAnother" v-if="isMobile() && !oneWay && selectedFlightType.backAnother & isFlightsEmpty === false"/>
+    <div v-if="isFlightsEmpty === false" class="container-fluid">
       <div class="row">
         <div class="col-12 d-flex justify-content-center">
           <button
@@ -116,6 +116,7 @@ export default {
     'from',
     'to',
     'selectedFlightType',
+    'isFlightsEmpty'
     
   ]),
   methods: {

@@ -1,5 +1,5 @@
 <template>
-  <div class="hero-content">
+  <div :class="{'margin-bottom' : isFlightsEmpty === true || isFlightsEmpty === null}" class="hero-content">
     <div class="container-fluid">
       <div class="row">
         <div class="col-12">
@@ -271,7 +271,8 @@ export default {
       'selectDate',
       'selectDateBack',
       'oneWay',
-        'isFlightsLoading'
+      'isFlightsLoading',
+      'isFlightsEmpty'
     ]),
   data(){
     return{
@@ -736,4 +737,10 @@ export default {
 
   }
 }
+.margin-bottom {
+    margin-bottom: 41px;
+    @media screen and (max-width: 767px) {
+      margin-bottom: 40px;
+    }
+  }
 </style>

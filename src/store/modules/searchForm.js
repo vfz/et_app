@@ -40,7 +40,8 @@ export default {
             thereAnother: true,
             back: true,
             backAnother: true,
-        }
+        },
+        isFlightsEmpty: null,
     },
     mutations: {
         // функция для перестройки схемы автобуса в мобильную
@@ -382,6 +383,9 @@ export default {
             state.flightThereAnother= []
             state.flightBack= []
             state.flightBackAnother= []
+        },
+        setIsFlightsEmpty(state, value) {
+            state.isFlightsEmpty = value
         }
 
     },
@@ -569,7 +573,21 @@ export default {
             }
         },
 
+        checkIsFlightsEmpty(ctx) {
+            console.log(ctx.state.flightThere.length, 'flightThere')
+            console.log(ctx.state.flightBack.length, 'flightBack')
+            console.log(ctx.state.flightBackAnother.length, 'flightBackAnother')
+            console.log(ctx.state.flightThereAnother.length, 'flightThereAnother')
+            if (ctx.state.flightThere.length === 0 && ctx.state.flightBack.length === 0 && ctx.state.flightThereAnother.length === 0 && ctx.state.flightBackAnother.length === 0) {
+                ctx.commit('setIsFlightsEmpty', true)
+            } 
+            else {
+                ctx.commit('setIsFlightsEmpty', false)
+            }
+        },
+
         async loadingFlights(ctx){
+            ctx.commit('setIsFlightsEmpty', null)
             const validSearchThere = (!+ctx.state.from || !+ctx.state.to || !ctx.state.dateArival) ? false : true
             if (!validSearchThere) { return false }
 
@@ -581,10 +599,12 @@ export default {
 
             ctx.commit('setSelectedFlightType')
             ctx.commit('setFlightsLoading', false)
+            ctx.dispatch('checkIsFlightsEmpty')
         },
         // Ракировка откуда куда
         castling(ctx) {
             ctx.commit('removeFlights')
+            ctx.commit('setIsFlightsEmpty', null)
             ctx.commit('castlingPoint')
             ctx.dispatch('getPrice')
             // ctx.dispatch('loadingFlights')
@@ -596,11 +616,13 @@ export default {
         },
         UpdateselectDate(ctx) {
             ctx.commit('removeFlights')
+            ctx.commit('setIsFlightsEmpty', null)
             ctx.commit('newselectDate')
         },
 
         UpdateselectDateBack(ctx) {
             ctx.commit('removeFlights')
+            ctx.commit('setIsFlightsEmpty', null)
             ctx.commit('newselectDateBack')
         },
 
@@ -610,29 +632,34 @@ export default {
 
         SetDateArival(ctx, f) {
             ctx.commit('removeFlights')
+            ctx.commit('setIsFlightsEmpty', null)
             ctx.commit('updateDate', f)
 
         },
 
         SetDateBack(ctx, f) {
             ctx.commit('removeFlights')
+            ctx.commit('setIsFlightsEmpty', null)
             ctx.commit('updateDateBack', f)
 
         },
 
         SetDate(ctx, newDate) {
             ctx.commit('removeFlights')
+            ctx.commit('setIsFlightsEmpty', null)
             ctx.commit('updateDateC', newDate)
         },
 
         setFrom(ctx, id) {
             ctx.commit('removeFlights')
+            ctx.commit('setIsFlightsEmpty', null)
             ctx.commit('updateFrom', id)
             ctx.dispatch('getPrice')
         },
 
         setTo(ctx, id) {
             ctx.commit('removeFlights')
+            ctx.commit('setIsFlightsEmpty', null)
             ctx.commit('updateTo', id)
             ctx.dispatch('getPrice')
         },
@@ -728,6 +755,9 @@ export default {
         },
         selectedFlightType(state) {
             return state.selectedFlightType
+        },
+        isFlightsEmpty(state) {
+            return state.isFlightsEmpty
         }
 
     }

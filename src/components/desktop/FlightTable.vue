@@ -4,16 +4,16 @@
       <div class="row">
         <div class="col-12">
           <h2 class="title-table" v-if="flightThere && flightType=='there'&& flightThere.length>0">
-             Туда <span class="title-table-counter">({{flightThere.length}})</span>
+            Туда рейсы Евротранс <span class="title-table-counter">({{flightThere.length}})</span>
           </h2>
           <h2 class="title-table" v-if="flightBack && flightType=='back' && flightBack.length>0">
-             Обратно <span class="title-table-counter">({{flightBack.length}})</span>
+            Обратно рейсы Евротранс <span class="title-table-counter">({{flightBack.length}})</span>
           </h2>
           <h2 class="title-table" v-if="flightBackAnother && flightType=='backAnother' && flightBackAnother.length>0">
-            Обратно другие рейсы <span class="title-table-counter">({{flightBackAnother.length}})</span>
+            Туда рейсы перевозчики <span class="title-table-counter">({{flightBackAnother.length}})</span>
           </h2>
           <h2 class="title-table" v-if="flightThereAnother && flightType=='thereAnother' && flightThereAnother.length>0">
-            Туда другие рейсы <span class="title-table-counter">({{flightThereAnother.length}})</span>
+            Обратно рейсы перевозчики <span class="title-table-counter">({{flightThereAnother.length}})</span>
           </h2>
         </div>
       </div>

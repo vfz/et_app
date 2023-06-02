@@ -4,18 +4,18 @@
       <div class="row">
         <div class="col-12">
           <h2 class="title-table" v-if="flightType == 'there'">
-            Туда <span v-if="$route.name !== 'Ticket-booking'" class="title-table-counter">({{ flightThere.length }})</span>
+            Туда рейсы Евротранс <span v-if="$route.name !== 'Ticket-booking'" class="title-table-counter">({{ flightThere.length }})</span>
           </h2>
           <h2 class="title-table" v-if="flightType == 'back'">
-            Обратно <span v-if="$route.name !== 'Ticket-booking'"
+            Обратно рейсы Евротранс <span v-if="$route.name !== 'Ticket-booking'"
               class="title-table-counter">({{ flightBack.length }})</span>
           </h2>
           <h2 class="title-table" v-if="flightType == 'thereAnother'">
-            Туда другие рейсы <span v-if="$route.name !== 'Ticket-booking'"
+            Туда рейсы перевозчики <span v-if="$route.name !== 'Ticket-booking'"
               class="title-table-counter">({{ flightThereAnother.length }})</span>
           </h2>
           <h2 class="title-table" v-if="flightType == 'backAnother'">
-            Обратно другие рейсы <span v-if="$route.name !== 'Ticket-booking'"
+            Обратно рейсы перевозчики <span v-if="$route.name !== 'Ticket-booking'"
               class="title-table-counter">({{ flightBackAnother.length }})</span>
           </h2>
         </div>

@@ -17,8 +17,9 @@
                 {{ flight.from_name_point }}
               </div>
               <div class="table-item-part-left-place table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal"
-                v-on:click="updateCords(flight.from_yam), updateIcon(flight.from_name), updateModalTitle(flight.from_address_point), updateFlightType(flightType)">
-                {{ flight.from_name }}
+                v-on:click="updateCords(flight.from_yam), updateIcon(flight.from_name), updateModalTitle(flight.from_address_point), updateFlightType(flightType)"
+                v-html="flight.from_name"
+                >
               </div>
               <div class="table-item-part-left-date d-flex">
                 <div class="dispatch-time">
@@ -40,8 +41,9 @@
                 {{ flight.to_name_point }}
               </div>
               <div class="table-item-part-right-place table-link" data-bs-toggle="modal" data-bs-target="#dispatch-modal"
-                v-on:click="updateCords(flight.to_yam), updateIcon(flight.to_name), updateModalTitle(flight.to_address_point), updateFlightType(flightType)">
-                {{ flight.to_name }}
+                v-on:click="updateCords(flight.to_yam), updateIcon(flight.to_name), updateModalTitle(flight.to_address_point), updateFlightType(flightType)"
+                v-html="flight.to_name"
+                >
               </div>
               <div class="table-item-part-right-date d-flex">
                 <div class="arrival-time">

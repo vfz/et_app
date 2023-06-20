@@ -10,10 +10,10 @@
             Обратно рейсы Евротранс <span class="title-table-counter">({{flightBack.length}})</span>
           </h2>
           <h2 class="title-table" v-if="flightBackAnother && flightType=='backAnother' && flightBackAnother.length>0">
-            Туда рейсы перевозчики <span class="title-table-counter">({{flightBackAnother.length}})</span>
+            Обратно рейсы перевозчики <span class="title-table-counter">({{flightBackAnother.length}})</span>
           </h2>
           <h2 class="title-table" v-if="flightThereAnother && flightType=='thereAnother' && flightThereAnother.length>0">
-            Обратно рейсы перевозчики <span class="title-table-counter">({{flightThereAnother.length}})</span>
+            Туда рейсы перевозчики <span class="title-table-counter">({{flightThereAnother.length}})</span>
           </h2>
         </div>
       </div>

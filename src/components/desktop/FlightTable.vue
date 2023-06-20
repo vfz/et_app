@@ -93,20 +93,20 @@
                     updateIcon(flight.from_name), 
                     updateModalTitle(flight.from_address_point), 
                     updateFlightType(flightType)"
+                    v-html="flight.from_name"
                     class="dispatch-place table-link" 
                     data-bs-toggle="modal" 
                     data-bs-target="#dispatch-modal" >
-                      {{ flight.from_name }}
                   </div>
                   <div 
                     v-else
                     v-on:click="
                     updateModalTitle(flight.from_address_point), 
                     updateFlightType(flightType)"
+                    v-html="flight.from_name"
                     class="dispatch-place table-link" 
                     data-bs-toggle="modal" 
                     data-bs-target="#dispatch-modal" >
-                      {{ flight.from_name }}
                   </div>
 
                 </td>
@@ -147,19 +147,20 @@
                       updateCords(flight.to_yam), 
                       updateModalTitle(flight.to_address_point), 
                       updateFlightType(flightType)"
+                      v-html="flight.to_name"
                     class="arrival-place table-link" 
                     data-bs-toggle="modal" 
                     data-bs-target="#dispatch-modal">
-                    {{ flight.to_name }}
+                    
                   </div>
                   <div v-else
                     v-on:click="
                       updateModalTitle(flight.to_address_point), 
                       updateFlightType(flightType)"
                     class="arrival-place table-link" 
+                    v-html="flight.to_name"
                     data-bs-toggle="modal" 
                     data-bs-target="#dispatch-modal">
-                    {{ flight.to_name }}
                   </div>
 
                 </td>

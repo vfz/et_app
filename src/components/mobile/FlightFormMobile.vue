@@ -292,7 +292,7 @@ export default {
     const paramsFrom = parseFloat(this.$route.params.from)
     const paramsTo = parseFloat(this.$route.params.to)
     let oneWay = ''
-    if (this.$route.params.oneWay === 'true') {
+    if (this.$route.params.oneWay === 'true' || this.$route.params.oneWay === undefined) {
       oneWay = true
     }
     else {

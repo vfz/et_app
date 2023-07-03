@@ -308,7 +308,8 @@ export default {
         data : {
           'reisy': this.selectedSeat.filter(reis=>(reis.is_selected)),
           'passengers': this.getPassengers,
-          'buyer':this.getBuyerInfo
+          'buyer':this.getBuyerInfo,
+          'promo':this.getPromoCode
       }
       }
       try {

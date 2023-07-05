@@ -304,7 +304,7 @@ export default {
       this.awaitTransaction=true
       const config = {
         method: 'post',
-        url : 'https://api.evrotrans.net/APIet/transaction_for_vue3.php',
+        url : 'https://api.evrotrans.net/APIet/transaction_for_vue3Bonus.php',
         data : {
           'reisy': this.selectedSeat.filter(reis=>(reis.is_selected)),
           'passengers': this.getPassengers,
@@ -321,7 +321,7 @@ export default {
         }
 
         if (response.data.formUrl) {
-            // window.location.href = response.data.formUrl;
+            window.location.href = response.data.formUrl;
         }
     } catch (error) {
       this.awaitTransaction=true
